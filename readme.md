@@ -38,4 +38,7 @@ typings
 
 wct到此一游
 
+
+zya 6
+
 ### 加入课表API
