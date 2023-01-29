@@ -1,6 +1,6 @@
 // pages/widgets/electricCharge/electricPage/electricPage.ts
 import uCharts from "../../../../utils/u-charts";
-import { getElectric } from '../../../../api/widgersApi';
+import { getElectric } from '../../../../api/electricChargeApi';
 export interface ElectriceItem {
   build: string,
   room: string
