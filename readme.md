@@ -35,3 +35,4 @@ typings
 3、尽量只动自己的目录。
 4、合并代码。（前几次继超会带，后面需要自己发送pullrequest）
 5、绝对绝对不能直接提交master。开发新功能只能新建分支，开发完成后合并。
+fox fox trick or treat@aFang@xiaoyi
