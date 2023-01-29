@@ -1,0 +1,9 @@
+<!--components/fmin-toast/fmin-toast.wxml-->
+<view class="toast" wx:if="{{showToast}}" style="animation-name: {{animationName}};">
+  <view class="t-body">
+    <image wx:if="{{image}}" class="icon" src="/static/svg/toast/toast-{{image}}.svg"></image>
+    <view wx:if="{{image}}" class="title"><text>{{title}}</text></view>
+    <view wx:else class="ltitle"><text>{{title}}</text></view>
+  </view>
+  <!-- <image class="bg" src="/static/svg/toast/toast-bg.svg"></image> -->
+</view>

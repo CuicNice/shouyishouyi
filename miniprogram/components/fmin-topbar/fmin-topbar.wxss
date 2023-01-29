@@ -1,0 +1,17 @@
+/* components/topbar/topbar.wxss */
+.topbar {
+  padding-top: 108rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+}
+
+.returnIcon {
+  position: absolute;
+  left: 34rpx;
+}
+
+.mypageTitle{
+  margin: 0 auto;
+}

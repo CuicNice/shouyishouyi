@@ -1,0 +1,9 @@
+<!--components/topbar/topbar.wxml-->
+<view class="topbar">
+  <view class="returnBtn" bindtap="returnEvent">
+    <image class="returnIcon" style="width:18rpx; height:34rpx" src="/static/svg/returnIcon.svg"></image>
+  </view>
+  <view class="mypageTitle">
+    <view>{{title}}</view>
+  </view>
+</view>

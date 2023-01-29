@@ -1,0 +1,212 @@
+<!--pages/widgets/electricCharge/electricPage/electricPage.wxml-->
+<!--pages/Widgets/electricCharge/electricCharge.wxml-->
+<view class="bg"></view>
+<topbar title="{{electricChargeTitle}}"></topbar>
+<view class="electricCharge-cantainer">
+  <view class="electricCharge-top">
+    <view class="remainBox">
+      <view class="remainMoney">
+        <view class="numberTitle">剩余金额</view>
+        <view class="remainMoney-box">
+          <view class="number-icon1">￥</view>
+          <view class="number">{{data.remainMoney}}</view>
+        </view>
+      </view>
+      <view class="remainElectric">
+        <view class="numberTitle">剩余电量</view>
+        <view class="number-box">
+          <image class="number-icon" src="/static/svg/shandian.svg"></image>
+          <view class="number">{{data.remain}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="electricCharge-img">
+      <image src="/static/svg/schoolBuilt/zhonglou.svg"></image>
+    </view>
+    <view class="electricuserInfo-box">
+      <view class="electricPlacebox">
+        <image class="electricPlace-icon" src="/static/svg/electricPlace-icon.svg"></image>
+        <view wx:if="{{haveBind}}" class="electricPlace">{{data.build}}{{data.room}}</view>
+        <view wx:else class="electricPlace">暂无绑定</view>
+      </view>
+      <view class="electricTimebox">
+        <image class="electricTime-icon" src="/static/svg/electricTime-icon.svg"></image>
+        <view class="electricTime">{{Y}}/{{M}}/{{D}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="water">
+    <view class="water-c">
+      <view class="water-1"> </view>
+      <view class="water-2"> </view>
+    </view>
+  </view>
+
+  <view class="electricCharge-next">
+    <view class="electricCharge-login" bindtap="reBind">
+      <text class="electricCharge-logintxt" wx:if="{{haveBind}}">重新绑定寝室</text>
+      <text class="electricCharge-logintxt" wx:else>绑定寝室</text>
+    </view>
+    <!-- 近15日电费 -->
+    <view class="chargeDetail">
+      <view class="elecEveryDayTitle-box">
+        <view class="elecEveryDayImg">
+          <image src="/static/svg/shandian2.svg"></image>
+        </view>
+        <view class="EveryDayTitle">近15日电费</view>
+      </view>
+      <view class="chartBox">
+        <view class="chart1">
+          <view wx:if="{{showImg}}">
+            <canvas class="myecharts" canvas-id="myColumn" id="myColumn" type="2d"></canvas>
+          </view>
+          <view wx:if="{{!showImg}}" style="width: 100%;height: 440rpx;display: flex;justify-content: center;align-items: center;">
+            <image class="noscore" src="/static/svg/logo/noInfo.svg"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 每日用电详情 -->
+    <view class="elecEveryDay">
+      <view class="elecEveryDayTitle-box">
+        <view class="elecEveryDayImg">
+          <image src="/static/svg/jiageicon.svg"></image>
+        </view>
+        <view class="EveryDayTitle">每日用电详情</view>
+      </view>
+      <view class="datachart1">
+        <view class="excelTitle" wx:if="{{data.allDayValue}}">
+          <text class="dayly1"> 日期 </text>
+          <text class="pay1">用量(度)</text>
+          <view class="figure1">费用(元)</view>
+        </view>
+        <scroll-view scroll-y="true">
+          <view class="chart2">
+            <view style="max-height: 400rpx;"  wx:if="{{data.allDayValue}}">
+              <view class="dataExcel" wx:for="{{data.allDayValue}}">
+                <view class="data1">{{item.curDayTime}}</view>
+                <view class="data2">{{item.dayValue}}</view>
+                <view class="data3">{{item.dayUseMeony}}</view>
+              </view>
+            </view>
+            <view wx:if="{{!data.allDayValue}}" style="width: 100%;height: 440rpx;display: flex;justify-content: center;align-items: center;">
+              <image class="noscore" src="/static/svg/logo/noInfo.svg"></image>
+            </view>
+
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <!-- 近3个月充值记录 -->
+    <view class="chargeDetail">
+      <view class="elecEveryDayTitle-box">
+        <view class="elecEveryDayImg">
+          <image src="/static/svg/chongzhi3.svg"></image>
+        </view>
+        <view class="EveryDayTitle">近3个月充值记录</view>
+      </view>
+      <view class="datachart2">
+        <view class="excelTitle2"  wx:if="{{data.allDayValue}}">
+          <text class="dayly">日期</text>
+          <view class="pay">付款方式</view>
+          <view class="figure">金额</view>
+        </view>
+        <scroll-view scroll-y="true">
+          <view class="chart3">
+            <view style="max-height: 200rpx;" wx:if="{{data.allRecharges}}">
+              <view class="dataExcel" wx:for="{{data.allRecharges}}">
+                <view class="data11">{{item.orderTime}}</view>
+                <view class="data22">{{item.orderCashtype}}</view>
+                <view class="data33">{{item.orderMoney}}</view>
+              </view>
+            </view>
+            <view  wx:if="{{!data.allRecharges}}" style="width: 100%;height: 440rpx;display: flex;justify-content: center;align-items: center;">
+              <image class="noscore" src="/static/svg/logo/noInfo.svg"></image>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <!-- 近6个月电费 -->
+    <view class="chargeDetail">
+      <view class="elecEveryDayTitle-box">
+        <view class="elecEveryDayImg">
+          <image src="/static/svg/dianfei6.svg"></image>
+        </view>
+        <view class="EveryDayTitle">近6个月电费 </view>
+      </view>
+      <view class="chartBox2">
+        <view class="chart4">
+          <view wx:if="{{showImg}}" style="height: 368rpx;">
+            <view class="canvas_1">
+              <canvas class="myecharts2" id="myLine" type="2d"> </canvas>
+            </view>
+            <!-- <image class="lightningLogo" src="../../../../static/svg/logo/lightning.svg"></image> -->
+          </view>
+          <view wx:if="{{!showImg}}" style="width: 100%;height: 440rpx;display: flex;justify-content: center;align-items: center;">
+            <image class="noscore" src="/static/svg/logo/noInfo.svg"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 提示组件 -->
+<toast id="toast"></toast>
+<!-- 提示弹窗 -->
+<dialogTitle title="请输入正确的寝室号" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhongqutushuguan.svg">
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
+  </view>
+</dialogTitle>
+
+<!-- 绑定弹窗 -->
+<dialogTitle title="未绑定寝室?" stitle="是否立即绑定寝室？" wx:if="{{!haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
+    <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="showBindItem">绑定</button>
+  </view>
+</dialogTitle>
+<!-- 重新绑定弹窗 -->
+<dialogTitle title="确认取消绑定？" stitle="取消绑定后需重新绑定寝室进行查询" wx:if="{{haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
+    <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="cleanBind">确定</button>
+  </view>
+</dialogTitle>
+
+<!-- 绑定宿舍半屏弹窗 -->
+<dialogTitle type="half-screen" showDialog="{{electricChargedetail}}">
+  <view class="half-screen-top-box">
+    <view class="dialog-iconbox">
+      <image class="dialog-icon" src="/static/svg/electricPlace2.svg"></image>
+    </view>
+    <view class="title">请选择你要绑定的寝室</view>
+  </view>
+  <view class="input">
+    <text class="label">请选择寝室楼</text>
+    <view class="picker-box">
+      <view class="picker">{{multiArray[multiIndex]}}</view>
+      <picker mode="selector" bindchange="bindBuildChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <view class="textpicker">
+          <view class="iconpicker"></view>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="tips">武昌校区南区和嘉鱼校区暂时不支持查询噢~</view>
+  <view class="input" style="margin-top: 68rpx;">
+    <text class="label">请输入寝室号</text>
+    <input bindinput="bindRoomChange" type="number" style="max-width: 100rpx;" maxlength="3" placeholder="eg:233" placeholder-style="width: 300rpx;height: 40rpx;font-family: 'PingFang SC';font-style: normal;font-weight: 400;font-size: 28rpx;line-height: 40rpx;color: #292945;opacity: 0.3;" />
+  </view>
+  <view class="button">
+    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindEletricCharge">
+      <text>取消</text>
+    </button>
+    <button type="primary" class="primary" bindtap="bindEletricCharge">
+      <text>完成</text>
+    </button>
+  </view>
+</dialogTitle>
