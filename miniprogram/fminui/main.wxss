@@ -1,0 +1,51 @@
+/**
+* Copyright© fmin-courses 2019 —— 2023 All Right Reversed
+* Created by Gorit on 2023/1/29
+*
+**/
+
+page {
+  --primary-color: #20c38c;
+
+  --title-color: #292945;
+}
+
+/* 通用样式封装 */
+.fmin-button {
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  gap: 10px;
+
+  width: 250px;
+  height: 42px;
+
+  background: var(--primary-color);
+  border-radius: 35px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+.fmin-dialog {
+  background: linear-gradient(180.04deg, #b9efe1 0.04%, #fcfcfc 30%);
+  box-shadow: 0px 8px 24px rgba(75, 220, 171, 0.14);
+  border-radius: 15px;
+}
+
+.fmin-toast {
+  position: relative;
+  width: 136px;
+  height: 136px;
+
+  background: linear-gradient(179.79deg, #b9efe1 0.18%, #fcfcfc 60.54%);
+  box-shadow: 0px 1px 13px -6px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+}
