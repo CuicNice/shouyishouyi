@@ -36,7 +36,8 @@
       "outputPath": ""
     },
     "disableUseStrict": false,
-    "minifyWXML": true
+    "minifyWXML": true,
+    "ignoreUploadUnusedFiles": true
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
