@@ -35,6 +35,7 @@ typings
 3、尽量只动自己的目录。
 4、合并代码。（前几次继超会带，后面需要自己发送pullrequest）
 5、绝对绝对不能直接提交master。开发新功能只能新建分支，开发完成后合并。
+<<<<<<< .merge_file_a11948
 
 wct到此一游
 lsk单手扣个6
@@ -43,3 +44,6 @@ lsk单手扣个6
 zya 6
 
 ### 加入课表API
+=======
+fox fox trick or treat@aFang@xiaoyi
+>>>>>>> .merge_file_a24524
