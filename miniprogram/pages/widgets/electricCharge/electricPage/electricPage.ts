@@ -110,7 +110,7 @@ Page({
         this.getElectricData(value);
       } else {
         that.setData({
-          showBindDialog: true
+          electricChargedetail: true
         })
         console.log("用户未绑定数据");
       }
@@ -419,9 +419,15 @@ Page({
    * 重新绑定
    */
   reBind() {
-    this.setData({
-      showBindDialog: true
-    })
+    if(this.data.haveBind){
+      this.setData({
+        showBindDialog: true
+      })
+    }else{
+      this.setData({
+        electricChargedetail: true
+      })
+    }
   },
   /**
    * 清除绑定
