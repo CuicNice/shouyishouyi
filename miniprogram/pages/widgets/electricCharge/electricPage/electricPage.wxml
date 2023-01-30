@@ -138,7 +138,7 @@
       </view>
       <view class="chartBox2">
         <view class="chart4">
-          <view wx:if="{{showImg}}" style="height: 368rpx;">
+          <view wx:if="{{showImg}}">
             <view class="canvas_1">
               <canvas class="myecharts2" id="myLine" type="2d"> </canvas>
             </view>
