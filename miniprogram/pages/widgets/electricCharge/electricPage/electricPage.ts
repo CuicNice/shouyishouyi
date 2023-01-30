@@ -127,7 +127,7 @@ Page({
   async getElectricData(from: ElectriceItem) {
     var that = this;
     console.log(from)
-    that.selectComponent("#toast").showToast("请求中....", "lodding");
+    // that.selectComponent("#toast").showToast("请求中....", "lodding");
     const { data: res } = await getElectric(from) as unknown as IResult<any>;
     if (!res) {
       that.selectComponent("#toast").showToastAuto("请求失败", "error");
@@ -140,7 +140,7 @@ Page({
       that.setData({
         showImg: true
       })
-      that.selectComponent("#toast").showToastAuto("请求成功", "success");
+      // that.selectComponent("#toast").showToastAuto("请求成功", "success");
     }
     /**
      * 处理数据
@@ -395,6 +395,7 @@ Page({
       build: this.data.build,
       room: this.data.room
     } as ElectriceItem;
+    that.selectComponent("#toast").showToast("绑定中....", "lodding");
     getElectric(bindData).then(res => {
       res = res as IResult<any>;
       console.log(res.code == 20000);
