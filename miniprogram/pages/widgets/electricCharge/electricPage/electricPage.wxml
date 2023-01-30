@@ -27,7 +27,7 @@
       <view class="electricPlacebox">
         <image class="electricPlace-icon" src="/static/svg/electricPlace-icon.svg"></image>
         <view wx:if="{{haveBind}}" class="electricPlace">{{data.build}}{{data.room}}</view>
-        <view wx:else class="electricPlace">暂无绑定</view>
+        <view wx:else class="electricPlace">暂未绑定</view>
       </view>
       <view class="electricTimebox">
         <image class="electricTime-icon" src="/static/svg/electricTime-icon.svg"></image>
@@ -172,7 +172,7 @@
 <!-- 重新绑定弹窗 -->
 <dialogTitle title="确认取消绑定？" stitle="取消绑定后需重新绑定寝室进行查询" wx:if="{{haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
   <view style="display: flex;">
-    <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
+    <button class="btn" type="primary" style="width: 224rpx;border-color: #20C38C;color: #20C38C;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
     <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="cleanBind">确定</button>
   </view>
 </dialogTitle>
@@ -199,7 +199,7 @@
   <view class="tips">武昌校区南区和嘉鱼校区暂时不支持查询噢~</view>
   <view class="input" style="margin-top: 68rpx;">
     <text class="label">请输入寝室号</text>
-    <input bindinput="bindRoomChange" type="number" style="max-width: 100rpx;" maxlength="3" placeholder="eg:233" placeholder-style="width: 300rpx;height: 40rpx;font-family: 'PingFang SC';font-style: normal;font-weight: 400;font-size: 28rpx;line-height: 40rpx;color: #292945;opacity: 0.3;" />
+    <input bindinput="bindRoomChange" value="{{room}}" type="number" style="max-width: 100rpx;" maxlength="3" placeholder="eg:233" placeholder-style="width: 300rpx;height: 40rpx;font-family: 'PingFang SC';font-style: normal;font-weight: 400;font-size: 28rpx;line-height: 40rpx;color: rgb(191,191,200);" />
   </view>
   <view class="button">
     <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindEletricCharge">

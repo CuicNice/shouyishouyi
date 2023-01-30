@@ -5,6 +5,10 @@ export interface ElectriceItem {
   build: string,
   room: string
 }
+interface NodeSizeItem {
+  width: number,
+  height: number
+}
 Page({
 
   /**
@@ -223,13 +227,13 @@ Page({
   /**
    * 绘制柱形图
    */
-  drawColumn(ctx: any, obj: any) {
+  drawColumn(ctx: any, obj: any, nodeSize:NodeSizeItem) {
     new uCharts({
       type: "column",
       context: ctx,
       //   canvas2d: true,
-      width: "315",
-      height: "198",
+      width: nodeSize.width,
+      height: nodeSize.height,
       dataLabel: false,
       dataPointShape: true,
       categories: obj.categories,//obj.categories
@@ -241,7 +245,7 @@ Page({
       legend: {},
       xAxis: {
         disableGrid: true,
-        title: "剩余电量"
+        // title: "剩余电量"
       },
       yAxis: {
         data: [{ min: 0 }],
@@ -269,14 +273,14 @@ Page({
   /**
    *  绘制折线图
    */
-  drawLine(ctx: any, obj: any) {
-    // console.log(obj)
+  drawLine(ctx: any, obj: any, nodeSize:NodeSizeItem) {
+    console.log(nodeSize)
     new uCharts({
       type: "line",
       context: ctx,
-      //   canvas2d: true,
-      width: "300",
-      height: "198",
+      width: nodeSize.width,
+      height: nodeSize.height,
+      pixelRatio:1,
       dataLabel: true,
       dataPointShape: true,
       color: ["#3EBAD0"],
@@ -315,12 +319,25 @@ Page({
       .exec((res) => {
         const canvas = res[0].node;
         var ctx = canvas.getContext('2d');
+        var nodeSize = {
+          width: res[0].width,
+          height: res[0].height + 40
+        } as NodeSizeItem;
+        //添加这些代码，通过分辨率重新设置
+        // const dpr = wx.getSystemInfoSync().pixelRatio
+        // canvas.width = res[0].width * dpr
+        // canvas.height = res[0].height * dpr
+        // ctx.scale(dpr, dpr);
+        canvas.width = res[0].width * 2
+        canvas.height = res[0].height * 2
+        ctx.scale(2, 2);
+
         switch (type) {
           case "column":
-            this.drawColumn(ctx, obj);
+            this.drawColumn(ctx, obj, nodeSize);
             break;
           case "line":
-            this.drawLine(ctx, obj);
+            this.drawLine(ctx, obj, nodeSize);
             break;
           default:
             console.log("请选择绘制的图形")
@@ -383,7 +400,7 @@ Page({
   bindEletricCharge() {
     var that = this;
     if (this.data.build == "" || this.data.room == "") {
-      that.selectComponent("#toast").showToastAuto("请完善绑定条件");
+      that.selectComponent("#toast").showToastAuto("请完善绑定条件","",0.5);
       console.log("楼栋或者寝室号不可为空")
       return;
     }
@@ -394,8 +411,9 @@ Page({
       build: this.data.build,
       room: this.data.room
     } as ElectriceItem;
-    that.selectComponent("#toast").showToast("绑定中....", "lodding");
+    that.selectComponent("#toast").showToast("查询中....", "lodding");
     getElectric(bindData).then(res => {
+      that.selectComponent("#toast").hiddenToast();
       res = res as IResult<any>;
       console.log(res.code == 20000);
       if (res.code == 20000) {
