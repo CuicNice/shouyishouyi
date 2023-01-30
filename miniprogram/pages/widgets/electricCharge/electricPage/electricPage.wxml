@@ -156,7 +156,7 @@
 <!-- 提示组件 -->
 <toast id="toast"></toast>
 <!-- 提示弹窗 -->
-<dialogTitle title="请输入正确的寝室号" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhongqutushuguan.svg">
+<dialogTitle title="绑定失败，请重新绑定" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhongqutushuguan.svg">
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>
