@@ -7,6 +7,19 @@ Page({
   data: {
 
   },
+   //导航栏动画
+   scrollToLower: function () {
+    var that = this;
+    that.setData({
+      hidden: true
+    });
+  },
+  scrollToUpper: function () {
+    var that = this;
+    that.setData({
+      hidden: false
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载

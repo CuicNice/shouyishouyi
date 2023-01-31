@@ -1,4 +1,426 @@
-<!--pages/widgets/classSchedule/classSchedulePage/classSchedulePage.wxml-->
-<text>pages/widgets/classSchedule/classSchedulePage/classSchedulePage.wxml</text>
-<!-- ha -->
-hahah
+
+<!-- 背景的学校建筑 -->
+<view class="bg">
+  <image wx:if="{{!isHidden}}" class="background-box" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
+</view>  
+<!-- <wxs src='../../../../../wxs/utils.wxs' module='tools' /> 引入切割字符串 -->
+<!-- 顶部状态栏div -->
+<view class="status_bar" style='height: {{statusBarHeight}}px; background-color: {{bgc}};'></view>
+
+<!-- 导航栏 -->
+<view class="navigationBar">
+<!--更多选择的icon  -->
+  <view class="NewIconBoxLeft" bindtap="showPopupA">
+    <image class="NewIconLeft"></image>
+  </view>
+<!-- 切换周、日的icon -->
+  <view class="switchIconBox">
+  <image class="switchIcon"></image>
+  </view>
+  <!-- 刷新的icon -->
+  <view class="flushIconBox">
+  <image class="flushIcon"></image>
+  </view>
+<!-- 学期选择 -->
+  <view class="TitleLeft">
+    <view class="WeekOption">
+        <view class="text-WeekOption">大二上</view>
+        <view class="icon-WeekOption"></view>
+      </view>
+    </view>
+  </view>
+  <view class="select_box">
+  <scroll-view scroll-x="true"  scroll-with-animation="true" class="select_week"  style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:rgba(255, 255, 255, 0.8);">
+      <view style="display: inline-flex;height: 100%;align-items: center;">
+        <view class="select_one">
+          <ul>
+           <!-- <view class="select_oneIconBox"> <image class="select_oneIcon"></image></view> -->
+            <view class="select_oneweek">第1周</view>
+          </ul>
+        </view>
+      </view>
+      <view style="display: inline-flex;height: 100%;align-items: center;">
+        <view class="select_which">
+          <ul>
+            <view class="noselect_oneweek">第2周</view>
+          </ul>
+        </view>
+      </view>
+      <view style="display: inline-flex;height: 100%;align-items: center;">
+        <view class="select_which">
+          <ul>
+            <view class="noselect_oneweek">第1周</view>
+          </ul>
+        </view>
+      </view>
+      <view style="display: inline-flex;height: 100%;align-items: center;">
+        <view class="select_which">
+          <ul>
+            <view class="noselect_oneweek">第2周</view>
+          </ul>
+        </view>
+      </view>
+      <view style="display: inline-flex;height: 100%;align-items: center;">
+        <view class="select_which">
+          <ul>
+            <view class="noselect_oneweek">第3周</view>
+          </ul>
+        </view>
+      </view>
+  </scroll-view>
+</view>
+
+<view class="container" style="background-color: {{bgc}};">
+  <view class="top">
+    <view class="smallBox" style="background-color:  #F8F8F8;">
+        <text class="smallBoxtxt">武昌校区</text>
+    </view>  
+    <!-- 周和日期-->
+    <view class="weekbigBox">
+      <view class="weekBox">
+      <view class="week">
+        <view class="top-text">周日</view>
+      </view>
+      <view class="day">
+        <block>
+          <view class="dateBox">
+            <view class="monthBox">1/
+            </view>
+            <view class="dayBox">15</view>
+          </view>
+        </block>
+      </view>
+      </view>
+      <view class="weekBox">
+      <view class="week">
+        <view class="top-text">周一</view>
+      </view>
+      <view class="day">
+        <block>
+          <view class="dateBox">
+            <view class="monthBox">1/
+            </view>
+            <view class="dayBox">16</view>
+          </view>
+        </block>
+      </view>
+      </view>
+      <view class="weekBox">
+      <view class="week">
+        <view class="top-text">周二</view>
+      </view>
+      <view class="day">
+        <block>
+          <view class="dateBox">
+            <view class="monthBox">1/
+            </view>
+            <view class="dayBox">17</view>
+          </view>
+        </block>
+      </view>
+      </view>
+      <view class="weekBox" >
+        <view class="week">
+        <view class="top-text">周三</view>
+      </view>
+      <view class="day">
+        <block>
+          <view class="dateBox">
+            <view class="monthBox">1/
+            </view>
+            <view class="dayBox">18</view>
+          </view>
+        </block>
+      </view>
+      </view>
+      <view class="weekBox">
+      <view class="week">
+        <view class="top-text">周四</view>
+      </view>
+      <view class="day">
+        <block>
+          <view class="dateBox">
+            <view class="monthBox">1/
+            </view>
+            <view class="dayBox">19</view>
+          </view>
+        </block>
+      </view>
+      </view>
+      <view class="weekBox">
+      <view class="week">
+        <view class="top-text">周五</view>
+      </view>
+      <view class="day">
+        <block>
+          <view class="dateBox">
+            <view class="monthBox">1/
+            </view>
+            <view class="dayBox">20</view>
+          </view>
+        </block>
+      </view>
+      </view>
+      <view class="weekBox">
+      <view class="week">
+        <view class="top-text">周六</view>
+      </view>
+      <view class="day">
+        <block>
+          <view class="dateBox">
+            <view class="monthBox">1/
+            </view>
+            <view class="dayBox">21</view>
+          </view>
+        </block>
+      </view>
+      </view>
+      <view class="weekBox">
+      <view class="week">
+        <view class="top-text">周日</view>
+      </view>
+      <view class="day">
+        <block>
+          <view class="dateBox">
+            <view class="monthBox">1/
+            </view>
+            <view class="dayBox">30</view>
+          </view>
+        </block>
+      </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="WHQscroll">
+    <scroll-view scroll-y="true" bindscrolltolower='scrollToLower' bindscrolltoupper='scrollToUpper' lower-threshold='30' upper-threshold='30' style="height:100%;width:100%;">
+      <view style="width:100%;display:flex;">
+        <view class="leftBox">
+        <view class="timeTable">
+            <view class="number">1</view>
+            <view class="time">8:30</view>
+            <view class="time">9:15</view>
+        </view>
+        <view class="timeTable">
+            <view class="number">1</view>
+            <view class="time">8:30</view>
+            <view class="time">9:15</view>
+        </view>
+        <view class="timeTable">
+            <view class="number">1</view>
+            <view class="time">8:30</view>
+            <view class="time">9:15</view>
+        </view>
+        <view class="timeTable">
+            <view class="number">1</view>
+            <view class="time">8:30</view>
+            <view class="time">9:15</view>
+        </view>
+        <view class="timeTable">
+            <view class="number">1</view>
+            <view class="time">8:30</view>
+            <view class="time">9:15</view>
+        </view>
+        <view class="timeTable">
+            <view class="number">1</view>
+            <view class="time">8:30</view>
+            <view class="time">9:15</view>
+        </view>
+        <view class="timeTable">
+            <view class="number">1</view>
+            <view class="time">8:30</view>
+            <view class="time">9:15</view>
+        </view>
+        <view class="timeTable">
+            <view class="number">1</view>
+            <view class="time">8:30</view>
+            <view class="time">9:15</view>
+        </view>
+        </view>
+
+        <!--课表-->
+        <block>
+          <block>
+            <view>
+              <view class="flex-item kcb-item">
+                <view class="smalltext">毛泽东思想和中国特色社会主义核心价值观</view>
+                <view class="smalltextad">18-201</view>
+              </view>
+            </view>
+          </block>
+          <!-- 非本周 -->
+          <!-- <block>
+            <view>
+              <view class="noflex-item">
+                <view class="nosmalltext">
+                 <view class="nosmalltextword">非本周</view></view>
+                <view class="smalltext" style="color: rgba(41, 41, 69, 0.4);">毛泽东思想和中国特色社会主义核心价值观</view>
+                <view class="smalltextad" style="color: rgba(41, 41, 69, 0.4);">18-201</view>
+              </view>
+              </view>
+          </block> -->
+        </block>
+
+      </view>
+      <!-- 其他课程 -->
+      <view class="WHQplus">
+        <view class="WHQplusLeft">
+          <view class="otherCourses">其他课程</view>
+        </view>
+        <view class="otherclass">
+          <view class="kesehbox">
+            <image class="kesheIcon"></image>
+            <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
+          </view>
+          <view class="kesehbox">
+            <image class="kesheIcon"></image>
+            <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
+          </view>
+          <view class="kesehbox">
+            <image class="kesheIcon"></image>
+            <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+
+
+
+<!-- 日课表主页 -->
+<!-- <view class="dailyScheduleContainer">
+ <view class="dailyScheduleNavigation">
+ <view class="dailyNavigationtext">第1周 9月20日 周日（日程表）</view>
+ </view> -->
+ <!-- <view class="dailyScheduleIndex">
+  <view class="dailyScheduleIndexList">
+    <view class="dailyScheduleTime">
+      <view class="dailyScheduleTime1">8:00</view>
+      <view class="dailyScheduleTimeLine"></view>
+      <view class="dailyScheduleTime1">8:40</view>
+    </view>
+    <view class="dailyScheduleBox">
+      <view class="dailySchedule">
+      <view class="dailyScheduleClassBox">
+        <view class="dailyScheduleClass">大学英语3</view>
+      </view>
+      <view class="dailyScheduleAdBox">
+       <view class="dailyScheduleAdIcon"><image></image></view>
+       <view class="dailyScheduleAd">18栋教学楼211</view>
+      </view>
+      </view>
+      <view class="dailyScheduleKc">
+       <view class="whichKc">第1~2节</view>
+       <view class="whichTc">蒋晶晶</view>
+      </view>
+      <view class="dailyScheduleBd">
+      <image></image>
+      </view>
+    </view>
+  </view>
+  <view class="dailyScheduleIndexList">
+    <view class="dailyScheduleTime">
+      <view class="dailyScheduleTime1">8:00</view>
+      <view class="dailyScheduleTimeLine"></view>
+      <view class="dailyScheduleTime1">8:40</view>
+    </view>
+    <view class="dailyScheduleBox">
+      <view class="dailySchedule">
+      <view class="dailyScheduleClassBox">
+        <view class="dailyScheduleClass">大学英语3</view>
+      </view>
+      <view class="dailyScheduleAdBox">
+       <view class="dailyScheduleAdIcon"><image></image></view>
+       <view class="dailyScheduleAd">18栋教学楼211</view>
+      </view>
+      </view>
+      <view class="dailyScheduleKc">
+       <view class="whichKc">第1~2节</view>
+       <view class="whichTc">蒋晶晶</view>
+      </view>
+      <view class="dailyScheduleBd">
+      <image></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="dailyScheduleIndexList">
+    <view class="dailyScheduleTime">
+      <view class="dailyScheduleTime1" style="color: #292945">8:00</view>
+      <view class="dailyScheduleTimeLine" style="border: 1px solid #292945;"></view>
+      <view class="dailyScheduleTime1" style="color: #292945">8:40</view>
+    </view>
+    <view class="dailyScheduleBox" style="background: #6290E9;">
+      <view class="dailySchedule">
+      <view class="dailyScheduleClassBox">
+        <view class="dailyScheduleClass" style="color: #FFFFFF;">大学英语3</view>
+      </view>
+      <view class="dailyScheduleAdBox">
+       <view class="havedailyScheduleAdIcon"><image></image></view>
+       <view class="dailyScheduleAd" style="color: #FFFFFF;">18栋教学楼211</view>
+      </view>
+      </view>
+      <view class="dailyScheduleKc">
+       <view class="whichKc" style="color: #FFFFFF;">第1~2节</view>
+       <view class="whichTc" style="color: #FFFFFF;">蒋晶晶</view>
+      </view>
+      <view class="havedailyScheduleBd">
+      <image></image>
+      </view>
+    </view>
+  </view>
+ </view> -->
+ <!-- <view class="WHQplus" style="bottom: 0rpx;">
+        <view class="WHQplusLeft">
+          <view class="otherCourses">其他课程</view>
+        </view>
+        <view class="otherclass">
+          <view class="kesehbox">
+            <image class="kesheIcon"></image>
+            <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
+          </view>
+          <view class="kesehbox">
+            <image class="kesheIcon"></image>
+            <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
+          </view>
+          <view class="kesehbox">
+            <image class="kesheIcon"></image>
+            <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
+          </view>
+        </view>
+ </view> -->
+
+ <!-- 日课表没有课的状态 -->
+ <!-- <view class="nodailyScheduleIndex">
+  <image></image>
+ </view> -->
+<!-- </view> -->
+
+
+<!-- 课程的详情页 -->
+<!-- <view class="CourseDetailsBox">
+ <view class="CourseDetailsTop">
+  <view class="CourseDetailsText">全媒体新闻采写2全媒体新闻采写2</view>
+  <view class="CourseDetailsWeek"><view class="CourseDetailsWeektext">本周</view></view>
+ </view>
+ <view class="CourseDetailsNext">
+  <view class="CourseDetailsplaceBox">
+   <view class="placeIcon"><image></image></view>
+   <view class="placeTxt">地点：18-202</view>
+  </view>
+  <view class="CourseDetailsteacherBox">
+    <view class="teacherIcon"><image></image></view>
+   <view class="teacherTxt">老师：黄龙飞</view>
+  </view>
+  <view class="CourseDetailsnumberBox">
+    <view class="numberIcon"><image></image></view>
+   <view class="numberTxt">节数：星期三 | 第3-4节</view>
+  </view>
+  <view class="CourseDetailsweekBox">
+   <view class="weekIcon"><image></image></view>
+   <view class="weekTxt">周次：第1-8周</view>
+  </view>
+ </view>
+</view> -->
+
