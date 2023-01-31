@@ -66,7 +66,7 @@ Page({
     var academic_year_y = this.data.academic_year_y;
     var term_y = this.data.term_y;
     //wx.vibrateShort(); // 1、使手机震动15ms
-    this.showToast(true,"loading","查询中……");
+    this.showToast(true,"lodding","查询中……");
     var that = this;
     var zh;
     var mm;
@@ -354,7 +354,7 @@ Page({
   onLoad() {
     this.setData({
       toastTitle:"查询中......",
-      toastIcon:'ladding',
+      toastIcon:'lodding',
       showToast:true,
       })
     wx.request({
