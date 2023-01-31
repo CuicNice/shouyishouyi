@@ -12,6 +12,12 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
+    index: 0,
+    homePics:['../../static/img/Vector 2.png',
+    '../../static/img/Vector 2.png',
+    '../../static/img/Vector 2.png',
+    '../../static/img/Vector 2.png',
+    '../../static/img/Vector 2.png']
   },
   // 事件处理函数
   bindViewTap() {
@@ -19,6 +25,19 @@ Page({
       url: '../logs/logs',
     })
   },
+
+  chuangEvent: function (e: { currentTarget: { id: any; }; }) {
+    this.setData({
+      index: e.currentTarget.id
+    })
+  },
+
+  swiperChange:function(e: { detail: { current: any; }; }){
+    this.setData({
+      index: e.detail.current   //获取当前轮播图片的下标
+    })
+  },
+
   onLoad() {
     // this.initPageData();
   },
