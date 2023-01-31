@@ -5,7 +5,99 @@ Page({
    * 页面的初始数据
    */
   data: {
+    swiperCurrent: 0,
+    libraryTitle:"首义图书馆",
+    swiper: 0,  //当前所在页面的 index
+    circular: false, //是否采用衔接滑动
+    librarySvg: [
+      '/static/svg/schoolBuilt/zhonglou.svg',
+      '/static/svg/schoolBuilt/zhongqutushuguan.svg'
+    ],
+    xuehao:'',
+    mima:'',
+    haveBind:true
+  },
 
+  swiperChangeqian: function() {
+    if(this.data.swiper == 1){
+    this.setData({
+      swiper: 1
+    })}
+    else {
+      this.setData({
+        swiper:this.data.swiper+1
+      })
+    }
+  },
+
+  login() {
+    wx.request({
+      url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/login',
+      method:"POST",
+      data:{
+        "userId": this.data.xuehao,
+        "password": this.data.mima
+      },
+      success:(res)=>{
+        console.log(res)
+        if(res.data.code == 20000){
+          this.selectComponent("#toast").showToastAuto("登录成功", "success");
+          setTimeout(()=>{
+            wx.navigateTo({
+              url: '/pages/Widgets/libraryCollection/libraryCollection?userId=' + this.data.xuehao + '&password=' + this.data.mima,
+            })
+          }, 1000)
+        }
+        if(res.data.code == 30000){
+          console.log('ddd')
+          this.setData({
+            haveBind:false
+          })
+        }
+      }
+    })
+    try {
+      wx.setStorageSync('key1',this.data.xuehao)
+    } catch (e) {  
+    }
+    try {
+      wx.setStorageSync('key2', this.data.mima)
+    } catch (e) {  
+    }
+  },
+
+  cancel(){
+    wx.setClipboardData({
+      data: 'http://ilas.lib.wsyu.edu.cn/index.aspx',
+      success:()=> {
+        wx.hideLoading()
+        this.selectComponent("#toast").showToastAuto("复制链接成功", "success");
+     }
+    })
+  },
+
+  input1(res: { detail: { value: any } }){
+    this.setData({
+      xuehao:res.detail.value
+    })
+  },
+
+  input2(res: { detail: { value: any } }){
+    this.setData({
+      mima:res.detail.value
+    })
+  },
+
+  swiperChangeho: function() {
+    if(this.data.swiper == 0){
+    this.setData({
+      swiper: 0
+    })}
+    else {
+      this.setData({
+        swiper:this.data.swiper-1
+      })
+    }
   },
 
   /**
@@ -19,7 +111,18 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    var value1 = wx.getStorageSync('key1')
+    var value2 = wx.getStorageSync('key2')
+      var xx
+      var yy 
+      if(value1||value2){
+        xx=wx.getStorageSync('key1')
+        yy=wx.getStorageSync('key2')
+        this.setData({
+          xuehao:xx,
+          mima:yy
+        })
+      }
   },
 
   /**
