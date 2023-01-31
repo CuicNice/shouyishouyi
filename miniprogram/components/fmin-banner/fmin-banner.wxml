@@ -1,0 +1,13 @@
+<!--components/fmin-banner/fmin-banner.wxml-->
+<view class="banner">
+   <swiper circular autoplay = "{{autoplay}}" interval="{{interval}}" current="{{index}}" bindchange="swiperChange">
+    <swiper-item wx:for="{{imageList}}" wx:key="index" bindtap="tapImage" data-index="{{index}}">
+      <image src="{{item.src}}"></image>
+    </swiper-item>
+   </swiper>
+</view>
+<view class="dots">  
+      <block wx:for="{{imageList}}" wx:key="index" wx:for-index="indexs">  
+        <view class="dot{{indexs == index ? 'active' : ''}}" bindtap="chuangEvent" id="{{indexs}}"></view>   
+      </block>  
+</view> 

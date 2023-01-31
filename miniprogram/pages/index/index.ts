@@ -12,12 +12,20 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    index: 0,
-    homePics:['../../static/img/Vector 2.png',
-    '../../static/img/Vector 2.png',
-    '../../static/img/Vector 2.png',
-    '../../static/img/Vector 2.png',
-    '../../static/img/Vector 2.png']
+    // index: 0,
+    homePics:[
+      {
+        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
+        url:"第0个"
+      },
+      {
+        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
+        url:"第1个"
+      },
+      {
+        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
+        url:"第2个"
+      },]
   },
   // 事件处理函数
   bindViewTap() {
@@ -26,16 +34,8 @@ Page({
     })
   },
 
-  chuangEvent: function (e: { currentTarget: { id: any; }; }) {
-    this.setData({
-      index: e.currentTarget.id
-    })
-  },
-
-  swiperChange:function(e: { detail: { current: any; }; }){
-    this.setData({
-      index: e.detail.current   //获取当前轮播图片的下标
-    })
+  tap(e:any){
+    console.log(e.detail)
   },
 
   onLoad() {
