@@ -1,5 +1,7 @@
 {
   "disableScroll":true,
-  "usingComponents": {},
+  "usingComponents": {
+    "dialogTitle":"/components/fmin-dialog/fmin-dialog"
+  },
   "navigationStyle": "custom"
 }
