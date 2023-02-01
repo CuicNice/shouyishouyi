@@ -1,3 +1,5 @@
+import { getScore } from "../../api/scoreInquiryApi";
+
 // pages/login/login.ts
 Page({
 
@@ -7,7 +9,7 @@ Page({
   data: {
     showBindDialog:false, // 显示绑定弹窗
     showLoginDialog:false,// 显示登录弹窗
-    xh:'',
+    zh:'',
     mm:'',
   },
 
@@ -20,17 +22,15 @@ Page({
   /**
    * 获取学号和密码
    */
-  getXh(e:any){this.setData({xh:e.detail.value})},
+  getXh(e:any){this.setData({zh:e.detail.value})},
   getMm(e:any){this.setData({mm:e.detail.value})},
   /**
    * 点击完成按钮
    */
   login(){ //模仿写出存入缓存
-    
-     var xh=this.data.xh;
-     var mm=this.data.mm;
-    
-    wx.setStorageSync('key1',xh);
+    var zh;
+    var mm; 
+    wx.setStorageSync('key1',zh);
     wx.setStorageSync('key2',mm)
   },
   /**
