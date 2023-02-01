@@ -1,0 +1,106 @@
+/* pages/widgets/countDown/counDownWedGet/countDownWedget.wxss */
+.bg {
+  /* Entering for the first time */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* 背景 */
+  background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
+  z-index: -999;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown {
+  position: fixed;
+  bottom: 500rpx;
+  display: flex;
+  background: linear-gradient(180.04deg, #B9EFE1 0.1%, #FCFCFC 100%);
+  height: 222rpx;
+  width: 670rpx;
+  margin: 0% 5%;
+  margin-top: 51rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5px #00000080;
+}
+
+
+.countdown-txt{
+  position: absolute;
+  top:10rpx;
+  left: 30rpx;
+  height: 40rpx;
+}
+.cd-txt{
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 500;
+font-size: 28rpx;
+line-height: 40rpx;
+/* identical to box height */
+text-transform: capitalize;
+/* text */
+color: #292945;
+}
+
+
+.countdownAllBox{
+  width: 670rpx;
+  display: flex;
+  justify-content: space-between; 
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+/*.countdownBox {
+  box-shadow: 0rpx 14rpx 12rpx -14rpx rgba(218, 218, 218, 0.25);
+  width: 326rpx;
+  height: 172rpx;
+
+}*/
+.countdownBox{
+width: 130rpx;
+height: 100rpx;
+}
+.cdName {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50rpx;
+  width: 100%;
+}
+
+.cdTitle {
+  width: 120rpx;
+  height: 42rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  margin-bottom: 22rpx;
+  text-align: center;
+}
+
+.cdDay {
+    width: 65px;
+    height: 50px;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 50px;
+    text-transform: capitalize;
+    color: #20C38C;
+    text-align: center;
+}
+
+.Postgraduate{
+  position: relative;
+  left: 2rpx;
+}

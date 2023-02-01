@@ -1,0 +1,19 @@
+<!--pages/widgets/countDown/counDownWedGet/countDownWedget.wxml-->
+<view class="bg"></view>
+<view class="container">
+  <view class='countdown'>
+<view class="countdown-txt">
+<text class='cd-txt'>首义＋倒计时</text>
+</view>
+<view class="countdownAllBox" bindtap="setTime1" >
+  <view class="countdownBox" wx:for="{{cdlist3}}">
+        <view class="cdName">
+          <view class="cdDay">{{item.countDownEndDate}}</view>
+          <view class="cdTitle">
+            <text class="Postgraduate">{{item.countDownName}}</text>
+          </view>
+        </view>      
+  </view>
+</view>
+</view>
+</view>
