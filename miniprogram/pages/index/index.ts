@@ -13,19 +13,9 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     // index: 0,
-    homePics:[
-      {
-        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
-        url:"第0个"
-      },
-      {
-        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
-        url:"第1个"
-      },
-      {
-        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
-        url:"第2个"
-      },]
+    homePics:[],
+    shuju:'',
+    iftaiozhuan:false
   },
   // 事件处理函数
   bindViewTap() {
@@ -34,8 +24,37 @@ Page({
     })
   },
 
+  onReady() {
+    wx.request({
+      url: 'http://www.fmin-courses.com:9527/api/v1/ad/ad/banner/appletBannerList',
+      method:'POST',
+      data: {
+        "currentPage": "1",
+        "pageSize": "5"
+      },
+      success:(res)=> {
+        this.setData({
+          homePics:res.data.data.list
+        })
+        for(var i=0;i<this.data.homePics.length;i++){
+          var src=this.data.homePics[i].bannerImage
+          this.data.homePics[i].src=src
+        }
+        this.setData({
+          homePics:res.data.data.list
+        })
+      }
+    })
+  },
+
   tap(e:any){
     console.log(e.detail)
+    if(e.detail.bannerContent != null){
+      this.setData({
+      shuju:e.detail.bannerContent,
+      iftaiozhuan: true
+    })
+   }
   },
 
   onLoad() {

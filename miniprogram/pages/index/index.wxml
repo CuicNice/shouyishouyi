@@ -1,1 +1,3 @@
-<banner imageList="{{homePics}}" bind:imageTapEvent="tap"></banner>
+<banner imageList="{{homePics}}" bind:imageTapEvent="tap">
+  <web-view src="{{homePics.bannerContent}}"></web-view>
+</banner>
