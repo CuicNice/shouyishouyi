@@ -8,6 +8,33 @@ page {
 .top-bar {
 
 }
+.btn-box{
+  /* width: 600rpx;
+  height: 210rpx; */
+  display: flex;
+  /* margin-left: 70rpx; */
+  /* margin:100rpx 0  0 70rpx; */
+  }
+  
+  .school-btn{
+   margin-top: 40rpx;
+  }
+  .mCancel{}
+  .btn{
+    border-radius: 75rpx;
+    width: 214rpx;
+    height: 84rpx;
+    /* font-size: 14px; */
+    font-weight: 500;
+    font-size: 32rpx;
+    padding: 0;
+    line-height: 84rpx;
+  }
+  
+  .btn .button:not([size=mini]){
+  width: 214rpx;
+  height: 84rpx;
+  }
 .returnBox{
   display: flex;
   align-self: start;
@@ -114,8 +141,6 @@ flex-grow: 0;
   font-size: 32rpx;
   line-height: 44rpx;
 
-  /* text */
-  color: #292945;
 }
 .inputFrame{
 display: flex;
@@ -124,7 +149,6 @@ justify-content: center;
 align-items: flex-start;
 padding: 0px;
 gap: 23px;
-color: rebeccapurple;
 width: 310px;
 height: 287px;
 }
@@ -179,8 +203,7 @@ flex-grow: 0;
   text-transform: lowercase;
   
   /* text */
-  
-  color: #292945;
+
   
   opacity: 0.3;
 }
@@ -197,7 +220,6 @@ text-transform: lowercase;
 
 /* text */
 
-color: #292945;
 
 opacity: 0.3;
 
@@ -224,6 +246,9 @@ border-radius: 4px;
 flex: none;
 order: 1;
 flex-grow: 0;
+}
+.pickerin{
+  opacity: 0.6;
 }
 .thingAlarm{
   width: 310px;

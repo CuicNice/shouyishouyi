@@ -1,19 +1,15 @@
-<!--pages/widgets/countDown/countDownComponment/countDownComponment.wxml-->
-<view class="bg"></view>
-<view class="container">
-  <view class='countdown'>
-<view class="countdown-txt">
-<text class='cd-txt'>首义＋倒计时</text>
-</view>
-<view class="countdownAllBox" bindtap="setTime1" >
-  <view class="countdownBox" wx:for="{{cdlist3}}">
-        <view class="cdName">
-          <view class="cdDay">{{item.countDownEndDate}}</view>
-          <view class="cdTitle">
-            <text class="Postgraduate">{{item.countDownName}}</text>
-          </view>
-        </view>      
+<view class="container container-{{type}}" wx:if="{{showOut}}" style="animation-name: {{animationName}};">
+  <view class="binDing-box binDing-box-{{type}}">
+    <image wx:if="{{type == 'normal'}}" class='bg-built' src="{{schoolBuiltSrc}}"></image>
+    <view class="binDing binDing-{{type}}">
+      <view class="bd-text school-text">{{title}}</view>
+      <view class="bd-stext">{{stitle}}</view>
+      <view style="width: 100%; margin-top: 50rpx;">
+        <slot></slot>
+      </view>           
+    </view>
   </view>
 </view>
-</view>
-</view>
+
+
+

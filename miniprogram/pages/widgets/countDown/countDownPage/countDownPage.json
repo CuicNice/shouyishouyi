@@ -3,6 +3,6 @@
   "navigationBarTitleText": "倒计时",
   "component": true,
   "usingComponents": {"topBar":"/components/fmin-topbar/fmin-topbar",
-    "f-dialog":"/components/fmin-dialog/fmin-dialog",
+    "f-dialog":"../countDownComponment/countDownComponment",
   "toast":"/components/fmin-toast/fmin-toast"}
 }

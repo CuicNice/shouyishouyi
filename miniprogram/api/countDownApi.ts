@@ -2,7 +2,6 @@ import { Result } from "../common/Result";
 import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
-import {CountDownItem} from '../pages/widgets/countDown/counDownWedGet/countDownWedget';
 
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();

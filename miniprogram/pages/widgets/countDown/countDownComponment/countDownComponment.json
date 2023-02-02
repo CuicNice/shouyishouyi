@@ -1,8 +1,5 @@
-{ 
-  "navigationStyle": "custom", 
-  "usingComponents": { 
-    "s-cd": "/components/fillInput/fillInput", 
-    "tb": "/components/topbar/topbar", 
-    "f-dialog":"/components/dialogTitle/dialogTitle" 
-  } 
+{
+  "component": true,
+  "usingComponents": {
+  }
 }

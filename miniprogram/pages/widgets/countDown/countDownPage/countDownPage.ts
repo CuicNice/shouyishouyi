@@ -81,21 +81,19 @@ returnPage() {
         })
       } catch (e) {
         console.log("error")
-     wx.showToast({
-          title: '联系管理员',
-          icon: 'error',
-          duration: 2000
-        })
+              // this.showToast(true,"error","设置失败") 
+      this.setData({ 
+        showDialog:true 
+      }) 
 
         // Do something when catch error
       }
     } else {
       console.log("空白格",)
-      wx.showToast({
-        title: '请重新检查格式',
-        icon: 'error',
-        duration: 2000
-      })
+      // this.showToast(true,"error","设置失败") 
+      this.setData({ 
+        showDialog:true 
+      }) 
 
     }
 
