@@ -67,6 +67,7 @@ Page({
       iftaiozhuan: true
     })
     if(this.data.shuju != null){
+      console.log('res')
     wx.navigateTo({
       url: '../indexText/indexText?shuju=' + this.data.shuju,
     })
