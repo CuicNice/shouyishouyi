@@ -33,15 +33,16 @@ Page({
         "pageSize": "5"
       },
       success:(res)=> {
+        console.log(res.data)
         this.setData({
           homePics:res.data.data.list
         })
         for(var i=0;i<this.data.homePics.length;i++){
-          var src=this.data.homePics[i].bannerImage
+          var src='http://' + this.data.homePics[i].bannerImage
           this.data.homePics[i].src=src
         }
         this.setData({
-          homePics:res.data.data.list
+          homePics:this.data.homePics
         })
       }
     })
