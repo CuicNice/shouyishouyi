@@ -413,3 +413,30 @@
  </view>
 </view> -->
 
+
+<!-- 学期选择弹窗 -->
+<dialogTitle type="half-screen" showDialog="{{Semesterswitchingdetail}}">
+  <view class="half-screen-top-box">
+    <view class="dialog-iconbox">
+      <image class="dialog-icon"></image>
+      <view class="title">请选择学期</view>
+    </view>
+    <view class="semesterpicker">
+      <picker-view indicator-style="height: 56px;" style="width: 100%; height: 45%;text-align:center;"
+      value="{{selectedIdx}}">
+      <!--Columns-->
+      <picker-view-column>
+        <view wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+    </view>
+  </view>
+  <view class="button">
+    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindEletricCharge">
+      <text>取消</text>
+    </button>
+    <button type="primary" class="primary" data-index="{{item}}"  bindtap="bindEletricCharge">
+      <text>完成</text>
+    </button>
+  </view>
+</dialogTitle>

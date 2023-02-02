@@ -13,7 +13,12 @@ Page({
     day:2,
     Y:'',
     M:'',
-    D:''
+    D:'',
+    hidden: false,
+    Semesterswitchingdetail:false,
+    semesterList:['大一上学期','大一下学期','大二上学期','大二下学期','大三上学期','大三下学期','大四上学期','大四下学期'],
+    selectedIdx:0,
+    showSelector:true
   },
    //导航栏动画
    scrollToLower: function () {
@@ -29,21 +34,16 @@ Page({
     });
   },
 
-  closeBindDialog(){
+  bindEletricCharge(e:any){
+    console.log(e)
     this.setData({
-      showChange:false
-    })
-  },
-
-  cleanBind(){
-    this.setData({
-      showChange:false
+      Semesterswitchingdetail:false
     })
   },
 
   selectSchoolTime(){
     this.setData({
-      showChange:true
+      Semesterswitchingdetail:true
     })
   },
 
@@ -194,6 +194,12 @@ Page({
    */
   onShow() {
 
+  },
+
+  cancelBindEletricCharge(){
+    this.setData({
+      Semesterswitchingdetail:false
+    })
   },
 
   /**
