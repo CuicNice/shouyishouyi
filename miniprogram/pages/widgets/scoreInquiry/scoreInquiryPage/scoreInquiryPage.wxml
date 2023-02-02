@@ -17,7 +17,7 @@
     <view class="scoreTop-boxs1" bindtap="scoreCountTap">
         <view class="aveScore">
            <view class="aveScore-numBox">
-            <view class="aveScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore =='None'?'无':userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore}}</view>
+            <view class="aveScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore&&userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore==None ?userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore:'无'}}</view>
            </view>
             <view class="aveScore-textBox">
                 <view class="aveScore-text">本期学分加权平均分</view>
@@ -25,7 +25,7 @@
         </view>
         <view class="semScore">
             <view class="semScore-numBox">
-            <view class="semScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf =='None'? '无':userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf}}</view>
+            <view class="semScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf&&userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf==None ? userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf:'无'}}</view>
             </view>
             <view class="semScore-textBox">
                 <view class="semScore-text">本期平均学分绩点</view>
@@ -35,7 +35,7 @@
     <view class="scoreTop-boxs2" bindtap="scoreCountTap">
       <view class="sumGdp">
             <view class="sumGdp-numBox">
-              <view class="sumGdp-num">{{userScoreInfo.allscore.allxfscores}}</view>
+              <view class="sumGdp-num">{{userScoreInfo.allscore.allxfscores?userScoreInfo.allscore.allxfscores:'无'}}</view>
             </view>
             <view class="sumGdp-textBox">
                 <view class="sumGdp-text">总学分加权平均分</view>
@@ -43,7 +43,7 @@
         </view>
         <view class="semGdp">
            <view class="semGdp-numBox">
-            <view class="semGdp-num">{{userScoreInfo.allscore.alljdxfs}}</view>
+            <view class="semGdp-num">{{userScoreInfo.allscore.alljdxfs?userScoreInfo.allscore.alljdxfs:'无'}}</view>
             </view>
             <view class="semGdp-textBox">
                 <view class="semGdp-text">总平均学分绩点</view>
@@ -95,7 +95,7 @@
     </view>
   </view>
   <!-- 成绩list -->
- <view wx:if="{{userScoreInfo[academic_year_y][term_y].length !== 0}}">
+ <view wx:if="{{userScoreInfo[academic_year_y][term_y]}}">
   <view class="courseItem" wx:for="{{userScoreInfo[academic_year_y][term_y]}}" bindtap="courseTap" data-row="{{index}}" wx:for-index="index" data-i="{{index}}">
   <view class="courseItem-left">   
     <view class="courseName">

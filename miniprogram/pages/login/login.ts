@@ -1,4 +1,4 @@
-import { getScore } from "../../api/scoreInquiryApi";
+//import { getScore } from "../../api/scoreInquiryApi";
 
 // pages/login/login.ts
 Page({
@@ -28,10 +28,10 @@ Page({
    * 点击完成按钮
    */
   login(){ //模仿写出存入缓存
-    var zh;
-    var mm; 
+    var zh = this.data.zh;
+    var mm = this.data.mm; 
     wx.setStorageSync('key1',zh);
-    wx.setStorageSync('key2',mm)
+    wx.setStorageSync('key2',mm);
   },
   /**
    * 显示是否绑定页面

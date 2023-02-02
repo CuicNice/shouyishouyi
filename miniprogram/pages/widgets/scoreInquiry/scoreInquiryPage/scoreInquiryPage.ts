@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userScoreInfo:[],
+    userScoreInfo:{},
     scoreTitle:"成绩查询",
     courseTapdetail: false,
     termTitleTapdetail:false,
@@ -402,13 +402,14 @@ Page({
    const {data: res1 } = await getUserInfo(from) as unknown as IResult<any>;
    const {data: res2 } = await getScoreInfo(from) as unknown as Iresult<any>
    console.log(res1)
-   if(!res1&&!res2){
+   if(!res1){
      this.showToast(true,'error',"请求失败");
-   }else if(res1&&res2){
+   }else if(res1){
     this.showToast(true,'success',"请求成功");
-   }else{
-     this.showToast(true,'error',"请重新进入")
    }
+   /*
+   *数据处理
+   */
    
       /**
      * 渲染
