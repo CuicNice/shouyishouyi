@@ -10,7 +10,10 @@ Page({
     semester:'大一上',
     multiArray: ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下'], 
     number:0,
-    day:2
+    day:2,
+    Y:'',
+    M:'',
+    D:''
   },
    //导航栏动画
    scrollToLower: function () {
@@ -128,12 +131,17 @@ Page({
     var date = new Date(timestamp);
     this.setData({
       //获取年份
-      Y: date.getFullYear(),
+      Y: date.getFullYear() as unknown as string,
       //获取月份
-      M: (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1),
+      M: (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string,
       //获取当日日期
-      D: date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      D: date.getDate() < 10 ? '0' + date.getDate() : date.getDate() as unknown as string
     })
+    for(var i=0;i<19;i++){
+      for(var j=1;j<8;j++){
+    if(this.data.M+'/'+this.data.D == this.data.week[i].day1){}
+    }
+  }
   },
   /**
    * 生命周期函数--监听页面显示
