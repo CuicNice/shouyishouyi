@@ -82,7 +82,7 @@ returnPage() {
           success(res) {
             console.log("user", res.data)
             that.selectComponent("#toast").showToastAuto("设置成功", "success");
-
+            that.returnPage()
           }
         })
       } catch (e) {

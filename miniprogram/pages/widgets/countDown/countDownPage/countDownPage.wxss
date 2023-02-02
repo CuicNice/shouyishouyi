@@ -82,9 +82,10 @@ page {
     /* flex: 1; */
     color: #000000;
 }
-.returnButton{
-  margin-left: 17px;
-  top: 7rpx;
+
+.returnButton {
+    margin-left: 17px;
+    top: 7rpx;
 }
 
 .barText {
@@ -321,8 +322,8 @@ page {
     align-items: center;
     padding: 56rpx 20rpx 20rpx;
     gap: 20rpx;
-    width: 250px;
-    height: 42px;
+    width: 500rpx;
+    height: 84rpx;
     /* Inside auto layout */
     flex: none;
     order: 2;
@@ -368,9 +369,9 @@ page {
 }
 
 .Img {
-  width:370rpx;
-  height:370rpx;
-  margin-top: 130rpx;
+    width: 370rpx;
+    height: 370rpx;
+    margin-top: 130rpx;
 }
 
 .sportTxt {

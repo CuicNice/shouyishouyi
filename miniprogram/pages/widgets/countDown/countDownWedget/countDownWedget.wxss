@@ -19,11 +19,13 @@
 
 .countdown {
     position: fixed;
+    flex-wrap: wrap;
     bottom: 500rpx;
     display: flex;
     background: linear-gradient(180.04deg, #B9EFE1 0.1%, #FCFCFC 100%);
-    height: 196rpx;
-    width: 628rpx;
+    width: 586rpx;
+    height: 174rpx;
+    padding: 24rpx 42rpx;
     margin: 0% 5%;
     margin-top: 51rpx;
     border-radius: 10rpx;
@@ -31,9 +33,7 @@
 }
 
 .countdown-txt {
-    position: absolute;
-    top: 10rpx;
-    left: 30rpx;
+
     height: 40rpx;
 }
 
@@ -53,8 +53,7 @@
     width: 670rpx;
     display: flex;
     justify-content: space-between;
-    margin-left: 40rpx;
-    margin-right: 40rpx;
+
 }
 
 
@@ -67,13 +66,12 @@
 
 .countdownBox {
     width: 130rpx;
-    height: 100rpx;
+    /* height: 100rpx; */
 }
 
 .cdName {
     display: flex;
     flex-direction: column;
-    margin-top: 50rpx;
     width: 100%;
 }
 
@@ -88,7 +86,7 @@
     /* identical to box height */
     text-transform: capitalize;
     color: #000000;
-    margin-bottom: 22rpx;
+    /* margin-bottom: 22rpx; */
     text-align: center;
 }
 
@@ -103,6 +101,8 @@
     text-transform: capitalize;
     color: #20C38C;
     text-align: center;
+    align-items: center;
+    align-self: center;
 }
 
 .Postgraduate {

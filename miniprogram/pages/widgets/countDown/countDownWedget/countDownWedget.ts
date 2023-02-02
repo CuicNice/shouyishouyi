@@ -41,12 +41,11 @@ async initPageData() {
     var that = this
     const { data: res } = await getCountDownItem() as unknown as IResult<any>;
     if (!res) {
-
-      console.log("请求失败，请重")
+      that.selectComponent("#toast").showToastAuto("请求失败", "error");
+      console.log("请求失败，请重新绑定")
 
     } else {
       // 渲染数据
-
       let cdlist = [];
       if (wx.getStorageSync('cdlist')) {
         cdlist = wx.getStorageSync('countDownList')
@@ -76,8 +75,9 @@ async initPageData() {
     }
 
   },
-onLoad(options) {
-  this.initPageData()
+onLoad() {
+  this.initPageData();
+
   },
 
 
@@ -85,7 +85,6 @@ onLoad(options) {
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.initPageData();
   },
 
   setTime1: function () { //设置倒计时

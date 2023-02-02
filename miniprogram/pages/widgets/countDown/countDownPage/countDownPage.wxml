@@ -7,12 +7,12 @@
   <view  style="height:{{statusBarHeight}}px;">
   </view>
   <!-- 胶囊区 -->
-  <view  class="capsule-box">
+  <view  class="capsule-box" style="padding-left: 17rpx;">
   <!-- 我讲下问题复现 -->
   <view class="barLineItem">
     <view  bindtap="returnPage" class="returnButton">
       <image class="returnSvg" 
-    style="width: 18rpx;height: 34rpx;padding-left: 70%;" src="{{BackIcon}}"></image>
+    style="width: 18rpx;height: 34rpx;" src="{{BackIcon}}"></image>
     </view>
   
    </view>
