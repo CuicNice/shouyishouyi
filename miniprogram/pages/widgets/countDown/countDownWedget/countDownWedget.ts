@@ -37,7 +37,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async initPageData() {
+async initPageData() {
     var that = this
     const { data: res } = await getCountDownItem() as unknown as IResult<any>;
     if (!res) {
@@ -45,7 +45,6 @@ Page({
       console.log("请求失败，请重")
 
     } else {
-      console.log("请求okoverkjkjkjkjkjkjkj", res)
       // 渲染数据
 
       let cdlist = [];
@@ -77,8 +76,8 @@ Page({
     }
 
   },
-  async onLoad(options) {
-
+onLoad(options) {
+  this.initPageData()
   },
 
 

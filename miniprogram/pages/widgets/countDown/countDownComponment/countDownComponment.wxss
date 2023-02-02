@@ -1,134 +1,132 @@
 @import "../../../../components//animations//animations.wxss";
-
 .container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  animation-duration: 0.3s;
-  background: rgba(216, 216, 216, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation-duration: 0.3s;
+    background: rgba(216, 216, 216, 0.3);
 }
 
 .container-normal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container-half-screen {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: start;
-  align-items: center;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: start;
+    align-items: center;
 }
 
 .binDing-box {
-  position: relative;
-  background-size: 100% 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  box-shadow: 0px 8px 24px rgba(75, 220, 171, 0.14);
-  background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
-  border-radius: 30rpx;
+    position: relative;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    box-shadow: 0rpx 16rpx 48rpx rgba(75, 220, 171, 0.14);
+    background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
+    border-radius: 30rpx;
 }
 
 .binDing-box-normal {
-  width: 580rpx;
-  min-height: 320rpx;
+    width: 580rpx;
+    min-height: 320rpx;
 }
 
 .binDing-box-half-screen {
-  width: 100%;
-  min-height: 600rpx;
-  animation-duration: 0.3s;
-  animation-name: popFromBottom;
+    width: 100%;
+    min-height: 600rpx;
+    animation-duration: 0.3s;
+    animation-name: popFromBottom;
 }
 
 @keyframes popFromBottom {
-  0% {
-    transform: translate3d(0, -20%, 0);
-    transform: translate3d(0, -20%, 0);
-    opacity: 0;
-  }
-
-  100% {
-    transform: none;
-    opacity: 1;
-  }
+    0% {
+        transform: translate3d(0, -20%, 0);
+        transform: translate3d(0, -20%, 0);
+        opacity: 0;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
 }
 
 .bg-box {
-  position: relative;
-  width: 640rpx;
-  height: 400rpx;
+    position: relative;
+    width: 640rpx;
+    height: 400rpx;
 }
 
 .bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .bg-built {
-  position: absolute;
-  top: -100rpx;
-  right: -50rpx;
-  z-index: 10;
-  width: 240rpx;
-  height: 240rpx;
+    position: absolute;
+    top: -100rpx;
+    right: -50rpx;
+    z-index: 10;
+    width: 240rpx;
+    height: 240rpx;
 }
 
 .binDing {
-  margin-top: 60rpx;
-  margin-bottom: 60rpx;
-  margin-left: 34rpx;
-  margin-right: 34rpx;
-  height: 100%;
+    margin-top: 60rpx;
+    margin-bottom: 60rpx;
+    margin-left: 34rpx;
+    margin-right: 34rpx;
+    height: 100%;
 }
 
 .binDing-normal {
-  width: 512rpx;
+    width: 512rpx;
 }
 
 .binDing-half-screen {
-  width: 620rpx;
+    width: 620rpx;
 }
 
 .bd-text {
-  width: 364rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 32rpx;
-  line-height: 44rpx;
-  letter-spacing: -0.2176px;
-  color: #353535;
-  text-align: left;
+    width: 364rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    letter-spacing: -0.4352rpx;
+    color: #353535;
+    text-align: left;
 }
 
 .bd-stext {
-  width: 398rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #292945;
-  opacity: 0.5;
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
-  margin-top: 30rpx;
+    width: 199px;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32rpx;
+    line-height: 48rpx;
+    color: #292945;
+    opacity: 0.5;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-top: 30rpx;
 }
 
 .school-text {
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 48rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32rpx;
+    line-height: 48rpx;
 }

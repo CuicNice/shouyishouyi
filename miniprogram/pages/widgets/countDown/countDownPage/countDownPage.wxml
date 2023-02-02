@@ -12,7 +12,7 @@
   <view class="barLineItem">
     <view  bindtap="returnPage" class="returnButton">
       <image class="returnSvg" 
-    style="width: 9px; height: 14px;padding-left: 70%;" src="{{BackIcon}}"></image>
+    style="width: 18rpx;height: 34rpx;padding-left: 70%;" src="{{BackIcon}}"></image>
     </view>
   
    </view>
@@ -29,7 +29,7 @@
 <view class="inputFrame">
 <view class="thingSet">
 <view class="thingLable"><text>事件设置</text></view>
-<input class="thingInput" name="thingsInputTxt"placeholder_class="thingInputHolder"placeholder-style="padding:12px 0px" placeholder="填写样例：考研"  bind:myevent="getcount" maxlength="4">
+<input class="thingInput" name="thingsInputTxt"placeholder_class="thingInputHolder"placeholder-style="padding:24rpx 0rpx" placeholder="填写样例：考研"  bind:myevent="getcount" maxlength="4">
 </input>
 <view class="thingAlarm"><text>倒计时设置2~4个字</text></view>
 
@@ -44,7 +44,7 @@
 </view> 
 </view>
 <view class="saveButtonBox">
-  <button class="saveButton" style="width: 250px;" form-type="submit"><text class="saveText">保存设置</text>
+  <button class="saveButton" style="width: 500rpx;" form-type="submit"><text class="saveText">保存设置</text>
   </button>
 </view>
 </view>
@@ -52,18 +52,19 @@
 
 
 <view class="Img" >
-  <image class="paw" style="width:226px;height:226px" src="{{sportBuild}}" ></image>
+  <image class="paw" style="width:370rpx;height:370rpx;" src="{{sportBuild}}" ></image>
+
+ 
+</view>
 <view class="sportTxtBox">
 <view class="sportTxt">武昌首义学院（武汉校区）体育馆</view>
 </view>
-  
-</view>
 </view>
 
-<toast title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast> 
+<toast id="toast" title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast> 
 <f-dialog showDialog="{{showDialog}}" title="{{dialogtitle}}"schoolBuiltSrc="{{schoolBuiltSrc}}" bname="{{bname}}" b1name="{{b1name}}">
   <view class="btn-box school-btn">
-        <button class="btn" type="primary" style="width: 107px;" plain="{{true}}" bindtap="mCancel" >{{bname}}</button>
-        <button class="btn" type="primary" style="width: 107px;background: #20C38C;" bindtap="gotoBd" >{{b1name}}</button>
+        <button class="btn" type="primary" style="width: 214rpx;" plain="{{true}}" bindtap="mCancel" >{{bname}}</button>
+        <button class="btn" type="primary" style="width: 214rpx;background: #20C38C;" bindtap="gotoBd" >{{b1name}}</button>
       </view>   
 </f-dialog>

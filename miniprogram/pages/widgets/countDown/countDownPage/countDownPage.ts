@@ -15,11 +15,13 @@ Page({
     b1name:'确定' 
   },
   // toast
-  showToast(showToast:boolean, toastIcon:string, toastTitle:string) { 
+  // autoToast
+  showToastAuto(showToast:boolean, title:string, image:string, duration:number) { 
     this.setData({ 
       showToast: showToast, 
-      toastIcon: toastIcon, 
-      toastTitle: toastTitle 
+      toastIcon: image, 
+      toastTitle: title ,
+      duration:duration
     }) 
   }, 
 
@@ -79,11 +81,7 @@ returnPage() {
           key: 'userCountDown',
           success(res) {
             console.log("user", res.data)
-            that.showToast(true,"complete","设置成功") 
-            // setTimeout(()=>{ 
-            //   that.onLoad() 
-            // },1500) 
-            wx.hideToast()
+            that.selectComponent("#toast").showToastAuto("设置成功", "success");
 
           }
         })
@@ -133,7 +131,12 @@ returnPage() {
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad() {
+onLoad() {
+  this.initDate()
+
+    // console.log("do", that.data.title)
+  },
+  async initDate(){
     let goalTime = this.getNowFormatDate()
     this.setData({
       goalTime: goalTime,
@@ -141,9 +144,8 @@ returnPage() {
     this.setData({
       title: "倒计时"
     })
-    // console.log("do", that.data.title)
+    
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
