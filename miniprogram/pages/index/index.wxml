@@ -1,3 +1,1 @@
-<banner imageList="{{homePics}}" bind:imageTapEvent="tap">
-  <web-view wx:if="{{item.iftaiozhuan}}" src="{{item.bannerContent}}"></web-view>
-</banner>
+<banner imageList="{{homePics}}" bind:imageTapEvent="tap"></banner>  

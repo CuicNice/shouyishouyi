@@ -14,7 +14,8 @@ Page({
     hasUserInfo: false,
     // index: 0,
     homePics:[],
-    iftaiozhuan:false
+    iftaiozhuan:false,
+    shuju:''
   },
   // 事件处理函数
   bindViewTap() {
@@ -61,12 +62,15 @@ Page({
 
   tap(e:any){
     console.log(e.detail)
-    if(e.detail.bannerContent != null){
       this.setData({
       shuju:e.detail.bannerContent,
       iftaiozhuan: true
     })
-   }
+    if(this.data.shuju != null){
+    wx.navigateTo({
+      url: '../indexText/indexText?shuju=' + this.data.shuju,
+    })
+  }
   },
 
   onLoad() {
