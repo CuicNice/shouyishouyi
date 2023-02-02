@@ -138,8 +138,54 @@ Page({
       D: date.getDate() < 10 ? '0' + date.getDate() : date.getDate() as unknown as string
     })
     for(var i=0;i<19;i++){
-      for(var j=1;j<8;j++){
-    if(this.data.M+'/'+this.data.D == this.data.week[i].day1){}
+     if(this.data.M+'/'+this.data.D == this.data.week[i].day1){
+      var week = this.data.week;
+    week[i].type = false;
+    this.setData({
+       week:week
+    })
+    }
+    if(this.data.M+'/'+this.data.D == this.data.week[i].day2){
+      var week = this.data.week;
+    week[i].type = false;
+    this.setData({
+       week:week
+    })
+    }
+    if(this.data.M+'/'+this.data.D == this.data.week[i].day3){
+      var week = this.data.week;
+    week[i].type = false;
+    this.setData({
+       week:week
+    })
+    }
+    if(this.data.M+'/'+this.data.D == this.data.week[i].day4){
+      var week = this.data.week;
+    week[i].type = false;
+    this.setData({
+       week:week
+    })
+    }
+    if(this.data.M+'/'+this.data.D == this.data.week[i].day5){
+      var week = this.data.week;
+    week[i].type = false;
+    this.setData({
+       week:week
+    })
+    }
+    if(this.data.M+'/'+this.data.D == this.data.week[i].day6){
+      var week = this.data.week;
+    week[i].type = false;
+    this.setData({
+       week:week
+    })
+    }
+    if(this.data.M+'/'+this.data.D == this.data.week[i].day7){
+      var week = this.data.week;
+    week[i].type = false;
+    this.setData({
+       week:week
+    })
     }
   }
   },
