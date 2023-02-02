@@ -96,7 +96,7 @@
   </view>
   <!-- 成绩list -->
  <view wx:if="{{userScoreInfo[academic_year_y][term_y]}}">
-  <view class="courseItem" wx:for="{{userScoreInfo[academic_year_y][term_y]}}" bindtap="courseTap" data-row="{{index}}" wx:for-index="index" data-i="{{index}}">
+  <view class="courseItem" wx:for="{{userScoreInfo[academic_year_y][term_y]}}" bindtap="courseTap" data-row="{{index}}" wx:key="index">
   <view class="courseItem-left">   
     <view class="courseName">
       <view class="courseType-box"  wx:if="{{item.type[0] == '必'}}">
@@ -115,13 +115,13 @@
   </view>
     <!-- <view class="Score"  wx:if="{{item.score}}">{{item.score}}</view>
     <view class="Score" wx:else="{{item.score=='优秀'||item.score=='良好'||item.score=='中等'||item.score=='及格'||item.score=='通过'}}" style="color:#137A54">{{item.score}}</view> -->
-    <view class="Score" wx:if="{{item.score>0}}" style="font-size: 64rpx;">{{filters.toFix(item.score)}}</view>
+    <view class="Score" wx:if="{{item.score >0}}" style="font-size: 64rpx;">{{filters.toFix(item.score)}}</view>
     <view class="Score" wx:elif="{{item.score=='优秀'||item.score=='良好'||item.score=='中等'||item.score=='及格'||item.score=='通过'}}" style="font-size: 48rpx;">{{item.score}}</view>
      <view class="Score" wx:elif="{{item.score=='缺考'||item.score=='不及格'||item.score=='不通过'}}" style="font-size: 48rpx;">{{item.score}}</view>
   </view>
  </view>
   <!-- 暂无成绩页面 -->
-  <view wx:else>
+  <view wx:if="{{userScoreInfo[academic_year_y][term_y].length == 0||!userScoreInfo[academic_year_y][term_y]}}">
     <view>
       <image class="background-box" src="/static/svg/noscore.svg"></image>
     </view>

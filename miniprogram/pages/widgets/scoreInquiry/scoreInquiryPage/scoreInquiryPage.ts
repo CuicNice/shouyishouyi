@@ -107,11 +107,8 @@ Page({
      /*
      *数据修饰
      */
-     
-        /**
-       * 渲染
-       */
-      var kcxzmc = res3.allDetails.kcxzmc
+    
+    var kcxzmc = res3.allDetails.kcxzmc
       if(kcxzmc == "必修"){
        this.setData({
          kcxzmc:"必修",
@@ -129,6 +126,10 @@ Page({
           color : '#FBDE71',
         })
       };
+     
+        /**
+       * 渲染
+       */
       this.setData({
         Detail:res3,
         Details:res3.Details,
@@ -407,9 +408,6 @@ Page({
    }else if(res1){
     this.showToast(true,'success',"请求成功");
    }
-   /*
-   *数据处理
-   */
    
       /**
      * 渲染
@@ -418,6 +416,7 @@ Page({
     this.setData({
       data1: res1,
       userScoreInfo: res2,
+
     })
     setTimeout(() => {
       this.setData({
@@ -425,10 +424,14 @@ Page({
       })
     }, 800);
     this.renderAcademicAndTermTap(this.data.academic_year, this.data.term);
-    var that = this;
-    var academic_year_y = that.data.academic_year_y;
-    var term_y = that.data.term_y;
-    that.scoreLevels(that.data.userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore);    
+    /*
+   *数据处理
+   */
+  var that = this;
+  var academic_year_y = that.data.academic_year_y;
+  var term_y = that.data.term_y;
+  that.scoreLevels(that.data.userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore);
+    
   },
     
 
