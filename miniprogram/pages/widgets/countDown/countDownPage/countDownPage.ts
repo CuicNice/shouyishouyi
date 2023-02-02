@@ -7,7 +7,7 @@ Page({
    */
   data: {
     dialogtitle:"设置失败，请重新设置", 
-    schoolBuilt:"/static/svg/zhongqutushuguan.svg", 
+    schoolBuiltSrc:"/static/svg/schoolBuilt/zhonglou.svg", 
     sportBuild:"/static/svg/schoolBuilt/Group.svg",
     BackIcon:"/static/svg/Black.svg",
     date:undefined, 
@@ -23,7 +23,15 @@ Page({
     }) 
   }, 
 
-// 
+// 跳转
+gotoBd(e:any) {
+  setTimeout(()=>{
+    wx.redirectTo({
+  url: '/pages/widgets/countDown/countDownWedget/countDownWedget',
+      
+    })
+  },500)
+}, 
 returnPage() {
   console.log("chufa1")
   wx.redirectTo({
