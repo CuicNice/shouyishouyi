@@ -29,7 +29,7 @@
 <view class="inputFrame">
 <view class="thingSet">
 <view class="thingLable"><text>事件设置</text></view>
-<input class="thingInput" name="thingsInputTxt"placeholder_class="thingInputHolder"placeholder-style="padding:12px 0px" placeholder="填写样例：考研" >
+<input class="thingInput" name="thingsInputTxt"placeholder_class="thingInputHolder"placeholder-style="padding:12px 0px" placeholder="填写样例：考研"  bind:myevent="getcount" maxlength="4">
 </input>
 <view class="thingAlarm"><text>倒计时设置2~4个字</text></view>
 
