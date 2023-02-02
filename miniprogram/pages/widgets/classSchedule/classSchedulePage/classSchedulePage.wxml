@@ -39,7 +39,7 @@
             <view class="select_oneweek">第{{item.index}}周</view>
           </ul>
         </view>
-        <view class="select_which"  wx:if="{{item.type}}" bindtap="selectWeek" data-index='{{index}}'>
+        <view class="select_which" wx:if="{{item.type}}" bindtap="selectWeek" data-index='{{index}}'>
           <ul>
             <view class="noselect_oneweek">第{{item.index}}周</view>
           </ul>
@@ -55,114 +55,86 @@
     </view>  
     <!-- 周和日期-->
     <view class="weekbigBox">
-      <view class="weekBox">
+      <view class="weekBox{{1 == day ? 'Select':''}}" bindtap="changdata1">
       <view class="week">
         <view class="top-text">周日</view>
       </view>
       <view class="day">
         <block>
           <view class="dateBox">
-            <view class="monthBox">1/
-            </view>
-            <view class="dayBox">15</view>
+            <view class="Box">{{week[number].day1}}</view>
           </view>
         </block>
       </view>
       </view>
-      <view class="weekBox">
+      <view class="weekBox{{2 == day ? 'Select':''}}" bindtap="changdata2">
       <view class="week">
         <view class="top-text">周一</view>
       </view>
       <view class="day">
         <block>
           <view class="dateBox">
-            <view class="monthBox">1/
-            </view>
-            <view class="dayBox">16</view>
+            <view class="Box">{{week[number].day2}}</view>
           </view>
         </block>
       </view>
       </view>
-      <view class="weekBox">
+      <view class="weekBox{{3 == day ? 'Select':''}}" bindtap="changdata3">
       <view class="week">
         <view class="top-text">周二</view>
       </view>
       <view class="day">
         <block>
           <view class="dateBox">
-            <view class="monthBox">1/
-            </view>
-            <view class="dayBox">17</view>
+            <view class="Box">{{week[number].day3}}</view>
           </view>
         </block>
       </view>
       </view>
-      <view class="weekBox" >
+      <view class="weekBox{{4 == day ? 'Select':''}}" bindtap="changdata4">
         <view class="week">
         <view class="top-text">周三</view>
       </view>
       <view class="day">
         <block>
           <view class="dateBox">
-            <view class="monthBox">1/
-            </view>
-            <view class="dayBox">18</view>
+            <view class="Box">{{week[number].day4}}</view>
           </view>
         </block>
       </view>
       </view>
-      <view class="weekBox">
+      <view class="weekBox{{5 == day ? 'Select':''}}" bindtap="changdata5">
       <view class="week">
         <view class="top-text">周四</view>
       </view>
       <view class="day">
         <block>
           <view class="dateBox">
-            <view class="monthBox">1/
-            </view>
-            <view class="dayBox">19</view>
+            <view class="Box">{{week[number].day5}}</view>
           </view>
         </block>
       </view>
       </view>
-      <view class="weekBox">
+      <view class="weekBox{{6 == day ? 'Select':''}}" bindtap="changdata6">
       <view class="week">
         <view class="top-text">周五</view>
       </view>
       <view class="day">
         <block>
           <view class="dateBox">
-            <view class="monthBox">1/
-            </view>
-            <view class="dayBox">20</view>
+            <view class="Box">{{week[number].day6}}</view>
           </view>
         </block>
       </view>
       </view>
-      <view class="weekBox">
+      <view class="weekBox{{7 == day ? 'Select':''}}" bindtap="changdata7">
       <view class="week">
         <view class="top-text">周六</view>
       </view>
       <view class="day">
         <block>
           <view class="dateBox">
-            <view class="monthBox">1/
-            </view>
-            <view class="dayBox">21</view>
-          </view>
-        </block>
-      </view>
-      </view>
-      <view class="weekBox">
-      <view class="week">
-        <view class="top-text">周日</view>
-      </view>
-      <view class="day">
-        <block>
-          <view class="dateBox">
-            <view class="monthBox">1/
-            </view>
-            <view class="dayBox">30</view>
+            <view class="Box">{{week[number].day7}}</view>
           </view>
         </block>
       </view>

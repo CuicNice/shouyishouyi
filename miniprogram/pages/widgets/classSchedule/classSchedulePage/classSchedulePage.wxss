@@ -235,7 +235,7 @@ border-radius: 10rpx;
 }
 
 .select_oneweek{
-width: 74rpx;
+width: 48rpx;
 height: 42rpx;
 font-family: 'PingFang SC';
 font-style: normal;
@@ -354,7 +354,7 @@ width: 48rpx;
 height: 34rpx;
 font-family: 'PingFang SC';
 font-style: normal;
-font-weight: 500;
+font-weight: bold;
 font-size: 24rpx;
 line-height: 34rpx;
 /* identical to box height */
@@ -389,43 +389,66 @@ color: #292945;
   justify-content: center;
 }
 
-.monthBox {
+.Box {
   margin-top: 10rpx;
   /* width: 53rpx; */
   height: 26rpx;
   font-size: 20rpx;
   font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 400;
+  font-weight: bold;
   color: #292945;
   line-height: 26rpx;
   letter-spacing: 4rpx;
   text-align: right;
 }
 
-.dayBox {
-  /* width: 44rpx; */
-  height: 28rpx;
-  font-size: 20rpx;
-  font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 500;
-  color: #292945;
-  line-height: 28rpx;
-  letter-spacing: 5rpx;
-  text-align: left;
-  transform: translateY(3rpx);
-  margin-top: 8rpx;
-}
-
 .weekBoxSelect{
+  width: 70rpx;
+  height: 80rpx;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2px;
-  width: 28px;
-  height: 35px;
   background: #4BDCAB;
-  border-radius: 5px;
+  border-radius: 10rpx;
+  padding-top: 13rpx;
+  margin-top: -13rpx;
+}
+
+.weekBoxSelect .week{
+  margin-left: 10rpx;
+  height: 34rpx;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+}
+
+.weekBoxSelect .dateBox {
+  width: 97rpx;
+  height: 28rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.weekBoxSelect .Box {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.weekBoxSelect .top-text{
+  width: 48rpx;
+height: 34rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: bold;
+font-size: 24rpx;
+line-height: 34rpx;
+/* identical to box height */
+text-align: center;
+/* text */
+color: white;
+  /** 水平居中 **/
+  /* margin-left: 24rpx; */
 }
 
 .WHQscroll {
