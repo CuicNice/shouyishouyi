@@ -14,7 +14,6 @@ Page({
     hasUserInfo: false,
     // index: 0,
     homePics:[],
-    shuju:'',
     iftaiozhuan:false
   },
   // 事件处理函数
@@ -38,8 +37,20 @@ Page({
           homePics:res.data.data.list
         })
         for(var i=0;i<this.data.homePics.length;i++){
+          if(this.data.homePics[i].bannerType == 'image'){
+            this.setData({
+              iftaiozhuan:false
+            })
+          }
+          if(this.data.homePics[i].bannerType != 'image'){
+            this.setData({
+              iftaiozhuan:true
+            })
+          }
           var src='http://' + this.data.homePics[i].bannerImage
+          var iftiaozhuan=this.data.iftaiozhuan
           this.data.homePics[i].src=src
+          this.data.homePics[i].iftiaozhuan=iftiaozhuan
         }
         this.setData({
           homePics:this.data.homePics
