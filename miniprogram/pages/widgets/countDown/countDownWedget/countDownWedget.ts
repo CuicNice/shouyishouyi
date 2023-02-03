@@ -29,50 +29,29 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-getCountDownData() {
-  wx.request({
-    url: 'http://www.fmin-courses.com:9527/api/v1/tools/mini/countdown/get',
-    method:"GET",
-    success:(res)=>{
-      console.log("resddddddddd",res.data)      
-      let code=res.data.code;
-       if(code== 20002){
-        console.log("接口请求成功",res.data.data)
-        let questData=res.data.data
+// getCountDownData() {
+//   wx.request({
+//     url: 'http://www.fmin-courses.com:9527/api/v1/tools/mini/countdown/get',
+//     method:"GET",
+//     success:(res)=>{
+//       console.log("resddddddddd",res.data)      
+//       let code=res.data.code;
+//        if(code== 20002){
+//         console.log("接口请求成功",res.data.data)
+//         let questData=res.data.data
 
-      }else{
-        console.log("失败",)        
-      }
-    },
-    fail: (err) => {//请求失败
+//       }else{
+//         console.log("失败",)        
+//       }
+//     },
+//     fail: (err) => {//请求失败
 
-  }
-  })  
-},
+//   }
+//   })  
+// },
 async initPageData() {
     var that = this
     // 网络请求  
-    wx.request({
-      url: 'http://www.fmin-courses.com:9527/api/v1/tools/mini/countdown/get',
-      method:"GET",
-      success:(res)=>{
-        console.log("resddddddddd",res.data)      
-        let code=res.data.code;
-         if(code== 20002){
-          console.log("接口请求成功",res.data.data)
-          let questData=res.data.data
-  
-        }else{
-          console.log("失败",)        
-        }
-      },
-      fail: (err) => {//请求失败
-  
-    }
-    })
-  console.log("888888888")
-  var pp =await getCountDownItem()
-  console.log("okoko",pp)
     let { data: res } = await getCountDownItem() as unknown as IResult<any>;
   console.log("99999999")
 
@@ -110,7 +89,6 @@ async initPageData() {
 
   },
 onLoad(options) {
-  this.initPageData();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -120,7 +98,6 @@ onLoad(options) {
 
   },
   onShow(){
-  this.getCountDownData()
   this.initPageData();
   },
 
