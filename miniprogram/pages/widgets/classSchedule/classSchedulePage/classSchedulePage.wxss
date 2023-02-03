@@ -627,6 +627,7 @@ font-family: 'PingFang SC';
 font-style: normal;
 font-weight: 500;
 font-size: 20rpx;
+text-align: center;
 line-height: 28rpx;
 color: #FFFFFF;
 }
@@ -640,7 +641,7 @@ font-weight: 400;
 font-size: 20rpx;
 line-height: 28rpx;
 text-align: center;
-/* identical to box height */
+margin-top: -10rpx;
 color: #FFFFFF;
 }
 

@@ -149,7 +149,7 @@ Page({
       data: {
         "zh": "20191107124",
         "mm": "200169wxf",
-        "year": 2021,
+        "year": 2019,
         "num": 3
       },
       success:(res)=> {
@@ -240,9 +240,9 @@ Page({
       //获取年份
       Y: date.getFullYear() as unknown as string,
       //获取月份
-      M:(date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string,
+      M:8/*(date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1)*/ as unknown as string,
       //获取当日日期
-      D:date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate() as unknown as string
+      D:30/*date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate()*/ as unknown as string
     })
     console.log(this.data.M+'/'+this.data.D)
     for(var i=0;i<19;i++){

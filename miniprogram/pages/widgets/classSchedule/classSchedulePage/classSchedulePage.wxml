@@ -212,7 +212,7 @@
         <block wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
           <block>
             <view>
-              <view class="flex-item" style="margin-left:{{item.daynum*98+12}}rpx;margin-top:{{(item.start-1)*120+20}}rpx;">
+              <view class="flex-item" style="margin-left:{{item.daynum*96+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;">
                 <view class="smalltext">{{item.name}}</view>
                 <view class="smalltextad">{{item.local}}</view>
               </view>
