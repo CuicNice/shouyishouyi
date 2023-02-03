@@ -102,11 +102,11 @@
       <view class="courseType-box"  wx:if="{{item.type[0] == '必'}}">
           <view class="courseType">{{item.type}}</view>
       </view>
-      <view class="courseType-box-public" wx:elif="{{item.type[0] == '公' || item.type[0] == '专'}}">
+      <view class="courseType-box-public" wx:elif="{{item.type[0] == '公'}}">
         <view class="courseType" >{{item.type[0] + item.type[2]}}</view>
       </view>
-      <view class="courseType-box-other" wx:else >
-        <view class="courseType" >{{item.type}}</view>
+      <view class="courseType-box-other" wx:if="{{item.type[0] == '专'}}" >
+        <view class="courseType" >{{item.type[0] + item.type[2]}}</view>
       </view>
       
       <view class="courseName-title">{{item.name}}</view>
