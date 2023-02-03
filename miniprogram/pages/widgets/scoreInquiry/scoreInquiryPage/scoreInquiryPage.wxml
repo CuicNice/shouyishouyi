@@ -1,3 +1,138 @@
-<!--pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage.wxml-->
-<text>pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage.wxml</text>
-<!--罗苏凯-->
+<view class="bg"></view>
+<wxs module="filters" src="../../scoreInquiry/scoreInquiryPage/scoreparseInt.wxs"></wxs>
+<tb title="{{scoreTitle}}"></tb>
+<image  class="scorewords" src="/static/svg/scorewords.svg"></image>
+<view class="scoreTop">
+<!-- 学期称号 -->
+<view class="scoreTop-titles" bindtap="termTitleTap">
+<view class="scoreTop-imgBox">
+  <image class="scoreTop-img" src="/static/svg/scoreTitle{{scoreLevel}}.svg"></image>
+</view>
+<view class="scoreTop-txtbox">
+<image class="scoreTop-icon" src="/static/svg/scoreTopimg.svg"></image>
+<text class="scoreTop-txt">本学期称号</text>
+</view>
+</view>
+<!-- 学生成绩 -->
+    <view class="scoreTop-boxs1" bindtap="scoreCountTap">
+        <view class="aveScore">
+           <view class="aveScore-numBox">
+            <view class="aveScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore&&userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore !== 'None' ?userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore:'无'}}</view>
+           </view>
+            <view class="aveScore-textBox">
+                <view class="aveScore-text">本期学分加权平均分</view>
+            </view>
+        </view>
+        <view class="semScore">
+            <view class="semScore-numBox">
+            <view class="semScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf&&userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf !== 'None' ? userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf: '无'}}</view>
+            </view>
+            <view class="semScore-textBox">
+                <view class="semScore-text">本期平均学分绩点</view>
+            </view>
+        </view>
+    </view>
+    <view class="scoreTop-boxs2" bindtap="scoreCountTap">
+      <view class="sumGdp">
+            <view class="sumGdp-numBox">
+              <view class="sumGdp-num">{{userScoreInfo.allscore.allxfscores?userScoreInfo.allscore.allxfscores:'无'}}</view>
+            </view>
+            <view class="sumGdp-textBox">
+                <view class="sumGdp-text">总学分加权平均分</view>
+            </view>
+        </view>
+        <view class="semGdp">
+           <view class="semGdp-numBox">
+            <view class="semGdp-num">{{userScoreInfo.allscore.alljdxfs?userScoreInfo.allscore.alljdxfs:'无'}}</view>
+            </view>
+            <view class="semGdp-textBox">
+                <view class="semGdp-text">总平均学分绩点</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 学生信息 -->
+<view class="secondBox">
+        <view class="stuName">
+        <image class="stuName-img" src="/static/svg/stuName.svg"></image>
+        <view class="stuname">{{data1.name}}</view>
+        </view>
+        <view class="stuClass">
+        <image class="stuClass-img" src="/static/svg/stuClass.svg"></image>
+        <view class="stuclass">{{data1.major}}</view>
+        </view>
+        <view class="stuId">
+        <image class="stuId-img" src="/static/svg/stuId.svg"></image>
+        <view class="stuid">{{data1.xh}}</view>
+        </view>
+</view>
+
+<scroll-view scroll-y="true" class="scroll" >
+  <view class="scoresearchPage">
+    <!-- 中间浮动的学期 -->
+    <view class="semesters">
+      <view class="firstSemester-box" style="border-color: {{bdc_1}}" bindtap="choose" data-academic_year="{{1}}" data-term="{{term}}">
+        <view class="firstSemester">大一</view>
+      </view>
+      <view class="secondSemesterbox"style="border-color: {{bdc_2}}" bindtap="choose" data-academic_year="{{2}}" data-term="{{term}}">
+        <view class="secondSemester">大二</view>
+      </view>
+      <view class="thirdSemesterbox" style="border-color: {{bdc_3}}" bindtap="choose" data-academic_year="{{3}}" data-term="{{term}}">
+        <view class="thirdSemester">大三</view>
+      </view>
+      <view class="fourthSemesterbox" style="border-color: {{bdc_4}}" bindtap="choose" data-academic_year="{{4}}" data-term="{{term}}">
+          <view class="fourthSemester">大四</view>
+      </view>
+    </view>
+    <view class="semesterYear">
+        <view class="lastSemester-box" style="border-color: {{bdc_5}}" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{1}}">
+            <view class="lastSemester">上学期</view>
+        </view>
+         <view class="nextSemester-box" style="border-color: {{bdc_6}}" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{2}}">
+          <view class="nextSemester">下学期</view>
+        </view>
+    </view>
+  </view>
+  <!-- 成绩list -->
+ <view wx:if="{{userScoreInfo[academic_year_y][term_y]}}">
+  <view class="courseItem" wx:for="{{userScoreInfo[academic_year_y][term_y]}}" bindtap="courseTap" data-row="{{index}}" wx:key="index">
+  <view class="courseItem-left">   
+    <view class="courseName">
+      <view class="courseType-box"  wx:if="{{item.type[0] == '必'}}">
+          <view class="courseType">{{item.type}}</view>
+      </view>
+      <view class="courseType-box-public" wx:elif="{{item.type[0] == '公' || item.type[0] == '专'}}">
+        <view class="courseType" >{{item.type[0] + item.type[2]}}</view>
+      </view>
+      <view class="courseType-box-other" wx:else >
+        <view class="courseType" >{{item.type}}</view>
+      </view>
+      
+      <view class="courseName-title">{{item.name}}</view>
+    </view>
+    <view class="scoreMsg">课程学分：{{item.class_score}}  | 修得学分：{{item.class_score}} <!--{{item.jd =="None"?'无':item.jd }} --> | 正常考试 </view>
+  </view>
+    <!-- <view class="Score"  wx:if="{{item.score}}">{{item.score}}</view>
+    <view class="Score" wx:else="{{item.score=='优秀'||item.score=='良好'||item.score=='中等'||item.score=='及格'||item.score=='通过'}}" style="color:#137A54">{{item.score}}</view> -->
+    <view class="Score" wx:if="{{item.score >0}}" style="font-size: 64rpx;">{{filters.toFix(item.score)}}</view>
+    <view class="Score" wx:elif="{{item.score=='优秀'||item.score=='良好'||item.score=='中等'||item.score=='及格'||item.score=='通过'}}" style="font-size: 48rpx;">{{item.score}}</view>
+     <view class="Score" wx:elif="{{item.score=='缺考'||item.score=='不及格'||item.score=='不通过'}}" style="font-size: 48rpx;">{{item.score}}</view>
+  </view>
+ </view>
+  <!-- 暂无成绩页面 -->
+  <view wx:if="{{userScoreInfo[academic_year_y][term_y].length == 0||!userScoreInfo[academic_year_y][term_y]}}">
+    <view>
+      <image class="background-box" src="/static/svg/noscore.svg"></image>
+    </view>
+  </view>
+</scroll-view>
+
+
+<!-- 成绩详情弹窗 -->
+<scoreComment courseTapdetail="{{courseTapdetail}}" Detail="{{Detail}}"  allDetail="{{allDetail}}" Details="{{Details}}"   bj="{{bj}}"  jsxm="{{jsxm}}"  kcmc="{{kcmc}}"  score="{{score}}"  xf="{{xf}}"  xnmmc="{{xnmmc}}"  xqmmc="{{xqmmc}}" jd="{{jd}}" kcxzmc="{{kcxzmc}}"termTitleTapdetail="{{termTitleTapdetail}}" scoreCountdetail="{{scoreCountdetail}}" color="{{color}}"></scoreComment>
+<!-- 学期称号详情弹窗 -->
+<!-- 分数算法详情弹窗 -->
+
+<toast title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast>
+<!--<toast title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast>-->
