@@ -73,12 +73,18 @@ returnPage() {
     let countDownList = []
     console.log("goalTime", goalTime)
     console.log("type goalTime", typeof (goalTime))
+    // 之前存在
+    if(wx.getStorageSync('userCountDown')){ 
+      countDownList=wx.getStorageSync('userCountDown') 
+      console.log("本来就有",countDownList)
+    } 
     // 判断name和time是不是都存在
     if (goalName && goalTime) {
       countDownList.push({ 
         countDownName: goalName, 
         countDownEndDate:goalTime 
       }) 
+      console.log("countDownList",countDownList)
       wx.setStorage({
         key:"userCountDown",
         data:countDownList
@@ -118,7 +124,7 @@ returnPage() {
   /**
    * 生命周期函数--监听页面加载
    */
-onLoad() {
+async onLoad() {
   this.initDate()
 
     // console.log("do", that.data.title)

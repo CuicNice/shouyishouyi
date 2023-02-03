@@ -16,7 +16,6 @@ export const getCountDownItem = async () => {
     console.log("成功",Consts.DEBUG)
     return Result.mockSuccess("<h1> 倒计时查询成功 </h1>");
   } else {
-    console.log("失败",Consts.DEBUG,apiList.addCountDownItemUrl)
     return await request.get(apiList.addCountDownItemUrl);
   }
 }

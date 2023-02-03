@@ -42,15 +42,17 @@ async initPageData() {
     const { data: res } = await getCountDownItem() as unknown as IResult<any>;
     if (!res) {
       that.selectComponent("#toast").showToastAuto("请求失败", "error");
-      console.log("请求失败，请重新绑定")
+      console.log("请求失败，请重新绑定",res)
 
     } else {
       // 渲染数据
       let cdlist = [];
-      if (wx.getStorageSync('cdlist')) {
-        cdlist = wx.getStorageSync('countDownList')
-        console.log("cdlistioioio", cdlist);
-      }
+      let infolist=wx.getStorageInfo()
+      console.log("getStorageInfoinfolist",infolist)
+      if (wx.getStorageSync('userCountDown')) {
+        cdlist = wx.getStorageSync("userCountDown")
+        console.log("getStorageInfocdlistioioio", cdlist);
+      
       while (cdlist.length < 3) {
         cdlist.push(res.pop())
       }
@@ -72,7 +74,7 @@ async initPageData() {
 
 
       // that.selectComponent("#toast").showToastAuto("请求成功", "success");
-    }
+    }}
 
   },
 onLoad() {

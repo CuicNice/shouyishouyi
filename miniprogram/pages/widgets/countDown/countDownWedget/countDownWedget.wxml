@@ -6,7 +6,7 @@
 <text class='cd-txt'>首义＋倒计时</text>
 </view>
 <view class="countdownAllBox" bindtap="setTime1" >
-  <view class="countdownBox" wx:for="{{cdlist3}}">
+  <view class="countdownBox" wx:for="{{cdlist3}}"wx:key>
         <view class="cdName">
           <view class="cdDay"><text>{{item.countDownEndDate}}</text></view>
           <view class="cdTitle">
