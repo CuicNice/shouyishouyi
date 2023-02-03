@@ -435,7 +435,7 @@
     <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindEletricCharge">
       <text>取消</text>
     </button>
-    <button type="primary" class="primary" data-index="{{item}}"  bindtap="bindEletricCharge">
+    <button type="primary" class="primary" data-index="{{item}}" id="{{item}}" bindtap="bindEletricCharge">
       <text>完成</text>
     </button>
   </view>

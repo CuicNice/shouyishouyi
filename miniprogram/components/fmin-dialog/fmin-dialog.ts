@@ -23,7 +23,7 @@ Component({
     type:{
       type:String,
       value:"normal"
-    }
+    },
   },
 
   /**
@@ -38,6 +38,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    true(){
+
+    },
   },
   observers:{
     'showDialog':function(showDialog){
@@ -65,6 +68,7 @@ Component({
       }
     }
   },
+
   lifetimes: {
     // 生命周期函数
     ready: function() {
