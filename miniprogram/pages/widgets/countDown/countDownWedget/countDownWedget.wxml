@@ -23,3 +23,4 @@
         <button class="btn" type="primary" style="width: 214rpx;background: #20C38C;" bindtap="gotoBd" >{{b1name}}</button>
       </view>   
 </f-dialog>
+<toast></toast>

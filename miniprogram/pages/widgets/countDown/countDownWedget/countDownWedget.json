@@ -4,6 +4,6 @@
   "usingComponents": {
     "topBar":"/components/fmin-topbar/fmin-topbar",
     "f-dialog":"/components/fmin-dialog/fmin-dialog",
-  "toast":"/components/fmin-toast/fmin-toast"
+    "toast":"/components/fmin-toast/fmin-toast"
   }
 }

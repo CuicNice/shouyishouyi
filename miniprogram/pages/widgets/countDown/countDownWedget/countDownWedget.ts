@@ -29,17 +29,62 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+getCountDownData() {
+  wx.request({
+    url: 'http://www.fmin-courses.com:9527/api/v1/tools/mini/countdown/get',
+    method:"GET",
+    success:(res)=>{
+      console.log("resddddddddd",res.data)      
+      let code=res.data.code;
+       if(code== 20002){
+        console.log("接口请求成功",res.data.data)
+        let questData=res.data.data
+
+      }else{
+        console.log("失败",)        
+      }
+    },
+    fail: (err) => {//请求失败
+
+  }
+  })  
+},
 async initPageData() {
     var that = this
-    const { data: res } = await getCountDownItem() as unknown as IResult<any>;
-    if (!res) {
+    // 网络请求  
+    wx.request({
+      url: 'http://www.fmin-courses.com:9527/api/v1/tools/mini/countdown/get',
+      method:"GET",
+      success:(res)=>{
+        console.log("resddddddddd",res.data)      
+        let code=res.data.code;
+         if(code== 20002){
+          console.log("接口请求成功",res.data.data)
+          let questData=res.data.data
+  
+        }else{
+          console.log("失败",)        
+        }
+      },
+      fail: (err) => {//请求失败
+  
+    }
+    })
+  console.log("888888888")
+  var pp =await getCountDownItem()
+  console.log("okoko",pp)
+    let { data: res } = await getCountDownItem() as unknown as IResult<any>;
+  console.log("99999999")
+
+    // let res=that.getCountDownData()
+    if (res=="false") {
       that.selectComponent("#toast").showToastAuto("请求失败", "error");
       console.log("请求失败，请重新绑定",res)
     } else {
       // 渲染数据
       let cdlist = [];
       let infolist=wx.getStorageInfo()
-      console.log("getStorageInfoinfowedgetlist",infolist)
+      console.log("getStorageInfoinfolist",infolist)
       if (wx.getStorageSync('userCountDown')) {
         cdlist = wx.getStorageSync("userCountDown")
         console.log("getStorageInfocdlistioioio", cdlist);      
@@ -64,11 +109,6 @@ async initPageData() {
     }}
 
   },
-  // 取消跳转主页
-  
-mcancel(){
-  
-},
 onLoad(options) {
   this.initPageData();
   },
@@ -80,13 +120,16 @@ onLoad(options) {
 
   },
   onShow(){
-    wx.showToast
+  this.getCountDownData()
   this.initPageData();
   },
 
   setTime1: function () { //设置倒计时
-    wx.navigateTo({
-  url: '/pages/widgets/countDown/countDownPage/countDownPage',
-    })
+    setTimeout(()=>{
+      wx.navigateTo({
+        url: '/pages/widgets/countDown/countDownPage/countDownPage',
+          })
+    },500)
+
   }
 })
