@@ -17,7 +17,7 @@
     <view class="scoreTop-boxs1" bindtap="scoreCountTap">
         <view class="aveScore">
            <view class="aveScore-numBox">
-            <view class="aveScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore&&userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore==None ?userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore:'无'}}</view>
+            <view class="aveScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore&&userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore !== 'None' ?userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore:'无'}}</view>
            </view>
             <view class="aveScore-textBox">
                 <view class="aveScore-text">本期学分加权平均分</view>
@@ -25,7 +25,7 @@
         </view>
         <view class="semScore">
             <view class="semScore-numBox">
-            <view class="semScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf&&userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf==None ? userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf:'无'}}</view>
+            <view class="semScore-num">{{userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf&&userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf !== 'None' ? userScoreInfo[academic_year_y][term_y+'all'][0].xqjdxf: '无'}}</view>
             </view>
             <view class="semScore-textBox">
                 <view class="semScore-text">本期平均学分绩点</view>

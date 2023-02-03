@@ -69,7 +69,7 @@ justify-content: center;
 align-items: center;
 padding: 4rpx 0rpx;
 width: 162rpx;
-height: 38rpx;
+height: 34rpx;
 /* Style */
 background: #FBDE71;
 border-radius: 0rpx 0rpx 10rpx 10rpx;
@@ -154,7 +154,7 @@ justify-content: center;
 align-items: center;
 padding: 4rpx 0rpx;
 width: 198rpx;
-height: 36rpx;
+height: 34rpx;
 /* 主题色 */
 background: #20C38C;
 border-radius: 0rpx 0rpx 10rpx 10rpx;
@@ -234,7 +234,7 @@ flex-grow: 0;
   align-items: center;
   padding: 4rpx 0rpx;
   width: 198rpx;
-  height: 36rpx;
+  height: 34rpx;
   /* 主题色 */
   background: #20C38C;
   border-radius: 0rpx 0rpx 10rpx 10rpx;
@@ -320,7 +320,7 @@ justify-content: center;
 align-items: center;
 padding: 4rpx 0rpx;
 width: 198rpx;
-height: 36rpx;
+height: 34rpx;
 /* 主题色 */
 background: #3EBAD0;
 border-radius: 0rpx 0rpx 10rpx 10rpx;
@@ -407,7 +407,7 @@ justify-content: center;
 align-items: center;
 padding: 4rpx 0rpx;
 width: 198rpx;
-height: 36rpx;
+height: 34rpx;
 /* 主题色 */
 background: #3EBAD0;
 border-radius: 0rpx 0rpx 10rpx 10rpx;
@@ -450,7 +450,7 @@ flex-grow: 0;
   flex-grow: 0;
   margin-left: 64rpx;
   margin-right: 66rpx;
-  margin-top: 32rpx;
+  margin-top: 28rpx;
 }
 
 .stuName {
@@ -787,7 +787,7 @@ position: relative;
   /* 卡片投影 */
   box-shadow: 0rpx 2rpx 4rpx rgba(0, 0, 0, 0.05);
   border-radius: 14rpx;
-  padding: 25rpx 25rpx 25rpx 25rpx;
+  padding: 10rpx 30rpx 0rpx 30rpx;
 }
 
 .courseItem-left{
@@ -891,7 +891,7 @@ margin-top: 18rpx;
   color: rgba(41, 41, 69, 0.6);
   line-height: 28rpx;
   letter-spacing: 1rpx;
-  margin-top: 24rpx;
+  margin-top: 10rpx;
 }
 
 /* 子类 */
@@ -907,7 +907,7 @@ margin-top: 18rpx;
   line-height: 90rpx;
   letter-spacing: 2rpx;
   right: 0rpx;
-  top: 48rpx;
+  top: 30rpx;
   color: #292945;
 }
 
