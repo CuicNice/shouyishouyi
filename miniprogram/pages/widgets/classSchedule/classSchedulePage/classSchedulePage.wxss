@@ -227,7 +227,7 @@ flex-direction: row;
 align-items: center;
 padding: 6rpx 8rpx;
 gap: 8rpx;
-width: 138rpx;
+width: 146rpx;
 height: 54rpx;
 background: #FFFFFF;
 box-shadow: 0rpx 4rpx 16rpx rgba(32, 195, 140, 0.2);
