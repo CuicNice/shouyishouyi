@@ -403,7 +403,7 @@ color: #292945;
 }
 
 .weekBoxSelect{
-  width: 70rpx;
+  width: 80rpx;
   height: 80rpx;
   display: flex;
   flex-direction: column;
