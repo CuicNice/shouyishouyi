@@ -7,7 +7,8 @@
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
-    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage"
+    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
+    "pages/widgets/popup/popupPage/popupPage"
   ],
   "window": {
     "backgroundTextStyle": "light",
