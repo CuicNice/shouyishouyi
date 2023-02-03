@@ -907,7 +907,7 @@ margin-top: 18rpx;
   line-height: 90rpx;
   letter-spacing: 2rpx;
   right: 0rpx;
-  top: 30rpx;
+  top: 12rpx;
   color: #292945;
 }
 
