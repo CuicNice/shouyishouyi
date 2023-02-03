@@ -522,6 +522,7 @@
     text-align: center;
     /* text */
     color: #292945;  
+    
   }
   .termTitlelevelstext{
     font-size: 28rpx;
@@ -533,7 +534,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10rpx;
+ 
   }
   .termTitlelevelsdot::before{
     content: "";
@@ -561,6 +562,8 @@ line-height: 34rpx;
 /* identical to box height */
 text-align: center;
 color: rgba(41, 41, 69, 0.6);
-margin-top: 26rpx;
+position: absolute;
+top: 692rpx;
+left: 124rpx;
 }
 
