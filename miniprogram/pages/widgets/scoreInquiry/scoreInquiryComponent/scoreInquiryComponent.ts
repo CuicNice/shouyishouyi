@@ -19,6 +19,7 @@ Component({
  xnmmc:String,
  xqmmc:String,
  kcxzmc:String,
+ color:String,
   },
 
   /**

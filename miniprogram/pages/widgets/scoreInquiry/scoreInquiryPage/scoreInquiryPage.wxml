@@ -130,7 +130,7 @@
 
 
 <!-- 成绩详情弹窗 -->
-<scoreComment courseTapdetail="{{courseTapdetail}}" Detail="{{Detail}}"  allDetail="{{allDetail}}" Details="{{Details}}"   bj="{{bj}}"  jsxm="{{jsxm}}"  kcmc="{{kcmc}}"  score="{{score}}"  xf="{{xf}}"  xnmmc="{{xnmmc}}"  xqmmc="{{xqmmc}}" jd="{{jd}}" kcxzmc="{{kcxzmc}}"termTitleTapdetail="{{termTitleTapdetail}}" scoreCountdetail="{{scoreCountdetail}}"></scoreComment>
+<scoreComment courseTapdetail="{{courseTapdetail}}" Detail="{{Detail}}"  allDetail="{{allDetail}}" Details="{{Details}}"   bj="{{bj}}"  jsxm="{{jsxm}}"  kcmc="{{kcmc}}"  score="{{score}}"  xf="{{xf}}"  xnmmc="{{xnmmc}}"  xqmmc="{{xqmmc}}" jd="{{jd}}" kcxzmc="{{kcxzmc}}"termTitleTapdetail="{{termTitleTapdetail}}" scoreCountdetail="{{scoreCountdetail}}" color="{{color}}"></scoreComment>
 <!-- 学期称号详情弹窗 -->
 <!-- 分数算法详情弹窗 -->
 

@@ -126,7 +126,10 @@ Page({
           color : '#FBDE71',
         })
       };
-     
+      var score = res3.allDetails.score;
+      if (score.indexOf(".0") >= 0) {
+        score = parseInt(score);
+      };
         /**
        * 渲染
        */
@@ -136,7 +139,7 @@ Page({
         bj:res3.allDetails.bj,
         jsxm:res3.allDetails.jsxm,
         kcmc:res3.allDetails.kcmc,
-        score:res3.allDetails.score,
+        score:score,
         xf:res3.allDetails.xf,
         xnmmc:res3.allDetails.xnmmc,
         xqmmc:res3.allDetails.xqmmc,

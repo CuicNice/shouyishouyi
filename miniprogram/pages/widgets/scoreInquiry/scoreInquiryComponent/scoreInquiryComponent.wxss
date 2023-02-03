@@ -64,10 +64,13 @@
     .scoredetailBox-detail{
       display: flex;
       flex-direction: column;
-      margin-bottom: 40rpx;
-      gap: 10rpx;
+      margin-bottom: 30rpx;
+     
       }
       .scoredetailBox-detail-tittle{
+        position: absolute;
+        top: 60rpx;
+        left: 22rpx;
         display: flex;
         flex-direction:row;
         justify-content:space-between;
@@ -111,27 +114,33 @@
           color: #FFFFFF;
           }
           .scoreDetailborder{
-            width: 284rpx;
-            height: 0px;
-            border: 1rpx dashed rgba(41, 41, 69, 0.3);
+              position: absolute; 
+              top: 126rpx;
+              left: 22rpx;
+             /* text */
+             width: 284rpx;
+             height: 0rpx;
+             border: 1rpx dashed rgba(41, 41, 69, 0.3);
             }
             .scoredetail-courseTitle{
               display: flex;
-            /* position: absolute; */
-            top:76rpx;
-            left: 0rpx;
+             position: absolute; 
+            top:136rpx;
+            left: 22rpx;
             /* width: 160rpx; */
-            height: 44rpx;
+            height: 80rpx;
             font-family: 'PingFang SC';
             font-style: normal;
             font-weight: 400;
-            font-size: 32rpx;
+            font-size: 28rpx;
             line-height: 44rpx;
         
             color: #292945; 
             } 
             .detailcourse{
-              /* margin-top: 160rpx; */
+              position: absolute;
+              top: 246rpx;
+              left: 22rpx;
               display: flex;
               flex-direction: column;
               align-items: flex-start;
@@ -175,8 +184,9 @@
                 margin-top: 10rpx;
               }
               .scoreNumBox{
-                margin-top: 60rpx;
-                margin-right: 26rpx;
+               position: absolute;
+               top: 60rpx;
+               right: 22rpx;
                 margin-bottom: 84rpx;
                 display: flex;
                 flex-direction: column;
@@ -262,8 +272,8 @@
                     color: #20C38C;
                 }        
                 .classDetailborder {
-                  /* position: absolute; */
-                  top: 394rpx;
+                   position: absolute;
+                  top: 420rpx;
                   /* text */
                   width: 584rpx;
                   height: 0px;
@@ -277,10 +287,9 @@
   align-items: center;
   /* width: 520rpx; */
   height: 236rpx;
-  left: 60rpx;
-  top: 416rpx;
-  
-  margin-top: 22rpx;
+  position: absolute;
+  left: -20rpx;
+  top: 442rpx;
   }
     
   .tr {
