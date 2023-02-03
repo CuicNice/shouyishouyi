@@ -609,10 +609,6 @@ margin-left: 8rpx;
   width: 89rpx;
   height: 170rpx;
   margin-top: 20rpx;
-  margin-left: 12rpx;
-}
-
-.kcb-item {
   position: absolute;
   display: flex;
   flex-direction: column;

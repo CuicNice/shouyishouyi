@@ -149,7 +149,7 @@ Page({
       data: {
         "zh": "20191107124",
         "mm": "200169wxf",
-        "year": 2022,
+        "year": 2021,
         "num": 3
       },
       success:(res)=> {
@@ -157,6 +157,78 @@ Page({
         this.setData({
           classSchedule:res.data
         })
+        for(var i=0;i<this.data.classSchedule.data.all_tables.length;i++){
+          if(this.data.classSchedule.data.all_tables[i].day == '星期一'){
+            var daynum=1 as unknown as number
+            var start=this.data.classSchedule.data.all_tables[i].num.slice(0,1)
+            this.data.classSchedule.data.all_tables[i].daynum=daynum
+            this.data.classSchedule.data.all_tables[i].start=start
+            var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
+          }
+          if(this.data.classSchedule.data.all_tables[i].day == '星期二'){
+            var start=this.data.classSchedule.data.all_tables[i].num.slice(0,1)
+            var daynum=2 as unknown as number
+            this.data.classSchedule.data.all_tables[i].daynum=daynum
+            this.data.classSchedule.data.all_tables[i].start=start
+            var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
+          }
+          if(this.data.classSchedule.data.all_tables[i].day == '星期三'){
+            var start=this.data.classSchedule.data.all_tables[i].num.slice(0,1)
+            var daynum=3 as unknown as number
+            this.data.classSchedule.data.all_tables[i].daynum=daynum
+            this.data.classSchedule.data.all_tables[i].start=start
+            var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
+          }
+          if(this.data.classSchedule.data.all_tables[i].day == '星期四'){
+            var start=this.data.classSchedule.data.all_tables[i].num.slice(0,1)
+            var daynum=4 as unknown as number
+            this.data.classSchedule.data.all_tables[i].daynum=daynum
+            this.data.classSchedule.data.all_tables[i].start=start
+            var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
+          }
+          if(this.data.classSchedule.data.all_tables[i].day == '星期五'){
+            var start=this.data.classSchedule.data.all_tables[i].num.slice(0,1)
+            var daynum=5 as unknown as number
+            this.data.classSchedule.data.all_tables[i].daynum=daynum
+            this.data.classSchedule.data.all_tables[i].start=start
+            var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
+          }
+          if(this.data.classSchedule.data.all_tables[i].day == '星期六'){
+            var start=this.data.classSchedule.data.all_tables[i].num.slice(0,1)
+            var daynum=6 as unknown as number
+            this.data.classSchedule.data.all_tables[i].daynum=daynum
+            this.data.classSchedule.data.all_tables[i].start=start
+            var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
+          }
+          if(this.data.classSchedule.data.all_tables[i].day == '星期日'){
+            var start=this.data.classSchedule.data.all_tables[i].num.slice(0,1)
+            var daynum=0 as unknown as number
+            this.data.classSchedule.data.all_tables[i].daynum=daynum
+            this.data.classSchedule.data.all_tables[i].start=start
+            var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
+          }
+        }
       }
     })
      /**
