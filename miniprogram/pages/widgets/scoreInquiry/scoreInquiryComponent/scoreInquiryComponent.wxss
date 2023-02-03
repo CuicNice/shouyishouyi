@@ -120,7 +120,7 @@
              /* text */
              width: 284rpx;
              height: 0rpx;
-             border: 1rpx dashed rgba(41, 41, 69, 0.3);
+             border-top: 1rpx dashed rgba(41, 41, 69, 0.3);
             }
             .scoredetail-courseTitle{
               display: flex;
@@ -279,7 +279,7 @@
                   height: 0px;
                   margin-left: 28rpx;
                   margin-right: 28rpx;
-                  border: 1rpx dashed rgba(41, 41, 69, 0.3);
+                  border-top: 1rpx dashed rgba(41, 41, 69, 0.3);
                   }
   .scoreForm {
   display: flex;
