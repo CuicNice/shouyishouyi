@@ -2,5 +2,8 @@
   "navigationStyle": "custom",
   "component": true,
   "usingComponents": {
+    "topBar":"/components/fmin-topbar/fmin-topbar",
+    "f-dialog":"/components/fmin-dialog/fmin-dialog",
+  "toast":"/components/fmin-toast/fmin-toast"
   }
 }

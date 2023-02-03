@@ -84,8 +84,9 @@ page {
 }
 
 .returnButton {
-    margin-left: 17px;
+    /* padding-left: 17px; */
     top: 7rpx;
+    /* -ms-transform-origin-x: -17rpx; */
 }
 
 .barText {
@@ -99,6 +100,7 @@ page {
     /* identical to box height */
     text-align: center;
     color: #000000;
+    margin-left: -17rpx;
 }
 
 .saveText {
@@ -239,6 +241,9 @@ page {
 .pickerin {
     opacity: 0.6;
 }
+.picker{
+  
+}
 
 .thingAlarm {
     width: 620rpx;
@@ -371,7 +376,7 @@ page {
 .Img {
     width: 370rpx;
     height: 370rpx;
-    margin-top: 130rpx;
+    margin-top: 180rpx;
 }
 
 .sportTxt {

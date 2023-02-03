@@ -40,11 +40,16 @@
 </view>
 <view class="timeInput"> 
  <picker mode="date" name="timeInputTxt" value="{{goalTime}}" start="{{goalTime}}" end="2099-01-01" bindchange="bindDateChange"> 
-<view class="pickerin">{{goalTime}}</view></picker> 
+  <view wx:if="{{goalTime}}" class="picker">
+         {{goalTime}}
+     </view>
+     <!-- 未选择之前 -->
+<view class="pickerin" style="opacity: 0.6;" wx:else>{{goalTimePre}}</view>
+</picker> 
 </view> 
 </view>
 <view class="saveButtonBox">
-  <button class="saveButton" style="width: 500rpx;" form-type="submit"><text class="saveText">保存设置</text>
+  <button class="saveButton" style="width: 100%;" form-type="submit"><text class="saveText">保存设置</text>
   </button>
 </view>
 </view>

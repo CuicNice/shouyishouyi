@@ -12,8 +12,8 @@ Page({
     BackIcon:"/static/svg/Black.svg",
     date:undefined, 
     bname:'联系南南', 
-    b1name:'确定' 
-  },
+    b1name:'确定' ,
+      },
   // toast
   // autoToast
   showToastAuto(showToast:boolean, title:string, image:string, duration:number) { 
@@ -28,7 +28,7 @@ Page({
 // 跳转
 gotoBd(e:any) {
   setTimeout(()=>{
-    wx.redirectTo({
+  wx.redirectTo({
   url: '/pages/widgets/countDown/countDownWedget/countDownWedget',
       
     })
@@ -70,14 +70,21 @@ returnPage() {
     console.log("e", e)
     let goalName = e.detail.value.thingsInputTxt
     let goalTime = e.detail.value.timeInputTxt
-    let countDownList = JSON.stringify(e.detail.value)
+    let countDownList = []
     console.log("goalTime", goalTime)
     console.log("type goalTime", typeof (goalTime))
     // 判断name和time是不是都存在
     if (goalName && goalTime) {
-      wx.setStorageSync("userCountDown", countDownList)
+      countDownList.push({ 
+        countDownName: goalName, 
+        countDownEndDate:goalTime 
+      }) 
+      wx.setStorage({
+        key:"userCountDown",
+        data:countDownList
+        })
       try {
-        const res = wx.getStorage({
+        wx.getStorage({
           key: 'userCountDown',
           success(res) {
             console.log("user", res.data)
@@ -85,42 +92,22 @@ returnPage() {
             that.returnPage()
           }
         })
+
       } catch (e) {
-        console.log("error")
-              // this.showToast(true,"error","设置失败") 
+        console.log("error",e)
       this.setData({ 
         showDialog:true 
       }) 
-
-        // Do something when catch error
       }
     } else {
       console.log("空白格",)
       // this.showToast(true,"error","设置失败") 
-      this.setData({ 
-        showDialog:true 
-      }) 
-
+      that.selectComponent("#toast").showToastAuto("未填写完毕", "error");
     }
 
 
     // 缓存处理
-    try {
-      wx.setStorageSync('key', 'value')
-      console.log("纯数据中")
-    } catch (e) {
-      // TODO:做toast
-    }
-    try {
-      var value = wx.getStorageSync('key')
-      if (value) {
-        console.log("wode", value)
-
-        // Do something with return value
-      }
-    } catch (e) {
-      // Do something when catch error
-    }
+  
 
 
   },
@@ -137,9 +124,9 @@ onLoad() {
     // console.log("do", that.data.title)
   },
   async initDate(){
-    let goalTime = this.getNowFormatDate()
+    let goalTimePre = this.getNowFormatDate()
     this.setData({
-      goalTime: goalTime,
+      goalTimePre: goalTimePre,
     })
     this.setData({
       title: "倒计时"

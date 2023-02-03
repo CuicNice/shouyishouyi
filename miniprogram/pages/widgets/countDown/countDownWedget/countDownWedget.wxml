@@ -17,4 +17,9 @@
 </view>
 </view>
 </view>
-<!-- <toast id="toast" title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast>  -->
+<f-dialog showDialog="{{showDialog}}" title="{{dialogtitle}}"schoolBuiltSrc="{{schoolBuiltSrc}}" bname="{{bname}}" b1name="{{b1name}}">
+  <view class="btn-box school-btn">
+        <button class="btn" type="primary" style="width: 214rpx;" plain="{{true}}" bindtap="mCancel" >{{bname}}</button>
+        <button class="btn" type="primary" style="width: 214rpx;background: #20C38C;" bindtap="gotoBd" >{{b1name}}</button>
+      </view>   
+</f-dialog>
