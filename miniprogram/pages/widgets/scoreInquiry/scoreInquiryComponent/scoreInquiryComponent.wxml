@@ -55,7 +55,7 @@
   此称号根据已有成绩实时显示，可能会出现可计算数据较少，称号显示不符合实际水平的情况，但是随着各科成绩结果出来，称号会更加贴近你的真正实力~
   </view>
   <view class="termTitlelevels-box">
-    <view class="termTitlelevelstext"><text decode="{{true}}">&nbsp;&nbsp;称号共有七级，按本学期加权平均成绩划分 其中，若所选学期无考试成绩，显示“等待入榜”</text></view>
+    <view class="termTitlelevelstext"><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称号共有七级，按本学期加权平均成绩划分&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;其中，若所选学期无考试成绩，显示“等待入榜”</text></view>
     <view class="termTitlelevels">
     <text class="termTitlelevelsdot">90分以上 获得“首义学神”称号</text>
     <text class="termTitlelevelsdot">85-90分 获得“首义学霸”称号</text>
