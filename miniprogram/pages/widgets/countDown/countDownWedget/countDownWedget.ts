@@ -14,17 +14,11 @@ Page({
     }
   },
   // 时间转换
-
-
   formatNumber: (n: any) => {
     n = n.toString()
     return n[1] ? n : `0${n}`
   },
-
-
-
   retDate(time: string) {
-    console.log(">>>>>", time);
     let dateBegin = new Date(time);//将-转化为/，使用new Date
     let dateEnd = new Date();//获取当前时间
     let dateDiff = dateBegin.getTime() - dateEnd.getTime();//时间差的毫秒数
@@ -32,8 +26,6 @@ Page({
     console.log(">>>>>", dayDiff);
     return dayDiff >= 10 ? dayDiff : dayDiff
   },
-
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -43,16 +35,14 @@ async initPageData() {
     if (!res) {
       that.selectComponent("#toast").showToastAuto("请求失败", "error");
       console.log("请求失败，请重新绑定",res)
-
     } else {
       // 渲染数据
       let cdlist = [];
       let infolist=wx.getStorageInfo()
-      console.log("getStorageInfoinfolist",infolist)
+      console.log("getStorageInfoinfowedgetlist",infolist)
       if (wx.getStorageSync('userCountDown')) {
         cdlist = wx.getStorageSync("userCountDown")
-        console.log("getStorageInfocdlistioioio", cdlist);
-      
+        console.log("getStorageInfocdlistioioio", cdlist);      
       while (cdlist.length < 3) {
         cdlist.push(res.pop())
       }
@@ -71,26 +61,31 @@ async initPageData() {
       this.setData({
         cdlist3: cdlist3.reverse(),
       })
-
-
-      // that.selectComponent("#toast").showToastAuto("请求成功", "success");
     }}
 
   },
-onLoad() {
+  // 取消跳转主页
+  
+mcancel(){
+  
+},
+onLoad(options) {
   this.initPageData();
-
   },
-
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+
+
+  },
+  onShow(){
+    wx.showToast
+  this.initPageData();
   },
 
   setTime1: function () { //设置倒计时
-    wx.redirectTo({
+    wx.navigateTo({
   url: '/pages/widgets/countDown/countDownPage/countDownPage',
     })
   }

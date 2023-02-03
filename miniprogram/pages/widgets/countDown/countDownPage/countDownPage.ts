@@ -26,17 +26,26 @@ Page({
   }, 
 
 // 跳转
-gotoBd(e:any) {
+gotoBd() {
   setTimeout(()=>{
-  wx.redirectTo({
+  wx.navigateTo({
   url: '/pages/widgets/countDown/countDownWedget/countDownWedget',
+      
+    })
+  },500)
+}, 
+// 跳转
+mCancel() {
+  setTimeout(()=>{
+  wx.navigateTo({
+  url: '/miniprogram/pages/index/index',
       
     })
   },500)
 }, 
 returnPage() {
   console.log("chufa1")
-  wx.redirectTo({
+  wx.navigateTo({
   url: '/pages/widgets/countDown/countDownWedget/countDownWedget',
   })  },
   // 时间选择器
@@ -71,51 +80,43 @@ returnPage() {
     let goalName = e.detail.value.thingsInputTxt
     let goalTime = e.detail.value.timeInputTxt
     let countDownList = []
-    console.log("goalTime", goalTime)
-    console.log("type goalTime", typeof (goalTime))
     // 之前存在
     if(wx.getStorageSync('userCountDown')){ 
       countDownList=wx.getStorageSync('userCountDown') 
-      console.log("本来就有",countDownList)
-    } 
-    // 判断name和time是不是都存在
-    if (goalName && goalTime) {
-      countDownList.push({ 
-        countDownName: goalName, 
-        countDownEndDate:goalTime 
-      }) 
-      console.log("countDownList",countDownList)
-      wx.setStorage({
-        key:"userCountDown",
-        data:countDownList
-        })
-      try {
-        wx.getStorage({
-          key: 'userCountDown',
-          success(res) {
-            console.log("user", res.data)
-            that.selectComponent("#toast").showToastAuto("设置成功", "success");
-            that.returnPage()
-          }
-        })
-
-      } catch (e) {
-        console.log("error",e)
-      this.setData({ 
-        showDialog:true 
-      }) 
+      console.log("本来就有",countDownList)}
+      if (goalName && goalTime) {
+        countDownList.push({ 
+          countDownName: goalName, 
+          countDownEndDate:goalTime 
+        }) 
+        console.log("countDownList",countDownList)
+        wx.setStorage({
+          key:"userCountDown",
+          data:countDownList
+          })
+        try {
+          wx.getStorage({
+            key: 'userCountDown',
+            success(res) {
+              console.log("user", res.data)
+              that.selectComponent("#toast").showToastAuto("设置成功", "success");
+              that.gotoBd()
+            }
+          })
+        } catch (e) {
+          console.log("error",e)
+        this.setData({ 
+          showDialog:true 
+        }) 
+        }
+      } else {
+        // this.showToast(true,"error","设置失败") 
+        that.selectComponent("#toast").showToastAuto("未填写完毕", "error");
       }
-    } else {
-      console.log("空白格",)
-      // this.showToast(true,"error","设置失败") 
-      that.selectComponent("#toast").showToastAuto("未填写完毕", "error");
-    }
-
+  
+    // 判断name和time是不是都存在
 
     // 缓存处理
-  
-
-
   },
   // chun
   formReset() {
@@ -124,12 +125,12 @@ returnPage() {
   /**
    * 生命周期函数--监听页面加载
    */
-async onLoad() {
+onLoad() {
   this.initDate()
 
     // console.log("do", that.data.title)
   },
-  async initDate(){
+initDate(){
     let goalTimePre = this.getNowFormatDate()
     this.setData({
       goalTimePre: goalTimePre,
@@ -139,46 +140,49 @@ async onLoad() {
     })
     
   },
+  // 顶部
+  getTarHeighgt(){
+        // 获取设备的信息  
+        let systemInfo = wx.getSystemInfoSync()
+        // 获取信号区高度
+        let statusBarHeight = systemInfo['statusBarHeight']
+    
+        /* 
+        根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
+        开发工具 = 获取的高度
+        安卓真机 = 获取的高度 + 1
+        苹果真机 = 获取的高度 - 1
+        我本人这里也只测试了iPhonex 华为和小米手机，
+        如果有出入根据实际情况进行调整就行了
+        */
+        //  console.log("systemInfo",systemInfo.model)
+    
+        if (systemInfo.model === 'andorid') {
+          statusBarHeight = statusBarHeight + 1
+        } else if (systemInfo.platform === 'ios') {
+          statusBarHeight = statusBarHeight - 2
+        } else {
+          statusBarHeight = statusBarHeight
+        }
+        this.setData({
+          statusBarHeight
+        })
+
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    /* 
-在组件的生命周期函数内 获取信号区的高度 这一步也可以在app.js里面获取,来减少资源浪费
-*/
-
-    // 获取设备的信息  
-    let systemInfo = wx.getSystemInfoSync()
-    // 获取信号区高度
-    let statusBarHeight = systemInfo['statusBarHeight']
-
-    /* 
-    根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
-    开发工具 = 获取的高度
-    安卓真机 = 获取的高度 + 1
-    苹果真机 = 获取的高度 - 1
-    我本人这里也只测试了iPhonex 华为和小米手机，
-    如果有出入根据实际情况进行调整就行了
-    */
-    //  console.log("systemInfo",systemInfo.model)
-
-    if (systemInfo.model === 'andorid') {
-      statusBarHeight = statusBarHeight + 1
-    } else if (systemInfo.platform === 'ios') {
-      statusBarHeight = statusBarHeight - 2
-    } else {
-      statusBarHeight = statusBarHeight
-    }
-    this.setData({
-      statusBarHeight
-    })
-
+  this.getTarHeighgt()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
+  this.getTarHeighgt()
+
 
   },
 
