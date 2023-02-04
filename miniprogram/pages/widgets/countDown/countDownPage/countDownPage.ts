@@ -28,7 +28,7 @@ Page({
 // 跳转
 gotoBd() {
   setTimeout(()=>{
-  wx.navigateTo({
+  wx.redirectTo({
   url: '/pages/widgets/countDown/countDownWedget/countDownWedget',
       
     })
@@ -37,7 +37,7 @@ gotoBd() {
 // 跳转
 mCancel() {
   setTimeout(()=>{
-  wx.navigateTo({
+  wx.redirectTo({
   url: '/miniprogram/pages/index/index',
       
     })
@@ -45,7 +45,7 @@ mCancel() {
 }, 
 returnPage() {
   console.log("chufa1")
-  wx.navigateTo({
+  wx.redirectTo({
   url: '/pages/widgets/countDown/countDownWedget/countDownWedget',
   })  },
   // 时间选择器

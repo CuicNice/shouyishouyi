@@ -103,7 +103,7 @@ onLoad(options) {
 
   setTime1: function () { //设置倒计时
     setTimeout(()=>{
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/widgets/countDown/countDownPage/countDownPage',
           })
     },500)
