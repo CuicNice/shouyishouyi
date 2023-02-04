@@ -23,11 +23,11 @@
   width: 8.28rpx;
   height: 8.28rpx;
   background: #EAEAEC;
-  border-radius: 100;
+  border-radius: 50%;
 }
 .dotactive{
   width: 8.28rpx;
   height: 8.28rpx;
   background: #20C38C;
-  border-radius: 500;
+  border-radius: 50%;
 }
