@@ -9,6 +9,10 @@
   background: #EBFCFF;
   z-index: -999;
 }
+.electricCharge-cantainer{
+  overflow-x:hidden;
+  width: 100%;
+}
 
 .electricCharge-top {
   background-color: var(--themeColor);
@@ -111,16 +115,18 @@
 
 .electricCharge-img {
   position: absolute;
-  width: 398rpx;
+  /* width: 398rpx; */
+  width: 265rpx;
   height: 398rpx;
   left: 486rpx;
   top: 142rpx;
   z-index: -1;
+  overflow-x: hidden;
 }
 
 .electricCharge-img image {
-  width: 100%;
-  height: 100%;
+  width: 398rpx;
+  height: 398rpx;
 }
 
 /* 波浪动画 */
@@ -139,21 +145,23 @@
 
 .water-1 {
   height: 200rpx;
+  width: 750rpx;
   margin-top: -10rpx;
-  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDg1IiBoZWlnaHQ9IjExNiIgdmlld0JveD0iMCAwIDQ4NSAxMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik00MDUuNDczIDE5LjMyNzJDNDM2LjYwNSA5Ljc4NDYyIDQ2Mi4yMjUgMTQuMDMwMSA0ODUgMjUuNjE3NlYxMTZIMFYyNS42MTc5QzQwLjMyMzMgNDYuODA2NSA5My4zNDEgNi40MTU0NSAxMzEuNDI0IDYuNDE1NDhDMTU4Ljg4MSA2LjQxNTQ5IDE5NS4yNjkgMTguMjA5IDIyNS41MTIgMjIuODQzOUMyNTEuNTUgMjYuODM0NiAyNjQuMzQyIDIuNDQyNSAzMDIuNzk4IDAuMTI1MDAzQzM0MS4yNTUgLTIuMTkyNSAzNzUuMjMxIDI4LjU5NzMgNDA1LjQ3MyAxOS4zMjcyWiIgZmlsbD0iI0E5RTdGMiIvPgo8L3N2Zz4K") repeat-x;
-  background-size: 1200rpx;
-  -webkit-animation: wave-animation-1 3.5s infinite linear;
-  animation: wave-animation-1 3.5s infinite linear;
+  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDg1IiBoZWlnaHQ9IjExNiIgdmlld0JveD0iMCAwIDQ4NSAxMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNNDA1LjQ3MyAxOS4zMjcyQzQzNi42MDUgOS43ODQ2MiA0NjIuMjI1IDE0LjAzMDEgNDg1IDI1LjYxNzZWMTE2SDBWMjUuNjE3OUM0MC4zMjMzIDQ2LjgwNjUgOTMuMzQxIDYuNDE1NDUgMTMxLjQyNCA2LjQxNTQ4QzE1OC44ODEgNi40MTU0OSAxOTUuMjY5IDE4LjIwOSAyMjUuNTEyIDIyLjg0MzlDMjUxLjU1IDI2LjgzNDYgMjY0LjM0MiAyLjQ0MjUgMzAyLjc5OCAwLjEyNTAwM0MzNDEuMjU1IC0yLjE5MjUgMzc1LjIzMSAyOC41OTczIDQwNS40NzMgMTkuMzI3MloiIGZpbGw9IiNBOUU3RjIiLz4NCjwvc3ZnPg0K") repeat-x;
+  background-size: 750rpx;
+  -webkit-animation: wave-animation-1 2s infinite linear;
+  animation: wave-animation-1 2s infinite linear;
 }
+
 
 .water-2 {
   height: 182rpx;
   top: 6rpx;
-  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDg1IiBoZWlnaHQ9IjExMCIgdmlld0JveD0iMCAwIDQ4NSAxMTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik03OS41MjY2IDE4LjMyNzVDNDguMzk1NCA5LjI3ODUyIDIyLjc3NTIgMTMuMzA0NCAwIDI0LjI5MjZWMTEwSDQ4NVYyNC4yOTI5QzQ0NC42NzcgNDQuMzg1NSAzOTEuNjU5IDYuMDgzNjIgMzUzLjU3NiA2LjA4MzY0QzMyNi4xMTkgNi4wODM2NiAyODkuNzMxIDE3LjI2NzEgMjU5LjQ4OCAyMS42NjIzQzIzMy40NSAyNS40NDY2IDIyMC42NTggMi4zMTYxNyAxODIuMjAyIDAuMTE4NTM3QzE0My43NDUgLTIuMDc5MDkgMTA5Ljc2OSAyNy4xMTgxIDc5LjUyNjYgMTguMzI3NVoiIGZpbGw9IiMzRUJBRDAiLz4KPC9zdmc+Cg==") repeat-x;
-  /* background: #3EBAD0; */
-  background-size: 1200rpx;
-  -webkit-animation: wave-animation-2 6s infinite linear;
-  animation: wave-animation-2 6s infinite linear;
+  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDg1IiBoZWlnaHQ9IjExMCIgdmlld0JveD0iMCAwIDQ4NSAxMTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNNzkuNTI2NiAxOC4zMjc1QzQ4LjM5NTQgOS4yNzg1MiAyMi43NzUyIDEzLjMwNDQgMCAyNC4yOTI2VjExMEg0ODVWMjQuMjkyOUM0NDQuNjc3IDQ0LjM4NTUgMzkxLjY1OSA2LjA4MzYyIDM1My41NzYgNi4wODM2NEMzMjYuMTE5IDYuMDgzNjYgMjg5LjczMSAxNy4yNjcxIDI1OS40ODggMjEuNjYyM0MyMzMuNDUgMjUuNDQ2NiAyMjAuNjU4IDIuMzE2MTcgMTgyLjIwMiAwLjExODUzN0MxNDMuNzQ1IC0yLjA3OTA5IDEwOS43NjkgMjcuMTE4MSA3OS41MjY2IDE4LjMyNzVaIiBmaWxsPSIjM0VCQUQwIi8+DQo8L3N2Zz4NCg==") repeat-x;
+  
+  background-size: 752rpx;
+  -webkit-animation: wave-animation-2 4s infinite linear;
+  animation: wave-animation-2 4s infinite linear;
 }
 
 .water-1,
@@ -169,7 +177,7 @@
   }
 
   100% {
-    background-position: 1200rpx top;
+    background-position: 750rpx  top;
   }
 }
 
@@ -179,7 +187,7 @@
   }
 
   100% {
-    background-position: 1200rpx top;
+    background-position: 750rpx top;
   }
 }
 
@@ -259,7 +267,7 @@
   margin-top: -60rpx;
   /* z-index: 10; */
   background-color: #FFFFFF;
-  padding: 36rpx 54rpx 100rpx;
+  padding: 58rpx 54rpx 100rpx;
 }
 
 .electricCharge-login {
@@ -279,7 +287,7 @@
   border: 2rpx solid #3EBAD0;
   border-radius: 20rpx;
   position: absolute;
-  top: 550rpx;
+  top: 572rpx;
   right: 54rpx;
 }
 
@@ -339,7 +347,7 @@
 
 .chartBox {
   width: 640rpx;
-  height: 396rpx;
+  /* height: 396rpx; */
   background: #FFFFFF;
   /* da */
   box-shadow: 0rpx 16rpx 48rpx rgba(149, 157, 165, 0.2);
@@ -579,7 +587,7 @@
 
 .chartBox2 {
   width: 640rpx;
-  height: 400rpx;
+  /* height: 400rpx; */
   background: #FFFFFF;
   box-shadow: 0rpx 16rpx 48rpx rgba(149, 157, 165, 0.2);
   border-radius: 20rpx;
