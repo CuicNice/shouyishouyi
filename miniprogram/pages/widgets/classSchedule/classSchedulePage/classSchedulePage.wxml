@@ -209,9 +209,9 @@
         </view>
 
         <!--课表-->
-        <block wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
+        <block class="block" wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
           <block>
-            <view>
+            <view bindtap="showXQ" data-index="{{index}}">
               <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx;">
                 <view class="smalltext">{{item.name}}</view>
                 <view class="smalltextad">{{item.local}}</view>
@@ -440,3 +440,36 @@
     </button>
   </view>
 </dialogTitle>
+<!--课程的具体详情-->
+<view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails">
+<view class="courseDetails">
+  <view class="course">
+    <view class="courseName">{{classSchedule.data.all_tables[G].name}}</view>
+    <view class="courseifBox">
+      <view class="courseif" style="color: white;">本周</view>
+    </view>
+  </view>
+  <view class="courseOther">
+    <view class="courseplace">
+      <image class="courseplaceImage" src="../../../../static/svg/didian.svg"/>
+      <view class="cuorseGuding">地点:</view>
+      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].local}}</view>
+    </view>
+    <view class="courseplace">
+      <image class="courseplaceImage" src="../../../../static/svg/teacher.svg"/>
+      <view class="cuorseGuding">老师:</view>
+      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].teacher}}</view>
+    </view>
+    <view class="courseplace">
+      <image class="courseplaceImage" src="../../../../static/svg/jieshu.svg"/>
+      <view class="cuorseGuding">节数:</view>
+      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].day}} | {{classSchedule.data.all_tables[G].num}}</view>
+    </view>
+    <view class="courseplace">
+      <image class="courseplaceImage" src="../../../../static/svg/zhuoci.svg"/>
+      <view class="cuorseGuding">周次:</view>
+      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].day_num}}</view>
+    </view>
+  </view>
+</view>
+</view>

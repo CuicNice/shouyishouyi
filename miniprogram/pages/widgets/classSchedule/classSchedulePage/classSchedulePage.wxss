@@ -338,6 +338,7 @@ background: rgba(255, 255, 255, 0.8);
 /* #EAEAEC */
 border-bottom: 2rpx solid #EAEAEC;
 margin-top: 12rpx;
+z-index: 100;
 }
 
 
@@ -1228,4 +1229,87 @@ height:336rpx;
   font-size: 32rpx;
   line-height: 44rpx;
   letter-spacing: -0.4352rpx;
+}
+.courseDetails{
+  position: relative;
+  width: 540rpx;
+  height: 476rpx;
+  border-radius: 20rpx;
+  background: white;
+  border: 2rpx solid #4BDCAB;
+  top: -1400rpx;
+  left: 120rpx;
+  z-index: 100;
+}
+.block{
+  z-index: 10;
+}
+.course{
+  margin-top: 40rpx;
+  margin-left: 50rpx;
+  width: 440rpx;
+  height: 88rpx;
+}
+.courseOther{
+  margin-top: 4rpx;
+  margin-left: 50rpx;
+  width: 440rpx;
+  height: 268rpx;
+}
+.courseName{
+  width: 338rpx;
+  height: 100%;
+  font-family: PingFang SC;
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 44rpx;
+  text-align: left;
+  float: left;
+}
+.courseixBoc{
+  width: 95rpx;
+  height: 100%;
+  float: left;
+}
+.courseplace{
+  height: 40rpx;
+  margin-top: 36rpx;
+}
+.courseif{
+  width: 96rpx;
+  height: 44rpx;
+  border-radius: 20rpx;
+  background-color: #4BDCAB;
+  line-height: 44rpx;
+  margin-left: 340rpx;
+  text-align: center;
+}
+.courseplaceImage{
+  position: absolute;
+  left: 20rpx;
+  height: 32rpx;
+  width: 40rpx;
+  text-align: center;
+  float: left;
+}
+.cuorseGuding{
+  color: #292945;
+  height: 40rpx;
+  width: 80rpx;
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  float: left;
+}
+.cuorseXuigai{
+  color: #292945;
+  height: 40rpx;
+  width: 300rpx;
+  font-size: 28rpx;
+  float: left;
+}
+.mask{
+  height: 100%;
+  width: 100%;
+  z-index: 20;
 }
