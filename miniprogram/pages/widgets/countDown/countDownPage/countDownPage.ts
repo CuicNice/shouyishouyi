@@ -6,6 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // countdwonWedget
+    countDownTitle:"首义＋倒计时",
+    // dialog的
     dialogtitle:"设置失败，请重新设置", 
     schoolBuiltSrc:"/static/svg/schoolBuilt/zhonglou.svg", 
     sportBuild:"/static/svg/schoolBuilt/Group.svg",
@@ -24,12 +27,26 @@ Page({
       duration:duration
     }) 
   }, 
-
+// 将问题带给后台
+ //提交信息
+ submitError(error:String){
+  let str = '你好！我目前有：'+error+'等BUGS,请尽快解决';
+  wx.setClipboardData({
+      data: str,
+      success: function (res) {
+          wx.getClipboardData({
+              success: function (res) {
+                  console.log("发送成功",res.data) // data  
+              }
+          })
+      }
+  })
+},
 // 跳转
 gotoBd() {
   setTimeout(()=>{
   wx.redirectTo({
-  url: '/pages/widgets/countDown/countDownWedget/countDownWedget',
+  url: '/pages/widgets/countDown/countDownWedgetPage/countDownWedgetPage',
       
     })
   },500)
@@ -46,7 +63,7 @@ mCancel() {
 returnPage() {
   console.log("chufa1")
   wx.redirectTo({
-  url: '/pages/widgets/countDown/countDownWedget/countDownWedget',
+  url: '/pages/widgets/countDown/countDownWedgetPage/countDownWedgetPage',
   })  },
   // 时间选择器
   bindDateChange(e:any){ 
@@ -74,22 +91,29 @@ returnPage() {
 
   // 获取表单信息
   formSubmit(e: any) {
-    // 存储数据
+        // 存储数据
     let that=this
-    console.log("e", e)
     let goalName = e.detail.value.thingsInputTxt
     let goalTime = e.detail.value.timeInputTxt
     let countDownList = []
     // 之前存在
+    
     if(wx.getStorageSync('userCountDown')){ 
-      countDownList=wx.getStorageSync('userCountDown') 
-      console.log("本来就有",countDownList)}
+      try{
+
+        countDownList=wx.getStorageSync('userCountDown') 
+      }catch(e){
+        console.log("出现异常",e)
+        that.setData({
+          showDialog:true
+        })
+      }
+    }
       if (goalName && goalTime) {
         countDownList.push({ 
           countDownName: goalName, 
           countDownEndDate:goalTime 
         }) 
-        console.log("countDownList",countDownList)
         wx.setStorage({
           key:"userCountDown",
           data:countDownList
@@ -98,19 +122,24 @@ returnPage() {
           wx.getStorage({
             key: 'userCountDown',
             success(res) {
-              console.log("user", res.data)
+              // that.setData({
+              //   showDialog:true
+              // })
               that.selectComponent("#toast").showToastAuto("设置成功", "success");
+              
               that.gotoBd()
+            },fail(error){
+              that.setData({
+                showDialog:true
+              })
             }
           })
         } catch (e) {
-          console.log("error",e)
-        this.setData({ 
-          showDialog:true 
-        }) 
+          that.setData({
+            showDialog:true
+          })
         }
       } else {
-        // this.showToast(true,"error","设置失败") 
         that.selectComponent("#toast").showToastAuto("未填写完毕", "error");
       }
   
@@ -120,15 +149,12 @@ returnPage() {
   },
   // chun
   formReset() {
-    console.log('form发生了reset事件')
   },
   /**
    * 生命周期函数--监听页面加载
    */
 onLoad() {
   this.initDate()
-
-    // console.log("do", that.data.title)
   },
 initDate(){
     let goalTimePre = this.getNowFormatDate()
@@ -146,7 +172,6 @@ initDate(){
         let systemInfo = wx.getSystemInfoSync()
         // 获取信号区高度
         let statusBarHeight = systemInfo['statusBarHeight']
-    
         /* 
         根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
         开发工具 = 获取的高度
@@ -155,8 +180,6 @@ initDate(){
         我本人这里也只测试了iPhonex 华为和小米手机，
         如果有出入根据实际情况进行调整就行了
         */
-        //  console.log("systemInfo",systemInfo.model)
-    
         if (systemInfo.model === 'andorid') {
           statusBarHeight = statusBarHeight + 1
         } else if (systemInfo.platform === 'ios') {
