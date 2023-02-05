@@ -1,0 +1,65 @@
+<view class="background">
+<!-- 外面的信息列表页面 -->
+<view class="message" wx:if="{{isShow}}">
+<topbar title="默认页面"></topbar>
+<!--信息列表-->
+<view class="messageList" >
+<view class="firstMessage"wx:for="{{color}}" bindtap="getMessage" style="border: 4rpx solid {{item}};">
+  <view class="title">
+  <text class="titleText">新的一年，小南祝你新的一年开开心心！哈哈</text>
+  </view>
+  <view class="unread"></view>
+  <view class="stitle">
+  <text class="stitleText">考试永不挂考试永不挂考试永不挂考试永不挂考试永不挂考试永不挂考试永不挂</text>
+  </view>
+  <view class="bottomShow">
+  <view class="timeShow">
+  <image src="/static/svg/message/clock.svg" class="clock"></image>
+  <text>2023-01-30</text>
+  </view>
+  <view class="likeBox">
+  <image src="/static/svg/message/like.svg"></image>
+  <text>666人赞过</text>
+  </view>
+  </view>
+</view>
+</view>
+</view>
+
+
+<!-- 点进后的信息详情弹窗 与上面不同-->
+<view wx:else>
+  <topbar title="标题" bind:sync1="getChild"></topbar>
+  <view class="messageDetail">
+  <view class="detailTitle">
+  <text>新的一年，小南祝你新的一年开开心心！</text>
+  </view>
+  <view class="timeShow">
+  <image src="/static/svg/message/clock.svg" class="clock"></image>
+  <text>2023-01-30</text>
+  </view>
+  <view class="messageText">
+  <view class="text">
+  <text>根据学年度工作安排，现将2023年寒假休假及春季开学相关事宜通知如下:
+一、寒假休假时间
+学生放假时间为2022年12月30日下午5点至2023年2月11日，教职工在此期间实行轮休。
+二、春季开学时间
+2023年2月12日所有休假学生返校报到、注册,全体教职工恢复正常上班。2月13日（星期一）开始正常教学工作。
+三、要求
+放假前,各单位要对所属师生进行疫情防控、交通安全、食品卫生、防火防盗、防诈涉舆、遵纪守法等安全常识教育,提醒广大师生员工外出乘车严禁携带各种危险品,不要乘坐有安全隐患的车辆,注意往返路途安全。</text>
+  </view>
+  <view class="photo" wx:if="">
+  <!-- <image></image> -->
+  </view>
+  <view class="textLike">
+  <view class="likeImage" bindtap="getLike">
+  <image src="/static/svg/message/{{show}}Like.svg"></image>
+  </view>
+  <view class="likeBottom">
+  <text>{{bottomText}}</text>
+  </view>
+  </view>
+  </view>
+  </view>
+</view>
+</view>
