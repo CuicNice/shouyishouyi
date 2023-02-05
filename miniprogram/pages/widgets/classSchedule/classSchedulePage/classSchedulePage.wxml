@@ -238,7 +238,7 @@
           <view class="otherCourses">其他课程</view>
         </view>
         <view class="otherclass">
-          <view class="kesehbox" wx:for="{{classSchedule.data.all_keshes}}">
+          <view class="kesehbox" wx:for="{{classSchedule.data.all_keshes}}" wx:key="index">
             <image class="kesheIcon"></image>
             <view class="keshe">{{item.data}}</view>
           </view>
