@@ -324,9 +324,9 @@ Page({
       //获取年份
       Y: date.getFullYear() as unknown as string,
       //获取月份
-      M:(date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string,
+      M:10/*(date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) */as unknown as string,
       //获取当日日期
-      D:date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate() as unknown as string
+      D:28/*date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate() */as unknown as string
     })
     console.log(this.data.M+'/'+this.data.D)
     wx.request({
