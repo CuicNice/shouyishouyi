@@ -8,7 +8,6 @@
   </view>
   <!-- 胶囊区 -->
   <view  class="capsule-box" style="padding-left: 17rpx;">
-  <!-- 我讲下问题复现 -->
   <view class="barLineItem">
     <view  bindtap="returnPage" class="returnButton">
       <image class="returnSvg" 
@@ -57,7 +56,7 @@
 
 
 <view class="Img" >
-  <image class="paw" style="width:370rpx;height:370rpx;" src="{{sportBuild}}" ></image>
+  <image class="paw" style="  width: 452rpx; height: 452rpx;" src="{{sportBuild}}" ></image>
 
  
 </view>
@@ -65,8 +64,9 @@
 <view class="sportTxt">武昌首义学院（武汉校区）体育馆</view>
 </view>
 </view>
-
+<!-- 弹窗引入 -->
 <toast id="toast" title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast> 
+<!-- 南南问题单 -->
 <f-dialog showDialog="{{showDialog}}" title="{{dialogtitle}}"schoolBuiltSrc="{{schoolBuiltSrc}}" bname="{{bname}}" b1name="{{b1name}}">
   <view class="btn-box school-btn">
         <button class="btn" type="primary" style="width: 214rpx;" plain="{{true}}" bindtap="submitError" open-type="contact">{{bname}}</button>

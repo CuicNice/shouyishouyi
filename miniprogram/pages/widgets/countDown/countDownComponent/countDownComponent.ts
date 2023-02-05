@@ -1,5 +1,6 @@
+// pages/widgets/countDown/countDownComponment/countDownComponent.ts
 // pages/widgets/countDown/countDownComponment/counDownWedget/countDownWedget.ts
-import { getCountDownItem } from "../../../../../api/countDownApi"
+import { getCountDownItem } from "../../../../api/countDownApi"
 
 Component({
   /**
@@ -35,7 +36,7 @@ Component({
     hide: function() {
       // 页面被隐藏
     },
-    resize: function(size) {
+    resize: function() {
       // 页面尺寸变化
     }
   },
@@ -57,28 +58,30 @@ Component({
     return dayDiff >= 10 ? dayDiff : dayDiff
   },
   /**
-   * 生命周期函数--监听页面加载
+   * 页面数据渲染&&数据请求
    */
 async initPageData() {
     var that = this
     // 网络请求  
     let { data: res } = await getCountDownItem() as unknown as IResult<any>;
-    if (res=="false") {
+    if (res==false) {
       that.selectComponent("#toast").showToastAuto("请求失败", "error");
-      // console.log("请求失败，请重新绑定",res)
     } else {
-      // 渲染数据
+      // 请求成功渲染数据
       let cdlist = [];
-      let infolist=wx.getStorageInfo()
-      // console.log("getStorageInfoinfolist",infolist)
+      // 判断用户之前有无缓存，有缓存直接获取
       if (wx.getStorageSync('userCountDown')) {
         cdlist = wx.getStorageSync("userCountDown")
-        // console.log("typepeppepepe",typeof(cdlist))
-        // console.log("getStorageInfocdlistioioio", cdlist);      
+      }else{
+        cdlist = []
+      }
+      //公共处理部分，将网络请求与用户缓存的数据处理
       while (cdlist.length < 3) {
         cdlist.push(res.pop())
       }
       let cdlist3 = [];
+      // 变成数字
+      
       cdlist.forEach((item: any) => {
         if (item.countDownEndDate) {
           item.countDownEndDate = this.retDate(item.countDownEndDate)
@@ -91,7 +94,7 @@ async initPageData() {
       this.setData({
         cdlist3: cdlist3.reverse(),
       })
-    }}
+    }
 
   },
   // 设置点击事件函数
