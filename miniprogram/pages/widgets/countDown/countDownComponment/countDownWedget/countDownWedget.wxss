@@ -1,0 +1,94 @@
+/* pages/widgets/countDown/countDownComponment/counDownWedget/countDownWedget.wxss */
+
+.countdown {
+  position: fixed;
+  flex-wrap: wrap;
+  bottom: 500rpx;
+  display: flex;
+  background: linear-gradient(180.04deg, #B9EFE1 0.1%, #FCFCFC 100%);
+  width: 586rpx;
+  height: 174rpx;
+  padding: 24rpx 42rpx;
+  margin: 0% 5%;
+  margin-top: 51rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5px #00000080;
+}
+
+.countdown-txt {
+
+  height: 40rpx;
+}
+
+.cd-txt {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /* identical to box height */
+  text-transform: capitalize;
+  /* text */
+  color: #292945;
+}
+
+.countdownAllBox {
+  width: 670rpx;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+
+/*.countdownBox {
+box-shadow: 0rpx 14rpx 12rpx -14rpx rgba(218, 218, 218, 0.25);
+width: 326rpx;
+height: 172rpx;
+
+}*/
+
+.countdownBox {
+  width: 130rpx;
+  /* height: 100rpx; */
+}
+
+.cdName {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cdTitle {
+  width: 120rpx;
+  height: 42rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  /* margin-bottom: 22rpx; */
+  text-align: center;
+}
+
+.cdDay {
+  width: 130rpx;
+  height: 100rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 72rpx;
+  line-height: 100rpx;
+  text-transform: capitalize;
+  color: #20C38C;
+  text-align: center;
+  align-items: center;
+  align-self: center;
+}
+
+.Postgraduate {
+  position: relative;
+  left: 2rpx;
+}

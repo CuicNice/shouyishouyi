@@ -1,1 +1,414 @@
 /* pages/widgets/countDown/countDownPage/countDownPage.wxss */
+
+page {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* 胶囊 */
+
+.top-bar {}
+
+.btn-box {
+    /* width: 600rpx;
+  height: 210rpx; */
+    display: flex;
+    /* margin-left: 70rpx; */
+    /* margin:100rpx 0  0 70rpx; */
+}
+
+.school-btn {
+    margin-top: 40rpx;
+}
+
+.mCancel {}
+
+.btn {
+    border-radius: 75rpx;
+    width: 214rpx;
+    height: 84rpx;
+    /* font-size: 14px; */
+    font-weight: 500;
+    font-size: 32rpx;
+    padding: 0;
+    line-height: 84rpx;
+}
+
+.btn .button:not([size=mini]) {
+    width: 214rpx;
+    height: 84rpx;
+}
+
+.returnBox {
+    display: flex;
+    align-self: start;
+    width: 18rpx;
+    left: 1800rpx;
+    height: 34rpx;
+    color: #000000;
+}
+
+.returnSvg {
+    width: 9px;
+    /* top: 14.58%; */
+    height: 17px;
+    color: #000000;
+    padding: 0 9%;
+}
+
+
+/* 成功弹窗 */
+
+.capsule-box {
+    /* display: inline; */
+    height: 44px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    /* vertical-align :middle; */
+    align-items: center;
+}
+
+.barLine {
+    width: 120px;
+    display: flex;
+    /* align-content:center ; */
+    align-items: center;
+}
+
+.barLineItem {
+    /* flex: 1; */
+    color: #000000;
+}
+
+.returnButton {
+    /* padding-left: 17px; */
+    top: 7rpx;
+    /* -ms-transform-origin-x: -17rpx; */
+}
+
+.barText {
+    width: auto;
+    /* height: 24px; */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    /* identical to box height */
+    text-align: center;
+    color: #000000;
+    margin-left: -17rpx;
+}
+
+.saveText {
+    width: 64px;
+    height: 22px;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.2176px;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20rpx;
+    width: auto;
+    /* padding: 7.8%; */
+    box-sizing: border-box;
+}
+
+.bg {
+    /* Entering for the first time */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* 背景 */
+    background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
+    z-index: -999;
+}
+
+.title {
+    width: 384rpx;
+    height: 44rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32rpx;
+    line-height: 44rpx;
+}
+
+.inputFrame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0rpx;
+    gap: 46rpx;
+    width: 620rpx;
+    height: 574rpx;
+}
+
+.thingSet {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0rpx;
+    gap: 8rpx;
+    width: 620rpx;
+    height: 182rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.thingLable {
+    width: 128rpx;
+    height: 44rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    text-transform: capitalize;
+    color: #000000;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+/* plcaholder style */
+
+.thingInputHolder {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    /* identical to box height */
+    text-transform: lowercase;
+    /* text */
+    opacity: 0.3;
+}
+
+.TimeInputHolder {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    /* identical to box height */
+    text-transform: lowercase;
+    /* text */
+    opacity: 0.3;
+}
+
+.thingInput {
+    /* input */
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 24rpx 36rpx;
+    width: 620rpx;
+    height: 88rpx;
+    background: #FFFFFF;
+    /* #20C38C */
+    border: 2rpx solid #20C38C;
+    border-radius: 8rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.pickerin {
+    opacity: 0.6;
+}
+.picker{
+  
+}
+
+.thingAlarm {
+    width: 620rpx;
+    height: 34rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24rpx;
+    line-height: 34rpx;
+    /* identical to box height */
+    text-transform: capitalize;
+    color: #000000;
+    opacity: 0.6;
+    /* Inside auto layout */
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.timeSet {
+    /* input */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0rpx;
+    gap: 8rpx;
+    width: 620rpx;
+    height: 140rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.timeLable {
+    /* 事件 */
+    width: 128rpx;
+    height: 44rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    text-transform: capitalize;
+    color: #000000;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.timeInput {
+    /* input */
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 24rpx 36rpx;
+    width: 620rpx;
+    height: 88rpx;
+    background: #FFFFFF;
+    /* #20C38C */
+    border: 2rpx solid #20C38C;
+    border-radius: 8rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.saveButtonBox {
+    /* Frame 2 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 56rpx 20rpx 20rpx;
+    gap: 20rpx;
+    width: 500rpx;
+    height: 84rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.saveButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 20rpx 28rpx; */
+    justify-content: center;
+    gap: 20rpx;
+    width: 500rpx;
+    height: 84rpx;
+    background: #20C38C;
+    border-radius: 70rpx;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.saveTxt {
+    width: 128rpx;
+    height: 44rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    letter-spacing: -0.4352rpx;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.ImgFrame {
+    width: 452rpx;
+    height: 452rpx;
+}
+
+.Img {
+    width: 370rpx;
+    height: 370rpx;
+    margin-top: 180rpx;
+}
+
+.sportTxt {
+    /* 武昌首义学院（武汉校区）体育馆 */
+    width: 360rpx;
+    height: 34rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24rpx;
+    line-height: 34rpx;
+    /* identical to box height */
+    text-transform: capitalize;
+    color: #FFFFFF;
+    opacity: 0.6;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.sportTxtBox {
+    /* Frame 3 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    /* align-items: flex-start; */
+    padding: 8rpx 34rpx;
+    gap: 20rpx;
+    width: 360rpx;
+    height: 34rpx;
+    /* margin: 0 90px; */
+    background: #63A4B3;
+    border-radius: 90rpx;
+}
