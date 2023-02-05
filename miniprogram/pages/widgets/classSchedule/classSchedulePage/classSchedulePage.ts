@@ -12,6 +12,9 @@ Page({
     number:'20',
     day:0,
     ifshow:false,
+    colorcardLight:['#A9E6FF','#FFDDDC','#F5DFFA','#D4EFFF','#F9EABA','#FFD698','#F0FFC4','#FEFCC9','#DFFFD4','#FFD8D2','#FFFFF0','#CCFFED','#BFC1FF','#FFC8E6','#E9EDF1','#EFDCC9'],
+    colorcardDark:['#6290E9','#B791DC','#ABA6E9','#E39ACA','#F091A2','#FF9470','#FDB165','#F3D257','#5DD39E','#B2DB7C','#68D8D6','#A9B7BD','#59ADDF','#7895BC','#75AEAE','#EFDCC9'],
+    colorcardZi:['#4794B6','#D67979','#BF74CE','#559AC2','#BD9825','#B97B1E','#689658','#9C982F','#60A049','#C76D5F','#8585A5','#5EAA91','#6568C9','#C8619A','#8585B1','#B8906F'],
     Y:'',
     M:'',
     D:'',
@@ -36,6 +39,31 @@ Page({
     that.setData({
       hidden: false
     });
+  },
+
+    objHeavy:function(arr:any){ //筛选一共有几门课
+    let arr1 = []; //存名字
+    let newArr = []; //存新数组
+    for (let i in arr) {
+      if (arr1.indexOf(arr[i].name) == -1) {
+        arr1.push(arr[i].name);
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
+  },
+  
+  
+  //洗牌算法
+  randArr:function (arr:any) { //课程数组乱序
+    var length = arr.length;
+    var r = length;
+    var rand = 0;
+    while (r) {
+      rand = Math.floor(Math.random() * (r--));
+      [arr[r], arr[rand]] = [arr[rand], arr[r]];
+    }
+    return arr;
   },
 
   showXQ(e:any){
@@ -79,10 +107,29 @@ Page({
         "num": this.data.I
       },
       success:(res)=> {
-        console.log(res.data)
         this.setData({
           classSchedule:res.data
         })
+        var list=this.data.classSchedule.data.all_tables
+        var arr=this.objHeavy(list);//筛选有多少门课程
+        var myarr = this.randArr(arr); //把存放课程的数组打乱
+        var leng = myarr.length;
+        // console.log(arr)
+        // console.log(leng)
+        for(var i=0;i<list.length;i++){
+          for(var j=0;j<leng;j++){
+            if(list[i].name == myarr[j].name){
+              var color=this.data.colorcardLight[j]
+              var fontsize=this.data.colorcardZi[j]
+              this.data.classSchedule.data.all_tables[i].fontsize=fontsize
+              this.data.classSchedule.data.all_tables[i].color=color
+              var kebiao=this.data.classSchedule.data.all_tables
+              this.setData({
+                'classSchedule.data.all_tables':kebiao
+              })
+            }
+          }
+        }
         for(var i=0;i<this.data.classSchedule.data.all_tables.length;i++){
           if(this.data.classSchedule.data.all_tables[i].day == '星期一'){
             var daynum=1 as unknown as number
@@ -295,6 +342,24 @@ Page({
         this.setData({
           classSchedule:res.data
         })
+        var list=this.data.classSchedule.data.all_tables
+        var arr=this.objHeavy(list);//筛选有多少门课程
+        var myarr = this.randArr(arr); //把存放课程的数组打乱
+        var leng = myarr.length;
+        // console.log(arr)
+        // console.log(leng)
+        for(var i=0;i<list.length;i++){
+          for(var j=0;j<leng;j++){
+            if(list[i].name == myarr[j].name){
+              var color=this.data.colorcardDark[j]
+              this.data.classSchedule.data.all_tables[i].color=color
+              var kebiao=this.data.classSchedule.data.all_tables
+              this.setData({
+                'classSchedule.data.all_tables':kebiao
+              })
+            }
+          }
+        }
         for(var i=0;i<this.data.classSchedule.data.all_tables.length;i++){
           if(this.data.classSchedule.data.all_tables[i].day == '星期一'){
             var daynum=1 as unknown as number

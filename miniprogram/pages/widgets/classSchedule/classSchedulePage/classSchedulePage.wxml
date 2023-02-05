@@ -212,9 +212,9 @@
         <block class="block" wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
           <block>
             <view bindtap="showXQ" data-index="{{index}}">
-              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx;">
-                <view class="smalltext">{{item.name}}</view>
-                <view class="smalltextad">{{item.local}}</view>
+              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background: {{item.color}};">
+                <view class="smalltext" style="color: {{item.fontsize}};">{{item.name}}</view>
+                <view class="smalltextad"style="color: {{item.fontsize}};">{{item.local}}</view>
               </view>
             </view>
           </block>
@@ -442,7 +442,7 @@
 </dialogTitle>
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails">
-<view class="courseDetails">
+<view class="courseDetails" wx:if="{{ifshow}}">
   <view class="course">
     <view class="courseName">{{classSchedule.data.all_tables[G].name}}</view>
     <view class="courseifBox">

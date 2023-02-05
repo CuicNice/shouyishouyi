@@ -616,8 +616,6 @@ margin-left: 8rpx;
   justify-content: center;
   align-items: center;
   padding: 32rpx 2rpx 16rpx;
-  /* align-items: center; */
-  background: #E39ACA;
   border-radius: 10rpx;
 }
 
@@ -1230,19 +1228,17 @@ height:336rpx;
   line-height: 44rpx;
   letter-spacing: -0.4352rpx;
 }
+
 .courseDetails{
-  position: relative;
+  position: absolute;
   width: 540rpx;
   height: 476rpx;
   border-radius: 20rpx;
   background: white;
   border: 2rpx solid #4BDCAB;
-  top: -1400rpx;
-  left: 120rpx;
-  z-index: 100;
-}
-.block{
-  z-index: 10;
+  left: 17%;
+  top: 40%;
+  z-index: 200;
 }
 .course{
   margin-top: 40rpx;
@@ -1309,7 +1305,12 @@ height:336rpx;
   float: left;
 }
 .mask{
-  height: 100%;
   width: 100%;
-  z-index: 20;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  z-index: 100;
 }
