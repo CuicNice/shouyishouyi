@@ -20,6 +20,10 @@
   background: #FFFFFF;
   border-radius: 18rpx;
   }
+  .photoShow image{
+    width: 450rpx;
+    height: 450rpx;
+  }
   .dispel2{
     width: 54rpx;
     height: 54rpx;

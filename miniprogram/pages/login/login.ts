@@ -11,12 +11,19 @@ Page({
     showLoginDialog:false,// 显示登录弹窗
     zh:'',
     mm:'',
+    query:'',
+    x:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad(options) {
+    //获取弹窗的Id
+    this.setData({
+      query:options.id
+    })
+    if(this.data.query.length >= 0){this.setData({x:1})}
     // this.selectComponent("#toast").showToastAuto("test", "success",2);
   },
   /**
