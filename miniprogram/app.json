@@ -8,8 +8,8 @@
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
     "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
-    "pages/popup/popupPage/popupPage",
-    "pages/message/messagePage/messagePage"
+    "pages/message1/message1Page/message1Page",
+    "pages/popup1/popup1Page/popup1Page"
   ],
   "window": {
     "backgroundTextStyle": "light",
