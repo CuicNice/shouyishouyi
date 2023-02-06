@@ -381,14 +381,9 @@ Page({
             }
           }
         }
-        //拿到具体有哪几周有此课，并将其放在数组中
+        //拿到具体有哪几周有此课，并将其放在数组中 
         for(var i=0;i<this.data.classSchedule.data.all_tables.length;i++){
-          var ifshow=true
-          this.data.classSchedule.data.all_tables[i].ifshow=ifshow
-            var kebiao=this.data.classSchedule.data.all_tables
-            this.setData({
-              'classSchedule.data.all_tables':kebiao
-            })
+          var add={ifshow:true,abc:[]}
           var arr=this.data.classSchedule.data.all_tables[i].day_num.split(",")
           console.log(arr)
           if(arr.length==2){
@@ -397,54 +392,34 @@ Page({
             console.log(mycrr)
             if(mycrr.length==2){
              for(var k=mycrr[0];k<=mycrr[1];k++){
-              var leng=k
-              this.setData({shuzu:this.data.shuzu.concat(leng)})
+              add.abc.concat(k)
             }
           }
           if(mycrr.length==1){
-            var leng=mycrr
-            this.setData({shuzu:this.data.shuzu.concat(leng)})
+            add.abc.concat(mycrr)
           }
           }
           console.log(this.data.shuzu)
-          var abc=this.data.shuzu
-          this.data.classSchedule.data.all_tables[i].abc=abc
-            var kebiao=this.data.classSchedule.data.all_tables
-              this.setData({
-                'classSchedule.data.all_tables':kebiao,
-                shuzu:[]
-              })
         }
         if(arr.length==1){
           var mycrr=arr[0].match(/\d+(\.\d+)?/g)
           console.log(mycrr)
           if(mycrr.length==1){
-            var abc=this.data.shuzu.concat(mycrr)
-            console.log(abc)
-            this.data.classSchedule.data.all_tables[i].abc=abc
-            var kebiao=this.data.classSchedule.data.all_tables
-              this.setData({
-                'classSchedule.data.all_tables':kebiao,
-                shuzu:[]
-              })
+            add.abc.concat(mycrr)
+            console.log(add.abc)
           }
           if(mycrr.length==2){
-            for(var y=mycrr[0];y<=mycrr[1];y++){
-              var leng=y
-              this.setData({shuzu:this.data.shuzu.concat(leng)})
+            for(var y=mycrr[0];y<=2;y++){
+              add.abc.concat(y)
             }
-            var abc=this.data.shuzu
-            console.log(abc)
-            this.data.classSchedule.data.all_tables[i].abc=abc
-            var kebiao=this.data.classSchedule.data.all_tables
-              this.setData({
-                'classSchedule.data.all_tables':kebiao,
-                shuzu:[]
-              })
+            console.log(add.abc)
           }
         }
-          this.data.classSchedule.data.all_tables[i].shuzu=this.data.shuzu
-          this.setData({shuzu:[]})
+          this.data.classSchedule.data.all_tables[i].add=add
+          var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
           if(this.data.classSchedule.data.all_tables[i].day == '星期一'){
             var daynum=1 as unknown as number
             var start=this.data.classSchedule.data.all_tables[i].num.slice(0,1)
