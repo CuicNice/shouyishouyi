@@ -210,7 +210,7 @@
 
         <!--课表-->
         <block class="block" wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
-          <block>
+          <block wx:if="{{!item.ifshow}}">
             <view bindtap="showXQ" data-index="{{index}}">
               <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background: {{item.color}};">
                 <view class="smalltext" style="color: {{item.fontsize}};">{{item.name}}</view>
@@ -219,16 +219,16 @@
             </view>
           </block>
           <!-- 非本周 -->
-          <!-- <block>
+          <!--<block style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx;">
             <view>
-              <view class="noflex-item">
-                <view class="nosmalltext">
+              <view class="noflex-item"  wx:if="{{item.ifshow}}" >
+                <view class="nosmalltext" bindtap="showXQ" data-index="{{index}}">
                  <view class="nosmalltextword">非本周</view></view>
-                <view class="smalltext" style="color: rgba(41, 41, 69, 0.4);">毛泽东思想和中国特色社会主义核心价值观</view>
-                <view class="smalltextad" style="color: rgba(41, 41, 69, 0.4);">18-201</view>
+                <view class="smalltext" style="color: rgba(41, 41, 69, 0.4);">{{item.name}}</view>
+                <view class="smalltextad" style="color: rgba(41, 41, 69, 0.4);">{{item.local}}</view>
               </view>
               </view>
-          </block> -->
+          </block>-->
         </block>
 
       </view>

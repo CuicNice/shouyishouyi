@@ -261,6 +261,26 @@ Page({
          week:week
       });
     }
+    var arr=this.data.classSchedule.data.all_tables
+    for(var j=0;j<arr.length;j++){
+      for(var q=0;q<arr[j].abc.length;q++){
+        if(this.data.number+1!=arr[j].abc[q]){
+          var week = arr;
+          week[j].ifshow = true;
+          this.setData({
+            'classSchedule.data.all_tables':week
+          });
+        }
+        if(this.data.number+1==arr[j].abc[q]){
+          var week = arr;
+          week[j].ifshow = false;
+          this.setData({
+            'classSchedule.data.all_tables':week
+          });
+          break;
+        }
+      }
+    }
   },
   changdata1(){
     console.log('111')
@@ -363,20 +383,26 @@ Page({
         }
         //拿到具体有哪几周有此课，并将其放在数组中
         for(var i=0;i<this.data.classSchedule.data.all_tables.length;i++){
+          var ifshow=true
+          this.data.classSchedule.data.all_tables[i].ifshow=ifshow
+            var kebiao=this.data.classSchedule.data.all_tables
+            this.setData({
+              'classSchedule.data.all_tables':kebiao
+            })
           var arr=this.data.classSchedule.data.all_tables[i].day_num.split(",")
           console.log(arr)
           if(arr.length==2){
-          for(var j=0;j<2;j++){
+           for(var j=0;j<2;j++){
             var mycrr=arr[j].match(/\d+(\.\d+)?/g)
             console.log(mycrr)
             if(mycrr.length==2){
-            for(var k=mycrr[0];k<=mycrr[1];k++){
+             for(var k=mycrr[0];k<=mycrr[1];k++){
               var leng=k
               this.setData({shuzu:this.data.shuzu.concat(leng)})
             }
           }
           if(mycrr.length==1){
-            var leng=k
+            var leng=mycrr
             this.setData({shuzu:this.data.shuzu.concat(leng)})
           }
           }
@@ -391,8 +417,10 @@ Page({
         }
         if(arr.length==1){
           var mycrr=arr[0].match(/\d+(\.\d+)?/g)
+          console.log(mycrr)
           if(mycrr.length==1){
             var abc=this.data.shuzu.concat(mycrr)
+            console.log(abc)
             this.data.classSchedule.data.all_tables[i].abc=abc
             var kebiao=this.data.classSchedule.data.all_tables
               this.setData({
@@ -406,6 +434,7 @@ Page({
               this.setData({shuzu:this.data.shuzu.concat(leng)})
             }
             var abc=this.data.shuzu
+            console.log(abc)
             this.data.classSchedule.data.all_tables[i].abc=abc
             var kebiao=this.data.classSchedule.data.all_tables
               this.setData({

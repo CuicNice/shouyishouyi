@@ -640,13 +640,13 @@ font-weight: 400;
 font-size: 20rpx;
 line-height: 28rpx;
 text-align: center;
-margin-top: -10rpx;
+margin-top: -4rpx;
 color: #FFFFFF;
 }
 
 .noflex-item{
   width: 89rpx;
-  height: 208rpx;
+  height: 170rpx;
   margin-top: 24rpx;
   margin-left: 12rpx;
   position: absolute;
