@@ -97,8 +97,8 @@ flex-grow: 0;
 }
 
 .scoreTop-icon{
-  width: 24rpx;
-  height: 24rpx;
+  width: 26rpx;
+  height: 28rpx;
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -450,7 +450,7 @@ flex-grow: 0;
   flex-grow: 0;
   margin-left: 64rpx;
   margin-right: 66rpx;
-  margin-top: 30rpx;
+  margin-top: 28rpx;
 }
 
 .stuName {
@@ -566,7 +566,7 @@ flex-direction: row;
 justify-content: space-between;
 align-items: flex-start;
 padding: 0rpx;
-gap: 28rpx;
+gap: 18rpx;
 /* width: 650rpx; */
 height: 60rpx;
 /* Inside auto layout */
@@ -574,6 +574,7 @@ flex: none;
 order: 0;
 align-self: stretch;
 flex-grow: 0;
+margin-top: 2rpx;
 }
 
 .firstSemester-box{
@@ -583,7 +584,7 @@ flex-grow: 0;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10rpx 36rpx;
+  padding: 10rpx 48rpx 10rpx 36rpx;
   width: 146rpx;
   height: 60rpx;
   /* #72D3B2 */
@@ -614,7 +615,7 @@ color: #292945;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10rpx 36rpx;
+  padding: 10rpx 42rpx 10rpx 36rpx;
   width: 146rpx;
   height: 60rpx;
   /* #72D3B2 */
@@ -643,7 +644,7 @@ color: #292945;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10rpx 36rpx;
+  padding: 10rpx 42rpx 10rpx 36rpx;
   width: 146rpx;
   height: 60rpx;
   /* #72D3B2 */
@@ -672,7 +673,7 @@ color: #292945;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10rpx 36rpx;
+  padding: 10rpx 48rpx 10rpx 36rpx;
   width: 146rpx;
   height: 60rpx;
   /* #72D3B2 */
@@ -770,15 +771,15 @@ border-radius: 10rpx;
 }
 
 .background-box{
-  margin-top: 12%;
-  margin-left: 30%;
+  margin-top: 142rpx;
+  margin-left: 236rpx;
+  margin-right: 234rpx;
   width: 280rpx;
   height: 356rpx;  
 }
-
 .courseItem:nth-child(1) {
 position: relative;
- margin-top:32rpx;
+ margin-top:38rpx;
  margin-left: 64rpx;
  margin-right: 66rpx;
   /* width: 600rpx; */
@@ -791,7 +792,7 @@ position: relative;
 }
 .courseItem{
   position: relative;
-   margin-top:30rpx;
+   margin-top:36rpx;
    margin-left: 64rpx;
    margin-right: 66rpx;
     /* width: 600rpx; */
@@ -903,7 +904,7 @@ margin-top: 18rpx;
   color: rgba(41, 41, 69, 0.6);
   line-height: 28rpx;
   letter-spacing: 1rpx;
-  margin-top: 10rpx;
+  margin-top: 6rpx;
 }
 
 /* 子类 */

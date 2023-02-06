@@ -30,13 +30,13 @@
     <!-- 成绩表格 -->
     <view class="scoreForm">
             <view class="trTitle">
-                <view class="th">成绩分项</view>
-                <view class="th">比例</view>
+                <view class="th1">成绩分项</view>
+                <view class="th2">比例</view>
                 <view class="th ">成绩</view>
             </view>
             <block>
             <view class="tr" wx:for="{{Details}}"  wx:key="index" >
-                    <view class="td">[{{item.cjfx}}]</view>
+                    <view class="td" >[{{item.cjfx == '平时成绩'?"平时":item.cjfx}}]</view>
                     <view class="td">{{item.cjfxbl}}</view>
                     <view class="td">{{item.cj}}</view>
             </view>

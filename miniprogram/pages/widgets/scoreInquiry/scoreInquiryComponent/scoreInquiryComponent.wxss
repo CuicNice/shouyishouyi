@@ -92,7 +92,7 @@
         .scoredetail-typeBox {
           /* position: absolute; */
           /* top:10rpx; */
-          margin-right: 24rpx;
+          margin-right: 10rpx;
           right: 5rpx;
           display: flex;
           flex-direction: row;
@@ -187,7 +187,7 @@
                position: absolute;
                top: 60rpx;
                right: 37rpx;
-                margin-bottom: 84rpx;
+                margin-bottom: 80rpx;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -285,10 +285,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 520rpx; */
+   width: 648rpx;
   height: 236rpx;
   position: absolute;
-  left: -20rpx;
   top: 442rpx;
   }
     
@@ -310,10 +309,50 @@
       align-items: center;
       margin-bottom: 36rpx;
     }
+  .th1{
+     /* 成绩分项 */
+     width: 96rpx; 
+     height: 34rpx;
+     margin-left: 59rpx;
+     /* left: 136rpx;
+   top: 880rpx; */
+     font-family: PingFang SC;
+     font-style: normal;
+     font-weight: normal;
+     font-size: 24rpx;
+     line-height: 34rpx;
+     /* identical to box height */
+     text-align: center;
+     /* text */
+     color: #292945;
+     justify-content: center;
+     align-items: center;
+     display: flex; 
+     
+  }
+  .th2{
+     /* 成绩分项 */
+     width: 48rpx;
+     height: 34rpx;
+     /* left: 136rpx;
+   top: 880rpx; */
+     font-family: PingFang SC;
+     font-style: normal;
+     font-weight: normal;
+     font-size: 24rpx;
+     line-height: 34rpx;
+     /* identical to box height */
+     text-align: center;
+     /* text */
+     color: #292945;
+     justify-content: center;
+     align-items: center;
+     display: flex; 
+  }
     
   .th {
       /* 成绩分项 */
-      width: 230rpx; 
+      width: 56rpx; 
       height: 34rpx;
       /* left: 136rpx;
     top: 880rpx; */
@@ -332,7 +371,7 @@
     }
     
     .td {
-       width: 200rpx;
+      width: 200rpx;
       height: 34rpx;
       margin-left: 11rpx;
       margin-right: 11rpx;
@@ -342,9 +381,7 @@
       font-size: 12px;
       line-height: 34rpx;
       /* identical to box height */
-      
       text-align: center;
-      
       /* #292945 */
       
       color: rgba(41, 41, 69, 0.6);
