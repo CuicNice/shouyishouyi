@@ -13,12 +13,25 @@ Page({
     mm:'',
     query:'',
     x:0,
+    messageList:[],
   },
+  getList(){
+    wx.request({
+      url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletPopupList',
+      method:'POST',
+      success:((res)=>{
+        this.setData({
+           messageList:res.data,
+        }) 
+      })
+     })
+   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.getList();
     //获取弹窗的Id
     this.setData({
       query:options.id
@@ -44,6 +57,9 @@ Page({
    * 显示是否绑定页面
    */
   showBindDialog(){
+    wx.navigateTo({
+      url:'/pages/message1/message1Page/message1Page'
+    })
     this.setData({
       showBindDialog:true
     })

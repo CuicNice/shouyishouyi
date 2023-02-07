@@ -1,7 +1,7 @@
 // pages/widgets/popup/popupPage/popupPage.ts
 import {getPopup} from '../../../api/popupApi';
 export interface popupeItem {
- currentPage:String,
+ currentPage:Number,
  pageSize:String,
 }
 Page({
@@ -15,7 +15,7 @@ Page({
     D:'',
     title:"默认页面",
     showDialog:true,
-    currentPage:'1',//默认初始第一页数据
+    currentPage:1,//默认初始第一页数据
     data1:'',
     popupId:'',
     popupType:'',
@@ -23,6 +23,8 @@ Page({
     info:'',
     popupSystemSubtitle:'',
     popupSystemHeadline:'',
+    s3:'',
+    feed:1,
   },
   //关闭弹窗
   closePhoto(){
@@ -64,9 +66,9 @@ async getPopupData(from: popupeItem) {
   /*
  *数据处理
  */
-var time = this.data.Y+'-'+this.data.M+'-'+this.data.D;
+var time = this.data.Y+'-'+this.data.M + '-'+ '11';
 console.log(time)
-var j = 0;
+var j = 0; 
 for(j=0,res1.list[j];j<=4;j++){ 
   //首发时间
   if(res1.list[j].popupFirstTime.substring(0,10) == time){
@@ -88,8 +90,7 @@ for(j=0,res1.list[j];j<=4;j++){
       this.setData({
       tc1:false,
       tc2:true,
-   
-      ima:res1.list[j].popupImage,
+      ima:'http://'+res1.list[j].popupImage,
     })}
   }
 }
@@ -113,7 +114,7 @@ for(j=0,res1.list[j];j<=4;j++){
       this.setData({
       tc1:false,
       tc2:true,
-      ima:res1.list[j].popupImage,
+      ima:'http://'+res1.list[j].popupImage
     })}
 }}
   //第三次时间
@@ -136,10 +137,24 @@ for(j=0,res1.list[j];j<=4;j++){
       this.setData({
       tc1:false,
       tc2:true,
-      ima:res1.list[j].popupImage,
+      ima:'http://'+res1.list[j].popupImage
     })}
   }
-}}
+}
+  //切换页面,未解决，询问
+//   if(this.data.data1.length >= 2){
+//   if(res1.list[0].popupThirdTime.substring(0,10) == time){
+//     this.setData({
+//      feed : 2,
+//     })
+//     if(this.data.feed == 2){
+//       this.setData({currentPage:this.data.currentPage+1,feed:1})
+//       console.log(this.data.s3)
+//         this.initPageData();
+//     }
+//   }
+// }
+}
 },
   
 
@@ -148,6 +163,7 @@ for(j=0,res1.list[j];j<=4;j++){
    */
   onLoad() {
     this.initPageData();
+
     var timestamp = Date.parse(new Date());
    var date = new Date(timestamp);
     //获取年份  
@@ -157,6 +173,11 @@ for(j=0,res1.list[j];j<=4;j++){
     M : (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1),
     //获取当日日期 
     D : date.getDate() < 10 ? '0' + date.getDate() : date.getDate() })
+     //明天的时间
+   var day3 = new Date();
+   day3.setTime(day3.getTime()+24*60*60*1000) ;
+   var s3 = day3.getFullYear()+"-"+(day3.getMonth()+1)+ "-" + day3.getDate();
+   this.setData({s3:s3})
   },
 
   /**
