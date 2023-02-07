@@ -391,7 +391,7 @@ Page({
             var mycrr=arr[j].match(/\d+(\.\d+)?/g)
             console.log(mycrr)
             if(mycrr.length==2){
-             for(var k=mycrr[0];k<=mycrr[1];k++){
+             for(var k=mycrr[0];k<=parseInt(mycrr[1]);k++){
               add.abc.concat(k)
             }
           }
