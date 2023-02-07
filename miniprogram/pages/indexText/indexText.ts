@@ -5,18 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shuju:'http://www.baidu.com'
+    shuju:'http://baidu.com'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    console.log(options.shuju)
-    var webview=options.shuju;
-    this.setData({
-    shuju:webview
+  onLoad: function () {
+    wx.getStorage({
+      key: 'key',
+      success:(res)=> {
+        this.setData({shuju:res as unknown as string})
+      }
     })
+
     },
 
   /**
