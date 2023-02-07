@@ -4,14 +4,15 @@
 <view class="bg"></view>
 <view class="top-bar">
   <!-- 信号区 -->
-  <view  style="height:{{statusBarHeight}}px;">
+  <view  style="height:{{statusBarHeight*2}}rpx;">
   </view>
   <!-- 胶囊区 -->
-  <view  class="capsule-box" style="padding-left: 17rpx;">
+  <!-- 获取胶囊的高度来设置胶囊所在行的高度 -->
+  <view  class="capsule-box" style="height:{{capsuleBoxHeight*2}}rpx;">
   <view class="barLineItem">
     <view  bindtap="returnPage" class="returnButton">
       <image class="returnSvg" 
-    style="width: 18rpx;height: 34rpx;" src="{{BackIcon}}"></image>
+    style="width: 24rpx;" src="{{BackIcon}}"></image>
     </view>
   
    </view>
@@ -28,7 +29,8 @@
 <view class="inputFrame">
 <view class="thingSet">
 <view class="thingLable"><text>事件设置</text></view>
-<input class="thingInput" name="thingsInputTxt"placeholder_class="thingInputHolder"placeholder-style="padding:24rpx 0rpx" placeholder="填写样例：考研"  bind:myevent="getcount" maxlength="4">
+    
+<input class="thingInput" name="thingsInputTxt"placeholder_class="thingInputHolder"placeholder-style="padding:24rpx 0rpx;" placeholder="填写样例：考研"  bind:myevent="getcount" maxlength="4">
 </input>
 <view class="thingAlarm"><text>倒计时设置2~4个字</text></view>
 
@@ -56,7 +58,7 @@
 
 
 <view class="Img" >
-  <image class="paw" style="  width: 452rpx; height: 452rpx;" src="{{sportBuild}}" ></image>
+  <image class="paw" style="width: 420rpx; height: 420rpx;" src="{{sportBuild}}" ></image>
 
  
 </view>

@@ -19,7 +19,6 @@ miniprogram
 ---Consts.ts // 项目常量配置
 typings
 ---index.d.ts //InterFace声明
----countdown 功能合并
 ```
 ## master版本 2023.1.29
 1. 当前版本0.0.1。已完成：弹窗、提示框、顶部栏等组件的封装。
@@ -36,4 +35,10 @@ typings
 3、尽量只动自己的目录。
 4、合并代码。（前几次继超会带，后面需要自己发送pullrequest）
 5、绝对绝对不能直接提交master。开发新功能只能新建分支，开发完成后合并。
+
+### UAT 2023/2/5 countdown
+1、countdown组件一个
+2、页面一个
+3、测试页面：testCountDownComponentPage供大家做引入参考
+4、备注，自己写的topBar可以单独拿出来封装，目前测试兼容性还可以，在countDownPage页面。
 

@@ -23,7 +23,7 @@ onLoad(options) {
 
   },
   onShow(){
-    var that=this;
+    let that=this;
     that.setData({
       countDownTitle:"首义+倒计时"
     })
