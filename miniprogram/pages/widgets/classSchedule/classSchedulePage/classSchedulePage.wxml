@@ -211,8 +211,8 @@
         <!--课表-->
         <block class="block" wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
           <block>
-            <view bindtap="showXQ" data-index="{{index}}" wx:if="{{item.ifshow}}">
-              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background: {{item.color}};">
+            <view bindtap="showXQ" data-index="{{index}}" wx:if="{{!item.add.ifshow}}">
+              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background: {{item.color}};z-index: 9;">
                 <view class="smalltext" style="color: {{item.fontsize}};">{{item.name}}</view>
                 <view class="smalltextad"style="color: {{item.fontsize}};">{{item.local}}</view>
               </view>
@@ -220,7 +220,7 @@
           </block>
           <!-- 非本周 -->
           <block>
-            <view bindtap="showXQ" data-index="{{index}}" wx:if="{{!item.ifshow}}">
+            <view bindtap="showXQ" data-index="{{index}}" wx:if="{{item.add.ifshow}}">
               <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background:#F5F5F5;">
                 <view class="nosmalltextword">非本周</view>
                 <view class="smalltext" style="color: rgba(41, 41, 69, 0.4);">{{item.name}}</view>

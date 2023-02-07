@@ -617,7 +617,6 @@ margin-left: 8rpx;
   align-items: center;
   padding: 32rpx 2rpx 16rpx;
   border-radius: 10rpx;
-  z-index: 10;
 }
 
 .smalltext {
