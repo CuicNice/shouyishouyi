@@ -13,15 +13,19 @@ Page({
     mm:'',
     query:'',
     x:0,
-    messageList:[],
+    messageList:{},
   },
   getList(){
     wx.request({
       url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletPopupList',
       method:'POST',
+      data:{
+        currentPage:1,
+        pageSize:5,
+      },
       success:((res)=>{
         this.setData({
-           messageList:res.data,
+           messageList:res.data.data,
         }) 
       })
      })
