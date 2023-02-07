@@ -19,6 +19,7 @@ miniprogram
 ---Consts.ts // 项目常量配置
 typings
 ---index.d.ts //InterFace声明
+---countdown 功能合并
 ```
 ## master版本 2023.1.29
 1. 当前版本0.0.1。已完成：弹窗、提示框、顶部栏等组件的封装。

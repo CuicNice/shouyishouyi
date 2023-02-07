@@ -1,5 +1,5 @@
-<!--pages/widgets/countDown/countDownComponment/counDownWedget/countDownWedget.wxml-->
-<!--pages/widgets/countDown/counDownWedGet/countDownWedget.wxml-->
+<!--pages/widgets/countDown/countDownComponment/countDownComponent.wxml-->
+<!-- 倒计时组件 -->
 <view class='countdown'>
   <view class="countdown-txt">
     <text class='cd-txt'>{{countDownTitle}}</text>

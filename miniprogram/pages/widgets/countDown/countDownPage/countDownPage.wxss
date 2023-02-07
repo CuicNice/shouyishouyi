@@ -241,9 +241,8 @@ page {
 .pickerin {
     opacity: 0.6;
 }
-.picker{
-  
-}
+
+.picker {}
 
 .thingAlarm {
     width: 620rpx;
@@ -374,9 +373,9 @@ page {
 }
 
 .Img {
-    width: 370rpx;
-    height: 370rpx;
-    margin-top: 180rpx;
+    width: 452rpx;
+    height: 452rpx;
+    margin-top: 110rpx;
 }
 
 .sportTxt {

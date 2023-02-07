@@ -1,4 +1,4 @@
-/* pages/widgets/countDown/countDownComponment/counDownWedget/countDownWedget.wxss */
+/* pages/widgets/countDown/countDownComponment/countDownComponent.wxss */
 
 .countdown {
   position: fixed;

@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/widgets/countDown/countDownPage/countDownPage",
-    "pages/widgets/countDown/countDownWedgetPage/countDownWedgetPage",
+    "pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage",
     "pages/widgets/electricCharge/electricPage/electricPage",
     "pages/login/login",
     "pages/index/index",
