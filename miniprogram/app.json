@@ -5,6 +5,7 @@
     "pages/widgets/electricCharge/electricPage/electricPage",
     "pages/login/login",
     "pages/index/index",
+    "pages/indexText/indexText",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
