@@ -1,226 +1,225 @@
-
 <!-- 背景的学校建筑 -->
 <view class="bg">
   <image wx:if="{{!isHidden}}" class="background-box" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
-</view>  
+</view>
 <!-- <wxs src='../../../../../wxs/utils.wxs' module='tools' /> 引入切割字符串 -->
 <!-- 顶部状态栏div -->
 <view class="status_bar" style='height: {{statusBarHeight}}px; background-color: {{bgc}};'></view>
 
 <!-- 导航栏 -->
 <view class="navigationBar">
-<!--更多选择的icon  -->
+  <!--更多选择的icon  -->
   <view class="NewIconBoxLeft" bindtap="showPopupA">
     <image class="NewIconLeft"></image>
   </view>
-<!-- 切换周、日的icon -->
+  <!-- 切换周、日的icon -->
   <view class="switchIconBox">
-  <image class="switchIcon"></image>
+    <image class="switchIcon" bindtap="changeicon" src="../../../../static/svg/{{weekSchedule}}icon.svg"></image>
   </view>
   <!-- 刷新的icon -->
   <view class="flushIconBox">
-  <image class="flushIcon"></image>
+    <image class="flushIcon"></image>
   </view>
-<!-- 学期选择 -->
+  <!-- 学期选择 -->
   <view class="TitleLeft">
     <view class="WeekOption">
-        <view class="text-WeekOption">{{semester}}</view>
-        <view class="icon-WeekOption" bindtap="selectSchoolTime"></view>
-      </view>
+      <view class="text-WeekOption">{{semester}}</view>
+      <view class="icon-WeekOption" bindtap="selectSchoolTime"></view>
     </view>
   </view>
-  <view class="select_box">
-  <scroll-view scroll-x="true"  scroll-with-animation="true" class="select_week"  style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:rgba(255, 255, 255, 0.8);">
-      <view wx:for="{{week}}" wx:key="index" style="display: inline-flex;height: 100%;align-items: center;">
-        <view class="select_one" wx:if="{{!item.type}}">
-          <ul>
-           <!-- <view class="select_oneIconBox"> <image class="select_oneIcon"></image></view> -->
-           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
-            <view class="select_oneweek">第{{item.index}}周</view>
-          </ul>
-        </view>
-        <view class="select_which" wx:if="{{item.type}}" bindtap="selectWeek" data-index='{{index}}'>
-          <ul>
-            <view class="noselect_oneweek">第{{item.index}}周</view>
-          </ul>
-        </view>
+</view>
+<view class="select_box" wx:if="{{weekSchedule}}">
+  <scroll-view scroll-x="true" scroll-with-animation="true" class="select_week" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:rgba(255, 255, 255, 0.8);">
+    <view wx:for="{{week}}" wx:key="index" style="display: inline-flex;height: 100%;align-items: center;">
+      <view class="select_one" wx:if="{{!item.type}}" bindtap="selectWeekangian">
+        <ul>
+          <!-- <view class="select_oneIconBox"> <image class="select_oneIcon"></image></view> -->
+          <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
+          <view class="select_oneweek">第{{item.index}}周</view>
+        </ul>
       </view>
+      <view class="select_which" wx:if="{{item.type}}" bindtap="selectWeek" data-index='{{index}}'>
+        <ul>
+          <view class="noselect_oneweek">第{{item.index}}周</view>
+        </ul>
+      </view>
+    </view>
   </scroll-view>
 </view>
 
-<view class="container" style="background-color: {{bgc}};">
+<view class="container" style="background-color: {{bgc}};" wx:if="{{weekSchedule}}">
   <view class="top">
     <view class="smallBox" style="background-color:  #F8F8F8;">
-        <text class="smallBoxtxt">武昌校区</text>
-    </view>  
+      <text class="smallBoxtxt">武昌校区</text>
+    </view>
     <!-- 周和日期-->
     <view class="weekbigBox">
       <view class="weekBox{{1 == day ? 'Select':''}}" bindtap="changdata1">
-      <view class="week">
-        <view class="top-text">周日</view>
-      </view>
-      <view class="day">
-        <block>
-          <view class="dateBox">
-            <view class="Box">{{week[number].day1}}</view>
-          </view>
-        </block>
-      </view>
+        <view class="week">
+          <view class="top-text">周日</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="Box">{{week[number].day1}}</view>
+            </view>
+          </block>
+        </view>
       </view>
       <view class="weekBox{{2 == day ? 'Select':''}}" bindtap="changdata2">
-      <view class="week">
-        <view class="top-text">周一</view>
-      </view>
-      <view class="day">
-        <block>
-          <view class="dateBox">
-            <view class="Box">{{week[number].day2}}</view>
-          </view>
-        </block>
-      </view>
+        <view class="week">
+          <view class="top-text">周一</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="Box">{{week[number].day2}}</view>
+            </view>
+          </block>
+        </view>
       </view>
       <view class="weekBox{{3 == day ? 'Select':''}}" bindtap="changdata3">
-      <view class="week">
-        <view class="top-text">周二</view>
-      </view>
-      <view class="day">
-        <block>
-          <view class="dateBox">
-            <view class="Box">{{week[number].day3}}</view>
-          </view>
-        </block>
-      </view>
+        <view class="week">
+          <view class="top-text">周二</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="Box">{{week[number].day3}}</view>
+            </view>
+          </block>
+        </view>
       </view>
       <view class="weekBox{{4 == day ? 'Select':''}}" bindtap="changdata4">
         <view class="week">
-        <view class="top-text">周三</view>
-      </view>
-      <view class="day">
-        <block>
-          <view class="dateBox">
-            <view class="Box">{{week[number].day4}}</view>
-          </view>
-        </block>
-      </view>
+          <view class="top-text">周三</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="Box">{{week[number].day4}}</view>
+            </view>
+          </block>
+        </view>
       </view>
       <view class="weekBox{{5 == day ? 'Select':''}}" bindtap="changdata5">
-      <view class="week">
-        <view class="top-text">周四</view>
-      </view>
-      <view class="day">
-        <block>
-          <view class="dateBox">
-            <view class="Box">{{week[number].day5}}</view>
-          </view>
-        </block>
-      </view>
+        <view class="week">
+          <view class="top-text">周四</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="Box">{{week[number].day5}}</view>
+            </view>
+          </block>
+        </view>
       </view>
       <view class="weekBox{{6 == day ? 'Select':''}}" bindtap="changdata6">
-      <view class="week">
-        <view class="top-text">周五</view>
-      </view>
-      <view class="day">
-        <block>
-          <view class="dateBox">
-            <view class="Box">{{week[number].day6}}</view>
-          </view>
-        </block>
-      </view>
+        <view class="week">
+          <view class="top-text">周五</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="Box">{{week[number].day6}}</view>
+            </view>
+          </block>
+        </view>
       </view>
       <view class="weekBox{{7 == day ? 'Select':''}}" bindtap="changdata7">
-      <view class="week">
-        <view class="top-text">周六</view>
-      </view>
-      <view class="day">
-        <block>
-          <view class="dateBox">
-            <view class="Box">{{week[number].day7}}</view>
-          </view>
-        </block>
-      </view>
+        <view class="week">
+          <view class="top-text">周六</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="Box">{{week[number].day7}}</view>
+            </view>
+          </block>
+        </view>
       </view>
     </view>
   </view>
 
-  <view class="WHQscroll">
+  <view class="WHQscroll" wx:if="{{weekSchedule}}">
     <scroll-view class="classScroll" scroll-y="true" bindscrolltolower='scrollToLower' bindscrolltoupper='scrollToUpper' lower-threshold='30' upper-threshold='30'>
       <view style="width:100%;display:flex;">
         <view class="leftBox">
-        <view class="timeTable">
+          <view class="timeTable">
             <view class="number">1</view>
             <view class="time">8:30</view>
             <view class="time">9:15</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">2</view>
             <view class="time">9:20</view>
             <view class="time">10:05</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">3</view>
             <view class="time">10:25</view>
             <view class="time">11:10</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">4</view>
             <view class="time">11:15</view>
             <view class="time">12:00</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">5</view>
             <view class="time">13:30</view>
             <view class="time">14:15</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">6</view>
             <view class="time">14:20</view>
             <view class="time">15:05</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">7</view>
             <view class="time">15:20</view>
             <view class="time">16:05</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">8</view>
             <view class="time">16:10</view>
             <view class="time">16:55</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">9</view>
             <view class="time">18:30</view>
             <view class="time">19:15</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">10</view>
             <view class="time">19:20</view>
             <view class="time">20:05</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">11</view>
             <view class="time">20:15</view>
             <view class="time">21:00</view>
-        </view>
-        <view class="timeTable">
+          </view>
+          <view class="timeTable">
             <view class="number">12</view>
             <view class="time">21:05</view>
             <view class="time">21:50</view>
-        </view>
+          </view>
         </view>
 
         <!--课表-->
-        <block class="block" wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
+        <block wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
           <block>
             <view bindtap="showXQ" data-index="{{index}}" wx:if="{{!item.add.ifshow}}">
-              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background: {{item.color}};z-index: 9;">
+              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background: {{item.color}};z-index: 1;">
                 <view class="smalltext" style="color: {{item.fontsize}};">{{item.name}}</view>
-                <view class="smalltextad"style="color: {{item.fontsize}};">{{item.local}}</view>
+                <view class="smalltextad" style="color: {{item.fontsize}};">{{item.local}}</view>
               </view>
             </view>
           </block>
           <!-- 非本周 -->
           <block>
-            <view bindtap="showXQ" data-index="{{index}}" wx:if="{{item.add.ifshow}}">
+            <view bindtap="showFXQ" data-index="{{index}}" wx:if="{{item.add.ifshow}}">
               <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background:#F5F5F5;">
                 <view class="nosmalltextword">非本周</view>
                 <view class="smalltext" style="color: rgba(41, 41, 69, 0.4);">{{item.name}}</view>
@@ -246,112 +245,97 @@
     </scroll-view>
   </view>
 </view>
-
-<!-- 选择学期的弹窗 -->
-<dialogTitle type="half-screen" showDialog="{{showChange}}">
-  <view class="half-screen-top-box">
-    <view class="dialog-iconbox">
-      <image class="dialog-icon" src="/static/svg/schedule.svg"></image>
-    </view>
-    <view class="title">请选择学期</view>
-  </view>
-  <view class="input">
-    
-  </view>
-  <view class="button">
-    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="closeBindDialog">
-      <text>取消</text>
-    </button>
-    <button type="primary" class="primary" bindtap="cleanBind">
-      <text>完成</text>
-    </button>
-  </view>
-</dialogTitle>
-
 <!-- 日课表主页 -->
-<!-- <view class="dailyScheduleContainer">
- <view class="dailyScheduleNavigation">
- <view class="dailyNavigationtext">第1周 9月20日 周日（日程表）</view>
- </view> -->
- <!-- <view class="dailyScheduleIndex">
-  <view class="dailyScheduleIndexList">
-    <view class="dailyScheduleTime">
-      <view class="dailyScheduleTime1">8:00</view>
-      <view class="dailyScheduleTimeLine"></view>
-      <view class="dailyScheduleTime1">8:40</view>
-    </view>
-    <view class="dailyScheduleBox">
-      <view class="dailySchedule">
-      <view class="dailyScheduleClassBox">
-        <view class="dailyScheduleClass">大学英语3</view>
-      </view>
-      <view class="dailyScheduleAdBox">
-       <view class="dailyScheduleAdIcon"><image></image></view>
-       <view class="dailyScheduleAd">18栋教学楼211</view>
-      </view>
-      </view>
-      <view class="dailyScheduleKc">
-       <view class="whichKc">第1~2节</view>
-       <view class="whichTc">蒋晶晶</view>
-      </view>
-      <view class="dailyScheduleBd">
-      <image></image>
-      </view>
-    </view>
+<view class="dailyScheduleContainer" wx:if="{{!weekSchedule}}">
+  <view class="dailyScheduleNavigation">
+    <view class="dailyNavigationtext">第{{number+1}}周 {{M}}月{{D}}日 周{{Chineseday}}（日程表）</view>
   </view>
-  <view class="dailyScheduleIndexList">
-    <view class="dailyScheduleTime">
-      <view class="dailyScheduleTime1">8:00</view>
-      <view class="dailyScheduleTimeLine"></view>
-      <view class="dailyScheduleTime1">8:40</view>
+  <view class="dailyScheduleIndex">
+    <view class="dailyScheduleIndexList">
+      <view class="dailyScheduleTime">
+        <view class="dailyScheduleTime1">8:00</view>
+        <view class="dailyScheduleTimeLine"></view>
+        <view class="dailyScheduleTime1">8:40</view>
+      </view>
+      <view class="dailyScheduleBox">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClass">大学英语3</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="dailyScheduleAdIcon">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAd">18栋教学楼211</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKc">
+          <view class="whichKc">第1~2节</view>
+          <view class="whichTc">蒋晶晶</view>
+        </view>
+        <view class="dailyScheduleBd">
+          <image></image>
+        </view>
+      </view>
     </view>
-    <view class="dailyScheduleBox">
-      <view class="dailySchedule">
-      <view class="dailyScheduleClassBox">
-        <view class="dailyScheduleClass">大学英语3</view>
+    <view class="dailyScheduleIndexList">
+      <view class="dailyScheduleTime">
+        <view class="dailyScheduleTime1">8:00</view>
+        <view class="dailyScheduleTimeLine"></view>
+        <view class="dailyScheduleTime1">8:40</view>
       </view>
-      <view class="dailyScheduleAdBox">
-       <view class="dailyScheduleAdIcon"><image></image></view>
-       <view class="dailyScheduleAd">18栋教学楼211</view>
-      </view>
-      </view>
-      <view class="dailyScheduleKc">
-       <view class="whichKc">第1~2节</view>
-       <view class="whichTc">蒋晶晶</view>
-      </view>
-      <view class="dailyScheduleBd">
-      <image></image>
+      <view class="dailyScheduleBox">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClass">大学英语3</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="dailyScheduleAdIcon">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAd">18栋教学楼211</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKc">
+          <view class="whichKc">第1~2节</view>
+          <view class="whichTc">蒋晶晶</view>
+        </view>
+        <view class="dailyScheduleBd">
+          <image></image>
+        </view>
       </view>
     </view>
   </view>
 
-  <view class="dailyScheduleIndexList">
-    <view class="dailyScheduleTime">
-      <view class="dailyScheduleTime1" style="color: #292945">8:00</view>
-      <view class="dailyScheduleTimeLine" style="border: 1px solid #292945;"></view>
-      <view class="dailyScheduleTime1" style="color: #292945">8:40</view>
-    </view>
-    <view class="dailyScheduleBox" style="background: #6290E9;">
-      <view class="dailySchedule">
-      <view class="dailyScheduleClassBox">
-        <view class="dailyScheduleClass" style="color: #FFFFFF;">大学英语3</view>
+    <view class="dailyScheduleIndexList">
+      <view class="dailyScheduleTime">
+        <view class="dailyScheduleTime1" style="color: #292945">8:00</view>
+        <view class="dailyScheduleTimeLine" style="border: 1px solid #292945;"></view>
+        <view class="dailyScheduleTime1" style="color: #292945">8:40</view>
       </view>
-      <view class="dailyScheduleAdBox">
-       <view class="havedailyScheduleAdIcon"><image></image></view>
-       <view class="dailyScheduleAd" style="color: #FFFFFF;">18栋教学楼211</view>
-      </view>
-      </view>
-      <view class="dailyScheduleKc">
-       <view class="whichKc" style="color: #FFFFFF;">第1~2节</view>
-       <view class="whichTc" style="color: #FFFFFF;">蒋晶晶</view>
-      </view>
-      <view class="havedailyScheduleBd">
-      <image></image>
+      <view class="dailyScheduleBox" style="background: #6290E9;">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClass" style="color: #FFFFFF;">大学英语3</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="havedailyScheduleAdIcon">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAd" style="color: #FFFFFF;">18栋教学楼211</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKc">
+          <view class="whichKc" style="color: #FFFFFF;">第1~2节</view>
+          <view class="whichTc" style="color: #FFFFFF;">蒋晶晶</view>
+        </view>
+        <view class="havedailyScheduleBd">
+          <image></image>
+        </view>
       </view>
     </view>
   </view>
- </view> -->
- <!-- <view class="WHQplus" style="bottom: 0rpx;">
+<view class="WHQplus" style="bottom: 0rpx;" wx:if="{{!weekSchedule}}">
         <view class="WHQplusLeft">
           <view class="otherCourses">其他课程</view>
         </view>
@@ -369,97 +353,107 @@
             <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
           </view>
         </view>
- </view> -->
+ </view>
 
- <!-- 日课表没有课的状态 -->
- <!-- <view class="nodailyScheduleIndex">
+  <!-- 日课表没有课的状态 -->
+  <!-- <view class="nodailyScheduleIndex">
   <image></image>
  </view> -->
-<!-- </view> -->
+  <!-- </view> -->
 
 
-<!-- 课程的详情页 -->
-<!-- <view class="CourseDetailsBox">
- <view class="CourseDetailsTop">
-  <view class="CourseDetailsText">全媒体新闻采写2全媒体新闻采写2</view>
-  <view class="CourseDetailsWeek"><view class="CourseDetailsWeektext">本周</view></view>
- </view>
- <view class="CourseDetailsNext">
-  <view class="CourseDetailsplaceBox">
-   <view class="placeIcon"><image></image></view>
-   <view class="placeTxt">地点：18-202</view>
+  <!-- 非本周课程的详情页 -->
+  <view class="mask" wx:if="{{noneifshow}}" bindtap="closeDetails"></view>
+  <view class="CourseDetailsBox" wx:if="{{noneifshow}}">
+    <view class="CourseDetailsTop">
+      <view class="CourseDetailsText">{{classSchedule.data.all_tables[G].name}}</view>
+      <view class="CourseDetailsWeek">
+        <view class="CourseDetailsWeektext">非本周</view>
+      </view>
+    </view>
+    <view class="CourseDetailsNext">
+      <view class="CourseDetailsplaceBox">
+        <view class="placeIcon">
+          <image src="../../../../static/svg/gareyplace.svg"></image>
+        </view>
+        <view class="placeTxt">{{classSchedule.data.all_tables[G].local}}</view>
+      </view>
+      <view class="CourseDetailsteacherBox">
+        <view class="teacherIcon">
+          <image src="../../../../static/svg/gareyteacher.svg"></image>
+        </view>
+        <view class="teacherTxt">老师：{{classSchedule.data.all_tables[G].teacher}}</view>
+      </view>
+      <view class="CourseDetailsnumberBox">
+        <view class="numberIcon">
+          <image src="../../../../static/svg/gareytime.svg"></image>
+        </view>
+        <view class="numberTxt">节数：{{classSchedule.data.all_tables[G].day}} | {{classSchedule.data.all_tables[G].num}}</view>
+      </view>
+      <view class="CourseDetailsweekBox">
+        <view class="weekIcon">
+          <image src="../../../../static/svg/gareyzho.svg"></image>
+        </view>
+        <view class="weekTxt">周次：{{classSchedule.data.all_tables[G].day_num}}</view>
+      </view>
+    </view>
   </view>
-  <view class="CourseDetailsteacherBox">
-    <view class="teacherIcon"><image></image></view>
-   <view class="teacherTxt">老师：黄龙飞</view>
-  </view>
-  <view class="CourseDetailsnumberBox">
-    <view class="numberIcon"><image></image></view>
-   <view class="numberTxt">节数：星期三 | 第3-4节</view>
-  </view>
-  <view class="CourseDetailsweekBox">
-   <view class="weekIcon"><image></image></view>
-   <view class="weekTxt">周次：第1-8周</view>
-  </view>
- </view>
-</view> -->
 
 
-<!-- 学期选择弹窗 -->
-<dialogTitle type="half-screen" showDialog="{{Semesterswitchingdetail}}">
-  <view class="half-screen-top-box">
-    <view class="dialog-iconbox">
-      <image class="dialog-icon"></image>
-      <view class="title">请选择学期</view>
+  <!-- 学期选择弹窗 -->
+  <dialogTitle type="half-screen" showDialog="{{Semesterswitchingdetail}}">
+    <view class="half-screen-top-box">
+      <view class="dialog-iconbox">
+        <image class="dialog-icon"></image>
+        <view class="title">请选择学期</view>
+      </view>
+      <view class="semesterpicker">
+        <picker-view indicator-style="height: 56px;" style="width: 100%; height: 45%;text-align:center; " bindchange="xqchange" value="{{selectedIdx}}">
+          <!--Columns-->
+          <picker-view-column>
+            <view wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
     </view>
-    <view class="semesterpicker">
-      <picker-view indicator-style="height: 56px;" style="width: 100%; height: 45%;text-align:center; " bindchange="xqchange"
-      value="{{selectedIdx}}">
-      <!--Columns-->
-      <picker-view-column>
-        <view wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
-      </picker-view-column>
-    </picker-view>
+    <view class="button">
+      <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindEletricCharge">
+        <text>取消</text>
+      </button>
+      <button type="primary" class="primary" data-index="{{item}}" id="{{item}}" bindtap="bindEletricCharge">
+        <text>完成</text>
+      </button>
+    </view>
+  </dialogTitle>
+  <!--课程的具体详情-->
+  <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails"></view>
+  <view class="courseDetails" wx:if="{{ifshow}}">
+    <view class="course">
+      <view class="courseName">{{classSchedule.data.all_tables[G].name}}</view>
+      <view class="courseifBox">
+        <view class="courseif" style="color: white;">本周</view>
+      </view>
+    </view>
+    <view class="courseOther">
+      <view class="courseplace">
+        <image class="courseplaceImage" src="../../../../static/svg/didian.svg" />
+        <view class="cuorseGuding">地点:</view>
+        <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].local}}</view>
+      </view>
+      <view class="courseplace">
+        <image class="courseplaceImage" src="../../../../static/svg/teacher.svg" />
+        <view class="cuorseGuding">老师:</view>
+        <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].teacher}}</view>
+      </view>
+      <view class="courseplace">
+        <image class="courseplaceImage" src="../../../../static/svg/jieshu.svg" />
+        <view class="cuorseGuding">节数:</view>
+        <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].day}} | {{classSchedule.data.all_tables[G].num}}</view>
+      </view>
+      <view class="courseplace">
+        <image class="courseplaceImage" src="../../../../static/svg/zhuoci.svg" />
+        <view class="cuorseGuding">周次:</view>
+        <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].day_num}}</view>
+      </view>
     </view>
   </view>
-  <view class="button">
-    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindEletricCharge">
-      <text>取消</text>
-    </button>
-    <button type="primary" class="primary" data-index="{{item}}" id="{{item}}" bindtap="bindEletricCharge">
-      <text>完成</text>
-    </button>
-  </view>
-</dialogTitle>
-<!--课程的具体详情-->
-<view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails"></view>
-<view class="courseDetails" wx:if="{{ifshow}}">
-  <view class="course">
-    <view class="courseName">{{classSchedule.data.all_tables[G].name}}</view>
-    <view class="courseifBox">
-      <view class="courseif" style="color: white;">本周</view>
-    </view>
-  </view>
-  <view class="courseOther">
-    <view class="courseplace">
-      <image class="courseplaceImage" src="../../../../static/svg/didian.svg"/>
-      <view class="cuorseGuding">地点:</view>
-      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].local}}</view>
-    </view>
-    <view class="courseplace">
-      <image class="courseplaceImage" src="../../../../static/svg/teacher.svg"/>
-      <view class="cuorseGuding">老师:</view>
-      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].teacher}}</view>
-    </view>
-    <view class="courseplace">
-      <image class="courseplaceImage" src="../../../../static/svg/jieshu.svg"/>
-      <view class="cuorseGuding">节数:</view>
-      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].day}} | {{classSchedule.data.all_tables[G].num}}</view>
-    </view>
-    <view class="courseplace">
-      <image class="courseplaceImage" src="../../../../static/svg/zhuoci.svg"/>
-      <view class="cuorseGuding">周次:</view>
-      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].day_num}}</view>
-    </view>
-  </view>
-</view>

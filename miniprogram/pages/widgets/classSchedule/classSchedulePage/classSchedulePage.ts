@@ -12,6 +12,7 @@ Page({
     number: '20',
     day: 0,
     ifshow: false,
+    noneifshow: false,
     colorcardLight: ['#A9E6FF', '#FFDDDC', '#F5DFFA', '#D4EFFF', '#F9EABA', '#FFD698', '#F0FFC4', '#FEFCC9', '#DFFFD4', '#FFD8D2', '#FFFFF0', '#CCFFED', '#BFC1FF', '#FFC8E6', '#E9EDF1', '#EFDCC9'],
     colorcardDark: ['#6290E9', '#B791DC', '#ABA6E9', '#E39ACA', '#F091A2', '#FF9470', '#FDB165', '#F3D257', '#5DD39E', '#B2DB7C', '#68D8D6', '#A9B7BD', '#59ADDF', '#7895BC', '#75AEAE', '#EFDCC9'],
     colorcardZi: ['#4794B6', '#D67979', '#BF74CE', '#559AC2', '#BD9825', '#B97B1E', '#689658', '#9C982F', '#60A049', '#C76D5F', '#8585A5', '#5EAA91', '#6568C9', '#C8619A', '#8585B1', '#B8906F'],
@@ -20,14 +21,16 @@ Page({
     D: '',
     I: 3,
     G: '',
-    boudle:false,
+    boudle: false,
     shuzu: [],
+    Chineseday: '',
     classSchedule: {} as any[],
     hidden: false,
     Semesterswitchingdetail: false,
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
     selectedIdx: 0,
-    showSelector: true
+    showSelector: true,
+    weekSchedule: true
   },
   //导航栏动画
   scrollToLower: function () {
@@ -41,6 +44,12 @@ Page({
     that.setData({
       hidden: false
     });
+  },
+
+  changeicon() {
+    this.setData({
+      weekSchedule: !this.data.weekSchedule
+    })
   },
 
   objHeavy: function (arr: any) { //筛选一共有几门课
@@ -69,16 +78,23 @@ Page({
   },
 
   showXQ(e: any) {
-    console.log(e.currentTarget.dataset.index)
     this.setData({
       ifshow: true,
       G: e.currentTarget.dataset.index
     })
   },
 
+  showFXQ(e: any) {
+    this.setData({
+      noneifshow: true,
+      G: e.currentTarget.dataset.index
+    })
+  },
+
   closeDetails() {
     this.setData({
-      ifshow: false
+      ifshow: false,
+      noneifshow: false
     })
   },
 
@@ -105,7 +121,7 @@ Page({
       data: {
         "zh": "20211107097",
         "mm": "Hushnow0729",
-        "year": this.data.Y,
+        "year": this.data.Y as unknown as number,
         "num": this.data.I
       },
       success: (res) => {
@@ -121,9 +137,7 @@ Page({
         for (var i = 0; i < list.length; i++) {
           for (var j = 0; j < leng; j++) {
             if (list[i].name == myarr[j].name) {
-              var color = this.data.colorcardLight[j]
-              var fontsize = this.data.colorcardZi[j]
-              this.data.classSchedule.data.all_tables[i].fontsize = fontsize
+              var color = this.data.colorcardDark[j]
               this.data.classSchedule.data.all_tables[i].color = color
               var kebiao = this.data.classSchedule.data.all_tables
               this.setData({
@@ -132,7 +146,63 @@ Page({
             }
           }
         }
+        //拿到具体有哪几周有此课，并将其放在数组中 
         for (var i = 0; i < this.data.classSchedule.data.all_tables.length; i++) {
+          var add = { ifshow: true, abc: [] as any[] }
+          var spilt = this.data.classSchedule.data.all_tables[i].day_num.split(",")
+          //console.log(spilt)
+          if (spilt.length == 2) {
+            for (var j = 0; j < 2; j++) {
+              this.setData({ boudle: false })
+              var sum = spilt[j].search('双');//若包含返回大于等于0的整数值，若不包含"双"则返回"-1。
+              //console.log(sum)
+              if (sum != -1) {
+                this.setData({ boudle: true })
+              }
+              var mycrr = spilt[j].match(/\d+(\.\d+)?/g)
+              // console.log(mycrr)
+              if (mycrr.length == 2) {
+                for (var k = parseInt(mycrr[0]); k <= parseInt(mycrr[1]); k++) {
+                  if (this.data.boudle) {
+                    if (k % 2 == 0)
+                      add.abc.push(k + "")
+                    //console.log(add.abc)
+                  } else { add.abc.push(k + "") }
+                }
+              }
+              if (mycrr.length == 1) {
+                add.abc.push(mycrr[0] + "")
+              }
+            }
+            //console.log(add.abc)
+          }
+          if (spilt.length == 1) {
+            var mycrr = spilt[0].match(/\d+(\.\d+)?/g)
+            //console.log(mycrr)
+            this.setData({ boudle: false })
+            var sum = spilt[0].indexOf("双");//若包含返回大于等于0的整数值，若不包含"J"则返回"-1。
+            if (sum > -1) {
+              this.setData({ boudle: true })
+            }
+            if (mycrr.length == 1) {
+              add.abc.push(mycrr[0] + "")
+              // console.log(add.abc)
+            }
+            if (mycrr.length == 2) {
+              for (var y = parseInt(mycrr[0]); y <= parseInt(mycrr[1]); y++) {
+                if (this.data.boudle) {
+                  if (y % 2 == 0)
+                    add.abc.push(y + "")
+                } else { add.abc.push(y + "") }
+              }
+              //console.log(add.abc)
+            }
+          }
+          this.data.classSchedule.data.all_tables[i].add = add
+          var kebiao = this.data.classSchedule.data.all_tables
+          this.setData({
+            'classSchedule.data.all_tables': kebiao
+          })
           if (this.data.classSchedule.data.all_tables[i].day == '星期一') {
             var daynum = 1 as unknown as number
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
@@ -283,46 +353,95 @@ Page({
       }
     }
   },
+
+  selectWeekangian() {
+    var week = this.data.week;
+    week[this.data.number as unknown as number].type = false;
+    this.setData({
+      week: week
+    });
+    var k = this.data.number as unknown as number
+    for (var i = 0; i < k; i++) {
+      week[i].type = true;
+      this.setData({
+        week: week
+      });
+    }
+    for (var i = this.data.number as unknown as number + 1; i < 19; i++) {
+      week[i].type = true;
+      this.setData({
+        week: week
+      });
+    }
+    var arr = this.data.classSchedule.data.all_tables
+    for (var j = 0; j < arr.length; j++) {
+      for (var q = 0; q < arr[j].add.abc.length; q++) {
+        if (this.data.number + 1 != arr[j].add.abc[q]) {
+          var week1 = arr;
+          week1[j].add.ifshow = true;
+          this.setData({
+            'classSchedule.data.all_tables': week1
+          });
+        }
+        if (this.data.number + 1 == arr[j].add.abc[q]) {
+          var week2 = arr;
+          week2[j].add.ifshow = false;
+          this.setData({
+            'classSchedule.data.all_tables': week2
+          });
+          break;
+        }
+      }
+    }
+  },
+
   changdata1() {
     //console.log('111')
     this.setData({
-      day: 1
+      day: 1,
+      Chineseday: "日"
     })
   },
   changdata2() {
     //console.log('222')
     this.setData({
-      day: 2
+      day: 2,
+      Chineseday: "一"
     })
   },
   changdata3() {
     //console.log('333')
     this.setData({
-      day: 3
+      day: 3,
+      Chineseday: "二"
     })
   },
   changdata4() {
     //console.log('444')
     this.setData({
-      day: 4
+      day: 4,
+      Chineseday: "三"
     })
   },
   changdata5() {
     //console.log('555')
     this.setData({
-      day: 5
+      day: 5,
+      Chineseday: "四"
     })
   },
   changdata6() {
     //console.log('666')
     this.setData({
-      day: 6
+      day: 6,
+      Chineseday: "五"
     })
   },
   changdata7() {
     //console.log('777')
     this.setData({
-      day: 7
+      day: 7,
+      Chineseday: "六"
     })
   },
 
@@ -344,12 +463,24 @@ Page({
     var date = new Date(timestamp);
     this.setData({
       //获取年份
-      Y: date.getFullYear() as unknown as string,
+      Y: 2022 /*date.getFullYear() as unknown as string*/ as unknown as string,
       //获取月份
       M: 10/*(date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) */ as unknown as string,
       //获取当日日期
       D: 28/*date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate() */ as unknown as string
     })
+    if (8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) {
+      console.log(this.data.M)
+      this.setData({ Y: this.data.Y + 1,I:3 })
+    }
+    if (1 <= parseInt(this.data.M) && parseInt(this.data.M) <2) {
+      console.log(this.data.M)
+      this.setData({I:3})
+    }
+    if (2 <= parseInt(this.data.M) && parseInt(this.data.M) <8) {
+      console.log(this.data.M)
+      this.setData({I:12})
+    }
     console.log(this.data.M + '/' + this.data.D)
     wx.request({
       url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/classTable',
@@ -389,21 +520,21 @@ Page({
           //console.log(spilt)
           if (spilt.length == 2) {
             for (var j = 0; j < 2; j++) {
-              this.setData({boudle:false})
+              this.setData({ boudle: false })
               var sum = spilt[j].search('双');//若包含返回大于等于0的整数值，若不包含"双"则返回"-1。
               //console.log(sum)
               if (sum != -1) {
-                this.setData({boudle:true})
+                this.setData({ boudle: true })
               }
               var mycrr = spilt[j].match(/\d+(\.\d+)?/g)
               // console.log(mycrr)
               if (mycrr.length == 2) {
                 for (var k = parseInt(mycrr[0]); k <= parseInt(mycrr[1]); k++) {
-                  if(this.data.boudle){
-                    if(k%2==0)
-                    add.abc.push(k + "")
-                   //console.log(add.abc)
-                  }else{add.abc.push(k + "")}
+                  if (this.data.boudle) {
+                    if (k % 2 == 0)
+                      add.abc.push(k + "")
+                    //console.log(add.abc)
+                  } else { add.abc.push(k + "") }
                 }
               }
               if (mycrr.length == 1) {
@@ -415,21 +546,21 @@ Page({
           if (spilt.length == 1) {
             var mycrr = spilt[0].match(/\d+(\.\d+)?/g)
             //console.log(mycrr)
-            this.setData({boudle:false})
+            this.setData({ boudle: false })
             var sum = spilt[0].indexOf("双");//若包含返回大于等于0的整数值，若不包含"J"则返回"-1。
             if (sum > -1) {
-              this.setData({boudle:true})
+              this.setData({ boudle: true })
             }
             if (mycrr.length == 1) {
               add.abc.push(mycrr[0] + "")
               // console.log(add.abc)
             }
             if (mycrr.length == 2) {
-              for (var y = mycrr[0]; y <= mycrr[1]; y++) {
-                if(this.data.boudle){
-                  if(y%2==0)
-                  add.abc.push(y + "")
-                }else{add.abc.push(y + "")}
+              for (var y = parseInt(mycrr[0]); y <= parseInt(mycrr[1]); y++) {
+                if (this.data.boudle) {
+                  if (y % 2 == 0)
+                    add.abc.push(y + "")
+                } else { add.abc.push(y + "") }
               }
               //console.log(add.abc)
             }
@@ -533,6 +664,7 @@ Page({
         week[i].type = false;
         this.setData({
           day: 1,
+          Chineseday: "日",
           week: week,
           number: i as unknown as string
         })
@@ -544,6 +676,7 @@ Page({
         this.setData({
           week: week,
           day: 2,
+          Chineseday: "一",
           number: i as unknown as string
         })
       }
@@ -554,6 +687,7 @@ Page({
         this.setData({
           week: week,
           day: 3,
+          Chineseday: "二",
           number: i as unknown as string
         })
       }
@@ -564,16 +698,18 @@ Page({
         this.setData({
           week: week,
           day: 4,
+          Chineseday: "三",
           number: i as unknown as string
         })
       }
       if (this.data.M + '/' + this.data.D == this.data.week[i].day5) {
-       // console.log('555')
+        // console.log('555')
         var week = this.data.week;
         week[i].type = false;
         this.setData({
           week: week,
           day: 5,
+          Chineseday: "四",
           number: i as unknown as string
         })
       }
@@ -584,6 +720,7 @@ Page({
         this.setData({
           week: week,
           day: 6,
+          Chineseday: "五",
           number: i as unknown as string
         })
       }
@@ -594,14 +731,26 @@ Page({
         this.setData({
           week: week,
           day: 7,
+          Chineseday: "六",
           number: i as unknown as string
         })
       }
-      if (this.data.Y as unknown as number - 2021 == 4 && 8 as unknown as string<=this.data.M as unknown as number<=12 || 1 as unknown as string<=this.data.M as unknown as number<=2) { this.setData({ semester: "大四上" }) }
-      if (this.data.Y as unknown as number - 2021 == 3) { this.setData({ semester: "大三上" }) }
-      if (this.data.Y as unknown as number - 2021 == 2 && 8 as unknown as string<=this.data.M as unknown as number<=12 || 1 as unknown as string<=this.data.M as unknown as number<=2) { this.setData({ semester: "大二上" }) }
-      if (this.data.Y as unknown as number - 2021 == 1) { this.setData({ semester: "大一上" }) }//此处的上下学期还没有分化
+      if (this.data.Y as unknown as number - 2021 == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大四上" }) }
+      if (this.data.Y as unknown as number - 2021 == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大四上" }) }
+      if (this.data.Y as unknown as number - 2021 == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大四下" }) }
+      if (this.data.Y as unknown as number - 2021 == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大三上" }) }
+      if (this.data.Y as unknown as number - 2021 == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大三上" }) }
+      if (this.data.Y as unknown as number - 2021 == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大三下" }) }
+      if (this.data.Y as unknown as number - 2021 == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大二上" }) }
+      if (this.data.Y as unknown as number - 2021 == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大二上" }) }
+      if (this.data.Y as unknown as number - 2021 == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大二下" }) }
+      if (this.data.Y as unknown as number - 2021 == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大一上" }) }
+      if (this.data.Y as unknown as number - 2021 == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大一上" }) }
+      if (this.data.Y as unknown as number - 2021 == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大一下" }) }
     }
+    setTimeout(() => {
+      this.selectWeekangian()
+    }, 5000)
   },
   /**
    * 生命周期函数--监听页面显示
