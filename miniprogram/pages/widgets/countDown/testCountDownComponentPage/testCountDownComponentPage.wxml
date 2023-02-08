@@ -1,6 +1,8 @@
 <!--pages/widgets/countDown/counDownWedGet/countDownWedget.wxml-->
 <!-- 倒计时组件引入测试页面 -->
-<countDownWedget countDownTitle="{{countDownTitle}}"></countDownWedget>
+<view style="padding: 30% 5%;">
+  <countDownWedget countDownTitle="{{countDownTitle}}"></countDownWedget>
+</view>
 
 
 

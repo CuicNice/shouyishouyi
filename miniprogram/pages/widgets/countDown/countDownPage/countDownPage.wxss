@@ -51,19 +51,15 @@ page {
 }
 
 .returnSvg {
-    width: 9px;
-    /* top: 14.58%; */
-    height: 17px;
-    color: #000000;
-    padding: 0 9%;
+    width: 24rpx;
+    height: 48rpx;
 }
 
 
-/* 成功弹窗 */
+/* 胶囊标题区 */
 
 .capsule-box {
     /* display: inline; */
-    height: 44px;
     display: flex;
     align-content: center;
     justify-content: space-between;
@@ -72,7 +68,7 @@ page {
 }
 
 .barLine {
-    width: 120px;
+    width: 240rpx;
     display: flex;
     /* align-content:center ; */
     align-items: center;
@@ -84,34 +80,34 @@ page {
 }
 
 .returnButton {
-    /* padding-left: 17px; */
-    top: 7rpx;
-    /* -ms-transform-origin-x: -17rpx; */
+    transform: translateX(32rpx);
+    width: 24rpx;
+    height: 48rpx;
 }
 
 .barText {
-    width: auto;
-    /* height: 24px; */
+    transform: translateX(-10rpx);
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 500;
-    font-size: 17px;
-    line-height: 24px;
+    font-size: 34rpx;
+    line-height: 48rpx;
     /* identical to box height */
     text-align: center;
     color: #000000;
-    margin-left: -17rpx;
+    mix-blend-mode: normal;
+    opacity: 0.9;
 }
 
 .saveText {
-    width: 64px;
-    height: 22px;
+    width: 128rpx;
+    height: 44rpx;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: -0.2176px;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    letter-spacing: -0.4352rpx;
     color: #FFFFFF;
     /* Inside auto layout */
     flex: none;
@@ -123,7 +119,7 @@ page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20rpx;
+    padding: 34rpx;
     width: auto;
     /* padding: 7.8%; */
     box-sizing: border-box;
@@ -154,7 +150,7 @@ page {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0rpx;
+    padding: 34rpx 0rpx 0rpx 0rpx;
     gap: 46rpx;
     width: 620rpx;
     height: 574rpx;
@@ -221,6 +217,17 @@ page {
 .thingInput {
     /* input */
     box-sizing: border-box;
+    /* text */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    /* identical to box height */
+    text-transform: lowercase;
+    /* text */
+    color: #292945;
+    /* opacity: 0.3; */
     /* Auto layout */
     display: flex;
     flex-direction: row;
@@ -239,14 +246,35 @@ page {
 }
 
 .pickerin {
-    opacity: 0.6;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    /* identical to box height */
+    text-transform: lowercase;
+    /* text */
+    color: #292945;
+    opacity: 0.3;
 }
 
-.picker {}
+.picker {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    /* identical to box height */
+    text-transform: capitalize;
+    /* text */
+    color: #292945;
+}
 
 .thingAlarm {
     width: 620rpx;
     height: 34rpx;
+    /* 字体 */
+    letter-spacing: -0.1rpx;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
@@ -375,7 +403,7 @@ page {
 .Img {
     width: 452rpx;
     height: 452rpx;
-    margin-top: 110rpx;
+    margin-top: 73rpx;
 }
 
 .sportTxt {

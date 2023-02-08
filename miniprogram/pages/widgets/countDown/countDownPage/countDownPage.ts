@@ -11,22 +11,22 @@ Page({
     // dialog
     dialogtitle: "设置失败，请重新设置",
     schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
-    sportBuild: "/static/svg/schoolBuilt/tiyuguan.png",
-    BackIcon: "/static/svg/Black.svg",
+    sportBuild: "/static/svg/schoolBuilt/tiyuguan.svg",
+    BackIcon: "/static/svg/back.svg",
     date: undefined,
     bname: '联系南南',
     b1name: '确定',
   },
   // toast
   // autoToast
-  showToastAuto(showToast: boolean, title: string, image: string, duration: number) {
-    this.setData({
-      showToast: showToast,
-      toastIcon: image,
-      toastTitle: title,
-      duration: duration
-    })
-  },
+  // showToastAuto(showToast: boolean, title: string, image: string, duration: number) {
+  //   this.setData({
+  //     showToast: showToast,
+  //     toastIcon: image,
+  //     toastTitle: title,
+  //     duration: duration
+  //   })
+  // },
   // 将问题带给后台
   //提交信息
   submitError(error: String) {
@@ -103,7 +103,6 @@ Page({
       try {
         countDownList = wx.getStorageSync('userCountDown')
       } catch (e) {
-        console.log("出现异常", e)
         that.setData({
           showDialog: true
         })
@@ -123,7 +122,6 @@ Page({
           key: 'userCountDown',
           success(res) {
             that.selectComponent("#toast").showToastAuto("设置成功", "success",1);
-
             that.gotoBd()
           }, fail(error) {
             that.setData({
@@ -165,10 +163,26 @@ Page({
   },
   // 顶部
   getTarHeighgt() {
+    // 获取胶囊的信息
+    const menuButton = wx.getMenuButtonBoundingClientRect()
+    const menuButtonHeight=menuButton.height;
+    const menuButtonWidth=menuButton.width;
+    const menuButtonTop=menuButton.top;
+    console.log("menuButtonHeight",menuButtonHeight)
+    console.log("menuButtonTop",menuButtonTop)
+
+    
+
+
+    console.log("menuButton",menuButton)
     // 获取设备的信息  
     let systemInfo = wx.getSystemInfoSync()
     // 获取信号区高度
     let statusBarHeight = systemInfo['statusBarHeight']
+    // 设置胶囊行的高度
+    const capsuleBoxHeight=menuButtonHeight+(menuButtonTop-statusBarHeight)*2;
+    console.log("capsuleBoxHeight",capsuleBoxHeight);
+
     /* 
     根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
     开发工具 = 获取的高度
@@ -185,6 +199,7 @@ Page({
       statusBarHeight = statusBarHeight
     }
     this.setData({
+      capsuleBoxHeight,
       statusBarHeight
     })
 

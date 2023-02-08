@@ -29,7 +29,7 @@ Component({
   pageLifetimes: {
     show: function() {
       // 页面被展示
-      var that=this;
+      let that=this;
       that.initPageData()
 
     },
@@ -61,7 +61,7 @@ Component({
    * 页面数据渲染&&数据请求
    */
 async initPageData() {
-    var that = this
+    let that = this
     // 网络请求  
     let { data: res } = await getCountDownItem() as unknown as IResult<any>;
     if (res==false) {
