@@ -29,9 +29,20 @@
 <view class="inputFrame">
 <view class="thingSet">
 <view class="thingLable"><text>事件设置</text></view>
-    
-<input class="thingInput" name="thingsInputTxt"placeholder_class="thingInputHolder"placeholder-style="padding:24rpx 0rpx;" placeholder="填写样例：考研"  bind:myevent="getcount" maxlength="4">
+    <!-- 涉及到焦点聚集 -->
+<view class="thingInput" >
+  <input class="InputTxt" 
+name="thingsInputTxt"
+style="height: 88rpx;"
+bindfocus="stationNameFocus"
+bindblur="stationNameBlur"
+placeholder_class="thingInputHolder"
+placeholder="填写样例：考研"  
+bind:myevent="getcount" 
+maxlength="4">
 </input>
+</view>
+
 <view class="thingAlarm"><text>倒计时设置2~4个字</text></view>
 
 </view>
@@ -39,13 +50,13 @@
 <view class="timeLable"><text>时间设置</text>
 
 </view>
-<view class="timeInput"> 
- <picker mode="date" name="timeInputTxt" value="{{goalTime}}" start="{{goalTime}}" end="2099-01-01" bindchange="bindDateChange"> 
-  <view wx:if="{{goalTime}}" class="picker">
+<view class="timeInput" catchtouchmove="{{isInputTextMove}}" style="background: #FFFFFF;"> 
+ <picker mode="date" name="timeInputTxt" value="{{goalTime}}" start="{{startDate}}" end="2099-01-01" bindchange="bindDateChange"style="background: #FFFFFF;"> 
+  <view wx:if="{{goalTime}}" class="picker" style="background: #FFFFFF;">
          {{goalTime}}
      </view>
      <!-- 未选择之前 -->
-<view class="pickerin" style="opacity: 0.6;" wx:else>{{goalTimePre}}</view>
+<view class="pickerin"wx:else style="background: #FFFFFF;">{{goalTimePre}}</view>
 </picker> 
 </view> 
 </view>
@@ -58,7 +69,7 @@
 
 
 <view class="Img" >
-  <image class="paw" style="width: 420rpx; height: 420rpx;" src="{{sportBuild}}" ></image>
+  <image class="paw" style="width: 420rpx; height: 410rpx;" src="{{sportBuild}}" ></image>
 
  
 </view>
@@ -71,7 +82,7 @@
 <!-- 南南问题单 -->
 <f-dialog showDialog="{{showDialog}}" title="{{dialogtitle}}"schoolBuiltSrc="{{schoolBuiltSrc}}" bname="{{bname}}" b1name="{{b1name}}">
   <view class="btn-box school-btn">
-        <button class="btn" type="primary" style="width: 214rpx;" plain="{{true}}" bindtap="submitError" open-type="contact">{{bname}}</button>
+        <button class="btn" type="primary" style="width: 214rpx;" plain="{{true}}" onclick="submitError('sheihsishi')" open-type="contact">{{bname}}</button>
         <button class="btn" type="primary" style="width: 214rpx;background: #20C38C;" bindtap="gotoBd" >{{b1name}}</button>
       </view>   
 </f-dialog>

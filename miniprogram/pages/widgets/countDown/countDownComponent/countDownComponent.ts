@@ -45,7 +45,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-      // 时间转换
+        // 时间转换
   formatNumber: (n: any) => {
     n = n.toString()
     return n[1] ? n : `0${n}`
@@ -70,8 +70,8 @@ async initPageData() {
       // 请求成功渲染数据
       let cdlist = [];
       // 判断用户之前有无缓存，有缓存直接获取
-      if (wx.getStorageSync('userCountDown')) {
-        cdlist = wx.getStorageSync("userCountDown")
+      if (wx.getStorageSync('widgets-userCountDown')) {
+        cdlist = wx.getStorageSync("widgets-userCountDown")
       }else{
         cdlist = []
       }
@@ -81,10 +81,15 @@ async initPageData() {
       }
       let cdlist3 = [];
       // 变成数字
-      
+      // 处理时间列表
       cdlist.forEach((item: any) => {
-        if (item.countDownEndDate) {
+        console.log("item.countDownEndDate",item.countDownEndDate)
+        let endDate=this.retDate(item.countDownEndDate)
+        if (item.countDownEndDate && endDate>0) {
           item.countDownEndDate = this.retDate(item.countDownEndDate)
+        }else{
+          // 过期的时间，以及空的异常的时间直接给END
+          item.countDownEndDate="end"
         }
       })
       for (let i = 0; i < 3; i++) {
