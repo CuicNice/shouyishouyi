@@ -148,7 +148,7 @@ Page({
         }
         //拿到具体有哪几周有此课，并将其放在数组中 
         for (var i = 0; i < this.data.classSchedule.data.all_tables.length; i++) {
-          var add = { ifshow: true, abc: [] as any[] }
+          var add = { ifshow: true, weekNumber: [] as any[] }
           var spilt = this.data.classSchedule.data.all_tables[i].day_num.split(",")
           //console.log(spilt)
           if (spilt.length == 2) {
@@ -165,16 +165,16 @@ Page({
                 for (var k = parseInt(mycrr[0]); k <= parseInt(mycrr[1]); k++) {
                   if (this.data.boudle) {
                     if (k % 2 == 0)
-                      add.abc.push(k + "")
-                    //console.log(add.abc)
-                  } else { add.abc.push(k + "") }
+                      add.weekNumber.push(k + "")
+                    //console.log(add.weekNumber)
+                  } else { add.weekNumber.push(k + "") }
                 }
               }
               if (mycrr.length == 1) {
-                add.abc.push(mycrr[0] + "")
+                add.weekNumber.push(mycrr[0] + "")
               }
             }
-            //console.log(add.abc)
+            //console.log(add.weekNumber)
           }
           if (spilt.length == 1) {
             var mycrr = spilt[0].match(/\d+(\.\d+)?/g)
@@ -185,17 +185,17 @@ Page({
               this.setData({ boudle: true })
             }
             if (mycrr.length == 1) {
-              add.abc.push(mycrr[0] + "")
-              // console.log(add.abc)
+              add.weekNumber.push(mycrr[0] + "")
+              // console.log(add.weekNumber)
             }
             if (mycrr.length == 2) {
               for (var y = parseInt(mycrr[0]); y <= parseInt(mycrr[1]); y++) {
                 if (this.data.boudle) {
                   if (y % 2 == 0)
-                    add.abc.push(y + "")
-                } else { add.abc.push(y + "") }
+                    add.weekNumber.push(y + "")
+                } else { add.weekNumber.push(y + "") }
               }
-              //console.log(add.abc)
+              //console.log(add.weekNumber)
             }
           }
           this.data.classSchedule.data.all_tables[i].add = add
@@ -206,10 +206,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期一') {
             var daynum = 1 as unknown as number
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -218,10 +218,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期二') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 2 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -230,10 +230,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期三') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 3 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -242,10 +242,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期四') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 4 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -254,10 +254,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期五') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 5 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -266,10 +266,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期六') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 6 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -278,10 +278,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期日') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 0 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -334,15 +334,15 @@ Page({
     }
     var arr = this.data.classSchedule.data.all_tables
     for (var j = 0; j < arr.length; j++) {
-      for (var q = 0; q < arr[j].add.abc.length; q++) {
-        if (this.data.number + 1 != arr[j].add.abc[q]) {
+      for (var q = 0; q < arr[j].add.weekNumber.length; q++) {
+        if (this.data.number + 1 != arr[j].add.weekNumber[q]) {
           var week1 = arr;
           week1[j].add.ifshow = true;
           this.setData({
             'classSchedule.data.all_tables': week1
           });
         }
-        if (this.data.number + 1 == arr[j].add.abc[q]) {
+        if (this.data.number + 1 == arr[j].add.weekNumber[q]) {
           var week2 = arr;
           week2[j].add.ifshow = false;
           this.setData({
@@ -375,15 +375,15 @@ Page({
     }
     var arr = this.data.classSchedule.data.all_tables
     for (var j = 0; j < arr.length; j++) {
-      for (var q = 0; q < arr[j].add.abc.length; q++) {
-        if (this.data.number + 1 != arr[j].add.abc[q]) {
+      for (var q = 0; q < arr[j].add.weekNumber.length; q++) {
+        if (this.data.number + 1 != arr[j].add.weekNumber[q]) {
           var week1 = arr;
           week1[j].add.ifshow = true;
           this.setData({
             'classSchedule.data.all_tables': week1
           });
         }
-        if (this.data.number + 1 == arr[j].add.abc[q]) {
+        if (this.data.number + 1 == arr[j].add.weekNumber[q]) {
           var week2 = arr;
           week2[j].add.ifshow = false;
           this.setData({
@@ -515,11 +515,10 @@ Page({
         }
         //拿到具体有哪几周有此课，并将其放在数组中 
         for (var i = 0; i < this.data.classSchedule.data.all_tables.length; i++) {
-          var add = { ifshow: true, abc: [] as any[] }
+          var add = { ifshow: true, weekNumber: [] as any[] }
           var spilt = this.data.classSchedule.data.all_tables[i].day_num.split(",")
           //console.log(spilt)
-          if (spilt.length == 2) {
-            for (var j = 0; j < 2; j++) {
+            for (var j = 0; j < spilt.length; j++) {
               this.setData({ boudle: false })
               var sum = spilt[j].search('双');//若包含返回大于等于0的整数值，若不包含"双"则返回"-1。
               //console.log(sum)
@@ -532,38 +531,15 @@ Page({
                 for (var k = parseInt(mycrr[0]); k <= parseInt(mycrr[1]); k++) {
                   if (this.data.boudle) {
                     if (k % 2 == 0)
-                      add.abc.push(k + "")
-                    //console.log(add.abc)
-                  } else { add.abc.push(k + "") }
+                      add.weekNumber.push(k + "")
+                    //console.log(add.weekNumber)
+                  } else { add.weekNumber.push(k + "") }
                 }
               }
               if (mycrr.length == 1) {
-                add.abc.push(mycrr[0] + "")
+                add.weekNumber.push(mycrr[0] + "")
               }
-            }
-            //console.log(add.abc)
-          }
-          if (spilt.length == 1) {
-            var mycrr = spilt[0].match(/\d+(\.\d+)?/g)
-            //console.log(mycrr)
-            this.setData({ boudle: false })
-            var sum = spilt[0].indexOf("双");//若包含返回大于等于0的整数值，若不包含"J"则返回"-1。
-            if (sum > -1) {
-              this.setData({ boudle: true })
-            }
-            if (mycrr.length == 1) {
-              add.abc.push(mycrr[0] + "")
-              // console.log(add.abc)
-            }
-            if (mycrr.length == 2) {
-              for (var y = parseInt(mycrr[0]); y <= parseInt(mycrr[1]); y++) {
-                if (this.data.boudle) {
-                  if (y % 2 == 0)
-                    add.abc.push(y + "")
-                } else { add.abc.push(y + "") }
-              }
-              //console.log(add.abc)
-            }
+            //console.log(add.weekNumber)
           }
           this.data.classSchedule.data.all_tables[i].add = add
           var kebiao = this.data.classSchedule.data.all_tables
@@ -573,10 +549,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期一') {
             var daynum = 1 as unknown as number
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -585,10 +561,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期二') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 2 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -597,10 +573,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期三') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 3 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -609,10 +585,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期四') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 4 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -621,10 +597,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期五') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 5 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -633,10 +609,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期六') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 6 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao
@@ -645,10 +621,10 @@ Page({
           if (this.data.classSchedule.data.all_tables[i].day == '星期日') {
             var start = this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             var daynum = 0 as unknown as number
-            var changdu = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
+            var long = this.data.classSchedule.data.all_tables[i].num.slice(2, 3) - this.data.classSchedule.data.all_tables[i].num.slice(0, 1)
             this.data.classSchedule.data.all_tables[i].daynum = daynum
             this.data.classSchedule.data.all_tables[i].start = start
-            this.data.classSchedule.data.all_tables[i].changdu = changdu
+            this.data.classSchedule.data.all_tables[i].long = long
             var kebiao = this.data.classSchedule.data.all_tables
             this.setData({
               'classSchedule.data.all_tables': kebiao

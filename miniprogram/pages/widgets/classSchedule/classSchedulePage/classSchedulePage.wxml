@@ -211,7 +211,7 @@
         <block wx:for="{{classSchedule.data.all_tables}}" wx:key="index">
           <block>
             <view bindtap="showXQ" data-index="{{index}}" wx:if="{{!item.add.ifshow}}">
-              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background: {{item.color}};z-index: 1;">
+              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.long==1?'170':'400'}}rpx; background: {{item.color}};z-index: 1;">
                 <view class="smalltext" style="color: {{item.fontsize}};">{{item.name}}</view>
                 <view class="smalltextad" style="color: {{item.fontsize}};">{{item.local}}</view>
               </view>
@@ -220,7 +220,7 @@
           <!-- 非本周 -->
           <block>
             <view bindtap="showFXQ" data-index="{{index}}" wx:if="{{item.add.ifshow}}">
-              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.changdu==1?'170':'400'}}rpx; background:#F5F5F5;">
+              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.long==1?'170':'400'}}rpx; background:#F5F5F5;">
                 <view class="nosmalltextword">非本周</view>
                 <view class="smalltext" style="color: rgba(41, 41, 69, 0.4);">{{item.name}}</view>
                 <view class="smalltextad" style="color: rgba(41, 41, 69, 0.4);">{{item.local}}</view>
@@ -248,7 +248,13 @@
 <!-- 日课表主页 -->
 <view class="dailyScheduleContainer" wx:if="{{!weekSchedule}}">
   <view class="dailyScheduleNavigation">
-    <view class="dailyNavigationtext">第{{number+1}}周 {{M}}月{{D}}日 周{{Chineseday}}（日程表）</view>
+    <swiper>
+      <block>
+        <swiper-item>
+          <view class="dailyNavigationtext">第{{number+1}}周 {{M}}月{{D}}日 周{{Chineseday}}（日程表）</view>
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
   <view class="dailyScheduleIndex">
     <view class="dailyScheduleIndexList">

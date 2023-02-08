@@ -928,7 +928,7 @@ background: #FFFFFF;
 border: 2rpx solid #E3E3E5;
 border-radius: 20rpx;
 margin-left: 130rpx;
-margin-top: -800rpx;
+margin-top: -750rpx;
 z-index: 10;
 }
 
@@ -1303,7 +1303,7 @@ height:336rpx;
   float: left;
 }
 .classScroll{
-  height: 900rpx;
+  height: 900rpx;/*如果要依真机测试为主，则需要改成1200rpx*/
 }
 .mask{
   width: 100%;
