@@ -122,7 +122,6 @@
   flex-grow: 0;
   margin-top: 30rpx;
 }
-
 .school-text {
   font-family: 'PingFang SC';
   font-style: normal;

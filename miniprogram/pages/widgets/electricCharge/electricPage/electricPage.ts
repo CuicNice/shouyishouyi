@@ -272,7 +272,11 @@ Page({
           seriesGap: 5,
           barBorderRadius: [20, 20, 20, 20],
           legendShape: 'circle',
-          customColor: ["#78DAB9","#3EBAD0"]
+
+          
+           Color: [    
+            "#3EBAD0"
+          ]
         }
       },
     })
