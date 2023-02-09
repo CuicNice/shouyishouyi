@@ -119,8 +119,8 @@ page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 34rpx;
     width: auto;
+    padding-top:4rpx;
     /* padding: 7.8%; */
     box-sizing: border-box;
 }
@@ -215,34 +215,26 @@ page {
 }
 
 .thingInput {
-    /* input */
-    box-sizing: border-box;
-    /* text */
+  box-sizing: border-box;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
     font-size: 28rpx;
     line-height: 40rpx;
-    /* identical to box height */
     text-transform: lowercase;
-    /* text */
     color: #292945;
-    /* opacity: 0.3; */
-    /* Auto layout */
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 24rpx 36rpx;
     width: 620rpx;
     height: 88rpx;
-    background: #FFFFFF;
-    /* #20C38C */
+    /* background: #FFFFFF; */
     border: 2rpx solid #20C38C;
     border-radius: 8rpx;
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+ 
+}
+.InputTxt{
+  margin-left:36rpx;
 }
 
 .pickerin {
@@ -250,12 +242,13 @@ page {
     font-style: normal;
     font-weight: 400;
     font-size: 28rpx;
+    background: #FFFFFF;
     line-height: 40rpx;
     /* identical to box height */
     text-transform: lowercase;
     /* text */
     color: #292945;
-    opacity: 0.3;
+    opacity: 0.75;
 }
 
 .picker {
@@ -318,6 +311,7 @@ page {
     font-size: 32rpx;
     line-height: 44rpx;
     text-transform: capitalize;
+    background: #FFFFFF;
     color: #000000;
     /* Inside auto layout */
     flex: none;
@@ -401,9 +395,8 @@ page {
 }
 
 .Img {
-    width: 452rpx;
-    height: 452rpx;
-    margin-top: 73rpx;
+
+    margin-top: 138rpx;
 }
 
 .sportTxt {

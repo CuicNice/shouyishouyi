@@ -16,27 +16,31 @@ Page({
     date: undefined,
     bname: '联系南南',
     b1name: '确定',
+    isInputTextMove: false as boolean,
   },
-  // toast
-  // autoToast
-  // showToastAuto(showToast: boolean, title: string, image: string, duration: number) {
-  //   this.setData({
-  //     showToast: showToast,
-  //     toastIcon: image,
-  //     toastTitle: title,
-  //     duration: duration
-  //   })
-  // },
+  // 解决input输入完毕字体上浮问题
+  // 等待输入
+  stationNameFocus() {
+    this.setData({
+      isInputTextMove: true
+    })
+  },
+  stationNameBlur() {
+    this.setData({
+      isInputTextMove: true
+    })
+  },
   // 将问题带给后台
   //提交信息
   submitError(error: String) {
+    // if(err)
+    console.log("error", error)
     let str = '你好！我目前有：' + error + '等BUGS,请尽快解决';
     wx.setClipboardData({
       data: str,
       success: function (res) {
         wx.getClipboardData({
           success: function (res) {
-            console.log("发送成功", res.data) // data  
           }
         })
       }
@@ -92,50 +96,56 @@ Page({
 
   // 获取表单信息
   formSubmit(e: any) {
-    // 存储数据
     let that = this
-    let goalName = e.detail.value.thingsInputTxt
-    let goalTime = e.detail.value.timeInputTxt
-    let countDownList = []
-    // 之前存在
 
-    if (wx.getStorageSync('userCountDown')) {
-      try {
-        countDownList = wx.getStorageSync('userCountDown')
-      } catch (e) {
-        that.setData({
-          showDialog: true
-        })
+    try {
+
+      // 存储数据
+      let goalName = e.detail.value.thingsInputTxt
+      let goalTime = e.detail.value.timeInputTxt
+      let countDownList = []
+
+      // 之前存在
+
+      if (wx.getStorageSync('widgets-userCountDown')) {
+
+
+        countDownList = wx.getStorageSync('widgets-userCountDown')
+
       }
-    }
-    if (goalName && goalTime) {
-      countDownList.push({
-        countDownName: goalName,
-        countDownEndDate: goalTime
-      })
-      wx.setStorage({
-        key: "userCountDown",
-        data: countDownList
-      })
-      try {
+      if (goalName && goalTime) {
+        countDownList.push({
+          countDownName: goalName,
+          countDownEndDate: goalTime
+        })
+        wx.setStorage({
+          key: "widgets-userCountDown",
+          data: countDownList
+        })
+
         wx.getStorage({
-          key: 'userCountDown',
+          key: 'widgets-userCountDown',
           success(res) {
-            that.selectComponent("#toast").showToastAuto("设置成功", "success",1);
+            that.selectComponent("#toast").showToastAuto("设置成功", "success", 1);
             that.gotoBd()
           }, fail(error) {
+            that.submitError(error.errMsg)
             that.setData({
               showDialog: true
             })
           }
         })
-      } catch (e) {
-        that.setData({
-          showDialog: true
-        })
+
+      } else {
+        that.selectComponent("#toast").showToastAuto("未填写完毕", "error", 1);
       }
-    } else {
-      that.selectComponent("#toast").showToastAuto("未填写完毕", "error",1);
+    }
+    catch (e) {
+      // 如果出现问题创建失败
+      that.submitError(e.errMsg)
+      that.setData({
+        showDialog: true
+      })
     }
 
     // 判断name和time是不是都存在
@@ -152,6 +162,10 @@ Page({
     this.initDate()
   },
   initDate() {
+    let startDate = this.getNowFormatDate();
+    this.setData({
+      startDate: startDate,
+    })
     let goalTimePre = this.getNowFormatDate()
     this.setData({
       goalTimePre: goalTimePre,
@@ -165,23 +179,16 @@ Page({
   getTarHeighgt() {
     // 获取胶囊的信息
     const menuButton = wx.getMenuButtonBoundingClientRect()
-    const menuButtonHeight=menuButton.height;
-    const menuButtonWidth=menuButton.width;
-    const menuButtonTop=menuButton.top;
-    console.log("menuButtonHeight",menuButtonHeight)
-    console.log("menuButtonTop",menuButtonTop)
-
-    
-
-
-    console.log("menuButton",menuButton)
+    const menuButtonHeight = menuButton.height;
+    const menuButtonWidth = menuButton.width;
+    const menuButtonTop = menuButton.top;
     // 获取设备的信息  
     let systemInfo = wx.getSystemInfoSync()
     // 获取信号区高度
     let statusBarHeight = systemInfo['statusBarHeight']
     // 设置胶囊行的高度
-    const capsuleBoxHeight=menuButtonHeight+(menuButtonTop-statusBarHeight)*2;
-    console.log("capsuleBoxHeight",capsuleBoxHeight);
+    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
+    console.log("capsuleBoxHeight", capsuleBoxHeight);
 
     /* 
     根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
