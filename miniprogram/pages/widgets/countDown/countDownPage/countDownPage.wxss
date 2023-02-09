@@ -215,6 +215,7 @@ page {
 }
 
 .thingInput {
+  background: #FFFFFF;
   box-sizing: border-box;
     font-family: 'PingFang SC';
     font-style: normal;
@@ -261,6 +262,7 @@ page {
     text-transform: capitalize;
     /* text */
     color: #292945;
+    background: #FFFFFF;
 }
 
 .thingAlarm {
@@ -311,7 +313,6 @@ page {
     font-size: 32rpx;
     line-height: 44rpx;
     text-transform: capitalize;
-    background: #FFFFFF;
     color: #000000;
     /* Inside auto layout */
     flex: none;
