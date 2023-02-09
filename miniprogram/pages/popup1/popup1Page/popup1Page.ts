@@ -66,10 +66,10 @@ async getPopupData(from: popupeItem) {
   /*
  *数据处理
  */
-var time = this.data.Y+'-'+this.data.M + '-'+ '11';
+var time = this.data.Y+'-'+this.data.M + '-'+ this.data.D;
 console.log(time)
 var j = 0; 
-for(j=0,res1.list[j];j<=4;j++){ 
+for(j=0,res1.list[j];j<res1.list.length;j++){ 
   //首发时间
   if(res1.list[j].popupFirstTime.substring(0,10) == time){
     if(res1.list[j].popupFirstTimeState){

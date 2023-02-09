@@ -21,7 +21,7 @@
   border-radius: 20rpx;
   }
   .title{
-    margin: 16rpx 84rpx 10rpx 32rpx;
+    margin: 16rpx 0rpx 10rpx 32rpx;
     width: 544rpx;
     height: 96rpx;
   }
@@ -37,7 +37,7 @@
   .stitle{
   width: 554rpx;
   height: 96rpx;
-  margin: 0rpx 32rpx 10rpx 32rpx;
+  margin: 26rpx 32rpx 10rpx 32rpx;
   }
   .stitleText{
     font-family: 'PingFang SC';
@@ -200,4 +200,40 @@
   font-size: 28rpx;
   line-height: 40rpx;
   }
+  .show{
+display: block;
+margin-top: 26rpx;
+margin-right: 20rpx;
+flex-direction: column;
+align-items: flex-start;
+width:64rpx;
+height: 30rpx;
+background: #F96262;
+border-radius: 55.2273px;
+  }
+  .hide{
+  display: none;
+  margin-top: 26rpx;
+  margin-right: 20rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  width:64rpx;
+  height: 30rpx;
+  background: #F96262;
+  border-radius: 55.2273px;
+  }
+  .show text,.hide text{
+width: 40rpx;
+height: 30rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 20rpx;
+line-height: 30rpx;
+color: #FFFFFF;
+  }
+.text-box{
+  height: 96rpx;
+  display: flex;
+}
   

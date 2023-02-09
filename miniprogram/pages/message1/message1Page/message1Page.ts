@@ -5,25 +5,87 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isShow:true,
+    isHidden:true,
     show:'green',
     bottomText:'喜欢就点个赞吧~',
     num:0,
-    color : [' #4BDCAB','#3EBAD0','#FBDE71'],
-    colorList:[],
+    colors : [' #4BDCAB','#3EBAD0','#FBDE71'],
+    color:'#4BDCAB',
+    messageList:[],
+    message1:[],
+    r:'',
+    row:'',
   },
-// getList(){
-//   wx.request({
-//     url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletAppearPopup',
-
-//   })
-// },
+  getList(){
+    wx.request({
+      url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletPopupList',
+      method:'POST',
+      data:{
+        currentPage:1,
+        pageSize:5,
+      },
+      success:((res)=>{
+        let data1 = res.data.data.list;
+        //打乱颜色数组
+        for (let k = 1; k < this.data.colors.length; k++) { 
+          const random = Math.floor(Math.random() * (k + 1));
+           [this.data.colors[k], 
+           this.data.colors[random]] = [this.data.colors[random], 
+           this.data.colors[k]]; 
+        }
+          //console.log(this.data.colors)
+           console.log(data1)
+        //渲染颜色
+        for(let i=0,j=0;i<data1.length&&j<=2;j++,i++){ 
+          try{
+              if(i == 3){ j = 0}
+            let number = j ;
+            let color = this.data.color;
+            if(this.data.colors[j]){
+              color = this.data.colors[j]
+            }
+            data1[i].color = color;
+            data1[i].number = number;  
+          }catch(e){
+            console.log(e)
+          }                 
+        }
+        this.setData({
+          message1:data1, 
+        }) 
+         //判断数据是否已读
+         var isUnread;
+         isUnread=wx.getStorageSync('unread');
+         if(isUnread){
+         this.setData({message1:isUnread})
+         console.log(this.data.message1)  
+         }
+      })
+     })
+   },
+   
 
 //点击进入信息详情
-getMessage(){
+getMessage(e){
   this.setData({
-    isShow:false,
-  })
+    row:e.currentTarget.dataset.row,
+    isHidden:false,
+  }) 
+ //已读和未读的处理
+   let Array = this.data.message1;
+   let index =0;
+   for(let item of Array){
+     if(item.number == e.currentTarget.dataset.row){
+       if(Array[index].isShow==''||Array[index].isShow==undefined){
+        Array[index].isShow='true'
+        console.log(Array[index])
+       }else{
+         Array[index].isShow=''
+       }
+     }index++
+   }
+   this.setData({message1:Array})
+   wx.setStorageSync('unread',this.data.message1);
 },
 //点赞，点赞
 getLike(){
@@ -41,22 +103,6 @@ getLike(){
   }
 },
 
-//随机颜色
-getColor(){
-  let arr1 = this.data.color;
-  let arr2 = this.data.color;
-  let res = arr1.concat(arr2);
-  this.setData({
-    colorList:res
-  })
-  console.log('colorList')
-//  let colorList = this.data.color;
-//  //var color = [' #4BDCAB','#3EBAD0','#FBDE71'];
-//  let res = colorList.concat(colorList);
-//  this.setData ({
-//   colorList:res
-// })
-},
 getChild(){
   this.setData({isShow:true})
 },
@@ -64,6 +110,7 @@ getChild(){
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+   this.getList();
    this.getLike();
   },
 
@@ -106,7 +153,6 @@ getChild(){
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    this.getColor()
   },
 
   /**

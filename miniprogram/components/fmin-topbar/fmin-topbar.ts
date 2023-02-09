@@ -24,7 +24,7 @@ Component({
   methods: {
     returnEvent(){
       this.triggerEvent('sync1');
-      wx.navigateBack();
+      //wx.navigateBack();
 
     }
   }
