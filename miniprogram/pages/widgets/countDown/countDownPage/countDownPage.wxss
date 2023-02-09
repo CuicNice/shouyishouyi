@@ -231,9 +231,12 @@ page {
     /* background: #FFFFFF; */
     border: 2rpx solid #20C38C;
     border-radius: 8rpx;
+    background: #FFFFFF;
+
  
 }
 .InputTxt{
+
   margin-left:36rpx;
 }
 
@@ -311,7 +314,6 @@ page {
     font-size: 32rpx;
     line-height: 44rpx;
     text-transform: capitalize;
-    background: #FFFFFF;
     color: #000000;
     /* Inside auto layout */
     flex: none;
