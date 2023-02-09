@@ -1,0 +1,15 @@
+<!--pages/widgets/versionStatement/versionStatementComponent/versionStatementComponent.wxml-->
+<view class="boardBox">
+<view class="whiteBox">
+<view class="grennBoxBar">
+<view class="title">
+小程序版本详情
+</view>
+</view>
+<view class="statementBox">
+  本小程开发者与运营者均为武昌首义学院学生，做此小程序也是为了感谢学校为我们学生的发展提供无限的机会，极力支持学生们自己的创新想法！本小程序不会有任何盈利坚决维护学生利益。
+本小程序官方公众号为：南李路二十二号。
+本小程序为南李路二十二号唯一官方校园小程序。
+</view>
+</view>
+</view>
