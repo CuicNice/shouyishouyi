@@ -31,9 +31,8 @@
 <view class="select_box" wx:if="{{weekSchedule}}">
   <scroll-view scroll-x="true" scroll-with-animation="true" class="select_week" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:rgba(255, 255, 255, 0.8);">
     <view wx:for="{{week}}" wx:key="index" style="display: inline-flex;height: 100%;align-items: center;">
-      <view class="select_one" wx:if="{{!item.type}}" bindtap="selectWeekangian">
+      <view class="select_one" wx:if="{{!item.type}}">
         <ul>
-          <!-- <view class="select_oneIconBox"> <image class="select_oneIcon"></image></view> -->
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
           <view class="select_oneweek">第{{item.index}}周</view>
         </ul>
@@ -246,16 +245,16 @@
   </view>
 </view>
 <!-- 日课表主页 -->
-<view class="dailyScheduleContainer" wx:if="{{!weekSchedule}}">
-  <view class="dailyScheduleNavigation">
+<view class="dailyScheduleNavigation" wx:if="{{!weekSchedule}}">
     <swiper>
       <block>
-        <swiper-item>
-          <view class="dailyNavigationtext">第{{number+1}}周 {{M}}月{{D}}日 周{{Chineseday}}（日程表）</view>
+        <swiper-item wx:for="{{subdivisionArray}}" wx:key="index">
+          <view class="dailyNavigationtext">第{{item.week+1}}周 {{item.month}}月{{item.data}}日 周{{item.zho}}（日程表）</view>
         </swiper-item>
       </block>
     </swiper>
   </view>
+<view class="dailyScheduleContainer" wx:if="{{!weekSchedule}}">
   <view class="dailyScheduleIndex">
     <view class="dailyScheduleIndexList">
       <view class="dailyScheduleTime">
@@ -362,11 +361,9 @@
 </view>
 
 <!-- 日课表没有课的状态 -->
-<!-- <view class="nodailyScheduleIndex">
+<!--<view class="nodailyScheduleIndex">
   <image></image>
- </view> -->
-<!-- </view> -->
-
+ </view>-->
 
 <!-- 非本周课程的详情页 -->
 <view class="mask" wx:if="{{noneifshow}}" bindtap="closeDetails"></view>

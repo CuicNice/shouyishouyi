@@ -30,7 +30,8 @@ Page({
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
     selectedIdx: 0,
     showSelector: true,
-    weekSchedule: true
+    weekSchedule: true,
+    subdivisionArray: [] as any[]
   },
   //导航栏动画
   scrollToLower: function () {
@@ -91,6 +92,106 @@ Page({
     })
   },
 
+  makeshuzu() {
+    for (var i = 0; i < this.data.week.length; i++) {
+      for (var j = 0; j < 7; j++) {
+        let dataAll = this.data.subdivisionArray
+        var item = { month: "8", data: "28", week: 0, zho: "日" }
+        if (j == 0) {
+          var arr = this.data.week[i].day1.split("/")
+          // console.log(arr)
+          var month = arr[0]
+          var data = arr[1]
+          var week = i
+          var zho = '日'
+          item.month = month
+          item.data = data
+          item.week = week
+          item.zho = zho
+          dataAll.push(item)
+        }
+        if (j == 1) {
+          var arr = this.data.week[i].day2.split("/")
+          // console.log(arr)
+          var month = arr[0]
+          var data = arr[1]
+          var week = i
+          var zho = '一'
+          item.month = month
+          item.data = data
+          item.week = week
+          item.zho = zho
+          dataAll.push(item)
+        }
+        if (j == 2) {
+          var arr = this.data.week[i].day3.split("/")
+          // console.log(arr)
+          var month = arr[0]
+          var data = arr[1]
+          var week = i
+          var zho = '二'
+          item.month = month
+          item.data = data
+          item.week = week
+          item.zho = zho
+          dataAll.push(item)
+        }
+        if (j == 3) {
+          var arr = this.data.week[i].day4.split("/")
+          // console.log(arr)
+          var month = arr[0]
+          var data = arr[1]
+          var week = i
+          var zho = '三'
+          item.month = month
+          item.data = data
+          item.week = week
+          item.zho = zho
+          dataAll.push(item)
+        }
+        if (j == 4) {
+          var arr = this.data.week[i].day5.split("/")
+          // console.log(arr)
+          var month = arr[0]
+          var data = arr[1]
+          var week = i
+          var zho = '四'
+          item.month = month
+          item.data = data
+          item.week = week
+          item.zho = zho
+          dataAll.push(item)
+        }
+        if (j == 5) {
+          var arr = this.data.week[i].day6.split("/")
+          // console.log(arr)
+          var month = arr[0]
+          var data = arr[1]
+          var week = i
+          var zho = '五'
+          item.month = month
+          item.data = data
+          item.week = week
+          item.zho = zho
+          dataAll.push(item)
+        }
+        if (j == 6) {
+          var arr = this.data.week[i].day7.split("/")
+          //  console.log(arr)
+          var month = arr[0]
+          var data = arr[1]
+          var week = i
+          var zho = '六'
+          item.month = month
+          item.data = data
+          item.week = week
+          item.zho = zho
+          dataAll.push(item)
+        }
+        this.setData({subdivisionArray:this.data.subdivisionArray})
+      }
+    }
+  },
   closeDetails() {
     this.setData({
       ifshow: false,
@@ -111,16 +212,16 @@ Page({
         week: [{ index: 1, type: true, day1: '8/28', day2: '8/29', day3: '8/30', day4: '8/31', day5: '9/1', day6: '9/2', day7: '9/3' }, { index: 2, type: true, day1: '9/4', day2: '9/5', day3: '9/6', day4: '9/7', day5: '9/8', day6: '9/9', day7: '9/10' }, { index: 3, type: true, day1: '9/11', day2: '9/12', day3: '9/13', day4: '9/14', day5: '9/15', day6: '9/16', day7: '9/17' }, { index: 4, type: true, day1: '9/18', day2: '9/19', day3: '9/20', day4: '9/21', day5: '9/22', day6: '9/23', day7: '9/24' }, { index: 5, type: true, day1: '9/25', day2: '9/26', day3: '9/27', day4: '9/28', day5: '9/29', day6: '9/30', day7: '10/1' }, { index: 6, type: true, day1: '10/2', day2: '10/3', day3: '10/4', day4: '10/5', day5: '10/6', day6: '10/7', day7: '10/8' }, { index: 7, type: true, day1: '10/9', day2: '10/10', day3: '10/11', day4: '10/12', day5: '10/13', day6: '10/14', day7: '10/15' }, { index: 8, type: true, day1: '10/16', day2: '10/17', day3: '10/18', day4: '10/19', day5: '10/20', day6: '10/21', day7: '10/22' }, { index: 9, type: true, day1: '10/23', day2: '10/24', day3: '10/25', day4: '10/26', day5: '10/27', day6: '10/28', day7: '10/29' }, { index: 10, type: true, day1: '10/30', day2: '10/31', day3: '11/1', day4: '11/2', day5: '11/3', day6: '11/4', day7: '11/5' }, { index: 11, type: true, day1: '11/6', day2: '11/7', day3: '11/8', day4: '11/9', day5: '11/10', day6: '11/11', day7: '11/12' }, { index: 12, type: true, day1: '11/13', day2: '11/14', day3: '11/15', day4: '11/16', day5: '11/17', day6: '11/18', day7: '11/19' }, { index: 13, type: true, day1: '11/20', day2: '11/21', day3: '11/22', day4: '11/23', day5: '11/24', day6: '11/25', day7: '11/26' }, { index: 14, type: true, day1: '11/27', day2: '11/28', day3: '11/29', day4: '11/30', day5: '12/1', day6: '12/2', day7: '12/3' }, { index: 15, type: true, day1: '12/4', day2: '12/5', day3: '12/6', day4: '12/7', day5: '12/8', day6: '12/9', day7: '12/10' }, { index: 16, type: true, day1: '12/11', day2: '12/12', day3: '12/13', day4: '12/14', day5: '12/15', day6: '12/16', day7: '12/17' }, { index: 17, type: true, day1: '12/18', day2: '12/19', day3: '12/20', day4: '12/21', day5: '12/22', day6: '12/23', day7: '12/24' }, { index: 18, type: true, day1: '12/25', day2: '12/26', day3: '12/27', day4: '12/28', day5: '12/29', day6: '12/30', day7: '12/31' }, { index: 19, type: true, day1: '1/1', day2: '1/2', day3: '1/3', day4: '1/4', day5: '1/5', day6: '1/6', day7: '1/7' }]
       })
     }
-    if (this.data.suorec.slice(1, 2) == "一") { this.setData({ Y: 2021 as unknown as string }) }
-    if (this.data.suorec.slice(1, 2) == "二") { this.setData({ Y: 2021 + 1 as unknown as string }) }
-    if (this.data.suorec.slice(1, 2) == "三") { this.setData({ Y: 2021 + 2 as unknown as string }) }
-    if (this.data.suorec.slice(1, 2) == "四") { this.setData({ Y: 2021 + 3 as unknown as string }) }
+    if (this.data.suorec.slice(1, 2) == "一") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) as unknown as string }) }
+    if (this.data.suorec.slice(1, 2) == "二") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 1 as unknown as string }) }
+    if (this.data.suorec.slice(1, 2) == "三") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 2 as unknown as string }) }
+    if (this.data.suorec.slice(1, 2) == "四") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 3 as unknown as string }) }
     wx.request({
       url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/classTable',
       method: 'POST',
       data: {
-        "zh": "20211107097",
-        "mm": "Hushnow0729",
+        "zh": wx.getStorageSync('key1'),
+        "mm": wx.getStorageSync('key2'),
         "year": this.data.Y as unknown as number,
         "num": this.data.I
       },
@@ -151,52 +252,28 @@ Page({
           var add = { ifshow: true, weekNumber: [] as any[] }
           var spilt = this.data.classSchedule.data.all_tables[i].day_num.split(",")
           //console.log(spilt)
-          if (spilt.length == 2) {
-            for (var j = 0; j < 2; j++) {
-              this.setData({ boudle: false })
-              var sum = spilt[j].search('双');//若包含返回大于等于0的整数值，若不包含"双"则返回"-1。
-              //console.log(sum)
-              if (sum != -1) {
-                this.setData({ boudle: true })
-              }
-              var mycrr = spilt[j].match(/\d+(\.\d+)?/g)
-              // console.log(mycrr)
-              if (mycrr.length == 2) {
-                for (var k = parseInt(mycrr[0]); k <= parseInt(mycrr[1]); k++) {
-                  if (this.data.boudle) {
-                    if (k % 2 == 0)
-                      add.weekNumber.push(k + "")
-                    //console.log(add.weekNumber)
-                  } else { add.weekNumber.push(k + "") }
-                }
-              }
-              if (mycrr.length == 1) {
-                add.weekNumber.push(mycrr[0] + "")
-              }
-            }
-            //console.log(add.weekNumber)
-          }
-          if (spilt.length == 1) {
-            var mycrr = spilt[0].match(/\d+(\.\d+)?/g)
-            //console.log(mycrr)
+          for (var j = 0; j < spilt.length; j++) {
             this.setData({ boudle: false })
-            var sum = spilt[0].indexOf("双");//若包含返回大于等于0的整数值，若不包含"J"则返回"-1。
-            if (sum > -1) {
+            var sum = spilt[j].search('双');//若包含返回大于等于0的整数值，若不包含"双"则返回"-1。
+            //console.log(sum)
+            if (sum != -1) {
               this.setData({ boudle: true })
+            }
+            var mycrr = spilt[j].match(/\d+(\.\d+)?/g)
+            // console.log(mycrr)
+            if (mycrr.length == 2) {
+              for (var k = parseInt(mycrr[0]); k <= parseInt(mycrr[1]); k++) {
+                if (this.data.boudle) {
+                  if (k % 2 == 0)
+                    add.weekNumber.push(k + "")
+                  //console.log(add.weekNumber)
+                } else { add.weekNumber.push(k + "") }
+              }
             }
             if (mycrr.length == 1) {
               add.weekNumber.push(mycrr[0] + "")
-              // console.log(add.weekNumber)
             }
-            if (mycrr.length == 2) {
-              for (var y = parseInt(mycrr[0]); y <= parseInt(mycrr[1]); y++) {
-                if (this.data.boudle) {
-                  if (y % 2 == 0)
-                    add.weekNumber.push(y + "")
-                } else { add.weekNumber.push(y + "") }
-              }
-              //console.log(add.weekNumber)
-            }
+            //console.log(add.weekNumber)
           }
           this.data.classSchedule.data.all_tables[i].add = add
           var kebiao = this.data.classSchedule.data.all_tables
@@ -353,48 +430,6 @@ Page({
       }
     }
   },
-
-  selectWeekangian() {
-    var week = this.data.week;
-    week[this.data.number as unknown as number].type = false;
-    this.setData({
-      week: week
-    });
-    var k = this.data.number as unknown as number
-    for (var i = 0; i < k; i++) {
-      week[i].type = true;
-      this.setData({
-        week: week
-      });
-    }
-    for (var i = this.data.number as unknown as number + 1; i < 19; i++) {
-      week[i].type = true;
-      this.setData({
-        week: week
-      });
-    }
-    var arr = this.data.classSchedule.data.all_tables
-    for (var j = 0; j < arr.length; j++) {
-      for (var q = 0; q < arr[j].add.weekNumber.length; q++) {
-        if (this.data.number + 1 != arr[j].add.weekNumber[q]) {
-          var week1 = arr;
-          week1[j].add.ifshow = true;
-          this.setData({
-            'classSchedule.data.all_tables': week1
-          });
-        }
-        if (this.data.number + 1 == arr[j].add.weekNumber[q]) {
-          var week2 = arr;
-          week2[j].add.ifshow = false;
-          this.setData({
-            'classSchedule.data.all_tables': week2
-          });
-          break;
-        }
-      }
-    }
-  },
-
   changdata1() {
     //console.log('111')
     this.setData({
@@ -463,31 +498,32 @@ Page({
     var date = new Date(timestamp);
     this.setData({
       //获取年份
-      Y: 2022 /*date.getFullYear() as unknown as string*/ as unknown as string,
+      Y: 2022 /*date.getFullYear()*/ as unknown as string,
       //获取月份
-      M: 10/*(date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) */ as unknown as string,
+      M: 10/*(date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1)*/ as unknown as string,
       //获取当日日期
-      D: 28/*date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate() */ as unknown as string
+      D: 28/*date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate()*/ as unknown as string
     })
     if (8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) {
       console.log(this.data.M)
-      this.setData({ Y: this.data.Y + 1,I:3 })
+      this.setData({ Y: this.data.Y + 1, I: 3 })
     }
-    if (1 <= parseInt(this.data.M) && parseInt(this.data.M) <2) {
+    if (1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) {
       console.log(this.data.M)
-      this.setData({I:3})
+      this.setData({ I: 3 })
     }
-    if (2 <= parseInt(this.data.M) && parseInt(this.data.M) <8) {
+    if (2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
       console.log(this.data.M)
-      this.setData({I:12})
+      this.setData({ I: 12 })
     }
     console.log(this.data.M + '/' + this.data.D)
+    this.makeshuzu()
     wx.request({
       url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/classTable',
       method: 'POST',
       data: {
-        "zh": "20211107097",
-        "mm": "Hushnow0729",
+        "zh": wx.getStorageSync('key1'),
+        "mm": wx.getStorageSync('key2'),
         "year": this.data.Y as unknown as number - 1,
         "num": this.data.I
       },
@@ -518,27 +554,27 @@ Page({
           var add = { ifshow: true, weekNumber: [] as any[] }
           var spilt = this.data.classSchedule.data.all_tables[i].day_num.split(",")
           //console.log(spilt)
-            for (var j = 0; j < spilt.length; j++) {
-              this.setData({ boudle: false })
-              var sum = spilt[j].search('双');//若包含返回大于等于0的整数值，若不包含"双"则返回"-1。
-              //console.log(sum)
-              if (sum != -1) {
-                this.setData({ boudle: true })
+          for (var j = 0; j < spilt.length; j++) {
+            this.setData({ boudle: false })
+            var sum = spilt[j].search('双');//若包含返回大于等于0的整数值，若不包含"双"则返回"-1。
+            //console.log(sum)
+            if (sum != -1) {
+              this.setData({ boudle: true })
+            }
+            var mycrr = spilt[j].match(/\d+(\.\d+)?/g)
+            // console.log(mycrr)
+            if (mycrr.length == 2) {
+              for (var k = parseInt(mycrr[0]); k <= parseInt(mycrr[1]); k++) {
+                if (this.data.boudle) {
+                  if (k % 2 == 0)
+                    add.weekNumber.push(k + "")
+                  //console.log(add.weekNumber)
+                } else { add.weekNumber.push(k + "") }
               }
-              var mycrr = spilt[j].match(/\d+(\.\d+)?/g)
-              // console.log(mycrr)
-              if (mycrr.length == 2) {
-                for (var k = parseInt(mycrr[0]); k <= parseInt(mycrr[1]); k++) {
-                  if (this.data.boudle) {
-                    if (k % 2 == 0)
-                      add.weekNumber.push(k + "")
-                    //console.log(add.weekNumber)
-                  } else { add.weekNumber.push(k + "") }
-                }
-              }
-              if (mycrr.length == 1) {
-                add.weekNumber.push(mycrr[0] + "")
-              }
+            }
+            if (mycrr.length == 1) {
+              add.weekNumber.push(mycrr[0] + "")
+            }
             //console.log(add.weekNumber)
           }
           this.data.classSchedule.data.all_tables[i].add = add
@@ -711,21 +747,58 @@ Page({
           number: i as unknown as string
         })
       }
-      if (this.data.Y as unknown as number - 2021 == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大四上" }) }
-      if (this.data.Y as unknown as number - 2021 == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大四上" }) }
-      if (this.data.Y as unknown as number - 2021 == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大四下" }) }
-      if (this.data.Y as unknown as number - 2021 == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大三上" }) }
-      if (this.data.Y as unknown as number - 2021 == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大三上" }) }
-      if (this.data.Y as unknown as number - 2021 == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大三下" }) }
-      if (this.data.Y as unknown as number - 2021 == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大二上" }) }
-      if (this.data.Y as unknown as number - 2021 == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大二上" }) }
-      if (this.data.Y as unknown as number - 2021 == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大二下" }) }
-      if (this.data.Y as unknown as number - 2021 == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大一上" }) }
-      if (this.data.Y as unknown as number - 2021 == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大一上" }) }
-      if (this.data.Y as unknown as number - 2021 == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大一下" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大四上" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大四上" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大四下" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大三上" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大三上" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大三下" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大二上" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大二上" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大二下" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大一上" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大一上" }) }
+      if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大一下" }) }
     }
     setTimeout(() => {
-      this.selectWeekangian()
+      var week = this.data.week;
+      week[this.data.number as unknown as number].type = false;
+      this.setData({
+        week: week
+      });
+      var k = this.data.number as unknown as number
+      for (var i = 0; i < k; i++) {
+        week[i].type = true;
+        this.setData({
+          week: week
+        });
+      }
+      for (var i = this.data.number as unknown as number + 1; i < 19; i++) {
+        week[i].type = true;
+        this.setData({
+          week: week
+        });
+      }
+      var arr = this.data.classSchedule.data.all_tables
+      for (var j = 0; j < arr.length; j++) {
+        for (var q = 0; q < arr[j].add.weekNumber.length; q++) {
+          if (this.data.number + 1 != arr[j].add.weekNumber[q]) {
+            var week1 = arr;
+            week1[j].add.ifshow = true;
+            this.setData({
+              'classSchedule.data.all_tables': week1
+            });
+          }
+          if (this.data.number + 1 == arr[j].add.weekNumber[q]) {
+            var week2 = arr;
+            week2[j].add.ifshow = false;
+            this.setData({
+              'classSchedule.data.all_tables': week2
+            });
+            break;
+          }
+        }
+      }
     }, 5000)
   },
   /**
