@@ -4,7 +4,6 @@ page {
   width: 100%;
   overflow-x: hidden;
 }
-/* 包含的东西 */
 .cotain{
   display: flex;
   flex-direction: column;
@@ -14,22 +13,212 @@ page {
   /* padding: 7.8%; */
   box-sizing: border-box;
 
+} 
+.boardFramework{
+  /* Auto layout */
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 20px;
+width: 350px;
+margin-top: 22px;
+/* height: 805px; */
+
+}
+/* 版本声明 */
+/* 版本类容 */
+.contentText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  /* padding: 7.8%; */
+  box-sizing: border-box;
+}
+.versionItem{
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+padding: 0px;
+margin-bottom: 14px;
+
+gap: 7px;
+/* margin: 7px; */
+width: 285px;
+height: 58px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+}
+.versionTitle{
+ /* Frame 40 */
+
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 285px;
+height: 21px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+.versionTitleText{
+  /* 标题版本 */
+height: 21px;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 21px;
+/* identical to box height */
+
+letter-spacing: 1px;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
 }
 
-.boardBox{
+
+.versionTitleCircle{
+  box-sizing: border-box;
+
+width: 10px;
+height: 10px;
+
+/* #20C38C */
+
+border: 2px solid #20C38C;
+border-radius: 23px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+/* 外层的盒子 */
+.versionDescriptBox{
+/* Frame 42 */
+
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px 0px 0px 23px;
+gap: 10px;
+
+width: 285px;
+height: 30px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+.versionItemDescript{
+  /* 本次更新社团信息功能、四六级成绩查询、考试成绩详情查询等！ */
+width: 262px;
+height: 30px;
+
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 11px;
+line-height: 15px;
+letter-spacing: 1px;
+
+color: #000000;
+
+opacity: 0.6;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+/* 声明 */
+.declareContent{
+  display: flex;
+  justify-content: start;
+  width: 300px;
+/* height: 119px; */
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  text-align: justify;
+  letter-spacing: 1px;
+  /* text-indent: 20px; */
+  color: #000000;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+/* 贡献者声明 */
+.devDescript{
+  /* Auto layout */
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 35px;
+
+width: 300px;
+height: 285px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.devDescriptItem{
   /* Auto layout */
 
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 padding: 0px;
+gap: 14px;
 
-width: 350px;
-height: auto;
+width: 300px;
 
-/* KAPIAN */
 
-box-shadow: 0px 10px 17px -5px rgba(108, 211, 167, 0.19);
 
 /* Inside auto layout */
 
@@ -37,39 +226,19 @@ flex: none;
 order: 0;
 flex-grow: 0;
 }
-/* 最外层盒子 */
-.whiteBox{
-  display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
+.teamTypeBox{
+  /* Auto layout */
 
-width: 350px;
-height: 203px;
-
-/* KAPIAN */
-
-box-shadow: 0px 10px 17px -5px rgba(108, 211, 167, 0.19);
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-.greenBoxBar{
-  display: flex;
+display: flex;
 flex-direction: row;
-justify-content: center;
-align-items: center;
-/* padding: 10px; */
+align-items: flex-start;
+padding: 2px 8px;
 gap: 10px;
 
-width: 350px;
-height: 41px;
+height: 21px;
 
 background: #20C38C;
-border-radius: 17px 17px 0px 0px;
+border-radius: 10px;
 
 /* Inside auto layout */
 
@@ -77,16 +246,16 @@ flex: none;
 order: 0;
 flex-grow: 0;
 }
-.title{
-  /* 小程序版本详情 */
+.typeText{
+/* 产品&UI&UX */
 
 
-/* width: 111px; */
+/* width: 94px; */
 height: 21px;
 
 font-family: 'PingFang SC';
 font-style: normal;
-font-weight: 500;
+font-weight: 400;
 font-size: 15px;
 line-height: 21px;
 /* identical to box height */
@@ -103,30 +272,52 @@ flex: none;
 order: 0;
 flex-grow: 0;
 }
-.statementBox{
-  /* 陈述部分 */
-  /* Frame 26 */
+.teamMenbersBox{
+  /* Frame 30 */
 
 
 /* Auto layout */
 
 display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 16px 19px;
-gap: 14px;
-isolation: isolate;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
 
-width: 350px;
-height: 162px;
 
-background: #FFFFFF;
-border-radius: 0px 0px 17px 17px;
+
 
 /* Inside auto layout */
 
 flex: none;
 order: 1;
+align-self: stretch;
 flex-grow: 0;
 }
+.teamMenber{
+  /* 多多多多 */
+
+
+width: 63px;
+height: 21px;
+
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 21px;
+/* identical to box height */
+
+letter-spacing: 1px;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+
