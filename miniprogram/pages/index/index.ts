@@ -13,7 +13,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     // index: 0,
-    homePics:[],
+    homePics:[] as any,
     iftaiozhuan:false,
     shuju:''
   },
@@ -32,7 +32,7 @@ Page({
         "currentPage": "1",
         "pageSize": "5"
       },
-      success:(res)=> {
+      success:(res:any)=> {
         console.log(res.data)
         this.setData({
           homePics:res.data.data.list
