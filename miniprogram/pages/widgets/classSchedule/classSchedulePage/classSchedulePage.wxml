@@ -53,7 +53,7 @@
     </view>
     <!-- 周和日期-->
     <view class="weekbigBox">
-      <view class="weekBox{{1 == day ? 'Select':''}}" bindtap="changdata1">
+      <view class="weekBox{{1 == day ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周日</view>
         </view>
@@ -65,7 +65,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{2 == day ? 'Select':''}}" bindtap="changdata2">
+      <view class="weekBox{{2 == day ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周一</view>
         </view>
@@ -77,7 +77,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{3 == day ? 'Select':''}}" bindtap="changdata3">
+      <view class="weekBox{{3 == day ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周二</view>
         </view>
@@ -89,7 +89,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{4 == day ? 'Select':''}}" bindtap="changdata4">
+      <view class="weekBox{{4 == day ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周三</view>
         </view>
@@ -101,7 +101,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{5 == day ? 'Select':''}}" bindtap="changdata5">
+      <view class="weekBox{{5 == day ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周四</view>
         </view>
@@ -113,7 +113,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{6 == day ? 'Select':''}}" bindtap="changdata6">
+      <view class="weekBox{{6 == day ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周五</view>
         </view>
@@ -125,7 +125,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{7 == day ? 'Select':''}}" bindtap="changdata7">
+      <view class="weekBox{{7 == day ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周六</view>
         </view>

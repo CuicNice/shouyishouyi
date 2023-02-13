@@ -79,6 +79,7 @@ Page({
   },
 
   showXQ(e: any) {
+    console.log(e.currentTarget.dataset.index)
     this.setData({
       ifshow: true,
       G: e.currentTarget.dataset.index
@@ -430,7 +431,7 @@ Page({
       }
     }
   },
-  changdata1() {
+  /*changdata1() {
     //console.log('111')
     this.setData({
       day: 1,
@@ -478,7 +479,7 @@ Page({
       day: 7,
       Chineseday: "六"
     })
-  },
+  },*/
 
   /**
    * 生命周期函数--监听页面加载

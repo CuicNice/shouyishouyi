@@ -339,16 +339,12 @@ border-bottom: 2rpx solid #EAEAEC;
 margin-top: 12rpx;
 z-index: 9;
 }
-
-
 .weekBox {
-  width: 90%;
+  width: 95rpx;
   height: 82rpx;
   display: flex;
   flex-direction: column;
-  /* margin-bottom: 16rpx; */
 }
-
 .top-text {
 width: 48rpx;
 height: 34rpx;
@@ -357,12 +353,8 @@ font-style: normal;
 font-weight: bold;
 font-size: 24rpx;
 line-height: 34rpx;
-/* identical to box height */
 text-align: center;
-/* text */
 color: #292945;
-  /** 水平居中 **/
-  /* margin-left: 24rpx; */
 }
 
 .week {
