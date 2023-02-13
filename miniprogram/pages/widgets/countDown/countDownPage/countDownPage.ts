@@ -187,7 +187,8 @@ Page({
     // 获取信号区高度
     let statusBarHeight = systemInfo['statusBarHeight']
     // 设置胶囊行的高度
-    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
+    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight)*2;
+    console.log("statusBarHeight", statusBarHeight);
     console.log("capsuleBoxHeight", capsuleBoxHeight);
 
     /* 

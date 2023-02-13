@@ -63,7 +63,7 @@ page {
     display: flex;
     align-content: center;
     justify-content: space-between;
-    /* vertical-align :middle; */
+    vertical-align: middle;
     align-items: center;
 }
 
@@ -120,7 +120,7 @@ page {
     flex-direction: column;
     align-items: center;
     width: auto;
-    padding-top:4rpx;
+    padding-top: 4rpx;
     /* padding: 7.8%; */
     box-sizing: border-box;
 }
@@ -150,10 +150,9 @@ page {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 34rpx 0rpx 0rpx 0rpx;
+    /* margin: 0rpx 66rpx 0 64rpx; */
+    padding: 34rpx 66rpx 0rpx 64rpx;
     gap: 46rpx;
-    width: 620rpx;
-    height: 574rpx;
 }
 
 .thingSet {
@@ -163,9 +162,9 @@ page {
     align-items: flex-start;
     padding: 0rpx;
     gap: 8rpx;
-    width: 620rpx;
-    height: 182rpx;
     /* Inside auto layout */
+    /* 边距 */
+    width: auto;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -215,29 +214,27 @@ page {
 }
 
 .thingInput {
-  box-sizing: border-box;
+    box-sizing: border-box;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
     font-size: 28rpx;
     line-height: 40rpx;
     text-transform: lowercase;
+    width: 100%;
     color: #292945;
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 620rpx;
     height: 88rpx;
     /* background: #FFFFFF; */
     border: 2rpx solid #20C38C;
     border-radius: 8rpx;
     background: #FFFFFF;
-
- 
 }
-.InputTxt{
 
-  margin-left:36rpx;
+.InputTxt {
+    margin-left: 36rpx;
 }
 
 .pickerin {
@@ -291,13 +288,12 @@ page {
     /* input */
     /* Auto layout */
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     padding: 0rpx;
     gap: 8rpx;
-    width: 620rpx;
-    height: 140rpx;
     /* Inside auto layout */
     flex: none;
     order: 1;
@@ -328,8 +324,8 @@ page {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
     padding: 24rpx 36rpx;
-    width: 620rpx;
     height: 88rpx;
     background: #FFFFFF;
     /* #20C38C */
@@ -347,10 +343,10 @@ page {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 56rpx;
     align-items: center;
-    padding: 56rpx 20rpx 20rpx;
+    /* padding: 56rpx 126rpx 20rpx 124rpx; */
     gap: 20rpx;
-    width: 500rpx;
     height: 84rpx;
     /* Inside auto layout */
     flex: none;
@@ -366,7 +362,8 @@ page {
     /* padding: 20rpx 28rpx; */
     justify-content: center;
     gap: 20rpx;
-    width: 500rpx;
+    margin-left: 142rpx !important;
+    margin-right: 141rpx !important;
     height: 84rpx;
     background: #20C38C;
     border-radius: 70rpx;
@@ -397,8 +394,13 @@ page {
 }
 
 .Img {
+    margin-top: 154rpx;
+}
 
-    margin-top: 138rpx;
+.paw {
+    background-size: contain;
+    width: 440rpx;
+    /* height: 130rpx; */
 }
 
 .sportTxt {
@@ -421,16 +423,14 @@ page {
 }
 
 .sportTxtBox {
-    /* Frame 3 */
-    /* Auto layout */
+    background: #63a4b3;
+    border-radius: 94rpx;
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: row;
     flex-direction: row;
-    /* align-items: flex-start; */
-    padding: 8rpx 34rpx;
     gap: 20rpx;
-    width: 360rpx;
     height: 34rpx;
-    /* margin: 0 90px; */
-    background: #63A4B3;
-    border-radius: 90rpx;
+    margin-top: -50rpx;
+    padding: 8rpx 34rpx;
 }

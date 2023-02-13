@@ -4,11 +4,11 @@
 <view class="bg"></view>
 <view class="top-bar">
   <!-- 信号区 -->
-  <view  style="height:{{statusBarHeight*2}}rpx;">
+  <view  style="height:{{statusBarHeight}}px;">
   </view>
   <!-- 胶囊区 -->
   <!-- 获取胶囊的高度来设置胶囊所在行的高度 -->
-  <view  class="capsule-box" style="height:{{capsuleBoxHeight*2}}rpx;">
+  <view  class="capsule-box" style="height:{{capsuleBoxHeight}}px;">
   <view class="barLineItem">
     <view  bindtap="returnPage" class="returnButton">
       <image class="returnSvg" 
@@ -69,7 +69,7 @@ maxlength="4">
 
 
 <view class="Img" >
-  <image class="paw" style="width: 420rpx; height: 410rpx;" src="{{sportBuild}}" ></image>
+  <image class="paw"src="{{sportBuild}}" ></image>
 
  
 </view>

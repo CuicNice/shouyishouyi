@@ -1,113 +1,320 @@
 /* pages/widgets/countDown/countDownComponment/countDownComponent.wxss */
-
+/* 一般是359他具体要多少确实不清楚 */
+.countdownPageBox{
+  margin: 0 8px;
+}
 .countdown {
-    position: fixed;
-    flex-wrap: wrap;
-    /* bottom: 500rpx; */
     display: flex;
-    background: linear-gradient(180.04deg, #B9EFE1 0.1%, #FCFCFC 100%);
-    width: 586rpx;
-    height: 174rpx;
-    padding: 24rpx 42rpx;
-    /* margin-top: 51rpx; */
-    border-radius: 10rpx;
-    box-shadow: 0 0 10rpx #00000080;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0px 14px;
+    gap: 10px;
+
+    width: 100%;
+    position: relative;
+    height: 83px;
+    background: #FFFFFF;
+    /* 边框 */
+    
+    border: 1px solid #E3E3E6;
+    border-radius: 10px;
+    
 }
 
-.countdown-txt {
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0rpx;
-    flex-wrap: nowrap;
-    width: 586rpx;
-    height: 40rpx;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: -2rpx 0rpx;
+/* 首行文字 */
+.countdown-txtLine{
+  display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px 14px;
+gap: 10px;
+height: 20px;
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
 }
+/* 沙漏图标 */
+.countdown-hourglass{
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.hoursglassSvg{
+  width: 16px;
+  height: 16px;
+}
+/* 标题 */
+.countdown-txt{
+/* 首义+倒计时 */
+
+
+height: 20px;
+
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height */
+
+
+/* text */
+
+color: #292945;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+  
+}
+
+
 
 .cd-txt {
-    /* width: 158rpx; */
-    height: 40rpx;
-    letter-spacing: 0rpx;
-    font-family: 'PingFang SC';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 28rpx;
-    line-height: 40rpx;
-    /* identical to box height */
-    text-transform: capitalize;
-    /* text */
-    color: #020202;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
 
+}
+/* 当前时间 */
+.countdown-nowDate{
+/* 2023/1/31 */
+
+
+width: 68px;
+height: 20px;
+
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height */
+
+
+/* Style */
+
+color: #7F7F8F;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 2;
+flex-grow: 0;
+}
+.cd-nowDate{
+
+}
+/* 靠左部分 */
+.top_leftBox{
+  /* Frame 419 */
+
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+width: 179px;
+height: 20px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+/* 返回键 */
+.countdown-return{
+  /* direction */
+width: 20px;
+height: 20px;
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.returnSvg{
+  
+width: 20px;
+height: 20px;
+}
 .countdownAllBox {
-    width: 670rpx;
-    display: flex;
-    justify-content: space-between;
+/* Frame 51 */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 15px;
+width: 359px;
+height: 53px;
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
 }
-
-
-/*.countdownBox {
-box-shadow: 0px 7px 6px -7px rgba(218, 218, 218, 0.25);
-width: 163px;
-height: 86px;
-
-}*/
 
 .countdownBox {
-    width: 130rpx;
-    /* height: 100rpx; */
+/* Frame 299 */
+
+
+/* Auto layout */
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 2px;
+
+width: 100px;
+height: 53px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+/* 装饰竖杠 */
+/* 间隔线盒子 */
+
+.splitLineBox{
+/* Frame 51 */
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 15px;
+width: 359px;
+height: 53px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+.splitLine{
+  /* Vector 15 */
+
+display: flex;
+flex-wrap: nowrap;
+width: 0px;
+height: 35px;
+
+border: 1px solid #ECECEC;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
 }
 
 .cdName {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    align-items: center;
 }
 
 .cdTitle {
-    /* width: 120rpx; */
-    height: 42rpx;
-    font-family: 'PingFang SC';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30rpx;
-    line-height: 42rpx;
-    /* identical to box height */
-    text-transform: capitalize;
-    color: #000000;
-    /* margin-bottom: 11px; */
-    text-align: center;
-    letter-spacing: 0rpx;
+/* 距离考研 */
 
+
+/* width: 100px; */
+height: 17px;
+
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 17px;
+/* identical to box height */
+
+text-align: center;
+
+color: rgba(41, 41, 69, 0.6);
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
     
 }
 
 .cdDay {
-    height: 100rpx;
-    font-family: 'PingFang SC';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 72rpx;
-    line-height: 100rpx;
-    text-transform: capitalize;
-    color: #20C38C;
-    text-align: center;
-    align-items: center;
-    align-self: center;
+/* 999 */
+/* width: 44px; */
+height: 34px;
+
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 34px;
+/* identical to box height */
+
+
+color: #3EBAD0;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
 }
 
 .Postgraduate {
     position: relative;
     left: 2rpx;
+}
+
+/* 使用伪元素实现间隔线 */
+.countdownBox:nth-child(2):before,.countdownBox:nth-child(2):after{
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 1px;
+  box-shadow: 0 0 0 9999px #ccc;
+  vertical-align: middle;
+}
+
+.countdownBox:nth-child(2)::before{
+  margin-right: 10px;
+  clip-path: polygon(0 0, -9999px 0, -9999px 100%, 0 100%);
+}
+.countdownBox:nth-child(2)::after{
+  margin-right: 10px;
+  clip-path: polygon(0 0, -9999px 0, -9999px 100%, 0 100%);
+}
+.splitLinner{
+  /* left: 50%; */
+  display: flex;
+  width: 0px;
+  height: 35px;  
+  border: 1px solid #ECECEC;
+  /* Inside auto layout */
+  /* flex: 1; */
+  flex-grow: 0;
 }
