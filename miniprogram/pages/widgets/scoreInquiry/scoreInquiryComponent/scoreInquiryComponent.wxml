@@ -36,9 +36,9 @@
             </view>
             <block>
             <view class="tr" wx:for="{{Details}}"  wx:key="index" >
-                    <view class="td" >[{{item.cjfx == '平时成绩'?"平时":item.cjfx}}]</view>
-                    <view class="td">{{item.cjfxbl}}</view>
-                    <view class="td">{{item.cj}}</view>
+                    <view class="td1" >[{{item.cjfx == '平时成绩'?"平时":item.cjfx}}]</view>
+                    <view class="td2">{{item.cjfxbl}}</view>
+                    <view class="td3">{{item.cj}}</view>
             </view>
             </block>
     </view>

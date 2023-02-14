@@ -294,7 +294,6 @@
   .tr {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   /* height: 3rem; */
   align-items: center;
   width: 100%;
@@ -304,7 +303,7 @@
   .trTitle {
       display: flex;
       width: 100%;
-      justify-content: space-between;
+      
       /* height: 3rem; */
       align-items: center;
       margin-bottom: 36rpx;
@@ -313,7 +312,7 @@
      /* 成绩分项 */
      width: 96rpx; 
      height: 34rpx;
-     margin-left: 59rpx;
+     margin-left: 50rpx;
      /* left: 136rpx;
    top: 880rpx; */
      font-family: PingFang SC;
@@ -341,6 +340,7 @@
      font-weight: normal;
      font-size: 24rpx;
      line-height: 34rpx;
+     margin-left: 160rpx;
      /* identical to box height */
      text-align: center;
      /* text */
@@ -354,27 +354,40 @@
       /* 成绩分项 */
       width: 56rpx; 
       height: 34rpx;
-      /* left: 136rpx;
-    top: 880rpx; */
+      margin-left: 160rpx;
       font-family: PingFang SC;
       font-style: normal;
       font-weight: normal;
       font-size: 24rpx;
       line-height: 34rpx;
       /* identical to box height */
-      text-align: center;
       /* text */
       color: #292945;
-      justify-content: center;
+      text-align: center;
       align-items: center;
+      justify-content: center;
       display: flex; 
     }
     
-    .td {
-      width: 200rpx;
+    .td1 {
+      display: flex;
+      width: 70rpx;
       height: 34rpx;
-      margin-left: 11rpx;
-      margin-right: 11rpx;
+      margin-left: 70rpx;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 34rpx;
+      /* identical to box height */
+      text-align: left;
+      /* #292945 */
+      color: rgba(41, 41, 69, 0.6);
+    }
+    .td2{
+      width: 64rpx;
+      height: 34rpx;
+      margin-left: 161rpx;
       font-family: 'PingFang SC';
       font-style: normal;
       font-weight: 400;
@@ -385,7 +398,20 @@
       /* #292945 */
       
       color: rgba(41, 41, 69, 0.6);
-      
+    }
+    .td3{
+      width: 64rpx;
+      height: 34rpx;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 34rpx;
+      /* identical to box height */
+      text-align: center;
+      /* #292945 */
+      margin-left: 151rpx;
+      color: rgba(41, 41, 69, 0.6);
     }
     /*称号*/
     .scoreCountdetailBox{
@@ -433,7 +459,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 24rpx;
-  line-height: 32rpx;
+  line-height: 34rpx;
   text-align: justify;
   /* text */
   color: #292945;
@@ -571,9 +597,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
- 
   }
   .termTitlelevelsdot::before{
+
     content: "";
     display: block;
     width:10rpx;
@@ -587,6 +613,12 @@
    margin-top: 2rpx;
    width: 296px;
    text-align: center;
+   font-family: 'PingFang SC';
+  font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+  line-height: 20px;
+  color: #292945;
  }
  .termTitle-top{
 /* width: 196px; */
