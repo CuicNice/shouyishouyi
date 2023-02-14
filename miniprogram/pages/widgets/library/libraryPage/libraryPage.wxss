@@ -1,3 +1,4 @@
+/*图书馆的登录界面css部分
 .bg {
   margin-top: -30rpx;
   margin-left: -50rpx;
@@ -36,7 +37,6 @@ height: 100%;
 }
 .binDing-box{
   position: relative;
-/* background-image: url(''); */
   background-size: 100% 100%;
   border-radius: 8rpx;
   display: flex;
@@ -93,10 +93,8 @@ text-align: left;
   font-weight: 400;
   font-size: 28rpx;
   line-height: 40rpx;
-  /* identical to box height */
   letter-spacing: -0.2176px;
   color: #8a8a97;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   align-self: stretch;
@@ -180,7 +178,6 @@ font-size: 32rpx;
 line-height: 22rpx;
 text-transform: capitalize;
 color: #000000;
-/* Inside auto layout */
 flex: none;
 order: 0;
 flex-grow: 0;
@@ -189,7 +186,6 @@ margin-bottom: 50rpx;
 
 .input {
   box-sizing: border-box;
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -199,10 +195,8 @@ margin-bottom: 50rpx;
   width: 620rpx;
   height: 88rpx;
   background: #FFFFFF;
-  /* #20C38C */
   border: 1px solid #20C38C;
   border-radius: 8rpx;
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -231,7 +225,6 @@ line-height: 34rpx;
 text-transform: capitalize;
 color: #000000;
 opacity: 0.6;
-/* Inside auto layout */
 flex: none;
 order: 1;
 align-self: stretch;
@@ -246,9 +239,7 @@ margin-top: 20rpx;
 }
 
 .button .cancel {
-  /* Component 3 */
   box-sizing: border-box;
-  /* Auto layout */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -257,15 +248,12 @@ margin-top: 20rpx;
   width: 214rpx;
   height: 84rpx;
   background-color: #FFFFFF;
-  /* #20C38C */
   border: 1px solid #20C38C;
   border-radius: 70rpx;
-  /* #20C38C */
   color: #20C38C;
 }
 
 .button .primary {
-/* Auto layout */
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
@@ -273,7 +261,6 @@ padding: 20rpx 28rpx;
 gap: 20rpx;
 width: 214rpx;
 height: 84rpx;
-/* #20C38C */
 background: #20C38C;
 border-radius: 70rpx;
 }
@@ -296,10 +283,9 @@ border-radius: 70rpx;
   font-weight: 400;
   font-size: 28rpx;
   line-height: 40rpx;
-  /* identical to box height */
   text-transform: lowercase;
 }
-/* components/topbar/topbar.wxss */
+components/topbar/topbar.wxss
 .topbar {
   padding-top: 60rpx;
   display: flex;
@@ -320,9 +306,192 @@ border-radius: 70rpx;
 .btn {
   border-radius: 75rpx;
   height: 84rpx;
-  /* font-size: 14px; */
   font-weight: 500;
   font-size: 32rpx;
   padding: 0;
   line-height: 84rpx;
+}*/
+
+/*图书馆搜索界面css*/
+.topbar {
+  padding-top: 60rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+}
+
+.returnIcon {
+  position: absolute;
+  left: 34rpx;
+}
+
+.mypageTitle {
+  margin: 0 auto;
+  font-weight: 500;
+  color: #000000;
+}
+
+page {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180.04deg, #B9EFE1 0.1%, #FCFCFC 30%);
+}
+
+.bigBox {
+  margin-top: 60rpx;
+}
+
+.search {
+  width: 600rpx;
+  height: 50rpx;
+  border-radius: 164rpx;
+  padding: 20rpx 40rpx 20rpx 40rpx;
+  gap: 20rpx;
+  border: 1rpx solid #20C38C;
+  margin-left: 33rpx;
+}
+
+.mininput {
+  font-weight: 500;
+  font-size: 28rpx;
+}
+
+.inputBox {
+  width: 550rpx;
+  float: left;
+}
+
+.image {
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+  line-height: 50rpx;
+}
+
+.searchRecord {
+  margin-top: 52rpx;
+}
+
+.mark {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32rpx;
+  text-transform: capitalize;
+  color: #000000;
+  margin-left: 64rpx;
+  float: left;
+}
+
+.deleteMark {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  float: right;
+  margin-top: 10rpx;
+  margin-right: 64rpx;
+}
+
+.markBox {
+  height: 196rpx;
+  width: 550rpx;
+  position: absolute;
+  top: 410rpx;
+  left: 64rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.markMake {
+  width: 130rpx;
+  height: 48rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 148rpx;
+  margin-left: 20rpx;
+  background: #EBEBEB;
+}
+
+.nonemarkMake {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+}
+
+.lefticon {
+  position: absolute;
+  width: 32rpx;
+  height: 100rpx;
+  left: 668rpx;
+  top: 386rpx;
+}
+
+.lefticonImg {
+  width: 100%;
+  height: 100%;
+}
+
+.righticon {
+  position: absolute;
+  width: 32rpx;
+  height: 100rpx;
+  left: 50rpx;
+  top: 390rpx;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.righticonImg {
+  width: 100%;
+  height: 100%;
+  rotate: 180deg;
+}
+
+.librarySwiper {
+  position: absolute;
+  width: 504rpx;
+  height: 504rpx;
+  left: 120rpx;
+  top: 222rpx;
+}
+
+.libraryIcon1 {
+  width: 100%;
+  height: 100%;
+}
+
+.libraryIcon2 {
+  width: 480rpx;
+  margin-top: 15rpx;
+}
+
+.libraryIcon3 {
+  width: 430rpx;
+  margin-top: 5rpx;
+  margin-left: 30rpx;
+}
+
+.libraryIcon4 {
+  width: 406rpx;
+  margin-top: 15rpx;
+  margin-left: 40rpx;
+}
+
+.container {
+  position: fixed;
+}
+
+.library{
+  position: absolute;
+  top: 400rpx;
 }

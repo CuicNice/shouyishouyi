@@ -5,9 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    swiperCurrent: 0,
+    /* swiperCurrent: 0,
     libraryTitle:"首义图书馆",
-    swiper: 0,  //当前所在页面的 index
     circular: false, //是否采用衔接滑动
     librarySvg: [
       '/static/svg/schoolBuilt/zhonglou.svg',
@@ -15,22 +14,46 @@ Page({
     ],
     xuehao:'',
     mima:'',
-    haveBind:true
+    haveBind:true */
+    word: '',
+    ifshow: true,
+    swiper: 0,  //当前所在页面的 index
   },
 
-  swiperChangeqian: function() {
-    if(this.data.swiper == 1){
-    this.setData({
-      swiper: 1
-    })}
+  swiperChangeqian: function () {
+    if (this.data.swiper == 3) {
+      this.setData({
+        swiper: 3
+      })
+    }
     else {
       this.setData({
-        swiper:this.data.swiper+1
+        swiper: this.data.swiper + 1
       })
     }
   },
 
-  login() {
+  getInputValue: function (e: any) {
+    this.setData({ word: e.detail.value })
+  },
+
+  search() {
+    if (this.data.word != "") {
+      wx.request({
+        url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
+        method:"POST",
+        data: {
+          "page": "1",
+          "word": this.data.word
+        },
+        success(res) {
+          console.log(res.data)
+        }
+      })
+    }
+  },
+
+  /*login() {
     wx.request({
       url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/login',
       method:"POST",
@@ -86,19 +109,22 @@ Page({
     this.setData({
       mima:res.detail.value
     })
-  },
+  },*/
 
-  swiperChangeho: function() {
-    if(this.data.swiper == 0){
-    this.setData({
-      swiper: 0
-    })}
+  swiperChangeho: function () {
+    if (this.data.swiper == 0) {
+      this.setData({
+        swiper: 0
+      })
+    }
     else {
       this.setData({
-        swiper:this.data.swiper-1
+        swiper: this.data.swiper - 1
       })
     }
   },
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -111,7 +137,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    var value1 = wx.getStorageSync('key1')
+    /* var value1 = wx.getStorageSync('key1')
     var value2 = wx.getStorageSync('key2')
       var xx
       var yy 
@@ -122,7 +148,7 @@ Page({
           xuehao:xx,
           mima:yy
         })
-      }
+      } */
   },
 
   /**
