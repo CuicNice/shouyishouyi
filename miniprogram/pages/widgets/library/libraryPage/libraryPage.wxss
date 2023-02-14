@@ -409,6 +409,16 @@ page {
   justify-content: flex-start;
 }
 
+.text{
+  width: 130rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  margin-left: 5rpx;
+}
+
 .markMake {
   width: 130rpx;
   height: 48rpx;

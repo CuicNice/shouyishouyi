@@ -17,7 +17,8 @@ Page({
     haveBind:true */
     word: '',
     ifshow: true,
-    swiper: 0,  //当前所在页面的 index
+    swiper: 0,  //当前所在页面的 
+    shuju: [] as any
   },
 
   swiperChangeqian: function () {
@@ -37,19 +38,88 @@ Page({
     this.setData({ word: e.detail.value })
   },
 
+  //添加缓存
+  cache() {
+    // 先获取缓存中的内容
+    let array = wx.getStorageSync('item') || []
+    if (array.length <= 9) {
+      // 向数组中追加
+      array.push({
+        item: this.data.word,
+      })
+      // 重新设置缓存
+      wx.setStorage({
+        key: 'item',
+        data: array,
+        success: function () { }
+      })
+    }
+  },
+
+  markMake(e: any){
+    var num=wx.getStorageSync('item').length-e.currentTarget.dataset.index-1
+    var add=wx.getStorageSync('item')[num].item
+    this.setData({word:add})
+    setTimeout(() =>{
+      this.webrequest()
+  },500)
+  },
+
+//网络请求
+webrequest(){
+  wx.request({
+    url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
+    method: "POST",
+    data: {
+      "page": "1",
+      "word": this.data.word
+    },
+    success(res) {
+      console.log(res.data)
+    }
+  })
+},
+
+  deleteMark() {
+    wx.removeStorage({
+      key: 'item',
+      success() {
+        console.log("清除缓存")
+      }
+    })
+    this.get()
+    this.setData({
+      ifshow: true,
+      word:''
+    })
+  },
+
   search() {
     if (this.data.word != "") {
-      wx.request({
-        url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
-        method:"POST",
-        data: {
-          "page": "1",
-          "word": this.data.word
-        },
-        success(res) {
-          console.log(res.data)
+      this.webrequest()
+      if (wx.getStorageSync('item').length < 9) { 
+        this.cache()
+        var arr=this.objHeavy(wx.getStorageSync('item'))
+        wx.setStorage({
+          key: 'item',
+          data: arr,
+        })
+      }
+      if (wx.getStorageSync('item').length == 9) {
+        let array = wx.getStorageSync('item')
+        let arrays = []
+        for (var i = 0; i < array.length; i++) {
+          if (i != 0) {
+            arrays.push(array[i])
+          }
         }
-      })
+        // 重新设置缓存
+        wx.setStorage({
+          key: 'item',
+          data: arrays,
+        })
+        this.cache()
+      }
     }
   },
 
@@ -124,13 +194,39 @@ Page({
     }
   },
 
+  //获取缓存的内容
+  get() {
+    if (wx.getStorageSync('item').length != 0) {
+      var arr = []
+      var myarr = wx.getStorageSync('item')
+      for (var i = wx.getStorageSync('item').length - 1; i >= 0; i--) {
+        arr.push(myarr[i])
+      }
+      this.setData({
+        shuju: arr,
+        ifshow: false
+      })
+    }
+  },
 
+  //查重
+  objHeavy:function(arr: { [x: string]: any }){ 
+    let arr1 = []; //存名字
+    let newArr = []; //存新数组
+    for (let i in arr) {
+      if (arr1.indexOf(arr[i].item) == -1) {
+        arr1.push(arr[i].item);
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    this.get()//初始化获取缓存
   },
 
   /**

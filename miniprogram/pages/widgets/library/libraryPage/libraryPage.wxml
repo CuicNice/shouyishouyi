@@ -68,7 +68,9 @@
     <view class="deleteMark" bindtap="deleteMark">清除记录</view>
   </view>
   <view class="markBox">
-    <view class="markMake" wx:if="{{!ifshow}}"></view>
+    <view class="markMake" wx:if="{{!ifshow}}" wx:for="{{shuju}}" wx:key="index">
+      <view class="text"wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
+    </view>
     <view class="nonemarkMake" wx:if="{{ifshow}}">暂无搜索记录</view>
   </view>
   <view class="library">
