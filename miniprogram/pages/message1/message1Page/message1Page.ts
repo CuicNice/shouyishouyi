@@ -26,12 +26,13 @@ Page({
         //渲染颜色 
         for(var i=0,j=0;i<res.data.data.list.length;i++,j++){
              if(j>=3){j=0;this.putColors();}
+             if(i>=3&&i%3==0&&res.data.data.list[i-1].color ==this.data.colors[0]){this.putColors();}//防止连续两个颜色一样
               var number = i;
               var color = this.data.colors[j];
               var show = this.data.show;
               res.data.data.list[i].show = show;
               res.data.data.list[i].color = color;
-              res.data.data.list[i].number = number;
+              res.data.data.list[i].number = number;     
           }                   
         this.setData({
           list:res.data.data.list,
