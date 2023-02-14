@@ -1,62 +1,63 @@
 <view class="background">
 <!-- 外面的信息列表页面 -->
 <view class="message" wx:if="{{isHidden}}">
-<topbar title="默认页面"></topbar>
+<topbar title="默认页面" ></topbar>
 <!--信息列表-->
-<view class="messageList" bindtap="getMessage"  wx:for="{{message1}}" wx:key="index" data-row="{{index}}" wx:for-item="item">
+<scroll-view class="messageList" bindtap="getMessage"  wx:for="{{list}}" wx:key="index" data-row="{{index}}" wx:for-item="item">
 <view class="firstMessage" style="border: 4rpx solid {{item.color}}">
 <view class="text-box">
   <view class="title">
-  <text class="titleText">{{item.popupJumpTextTitle}}</text>
+  <text class="titleText">{{item.popupSystemHeadline}}</text>
   </view>
-  <view class="{{item.isShow ? 'hide':'show'}}" >
+  <view class="{{item.isShow?'hide':'show'}}" >
   <text style="position: relative; left: 12rpx; top: -9rpx">未读</text>
   </view></view>
   <view class="stitle">
-  <text class="stitleText">{{item.popupJumpTextContent}}</text>
+  <text class="stitleText">{{item.popupSystemSubtitle}}</text>
   </view>
   <view class="bottomShow">
   <view class="timeShow">
   <image src="/static/svg/message/clock.svg" class="clock"></image>
-  <text>2023-01-30</text>
+  <text>{{item.popupPublishTime}}</text>
   </view>
   <view class="likeBox">
   <image src="/static/svg/message/like.svg"></image>
-  <text>666人赞过</text>
+  <text>{{item.popupFabulous == Null ? '0':item.popupFabulous}}人赞过</text>
   </view>
   </view>
 </view>
+</scroll-view>
 </view>
-</view>
-
 
 <!-- 点进后的信息详情弹窗 与上面不同-->
-<view wx:else>
+<view wx:if="{{list[row].url}}"><web-view url="{{list[row].url}}" ></web-view></view>
+  <view wx:if="{{!isHidden}}">
   <topbar title="标题" bind:sync1="getChild" ></topbar>
-  <view class="messageDetail" >
+  <view class="messageDetail">
   <view class="detailTitle">
-  <text>{{message1[row].popupJumpTextTitle}}</text>
+  <text>{{list[row].popupJumpTextTitle}}</text>
   </view>
   <view class="timeShow">
   <image src="/static/svg/message/clock.svg" class="clock"></image>
-  <text>2023-01-30</text>
+  <text>{{item.popupPublishTime}}</text>
   </view>
   <view class="messageText">
   <view class="text">
-  <text>{{message1[row].popupJumpTextContent}}</text>
+  <text>{{list[row].popupJumpTextContent ==Null?'':list[row].popupJumpTextContent}}</text>
   </view>
   <view class="photo">
-   <image src="http://{{message1[row].popupJumpTextImage}}"></image>
+   <image src="http://{{list[row].popupJumpTextImage}}"></image>
   </view>
   <view class="textLike">
   <view class="likeImage" bindtap="getLike">
-  <image src="/static/svg/message/{{show}}Like.svg"></image>
+  <image src="/static/svg/message/{{list[row].show == ''?'green':list[row].show}}Like.svg"></image>
   </view>
   <view class="likeBottom">
-  <text>{{bottomText}}</text>
+  <text>{{list[row].show !==''?list[row].popupFabulous+'人点赞':'喜欢就点个赞吧~'}}</text>
+  </view>
   </view>
   </view>
   </view>
   </view>
 </view>
-</view>
+

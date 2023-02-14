@@ -24,39 +24,21 @@ Page({
       method:'POST',
       data:{
         currentPage:1,
-        pageSize:5,
+        pageSize:10000,
       },
       success:((res)=>{
         this.setData({
            messageList:res.data.data.list,
-        }) 
-        for(let i=0;i<res.data.data.list.length;i++){
-          let time = this.data.Y+'-'+this.data.M+'-'+this.data.D
-            //首发时间
-            if(res.data.data.list[i].popupFirstTime.substring(0,10) == time){
-              if(res.data.data.list[i].popupFirstTimeState){
-            wx.navigateTo({url:'../popup1/popup1Page//popup1Page'})
-          }}
-            //第二次时间
-            if(res.data.data.list[i].popupSecondTime.substring(0,10) == time){
-              if(res.data.data.list[i].popupSecondTimeState){
-                wx.navigateTo({url:'../popup1/popup1Page//popup1Page'})
-          }}
-            //第三次时间
-            if(res.data.data.list[i].popupThirdTime.substring(0,10) == time){
-              if(res.data.data.list[i].popupThirdTimeState){
-                wx.navigateTo({url:'../popup1/popup1Page//popup1Page'})
-              }
-            }
-          }  
+        })  
         //判断是否有未读消息
         var isUnread;
         isUnread=wx.getStorageSync('unread')
         console.log(isUnread)
-        if(isUnread){
-          for(let a=0;a<isUnread.length;a++){
-          if(isUnread[a].isShow == 'true'){
-            this.setData({x:0});
+        if(isUnread.length == res.data.data.list.length){
+          console.log(1)
+          for(var a=0;a<res.data.data.list.length;a++){
+          if(isUnread[a].isShow == true){
+            this.setData({x:0})
           }else{
             this.setData({x:1})        
           }
@@ -64,29 +46,27 @@ Page({
         }if(res.data.data.list.length > 0&&!isUnread){
           this.setData({x:1})
         }
-        
       })
      })
    },
    //是否出现弹窗
-  //  isPop(){
-  //    wx.request({
-  //      url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletAppearPopup',
-  //      method:'POST',
-  //      success:((res)=>{
-  //        console.log(res)
-  //        this.setData({
-  //         popupState:res.data.data
-  //        })
-  //        if(){
-  //          wx.navigateTo({
-  //            url:'../popup1/popup1Page/popup1Page'
-  //          })
-  //        }
-  //      })
-  //    })
-  //  },
-
+    isPop(){
+       wx.request({
+        url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletAppearPopup',
+        method:'POST',
+        success:((res)=>{
+        console.log(res)
+        this.setData({
+         popupState:res
+         })
+         if(res.popupId !== ''){
+           wx.navigateTo({
+            url:'../popup1/popup1Page/popup1Page'
+           })
+         }
+        })  
+ })
+},
   /**
    * 生命周期函数--监听页面加载
    */

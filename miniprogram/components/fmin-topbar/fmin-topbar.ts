@@ -9,6 +9,7 @@ Component({
       value: ''  // 默认值
     },
     
+    
   },
 
   /**
@@ -16,6 +17,7 @@ Component({
    */
   data: {
     isShow:true,
+    isHidden:Boolean
   },
 
   /**
@@ -23,9 +25,7 @@ Component({
    */
   methods: {
     returnEvent(){
-      this.triggerEvent('sync1');
-      //wx.navigateBack();
-
+        wx.navigateBack();
     }
   }
 })

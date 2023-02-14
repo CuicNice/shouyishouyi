@@ -8,7 +8,7 @@ const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
 const apiList = {
   // post /front/blog/page（前台接口需要登录）
-  getPopup: baseUrl + '/api/v1/ad/ad/mini/appletPopupList',
+  getPopup: baseUrl + '/api/v1/ad/ad/mini/appletAppearPopup',
 }
 
 // 获取弹窗
