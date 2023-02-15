@@ -2,7 +2,6 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "tb": "/components/fmin-topbar/fmin-topbar",
-    "toast":"/components/fmin-toast/fmin-toast",
-    "scoreComment":"../../scoreInquiry/scoreInquiryComponent/scoreInquiryComponent"
+    "toast":"/components/fmin-toast/fmin-toast"
   }
 }

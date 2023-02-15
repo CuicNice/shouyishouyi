@@ -94,6 +94,15 @@ Page({
       }  
 
 },
+// 关闭成绩弹窗
+closeTap: function (e:any) {
+  var that = this;
+  that.setData({
+    courseTapdetail: false,
+    termTitleTapdetail: false,
+    scoreCountdetail: false
+  })
+},
   //弹窗
     async courseTaped(from: ScoreInquiryeItem) {
       console.log(from);
