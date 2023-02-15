@@ -18,7 +18,9 @@ Page({
     word: '',
     ifshow: true,
     swiper: 0,  //当前所在页面的 
-    shuju: [] as any
+    shuju: [] as any,
+    ifsearch: true,
+    a:1
   },
 
   swiperChangeqian: function () {
@@ -32,6 +34,11 @@ Page({
         swiper: this.data.swiper + 1
       })
     }
+  },
+
+  returnEvent(){
+    this.setData({ifsearch:true,word:''})
+    this.get()
   },
 
   getInputValue: function (e: any) {
@@ -59,25 +66,43 @@ Page({
   markMake(e: any){
     var num=wx.getStorageSync('item').length-e.currentTarget.dataset.index-1
     var add=wx.getStorageSync('item')[num].item
-    this.setData({word:add})
+    this.setData({word:add,ifsearch:false})
     setTimeout(() =>{
       this.webrequest()
   },500)
   },
 
 //网络请求
-webrequest(){
+  webrequest(){
+  var that=this
+  this.selectComponent("#toast").showToast("请求中....", "lodding");
+  for(var i=1;i<10;i++){
   wx.request({
     url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
     method: "POST",
     data: {
-      "page": "1",
+      "page": i,
       "word": this.data.word
     },
-    success(res) {
-      console.log(res.data)
+    success:(res)=> {
+      console.log(res)
+      console.log(res.data.data.length)
+      if(res.data.data.length==0){
+        console.log("000")
+        this.data.a=0
+    }
+    },
+    fail(res) {
+      console.log(res)
+      that.selectComponent("#toast").showToastAuto("请求失败", "error");
     }
   })
+  console.log(this.data.a)
+  if(this.data.a==0){
+    console.log("ddd")
+    break;}
+}
+that.selectComponent("#toast").showToastAuto("请求成功", "success");
 },
 
   deleteMark() {
@@ -120,6 +145,9 @@ webrequest(){
         })
         this.cache()
       }
+      this.setData({
+        ifsearch:false
+      })
     }
   },
 

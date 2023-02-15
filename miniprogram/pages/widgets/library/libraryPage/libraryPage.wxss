@@ -314,7 +314,7 @@ components/topbar/topbar.wxss
 
 /*图书馆搜索界面css*/
 .topbar {
-  padding-top: 60rpx;
+  padding-top: 100rpx;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -402,18 +402,18 @@ page {
   height: 196rpx;
   width: 550rpx;
   position: absolute;
-  top: 410rpx;
+  top: 450rpx;
   left: 64rpx;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
 
-.text{
+.text {
   width: 130rpx;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: rgba(0, 0, 0, 0.6);
   text-align: center;
   margin-left: 5rpx;
@@ -447,6 +447,14 @@ page {
   top: 386rpx;
 }
 
+.lefticon2 {
+  position: absolute;
+  top: 330rpx;
+  left: 680rpx;
+  width: 12rpx;
+  height: 20rpx;
+}
+
 .lefticonImg {
   width: 100%;
   height: 100%;
@@ -461,11 +469,15 @@ page {
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
-.righticonImg {
-  width: 100%;
-  height: 100%;
-  rotate: 180deg;
+.righticon2 {
+  position: absolute;
+  top: 330rpx;
+  left: 540rpx;
+  width: 12rpx;
+  height: 20rpx;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
 }
+
 
 .librarySwiper {
   position: absolute;
@@ -481,19 +493,19 @@ page {
 }
 
 .libraryIcon2 {
-  width: 480rpx;
+  width: 500rpx;
   margin-top: 15rpx;
 }
 
 .libraryIcon3 {
-  width: 430rpx;
+  width: 500rpx;
   margin-top: 5rpx;
   margin-left: 30rpx;
 }
 
 .libraryIcon4 {
-  width: 406rpx;
-  margin-top: 15rpx;
+  width: 460rpx;
+  margin-top: 20rpx;
   margin-left: 40rpx;
 }
 
@@ -501,7 +513,181 @@ page {
   position: fixed;
 }
 
-.library{
+.library {
   position: absolute;
-  top: 400rpx;
+  top: 460rpx;
+}
+
+.allsearch {
+  margin-top: 34rpx;
+  margin-left: 33rpx;
+  width: 680rpx;
+  height: 45rpx;
+}
+
+.leftBox {
+  float: right;
+  width: 198rpx;
+  height: 34rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  padding-top: 7rpx;
+  text-transform: capitalize;
+  color: #989898;
+}
+
+.pagenum {
+  position: absolute;
+  top: 335rpx;
+  left: 565rpx;
+  width: 106rpx;
+  height: 34rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  text-align: center;
+  text-transform: capitalize;
+  color: #989898;
+}
+
+.leftBox {
+  float: left;
+}
+
+.classBox {
+  margin-top: 30rpx;
+  width: 684rpx;
+  height: 290rpx;
+  margin-left: 33rpx;
+}
+
+.className {
+  width: 470rpx;
+  height: 46rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  text-transform: capitalize;
+  color: #292945;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leftClass {
+  float: left;
+}
+
+.classForm {
+  margin-top: 14rpx;
+  width: 470rpx;
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-transform: capitalize;
+  color: #292945;
+  opacity: 0.6;
+}
+
+.classFormplace {
+  margin-top: 14rpx;
+  width: 470rpx;
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-transform: capitalize;
+  color: #292945;
+  opacity: 0.6;
+}
+
+.placeBox {
+  margin-left: -20rpx;
+  margin-top: 18rpx;
+  width: 470rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.dashed{
+  width: 100%;
+  margin-top: 28rpx;
+  border-top: 1rpx dashed black;
+}
+.place {
+  padding: 0px 9px;
+  margin-left: 20rpx;
+  gap: 20rpx;
+  width: 60rpx;
+  height: 40rpx;
+  background: #20C38C;
+  opacity: 0.6;
+  border-radius: 120rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: #FFFFFF;
+}
+.rightBox{
+  width: 210rpx;
+  float: right;
+}
+.bookNum{
+  margin-top: 6rpx;
+  margin-left: 140rpx;
+  width: 46rpx;
+height: 104rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 74rpx;
+line-height: 104rpx;
+text-transform: capitalize;
+color: #20C38C;
+}
+.bookText{
+  width: 84rpx;
+height: 40rpx;
+margin-top: 8rpx;
+margin-left: 120rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 28rpx;
+line-height: 40rpx;
+text-align: center;
+text-transform: capitalize;
+color: #292945;
+}
+.borrow{
+margin-top: 14rpx;
+margin-left: 60rpx;
+gap: 20rpx;
+width: 148rpx;
+height: 40rpx;
+background: rgba(41, 41, 69, 0.6);
+opacity: 0.6;
+border-radius: 120rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 28rpx;
+line-height: 40rpx;
+text-transform: capitalize;
+text-align: center;
+color: #FFFFFF;
 }

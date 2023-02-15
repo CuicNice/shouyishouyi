@@ -52,7 +52,7 @@
 <!--图书馆搜索界面-->
 <view class="topbar">
   <view class="returnBtn" bindtap="returnEvent">
-    <image class="returnIcon" style="width:18rpx; height:34rpx" src="/static/svg/returnIcon.svg"></image>
+    <image class="returnIcon" style="width:18rpx; height:34rpx;margin-top: 5rpx;" src="/static/svg/returnIcon.svg"></image>
   </view>
   <view class="mypageTitle">
     <view>首义图书馆</view>
@@ -60,35 +60,75 @@
 </view>
 <view class="bigBox">
   <view class="search">
-    <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue'/>
+    <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
     <image class="image" src="../../../../static/svg/search.svg" bindtap="search"></image>
   </view>
-  <view class="searchRecord">
+  <view class="searchRecord" wx:if="{{ifsearch}}">
     <view class="mark">搜索记录</view>
     <view class="deleteMark" bindtap="deleteMark">清除记录</view>
   </view>
-  <view class="markBox">
+  <view class="markBox" wx:if="{{ifsearch}}">
     <view class="markMake" wx:if="{{!ifshow}}" wx:for="{{shuju}}" wx:key="index">
-      <view class="text"wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
+      <view class="text" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
     </view>
     <view class="nonemarkMake" wx:if="{{ifshow}}">暂无搜索记录</view>
   </view>
-  <view class="library">
-    <view class="lefticon" bindtap="swiperChangeqian"><image class="lefticonImg" src="/static/svg/Vector1.svg"></image></view>
-  <swiper class="librarySwiper" swiperCurrent="swiper" current="{{swiper}}" >
-   <swiper-item>
-   <image class="libraryIcon1" src="/static/svg/nanlibrary.svg"></image>
-  </swiper-item>
-  <swiper-item>
-   <image class="libraryIcon2" src="/static/svg/genlibrary.svg"></image>
-  </swiper-item>
-  <swiper-item>
-   <image class="libraryIcon3" src="/static/svg/cenlibrary.svg"></image>
-  </swiper-item>
-  <swiper-item>
-   <image class="libraryIcon4" src="/static/svg/jiayulibrary.svg"></image>
-  </swiper-item>
-  </swiper>
-  <view class="righticon" bindtap="swiperChangeho"><image class="lefticonImg" src="/static/svg/Vector1.svg"></image></view>
+  <view class="library" wx:if="{{ifsearch}}">
+    <view class="lefticon" bindtap="swiperChangeqian">
+      <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
+    </view>
+    <swiper class="librarySwiper" swiperCurrent="swiper" current="{{swiper}}">
+      <swiper-item>
+        <image class="libraryIcon1" src="/static/svg/nanlibrary.svg"></image>
+      </swiper-item>
+      <swiper-item>
+        <image class="libraryIcon2" src="/static/svg/genlibrary.svg"></image>
+      </swiper-item>
+      <swiper-item>
+        <image class="libraryIcon3" src="/static/svg/schoolBuilt/zhongqutushuguan.svg"></image>
+      </swiper-item>
+      <swiper-item>
+        <image class="libraryIcon4" src="/static/svg/jiayulibrary.svg"></image>
+      </swiper-item>
+    </swiper>
+    <view class="righticon" bindtap="swiperChangeho">
+      <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
+    </view>
+  </view>
+  <view wx:if="{{!ifsearch}}">
+    <view class="allsearch" >
+      <view class="leftBox">共搜索到30条结果</view>
+      <view class="rightBox">
+        <view class="lefticon2">
+          <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
+        </view>
+        <view class="pagenum">第1/3页</view>
+        <view class="righticon2">
+          <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
+        </view>
+      </view>
+    </view>
+    <view class="classBox">
+      <view class="leftClass">
+        <view class="className">高等数学学习辅导：天津大学啦啦啦啦</view>
+        <view class="classForm">天津大学数学系</view>
+        <view class="classFormplace">20140101 | 高等教育出版社</view>
+        <view class="placeBox">
+          <view class="place">总馆</view>
+          <view class="place">嘉鱼</view>
+          <view class="place">南区</view>
+          <view class="place">中区</view>
+        </view>
+        <view class="dashed"></view>
+      </view>
+      <view class="rightBox">
+        <view class="bookNum">3</view>
+        <view class="bookText">本在馆</view>
+        <view class="borrow">外借图书</view>
+        <view class="dashed"></view>
+      </view>
+    </view>
   </view>
 </view>
+<!-- 提示组件 -->
+<toast id="toast"></toast>
