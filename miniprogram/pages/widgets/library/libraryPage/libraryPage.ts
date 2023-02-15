@@ -73,11 +73,11 @@ Page({
   },
 
 //网络请求
-  webrequest(){
+  async webrequest(){
   var that=this
   this.selectComponent("#toast").showToast("请求中....", "lodding");
   for(var i=1;i<10;i++){
-  wx.request({
+  await wx.request({
     url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
     method: "POST",
     data: {
