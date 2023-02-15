@@ -18,10 +18,12 @@
       </view>
     </view>
 
-    <!-- 返回 -->
-    <view class="countdown-return" bindtap="returnPage">
+    <!--button -->
+    <!-- <view class="countdown-return" bindtap="returnPage">
       <image class="returnSvg" src="/static/svg/widgets_return.svg" mode="" />
-    </view>
+    </view> -->
+    <!-- 这里可以弄设置 -->
+    <slot></slot>
 
   </view>
   <!-- 由于有分隔符只能展开列表 -->
@@ -45,7 +47,7 @@
       <view class="cdName">
         <view class="cdDay"><text>{{cdlist3[1]["countDownEndDate"]}}</text></view>
         <view class="cdTitle">
-          <text class="Postgraduate">距离{{cdlist3[2]["countDownName"]}}</text>
+          <text class="Postgraduate">距离{{cdlist3[1]["countDownName"]}}</text>
         </view>
 
       </view>

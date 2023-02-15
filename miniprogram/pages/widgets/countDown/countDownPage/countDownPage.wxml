@@ -61,7 +61,7 @@ maxlength="4">
 </view> 
 </view>
 <view class="saveButtonBox">
-  <button class="saveButton" style="width: 100%;" form-type="submit"><text class="saveText">保存设置</text>
+  <button class="saveButton" style="width: 100%;" form-type="submit"><text class="saveButtonText">保存设置</text>
   </button>
 </view>
 </view>
