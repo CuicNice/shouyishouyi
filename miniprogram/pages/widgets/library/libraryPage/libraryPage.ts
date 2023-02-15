@@ -1,4 +1,12 @@
 // pages/widgets/library/libraryPage/libraryPage.ts
+
+/* import uCharts from "../../../../utils/u-charts";
+import { getlibrary } from '../../../../api/libraryApi';
+export interface libraryItem {
+  page: string,
+  word: string
+} */
+
 Page({
 
   /**
@@ -68,42 +76,40 @@ Page({
     var add=wx.getStorageSync('item')[num].item
     this.setData({word:add,ifsearch:false})
     setTimeout(() =>{
-      this.webrequest()
+      this.webrequest(this.data.a)
   },500)
   },
 
+
+  
 //网络请求
-  async webrequest(){
-  var that=this
-  this.selectComponent("#toast").showToast("请求中....", "lodding");
-  for(var i=1;i<10;i++){
-  await wx.request({
-    url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
-    method: "POST",
-    data: {
-      "page": i,
-      "word": this.data.word
-    },
-    success:(res)=> {
-      console.log(res)
-      console.log(res.data.data.length)
-      if(res.data.data.length==0){
-        console.log("000")
-        this.data.a=0
-    }
-    },
-    fail(res) {
-      console.log(res)
-      that.selectComponent("#toast").showToastAuto("请求失败", "error");
-    }
-  })
-  console.log(this.data.a)
-  if(this.data.a==0){
-    console.log("ddd")
-    break;}
-}
-that.selectComponent("#toast").showToastAuto("请求成功", "success");
-},
+/* async webrequest(from: libraryItem) {
+  console.log(from)
+  const { data: res } = await getlibrary(from) as unknown as IResult<any>;
+  if (!res) {
+    console.log("网络请求失败")
+  } else {
+    console.log("网络请求成功")
+  }}, */
+  webrequest(i: number | undefined){
+/*   this.selectComponent("#toast").showToast("请求中....", "lodding"); */
+   wx.request({
+      url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
+      method: "POST",
+      data: {
+        "page": i,
+        "word": this.data.word
+      },
+      success: (res) => {
+        console.log(res)
+        console.log(res.data.data.length)
+        if (res.data.data.length != 0) {
+          this.webrequest(++i)
+        }
+      }
+    })
+/* that.selectComponent("#toast").showToastAuto("请求成功", "success"); */
+}, 
 
   deleteMark() {
     wx.removeStorage({
@@ -121,7 +127,7 @@ that.selectComponent("#toast").showToastAuto("请求成功", "success");
 
   search() {
     if (this.data.word != "") {
-      this.webrequest()
+      this.webrequest(this.data.a)
       if (wx.getStorageSync('item').length < 9) { 
         this.cache()
         var arr=this.objHeavy(wx.getStorageSync('item'))
