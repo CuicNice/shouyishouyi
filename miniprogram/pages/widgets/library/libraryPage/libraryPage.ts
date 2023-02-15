@@ -76,7 +76,7 @@ Page({
     var add=wx.getStorageSync('item')[num].item
     this.setData({word:add,ifsearch:false})
     setTimeout(() =>{
-      this.webrequest(this.data.a)
+      this.webrequest()
   },500)
   },
 
@@ -91,21 +91,17 @@ Page({
   } else {
     console.log("网络请求成功")
   }}, */
-  webrequest(i: number | undefined){
+  webrequest(){
 /*   this.selectComponent("#toast").showToast("请求中....", "lodding"); */
    wx.request({
       url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
       method: "POST",
       data: {
-        "page": i,
+        "page": "1",
         "word": this.data.word
       },
       success: (res) => {
         console.log(res)
-        console.log(res.data.data.length)
-        if (res.data.data.length != 0) {
-          this.webrequest(++i)
-        }
       }
     })
 /* that.selectComponent("#toast").showToastAuto("请求成功", "success"); */
@@ -127,7 +123,7 @@ Page({
 
   search() {
     if (this.data.word != "") {
-      this.webrequest(this.data.a)
+      this.webrequest()
       if (wx.getStorageSync('item').length < 9) { 
         this.cache()
         var arr=this.objHeavy(wx.getStorageSync('item'))

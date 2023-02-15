@@ -75,7 +75,7 @@
   </view>
   <view class="library" wx:if="{{ifsearch}}">
     <view class="lefticon" bindtap="swiperChangeqian">
-      <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
+      <image class="lefticonImg" src="/static/svg/vector.svg"></image>
     </view>
     <swiper class="librarySwiper" swiperCurrent="swiper" current="{{swiper}}">
       <swiper-item>
@@ -92,7 +92,7 @@
       </swiper-item>
     </swiper>
     <view class="righticon" bindtap="swiperChangeho">
-      <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
+      <image class="lefticonImg" src="/static/svg/vector.svg"></image>
     </view>
   </view>
   <view wx:if="{{!ifsearch}}">
