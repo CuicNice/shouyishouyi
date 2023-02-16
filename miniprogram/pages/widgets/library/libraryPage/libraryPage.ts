@@ -28,7 +28,9 @@ Page({
     swiper: 0,  //当前所在页面的 
     shuju: [] as any,
     ifsearch: true,
-    a:1
+    allbook: [],
+    a: 1,
+    b: 0
   },
 
   swiperChangeqian: function () {
@@ -44,8 +46,8 @@ Page({
     }
   },
 
-  returnEvent(){
-    this.setData({ifsearch:true,word:''})
+  returnEvent() {
+    this.setData({ ifsearch: true, word: '' })
     this.get()
   },
 
@@ -54,9 +56,9 @@ Page({
   },
 
   //添加缓存
-  cache() {
+  cache(abc: string) {
     // 先获取缓存中的内容
-    let array = wx.getStorageSync('item') || []
+    let array = wx.getStorageSync(abc) || []
     if (array.length <= 9) {
       // 向数组中追加
       array.push({
@@ -64,48 +66,75 @@ Page({
       })
       // 重新设置缓存
       wx.setStorage({
-        key: 'item',
+        key: abc,
         data: array,
         success: function () { }
       })
     }
   },
 
-  markMake(e: any){
-    var num=wx.getStorageSync('item').length-e.currentTarget.dataset.index-1
-    var add=wx.getStorageSync('item')[num].item
-    this.setData({word:add,ifsearch:false})
-    setTimeout(() =>{
-      this.webrequest()
-  },500)
+  markMake(e: any) {
+    var num = wx.getStorageSync('item').length - e.currentTarget.dataset.index - 1
+    var add = wx.getStorageSync('item')[num].item
+    this.setData({ word: add, ifsearch: false })
+    setTimeout(() => {
+      this.webrequest(this.data.a)
+    }, 500)
   },
 
 
-  
-//网络请求
-/* async webrequest(from: libraryItem) {
-  console.log(from)
-  const { data: res } = await getlibrary(from) as unknown as IResult<any>;
-  if (!res) {
-    console.log("网络请求失败")
-  } else {
-    console.log("网络请求成功")
-  }}, */
-  webrequest(){
-/*   this.selectComponent("#toast").showToast("请求中....", "lodding"); */
-   wx.request({
+
+  //网络请求
+  /* async webrequest(from: libraryItem) {
+    console.log(from)
+    const { data: res } = await getlibrary(from) as unknown as IResult<any>;
+    if (!res) {
+      console.log("网络请求失败")
+    } else {
+      console.log("网络请求成功")
+    }}, */
+  webrequest(a: number) {
+    this.selectComponent("#toast").showToast("请求中....", "lodding");
+    wx.request({
       url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/searchBook',
       method: "POST",
       data: {
-        "page": "1",
+        "page": a,
         "word": this.data.word
       },
       success: (res) => {
-        console.log(res)
+        var arr = res.data.data
+        this.setData({ allbook: arr })
+        var array = wx.getStorageSync('book') || []
+        console.log(this.data.allbook)
+        array.push({
+          item: this.data.allbook,
+        })
+        console.log(this.data.allbook)
+        wx.setStorage({
+          key: 'book',
+          data: array,
+        })
+        this.selectComponent("#toast").showToastAuto("请求成功", "success");
       }
     })
-/* that.selectComponent("#toast").showToastAuto("请求成功", "success"); */
-}, 
+  },
+
+  againrequest() {
+    if (this.data.a == this.data.b+1) {
+      this.setData({ a: this.data.a + 1, b: this.data.b + 1 })
+      this.webrequest(this.data.a)
+    }
+    else { 
+      this.setData({ b: this.data.b + 1})
+     this.setData({allbook:wx.getStorageSync('book')[this.data.b].item})}
+  },
+
+  leftrequest() {
+    console.log(wx.getStorageSync('book')[this.data.b])
+    if (this.data.b != 0) { this.setData({ b: this.data.b - 1})
+    this.setData({allbook:wx.getStorageSync('book')[this.data.b].item}) }
+  },
 
   deleteMark() {
     wx.removeStorage({
@@ -117,38 +146,48 @@ Page({
     this.get()
     this.setData({
       ifshow: true,
-      word:''
+      word: ''
     })
   },
 
   search() {
     if (this.data.word != "") {
-      this.webrequest()
-      if (wx.getStorageSync('item').length < 9) { 
-        this.cache()
-        var arr=this.objHeavy(wx.getStorageSync('item'))
+      this.webrequest(this.data.a)
+      if (wx.getStorageSync('item').length < 9) {
+        this.cache('item')
+        var arr = this.objHeavy(wx.getStorageSync('item'))
         wx.setStorage({
           key: 'item',
           data: arr,
         })
       }
       if (wx.getStorageSync('item').length == 9) {
-        let array = wx.getStorageSync('item')
-        let arrays = []
-        for (var i = 0; i < array.length; i++) {
-          if (i != 0) {
-            arrays.push(array[i])
-          }
+        this.cache('item')
+        var arr = this.objHeavy(wx.getStorageSync('item'))
+        if (arr.length == 9) {
+          // 重新设置缓存
+          wx.setStorage({
+            key: 'item',
+            data: arr,
+          })
         }
-        // 重新设置缓存
-        wx.setStorage({
-          key: 'item',
-          data: arrays,
-        })
-        this.cache()
+        if (arr.length == 10) {
+          let array = wx.getStorageSync('item')
+          let arrays = []
+          for (var i = 0; i < array.length; i++) {
+            if (i != 0) {
+              arrays.push(array[i])
+            }
+          }
+          // 重新设置缓存
+          wx.setStorage({
+            key: 'item',
+            data: arrays,
+          })
+        }
       }
       this.setData({
-        ifsearch:false
+        ifsearch: false
       })
     }
   },
@@ -240,7 +279,7 @@ Page({
   },
 
   //查重
-  objHeavy:function(arr: { [x: string]: any }){ 
+  objHeavy: function (arr: { [x: string]: any }) {
     let arr1 = []; //存名字
     let newArr = []; //存新数组
     for (let i in arr) {
@@ -256,6 +295,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    wx.removeStorage({
+      key: 'book',
+    })
     this.get()//初始化获取缓存
   },
 

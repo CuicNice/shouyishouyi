@@ -97,22 +97,22 @@
   </view>
   <view wx:if="{{!ifsearch}}">
     <view class="allsearch" >
-      <view class="leftBox">共搜索到30条结果</view>
+      <view class="leftBox"><!-- 共搜索到30条结果 --></view>
       <view class="rightBox">
-        <view class="lefticon2">
+        <view class="lefticon2" bindtap="againrequest">
           <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
         </view>
-        <view class="pagenum">第1/3页</view>
-        <view class="righticon2">
+        <view class="pagenum">第{{b+1}}/{{a}}页</view>
+        <view class="righticon2" bindtap="leftrequest">
           <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
         </view>
       </view>
     </view>
-    <view class="classBox">
+    <view class="classBox" wx:for="{{allbook}}" wx:key="index">
       <view class="leftClass">
-        <view class="className">高等数学学习辅导：天津大学啦啦啦啦</view>
-        <view class="classForm">天津大学数学系</view>
-        <view class="classFormplace">20140101 | 高等教育出版社</view>
+        <view class="className">{{item.title}}</view>
+        <view class="classForm">{{item.author}}</view>
+        <view class="classFormplace">{{item.dates}} | {{item.publisher}}</view>
         <view class="placeBox">
           <view class="place">总馆</view>
           <view class="place">嘉鱼</view>
@@ -122,7 +122,7 @@
         <view class="dashed"></view>
       </view>
       <view class="rightBox">
-        <view class="bookNum">3</view>
+        <view class="bookNum">{{item.books.length}}</view>
         <view class="bookText">本在馆</view>
         <view class="borrow">外借图书</view>
         <view class="dashed"></view>

@@ -649,15 +649,15 @@ page {
 }
 .bookNum{
   margin-top: 6rpx;
-  margin-left: 140rpx;
-  width: 46rpx;
+  margin-left: 110rpx;
+  width: 100rpx;
 height: 104rpx;
 font-family: 'PingFang SC';
 font-style: normal;
 font-weight: 400;
 font-size: 74rpx;
 line-height: 104rpx;
-text-transform: capitalize;
+text-align: right;
 color: #20C38C;
 }
 .bookText{
