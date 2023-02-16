@@ -181,19 +181,19 @@
       </view>
     </view>
   </view>
-  <view class="gen">
+  <view class="gen" wx:for="{{allbook[num].num}}" wx:key="index">
     <view class="gentop">
       <view class="gentopRight">
         <view>
           <image style="width: 40rpx;height: 40rpx;float: left;" src="../../../../static/svg/place.svg"></image>
-          <view class="gentext">总馆</view>
+          <view class="gentext">{{item.place}}</view>
         </view>
         <view class="genpart">
-          <view class="genpart1">索书号 013/156</view>
-          <view class="genpart2">在馆数 1本</view>
+          <view class="genpart1">索书号 {{item.hao}}</view>
+          <view class="genpart2">在馆数 {{item.num}}本</view>
         </view>
       </view>
-      <image class="gentopLeft" src="../../../../static/svg/genlibrary.svg"></image>
+      <image class="gentopLeft" src="{{item.image}}"></image>
     </view>
     <view class="genprogress">
       <view class="genprogressBox">条码号</view>

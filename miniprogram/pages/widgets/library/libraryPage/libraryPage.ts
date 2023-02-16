@@ -33,20 +33,6 @@ Page({
     b: 0,
     ifshowXiang:true,
     num:0,
-    book:{
-      place:{
-        place:'',
-        num:'',
-        image:'',
-        message:{
-          mes:{
-            num:'',
-            state:'',
-            circulation:''
-          }
-        }
-      }
-    }
   },
 
   swiperChangeqian: function () {
@@ -122,7 +108,7 @@ Page({
         "page": a,
         "word": this.data.word
       },
-      success: (res) => {
+      success:(res:any)=> {
         var arr = res.data.data
         console.log(arr)
         for(var j=0;j<10;j++){
@@ -136,13 +122,17 @@ Page({
         if(arr[j].books[i].local.indexOf("嘉鱼")!=-1){
           var jiaArr={}
           arr[j].num.jiaArr=jiaArr
+          var myarr={}
+          arr[j].num.jiaArr.myarr=myarr
+          var add={num:arr[j].books[i].barcode,zhuangtai:arr[j].books[i].localstatu,leixing:arr[j].books[i].cirType}
+          arr[j].num.jiaArr.myarr.shuzu=add
           jianum=jianum+1
           var showjia=true
           var place="嘉鱼"
           var image="../../../../static/svg/jiayulibrary.svg"
           var hao=arr[j].books[i].callno
           arr[j].showjia=showjia
-          arr[j].num.jiaArr.jianum=jianum
+          arr[j].num.jiaArr.num=jianum
           arr[j].num.jiaArr.hao=hao
           arr[j].num.jiaArr.place=place
           arr[j].num.jiaArr.image=image
@@ -150,13 +140,17 @@ Page({
         if(arr[j].books[i].local.indexOf("总馆")!=-1){
           var zongArr={}
           arr[j].num.zongArr=zongArr
+          var myarr={}
+          arr[j].num.zongArr.myarr=myarr
+          var add={num:arr[j].books[i].barcode,zhuangtai:arr[j].books[i].localstatu,leixing:arr[j].books[i].cirType}
+          arr[j].num.zongArr.myarr.shuzu=add
           zongnum=zongnum+1
           var showzong=true
           var place="总馆"
           var image="../../../../static/svg/genlibrary.svg"
           var hao=arr[j].books[i].callno
           arr[j].showzong=showzong
-          arr[j].num.zongArr.zongnum=zongnum
+          arr[j].num.zongArr.num=zongnum
           arr[j].num.zongArr.hao=hao
           arr[j].num.zongArr.place=place
           arr[j].num.zongArr.image=image
@@ -164,13 +158,17 @@ Page({
         if(arr[j].books[i].local.indexOf("南区")!=-1){
           var nanArr={}
           arr[j].num.nanArr=nanArr
+          var myarr={}
+          arr[j].num.nanArr.myarr=myarr
+          var add={num:arr[j].books[i].barcode,zhuangtai:arr[j].books[i].localstatu,leixing:arr[j].books[i].cirType}
+          arr[j].num.nanArr.myarr.shuzu=add
           nannum=nannum+1
           var shownan=true
           var place="南区"
           var image="../../../../static/svg/nanlibrary.svg"
           var hao=arr[j].books[i].callno
           arr[j].shownan=shownan
-          arr[j].num.nanArr.nannum=nannum
+          arr[j].num.nanArr.num=nannum
           arr[j].num.nanArr.hao=hao
           arr[j].num.nanArr.place=place
           arr[j].num.nanArr.image=image
@@ -178,13 +176,17 @@ Page({
         if(arr[j].books[i].local.indexOf("中区")!=-1||arr[j].books[i].local.indexOf("南湖")!=-1){
           var zhongArr={}
           arr[j].num.zhongArr=zhongArr
+          var myarr={}
+          arr[j].num.zhongArr.myarr=myarr
+          var add={num:arr[j].books[i].barcode,zhuangtai:arr[j].books[i].localstatu,leixing:arr[j].books[i].cirType}
+          arr[j].num.zhongArr.myarr.shuzu=add
           zhongnum=zhongnum+1
           var showzhong=true
           var place="中区"
           var image="../../../../static/svg/schoolBuilt/zhongqutushuguan.svg"
           var hao=arr[j].books[i].callno
           arr[j].showzhong=showzhong
-          arr[j].num.zhongArr.zhongnum=zhongnum
+          arr[j].num.zhongArr.num=zhongnum
           arr[j].num.zhongArr.hao=hao
           arr[j].num.zhongArr.place=place
           arr[j].num.zhongArr.image=image
