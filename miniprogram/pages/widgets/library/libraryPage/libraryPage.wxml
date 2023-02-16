@@ -50,7 +50,7 @@
 </dialogTitle>-->
 
 <!--图书馆搜索界面-->
-<view class="topbar">
+<view class="topbar" wx:if="{{ifshowXiang}}">
   <view class="returnBtn" bindtap="returnEvent">
     <image class="returnIcon" style="width:18rpx; height:34rpx;margin-top: 5rpx;" src="/static/svg/returnIcon.svg"></image>
   </view>
@@ -58,7 +58,8 @@
     <view>首义图书馆</view>
   </view>
 </view>
-<view class="bigBox">
+<view class="page"></view>
+<view class="bigBox" wx:if="{{ifshowXiang}}">
   <view class="search">
     <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
     <image class="image" src="../../../../static/svg/search.svg" bindtap="search"></image>
@@ -96,28 +97,30 @@
     </view>
   </view>
   <view wx:if="{{!ifsearch}}">
-    <view class="allsearch" >
-      <view class="leftBox"><!-- 共搜索到30条结果 --></view>
+    <view class="allsearch">
+      <view class="leftBox">
+        {{word}} 搜索结果
+      </view>
       <view class="rightBox">
         <view class="lefticon2" bindtap="againrequest">
-          <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
+          <image class="lefticonImg" src="/static/svg/vector2.svg"></image>
         </view>
-        <view class="pagenum">第{{b+1}}/{{a}}页</view>
+        <view class="pagenum">{{b+1}}</view>
         <view class="righticon2" bindtap="leftrequest">
-          <image class="lefticonImg" src="/static/svg/Vector.svg"></image>
+          <image class="lefticonImg" src="/static/svg/vector2.svg"></image>
         </view>
       </view>
     </view>
-    <view class="classBox" wx:for="{{allbook}}" wx:key="index">
+    <view class="classBox" wx:for="{{allbook}}" wx:key="index" bindtap="showXQ" wx:for-index="index"   data-index="{{index}}" >
       <view class="leftClass">
         <view class="className">{{item.title}}</view>
         <view class="classForm">{{item.author}}</view>
         <view class="classFormplace">{{item.dates}} | {{item.publisher}}</view>
         <view class="placeBox">
-          <view class="place">总馆</view>
-          <view class="place">嘉鱼</view>
-          <view class="place">南区</view>
-          <view class="place">中区</view>
+          <view class="place" wx:if="{{item.showzong==true?true:false}}">总馆</view>
+          <view class="place" wx:if="{{item.showjia==true?true:false}}">嘉鱼</view>
+          <view class="place" wx:if="{{item.shownan==true?true:false}}">南区</view>
+          <view class="place" wx:if="{{item.showzhong==true?true:false}}">中区</view>
         </view>
         <view class="dashed"></view>
       </view>
@@ -127,6 +130,80 @@
         <view class="borrow">外借图书</view>
         <view class="dashed"></view>
       </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{!ifshowXiang}}">
+  <view class="topbar">
+    <view class="returnBtn" bindtap="return">
+      <image class="returnIcon" style="width:18rpx; height:34rpx;margin-top: 5rpx;" src="/static/svg/returnIcon.svg"></image>
+    </view>
+    <view class="mypageTitle">
+      <view>图书详情</view>
+    </view>
+  </view>
+  <view class="bookXQ">
+    <view class="bookName">{{allbook[num].title}}</view>
+    <view class="all">
+      <image class="picture" src="http://www.bookcovers.cn/index.php?client=whzy&isbn={{allbook[num].ISBN}}号码/cover"></image>
+      <view class="leftall">
+        <view class="box">
+          <view class="textpart">作者: </view>
+          <view class="textparts"> {{allbook[num].author}}</view>
+        </view>
+        <view class="box">
+          <view class="textpart">出版社: </view>
+          <view class="textparts"> {{allbook[num].publisher}}</view>
+        </view>
+        <view class="box">
+          <view class="textpart">出版时间: </view>
+          <view class="textparts"> {{allbook[num].dates}}</view>
+        </view>
+        <view class="box">
+          <view class="textpart">在馆数: </view>
+          <view class="textparts"> {{allbook[num].author}}本</view>
+        </view>
+        <view class="box">
+          <view class="textpart">累借次数: </view>
+          <view class="textparts"> {{allbook[num].author}}次</view>
+        </view>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="placeBox">
+        <view class="place" wx:if="{{allbook[num].showzong==true?true:false}}">总馆</view>
+          <view class="place" wx:if="{{allbook[num].showjia==true?true:false}}">嘉鱼</view>
+          <view class="place" wx:if="{{allbook[num].shownan==true?true:false}}">南区</view>
+          <view class="place" wx:if="{{allbook[num].showzhong==true?true:false}}">中区</view>
+      </view>
+      <view style="margin-top: -55rpx;margin-left: 470rpx;">
+        <view class="borrow">外借图书</view>
+      </view>
+    </view>
+  </view>
+  <view class="gen">
+    <view class="gentop">
+      <view class="gentopRight">
+        <view>
+          <image style="width: 40rpx;height: 40rpx;float: left;" src="../../../../static/svg/place.svg"></image>
+          <view class="gentext">总馆</view>
+        </view>
+        <view class="genpart">
+          <view class="genpart1">索书号 013/156</view>
+          <view class="genpart2">在馆数 1本</view>
+        </view>
+      </view>
+      <image class="gentopLeft" src="../../../../static/svg/genlibrary.svg"></image>
+    </view>
+    <view class="genprogress">
+      <view class="genprogressBox">条码号</view>
+      <view class="genprogressBox">馆藏状态</view>
+      <view class="genprogressBox">流通类型</view>
+    </view>
+    <view class="genprogressNext">
+      <view class="genprogressBox2">条码号</view>
+      <view class="genprogressBox2">馆藏状态</view>
+      <view class="genprogressBox2">流通类型</view>
     </view>
   </view>
 </view>

@@ -30,7 +30,23 @@ Page({
     ifsearch: true,
     allbook: [],
     a: 1,
-    b: 0
+    b: 0,
+    ifshowXiang:true,
+    num:0,
+    book:{
+      place:{
+        place:'',
+        num:'',
+        image:'',
+        message:{
+          mes:{
+            num:'',
+            state:'',
+            circulation:''
+          }
+        }
+      }
+    }
   },
 
   swiperChangeqian: function () {
@@ -47,8 +63,12 @@ Page({
   },
 
   returnEvent() {
-    this.setData({ ifsearch: true, word: '' })
+    this.setData({ ifsearch: true, word: '',a:1,b:0 })
     this.get()
+  },
+
+  return(){
+    this.setData({ifshowXiang:true})
   },
 
   getInputValue: function (e: any) {
@@ -104,13 +124,79 @@ Page({
       },
       success: (res) => {
         var arr = res.data.data
+        console.log(arr)
+        for(var j=0;j<10;j++){
+          var num={}
+          arr[j].num=num
+          var jianum=0
+          var zongnum=0
+          var zhongnum=0
+          var nannum=0
+        for(var i=0;i<arr[j].books.length;i++){
+        if(arr[j].books[i].local.indexOf("嘉鱼")!=-1){
+          var jiaArr={}
+          arr[j].num.jiaArr=jiaArr
+          jianum=jianum+1
+          var showjia=true
+          var place="嘉鱼"
+          var image="../../../../static/svg/jiayulibrary.svg"
+          var hao=arr[j].books[i].callno
+          arr[j].showjia=showjia
+          arr[j].num.jiaArr.jianum=jianum
+          arr[j].num.jiaArr.hao=hao
+          arr[j].num.jiaArr.place=place
+          arr[j].num.jiaArr.image=image
+        }
+        if(arr[j].books[i].local.indexOf("总馆")!=-1){
+          var zongArr={}
+          arr[j].num.zongArr=zongArr
+          zongnum=zongnum+1
+          var showzong=true
+          var place="总馆"
+          var image="../../../../static/svg/genlibrary.svg"
+          var hao=arr[j].books[i].callno
+          arr[j].showzong=showzong
+          arr[j].num.zongArr.zongnum=zongnum
+          arr[j].num.zongArr.hao=hao
+          arr[j].num.zongArr.place=place
+          arr[j].num.zongArr.image=image
+        }
+        if(arr[j].books[i].local.indexOf("南区")!=-1){
+          var nanArr={}
+          arr[j].num.nanArr=nanArr
+          nannum=nannum+1
+          var shownan=true
+          var place="南区"
+          var image="../../../../static/svg/nanlibrary.svg"
+          var hao=arr[j].books[i].callno
+          arr[j].shownan=shownan
+          arr[j].num.nanArr.nannum=nannum
+          arr[j].num.nanArr.hao=hao
+          arr[j].num.nanArr.place=place
+          arr[j].num.nanArr.image=image
+        }
+        if(arr[j].books[i].local.indexOf("中区")!=-1||arr[j].books[i].local.indexOf("南湖")!=-1){
+          var zhongArr={}
+          arr[j].num.zhongArr=zhongArr
+          zhongnum=zhongnum+1
+          var showzhong=true
+          var place="中区"
+          var image="../../../../static/svg/schoolBuilt/zhongqutushuguan.svg"
+          var hao=arr[j].books[i].callno
+          arr[j].showzhong=showzhong
+          arr[j].num.zhongArr.zhongnum=zhongnum
+          arr[j].num.zhongArr.hao=hao
+          arr[j].num.zhongArr.place=place
+          arr[j].num.zhongArr.image=image
+        }
+      }}
         this.setData({ allbook: arr })
         var array = wx.getStorageSync('book') || []
-        console.log(this.data.allbook)
+        //console.log(this.data.allbook)
         array.push({
           item: this.data.allbook,
         })
-        console.log(this.data.allbook)
+        //console.log(this.data.allbook)
         wx.setStorage({
           key: 'book',
           data: array,
@@ -121,13 +207,21 @@ Page({
   },
 
   againrequest() {
-    if (this.data.a == this.data.b+1) {
+    if (this.data.a == this.data.b+1&&wx.getStorageSync('book')[this.data.b].item.length!=0) {
       this.setData({ a: this.data.a + 1, b: this.data.b + 1 })
       this.webrequest(this.data.a)
     }
-    else { 
+    if(this.data.a != this.data.b+1) { 
       this.setData({ b: this.data.b + 1})
      this.setData({allbook:wx.getStorageSync('book')[this.data.b].item})}
+  },
+
+  showXQ(res: any){
+    this.setData({
+      ifshowXiang:false
+    })
+    console.log(res.currentTarget.dataset.index)
+    this.setData({num:res.currentTarget.dataset.index})
   },
 
   leftrequest() {
@@ -151,6 +245,10 @@ Page({
   },
 
   search() {
+    this.setData({a:1,b:0})
+    wx.removeStorage({
+      key: 'book',
+    })
     if (this.data.word != "") {
       this.webrequest(this.data.a)
       if (wx.getStorageSync('item').length < 9) {
