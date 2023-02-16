@@ -1,1 +1,1 @@
-<banner imageList="{{homePics}}" bind:imageTapEvent="tap"></banner>
+<banner class="banner" imageList="{{homePics}}" bind:imageTapEvent="tap"></banner>  

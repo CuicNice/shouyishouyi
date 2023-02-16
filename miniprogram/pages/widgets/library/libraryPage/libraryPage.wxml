@@ -200,10 +200,10 @@
       <view class="genprogressBox">馆藏状态</view>
       <view class="genprogressBox">流通类型</view>
     </view>
-    <view class="genprogressNext">
-      <view class="genprogressBox2">条码号</view>
-      <view class="genprogressBox2">馆藏状态</view>
-      <view class="genprogressBox2">流通类型</view>
+    <view class="genprogressNext" wx:for="{{item.myarr}}" wx:key="index">
+      <view class="genprogressBox2">{{item.leixing}}</view>
+      <view class="genprogressBox2">{{item.num}}</view>
+      <view class="genprogressBox2">{{item.zhuangtai}}</view>
     </view>
   </view>
 </view>

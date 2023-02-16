@@ -13,19 +13,9 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     // index: 0,
-    homePics:[
-      {
-        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
-        url:"第0个"
-      },
-      {
-        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
-        url:"第1个"
-      },
-      {
-        src:"http://introduce.mcdd.top/certificate/fin-min-certificate-5cf4382e-98ac-11ed-aad6-fa163ee0d876.png",
-        url:"第2个"
-      },]
+    homePics:[],
+    iftaiozhuan:false,
+    shuju:''
   },
   // 事件处理函数
   bindViewTap() {
@@ -34,8 +24,60 @@ Page({
     })
   },
 
+  onReady() {
+    wx.request({
+      url: 'http://www.fmin-courses.com:9527/api/v1/ad/ad/banner/appletBannerList',
+      method:'POST',
+      data: {
+        "currentPage": "1",
+        "pageSize": "5"
+      },
+      success:(res)=> {
+        console.log(res.data)
+        this.setData({
+          homePics:res.data.data.list
+        })
+        for(var i=0;i<this.data.homePics.length;i++){
+          if(this.data.homePics[i].bannerType == 'image'){
+            this.setData({
+              iftaiozhuan:false
+            })
+          }
+          if(this.data.homePics[i].bannerType != 'image'){
+            this.setData({
+              iftaiozhuan:true
+            })
+          }
+          var src='http://' + this.data.homePics[i].bannerImage
+          var iftiaozhuan=this.data.iftaiozhuan
+          this.data.homePics[i].src=src
+          this.data.homePics[i].iftiaozhuan=iftiaozhuan
+        }
+        this.setData({
+          homePics:this.data.homePics
+        })
+      }
+    })
+  },
+
   tap(e:any){
     console.log(e.detail)
+      this.setData({
+      shuju:e.detail.bannerContent,
+      iftaiozhuan: true
+    })
+    console.log(this.data.shuju)
+    try{
+      wx.setStorageSync('key', this.data.shuju)
+      console.log('写入value成功')
+    }catch (e) {
+      console.log('写入value发生错误')
+    }
+    if(this.data.shuju != null){
+    wx.navigateTo({
+      url: '../indexText/indexText',
+    })
+  }
   },
 
   onLoad() {
