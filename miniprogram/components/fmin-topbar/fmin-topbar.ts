@@ -44,7 +44,7 @@ Component({
     /**
      * 返回事件
      */
-    returnEvent() {
+    returnPage() {
       wx.navigateBack();
     },
     /**
