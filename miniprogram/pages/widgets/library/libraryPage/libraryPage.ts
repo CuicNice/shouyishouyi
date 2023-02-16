@@ -1,14 +1,5 @@
 // pages/widgets/library/libraryPage/libraryPage.ts
-
-/* import uCharts from "../../../../utils/u-charts";
-import { getlibrary } from '../../../../api/libraryApi';
-export interface libraryItem {
-  page: string,
-  word: string
-} */
-
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -91,17 +82,6 @@ Page({
     }, 500)
   },
 
-
-
-  //网络请求
-  /* async webrequest(from: libraryItem) {
-    console.log(from)
-    const { data: res } = await getlibrary(from) as unknown as IResult<any>;
-    if (!res) {
-      console.log("网络请求失败")
-    } else {
-      console.log("网络请求成功")
-    }}, */
   webrequest(a: number) {
     this.selectComponent("#toast").showToast("请求中....", "lodding");
     wx.request({
