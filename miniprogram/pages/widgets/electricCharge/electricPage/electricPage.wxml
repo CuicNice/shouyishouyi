@@ -1,7 +1,7 @@
 <!--pages/widgets/electricCharge/electricPage/electricPage.wxml-->
 <!--pages/Widgets/electricCharge/electricCharge.wxml-->
 <view class="bg"></view>
-<topbar title="{{electricChargeTitle}}" immersion = "{{true}}">
+<topbar title="{{electricChargeTitle}}" immersion = "{{true}}" >
 <view class="electricCharge-cantainer">
   <view class="electricCharge-top">
     <view class="remainBox">

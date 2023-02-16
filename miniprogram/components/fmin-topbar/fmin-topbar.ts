@@ -1,7 +1,8 @@
 // components/fmin-topbar/fmin-topbar.ts
 /**
- * 注意:使用topbar组件时,需要将topbar标签包裹住页面所有元素.
+ * 注意:使用topbar组件时,需要将topbar标签包裹住页面所有元素(背景请不要包括进来,否则会自动被占元素挤下去).
  * 如:
+ *    <view class="bg"></view>
  *    <topbar title="主标签" immersion="{{true}}" Threshold="0.2">
  *      <view> <!-- page页面 -->
  *          xxxxxxxxxxx
@@ -23,7 +24,11 @@ Component({
     },
     Threshold:{ // 自动取消沉浸的阈值
       type:Number,
-      value:0.2
+      value:0.3
+    },
+    speed:{ // 自动取消沉浸的速度
+      type:Number,
+      value:1
     }
     
   },
@@ -57,7 +62,7 @@ Component({
       var myShow =  (parseInt(heighTop)/parseInt(screenHeight as unknown as string));
       // console.log(myShow)
       if(myShow > this.data.Threshold){
-        rgba = myShow * 2 as unknown as string;
+        rgba = myShow * (2 * this.data.speed) as unknown as string;
       }else{
         rgba = "0";
       }
