@@ -63,7 +63,7 @@ page {
     display: flex;
     align-content: center;
     justify-content: space-between;
-    /* vertical-align :middle; */
+    vertical-align: middle;
     align-items: center;
 }
 
@@ -89,25 +89,27 @@ page {
     transform: translateX(-10rpx);
     font-family: 'PingFang SC';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 34rpx;
     line-height: 48rpx;
     /* identical to box height */
     text-align: center;
     color: #000000;
     mix-blend-mode: normal;
+    letter-spacing: 1px;
     opacity: 0.9;
 }
-
-.saveText {
-    width: 128rpx;
+.saveText{
+  font-weight: 700;
+}
+.saveButtonText {
     height: 44rpx;
     font-family: 'PingFang SC';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 32rpx;
     line-height: 44rpx;
-    letter-spacing: -0.4352rpx;
+    letter-spacing: 1px;
     color: #FFFFFF;
     /* Inside auto layout */
     flex: none;
@@ -120,7 +122,7 @@ page {
     flex-direction: column;
     align-items: center;
     width: auto;
-    padding-top:4rpx;
+    padding-top: 4rpx;
     /* padding: 7.8%; */
     box-sizing: border-box;
 }
@@ -150,10 +152,9 @@ page {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 34rpx 0rpx 0rpx 0rpx;
+    /* margin: 0rpx 66rpx 0 64rpx; */
+    padding: 34rpx 66rpx 0rpx 64rpx;
     gap: 46rpx;
-    width: 620rpx;
-    height: 574rpx;
 }
 
 .thingSet {
@@ -163,9 +164,9 @@ page {
     align-items: flex-start;
     padding: 0rpx;
     gap: 8rpx;
-    width: 620rpx;
-    height: 182rpx;
     /* Inside auto layout */
+    /* 边距 */
+    width: auto;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -176,7 +177,7 @@ page {
     height: 44rpx;
     font-family: 'PingFang SC';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 32rpx;
     line-height: 44rpx;
     text-transform: capitalize;
@@ -215,29 +216,30 @@ page {
 }
 
 .thingInput {
-  box-sizing: border-box;
+    box-sizing: border-box;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
     font-size: 28rpx;
     line-height: 40rpx;
     text-transform: lowercase;
+    letter-spacing: 1px;
+    width: 100%;
     color: #292945;
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 620rpx;
     height: 88rpx;
     /* background: #FFFFFF; */
     border: 2rpx solid #20C38C;
     border-radius: 8rpx;
     background: #FFFFFF;
-
- 
 }
-.InputTxt{
 
-  margin-left:36rpx;
+.InputTxt {
+    margin-left: 36rpx;
+    letter-spacing: 1px;
+
 }
 
 .pickerin {
@@ -251,7 +253,7 @@ page {
     text-transform: lowercase;
     /* text */
     color: #292945;
-    opacity: 0.75;
+    opacity: 0.5;
 }
 
 .picker {
@@ -270,7 +272,7 @@ page {
     width: 620rpx;
     height: 34rpx;
     /* 字体 */
-    letter-spacing: -0.1rpx;
+    letter-spacing: 0.8px;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
@@ -291,13 +293,12 @@ page {
     /* input */
     /* Auto layout */
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     padding: 0rpx;
     gap: 8rpx;
-    width: 620rpx;
-    height: 140rpx;
     /* Inside auto layout */
     flex: none;
     order: 1;
@@ -310,7 +311,7 @@ page {
     height: 44rpx;
     font-family: 'PingFang SC';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 32rpx;
     line-height: 44rpx;
     text-transform: capitalize;
@@ -328,13 +329,14 @@ page {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
     padding: 24rpx 36rpx;
-    width: 620rpx;
     height: 88rpx;
     background: #FFFFFF;
     /* #20C38C */
     border: 2rpx solid #20C38C;
     border-radius: 8rpx;
+    letter-spacing: 1px;
     /* Inside auto layout */
     flex: none;
     order: 1;
@@ -347,10 +349,10 @@ page {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 56rpx;
     align-items: center;
-    padding: 56rpx 20rpx 20rpx;
+    /* padding: 56rpx 126rpx 20rpx 124rpx; */
     gap: 20rpx;
-    width: 500rpx;
     height: 84rpx;
     /* Inside auto layout */
     flex: none;
@@ -366,7 +368,8 @@ page {
     /* padding: 20rpx 28rpx; */
     justify-content: center;
     gap: 20rpx;
-    width: 500rpx;
+    margin-left: 142rpx !important;
+    margin-right: 141rpx !important;
     height: 84rpx;
     background: #20C38C;
     border-radius: 70rpx;
@@ -380,7 +383,7 @@ page {
     height: 44rpx;
     font-family: 'PingFang SC';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 32rpx;
     line-height: 44rpx;
     letter-spacing: -0.4352rpx;
@@ -397,17 +400,24 @@ page {
 }
 
 .Img {
+    margin-top: 144rpx;
+}
 
-    margin-top: 138rpx;
+.paw {
+    background-size: contain;
+    width: 440rpx;
+    /* height: 130rpx; */
 }
 
 .sportTxt {
     /* 武昌首义学院（武汉校区）体育馆 */
-    width: 360rpx;
+    /* width: 360rpx; */
     height: 34rpx;
+    letter-spacing: 1px;
     font-family: 'PingFang SC';
     font-style: normal;
-    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-weight: 700;
     font-size: 24rpx;
     line-height: 34rpx;
     /* identical to box height */
@@ -421,16 +431,14 @@ page {
 }
 
 .sportTxtBox {
-    /* Frame 3 */
-    /* Auto layout */
+    background: #63a4b3;
+    border-radius: 94rpx;
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: row;
     flex-direction: row;
-    /* align-items: flex-start; */
-    padding: 8rpx 34rpx;
     gap: 20rpx;
-    width: 360rpx;
     height: 34rpx;
-    /* margin: 0 90px; */
-    background: #63A4B3;
-    border-radius: 90rpx;
+    margin-top: -38rpx;
+    padding: 8rpx 34rpx;
 }
