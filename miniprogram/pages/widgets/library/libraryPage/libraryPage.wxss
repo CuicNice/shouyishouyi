@@ -318,6 +318,7 @@ components/topbar/topbar.wxss
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-left: -40rpx;
   height: auto;
 }
 
@@ -411,11 +412,12 @@ components/topbar/topbar.wxss
 
 .markBox {
   width: 622rpx;
-  height: 200rpx;
-  position: absolute;
-  top: 450rpx;
-  left: 64rpx;
+  height: 230rpx;
   display: flex;
+  overflow: hidden;
+  position: absolute;
+  top: 430rpx;
+  left: 40rpx;
   flex-wrap: wrap;
 }
 
@@ -428,8 +430,9 @@ components/topbar/topbar.wxss
   text-align: center;
   margin-left: 5rpx;
   height: 48rpx;
-  line-height: 48rpx;
+  line-height: 55rpx;
 }
+
 .text1 {
   width: 190rpx;
   overflow: hidden;
@@ -439,17 +442,17 @@ components/topbar/topbar.wxss
   text-align: center;
   margin-left: 5rpx;
   height: 48rpx;
-  line-height: 48rpx;
+  line-height: 55rpx;
 }
 
 .markMake {
-  height: 48rpx;
+  height: 55rpx;
   padding: 4rpx 16rpx;
   border-radius: 148rpx;
   margin-left: 20rpx;
   background: #EBEBEB;
+  margin-top: 15rpx;
 }
-
 .nonemarkMake {
   font-family: 'PingFang SC';
   font-style: normal;
@@ -472,15 +475,17 @@ components/topbar/topbar.wxss
 .lefticon2 {
   position: absolute;
   top: 330rpx;
-  left: 670rpx;
+  left: 660rpx;
   width: 50rpx;
   height: 50rpx;
+  float: left;
   text-align: center;
 }
 
 .lefticonImg {
   width: 12rpx;
   height: 20rpx;
+  margin-left: 4rpx;
 }
 
 .lefticonImg2 {
@@ -505,6 +510,7 @@ components/topbar/topbar.wxss
   height: 40rpx;
   text-align: center;
   transform: matrix(-1, 0, 0, 1, 0, 0);
+  float: right;
 }
 
 
@@ -556,8 +562,8 @@ components/topbar/topbar.wxss
 
 .leftBox {
   float: right;
-  width: 1000rpx;
   height: 34rpx;
+  width: 600rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
@@ -569,9 +575,9 @@ components/topbar/topbar.wxss
 
 .pagenum {
   position: absolute;
-  top: 337rpx;
-  left: 555rpx;
-  width: 130rpx;
+  top: 340rpx;
+  left: 570rpx;
+  width: 100rpx;
   height: 34rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -932,4 +938,8 @@ components/topbar/topbar.wxss
 
 .none {
   height: 60rpx;
+}
+
+.none1 {
+  height: 120rpx;
 }

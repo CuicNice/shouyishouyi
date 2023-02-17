@@ -279,7 +279,7 @@ Page({
     })
     if (this.data.word != "") {
       this.webrequest(this.data.a)
-      if (wx.getStorageSync('item').length < 7) {
+      if (wx.getStorageSync('item').length < 10) {
         this.cache('item')
         var arr = this.objHeavy(wx.getStorageSync('item'))
         wx.setStorage({
@@ -287,17 +287,17 @@ Page({
           data: arr,
         })
       }
-      if (wx.getStorageSync('item').length == 7) {
+      if (wx.getStorageSync('item').length == 10) {
         this.cache('item')
         var arr = this.objHeavy(wx.getStorageSync('item'))
-        if (arr.length == 7) {
+        if (arr.length == 10) {
           // 重新设置缓存
           wx.setStorage({
             key: 'item',
             data: arr,
           })
         }
-        if (arr.length == 8) {
+        if (arr.length == 11) {
           let array = wx.getStorageSync('item')
           let arrays = []
           for (var i = 0; i < array.length; i++) {
@@ -405,8 +405,8 @@ Page({
 
   //查重
   objHeavy: function (arr: { [x: string]: any }) {
-    let arr1 = []; //存名字
-    let newArr = []; //存新数组
+    let arr1 = [];
+    let newArr = [];
     for (let i in arr) {
       if (arr1.indexOf(arr[i].item) == -1) {
         arr1.push(arr[i].item);

@@ -131,6 +131,7 @@
       </view>
     </view>
   </view>
+  <view class="none1"></view>
 </view>
 <view wx:if="{{!ifshowXiang}}">
   <view class="topbar">
