@@ -52,7 +52,7 @@
 <!--图书馆搜索界面-->
 <view class="topbar" wx:if="{{ifshowXiang}}">
   <view class="returnBtn" bindtap="returnEvent">
-    <image class="returnIcon" style="width:18rpx; height:34rpx;margin-top: 5rpx;" src="/static/svg/returnIcon.svg"></image>
+    <image class="returnIcon" style="width:18rpx; height:34rpx" src="/static/svg/returnIcon.svg"></image>
   </view>
   <view class="mypageTitle">
     <view>首义图书馆</view>
@@ -70,13 +70,14 @@
   </view>
   <view class="markBox" wx:if="{{ifsearch}}">
     <view class="markMake" wx:if="{{!ifshow}}" wx:for="{{shuju}}" wx:key="index">
-      <view class="text" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
+      <view class="text" wx:if="{{!item.ifshow}}" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
+      <view class="text1" wx:if="{{item.ifshow}}" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
     </view>
     <view class="nonemarkMake" wx:if="{{ifshow}}">暂无搜索记录</view>
   </view>
   <view class="library" wx:if="{{ifsearch}}">
     <view class="lefticon" bindtap="swiperChangeqian">
-      <image class="lefticonImg" src="/static/svg/vector.svg"></image>
+      <image class="lefticonImg2" src="/static/svg/vector.svg"></image>
     </view>
     <swiper class="librarySwiper" swiperCurrent="swiper" current="{{swiper}}">
       <swiper-item>
@@ -93,7 +94,7 @@
       </swiper-item>
     </swiper>
     <view class="righticon" bindtap="swiperChangeho">
-      <image class="lefticonImg" src="/static/svg/vector.svg"></image>
+      <image class="lefticonImg2" src="/static/svg/vector.svg"></image>
     </view>
   </view>
   <view wx:if="{{!ifsearch}}">
@@ -111,7 +112,7 @@
         </view>
       </view>
     </view>
-    <view class="classBox" wx:for="{{allbook}}" wx:key="index" bindtap="showXQ" wx:for-index="index"   data-index="{{index}}" >
+    <view class="classBox" wx:for="{{allbook}}" wx:key="index" bindtap="showXQ" wx:for-index="index" data-index="{{index}}">
       <view class="leftClass">
         <view class="className">{{item.title}}</view>
         <view class="classForm">{{item.author}}</view>
@@ -170,9 +171,9 @@
     <view class="bottom">
       <view class="placeBox">
         <view class="place" wx:if="{{allbook[num].showzong==true?true:false}}">总馆</view>
-          <view class="place" wx:if="{{allbook[num].showjia==true?true:false}}">嘉鱼</view>
-          <view class="place" wx:if="{{allbook[num].shownan==true?true:false}}">南区</view>
-          <view class="place" wx:if="{{allbook[num].showzhong==true?true:false}}">中区</view>
+        <view class="place" wx:if="{{allbook[num].showjia==true?true:false}}">嘉鱼</view>
+        <view class="place" wx:if="{{allbook[num].shownan==true?true:false}}">南区</view>
+        <view class="place" wx:if="{{allbook[num].showzhong==true?true:false}}">中区</view>
       </view>
       <view style="margin-top: -55rpx;margin-left: 470rpx;">
         <view class="borrow">外借图书</view>
@@ -204,6 +205,7 @@
       <view class="genprogressBox2">{{item.zhuangtai}}</view>
     </view>
   </view>
+  <view class="none"></view>
 </view>
 <!-- 提示组件 -->
 <toast id="toast"></toast>
