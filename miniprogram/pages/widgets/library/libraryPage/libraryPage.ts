@@ -59,7 +59,6 @@ Page({
   cache(abc: string) {
     // 先获取缓存中的内容
     let array = wx.getStorageSync(abc) || []
-    if (array.length <= 9) {
       // 向数组中追加
       array.push({
         item: this.data.word,
@@ -70,7 +69,6 @@ Page({
         data: array,
         success: function () { }
       })
-    }
   },
 
   markMake(e: any) {
@@ -94,9 +92,10 @@ Page({
       success: (res: any) => {
         var arr = res.data.data
         //console.log(arr)
-        if (arr.length != 0) {
+        try{if (arr.length != 0) {
           for (var j = 0; j < 10; j++) {
             var num = {}
+            
             arr[j].num = num
             var jianum = 0
             var zongnum = 0
@@ -118,9 +117,11 @@ Page({
             arr[j].num.zhongArr = zhongArr
             var myarr: never[] = []
             arr[j].num.zhongArr.myarr = myarr
+            var add=0
             for (var i = 0; i < arr[j].books.length; i++) {
               if (arr[j].books[i].local.indexOf("嘉鱼") != -1) {
                 let dataAll = arr[j].num.jiaArr.myarr
+                add=add+parseInt(arr[j].books[i].hldallnum)
                 var item = { leixing: "外借图书", num: "A0427181", zhuangtai: "入藏" }
                 item.leixing = arr[j].books[i].barcode
                 item.num = arr[j].books[i].localstatu
@@ -139,6 +140,7 @@ Page({
               }
               if (arr[j].books[i].local.indexOf("总馆") != -1) {
                 let dataAll = arr[j].num.zongArr.myarr
+                add=add+parseInt(arr[j].books[i].hldallnum)
                 var item = { leixing: "外借图书", num: "A0427181", zhuangtai: "入藏" }
                 item.leixing = arr[j].books[i].barcode
                 item.num = arr[j].books[i].localstatu
@@ -157,6 +159,7 @@ Page({
               }
               if (arr[j].books[i].local.indexOf("南区") != -1) {
                 let dataAll = arr[j].num.nanArr.myarr
+                add=add+parseInt(arr[j].books[i].hldallnum)
                 var item = { leixing: "外借图书", num: "A0427181", zhuangtai: "入藏" }
                 item.leixing = arr[j].books[i].barcode
                 item.num = arr[j].books[i].localstatu
@@ -175,6 +178,7 @@ Page({
               }
               if (arr[j].books[i].local.indexOf("中区") != -1 || arr[j].books[i].local.indexOf("南湖") != -1) {
                 let dataAll = arr[j].num.zhongArr.myarr
+                add=add+parseInt(arr[j].books[i].hldallnum)
                 var item = { leixing: "外借图书", num: "A0427181", zhuangtai: "入藏" }
                 item.leixing = arr[j].books[i].barcode
                 item.num = arr[j].books[i].localstatu
@@ -190,8 +194,11 @@ Page({
                 arr[j].num.zhongArr.hao = hao
                 arr[j].num.zhongArr.place = place
                 arr[j].num.zhongArr.image = image
-              }
+              }   
             }
+            try{          
+            arr[j].add=add
+          } catch{}//此处是为了防止第一个数据中为空产生报错
           }
           this.setData({ allbook: arr })
           for (var i = 0; i < 10; i++) {
@@ -219,21 +226,21 @@ Page({
             key: 'book',
             data: array,
           })
-        }
+        }}catch{}
         this.selectComponent("#toast").showToastAuto("请求成功", "success")
       }
     })
   },
 
   againrequest() {
-    if (this.data.a == this.data.b + 1 && wx.getStorageSync('book')[this.data.b].item.length != 0) {
+    try{if (this.data.a == this.data.b + 1 && wx.getStorageSync('book')[this.data.b].item.length != 0) {
       this.setData({ a: this.data.a + 1, b: this.data.b + 1 })
       this.webrequest(this.data.a)
     }
     if (this.data.a != this.data.b + 1) {
       this.setData({ b: this.data.b + 1 })
       this.setData({ allbook: wx.getStorageSync('book')[this.data.b].item })
-    }
+    }}catch{}
   },
 
   showXQ(res: any) {
@@ -267,7 +274,7 @@ Page({
   },
 
   search() {
-    this.setData({ a: 1, b: 0 })
+    this.setData({ a: 1, b: 0 ,allbook: []})
     wx.removeStorage({
       key: 'book',
     })
@@ -275,11 +282,14 @@ Page({
       this.webrequest(this.data.a)
       if (wx.getStorageSync('item').length < 9) {
         this.cache('item')
+        console.log("直接加",wx.getStorageSync('item'))
         var arr = this.objHeavy(wx.getStorageSync('item'))
+        console.log("直接加",arr)
         wx.setStorage({
           key: 'item',
           data: arr,
         })
+        console.log("直接加",wx.getStorageSync('item'))
       }
       if (wx.getStorageSync('item').length == 9) {
         this.cache('item')
@@ -290,8 +300,10 @@ Page({
             key: 'item',
             data: arr,
           })
+          console.log("9->9",wx.getStorageSync('item'))
         }
         if (arr.length == 10) {
+          console.log("10",wx.getStorageSync('item'))
           let array = wx.getStorageSync('item')
           let arrays = []
           for (var i = 0; i < array.length; i++) {
@@ -304,6 +316,7 @@ Page({
             key: 'item',
             data: arrays,
           })
+          console.log("10->9",wx.getStorageSync('item'))
         }
       }
       this.setData({
@@ -388,9 +401,11 @@ Page({
     if (wx.getStorageSync('item').length != 0) {
       var arr = []
       var myarr = wx.getStorageSync('item')
+      console.log(myarr)
       for (var i = wx.getStorageSync('item').length - 1; i >= 0; i--) {
         arr.push(myarr[i])
       }
+      console.log(arr)
       this.setData({
         shuju: arr,
         ifshow: false

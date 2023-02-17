@@ -122,13 +122,11 @@
           <view class="place" wx:if="{{item.shownan==true?true:false}}">南区</view>
           <view class="place" wx:if="{{item.showzhong==true?true:false}}">中区</view>
         </view>
-        <view class="dashed"></view>
       </view>
       <view class="rightBox">
         <view class="bookNum">{{item.books.length}}</view>
         <view class="bookText">本在馆</view>
         <view class="borrow">外借图书</view>
-        <view class="dashed"></view>
       </view>
     </view>
   </view>
@@ -161,11 +159,11 @@
         </view>
         <view class="box">
           <view class="textpart">在馆数: </view>
-          <view class="textparts"> {{allbook[num].author}}本</view>
+          <view class="textparts"> {{allbook[num].books.length}}本</view>
         </view>
         <view class="box">
           <view class="textpart">累借次数: </view>
-          <view class="textparts"> {{allbook[num].author}}次</view>
+          <view class="textparts"> {{allbook[num].add}}次</view>
         </view>
       </view>
     </view>
