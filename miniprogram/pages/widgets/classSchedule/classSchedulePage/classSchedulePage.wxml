@@ -53,7 +53,7 @@
     </view>
     <!-- 周和日期-->
     <view class="weekbigBox">
-      <view wx:for="{{weeksStatic}}" wx:key="index" class="weekBox{{weekTime[index] == nowDate ? 'Select':''}}" bindtap="changdata1">
+      <view wx:for="{{weeksStatic}}" wx:key="index" class="weekBox{{weekTime[index] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="top-text">{{item.title}}</view>
         </view>
