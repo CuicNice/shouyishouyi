@@ -80,29 +80,34 @@ flex-grow: 0;
 }
 
 .scoreTop-txt{
-width: 100rpx;
-height: 28rpx;
+  width: 100rpx;
+  height: 28rpx;
 font-family: 'PingFang SC';
 font-style: normal;
 font-weight: 400;
 font-size: 20rpx;
 line-height: 28rpx;
 /* identical to box height */
-text-align: center;
 color: #FFFFFF;
 /* Inside auto layout */
+position: relative;
+letter-spacing: 1px;
+bottom: 5rpx;
 flex: none;
-order: 0;
-flex-grow: 0;
+  order: 0;
+  flex-grow: 0;
 }
 
 .scoreTop-icon{
   width: 26rpx;
-  height: 28rpx;
+  height: 30rpx;
+  padding: 2rpx 0rpx;
   flex: none;
   order: 1;
   flex-grow: 0;
   margin-left: 2rpx;
+  position: relative;
+  bottom: -5rpx;
 }
 .aveScore {
 display: flex;
@@ -266,7 +271,7 @@ flex-grow: 0;
 /* semScore */
 .semScore {
   display: flex;
-  margin-left: 8rpx;
+  margin-left: 3rpx;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
@@ -1304,7 +1309,7 @@ margin-top: 18rpx;
       font-family: 'PingFang SC';
       font-style: normal;
       font-weight: 400;
-      font-size: 12px;
+      font-size: 24rpx;
       line-height: 34rpx;
       /* identical to box height */
       text-align: left;
@@ -1518,12 +1523,23 @@ margin-top: 18rpx;
     color: #292945;  
     
   }
-  .termTitlelevelstext{
-    letter-spacing: 0.2px;
+  .termTitlelevelstext1{
     font-size: 28rpx;
     line-height: 40rpx;
-    text-align: center;
     color: #292945; 
+    text-align: center;
+  }
+  .termTitlelevelstext1 text{
+    letter-spacing: 1px;
+  }
+  .termTitlelevelstext2{
+    font-size: 28rpx;
+    line-height: 40rpx;
+    color: #292945; 
+    text-align: center;
+  }
+  .termTitlelevelstext2 text{
+    letter-spacing: 0.6px;
   }
   .termTitlelevels{
   display: flex;
@@ -1542,14 +1558,14 @@ margin-top: 18rpx;
   }
  .termTitlelevelsdot{
   letter-spacing: 0.6px;
-   margin-top: 2rpx;
-   width: 296px;
+   margin-top: 4rpx;
+   width: 592rpx;
    text-align: center;
    font-family: 'PingFang SC';
   font-style: normal;
    font-weight: 400;
-   font-size: 14px;
-  line-height: 20px;
+   font-size: 28rpx;
+  line-height: 40rpx;
   color: #292945;
  }
  .termTitle-top{

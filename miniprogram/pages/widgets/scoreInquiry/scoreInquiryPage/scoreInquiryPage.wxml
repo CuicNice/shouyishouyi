@@ -1,6 +1,6 @@
 <view class="bg"></view>
+<tb title="{{scoreTitle}}" immersion="{{true}}" Threshold="0.2">
 <wxs module="filters" src="../../scoreInquiry/scoreInquiryPage/scoreparseInt.wxs"></wxs>
-<tb title="{{scoreTitle}}"></tb>
 <image  class="scorewords" src="/static/svg/scorewords.svg"></image>
 <view class="scoreTop">
 <!-- 学期称号 -->
@@ -9,10 +9,13 @@
   <image class="scoreTop-img" src="/static/svg/scoreTitle{{scoreLevel}}.svg"></image>
 </view>
 <view class="scoreTop-txtbox">
-<image class="scoreTop-icon" src="/static/svg/scoreTopimg.svg"></image>
+<view class="scoreTop-txt-box">
 <text class="scoreTop-txt">本学期称号</text>
+<image class="scoreTop-icon" src="/static/svg/scoreTopimg.svg"></image>
 </view>
 </view>
+</view>
+
 <!-- 学生成绩 -->
     <view class="scoreTop-boxs1" bindtap="scoreCountTap">
         <view class="aveScore">
@@ -127,6 +130,7 @@
     </view>
   </view>
 </scroll-view>
+</tb>
 
 
 <!-- 成绩详情弹窗 -->
@@ -168,7 +172,7 @@
             </view>
             <block>
             <view class="tr" wx:for="{{Details}}"  wx:key="index" >
-                    <view class="td1" >[{{item.cjfx == '平时成绩'?"平时":item.cjfx}}]</view>
+                    <view class="td1" >[{{item.cjfx.length == 4 ?item.cjfx[0]+item.cjfx[1]:item.cjfx}}]</view>
                     <view class="td2">{{item.cjfxbl}}</view>
                     <view class="td3">{{item.cj}}</view>
             </view>
@@ -187,7 +191,10 @@
   此称号根据已有成绩实时显示，可能会出现可计算数据较少，称号显示不符合实际水平的情况，但是随着各科成绩结果出来，称号会更加贴近你的真正实力~
   </view>
   <view class="termTitlelevels-box">
-    <view class="termTitlelevelstext"><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称号共有七级，按本学期加权平均成绩划分&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;其中，若所选学期无考试成绩，显示“等待入榜”</text></view>
+    <view class="termTitlelevelstext1">
+    <text decode="{{true}}">称号共有七级，按本学期加权平均成绩划分</text>
+    </view>
+    <view class="termTitlelevelstext2"><text>其中，若所选学期无考试成绩，显示“等待入榜”</text></view>
     <view class="termTitlelevels">
     <text class="termTitlelevelsdot">90分以上 获得“首义学神”称号</text>
     <text class="termTitlelevelsdot">85-90分 获得“首义学霸”称号</text>
@@ -233,6 +240,4 @@
   </view>
   </view>
 </view>
-
 <toast title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast>
-<!--<toast title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast>-->
