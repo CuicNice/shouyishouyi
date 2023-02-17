@@ -2,7 +2,7 @@ import { Result } from "../common/Result";
 import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
-import {popupeItem} from '../pages/popup1/popup1Page/popup1Page';
+import {popupeItem} from '../pages/login/login';
 
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
