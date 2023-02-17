@@ -33,7 +33,8 @@ Page({
               var show = this.data.show;
               res.data.data.list[i].show = show;
               res.data.data.list[i].color = color;
-              res.data.data.list[i].number = number;     
+              res.data.data.list[i].number = number;  
+              res.data.data.list[i].popupPublishTime =    res.data.data.list[i].popupPublishTime.slice(0,11)
           }                   
         this.setData({
           list:res.data.data.list,

@@ -230,7 +230,6 @@ color: #FFFFFF;
   background: #F96262;
   border-radius: 55.2273px;
   }
-
 .text-box{
   height: 96rpx;
   display: flex;

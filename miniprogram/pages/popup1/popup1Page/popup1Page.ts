@@ -69,7 +69,7 @@ async getPopupData(from: popupeItem) {
    this.setData({tc1:true,
     tc2:false,
   })
- }else if(popupType == 'sys'){
+ }else if(popupType == 'system'){
    this.setData({tc1:false,
   tc2:true,
 })
