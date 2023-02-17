@@ -1539,7 +1539,7 @@ margin-top: 18rpx;
     text-align: center;
   }
   .termTitlelevelstext2 text{
-    letter-spacing: 0.6px;
+    letter-spacing: 1px;
   }
   .termTitlelevels{
   display: flex;
