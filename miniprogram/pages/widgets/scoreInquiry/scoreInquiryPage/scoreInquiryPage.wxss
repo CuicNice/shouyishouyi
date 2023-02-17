@@ -31,7 +31,7 @@ order: 0;
 flex-grow: 0;
 margin-left: 64rpx;
 margin-right: 66rpx;
-margin-top: 50rpx;
+margin-top: 74rpx;
 /* border: 1px solid #000000; */
 }
 
