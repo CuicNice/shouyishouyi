@@ -25,7 +25,8 @@ Page({
   //关闭弹窗
   closePhoto(){
     wx.navigateTo({
-      url:'../../login/login'
+      // appear,判断是否打开过此页面
+      url:'../../login/login?appear=1'
     })
   },
   /**

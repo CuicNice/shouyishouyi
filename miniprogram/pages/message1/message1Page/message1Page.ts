@@ -11,6 +11,7 @@ Page({
     list:[],
     row:'',
     popupFabulous:'',
+    title:"默认页面",
   },
   getList(){
     wx.request({
@@ -64,6 +65,7 @@ getMessage(e){
   this.setData({
     row:e.currentTarget.dataset.row,
     isHidden:false,
+    title:"标题",
   }) 
  //已读和未读的处理
    let Array = this.data.list;
@@ -80,7 +82,9 @@ getMessage(e){
    wx.setStorageSync('unread',this.data.list);
 },
 getLike(){
-      this.setData({popupFabulous:this.data.list[this.data.row].popupFabulous + 1})
+      if(this.data.list[this.data.row].show == ''){
+        this.setData({popupFabulous:this.data.list[this.data.row].popupFabulous + 1})
+      } 
       //点赞
       let show = "active";
       this.data.list[this.data.row].show = show; 
@@ -96,6 +100,7 @@ getChild(){
    * 生命周期函数--监听页面加载
    */
   onLoad(){
+   this.setData({title:'默认页面'});
    this.getList();
    this.getLike();
   },

@@ -1,7 +1,7 @@
-<view class="background">
+<view class="background"></view>
+<topbar title="{{title}}" immersion="{{true}}" Threshold="1">
 <!-- 外面的信息列表页面 -->
 <view class="message" wx:if="{{isHidden}}">
-<topbar title="默认页面" ></topbar>
 <!--信息列表-->
 <scroll-view class="messageList" bindtap="getMessage"  wx:for="{{list}}" wx:key="index" data-row="{{index}}" wx:for-item="item">
 <view class="firstMessage" style="border: 4rpx solid {{item.color}}">
@@ -9,8 +9,7 @@
   <view class="title">
   <text class="titleText">{{item.popupSystemHeadline}}</text>
   </view>
-  <view class="{{item.isShow?'hide':'show'}}" >
-  <text style="position: relative; left: 12rpx; top: -9rpx">未读</text>
+  <view class="{{item.isShow?'hide':'show'}}" >未读
   </view></view>
   <view class="stitle">
   <text class="stitleText">{{item.popupSystemSubtitle}}</text>
@@ -28,11 +27,9 @@
 </view>
 </scroll-view>
 </view>
-
-<!-- 点进后的信息详情弹窗 与上面不同-->
+<!-- 点进后的信息详情弹窗 与上面不同--> 
 <view wx:if="{{list[row].url}}"><web-view url="{{list[row].url}}" ></web-view></view>
   <view wx:if="{{!isHidden}}">
-  <topbar title="标题" bind:sync1="getChild" ></topbar>
   <view class="messageDetail">
   <view class="detailTitle">
   <text>{{list[row].popupJumpTextTitle}}</text>
@@ -58,6 +55,7 @@
   </view>
   </view>
   </view>
-  </view>
+  
 </view>
+</topbar>
 

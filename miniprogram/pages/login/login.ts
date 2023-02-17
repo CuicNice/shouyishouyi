@@ -16,7 +16,8 @@ Page({
     mm:'',
     query:'',
     x:0,
-    messageList:{},
+    messageList:[],
+    popupState:{},
   },
   getList(){
     wx.request({
@@ -30,6 +31,8 @@ Page({
         this.setData({
            messageList:res.data.data.list,
         })  
+        var appear = this.data.messageList[0].popupPublishTime;
+        wx.setStorageSync('key3',appear);
         //判断是否有未读消息
         var isUnread;
         isUnread=wx.getStorageSync('unread')
@@ -43,7 +46,7 @@ Page({
             this.setData({x:1})        
           }
           }
-        }if(res.data.data.list.length > 0&&!isUnread){
+        }if(res.data.data.list.length > 0&& !isUnread){
           this.setData({x:1})
         }
       })
@@ -55,14 +58,17 @@ Page({
         url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletAppearPopup',
         method:'POST',
         success:((res)=>{
-        console.log(res)
+        console.log(res)  
         this.setData({
-         popupState:res
+         popupState:res.data.data
          })
-         if(res.popupId !== ''){
-           wx.navigateTo({
+         if(res.data.data.popupPublishTime !== wx.getStorageSync('key3')){
+           if(this.data.query !=='1'){
+              wx.navigateTo({
             url:'../popup1/popup1Page/popup1Page'
            })
+           }
+          
          }
         })  
  })
@@ -71,11 +77,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // this.isPop();
     this.getList();
-    //获取弹窗的Id
+    //判断是否打开过popup
     this.setData({
-      query:options.id
+      query:options.appear
     })
     var timestamp = Date.parse(new Date());
    var date = new Date(timestamp);
@@ -144,14 +149,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.isPop();
+    this.getList();
   },
 
   /**

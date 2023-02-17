@@ -1,5 +1,6 @@
 /* pages/widgets/message/messagePage/messagePage.wxss */
 .background{
+  position: absolute;
   width: 750rpx;
   height: 1852rpx;
   /* 背景 */
@@ -109,7 +110,6 @@
   .messageDetail{
   display: flex;
   flex-direction: column;
-  
   gap: 36rpx;
   position: absolute;
   width: 640rpx;
@@ -164,11 +164,11 @@
   }
   .photo{
   width: 640rpx;
-  height:598rpx;
   border-radius: 20rpx;
   margin-top: 28rpx;
   margin-bottom: 36rpx;
   }
+
   .textLike{
   display: flex;
   flex-direction: column;
@@ -206,10 +206,18 @@ margin-top: 26rpx;
 margin-right: 20rpx;
 flex-direction: column;
 align-items: flex-start;
+text-align: center;
 width:64rpx;
 height: 30rpx;
 background: #F96262;
 border-radius: 55.2273px;
+/* 字体样式 */
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 20rpx;
+line-height: 30rpx;
+color: #FFFFFF;
   }
   .hide{
   display: none;
@@ -222,16 +230,7 @@ border-radius: 55.2273px;
   background: #F96262;
   border-radius: 55.2273px;
   }
-  .show text,.hide text{
-width: 40rpx;
-height: 30rpx;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 20rpx;
-line-height: 30rpx;
-color: #FFFFFF;
-  }
+
 .text-box{
   height: 96rpx;
   display: flex;
