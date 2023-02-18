@@ -1,93 +1,89 @@
 /* pages/widgets/versionStatement/versionStatementComponent/versionStatementComponent.wxss */
+
+
 /* 包含的东西 */
-.boardBox{
-  /* Auto layout */
 
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-margin-left: 12px;
-margin-right: 13px;
-width: 350px;
-/* height: auto; */
-flex: none;
-order: 0;
-flex-grow: 0;
+.boardBox {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0rpx;
+    margin-left: 24rpx;
+    margin-right: 26rpx;
+    width: 700rpx;
+    /* height: auto; */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
+
+
 /* 最外层盒子 */
-.whiteBox{
-display: flex;
-flex-direction: column;
-padding: 0px;
-/* height: 203px; */
-box-shadow: 0px 10px 17px -5px rgba(108, 211, 167, 0.19);
-flex: none;
-order: 0;
-flex-grow: 0;
+
+.whiteBox {
+    display: flex;
+    flex-direction: column;
+    padding: 0rpx;
+    /* height: 406rpx; */
+    box-shadow: 0rpx 20rpx 34rpx -10rpx rgba(108, 211, 167, 0.19);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
-.greenBoxBar{
-  display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-/* padding: 10px; */
-gap: 10px;
 
-width: 350px;
-height: 41px;
-
-background: #20C38C;
-border-radius: 17px 17px 0px 0px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
+.greenBoxBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* padding: 20rpx; */
+    gap: 20rpx;
+    width: 700rpx;
+    height: 82rpx;
+    background: #20C38C;
+    border-radius: 34rpx 34rpx 0rpx 0rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
-.title{
-  /* 小程序版本详情 */
 
-
-/* width: 111px; */
-height: 21px;
-letter-spacing: 1px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 700;
-font-size: 15px;
-line-height: 21px;
-/* identical to box height */
-
-text-align: center;
-letter-spacing: 1px;
-
-color: #FFFFFF;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
+.title {
+    /* 小程序版本详情 */
+    /* width: 222rpx; */
+    height: 42rpx;
+    letter-spacing: 1px;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30rpx;
+    line-height: 42rpx;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
-.statementBox{
-  /* 陈述部分 */
-  /* Frame 26 */
-/* Auto layout */
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 17px 19px;
-gap: 14px;
-isolation: isolate;
-background: #FFFFFF;
-border-radius: 0px 0px 17px 17px;
-/* Inside auto layout */
 
-flex: none;
-order: 1;
-flex-grow: 0;
+.statementBox {
+    /* 陈述部分 */
+    /* Frame 26 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 34rpx 38rpx;
+    gap: 28rpx;
+    isolation: isolate;
+    background: #FFFFFF;
+    border-radius: 0rpx 0rpx 34rpx 34rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }

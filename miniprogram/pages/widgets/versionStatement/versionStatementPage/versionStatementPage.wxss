@@ -1,369 +1,352 @@
 /* pages/widgets/versionStatement/versionStatementPage/versionStatementPage.wxss */
+
 page {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
+
+
 /* 背景 */
-.bg{
-      /* Entering for the first time */
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      /* 背景 */
 
-      z-index: -999;
-
+.bg {
+    /* Entering for the first time */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* 背景 */
+    z-index: -999;
 }
+
+
 /* 背景元素 */
-.circle{
-  /* Ellipse 9 */
 
-position: absolute;
-left: 9px;
-top: 447px;
-
-/* #20C38C */
+.circle {
+    /* Ellipse 9 */
+    position: absolute;
+    left: 18rpx;
+    top: 894rpx;
+    /* #20C38C */
 }
+
+
 /* 元素位置 */
-.circleSvg{
-  width: 143px !important;
-  height: 143px !important;
+
+.circleSvg {
+    width: 286rpx !important;
+    height: 286rpx !important;
 }
-.moon{/* Ellipse 7 */
 
-  position: absolute;
-  width: 98.05px;
-  height: 96.96px;
-  left: -23px;
-  top: 145px;
-  
-  /* #20C38C */
-
-  }
-.moonSvg{
-  width: 85px !important;
-  height: 52.93px !important;
+.moon {
+    /* Ellipse 7 */
+    position: absolute;
+    width: 196.1rpx;
+    height: 193.92rpx;
+    left: -46rpx;
+    top: 290rpx;
+    /* #20C38C */
 }
-.box{position: absolute;
 
-  left: 232px;
-  top: 160px;
-  
-
-  /* border-radius: 34px; */
-  transform: rotate(-38.38deg);}
-.boxSvg{
-  
-  width: 185px !important;
-  height: 185px !important;
+.moonSvg {
+    width: 170rpx !important;
+    height: 105.86rpx !important;
 }
-.pool{
-  /* Rectangle 50 */
-box-sizing: border-box;
-position: absolute;
-left: 307px;
-top: 502px;
 
-/* #20C38C */
-/* border: 9px solid #20C38C; */
-
+.box {
+    position: absolute;
+    left: 464rpx;
+    top: 320rpx;
+    /* border-radius: 68rpx; */
+    transform: rotate(-38.38deg);
 }
-.poolSvg{
-  width: 73.43px !important;
-height: 88.78px !important;
 
+.boxSvg {
+    width: 370rpx !important;
+    height: 370rpx !important;
 }
+
+.pool {
+    /* Rectangle 50 */
+    box-sizing: border-box;
+    position: absolute;
+    left: 614rpx;
+    top: 1004rpx;
+    /* #20C38C */
+    /* border: 18rpx solid #20C38C; */
+}
+
+.poolSvg {
+    width: 146.86rpx !important;
+    height: 177.56rpx !important;
+}
+
+
 /* 内容 */
-.cotain{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: auto;
-  padding-top:4rpx;
-  /* padding: 7.8%; */
-} 
+
+.cotain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    padding-top: 2px;
+    /* padding: 7.8%; */
+}
+
+
 /* 滚动 */
+
+
 /* .demo-scroll-block{
-  height:10rpx;
+  height:5px;
 } */
 
-  .containerScroll {
+.containerScroll {
     /* 给scroll-view固定高度 */
-    height: 100px;
-    /* width: 188px; */
-  }
-.boardFramework{
-  /* Auto layout */
-
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 0px;
-gap: 20px;
-margin-top: 22px;
-/* height: 805px; */
-margin-left: 12px;
-margin-right: 13px;
+    height: 200rpx;
+    /* width: 376rpx; */
 }
+
+.boardFramework {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0rpx;
+    gap: 40rpx;
+    margin-top: 44rpx;
+    /* height: 1610rpx; */
+    margin-left: 24rpx;
+    margin-right: 26rpx;
+}
+
+
 /* 版本声明 */
+
+
 /* 版本类容 */
-.contentText{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: auto;
-  /* padding: 7.8%; */
-  box-sizing: border-box;
-}
-.versionItem{
-/* Auto layout */
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-padding: 0px;
-margin-bottom: 14px;
 
-gap: 7px;
-/* margin: 7px; */
-width: 285px;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
-z-index: 1;
-}
-.versionTitle{
- /* Frame 40 */
-
-
-/* Auto layout */
-
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0px;
-gap: 12px;
-
-width: 285px;
-height: 21px;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
-}
-.versionTitleText{
-  /* 标题版本 */
-  letter-spacing: 1px;
-height: 21px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 15px;
-line-height: 21px;
-/* identical to box height */
-
-letter-spacing: 1px;
-
-color: #000000;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 1;
-flex-grow: 0;
+.contentText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    /* padding: 7.8%; */
+    box-sizing: border-box;
 }
 
-
-.versionTitleCircle{
-  box-sizing: border-box;
-
-width: 10px;
-height: 10px;
-
-/* #20C38C */
-
-border: 2px solid #20C38C;
-border-radius: 23px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
+.versionItem {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0rpx;
+    margin-bottom: 28rpx;
+    gap: 14rpx;
+    /* margin: 14rpx; */
+    width: 570rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    z-index: 1;
 }
+
+.versionTitle {
+    /* Frame 40 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0rpx;
+    gap: 24rpx;
+    width: 570rpx;
+    height: 42rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.versionTitleText {
+    /* 标题版本 */
+    height: 42rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    line-height: 42rpx;
+    /* identical to box height */
+    letter-spacing: 1px;
+    color: #000000;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.versionTitleCircle {
+    box-sizing: border-box;
+    width: 20rpx;
+    height: 20rpx;
+    /* #20C38C */
+    border: 4rpx solid #20C38C;
+    border-radius: 46rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
 /* 外层的盒子 */
-.versionDescriptBox{
-/* Frame 42 */
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px 0px 0px 23px;
-gap: 10px;
-/* Inside auto layout */
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
+
+.versionDescriptBox {
+    /* Frame 42 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0rpx 0rpx 0rpx 46rpx;
+    gap: 20rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
 }
-.versionItemDescript{
-  /* 本次更新社团信息功能、四六级成绩查询、考试成绩详情查询等！ */
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 11px;
-line-height: 15px;
-letter-spacing: 1px;
 
-color: #000000;
-
-opacity: 0.6;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
+.versionItemDescript {
+    /* 本次更新社团信息功能、四六级成绩查询、考试成绩详情查询等！ */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22rpx;
+    line-height: 30rpx;
+    letter-spacing: 1px;
+    color: #000000;
+    opacity: 0.6;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
+
+
 /* 声明 */
-.declareContent{
-  display: flex;
-  justify-content: start;
-  width: 300px;
-/* height: 119px; */
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  text-align: justify;
-  letter-spacing: 1px;
-  /* text-indent: 20px; */
-  color: #000000;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+
+.declareContent {
+    display: flex;
+    justify-content: start;
+    width: 600rpx;
+    /* height: 238rpx; */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24rpx;
+    text-align: justify;
+    letter-spacing: 1px;
+    /* text-indent: 40rpx; */
+    color: #000000;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
+
+
 /* 贡献者声明 */
-.devDescript{
-  /* Auto layout */
 
-display: flex;
-flex-direction: column;
-justify-content: center;
-/* align-items: center; */
-padding: 0px;
-gap: 35px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-.devDescriptItem{
-  /* Auto layout */
-
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 14px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-.teamTypeBox{
-  /* Auto layout */
-
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 2px 8px;
-gap: 10px;
-
-height: 21px;
-
-background: #20C38C;
-border-radius: 10px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-.typeText{
-/* 产品&UI&UX */
-
-
-/* width: 94px; */
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 15px;
-/* line-height: 21px; */
-/* identical to box height */
-
-text-align: center;
-letter-spacing: 1px;
-
-color: #FFFFFF;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-.teamMenbersBox{
-  /* Frame 30 */
-
-
-/* Auto layout */
-
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-gap: 16px;
-
-
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
-}
-.teamMenber{
-  /* 多多多多 */
-
-
-width: 63px;
-height: 21px;
-
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 15px;
-line-height: 21px;
-/* identical to box height */
-letter-spacing: 1px;
-color: #000000;
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
+.devDescript {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    padding: 0rpx;
+    gap: 70rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
+.devDescriptItem {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0rpx;
+    gap: 28rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
 
+.teamTypeBox {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4rpx 16rpx;
+    gap: 20rpx;
+    height: 42rpx;
+    background: #20C38C;
+    border-radius: 20rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.typeText {
+    /* 产品&UI&UX */
+    /* width: 188rpx; */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    /* line-height: 42rpx; */
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.teamMenbersBox {
+    /* Frame 30 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0rpx;
+    gap: 32rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.teamMenber {
+    /* 多多多多 */
+    width: 126rpx;
+    height: 42rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    line-height: 42rpx;
+    /* identical to box height */
+    letter-spacing: 1px;
+    color: #000000;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
