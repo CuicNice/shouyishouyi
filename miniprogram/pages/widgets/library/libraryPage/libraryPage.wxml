@@ -100,7 +100,8 @@
         <view class="lefticon2" bindtap="againrequest">
           <image class="lefticonImg" src="/static/svg/vector2.svg"></image>
         </view>
-        <view class="pagenum">{{b+1}}</view>
+        <view class="pagenum" wx:if="{{b+1<10?true:false}}">0{{b+1}}</view>
+        <view class="pagenum" wx:else>{{b+1}}</view>
         <view class="righticon2" bindtap="leftrequest">
           <image class="lefticonImg" src="/static/svg/vector2.svg"></image>
         </view>
@@ -162,7 +163,7 @@
         <view class="place" wx:if="{{allbook[num].shownan==true?true:false}}">南区</view>
         <view class="place" wx:if="{{allbook[num].showzhong==true?true:false}}">中区</view>
       </view>
-      <view style="margin-top: -55rpx;margin-left: 470rpx;">
+      <view style="margin-top: -55rpx;margin-left: 450rpx;">
         <view class="borrow">外借图书</view>
       </view>
     </view>

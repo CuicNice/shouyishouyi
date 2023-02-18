@@ -411,7 +411,7 @@ components/topbar/topbar.wxss
 
 .markBox {
   width: 622rpx;
-  height: 230rpx;
+  height: 190rpx;
   display: flex;
   overflow: hidden;
   position: absolute;
@@ -422,9 +422,6 @@ components/topbar/topbar.wxss
 
 .text {
   /* width: 190rpx; */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   color: rgba(0, 0, 0, 0.6);
   text-align: center;
   font-size: 30rpx;
@@ -439,9 +436,9 @@ components/topbar/topbar.wxss
   white-space: nowrap;
   color: rgba(0, 0, 0, 0.6);
   text-align: center;
+  font-size: 30rpx;
   margin-left: 5rpx;
   height: 48rpx;
-  line-height: 55rpx;
 }
 
 .markMake {
@@ -475,8 +472,8 @@ components/topbar/topbar.wxss
 
 .lefticon2 {
   position: absolute;
-  top: 300rpx;
-  left: 660rpx;
+  top: 365rpx;
+  left: 650rpx;
   width: 50rpx;
   height: 50rpx;
   float: left;
@@ -505,8 +502,8 @@ components/topbar/topbar.wxss
 
 .righticon2 {
   position: absolute;
-  top: 300rpx;
-  left: 530rpx;
+  top: 365rpx;
+  left: 546rpx;
   width: 40rpx;
   height: 40rpx;
   text-align: center;
@@ -540,7 +537,7 @@ components/topbar/topbar.wxss
 }
 
 .libraryIcon4 {
-  width: 460rpx;
+  width: 440rpx;
   margin-top: 20rpx;
   margin-left: 40rpx;
 }
@@ -576,14 +573,14 @@ components/topbar/topbar.wxss
 
 .pagenum {
   position: absolute;
-  top: 308rpx;
+  top: 370rpx;
   left: 570rpx;
   width: 100rpx;
   height: 34rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
-  font-size: 24rpx;
+  font-size: 26rpx;
   line-height: 34rpx;
   text-align: center;
   text-transform: capitalize;
@@ -675,7 +672,7 @@ components/topbar/topbar.wxss
   padding: 0px 9px;
   margin-left: 20rpx;
   gap: 20rpx;
-  width: 60rpx;
+  width: 58rpx;
   height: 40rpx;
   background: #20C38C;
   opacity: 0.6;
@@ -703,29 +700,30 @@ components/topbar/topbar.wxss
 
 .bookNum {
   margin-top: 6rpx;
-  margin-left: 110rpx;
+  margin-left: 107rpx;
   width: 100rpx;
   height: 104rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
   font-size: 74rpx;
+  text-align: center;
   line-height: 104rpx;
-  text-align: right;
   color: #20C38C;
 }
 
 .bookText {
-  width: 84rpx;
+  width: 100rpx;
   height: 40rpx;
   margin-top: 8rpx;
-  margin-left: 120rpx;
+  margin-left: 105rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
-  font-size: 28rpx;
+  font-size: 29rpx;
   line-height: 40rpx;
   text-align: center;
+  letter-spacing:5rpx;
   text-transform: capitalize;
   color: #292945;
 }
@@ -734,7 +732,7 @@ components/topbar/topbar.wxss
   margin-top: 14rpx;
   margin-left: 60rpx;
   gap: 20rpx;
-  width: 148rpx;
+  width: 140rpx;
   height: 40rpx;
   background: rgba(41, 41, 69, 0.6);
   opacity: 0.6;
@@ -751,10 +749,10 @@ components/topbar/topbar.wxss
 
 .bookXQ {
   margin-top: 68rpx;
-  margin-left: 13rpx;
+  margin-left: 23rpx;
   padding: 20rpx 24rpx;
   gap: 20rpx;
-  width: 680rpx;
+  width: 650rpx;
   height: 500rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
@@ -782,9 +780,9 @@ components/topbar/topbar.wxss
 }
 
 .picture {
-  float: right;
-  width: 200rpx;
-  height: 100%;
+  margin-left: 40rpx;
+  width: 150rpx;
+  height: 200rpx;
   border-radius: 15rpx;
 }
 
@@ -866,7 +864,7 @@ components/topbar/topbar.wxss
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
-  font-size: 32rpx;
+  font-size: 28rpx;
   line-height: 44rpx;
   color: #292945;
   float: left;
