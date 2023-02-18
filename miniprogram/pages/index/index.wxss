@@ -1,0 +1,4 @@
+.banner{
+  position: relative;
+  left: 17rpx;
+}

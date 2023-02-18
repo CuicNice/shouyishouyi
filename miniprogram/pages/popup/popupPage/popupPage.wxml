@@ -1,0 +1,17 @@
+<view class="unbound">
+<topbar title="{{title}}"></topbar>
+<view class="setup">
+<view class="photoShow" wx:if=''>
+<!--<image></image>-->
+</view>
+<image class="dispel2" src="/static/svg/dispel2.svg" bindtap="closePhoto"></image>
+</view>
+<view class="dialogShow" wx:if="1">
+  <dialog title="新的一年，小南祝你新的一年，小南祝你新的" stitle="考试永不挂考试永不挂考试永不挂考试永不挂考试永不挂考试永不挂考试永不挂考试永不" showDialog="{{dialogTip}}" schoolBuiltSrc="/static/svg/schoolBuilt/zhonglou.svg" showDialog="{{showDialog}}">
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
+  </view>
+</dialog>
+
+</view>
+</view>

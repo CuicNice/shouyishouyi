@@ -1,0 +1,33 @@
+/* components/fmin-banner/fmin-banner.wxss */
+.banner{
+  width: 718rpx;
+  height: 174rpx;
+}
+.banner swiper{
+  height: 100%;
+  width: 100%;
+}
+.banner image{
+  width: 718rpx;
+  height: 174rpx;
+}
+.dots{
+  display: flex;
+  width: 82.56rpx;
+  height: 10rpx;
+  margin-left: 336rpx;
+  margin-top: 8rpx;
+  justify-content: space-between
+}
+.dot{
+  width: 8.28rpx;
+  height: 8.28rpx;
+  background: #EAEAEC;
+  border-radius: 50%;
+}
+.dotactive{
+  width: 8.28rpx;
+  height: 8.28rpx;
+  background: #20C38C;
+  border-radius: 50%;
+}

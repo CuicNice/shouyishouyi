@@ -1,18 +1,19 @@
-// pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage.js
+// pages/message1/web-view/webView.ts
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    webUrl:'https://mp.weixin.qq.com/s/X4o8i1PyTnjLc7Fyp1m_Gw'
   },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  onLoad() {
+    this.setData({webUrl:wx.getStorageSync('Url')})
   },
 
   /**
