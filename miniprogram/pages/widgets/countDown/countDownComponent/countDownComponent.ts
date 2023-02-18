@@ -72,7 +72,6 @@ Component({
     async initPageData() {
       let that = this
       //  设置当前时间
-
       // 网络请求  
       let { data: res } = await getCountDownItem() as unknown as IResult<any>;
       if (res == false) {
@@ -140,12 +139,9 @@ Component({
           console.log("loca", localCountDownDataDic)
           // 循环遍历做判断
           for (let dicItemID in localCountDownDataDic) {
-            console.log("tyyyyyyy++++++++++++++", dicItemID);
             let item = localCountDownDataDic[dicItemID]
             //  网络请求
-            console.log("item[countDownName]==tapCountDownName", dicItemID, item["countDownName"], tapCountDownName)
             if (item["countDownName"] == tapCountDownName) {
-              console.log("本");
               let isNetWork = false as boolean
               setTimeout(() => {
                 wx.redirectTo({
