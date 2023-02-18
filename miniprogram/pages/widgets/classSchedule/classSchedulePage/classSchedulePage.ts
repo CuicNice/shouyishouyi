@@ -88,7 +88,7 @@ Page({
    * @param {年份} year 
    * @param {*} num 
    */
-  getTableDataFromApi(year, num) {
+  getTableDataFromApi(year: number, num: number) {
     return new Promise((resolve, reject) => {
       wx.request({
         url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/classTable',
@@ -103,7 +103,7 @@ Page({
           resolve(res);
         },
         fail: (e) => {
-          console.log(res.data.msg);
+          console.log(e.data.msg);
           reject(e);
         }
       })
@@ -333,7 +333,7 @@ Page({
           for (var itemIdx = 0; itemIdx < week[i].data[dataIdx].item.length; itemIdx++) {
             week[i].data[dataIdx].item[itemIdx].zindex = 3;
             week[i].data[dataIdx].item[itemIdx].double = false;
-            nowWeekData[idx].item.push(week[i].data[dataIdx].item[itemIdx]);
+            nowWeekData[idx].item.push((week[i].data[dataIdx].item[itemIdx])as never);
           }
         }
       }
@@ -345,7 +345,7 @@ Page({
           })
           for (var itemIdx = 0; itemIdx < week[i].data[dataIdx].item.length; itemIdx++) {
             // 根据起始判断是否重叠
-            var numSIdx = nowWeekData[idx].item.findIndex((v) => {
+            var numSIdx = nowWeekData[idx].item.findIndex((v:any) => {
               var itemNum = week[i].data[dataIdx].item[itemIdx].num;
               if (v.num[0] == itemNum[0] || v.num[v.num.length - 1] == itemNum[itemNum.length - 1]) {
                 return true;
@@ -355,12 +355,12 @@ Page({
             });
             if (numSIdx == -1) {
               week[i].data[dataIdx].item[itemIdx].zindex = 2;
-              nowWeekData[idx].item.push(week[i].data[dataIdx].item[itemIdx]);
+              nowWeekData[idx].item.push((week[i].data[dataIdx].item[itemIdx])as never);
             } else if(nowWeekData[idx].item[numSIdx].name !=week[i].data[dataIdx].item[itemIdx].name) {
               nowWeekData[idx].item[numSIdx].double = true;
             }
             // 根据末尾判断是否重叠
-            var numEIdx = nowWeekData[idx].item.findIndex((v) => {
+            var numEIdx = nowWeekData[idx].item.findIndex((v:any) => {
               var itemNum = week[i].data[dataIdx].item[itemIdx].num;
               if (v.num[v.num.length - 1] == itemNum[itemNum.length - 1]) {
                 return true;
@@ -459,7 +459,7 @@ Page({
   },
   /**
    * 选择周
-   * @param {被选择周次，从0开始} e 
+   * @param {被选择周次，从0开始}
    */
   selectWeek(e: { currentTarget: { dataset: { index: number } } }) {
    var that = this;

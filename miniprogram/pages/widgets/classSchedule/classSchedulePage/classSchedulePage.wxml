@@ -222,11 +222,12 @@
           <view class="table-day" wx:if="{{showAll}}">
             <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" bindtap="showClassDetail" data-cls="{{table}}" wx:for="{{nowWeekData[index].item}}" wx:for-item="table" wx:key="index">
               <view class="flex-item-double" wx:if="{{table.double==true}}" style="background:{{table.zindex == 3?'#68D8D6':'rgba(198, 198, 198, 0.6)'}} ;height: {{115*table.num.length-11}}rpx;z-index: {{table.zindex}};">
-                <!-- <view class="noweek">非本周</view> -->
+               <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view> 
                 <view class="smalltext">{{table.name}}</view>
                 <view class="smalltextad">{{table.local}}</view>
               </view>
               <view class="flex-item-single" wx:else style="background:{{table.zindex == 3?'#68D8D6':'rgba(198, 198, 198, 0.6)'}} ;height: {{115*table.num.length-6}}rpx;z-index: {{table.zindex}};">
+                <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view> 
                 <view class="smalltext">{{table.name}}</view>
                 <view class="smalltextad">{{table.local}}</view>
               </view>
@@ -432,8 +433,7 @@
 </dialogTitle>
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails"></view>
-<block >
-<scroll-view class="classScroll1" scroll-x="true" scroll-with-animation="true"  >
+<scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true" scroll-with-animation="true"  >
 <!-- <view class="courseDetails">
   <view class="course">
     <view class="courseName">{{classSchedule.data.all_tables[G].name}}</view>
@@ -500,4 +500,3 @@
   </view>
 </view>
 </scroll-view>
-</block>
