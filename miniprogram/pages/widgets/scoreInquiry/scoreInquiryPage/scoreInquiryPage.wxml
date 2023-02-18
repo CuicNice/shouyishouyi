@@ -196,12 +196,12 @@
     </view>
     <view class="termTitlelevelstext2"><text>其中，若所选学期无考试成绩，显示“等待入榜”</text></view>
     <view class="termTitlelevels">
-    <text class="termTitlelevelsdot">90分以上 获得“首义学神”称号</text>
-    <text class="termTitlelevelsdot">85-90分 获得“首义学霸”称号</text>
-    <text class="termTitlelevelsdot">80-85分 获得“进阶战士”称号</text>
-    <text class="termTitlelevelsdot">70-80分 获得“潜力新星”称号</text>
-    <text class="termTitlelevelsdot">60-70分 获得“描边大师”称号</text>
-    <text class="termTitlelevelsdot">60分以下 获得“补考达人”称号</text>
+    <text class="termTitlelevelsdot">90分以上 获得"首义学神"称号</text>
+    <text class="termTitlelevelsdot">85-90分 获得"首义学霸"称号</text>
+    <text class="termTitlelevelsdot">80-85分 获得"进阶战士"称号</text>
+    <text class="termTitlelevelsdot">70-80分 获得"潜力新星"称号</text>
+    <text class="termTitlelevelsdot">60-70分 获得"描边大师"称号</text>
+    <text class="termTitlelevelsdot">60分以下 获得"补考达人"称号</text>
     </view>
   </view>
   <view class="termTitle-top">- 加油学习，向“首义学神”进发吧！-</view>
@@ -222,7 +222,7 @@
     <view class="scoreCount-text">
       <text class="scoreCount-text1">学分加权平均分：</text>
       每门成绩乘以它的权值比例(学分)后相加，最后除以每门课的学分之和得到的平均数，这可以体现出课程的重要性对总成绩的影响大小。
-      <text class="scoreCount-text2">计算公式为：</text>
+      <text class="scoreCount-text2-1">计算公式为：</text>
     </view>
     <view class="scoreCount-gs">
       <image src="/static/svg/scoreCountgs1.svg"></image>
