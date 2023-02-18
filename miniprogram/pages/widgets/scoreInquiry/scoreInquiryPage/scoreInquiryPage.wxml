@@ -59,15 +59,15 @@
 <view class="secondBox">
         <view class="stuName">
         <image class="stuName-img" src="/static/svg/stuName.svg"></image>
-        <view class="stuname">{{data1.name}}</view>
+        <view class="stuname">啊啊啊啊啊</view>
         </view>
         <view class="stuClass">
         <image class="stuClass-img" src="/static/svg/stuClass.svg"></image>
-        <view class="stuclass">{{data1.major}}</view>
+        <view class="stuclass">啊啊啊啊啊啊啊</view>
         </view>
         <view class="stuId">
         <image class="stuId-img" src="/static/svg/stuId.svg"></image>
-        <view class="stuid">{{data1.xh}}</view>
+        <view class="stuid">啊啊啊啊啊</view>
         </view>
 </view>
 
