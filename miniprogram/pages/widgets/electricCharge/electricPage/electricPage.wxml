@@ -1,7 +1,7 @@
 <!--pages/widgets/electricCharge/electricPage/electricPage.wxml-->
 <!--pages/Widgets/electricCharge/electricCharge.wxml-->
 <view class="bg"></view>
-<topbar title="{{electricChargeTitle}}"></topbar>
+<topbar title="{{electricChargeTitle}}" immersion = "{{true}}" >
 <view class="electricCharge-cantainer">
   <view class="electricCharge-top">
     <view class="remainBox">
@@ -152,7 +152,6 @@
     </view>
   </view>
 </view>
-
 <!-- 提示组件 -->
 <toast id="toast"></toast>
 <!-- 提示弹窗 -->
@@ -210,3 +209,5 @@
     </button>
   </view>
 </dialogTitle>
+
+</topbar>

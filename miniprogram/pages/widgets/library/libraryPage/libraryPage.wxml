@@ -49,16 +49,10 @@
   </view>
 </dialogTitle>-->
 
-<!--图书馆搜索界面-->
-<view class="topbar" wx:if="{{ifshowXiang}}">
-  <view class="returnBtn" bindtap="returnEvent">
-    <image class="returnIcon" style="width:18rpx; height:34rpx" src="/static/svg/returnIcon.svg"></image>
-  </view>
-  <view class="mypageTitle">
-    <view>首义图书馆</view>
-  </view>
-</view>
+<!--图书馆搜索界面--> 
+<topbar title="{{electricChargeTitle}}" immersion = "{{true}}">
 <view class="page"></view>
+<view class="boxreturn" bindtap="returned"></view>
 <view class="bigBox" wx:if="{{ifshowXiang}}">
   <view class="search">
     <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
@@ -134,14 +128,6 @@
   <view class="none1"></view>
 </view>
 <view wx:if="{{!ifshowXiang}}">
-  <view class="topbar">
-    <view class="returnBtn" bindtap="return">
-      <image class="returnIcon" style="width:18rpx; height:34rpx;margin-top: 5rpx;" src="/static/svg/returnIcon.svg"></image>
-    </view>
-    <view class="mypageTitle">
-      <view>图书详情</view>
-    </view>
-  </view>
   <view class="bookXQ">
     <view class="bookName">{{allbook[num].title}}</view>
     <view class="all">
@@ -208,5 +194,6 @@
   </view>
   <view class="none"></view>
 </view>
+</topbar>
 <!-- 提示组件 -->
 <toast id="toast"></toast>

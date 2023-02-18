@@ -24,6 +24,7 @@ Page({
     b: 0,
     ifshowXiang: true,
     num: 0,
+    electricChargeTitle:'首义图书馆'
   },
 
   swiperChangeqian: function () {
@@ -40,11 +41,8 @@ Page({
   },
 
   returnEvent() {
-    this.setData({ ifsearch: true, word: '', a: 1, b: 0, allbook: [] })
-    wx.removeStorage({
-      key: 'book',
-    })
-    this.get()
+    this.setData({ ifsearch: true,})
+    
   },
 
   return() {
@@ -242,9 +240,23 @@ Page({
     } catch { }
   },
 
+  returned(){
+    if(this.data.electricChargeTitle=="首义图书馆"){
+      this.setData({ifshowXiang:true,ifsearch:true, word: '', a: 1, b: 0, allbook: [] }),
+      wx.removeStorage({
+        key: 'book',
+      })
+      this.get()
+    }
+    if(this.data.electricChargeTitle=="图书详情"){
+      this.setData({ifshowXiang:true,electricChargeTitle:"首义图书馆"})
+    }
+  },
+
   showXQ(res: any) {
     this.setData({
-      ifshowXiang: false
+      ifshowXiang: false,
+      electricChargeTitle:"图书详情"
     })
     console.log(res.currentTarget.dataset.index)
     this.setData({ num: res.currentTarget.dataset.index })

@@ -1,17 +1,90 @@
-/* components/topbar/topbar.wxss */
-.topbar {
-  padding-top: 108rpx;
-  display: flex;
-  flex-direction: row;
+.top-bar {
+  position: fixed;
   width: 100%;
-  height: auto;
+  z-index: 999;
 }
 
-.returnIcon {
-  position: absolute;
-  left: 34rpx;
+.btn-box {
+    display: flex;
 }
 
-.mypageTitle{
-  margin: 0 auto;
+.school-btn {
+    margin-top: 40rpx;
+}
+
+.mCancel {}
+
+.btn {
+    border-radius: 75rpx;
+    width: 214rpx;
+    height: 84rpx;
+    /* font-size: 14px; */
+    font-weight: 500;
+    font-size: 32rpx;
+    padding: 0;
+    line-height: 84rpx;
+}
+
+.btn .button:not([size=mini]) {
+    width: 214rpx;
+    height: 84rpx;
+}
+
+.returnBox {
+    display: flex;
+    align-self: start;
+    width: 18rpx;
+    left: 1800rpx;
+    height: 34rpx;
+    color: #000000;
+}
+
+.returnSvg {
+    width: 24rpx;
+    height: 48rpx;
+}
+
+
+/* 胶囊标题区 */
+
+.capsule-box {
+    /* display: inline; */
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.barLine {
+    width: 240rpx;
+    display: flex;
+    /* align-content:center ; */
+    align-items: center;
+}
+
+.barLineItem {
+    /* flex: 1; */
+    color: #000000;
+}
+
+.returnButton {
+    transform: translateX(32rpx);
+    width: 24rpx;
+    height: 48rpx;
+}
+
+.barText {
+    transform: translateX(-10rpx);
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34rpx;
+    line-height: 48rpx;
+    /* identical to box height */
+    text-align: center;
+    color: #000000;
+    mix-blend-mode: normal;
+    letter-spacing: 1px;
+    opacity: 0.9;
 }
