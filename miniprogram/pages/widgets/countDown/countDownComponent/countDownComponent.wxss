@@ -1,0 +1,305 @@
+/* pages/widgets/countDown/countDownComponment/countDownComponent.wxss */
+
+
+/* 一般是359他具体要多少确实不清楚 */
+
+.countdownPageBox {
+    margin: 0 16rpx;
+}
+
+.countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20rpx 0rpx 28rpx;
+    gap: 20rpx;
+    width: 100%;
+    position: relative;
+    height: 166rpx;
+    background: #FFFFFF;
+    /* 边框 */
+    border: 2rpx solid #E3E3E6;
+    border-radius: 20rpx;
+}
+
+
+/* 首行文字 */
+
+.countdown-txtLine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rpx 28rpx;
+    gap: 20rpx;
+    height: 40rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+
+/* 沙漏图标 */
+
+.countdown-hourglass {
+    /* Inside auto layout */
+    display: flex;
+    order: 0;
+    flex-grow: 0;
+}
+
+.hoursglassSvg {
+    width: 32rpx;
+    height: 32rpx;
+}
+
+
+/* 标题 */
+
+.countdown-txt {
+    /* 首义+倒计时 */
+    height: 40rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    /* identical to box height */
+    /* text */
+    color: #292945;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.cd-txt {}
+
+
+/* 当前时间 */
+
+.countdown-nowDate {
+    /* 2023/1/31 */
+    width: 136rpx;
+    height: 40rpx;
+    display: flex;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    /* identical to box height */
+    /* Style */
+    color: #7F7F8F;
+    /* Inside auto layout */
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.cd-nowDate {
+  display: flex;
+  font-weight: 700;
+  letter-spacing: 1px;
+  
+}
+
+
+/* 靠左部分 */
+
+.top_leftBox {
+    /* Frame 419 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0rpx;
+    gap: 16rpx;
+    width: 358rpx;
+    height: 40rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+/* 返回键 */
+
+.countdown-return {
+    /* direction */
+    width: 40rpx;
+    height: 40rpx;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.returnSvg {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.countdownAllBox {
+    /* Frame 51 */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rpx;
+    gap: 30rpx;
+    width: 718rpx;
+    height: 106rpx;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.countdownBox {
+    /* Frame 299 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0rpx;
+    gap: 4rpx;
+    width: 200rpx;
+    height: 106rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+/* 装饰竖杠 */
+
+
+/* 间隔线盒子 */
+
+.splitLineBox {
+    /* Frame 51 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rpx;
+    gap: 30rpx;
+    width: 718rpx;
+    height: 106rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.splitLine {
+    /* Vector 15 */
+    display: flex;
+    flex-wrap: nowrap;
+    width: 0rpx;
+    height: 70rpx;
+    border: 2rpx solid #ECECEC;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.cdName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cdTitle {
+ 
+  width: 100px;
+  height: 17px;
+  
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  
+  text-align: center;
+  margin-top: 8rpx;
+  color: rgba(41, 41, 69, 0.6);
+  
+  
+  /* Inside auto layout */
+  
+  flex: none;
+  order: 1;
+}
+
+.cdDay {
+    /* 999 */
+    /* width: 88rpx; */
+    height: 68rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-size: 48rpx;
+    /* identical to box height */
+    color: #3EBAD0;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.Postgraduate {
+    position: relative;
+    font-weight: 1000;
+    /* left: 2rpx; */
+}
+.cd-txt{
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
+/* 使用伪元素实现间隔线 */
+
+.countdownBox:nth-child(2):before,
+.countdownBox:nth-child(2):after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 2rpx;
+    box-shadow: 0 0 0 19998rpx #ccc;
+    vertical-align: middle;
+}
+
+.countdownBox:nth-child(2)::before {
+    margin-right: 20rpx;
+    clip-path: polygon(0 0, -19998rpx 0, -19998rpx 100%, 0 100%);
+}
+
+.countdownBox:nth-child(2)::after {
+    margin-right: 20rpx;
+    clip-path: polygon(0 0, -19998rpx 0, -19998rpx 100%, 0 100%);
+}
+
+.splitLinner {
+    /* left: 50%; */
+    display: flex;
+    width: 0rpx;
+    height: 70rpx;
+    border: 2rpx solid #ECECEC;
+    /* Inside auto layout */
+    /* flex: 1; */
+    flex-grow: 0;
+}

@@ -15,3 +15,4 @@ node_modules/
 
 # 需要忽略的东西
 project.config.json
+project.private.config.json

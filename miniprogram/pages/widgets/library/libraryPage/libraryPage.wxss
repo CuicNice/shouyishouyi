@@ -1,1 +1,328 @@
-/* pages/widgets/library/libraryPage/libraryPage.wxss */
+.bg {
+  margin-top: -30rpx;
+  margin-left: -50rpx;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180.04deg, #B9EFE1 0.1%, #FCFCFC 30%);
+  z-index: -999;
+}
+.swiper-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 222rpx;
+}
+
+.librarySwiper{
+position: absolute;
+width: 504rpx;
+height: 504rpx;
+left: 120rpx;
+top: 222rpx;
+}
+
+.libraryIcon1{
+width: 100%;
+height: 100%;
+}
+
+.libraryIcon2{
+  width: 480rpx;
+  margin-top: 15rpx;
+  }
+  .container{
+    position: fixed;
+}
+.binDing-box{
+  position: relative;
+/* background-image: url(''); */
+  background-size: 100% 100%;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bg-box{
+  position:relative;
+  background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
+  width: 640rpx;
+  height: 490rpx;
+}
+
+.bg{
+  position: absolute;
+  top:30rpx;
+  left: 50rpx;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-built{
+  position: absolute;
+  top: -180rpx;
+  right: -75rpx;
+  z-index: 10;
+  width: 340rpx;
+}
+
+.binDing{
+  position:absolute;
+  width: 640rpx;
+  height: 490rpx;
+}
+
+.bd-text{
+width: 364rpx;
+height: 44rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: bold;
+font-size: 35rpx;
+line-height: 44rpx;
+letter-spacing: -0.2176px;
+color: #353535;
+text-align: left;
+}
+
+.bd-stext{
+  width: 380rpx;
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /* identical to box height */
+  letter-spacing: -0.2176px;
+  color: #8a8a97;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0; 
+  margin:30rpx 0  0 50rpx;
+}
+
+.school-text{
+  margin-top: 100rpx;
+  margin-left: 50rpx;
+}
+
+.btn-box{
+width: 600rpx;
+height: 210rpx;
+display: flex;
+margin-left: 70rpx;
+margin:100rpx 0  0 70rpx;
+}
+
+.school-btn{
+ margin-top: 40rpx;
+}
+
+.btn{
+  border-radius: 75rpx;
+  height: 84rpx;
+  font-weight: bold;
+  font-size: 32rpx;
+  margin-top: 80rpx;
+  text-align: center;
+  border: 1px solid #20C38C;
+}
+
+.btn .button:not([size=mini]){
+width: 214rpx;
+height: 84rpx;
+}
+
+.lefticon{
+position: absolute;
+width: 32rpx;
+height: 100rpx;
+left: 668rpx;
+top: 386rpx;
+}
+.lefticonImg{
+  width: 100%;
+  height: 100%;
+}
+
+.righticon{
+position: absolute;
+width: 32rpx;
+height: 100rpx;
+left: 50rpx;
+top:  390rpx;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.righticonImg{
+  width: 100%;
+  height: 100%;
+  rotate: 180deg;
+}
+
+
+.libarydialog{
+  position: absolute;
+  top:760rpx;
+  left: 64rpx;
+}
+
+.title {
+width: 320rpx;
+height: 44rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 500;
+font-size: 32rpx;
+line-height: 22rpx;
+text-transform: capitalize;
+color: #000000;
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+margin-bottom: 50rpx;
+}
+
+.input {
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24rpx 36rpx;
+  gap: 20rpx;
+  width: 620rpx;
+  height: 88rpx;
+  background: #FFFFFF;
+  /* #20C38C */
+  border: 1px solid #20C38C;
+  border-radius: 8rpx;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #292945;
+  opacity: 0.6;
+}
+
+.placeholder {
+  float: right;
+}
+
+.tips {
+width: 620rpx;
+height: 102rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 24rpx;
+line-height: 34rpx;
+text-transform: capitalize;
+color: #000000;
+opacity: 0.6;
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+margin-top: 20rpx;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  margin: 90rpx 30rpx;
+}
+
+.button .cancel {
+  /* Component 3 */
+  box-sizing: border-box;
+  /* Auto layout */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 28rpx;
+  gap: 20rpx;
+  width: 214rpx;
+  height: 84rpx;
+  background-color: #FFFFFF;
+  /* #20C38C */
+  border: 1px solid #20C38C;
+  border-radius: 70rpx;
+  /* #20C38C */
+  color: #20C38C;
+}
+
+.button .primary {
+/* Auto layout */
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 20rpx 28rpx;
+gap: 20rpx;
+width: 214rpx;
+height: 84rpx;
+/* #20C38C */
+background: #20C38C;
+border-radius: 70rpx;
+}
+
+.button .text {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  letter-spacing: -0.4352rpx;
+}
+
+.placeholder {
+  width: 300rpx;
+  height: 40rpx;
+  text-align: right;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /* identical to box height */
+  text-transform: lowercase;
+}
+/* components/topbar/topbar.wxss */
+.topbar {
+  padding-top: 60rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+}
+
+.returnIcon {
+  position: absolute;
+  left: 34rpx;
+}
+
+.mypageTitle{
+  margin: 0 auto;
+  font-weight: 500;
+}
+.btn {
+  border-radius: 75rpx;
+  height: 84rpx;
+  /* font-size: 14px; */
+  font-weight: 500;
+  font-size: 32rpx;
+  padding: 0;
+  line-height: 84rpx;
+}
