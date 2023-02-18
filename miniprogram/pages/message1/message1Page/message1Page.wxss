@@ -14,7 +14,7 @@
    margin-right: 44rpx;
   }
   .firstMessage:nth-child(1){
-  margin-top: 36rpx;
+  margin-top: 20rpx;
   width: 660rpx;
   height: 292rpx;
   background: #FFFFFF;
