@@ -30,8 +30,8 @@ Page({
   login(){ //模仿写出存入缓存
     var zh = this.data.zh;
     var mm = this.data.mm; 
-    wx.setStorageSync('key1',zh);
-    wx.setStorageSync('key2',mm);
+    wx.setStorageSync('zh',zh);
+    wx.setStorageSync('mm',mm);
   },
   /**
    * 显示是否绑定页面

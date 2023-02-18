@@ -1,6 +1,6 @@
 <view class="bg"></view>
+<tb title="{{scoreTitle}}" immersion="{{true}}" Threshold="0.2">
 <wxs module="filters" src="../../scoreInquiry/scoreInquiryPage/scoreparseInt.wxs"></wxs>
-<tb title="{{scoreTitle}}"></tb>
 <image  class="scorewords" src="/static/svg/scorewords.svg"></image>
 <view class="scoreTop">
 <!-- 学期称号 -->
@@ -9,10 +9,13 @@
   <image class="scoreTop-img" src="/static/svg/scoreTitle{{scoreLevel}}.svg"></image>
 </view>
 <view class="scoreTop-txtbox">
-<image class="scoreTop-icon" src="/static/svg/scoreTopimg.svg"></image>
+<view class="scoreTop-txt-box">
 <text class="scoreTop-txt">本学期称号</text>
+<image class="scoreTop-icon" src="/static/svg/scoreTopimg.svg"></image>
 </view>
 </view>
+</view>
+
 <!-- 学生成绩 -->
     <view class="scoreTop-boxs1" bindtap="scoreCountTap">
         <view class="aveScore">
@@ -127,12 +130,114 @@
     </view>
   </view>
 </scroll-view>
+</tb>
 
 
 <!-- 成绩详情弹窗 -->
-<scoreComment courseTapdetail="{{courseTapdetail}}" Detail="{{Detail}}"  allDetail="{{allDetail}}" Details="{{Details}}"   bj="{{bj}}"  jsxm="{{jsxm}}"  kcmc="{{kcmc}}"  score="{{score}}"  xf="{{xf}}"  xnmmc="{{xnmmc}}"  xqmmc="{{xqmmc}}" jd="{{jd}}" kcxzmc="{{kcxzmc}}"termTitleTapdetail="{{termTitleTapdetail}}" scoreCountdetail="{{scoreCountdetail}}" color="{{color}}"></scoreComment>
-<!-- 学期称号详情弹窗 -->
-<!-- 分数算法详情弹窗 -->
+<!-- 成绩详情弹窗 -->
+<view class="scoresearchGrey" bindtap="closeTap"wx:if="{{courseTapdetail}}"catchtouchmove="ture"></view>
+<view class="scoredetailBox" wx:if="{{courseTapdetail}}">
+<view  class="dispelbox" bindtap="closeTap">
+<image class="dispel" src="/static/svg/dispel.svg"></image></view>
+<view class="scoredetailBox-top">
+        <view class="detailTitle">
+        <view class="scoredetailBox-detail" >
+            <view class="scoredetailBox-detail-tittle">
+              <view class="scoredetailBox-text">成绩详情</view>
+              <view style="background: {{color}};"class="scoredetail-typeBox"><text class="scoredetail-typeText">{{kcxzmc}}</text></view>
+            </view>
+            <view class="scoreDetailborder"></view>
+            <view  class="scoredetail-courseTitle">{{kcmc}}</view>
+        </view>
+        <view class="detailcourse">
+          <view class="detailcourse-semesterDetail">{{xnmmc}}学年度第{{xqmmc}}学期</view>
+          <view class="detailcourse-teacherDetail">{{jsxm}}老师教学</view>
+          <view class="detailcourse-classDetail">{{bj}}</view>
+        </view>
+    </view>
+    <view  class="scoreNumBox">
+       <view class="scoreNum" bindtap="closeTap">{{score}}</view>
+       <view class="scoreCredit"><text class="scoreCredit-num">修得学分:{{xf? xf:"无"}}（满学分{{xf}}）</text></view>
+       <view class="scoreCredits"><text class="scoreCredit-nums">获得绩点:{{jd? jd:"无"}} (满绩{{jd?jd:"无"}})</text></view>
+    </view>
+    </view>
+    <view class="classDetailborder"></view>
+        <!-- 成绩表格 -->
+    <!-- 成绩表格 -->
+    <view class="scoreForm">
+            <view class="trTitle">
+                <view class="th1">成绩分项</view>
+                <view class="th2">比例</view>
+                <view class="th ">成绩</view>
+            </view>
+            <block>
+            <view class="tr" wx:for="{{Details}}"  wx:key="index" >
+                    <view class="td1" >[{{item.cjfx.length == 4 ?item.cjfx[0]+item.cjfx[1]:item.cjfx}}]</view>
+                    <view class="td2">{{item.cjfxbl}}</view>
+                    <view class="td3">{{item.cj}}</view>
+            </view>
+            </block>
+    </view>
+</view>
 
+<!-- 学期称号详情弹窗 -->
+<view class="scoresearchGrey" bindtap="closeTap"wx:if="{{termTitleTapdetail}}"catchtouchmove="ture"></view>
+<view class="scoretitlesdetailBox" wx:if="{{termTitleTapdetail}}">
+  <view  class="dispelbox" bindtap="closeTap">
+  <image class="dispel" src="/static/svg/dispel.svg"></image></view>
+<view class="scoretitlesdetail">
+  <view class="termTitlerules">称号规则:</view>
+   <view class="termTitlerules-inter">
+  此称号根据已有成绩实时显示，可能会出现可计算数据较少，称号显示不符合实际水平的情况，但是随着各科成绩结果出来，称号会更加贴近你的真正实力~
+  </view>
+  <view class="termTitlelevels-box">
+    <view class="termTitlelevelstext1">
+    <text decode="{{true}}">称号共有七级，按本学期加权平均成绩划分</text>
+    </view>
+    <view class="termTitlelevelstext2"><text>其中，若所选学期无考试成绩，显示“等待入榜”</text></view>
+    <view class="termTitlelevels">
+    <text class="termTitlelevelsdot">90分以上 获得"首义学神"称号</text>
+    <text class="termTitlelevelsdot">85-90分 获得"首义学霸"称号</text>
+    <text class="termTitlelevelsdot">80-85分 获得"进阶战士"称号</text>
+    <text class="termTitlelevelsdot">70-80分 获得"潜力新星"称号</text>
+    <text class="termTitlelevelsdot">60-70分 获得"描边大师"称号</text>
+    <text class="termTitlelevelsdot">60分以下 获得"补考达人"称号</text>
+    </view>
+  </view>
+  <view class="termTitle-top">- 加油学习，向“首义学神”进发吧！-</view>
+</view>
+</view>
+<!--成绩算法-->
+<view class="scoresearchGrey" bindtap="closeTap"wx:if="{{scoreCountdetail}}"catchtouchmove="ture"></view>
+<view class="scoreCountdetailBox" wx:if="{{scoreCountdetail}}">
+  <view  class="dispelbox" bindtap="closeTap">
+  <image class="dispel" src="/static/svg/dispel.svg"></image></view>
+  <view class="scoreCountdetail">
+    <view class="scoreCountrules">分数算法</view>
+    <view class="scoreCountrules-inter">
+      以下算法中，均只统计“正常考试”和非“公共选修”的课程的成绩。比如“必修”和“专业选修”的成绩均会被带入计算公式中。但“补考”的成绩是不会被带入当前学期计算公式中的。
+      <text class="scoreCountrules-inters">n：参与统计的课程总数</text>
+  </view>
+  <view class="scoreCountBox1">
+    <view class="scoreCount-text">
+      <text class="scoreCount-text1">学分加权平均分：</text>
+      每门成绩乘以它的权值比例(学分)后相加，最后除以每门课的学分之和得到的平均数，这可以体现出课程的重要性对总成绩的影响大小。
+      <text class="scoreCount-text2-1">计算公式为：</text>
+    </view>
+    <view class="scoreCount-gs">
+      <image src="/static/svg/scoreCountgs1.svg"></image>
+    </view>
+  </view>
+  <view class="scoreCountBox2">
+    <view class="scoreCount-text">
+      <text class="scoreCount-text1">平均学分绩点：</text>
+      每门学分乘以它的绩点后相加，最后除以每门学分之和的分数，是学习能力与质量的综合评价指标之一。
+      <text class="scoreCount-text2">计算公式为：</text>
+    </view>
+    <view class="scoreCount-gs">
+    <image src="/static/svg/scoreCountgs2.svg"></image>
+    </view>
+  </view>
+  </view>
+</view>
 <toast title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast>
-<!--<toast title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast>-->
