@@ -1,11 +1,12 @@
 // pages/widgets/countDown/countDownPage/countDownPage.ts
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    // 第一个输入框
+    name: "",
     // countdwonWedget
     countDownTitle: "首义＋倒计时",
     // dialog
@@ -16,7 +17,29 @@ Page({
     date: undefined,
     bname: '联系南南',
     b1name: '确定',
+    isEdit: false,
     isInputTextMove: false as boolean,
+    // 默认的位置是local位置是第一个
+    localItemPosition: 0,
+    isNetwork: false as boolean
+  },
+  // 去重
+  duplicatedArray(arr: any) {
+    // 去重完全
+    //本地缓存数据关于重复的数据进行去重,使用reduce去重
+    let tempObj = [{}, {}, {}];
+    const res = arr.reduce((returnVal: any, currentVal: any) => {
+      // 观察同一属性的值，并放入对象中，若对象中存在该值，则表明重复不进行处理，若对象中不存在该值，表示新值，需要存进去
+      console.log(tempObj)  // 所有存在的值放入这个对象当中
+      if (!tempObj[currentVal.name]) {
+        tempObj[currentVal.name] = true; // 若值为true，表示这个值存在，不会走里面的push方法
+        // 添加元素
+        returnVal.push(currentVal);
+      }
+      // a总和，也就是每一次处理后的返回结果 b当前值 c 索引值
+      return returnVal
+    }, []);
+    return res
   },
   // 解决input输入完毕字体上浮问题
   // 等待输入
@@ -51,7 +74,6 @@ Page({
     setTimeout(() => {
       wx.redirectTo({
         url: '/pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage',
-
       })
     }, 500)
   },
@@ -93,49 +115,76 @@ Page({
     let currentdate = year + seperator1 + month + seperator1 + strDate;
     return currentdate;
   },
+  // 数组重复判定
+  isDuplicated(countDownList: any, goalName: string) {
+    for (let countDownListItemID = 0; countDownListItemID < countDownList.length; countDownListItemID++) {
+      let countDownListItem = countDownList[countDownListItemID]
+      console.log("重复的", countDownListItem["countDownName"])
+      if (countDownListItem["countDownName"] !== goalName) {
+        // 不重复的情况
+        // 直接set
+        // return array重复的下标
+        return false
+      } else {
+        // 重复
+        return countDownListItemID
+      }
+    }
 
+  },
   // 获取表单信息
   formSubmit(e: any) {
     let that = this
-
     try {
-
       // 存储数据
       let goalName = e.detail.value.thingsInputTxt
       let goalTime = e.detail.value.timeInputTxt
       let countDownList = []
-
       // 之前存在
-
       if (wx.getStorageSync('widgets-userCountDown')) {
-
-
+        // 本地的数据
         countDownList = wx.getStorageSync('widgets-userCountDown')
-
       }
+      // console.log("做去重处理qian", countDownList)
       if (goalName && goalTime) {
-        countDownList.push({
-          countDownName: goalName,
-          countDownEndDate: goalTime
-        })
-        wx.setStorage({
-          key: "widgets-userCountDown",
-          data: countDownList
-        })
-
-        wx.getStorage({
-          key: 'widgets-userCountDown',
-          success(res) {
-            that.selectComponent("#toast").showToastAuto("设置成功", "success", 1);
-            that.gotoBd()
-          }, fail(error) {
-            that.submitError(error.errMsg)
-            that.setData({
-              showDialog: true
-            })
-          }
-        })
-
+        // 如果条件满足那么就添加
+        // 如果这个值存在那么只进行修改,
+        // 非重复数据
+        let isNetwork = that.data.isNetwork
+        console.log("network;x;ss", isNetwork);
+        if (isNetwork) {
+          console.log("新增")
+          countDownList.push({
+            countDownName: goalName,
+            countDownEndDate: goalTime
+          })
+        } else {
+          console.log("修改")
+          // 重复数据,修改日期值
+          let eidtID = that.data.localItemPosition
+          // 修改本地缓存
+          countDownList[eidtID]["countDownName"] = goalName
+          countDownList[eidtID]["countDownEndDate"] = goalTime
+          console.log("eidtID+++++++++++++++++", eidtID, goalName, goalTime)
+          wx.removeStorageSync('widgets-userCountDown')
+        }
+        // 删除重复的数据
+        // countDownList = this.duplicatedArray(countDownList)
+        console.log("concocococooc", countDownList);
+        wx.setStorageSync("widgets-userCountDown",
+          // 本地数据去重
+          countDownList
+        )
+        try {
+          console.log("0o0o0o", wx.getStorageSync('widgets-userCountDown'))
+          that.selectComponent("#toast").showToastAuto("设置成功", "success", 1);
+          that.gotoBd()
+        } catch (error) {
+          that.submitError(error.errMsg)
+          that.setData({
+            showDialog: true
+          })
+        }
       } else {
         that.selectComponent("#toast").showToastAuto("未填写完毕", "error", 1);
       }
@@ -147,9 +196,7 @@ Page({
         showDialog: true
       })
     }
-
     // 判断name和time是不是都存在
-
     // 缓存处理
   },
   // chun
@@ -158,22 +205,88 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad(options) {
+    // test
+
+    // 接收跳转的传参    
+    console.log("options", options)
+    this.initInputDate(options)
     this.initDate()
+    // 解决数据重复的问题
   },
+  setSomeDate(dayNumber:number) {
+      // 设置当前距离今天时间XXX天后的时间格式为yy-mmm-xx
+    let nowDateObj = new Date();
+    let nowTimeStem = nowDateObj.getTime();
+    let endTimeStem = nowTimeStem + 24 * 60 * 60 * 1000 * dayNumber;
+    let endDateObj = new Date(endTimeStem);
+    let month = endDateObj.getMonth() + 1;
+    let monthStr = month > 10 ? month : '0' + month;
+    let day = endDateObj.getDate();
+    let dayStr = day > 10 ? day : '0' + day;
+    let endDateStr = endDateObj.getFullYear() + '-' + monthStr + '-' + dayStr;
+    console.log("endDateStr", endDateStr)
+    return endDateStr
+
+  },
+
+  // 输入框设置初始参数
+  initInputDate(op: any) {
+    let that = this
+    // 获取id
+    console.log("关于id'", op)
+    // 可以新建
+    let isNetWorkContent = true as boolean
+    // 本地的数据
+    // 是否是网络请求
+    try {
+      isNetWorkContent = JSON.parse(op["isNetWork"])
+      console.log("type", typeof (isNetWorkContent))
+      console.log("执行获取了网络", isNetWorkContent)
+    } catch (e) {
+      console.log("获取network失败", e)
+    }
+    // 如果是远程请求
+    console.log("type", typeof (isNetWorkContent))
+    console.log("执行", isNetWorkContent)
+    if (isNetWorkContent) {
+      // 远程做添加
+      console.log("是远程的", isNetWorkContent)
+      that.setData({
+        isNetwork: isNetWorkContent
+      })
+    } else {
+      // 本地做修改
+      let localItemPosition = op["localItemPosition"]
+      let inputCountDownName = op["localCountDownName"]
+      let localCountDownEndDate = op["localCountDownEndDate"]
+      that.setData({
+        isNetwork: isNetWorkContent,
+        localItemPosition: localItemPosition,
+        // 本地名字
+        goalTime: localCountDownEndDate,
+        name: inputCountDownName,
+        // 允许修改
+        isEdit: true
+      })
+    }
+    // 修改缓存的数值
+    // 确认才能是
+  },
+
+
   initDate() {
     let startDate = this.getNowFormatDate();
-    this.setData({
-      startDate: startDate,
-    })
+    // 设置结束时间
+    let endDate= this.setSomeDate(999)
+
     let goalTimePre = this.getNowFormatDate()
     this.setData({
+      startDate: startDate,
+      endDate:endDate,
       goalTimePre: goalTimePre,
-    })
-    this.setData({
       title: "倒计时"
     })
-
   },
   // 顶部
   getTarHeighgt() {
@@ -188,8 +301,8 @@ Page({
     let statusBarHeight = systemInfo['statusBarHeight']
     // 设置胶囊行的高度
     const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
+    console.log("statusBarHeight", statusBarHeight);
     console.log("capsuleBoxHeight", capsuleBoxHeight);
-
     /* 
     根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
     开发工具 = 获取的高度

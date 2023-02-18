@@ -137,6 +137,9 @@ async initDevStatement(from:souyiDevItem){
 
 
   onLoad() {
+    this.setData({
+      title: "我们努力的小伙伴"
+    })
     let that=this
     let  pageInfo={  
       currentPage:"1",  

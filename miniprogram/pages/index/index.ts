@@ -66,10 +66,16 @@ Page({
       shuju:e.detail.bannerContent,
       iftaiozhuan: true
     })
+    console.log(this.data.shuju)
+    try{
+      wx.setStorageSync('key', this.data.shuju)
+      console.log('写入value成功')
+    }catch (e) {
+      console.log('写入value发生错误')
+    }
     if(this.data.shuju != null){
-      console.log('res')
     wx.navigateTo({
-      url: '../indexText/indexText?shuju=' + this.data.shuju,
+      url: '../indexText/indexText',
     })
   }
   },

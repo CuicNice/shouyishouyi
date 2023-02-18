@@ -193,22 +193,13 @@ flex-grow: 0;
 /* 外层的盒子 */
 .versionDescriptBox{
 /* Frame 42 */
-
-
 /* Auto layout */
-
 display: flex;
 flex-direction: row;
 align-items: flex-start;
 padding: 0px 0px 0px 23px;
 gap: 10px;
-
-width: 285px;
-height: 30px;
-
-
 /* Inside auto layout */
-
 flex: none;
 order: 1;
 align-self: stretch;
@@ -216,9 +207,6 @@ flex-grow: 0;
 }
 .versionItemDescript{
   /* 本次更新社团信息功能、四六级成绩查询、考试成绩详情查询等！ */
-width: 262px;
-height: 30px;
-
 font-family: 'PingFang SC';
 font-style: normal;
 font-weight: 400;
@@ -261,7 +249,7 @@ flex-grow: 0;
 display: flex;
 flex-direction: column;
 justify-content: center;
-align-items: center;
+/* align-items: center; */
 padding: 0px;
 gap: 35px;
 /* Inside auto layout */

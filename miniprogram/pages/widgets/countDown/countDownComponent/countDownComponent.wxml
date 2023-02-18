@@ -1,17 +1,72 @@
 <!--pages/widgets/countDown/countDownComponment/countDownComponent.wxml-->
 <!-- 倒计时组件 -->
-<view class='countdown'>
-  <view class="countdown-txt">
-    <text class='cd-txt'>{{countDownTitle}}</text>
+<view class="countdownPageBox">
+  <view class='countdown'>
+  <view class="countdown-txtLine">
+    <!-- 两侧布局——靠左盒子 -->
+    <view class="top_leftBox">
+      <!-- 沙漏按钮 -->
+      <view class="countdown-hourglass">
+        <image class="hoursglassSvg" src="/static/svg/hourglass.svg" mode="" />
+      </view>
+      <!-- 标题 -->
+      <view class="countdown-txt">
+        <text class='cd-txt'>{{countDownTitle}}</text>
+      </view>
+      <view class="countdown-nowDate">
+        <text class='cd-nowDate'>{{countDownNowDate}}</text>
+      </view>
+    </view>
+
+    <!--button -->
+    <!-- <view class="countdown-return" bindtap="returnPage">
+      <image class="returnSvg" src="/static/svg/widgets_return.svg" mode="" />
+    </view> -->
+    <!-- 这里可以弄设置 -->
+    <slot></slot>
+
   </view>
-  <view class="countdownAllBox" bindtap="setTime1">
-    <view class="countdownBox" wx:for="{{cdlist3}}" wx:key="index">
+  <!-- 由于有分隔符只能展开列表 -->
+  <!-- 头部——第一项 -->
+  <view class="countdownAllBox">
+    <view class="countdownBox"bindtap="editcountDownData" data-id="0">
+
       <view class="cdName">
-        <view class="cdDay"><text>{{item.countDownEndDate}}</text></view>
+        <view class="cdDay"><text>{{cdlist3[0]["countDownEndDate"]}}</text></view>
         <view class="cdTitle">
-          <text class="Postgraduate">{{item.countDownName}}</text>
+          <text class="Postgraduate">距离{{cdlist3[0]["countDownName"]}}</text>
         </view>
+
+      </view>
+    </view>
+    <view class="splitLinner">
+
+    </view>
+    <!-- 中部 -->
+    <view class="countdownBox" bindtap="editcountDownData" data-id="1">
+      <view class="cdName">
+        <view class="cdDay"><text>{{cdlist3[1]["countDownEndDate"]}}</text></view>
+        <view class="cdTitle">
+          <text class="Postgraduate">距离{{cdlist3[1]["countDownName"]}}</text>
+        </view>
+
+      </view>
+    </view>
+    <!-- split -->
+    <view class="splitLinner">
+
+    </view>
+
+    <view class="countdownBox" bindtap="editcountDownData" data-id="2">
+
+      <view class="cdName">
+        <view class="cdDay"><text>{{cdlist3[2]["countDownEndDate"]}}</text></view>
+        <view class="cdTitle">
+          <text class="Postgraduate">距离{{cdlist3[2]["countDownName"]}}</text>
+        </view>
+
       </view>
     </view>
   </view>
+</view>
 </view>

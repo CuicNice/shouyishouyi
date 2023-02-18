@@ -4,11 +4,11 @@
 <view class="bg"></view>
 <view class="top-bar">
   <!-- 信号区 -->
-  <view  style="height:{{statusBarHeight*2}}rpx;">
+  <view  style="height:{{statusBarHeight}}px;">
   </view>
   <!-- 胶囊区 -->
   <!-- 获取胶囊的高度来设置胶囊所在行的高度 -->
-  <view  class="capsule-box" style="height:{{capsuleBoxHeight*2}}rpx;">
+  <view  class="capsule-box" style="height:{{capsuleBoxHeight}}px;">
   <view class="barLineItem">
     <view  bindtap="returnPage" class="returnButton">
       <image class="returnSvg" 
@@ -32,6 +32,7 @@
     <!-- 涉及到焦点聚集 -->
 <view class="thingInput" >
   <input class="InputTxt" 
+value="{{name}}"
 name="thingsInputTxt"
 style="height: 88rpx;"
 bindfocus="stationNameFocus"
@@ -51,8 +52,9 @@ maxlength="4">
 
 </view>
 <view class="timeInput" catchtouchmove="{{isInputTextMove}}" style="background: #FFFFFF;"> 
- <picker mode="date" name="timeInputTxt" value="{{goalTime}}" start="{{startDate}}" end="2099-01-01" bindchange="bindDateChange"style="background: #FFFFFF;"> 
-  <view wx:if="{{goalTime}}" class="picker" style="background: #FFFFFF;">
+ <picker mode="date" name="timeInputTxt" value="{{goalTime}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange"style="background: #FFFFFF;"> 
+  <view 
+   wx:if="{{goalTime}}" class="picker" style="background: #FFFFFF;">
          {{goalTime}}
      </view>
      <!-- 未选择之前 -->
@@ -61,7 +63,7 @@ maxlength="4">
 </view> 
 </view>
 <view class="saveButtonBox">
-  <button class="saveButton" style="width: 100%;" form-type="submit"><text class="saveText">保存设置</text>
+  <button class="saveButton" style="width: 100%;" form-type="submit"><text class="saveButtonText">保存设置</text>
   </button>
 </view>
 </view>
@@ -69,7 +71,7 @@ maxlength="4">
 
 
 <view class="Img" >
-  <image class="paw" style="width: 420rpx; height: 410rpx;" src="{{sportBuild}}" ></image>
+  <image class="paw"src="{{sportBuild}}" ></image>
 
  
 </view>

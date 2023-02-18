@@ -1,1 +1,1 @@
-<web-view src="{{shuju}}"></web-view>
+<web-view src="{{shuju.data}}"></web-view>
