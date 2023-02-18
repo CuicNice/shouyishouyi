@@ -1532,18 +1532,21 @@ margin-top: 18rpx;
     text-align: center;
   }
   .termTitlelevelstext1 text{
-    letter-spacing: 1px;
+    letter-spacing: 0.6px;
   }
   .termTitlelevelstext2{
     font-size: 28rpx;
     line-height: 40rpx;
     color: #292945; 
     text-align: center;
+    margin-top: 10rpx;
   }
   .termTitlelevelstext2 text{
     letter-spacing: 0.6px;
+
   }
   .termTitlelevels{
+  margin-left:32rpx ;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1555,11 +1558,11 @@ margin-top: 18rpx;
     height:10rpx;
     background:#292945;
     border-radius: 50%;
-    margin-left: 70rpx;
+    margin-left: 80rpx;
     transform: translateY(26rpx);
   }
  .termTitlelevelsdot{
-  letter-spacing: 0.6px;
+   letter-spacing: 0.2px;
    margin-top: 4rpx;
    width: 592rpx;
    text-align: center;
