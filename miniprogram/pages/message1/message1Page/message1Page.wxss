@@ -13,7 +13,7 @@
    margin-left:46rpx ;
    margin-right: 44rpx;
   }
-  .firstMessage:nth-child(1){
+  .firstMessage:first-child{
   margin-top: 20rpx;
   width: 660rpx;
   height: 292rpx;
@@ -21,7 +21,7 @@
   border: 4rpx solid #4BDCAB;
   border-radius: 20rpx;
   }
-  .firstMessage{
+  .firstMessage:not(:first-child){
     margin-top: 38rpx;
     width: 660rpx;
     height: 292rpx;
