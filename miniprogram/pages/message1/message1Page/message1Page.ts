@@ -92,7 +92,7 @@ Page({
  },
 //点击进入信息详情
 getMessage(e){
-  if(this.data.list[e.currentTarget.dataset.row].popupType !== 'noJump'){
+  if(this.data.list[e.currentTarget.dataset.row].popupJumpType !== 'noJump'){
    if(this.data.list[e.currentTarget.dataset.row].popupJumpUrl !== null){
     wx.setStorageSync('Url',this.data.list[e.currentTarget.dataset.row].popupJumpUrl);
     wx.navigateTo({
@@ -109,7 +109,7 @@ getMessage(e){
   }else{
     this.setData({
     isHidden:true,
-    title:"标题",
+    title:"消息中心",
   }) 
 }
   
