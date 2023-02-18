@@ -32,6 +32,7 @@
     <!-- 涉及到焦点聚集 -->
 <view class="thingInput" >
   <input class="InputTxt" 
+value="{{name}}"
 name="thingsInputTxt"
 style="height: 88rpx;"
 bindfocus="stationNameFocus"
@@ -51,8 +52,9 @@ maxlength="4">
 
 </view>
 <view class="timeInput" catchtouchmove="{{isInputTextMove}}" style="background: #FFFFFF;"> 
- <picker mode="date" name="timeInputTxt" value="{{goalTime}}" start="{{startDate}}" end="2099-01-01" bindchange="bindDateChange"style="background: #FFFFFF;"> 
-  <view wx:if="{{goalTime}}" class="picker" style="background: #FFFFFF;">
+ <picker mode="date" name="timeInputTxt" value="{{goalTime}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange"style="background: #FFFFFF;"> 
+  <view 
+   wx:if="{{goalTime}}" class="picker" style="background: #FFFFFF;">
          {{goalTime}}
      </view>
      <!-- 未选择之前 -->
