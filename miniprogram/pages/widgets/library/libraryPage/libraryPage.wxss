@@ -1,3 +1,4 @@
+/*图书馆的登录界面css部分
 .bg {
   margin-top: -30rpx;
   margin-left: -50rpx;
@@ -36,7 +37,6 @@ height: 100%;
 }
 .binDing-box{
   position: relative;
-/* background-image: url(''); */
   background-size: 100% 100%;
   border-radius: 8rpx;
   display: flex;
@@ -93,10 +93,8 @@ text-align: left;
   font-weight: 400;
   font-size: 28rpx;
   line-height: 40rpx;
-  /* identical to box height */
   letter-spacing: -0.2176px;
   color: #8a8a97;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   align-self: stretch;
@@ -180,7 +178,6 @@ font-size: 32rpx;
 line-height: 22rpx;
 text-transform: capitalize;
 color: #000000;
-/* Inside auto layout */
 flex: none;
 order: 0;
 flex-grow: 0;
@@ -189,7 +186,6 @@ margin-bottom: 50rpx;
 
 .input {
   box-sizing: border-box;
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -199,10 +195,8 @@ margin-bottom: 50rpx;
   width: 620rpx;
   height: 88rpx;
   background: #FFFFFF;
-  /* #20C38C */
   border: 1px solid #20C38C;
   border-radius: 8rpx;
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -231,7 +225,6 @@ line-height: 34rpx;
 text-transform: capitalize;
 color: #000000;
 opacity: 0.6;
-/* Inside auto layout */
 flex: none;
 order: 1;
 align-self: stretch;
@@ -246,9 +239,7 @@ margin-top: 20rpx;
 }
 
 .button .cancel {
-  /* Component 3 */
   box-sizing: border-box;
-  /* Auto layout */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -257,15 +248,12 @@ margin-top: 20rpx;
   width: 214rpx;
   height: 84rpx;
   background-color: #FFFFFF;
-  /* #20C38C */
   border: 1px solid #20C38C;
   border-radius: 70rpx;
-  /* #20C38C */
   color: #20C38C;
 }
 
 .button .primary {
-/* Auto layout */
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
@@ -273,7 +261,6 @@ padding: 20rpx 28rpx;
 gap: 20rpx;
 width: 214rpx;
 height: 84rpx;
-/* #20C38C */
 background: #20C38C;
 border-radius: 70rpx;
 }
@@ -296,10 +283,9 @@ border-radius: 70rpx;
   font-weight: 400;
   font-size: 28rpx;
   line-height: 40rpx;
-  /* identical to box height */
   text-transform: lowercase;
 }
-/* components/topbar/topbar.wxss */
+components/topbar/topbar.wxss
 .topbar {
   padding-top: 60rpx;
   display: flex;
@@ -320,9 +306,645 @@ border-radius: 70rpx;
 .btn {
   border-radius: 75rpx;
   height: 84rpx;
-  /* font-size: 14px; */
   font-weight: 500;
   font-size: 32rpx;
   padding: 0;
   line-height: 84rpx;
+}*/
+
+/*图书馆搜索界面css*/
+.topbar {
+  padding-top: 100rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-left: -40rpx;
+  height: auto;
+}
+
+.returnIcon {
+  position: absolute;
+  left: 34rpx;
+}
+
+.returnBtn {
+  width: 60rpx;
+  height: 50rpx;
+  text-align: center;
+}
+
+.mypageTitle {
+  margin: 0 auto;
+  font-weight: 500;
+  color: #000000;
+}
+
+.page {
+  position: absolute;
+  top: 0rpx;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180.04deg, #B9EFE1 0.1%, #FCFCFC 30%);
+  z-index: -100;
+}
+
+.bigBox {
+  margin-top: 60rpx;
+}
+
+.search {
+  width: 545rpx;
+  height: 41rpx;
+  border-radius: 164rpx;
+  padding: 20rpx 40rpx 20rpx 40rpx;
+  gap: 20rpx;
+  border: 3rpx solid #20C38C;
+  margin-left: 65rpx;
+}
+
+.mininput {
+  font-weight: 500;
+  font-size: 26rpx;
+}
+
+.inputBox {
+  width: 500rpx;
+  float: left;
+  height: 100%;
+}
+
+.image {
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+  margin-right: 3rpx;
+  margin-top: 2rpx;
+}
+
+.searchRecord {
+  margin-top: 52rpx;
+}
+
+.mark {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32rpx;
+  text-transform: capitalize;
+  color: #000000;
+  margin-left: 70rpx;
+  float: left;
+}
+
+.deleteMark {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  float: right;
+  margin-top: 10rpx;
+  margin-right: 62rpx;
+}
+
+.markBox {
+  width: 622rpx;
+  height: 190rpx;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  top: 430rpx;
+  left: 50rpx;
+  flex-wrap: wrap;
+}
+
+.text {
+  /* width: 190rpx; */
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-size: 30rpx;
+  margin-left: 5rpx;
+  height: 48rpx;
+}
+
+.text1 {
+  width: 190rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-size: 30rpx;
+  margin-left: 5rpx;
+  height: 48rpx;
+}
+
+.markMake {
+  height: 40rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 148rpx;
+  margin-left: 20rpx;
+  background: #EBEBEB;
+  margin-top: 15rpx;
+}
+.nonemarkMake {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  margin-top: 6rpx;
+  margin-left: 25rpx;
+}
+
+.lefticon {
+  position: absolute;
+  width: 32rpx;
+  height: 100rpx;
+  left: 668rpx;
+  top: 386rpx;
+}
+
+.lefticon2 {
+  position: absolute;
+  top: 345rpx;
+  left: 670rpx;
+  width: 50rpx;
+  height: 50rpx;
+  float: left;
+  text-align: center;
+}
+
+.lefticonImg {
+  width: 12rpx;
+  height: 40rpx;
+  margin-left: 4rpx;
+}
+
+.lefticonImg2 {
+  width: 25rpx;
+  height: 80rpx;
+}
+
+.righticon {
+  position: absolute;
+  width: 32rpx;
+  height: 100rpx;
+  left: 50rpx;
+  top: 390rpx;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.righticon2 {
+  position: absolute;
+  top: 345rpx;
+  left: 590rpx;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+  float: right;
+}
+
+
+.librarySwiper {
+  position: absolute;
+  width: 504rpx;
+  height: 504rpx;
+  left: 120rpx;
+  top: 222rpx;
+}
+
+.libraryIcon1 {
+  width: 100%;
+  height: 100%;
+}
+
+.libraryIcon2 {
+  width: 500rpx;
+  margin-top: 15rpx;
+}
+
+.libraryIcon3 {
+  width: 500rpx;
+  margin-top: 5rpx;
+  margin-left: 30rpx;
+}
+
+.libraryIcon4 {
+  width: 440rpx;
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+}
+
+.container {
+  position: fixed;
+}
+
+.library {
+  position: absolute;
+  top: 460rpx;
+}
+
+.allsearch {
+  margin-top: 34rpx;
+  margin-left: 65rpx;
+  width: 680rpx;
+  height: 45rpx;
+}
+
+.leftBox {
+  float: right;
+  height: 34rpx;
+  width: 600rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26rpx;
+  padding-top: 7rpx;
+  text-transform: capitalize;
+  color: #989898;
+}
+
+.pagenum {
+  position: absolute;
+  top: 348rpx;
+  left: 602rpx;
+  width: 100rpx;
+  height: 34rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26rpx;
+  line-height: 34rpx;
+  text-align: center;
+  text-transform: capitalize;
+  color: #989898;
+}
+
+.leftBox {
+  float: left;
+}
+
+.classBox {
+  margin-top: 30rpx;
+  width: 684rpx;
+  height: 270rpx;
+  margin-left: 33rpx;
+  border-bottom: 1rpx dashed black;
+}
+
+.className {
+  width: 470rpx;
+  height: 46rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  text-transform: capitalize;
+  color: #292945;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leftClass {
+  float: left;
+}
+
+.classForm {
+  margin-top: 14rpx;
+  width: 470rpx;
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-transform: capitalize;
+  color: #292945;
+  opacity: 0.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.classFormplace {
+  margin-top: 14rpx;
+  width: 470rpx;
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-transform: capitalize;
+  color: #292945;
+  opacity: 0.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeBox {
+  margin-left: -20rpx;
+  margin-top: 18rpx;
+  width: 470rpx;
+  height: 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.dashed {
+  width: 100%;
+  margin-top: 28rpx;
+  border-top: 1rpx dashed black;
+}
+
+.place {
+  padding: 0px 9px;
+  margin-left: 20rpx;
+  gap: 20rpx;
+  width: 58rpx;
+  height: 40rpx;
+  background: #20C38C;
+  opacity: 0.6;
+  border-radius: 120rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: #FFFFFF;
+}
+.boxreturn{
+  position: fixed;
+  top: 30rpx;
+  z-index: 1000;
+  width: 100rpx;
+  height: 100rpx;
+}
+.rightBox {
+  width: 210rpx;
+  float: right;
+  margin-left: -2rpx;
+}
+
+.bookNum {
+  margin-top: 6rpx;
+  margin-left: 107rpx;
+  width: 100rpx;
+  height: 104rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 74rpx;
+  text-align: center;
+  line-height: 104rpx;
+  color: #20C38C;
+}
+
+.bookText {
+  width: 100rpx;
+  height: 40rpx;
+  margin-top: 8rpx;
+  margin-left: 105rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 29rpx;
+  line-height: 40rpx;
+  text-align: center;
+  letter-spacing:5rpx;
+  text-transform: capitalize;
+  color: #292945;
+}
+
+.borrow {
+  margin-top: 14rpx;
+  margin-left: 60rpx;
+  gap: 20rpx;
+  width: 140rpx;
+  height: 40rpx;
+  background: rgba(41, 41, 69, 0.6);
+  opacity: 0.6;
+  border-radius: 120rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-transform: capitalize;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.bookXQ {
+  margin-top: 68rpx;
+  margin-left: 23rpx;
+  padding: 20rpx 24rpx;
+  gap: 20rpx;
+  width: 650rpx;
+  height: 500rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
+  border-radius: 20rpx;
+}
+
+.bookName {
+  width: 632rpx;
+  height: 88rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  text-transform: capitalize;
+  color: #292945;
+}
+
+.all {
+  margin-top: 20rpx;
+  width: 680rpx;
+  height: 260rpx;
+  padding-bottom: 50rpx;
+  border-bottom: 1rpx dashed #C0C0C0;
+}
+
+.picture {
+  margin-left: 40rpx;
+  width: 150rpx;
+  height: 200rpx;
+  border-radius: 15rpx;
+}
+
+.leftall {
+  float: left;
+  width: 426rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  width: 100%;
+  padding-top: 12rpx;
+  margin-top: -5rpx;
+}
+
+.textpart {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  text-transform: capitalize;
+  color: #292945;
+  float: left;
+  letter-spacing: 5rpx;
+}
+
+.textparts {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  text-transform: capitalize;
+  color: #7F7F8F;
+  letter-spacing: 5rpx;
+}
+
+.bottom {
+  margin-top: 42rpx;
+  height: 40rpx;
+}
+
+.gen {
+  margin-top: 44rpx;
+  margin-left: 13rpx;
+  padding: 20rpx 24rpx;
+  gap: 20rpx;
+  width: 680rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
+  border-radius: 20rpx;
+}
+
+.gentop {
+  height: 122rpx;
+  width: 670rpx;
+  border-bottom: 1rpx dashed #C0C0C0;
+}
+
+.gentopRight {
+  height: 100%;
+  width: 65%;
+  float: left;
+}
+
+.gentopLeft {
+  height: 190rpx;
+  width: 190rpx;
+  margin-top: -60rpx;
+  margin-left: 40rpx;
+}
+
+.gentext {
+  width: 64rpx;
+  height: 44rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28rpx;
+  line-height: 44rpx;
+  color: #292945;
+  float: left;
+}
+
+.genpart {
+  margin-top: 18rpx;
+  width: 475rpx;
+}
+
+.genpart1 {
+  height: 42rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #292945;
+  margin-top: 60rpx;
+}
+
+.genpart2 {
+  height: 42rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #292945;
+  float: right;
+  margin-top: -42rpx;
+}
+
+.genprogress {
+  height: 40rpx;
+  width: 670rpx;
+  margin-top: 18rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.genprogressBox {
+  width: 172rpx;
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-align: center;
+  text-transform: capitalize;
+  color: #20C38C;
+}
+
+.genprogressNext {
+  height: 40rpx;
+  width: 670rpx;
+  margin-top: 18rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.genprogressBox2 {
+  width: 172rpx;
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  text-align: center;
+  text-transform: capitalize;
+  color: #7F7F8F;
+}
+
+.none {
+  height: 60rpx;
+}
+
+.none1 {
+  height: 120rpx;
 }
