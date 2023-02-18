@@ -92,7 +92,8 @@ Page({
  },
 //点击进入信息详情
 getMessage(e){
-  if(this.data.list[e.currentTarget.dataset.row].popupJumpUrl !== null){
+  if(this.data.list[e.currentTarget.dataset.row].popupType !== 'noJump'){
+   if(this.data.list[e.currentTarget.dataset.row].popupJumpUrl !== null){
     wx.setStorageSync('Url',this.data.list[e.currentTarget.dataset.row].popupJumpUrl);
     wx.navigateTo({
       url:'../web-view/webView'
@@ -105,6 +106,13 @@ getMessage(e){
     title:"标题",
   }) 
   }
+  }else{
+    this.setData({
+    isHidden:true,
+    title:"标题",
+  }) 
+}
+  
   
   
  //已读和未读的处理

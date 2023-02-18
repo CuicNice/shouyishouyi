@@ -28,7 +28,7 @@
 </scroll-view>
 </view>
 <!-- 点进后的信息详情弹窗 与上面不同--> 
-  <view wx:if="{{list[row].popupJumpUrl == null?!isHidden:''}}" wx:if="{{list[row].popupJumpUrl == null}}">
+  <view wx:if="{{list[row].popupJumpUrl !== 'null'?'':!isHidden}}">
   <view class="messageDetail">
   <view class="detailTitle">
   <text>{{list[row].popupJumpTextTitle}}</text>
@@ -54,7 +54,6 @@
   </view>
   </view>
   </view>
-  
 </view>
 </topbar>
 
