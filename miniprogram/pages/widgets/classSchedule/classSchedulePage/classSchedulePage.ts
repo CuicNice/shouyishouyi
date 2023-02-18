@@ -208,6 +208,22 @@ Page({
       //console.log(res)
       if (res.data.code == 20000) {
         var all_tables = res.data.data.all_tables;
+        var list = all_tables
+        var arr = this.objHeavy(list);//筛选有多少门课程
+        var myarr = this.randArr(arr); //把存放课程的数组打乱
+        var leng = myarr.length;
+        // console.log(arr)
+        // console.log(leng)
+        for (var i = 0; i < list.length; i++) {
+          for (var j = 0; j < leng; j++) {
+            if (list[i].name == myarr[j].name) {
+              var color = this.data.colorcardDark[j]
+              all_tables[i].color = color
+              var kebiao = all_tables
+              all_tables=kebiao
+            }
+          }
+        }
         var maxWeeks = 0;
         var week = [];
         // var classTableXYZ = [];
