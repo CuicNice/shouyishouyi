@@ -153,7 +153,7 @@ Component({
             }
             // 如果是远程的
           }
-          // 远程数据，其他的本地参数不传递
+          // 远程数据，其他的本地参数不传递,传递数组（3个元素）cdlist3
           let isNetWork = true as boolean
           setTimeout(() => {
             wx.navigateTo({
