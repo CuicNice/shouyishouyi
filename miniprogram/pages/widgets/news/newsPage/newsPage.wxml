@@ -1,0 +1,66 @@
+<!-- pages/widgets/news/newsPage/newsPage.wxml -->
+<view class="bg"></view>
+<topbar title="新闻" immersion="{{true}}" Threshold="0.1">
+  <!-- 背景问题 -->
+  <view class="container">
+    <!-- 搜索 -->
+    <view class="searchBarBox">
+      <view class="searchContent">
+        <text class="textInfo" selectable="false" space="false" decode="false">搜索你想要的首义快讯</text>
+      </view>
+      <view class="searchIconBox">
+        <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+      </view>
+    </view>
+    <!-- 页面切换部分 -->
+    <!-- 左部切换 -->
+    <view class="tapBarBox">
+      <view class="leftBar">
+        <view class="leftBarText"></view>
+        <view class="leftBarBottomLine"></view>
+      </view>
+    </view>
+    <!-- 右边切换 -->
+    <view class="tapBarBox">
+      <view class="rightBar">
+        <view class="rightText"></view>
+        <view class="rightBarBottomLine"></view>
+      </view>
+    </view>
+    <!-- 新闻部分 -->
+    <view class="newsItemsContainer">
+      <!-- 单个新闻 -->
+      <view class="newsItemBox">
+        <!-- newsItem -->
+        <view class="newsItem">
+          <!-- 左边的内容信息 -->
+          <view class="newsDesInfo">
+            <view class="newsMessage"><text class="MessageText" selectable="false" space="false" decode="false">
+                ​【要论速递】习近平：全面从严治党探索出依靠党的自我革命跳出历史周期率的成功路径
+              </text></view>
+            <!-- type -->
+            <view class="newsTypeBox">
+              <view class="newsType"><text>学校要闻</text></view>
+            </view>
+            <!-- 根据情况显示 -->
+            <div class="DateTypeBox">
+              <image class="DateType_new" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+            </div>
+            <div class="DateTypeBox">
+              <image class="DateType_today" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+            </div>
+          </view>
+          <!-- 右边的时间信息 -->
+          <view class="newsDateInfo">
+            <!-- 上下 -->
+            <div class="newPublishDate">
+            </div>
+            <!-- 年月日 -->
+            <div class="newsYandM">
+            </div>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</topbar>

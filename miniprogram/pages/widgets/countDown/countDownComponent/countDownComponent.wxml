@@ -28,8 +28,8 @@
   </view>
   <!-- 由于有分隔符只能展开列表 -->
   <!-- 头部——第一项 -->
-  <view class="countdownAllBox" bindtap="setTime1">
-    <view class="countdownBox">
+  <view class="countdownAllBox">
+    <view class="countdownBox"bindtap="editcountDownData" data-id="0">
 
       <view class="cdName">
         <view class="cdDay"><text>{{cdlist3[0]["countDownEndDate"]}}</text></view>
@@ -43,7 +43,7 @@
 
     </view>
     <!-- 中部 -->
-    <view class="countdownBox">
+    <view class="countdownBox" bindtap="editcountDownData" data-id="1">
       <view class="cdName">
         <view class="cdDay"><text>{{cdlist3[1]["countDownEndDate"]}}</text></view>
         <view class="cdTitle">
@@ -57,7 +57,7 @@
 
     </view>
 
-    <view class="countdownBox">
+    <view class="countdownBox" bindtap="editcountDownData" data-id="2">
 
       <view class="cdName">
         <view class="cdDay"><text>{{cdlist3[2]["countDownEndDate"]}}</text></view>
