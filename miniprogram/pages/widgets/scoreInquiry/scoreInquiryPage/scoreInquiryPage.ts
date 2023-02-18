@@ -81,8 +81,8 @@ Page({
      * 获取本地缓存，判断是否绑定数据
      */
      var bindScore = { 
-      zh:wx.getStorageSync('key1'),
-      mm:wx.getStorageSync('key2'),
+      zh:wx.getStorageSync('zh'),
+      mm:wx.getStorageSync('mm'),
       id: this.data.userScoreInfo[academic_year_y][term_y][row].jxb_id,
       xnm:this.data.userScoreInfo[academic_year_y][term_y][row].xnm,
       xqm:this.data.userScoreInfo[academic_year_y][term_y][row].xqm,
