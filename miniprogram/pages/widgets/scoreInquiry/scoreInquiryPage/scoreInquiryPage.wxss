@@ -454,7 +454,7 @@ flex-grow: 0;
   flex-grow: 0;
   margin-left: 64rpx;
   margin-right: 66rpx;
-  margin-top: 28rpx;
+  margin-top: 22rpx;
 }
 
 .stuName {
@@ -1497,7 +1497,8 @@ margin-top: 18rpx;
     line-height: 56rpx;
     /* identical to box height */
     text-align: center;
-    color: #292945;       
+    color: #292945;
+           
   }
   .termTitlerules-inter{
     /* width: 296px; */
@@ -1530,6 +1531,7 @@ margin-top: 18rpx;
     line-height: 40rpx;
     color: #292945; 
     text-align: center;
+    margin-top: 6rpx;
   }
   .termTitlelevelstext1 text{
     letter-spacing: 0.6px;
@@ -1539,10 +1541,10 @@ margin-top: 18rpx;
     line-height: 40rpx;
     color: #292945; 
     text-align: center;
-    margin-top: 10rpx;
+    margin-top: 16rpx;
   }
   .termTitlelevelstext2 text{
-    letter-spacing: 0.6px;
+    letter-spacing: 0.2px;
 
   }
   .termTitlelevels{
