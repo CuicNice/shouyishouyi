@@ -27,6 +27,7 @@
     height: 450rpx;
   }
   .dispel2{
+    margin-top: 14rpx;
     width: 54rpx;
     height: 54rpx;
   }

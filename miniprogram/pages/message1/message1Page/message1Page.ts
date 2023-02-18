@@ -11,7 +11,7 @@ Page({
     list:[],
     row:'',
     popupFabulous:'',
-    title:"默认页面",
+    title:"消息中心",
   },
   getList(){
     wx.request({
@@ -148,7 +148,7 @@ getChild(){
    * 生命周期函数--监听页面加载
    */
   onLoad(){
-   this.setData({title:'默认页面'});
+   this.setData({title:'消息中心'});
    this.getList();
    this.getLike();
   },

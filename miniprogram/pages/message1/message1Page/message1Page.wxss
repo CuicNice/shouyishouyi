@@ -114,7 +114,7 @@
   position: absolute;
   width: 640rpx;
   height: 1748rpx;
-  margin-top: 72rpx;
+  margin-top: 12rpx;
   margin-left: 56rpx;
   margin-right: 54rpx;
   }
