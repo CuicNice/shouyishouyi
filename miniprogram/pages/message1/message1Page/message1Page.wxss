@@ -6,13 +6,20 @@
   /* 背景 */
   background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
   }
-  .messageList{
+  .messageList:nth-child(1){
    width: 100%;
    height: 100%;
-   margin-top: 60rpx;
+   margin-top: 16rpx;
    margin-left:46rpx ;
    margin-right: 44rpx;
   }
+  .messageList{
+    width: 100%;
+    height: 100%;
+    margin-top: 16rpx;
+    margin-left:46rpx ;
+    margin-right: 44rpx;
+   }
   .firstMessage{
   margin-top: 32rpx;
   width: 660rpx;
@@ -114,7 +121,7 @@
   position: absolute;
   width: 640rpx;
   height: 1748rpx;
-  margin-top: 12rpx;
+  margin-top: 46rpx;
   margin-left: 56rpx;
   margin-right: 54rpx;
   }

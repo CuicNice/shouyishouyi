@@ -49,7 +49,7 @@
   <image src="/static/svg/message/{{list[row].show == ''?'green':list[row].show}}Like.svg"></image>
   </view>
   <view class="likeBottom">
-  <text>{{list[row].show !==''?list[row].popupFabulous+'人点赞':'喜欢就点个赞吧~'}}</text>
+  <text>{{list[row].show !==''?list[row].popupFabulous+'人赞过':'喜欢就点个赞吧~'}}</text>
   </view>
   </view>
   </view>
