@@ -20,14 +20,23 @@
     margin-left:46rpx ;
     margin-right: 44rpx;
    }
-  .firstMessage{
-  margin-top: 32rpx;
+  .firstMessage:nth-child(1){
+  margin-top: 28rpx;
   width: 660rpx;
   height: 292rpx;
   background: #FFFFFF;
   border: 4rpx solid #4BDCAB;
   border-radius: 20rpx;
   }
+  .firstMessage{
+    margin-top: 38rpx;
+    width: 660rpx;
+    height: 292rpx;
+    background: #FFFFFF;
+    border: 4rpx solid #4BDCAB;
+    border-radius: 20rpx;
+    }
+  
   .title{
     margin: 16rpx 0rpx 10rpx 32rpx;
     width: 544rpx;
