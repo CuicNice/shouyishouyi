@@ -1,6 +1,10 @@
 // components/fmin-topbar/fmin-topbar.ts
 /**
  * 注意:使用topbar组件时,需要将topbar标签包裹住页面所有元素(背景请不要包括进来,否则会自动被占元素挤下去).
+<<<<<<< HEAD
+=======
+ * xxx.json 需要设置    "navigationStyle": "custom",
+>>>>>>> master
  * 如:
  *    <view class="bg"></view>
  *    <topbar title="主标签" immersion="{{true}}" Threshold="0.2">

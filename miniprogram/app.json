@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/electricCharge/electricPage/electricPage",
     "pages/widgets/countDown/countDownPage/countDownPage",
     "pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage",
