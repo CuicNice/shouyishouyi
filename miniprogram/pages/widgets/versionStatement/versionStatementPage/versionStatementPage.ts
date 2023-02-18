@@ -1,15 +1,26 @@
 // pages/widgets/versionStatement/versionStatementPage/versionStatementPage.ts
 // 请求
 // 暂时还没有接口
-// import{getVersionContent,getDeclareContent,getDevelopmentContent}from "../../../../api/versionStarementApi";
+import{getDevDesItem,getPublicDesItem,getVersionDesItem}from "../../../../api/versionStarementApi";
 // 构造参数
 // 声明接口定义
-export interface versionStarementItem{
-
+// 传参所需参数
+// {
+//   "currentPage": "1",
+//   "pageSize": "5"
+// }
+// 版本数据结构体
+interface versionStatementItem {  
+  currentPage:string,  
+  pageSize:string
 }
-
+// 开发数据结构体
+interface souyiDevItem {  
+  currentPage:string,  
+  pageSize:string
+}
+export {souyiDevItem,versionStatementItem}
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -18,31 +29,105 @@ Page({
 
   },
   // 小程序版本详情
-initVersionStatement(){
+    /**
+   * 发送请求，渲染数据
+   * @param from 楼栋数据
+   */
+
+  async initVersionStatement(from: versionStatementItem){
   let that= this;
   //设置标题
   that.setData({
     versionBoardTitle:"小程序版本详情"
   })
+  // console.log(from)
+  // 分页请求查询
   // 请求渲染数据部分
+  let { data: res } = await getVersionDesItem(from) as unknown as IResult<any>;
+  if (!res) {
+    // that.selectComponent("#toast").showToastAuto("请求失败", "error");
+    console.log("请求失败，请重新绑定",res)
+    that.setData({
+      showImg: false,
+      data: null
+    })
+  } else {
+    // 请求成功对小程序版本声明进行渲染
+    console.log("版本详情",res.list)
+    that.setData({
+      versionList:res.list,
+      showImg: true
+    })
+    console.log("请求成功",res)
+    // that.selectComponent("#toast").showToastAuto("请求成功", "success");
+  }
   },
     // 声明详情
-initDeclareStatement(){
+    async initDeclareStatement(){
   let that= this;
-  //设置标题
-  that.setData({
-    declareBoardTitle:"小程序声明"
-  })
+
   // 请求渲染数据部分
+   // 分页请求查询
+  // 请求渲染数据部分
+  let { data: res } = await getPublicDesItem() as unknown as IResult<any>;
+  if (!res) {
+    // that.selectComponent("#toast").showToastAuto("请求失败", "error");
+    console.log("请求失败，请重新绑定",res)
+    that.setData({
+      showImg: false,
+      data: null
+    })
+  } else {
+    that.setData({
+      showImg: true
+    })
+    console.log("请求成功",res)
+    // that.selectComponent("#toast").showToastAuto("请求成功", "success");
+      //设置标题
+    let versionPublishTime=res["miniStatementTitle"]
+    let versionPublishContent=res["miniStatementContent"]
+  that.setData({
+    declareBoardTitle:versionPublishTime,
+    versionPublishContent:versionPublishContent
+  })
+  }
   },
     // 开发详情
-initDevStatement(){
+async initDevStatement(from:souyiDevItem){
   let that= this;
   //设置标题
   that.setData({
     devBoardTitle:"开发贡献"
   })
   // 请求渲染数据部分
+   // 分页请求查询
+  // 请求渲染数据部分
+  let { data: res } = await getDevDesItem(from) as unknown as IResult<any>;
+  if (!res) {
+    // that.selectComponent("#toast").showToastAuto("请求失败", "error");
+    console.log("请求失败，请重新绑定",res)
+    that.setData({
+      showImg: false,
+      data: null
+    })
+  } else {
+    that.setData({
+      showImg: true
+    })
+    console.log("请求成功",res)
+    console.log("okok",Object.keys(res))
+    let devClassList=Object.keys(res)
+    let devList=res
+    console.log("devList",devList)
+    console.log(res)
+    that.setData({
+      devClassList,
+      devList
+    })
+    
+
+    
+  }
   },
 
   /**
@@ -52,8 +137,14 @@ initDevStatement(){
 
 
   onLoad() {
-
-
+    let that=this
+    let  pageInfo={  
+      currentPage:"1",  
+      pageSize:"2"
+    }as versionStatementItem
+    that.initVersionStatement(pageInfo)
+    that.initDeclareStatement()
+    that.initDevStatement(pageInfo)
   },
 
   /**
@@ -69,9 +160,7 @@ initDevStatement(){
   onShow() {
     let that=this;
     // 初始化标题
-    that.initVersionStatement()
-    that.initDeclareStatement()
-    that.initDevStatement()
+
 
   },
 
