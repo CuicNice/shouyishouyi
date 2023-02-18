@@ -145,15 +145,12 @@ Page({
         // 本地的数据
         countDownList = wx.getStorageSync('widgets-userCountDown')
       }
-      // console.log("做去重处理qian", countDownList)
       if (goalName && goalTime) {
         // 如果条件满足那么就添加
         // 如果这个值存在那么只进行修改,
         // 非重复数据
         let isNetwork = that.data.isNetwork
-        console.log("network;x;ss", isNetwork);
         if (isNetwork) {
-          console.log("新增")
           countDownList.push({
             countDownName: goalName,
             countDownEndDate: goalTime
@@ -206,10 +203,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // test
-
     // 接收跳转的传参    
-    console.log("options", options)
+
     this.initInputDate(options)
     this.initDate()
     // 解决数据重复的问题
@@ -233,25 +228,20 @@ Page({
   // 输入框设置初始参数
   initInputDate(op: any) {
     let that = this
-    // 获取id
-    console.log("关于id'", op)
     // 可以新建
     let isNetWorkContent = true as boolean
+    that.setData({
+      isNetwork: isNetWorkContent
+    })
     // 本地的数据
     // 是否是网络请求
     try {
       isNetWorkContent = JSON.parse(op["isNetWork"])
-      console.log("type", typeof (isNetWorkContent))
-      console.log("执行获取了网络", isNetWorkContent)
     } catch (e) {
-      console.log("获取network失败", e)
     }
     // 如果是远程请求
-    console.log("type", typeof (isNetWorkContent))
-    console.log("执行", isNetWorkContent)
     if (isNetWorkContent) {
       // 远程做添加
-      console.log("是远程的", isNetWorkContent)
       that.setData({
         isNetwork: isNetWorkContent
       })
@@ -288,59 +278,17 @@ Page({
       title: "倒计时"
     })
   },
-  // 顶部
-  getTarHeighgt() {
-    // 获取胶囊的信息
-    const menuButton = wx.getMenuButtonBoundingClientRect()
-    const menuButtonHeight = menuButton.height;
-    const menuButtonWidth = menuButton.width;
-    const menuButtonTop = menuButton.top;
-    // 获取设备的信息  
-    let systemInfo = wx.getSystemInfoSync()
-    // 获取信号区高度
-    let statusBarHeight = systemInfo['statusBarHeight']
-    // 设置胶囊行的高度
-    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
-    console.log("statusBarHeight", statusBarHeight);
-    console.log("capsuleBoxHeight", capsuleBoxHeight);
-    /* 
-    根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
-    开发工具 = 获取的高度
-    安卓真机 = 获取的高度 + 1
-    苹果真机 = 获取的高度 - 1
-    我本人这里也只测试了iPhonex 华为和小米手机，
-    如果有出入根据实际情况进行调整就行了
-    */
-    if (systemInfo.model === 'andorid') {
-      statusBarHeight = statusBarHeight + 1
-    } else if (systemInfo.platform === 'ios') {
-      statusBarHeight = statusBarHeight - 2
-    } else {
-      statusBarHeight = statusBarHeight
-    }
-    this.setData({
-      capsuleBoxHeight,
-      statusBarHeight
-    })
-
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.getTarHeighgt()
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getTarHeighgt()
-
 
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
