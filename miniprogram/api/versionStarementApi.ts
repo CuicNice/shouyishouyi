@@ -4,7 +4,7 @@ import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
 // 分页的请求参数
-import {versionStatementItem,souyiDevItem} from "../pages/widgets/versionStatement/versionStatementPage/versionStatementPage";
+import {} from "../pages/widgets/versionStatement/versionStatementPage/versionStatementPage";
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
 const apiList = {
@@ -21,11 +21,11 @@ const apiList = {
 }
 // http://www.fmin-courses.com:9527
 // 版本
-export const getVersionDesItem = async (VersionDesForm:versionStatementItem) => {
+export const getVersionDesItem = async () => {
   if (Consts.DEBUG) {
     return Result.mockSuccess("<h1> 倒计时查询成功 </h1>");
   } else {
-    return await request.post(apiList.getVersionDesItemUrl,VersionDesForm);
+    return await request.post(apiList.getVersionDesItemUrl);
   }
 }
 // 声明
@@ -38,11 +38,11 @@ export const getPublicDesItem = async () => {
 }
 // 开发
 
-export const getDevDesItem = async (souyiDevItemsForm:souyiDevItem) => {
+export const getDevDesItem = async () => {
   if (Consts.DEBUG) {
     return Result.mockSuccess("<h1> 倒计时查询成功 </h1>");
   } else {
     // console.log(souyiDevItemsForm)
-    return await request.post(apiList.getDevDesItemUrl,souyiDevItemsForm);
+    return await request.post(apiList.getDevDesItemUrl);
   }
 }

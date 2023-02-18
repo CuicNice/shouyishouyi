@@ -33,9 +33,10 @@ top: 447px;
 .moon{/* Ellipse 7 */
 
   position: absolute;
-
-  left: 13.52px;
-  top: 63px;
+  width: 98.05px;
+  height: 96.96px;
+  left: -23px;
+  top: 145px;
   
   /* #20C38C */
 
@@ -82,6 +83,16 @@ height: 88.78px !important;
   padding-top:4rpx;
   /* padding: 7.8%; */
 } 
+/* 滚动 */
+/* .demo-scroll-block{
+  height:10rpx;
+} */
+
+  .containerScroll {
+    /* 给scroll-view固定高度 */
+    height: 100px;
+    /* width: 188px; */
+  }
 .boardFramework{
   /* Auto layout */
 
@@ -91,10 +102,10 @@ justify-content: center;
 align-items: center;
 padding: 0px;
 gap: 20px;
-width: 350px;
 margin-top: 22px;
 /* height: 805px; */
-
+margin-left: 12px;
+margin-right: 13px;
 }
 /* 版本声明 */
 /* 版本类容 */
@@ -117,11 +128,7 @@ margin-bottom: 14px;
 gap: 7px;
 /* margin: 7px; */
 width: 285px;
-height: 58px;
-
-
 /* Inside auto layout */
-
 flex: none;
 order: 1;
 flex-grow: 0;
@@ -152,6 +159,7 @@ flex-grow: 0;
 }
 .versionTitleText{
   /* 标题版本 */
+  letter-spacing: 1px;
 height: 21px;
 font-family: 'PingFang SC';
 font-style: normal;
@@ -295,13 +303,11 @@ flex-grow: 0;
 
 
 /* width: 94px; */
-height: 21px;
-
 font-family: 'PingFang SC';
 font-style: normal;
 font-weight: 400;
 font-size: 15px;
-line-height: 21px;
+/* line-height: 21px; */
 /* identical to box height */
 
 text-align: center;
@@ -351,12 +357,8 @@ font-weight: 400;
 font-size: 15px;
 line-height: 21px;
 /* identical to box height */
-
 letter-spacing: 1px;
-
 color: #000000;
-
-
 /* Inside auto layout */
 
 flex: none;

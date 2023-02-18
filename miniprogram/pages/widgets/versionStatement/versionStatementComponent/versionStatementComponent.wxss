@@ -7,27 +7,19 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 padding: 0px;
-
+margin-left: 12px;
+margin-right: 13px;
 width: 350px;
 /* height: auto; */
-
-/* KAPIAN */
-
-box-shadow: 0px 10px 17px -5px rgba(108, 211, 167, 0.19);
-
-/* Inside auto layout */
-
 flex: none;
 order: 0;
 flex-grow: 0;
 }
 /* 最外层盒子 */
 .whiteBox{
-  display: flex;
+display: flex;
 flex-direction: column;
-align-items: flex-start;
 padding: 0px;
-
 /* height: 203px; */
 box-shadow: 0px 10px 17px -5px rgba(108, 211, 167, 0.19);
 flex: none;
@@ -60,10 +52,10 @@ flex-grow: 0;
 
 /* width: 111px; */
 height: 21px;
-
+letter-spacing: 1px;
 font-family: 'PingFang SC';
 font-style: normal;
-font-weight: 500;
+font-weight: 700;
 font-size: 15px;
 line-height: 21px;
 /* identical to box height */
@@ -91,10 +83,8 @@ align-items: center;
 padding: 17px 19px;
 gap: 14px;
 isolation: isolate;
-width: 312px;
 background: #FFFFFF;
 border-radius: 0px 0px 17px 17px;
-
 /* Inside auto layout */
 
 flex: none;

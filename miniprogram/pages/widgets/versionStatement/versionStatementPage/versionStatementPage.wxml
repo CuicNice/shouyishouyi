@@ -24,7 +24,8 @@
     <!-- 版本详情 -->
     <statementBoard boardTitle="{{versionBoardTitle}}">
       <!-- 插槽部分任意发挥 -->
-      <view class="contentText">
+      <scroll-view class="containerScroll" scroll-y="true" >
+        <view class="contentText" class="demo-scroll-block">
         <!-- 列表 -->
         <view class="versionItem" wx:for="{{versionList}}"wx:for-index="idx" wx:for-item="versionItem">
           <view class="versionTitle">
@@ -44,6 +45,8 @@
           </view>
         </view>
       </view>
+      </scroll-view>
+
     </statementBoard>
     <!-- 小程序声明 -->
     <statementBoard boardTitle="{{declareBoardTitle}}">

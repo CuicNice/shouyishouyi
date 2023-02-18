@@ -4,22 +4,7 @@
 import{getDevDesItem,getPublicDesItem,getVersionDesItem}from "../../../../api/versionStarementApi";
 // 构造参数
 // 声明接口定义
-// 传参所需参数
-// {
-//   "currentPage": "1",
-//   "pageSize": "5"
-// }
-// 版本数据结构体
-interface versionStatementItem {  
-  currentPage:string,  
-  pageSize:string
-}
-// 开发数据结构体
-interface souyiDevItem {  
-  currentPage:string,  
-  pageSize:string
-}
-export {souyiDevItem,versionStatementItem}
+
 Page({
   /**
    * 页面的初始数据
@@ -34,7 +19,7 @@ Page({
    * @param from 楼栋数据
    */
 
-  async initVersionStatement(from: versionStatementItem){
+  async initVersionStatement(){
   let that= this;
   //设置标题
   that.setData({
@@ -43,7 +28,7 @@ Page({
   // console.log(from)
   // 分页请求查询
   // 请求渲染数据部分
-  let { data: res } = await getVersionDesItem(from) as unknown as IResult<any>;
+  let { data: res } = await getVersionDesItem() as unknown as IResult<any>;
   if (!res) {
     // that.selectComponent("#toast").showToastAuto("请求失败", "error");
     console.log("请求失败，请重新绑定",res)
@@ -53,9 +38,9 @@ Page({
     })
   } else {
     // 请求成功对小程序版本声明进行渲染
-    console.log("版本详情",res.list)
+    console.log("版本详情",res)
     that.setData({
-      versionList:res.list,
+      versionList:res,
       showImg: true
     })
     console.log("请求成功",res)
@@ -93,7 +78,7 @@ Page({
   }
   },
     // 开发详情
-async initDevStatement(from:souyiDevItem){
+async initDevStatement(){
   let that= this;
   //设置标题
   that.setData({
@@ -102,7 +87,7 @@ async initDevStatement(from:souyiDevItem){
   // 请求渲染数据部分
    // 分页请求查询
   // 请求渲染数据部分
-  let { data: res } = await getDevDesItem(from) as unknown as IResult<any>;
+  let { data: res } = await getDevDesItem() as unknown as IResult<any>;
   if (!res) {
     // that.selectComponent("#toast").showToastAuto("请求失败", "error");
     console.log("请求失败，请重新绑定",res)
@@ -134,20 +119,14 @@ async initDevStatement(from:souyiDevItem){
    * 生命周期函数--监听页面加载
    */
   // 返回
-
-
   onLoad() {
     this.setData({
       title: "我们努力的小伙伴"
     })
     let that=this
-    let  pageInfo={  
-      currentPage:"1",  
-      pageSize:"2"
-    }as versionStatementItem
-    that.initVersionStatement(pageInfo)
+    that.initVersionStatement()
     that.initDeclareStatement()
-    that.initDevStatement(pageInfo)
+    that.initDevStatement()
   },
 
   /**
