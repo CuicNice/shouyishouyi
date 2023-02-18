@@ -3,8 +3,8 @@
 <!-- 外面的信息列表页面 -->
 <view class="message" wx:if="{{isHidden}}">
 <!--信息列表-->
-<scroll-view class="messageList" bindtap="getMessage"  wx:for="{{list}}" wx:key="index" data-row="{{index}}" wx:for-item="item">
-<view class="firstMessage" style="border: 4rpx solid {{item.color}}">
+<scroll-view class="messageList" bindtap="getMessage" >
+<view class="firstMessage" style="border: 4rpx solid {{item.color}}" wx:for="{{list}}" wx:key="index" data-row="{{index}}" wx:for-item="item">
 <view class="text-box">
   <view class="title" >
   <text class="titleText">{{item.popupType == 'system'?item.popupSystemHeadline:item.popupTitle}}</text>

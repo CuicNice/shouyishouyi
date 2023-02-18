@@ -36,12 +36,15 @@ Page({
         isUnread = wx.getStorageSync('unread')
         if(isUnread.length == res.data.data.list.length){
           for(var a=0;a<res.data.data.list.length;a++){
-          if(isUnread[a].isShow == true){ 
+            if(isUnread[a].popupId == res.data.data.list[a].popupId){
+              if(isUnread[a].isShow == true){ 
             this.setData({x:0})
           }else{
             this.setData({x:1});
             break;        
           }
+            }
+          
           }
         }else if(res.data.data.list.length > 0){
           this.setData({x:1})
@@ -163,7 +166,6 @@ Page({
   onHide() {
     var appear = this.data.messageList[0].popupPublishTime;
     wx.setStorageSync('key3',appear);
-    this.setData({query:'2'})
   },
 
   /**
