@@ -123,7 +123,7 @@
   position: absolute;
   width: 640rpx;
   height: 1748rpx;
-  margin-top: 46rpx;
+  margin-top: 90rpx;
   margin-left: 56rpx;
   margin-right: 54rpx;
   }
