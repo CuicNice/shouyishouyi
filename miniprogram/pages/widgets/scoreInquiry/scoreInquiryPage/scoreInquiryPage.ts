@@ -391,14 +391,12 @@ closeTap: function (e:any) {
    * 初始化页面渲染函数
    */
  async initPageData() {
-    var zh;
-    var mm;
     /**
      * 获取本地缓存，判断是否绑定数据
      */
      var bindData = { 
-      zh:wx.getStorageSync('key1'),
-      mm:wx.getStorageSync('key2'),
+      zh:wx.getStorageSync('zh'),
+      mm:wx.getStorageSync('mm'),
     } as ScoreInquiryeItem;
       console.log(bindData)
       if (bindData) {
@@ -413,7 +411,7 @@ closeTap: function (e:any) {
   async getUserInfoData(from: ScoreInquiryeItem) {
     console.log(from);
    const {data: res1 } = await getUserInfo(from) as unknown as IResult<any>;
-   const {data: res2 } = await getScoreInfo(from) as unknown as Iresult<any>
+   const {data: res2 } = await getScoreInfo(from) as unknown as IResult<any>
    console.log(res1)
    if(!res1){
      this.showToast(true,'error',"请求失败");
