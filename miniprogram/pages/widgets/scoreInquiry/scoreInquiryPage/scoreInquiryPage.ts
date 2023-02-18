@@ -81,8 +81,8 @@ Page({
      * 获取本地缓存，判断是否绑定数据
      */
      var bindScore = { 
-      zh:'20191107124',
-      mm:'200169wxf',
+      zh:wx.getStorageSync('key1'),
+      mm:wx.getStorageSync('key2'),
       id: this.data.userScoreInfo[academic_year_y][term_y][row].jxb_id,
       xnm:this.data.userScoreInfo[academic_year_y][term_y][row].xnm,
       xqm:this.data.userScoreInfo[academic_year_y][term_y][row].xqm,
@@ -397,8 +397,8 @@ closeTap: function (e:any) {
      * 获取本地缓存，判断是否绑定数据
      */
      var bindData = { 
-      zh:'20191107124',
-      mm:'200169wxf',
+      zh:wx.getStorageSync('key1'),
+      mm:wx.getStorageSync('key2'),
     } as ScoreInquiryeItem;
       console.log(bindData)
       if (bindData) {
