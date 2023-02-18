@@ -25,7 +25,7 @@ Page({
       method:'POST',
       data:{
         currentPage:1,
-        pageSize:10000,
+        pageSize:1000000,
       },
       success:((res)=>{
         this.setData({
@@ -59,7 +59,7 @@ Page({
         this.setData({
          popupState:res.data.data
          })
-         if(res.data.data.popupId != null ){
+         if(res.data.data.popupId !== null ){
            if(this.data.query !=='1'){
               wx.navigateTo({
             url:'../popup1/popup1Page/popup1Page'
@@ -145,12 +145,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
+   
     this.isPop();
     this.getList();
   },
@@ -161,6 +163,7 @@ Page({
   onHide() {
     var appear = this.data.messageList[0].popupPublishTime;
     wx.setStorageSync('key3',appear);
+    this.setData({query:'2'})
   },
 
   /**

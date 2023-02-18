@@ -14,7 +14,7 @@
   height: 518rpx;
   position: absolute;
   left: 150rpx;
-  top: 550rpx;
+  top: 490rpx;
   }
   .photoShow{
   width: 450rpx;

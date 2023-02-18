@@ -67,15 +67,28 @@ Page({
                         isUnread[i]=this.data.list[i];
                         }
               }this.setData({list:isUnread});
-            }else{
-             for(var i=0;i<isUnread.length;i++){
-               //有时候减一个又增一个，长度不变，需要更进一步判断
-                if(isUnread[i].popupId !== res.data.data.list[i].popupId){
-                   delete isUnread[i];continue;
+            }else if(isUnread.length <= res.data.data.list.length){
+             for(var i=0;i<res.data.data.list.length;i++){
+               for(var a=0;a<res.data.data.list.length;a++){
+                   if(isUnread[i].popupId !== res.data.data.list[a].popupId){
+                   isUnread[i] = res.data.data.list[a];
+                   continue;
                 }
+               }    
                }this.setData({list:isUnread});
-           } 
-           }else{this.setData({list:res.data.data.list})}
+           }else if(isUnread.length >= res.data.data.list.length){
+             var k = res.data.data.list;
+            for(var i=0;i<res.data.data.list.length;i++){
+              for(var a=0;a<res.data.data.list.length;a++){
+                  if(isUnread[a].popupId == res.data.data.list[i].popupId){
+                    k[i] = isUnread[a]
+                    continue;
+              }
+              }
+            }
+              this.setData({list:k});
+           }
+           }else{this.setData({list:res.data.data.list})};
       })
      })
    },
@@ -139,7 +152,8 @@ getLike(){
       this.data.list[this.data.row].popupFabulous = this.data.popupFabulous
       this.setData({
         list:this.data.list,
-      })           
+      }) 
+      wx.setStorageSync('unread',this.data.list)          
 },
 getChild(){
   this.setData({isHidden:true})
