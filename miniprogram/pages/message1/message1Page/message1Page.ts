@@ -12,6 +12,7 @@ Page({
     row:'',
     popupFabulous:'',
     title:"消息中心",
+    pageSize:1000,
   },
   getList(){
     wx.request({
@@ -19,11 +20,15 @@ Page({
       method:'POST',
       data:{
         currentPage:1,
-        pageSize:100000000,
+        pageSize:this.data.pageSize,
         popupFabulous:this.data.popupFabulous,
       },
       success:((res)=>{
-        console.log(res.data.data.list)
+        if(this.data.pageSize ==res.data.data.list.length+50){
+          this.setData({
+            pageSize:this.data.pageSize+1000,
+          })
+        }
         this.putColors();
         //渲染颜色 
         for(var i=0,j=0;i<res.data.data.list.length;i++,j++){

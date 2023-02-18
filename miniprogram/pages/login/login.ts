@@ -18,6 +18,7 @@ Page({
     x:0,
     messageList:[],
     popupState:{},
+    pageSize:1000,
   },
   getList(){
     wx.request({
@@ -25,12 +26,17 @@ Page({
       method:'POST',
       data:{
         currentPage:1,
-        pageSize:1000000000,
+        pageSize:this.data.pageSize,
       },
       success:((res)=>{
         this.setData({
            messageList:res.data.data.list,
         })  
+        if(this.data.pageSize ==res.data.data.list.length+50){
+          this.setData({
+            pageSize:this.data.pageSize+1000,
+          })
+        }
         //判断是否有未读消息
         var isUnread;
         isUnread = wx.getStorageSync('unread')
