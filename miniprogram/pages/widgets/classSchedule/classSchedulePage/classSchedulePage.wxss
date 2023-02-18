@@ -640,11 +640,26 @@ page {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding: 32rpx 2rpx 16rpx; */
-  /* #C6C6C6 */
-  
   border-bottom: 10rpx solid rgba(198, 198, 198, 0.6);
   border-radius: 10rpx;
+}
+
+.noweek{
+  width: 88rpx;
+height: 28rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 14px;
+position: absolute;
+top: 0;
+border-radius: 5px 5px 0px 0px;
+/* identical to box height */
+text-align: center;
+color: #FFFFFF;
+background: rgba(198, 198, 198, 0.6);
+z-index: 0;
 }
 
 .smalltext {
@@ -951,21 +966,10 @@ page {
 }
 
 .CourseDetailsBox {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 40rpx 50rpx;
-  gap: 40rpx;
-  position: relative;
   width: 540rpx;
   height: 476rpx;
-  background: #FFFFFF;
-  border: 2rpx solid #E3E3E5;
   border-radius: 20rpx;
-  margin-left: 130rpx;
-  margin-top: -750rpx;
-  z-index: 10;
+  background: white;
 }
 
 .CourseDetailsTop {
@@ -1268,14 +1272,11 @@ page {
 }
 
 .courseDetails {
-  position: absolute;
   width: 540rpx;
   height: 476rpx;
   border-radius: 20rpx;
   background: white;
   border: 2rpx solid #4BDCAB;
-  left: 17%;
-  top: 40%;
   z-index: 100;
 }
 
@@ -1357,6 +1358,11 @@ page {
   /*如果要依真机测试为主，则需要改成1200rpx*/
 }
 
+.classScroll1 {
+  height: 1000rpx;
+  margin-top: -1200rpx;
+}
+
 .mask {
   width: 100%;
   height: 100%;
@@ -1379,6 +1385,7 @@ page {
 }
 .table-num{
   position: absolute;
+  z-index: 10;
 }
 page {
   background-repeat: no-repeat;

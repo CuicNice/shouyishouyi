@@ -12,7 +12,9 @@ Page({
     startDate:"2023/2/13",
     showClass:false,
     suorec: '',
-    week: [{ index: 1, type: true, day1: '8/28', day2: '8/29', day3: '8/30', day4: '8/31', day5: '9/1', day6: '9/2', day7: '9/3' }, { index: 2, type: true, day1: '9/4', day2: '9/5', day3: '9/6', day4: '9/7', day5: '9/8', day6: '9/9', day7: '9/10' }, { index: 3, type: true, day1: '9/11', day2: '9/12', day3: '9/13', day4: '9/14', day5: '9/15', day6: '9/16', day7: '9/17' }, { index: 4, type: true, day1: '9/18', day2: '9/19', day3: '9/20', day4: '9/21', day5: '9/22', day6: '9/23', day7: '9/24' }, { index: 5, type: true, day1: '9/25', day2: '9/26', day3: '9/27', day4: '9/28', day5: '9/29', day6: '9/30', day7: '10/1' }, { index: 6, type: true, day1: '10/2', day2: '10/3', day3: '10/4', day4: '10/5', day5: '10/6', day6: '10/7', day7: '10/8' }, { index: 7, type: true, day1: '10/9', day2: '10/10', day3: '10/11', day4: '10/12', day5: '10/13', day6: '10/14', day7: '10/15' }, { index: 8, type: true, day1: '10/16', day2: '10/17', day3: '10/18', day4: '10/19', day5: '10/20', day6: '10/21', day7: '10/22' }, { index: 9, type: true, day1: '10/23', day2: '10/24', day3: '10/25', day4: '10/26', day5: '10/27', day6: '10/28', day7: '10/29' }, { index: 10, type: true, day1: '10/30', day2: '10/31', day3: '11/1', day4: '11/2', day5: '11/3', day6: '11/4', day7: '11/5' }, { index: 11, type: true, day1: '11/6', day2: '11/7', day3: '11/8', day4: '11/9', day5: '11/10', day6: '11/11', day7: '11/12' }, { index: 12, type: true, day1: '11/13', day2: '11/14', day3: '11/15', day4: '11/16', day5: '11/17', day6: '11/18', day7: '11/19' }, { index: 13, type: true, day1: '11/20', day2: '11/21', day3: '11/22', day4: '11/23', day5: '11/24', day6: '11/25', day7: '11/26' }, { index: 14, type: true, day1: '11/27', day2: '11/28', day3: '11/29', day4: '11/30', day5: '12/1', day6: '12/2', day7: '12/3' }, { index: 15, type: true, day1: '12/4', day2: '12/5', day3: '12/6', day4: '12/7', day5: '12/8', day6: '12/9', day7: '12/10' }, { index: 16, type: true, day1: '12/11', day2: '12/12', day3: '12/13', day4: '12/14', day5: '12/15', day6: '12/16', day7: '12/17' }, { index: 17, type: true, day1: '12/18', day2: '12/19', day3: '12/20', day4: '12/21', day5: '12/22', day6: '12/23', day7: '12/24' }, { index: 18, type: true, day1: '12/25', day2: '12/26', day3: '12/27', day4: '12/28', day5: '12/29', day6: '12/30', day7: '12/31' }, { index: 19, type: true, day1: '1/1', day2: '1/2', day3: '1/3', day4: '1/4', day5: '1/5', day6: '1/6', day7: '1/7' }],
+    colorcardLight: ['#A9E6FF', '#FFDDDC', '#F5DFFA', '#D4EFFF', '#F9EABA', '#FFD698', '#F0FFC4', '#FEFCC9', '#DFFFD4', '#FFD8D2', '#FFFFF0', '#CCFFED', '#BFC1FF', '#FFC8E6', '#E9EDF1', '#EFDCC9'],
+    colorcardDark: ['#6290E9', '#B791DC', '#ABA6E9', '#E39ACA', '#F091A2', '#FF9470', '#FDB165', '#F3D257', '#5DD39E', '#B2DB7C', '#68D8D6', '#A9B7BD', '#59ADDF', '#7895BC', '#75AEAE', '#EFDCC9'],
+    colorcardZi: ['#4794B6', '#D67979', '#BF74CE', '#559AC2', '#BD9825', '#B97B1E', '#689658', '#9C982F', '#60A049', '#C76D5F', '#8585A5', '#5EAA91', '#6568C9', '#C8619A', '#8585B1', '#B8906F'],
     M:'',
     Y:'',
     D:'',
@@ -43,6 +45,7 @@ Page({
       }
     ],
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
+    classSchedule:[] as any
   },
 
   cancelBindEletricCharge() {
@@ -116,7 +119,7 @@ Page({
       var value = wx.getStorageSync('classSchedule')
       if (value) {
         // Do something with return value
-        var nowWeekData = []
+        var nowWeekData: { day: string; item: never[] }[] = []
         if(that.data.showAll){
           nowWeekData = that.getNowWeekData(value,that.data.nowWeek);
         }
@@ -136,7 +139,7 @@ Page({
   /**
    * 切割出周数  2-4周(双),5-8周 -> [ 2 4 5 6 7 8 ]
    */
-  getDayNum(all_table) {
+  getDayNum(all_table: { day_num: string }) {
     var day_num = all_table.day_num.split(",");
     var list = [];
     for (var j = 0; j < day_num.length; j++) {
@@ -154,10 +157,32 @@ Page({
     }
     return list;
   },
+  objHeavy: function (arr: any) { //筛选一共有几门课
+    let arr1 = []; //存名字
+    let newArr = []; //存新数组
+    for (let i in arr) {
+      if (arr1.indexOf(arr[i].name) == -1) {
+        arr1.push(arr[i].name);
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
+  },
+    //洗牌算法
+    randArr: function (arr: any) { //课程数组乱序
+      var length = arr.length;
+      var r = length;
+      var rand = 0;
+      while (r) {
+        rand = Math.floor(Math.random() * (r--));
+        [arr[r], arr[rand]] = [arr[rand], arr[r]];
+      }
+      return arr;
+    },
   /**
    * 切割出节数  9-12节 -> 9,10,11,12
    */
-  getNum(all_table) {
+  getNum(all_table: { num: string }) {
     var num = all_table.num.split(",");
     var list = [];
     for (var j = 0; j < num.length; j++) {
@@ -179,8 +204,8 @@ Page({
       wx.showLoading({
         title: '加载中。。。',
       })
-      var res = await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I);
-      console.log(res)
+      var res = await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I) as any;
+      //console.log(res)
       if (res.data.code == 20000) {
         var all_tables = res.data.data.all_tables;
         var maxWeeks = 0;
@@ -252,7 +277,7 @@ Page({
           week: week,
           all_keshes: res.data.data.all_keshes
         };
-        var nowWeekData = []
+        var nowWeekData: { day: string; item: never[] }[] = []
         if(that.data.showAll){
           nowWeekData = that.getNowWeekData(classSchedule,that.data.nowWeek);
         }
@@ -271,7 +296,7 @@ Page({
   /**
    * 渲染全部课表临时页面
    */
-  getNowWeekData(classSchedule,nowWeek) {
+  getNowWeekData(classSchedule: { week: any; all_keshes?: any },nowWeek: number) {
     // console.log("getNowWeekData")
     var week = classSchedule.week;
     var nowWeekData = [{
@@ -360,13 +385,13 @@ Page({
   /**
    * 获取当前一周的日期
    */
-  getWeekTime(date) {
+  getWeekTime(date: Date) {
     var timesStamp = date.getTime();
     var currenDay = date.getDay();
     var dates = [];
     for (var i = 0; i < 7; i++) {
       var das = new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 7) % 7));
-      das =  das.getFullYear() + "/" + (das.getMonth() + 1) + "/" + das.getDate();
+      das =  (das.getFullYear() + "/" + (das.getMonth() + 1) + "/" + das.getDate())as unknown as Date;
       das = das.replace(/[年月]/g, '.').replace(/[日上下午]/g, '').slice(5, das.length);
       dates.push(das);
     }
@@ -399,7 +424,7 @@ Page({
   /**
    * 展示课表详情 
    */
-  showClassDetail(e){
+  showClassDetail(e: { currentTarget: { dataset: { cls: any } } }){
     var cls = e.currentTarget.dataset.cls;
     console.log(cls);
     var week = this.data.classSchedule.week;
@@ -436,7 +461,7 @@ Page({
    * 选择周
    * @param {被选择周次，从0开始} e 
    */
-  selectWeek(e) {
+  selectWeek(e: { currentTarget: { dataset: { index: number } } }) {
    var that = this;
     var index = e.currentTarget.dataset.index + 1;
     var nowWeekData = that.getNowWeekData(this.data.classSchedule,index);
@@ -453,6 +478,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    wx.removeStorageSync('classSchedule')
      /**
      * 获取当前年月
      */
@@ -460,23 +486,23 @@ Page({
     var date = new Date(timestamp);
     this.setData({
       //获取年份
-      Y:2022/* date.getFullYear() */ as unknown as string,
+      Y: date.getFullYear()  as unknown as string,
       //获取月份
-      M:8/*  (date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1)  */as unknown as string,
+      M:(date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1)  as unknown as string,
       //获取当日日期
-      D: 28/* date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate() */ as unknown as string
+      D:  date.getDate() < 10 ?(date.getDate())as unknown as string : date.getDate()  as unknown as string
     })
     if (8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) {
       console.log(this.data.M)
-      this.setData({ Y: this.data.Y + 1 , I: 3 })
+      this.setData({ Y: this.data.Y + 1 , I: 3 ,week: [{ index: 1, type: true, day1: '8/28', day2: '8/29', day3: '8/30', day4: '8/31', day5: '9/1', day6: '9/2', day7: '9/3' }, { index: 2, type: true, day1: '9/4', day2: '9/5', day3: '9/6', day4: '9/7', day5: '9/8', day6: '9/9', day7: '9/10' }, { index: 3, type: true, day1: '9/11', day2: '9/12', day3: '9/13', day4: '9/14', day5: '9/15', day6: '9/16', day7: '9/17' }, { index: 4, type: true, day1: '9/18', day2: '9/19', day3: '9/20', day4: '9/21', day5: '9/22', day6: '9/23', day7: '9/24' }, { index: 5, type: true, day1: '9/25', day2: '9/26', day3: '9/27', day4: '9/28', day5: '9/29', day6: '9/30', day7: '10/1' }, { index: 6, type: true, day1: '10/2', day2: '10/3', day3: '10/4', day4: '10/5', day5: '10/6', day6: '10/7', day7: '10/8' }, { index: 7, type: true, day1: '10/9', day2: '10/10', day3: '10/11', day4: '10/12', day5: '10/13', day6: '10/14', day7: '10/15' }, { index: 8, type: true, day1: '10/16', day2: '10/17', day3: '10/18', day4: '10/19', day5: '10/20', day6: '10/21', day7: '10/22' }, { index: 9, type: true, day1: '10/23', day2: '10/24', day3: '10/25', day4: '10/26', day5: '10/27', day6: '10/28', day7: '10/29' }, { index: 10, type: true, day1: '10/30', day2: '10/31', day3: '11/1', day4: '11/2', day5: '11/3', day6: '11/4', day7: '11/5' }, { index: 11, type: true, day1: '11/6', day2: '11/7', day3: '11/8', day4: '11/9', day5: '11/10', day6: '11/11', day7: '11/12' }, { index: 12, type: true, day1: '11/13', day2: '11/14', day3: '11/15', day4: '11/16', day5: '11/17', day6: '11/18', day7: '11/19' }, { index: 13, type: true, day1: '11/20', day2: '11/21', day3: '11/22', day4: '11/23', day5: '11/24', day6: '11/25', day7: '11/26' }, { index: 14, type: true, day1: '11/27', day2: '11/28', day3: '11/29', day4: '11/30', day5: '12/1', day6: '12/2', day7: '12/3' }, { index: 15, type: true, day1: '12/4', day2: '12/5', day3: '12/6', day4: '12/7', day5: '12/8', day6: '12/9', day7: '12/10' }, { index: 16, type: true, day1: '12/11', day2: '12/12', day3: '12/13', day4: '12/14', day5: '12/15', day6: '12/16', day7: '12/17' }, { index: 17, type: true, day1: '12/18', day2: '12/19', day3: '12/20', day4: '12/21', day5: '12/22', day6: '12/23', day7: '12/24' }, { index: 18, type: true, day1: '12/25', day2: '12/26', day3: '12/27', day4: '12/28', day5: '12/29', day6: '12/30', day7: '12/31' }, { index: 19, type: true, day1: '1/1', day2: '1/2', day3: '1/3', day4: '1/4', day5: '1/5', day6: '1/6', day7: '1/7' }]})
     }
     if (1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) {
       console.log(this.data.M)
-      this.setData({ I: 3 })
+      this.setData({ I: 3 ,week: [{ index: 1, type: true, day1: '8/28', day2: '8/29', day3: '8/30', day4: '8/31', day5: '9/1', day6: '9/2', day7: '9/3' }, { index: 2, type: true, day1: '9/4', day2: '9/5', day3: '9/6', day4: '9/7', day5: '9/8', day6: '9/9', day7: '9/10' }, { index: 3, type: true, day1: '9/11', day2: '9/12', day3: '9/13', day4: '9/14', day5: '9/15', day6: '9/16', day7: '9/17' }, { index: 4, type: true, day1: '9/18', day2: '9/19', day3: '9/20', day4: '9/21', day5: '9/22', day6: '9/23', day7: '9/24' }, { index: 5, type: true, day1: '9/25', day2: '9/26', day3: '9/27', day4: '9/28', day5: '9/29', day6: '9/30', day7: '10/1' }, { index: 6, type: true, day1: '10/2', day2: '10/3', day3: '10/4', day4: '10/5', day5: '10/6', day6: '10/7', day7: '10/8' }, { index: 7, type: true, day1: '10/9', day2: '10/10', day3: '10/11', day4: '10/12', day5: '10/13', day6: '10/14', day7: '10/15' }, { index: 8, type: true, day1: '10/16', day2: '10/17', day3: '10/18', day4: '10/19', day5: '10/20', day6: '10/21', day7: '10/22' }, { index: 9, type: true, day1: '10/23', day2: '10/24', day3: '10/25', day4: '10/26', day5: '10/27', day6: '10/28', day7: '10/29' }, { index: 10, type: true, day1: '10/30', day2: '10/31', day3: '11/1', day4: '11/2', day5: '11/3', day6: '11/4', day7: '11/5' }, { index: 11, type: true, day1: '11/6', day2: '11/7', day3: '11/8', day4: '11/9', day5: '11/10', day6: '11/11', day7: '11/12' }, { index: 12, type: true, day1: '11/13', day2: '11/14', day3: '11/15', day4: '11/16', day5: '11/17', day6: '11/18', day7: '11/19' }, { index: 13, type: true, day1: '11/20', day2: '11/21', day3: '11/22', day4: '11/23', day5: '11/24', day6: '11/25', day7: '11/26' }, { index: 14, type: true, day1: '11/27', day2: '11/28', day3: '11/29', day4: '11/30', day5: '12/1', day6: '12/2', day7: '12/3' }, { index: 15, type: true, day1: '12/4', day2: '12/5', day3: '12/6', day4: '12/7', day5: '12/8', day6: '12/9', day7: '12/10' }, { index: 16, type: true, day1: '12/11', day2: '12/12', day3: '12/13', day4: '12/14', day5: '12/15', day6: '12/16', day7: '12/17' }, { index: 17, type: true, day1: '12/18', day2: '12/19', day3: '12/20', day4: '12/21', day5: '12/22', day6: '12/23', day7: '12/24' }, { index: 18, type: true, day1: '12/25', day2: '12/26', day3: '12/27', day4: '12/28', day5: '12/29', day6: '12/30', day7: '12/31' }, { index: 19, type: true, day1: '1/1', day2: '1/2', day3: '1/3', day4: '1/4', day5: '1/5', day6: '1/6', day7: '1/7' }]})
     }
     if (2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
       console.log(this.data.M)
-      this.setData({ I: 12 })
+      this.setData({ I: 12 ,week: [{ index: 1, type: true, day1: '2/19', day2: '2/20', day3: '2/21', day4: '2/22', day5: '2/23', day6: '2/24', day7: '2/25' }, { index: 2, type: true, day1: '2/26', day2: '2/27', day3: '2/28', day4: '3/1', day5: '3/2', day6: '3/3', day7: '3/4' }, { index: 3, type: true, day1: '3/5', day2: '3/6', day3: '3/7', day4: '3/8', day5: '3/9', day6: '3/10', day7: '3/11' }, { index: 4, type: true, day1: '3/12', day2: '3/13', day3: '3/14', day4: '3/15', day5: '3/16', day6: '3/17', day7: '3/18' }, { index: 5, type: true, day1: '3/19', day2: '3/20', day3: '3/21', day4: '3/22', day5: '3/23', day6: '3/24', day7: '3/25' }, { index: 6, type: true, day1: '3/26', day2: '3/27', day3: '3/28', day4: '3/29', day5: '3/30', day6: '3/31', day7: '4/1' }, { index: 7, type: true, day1: '4/2', day2: '4/3', day3: '4/4', day4: '4/5', day5: '4/6', day6: '4/7', day7: '4/8' }, { index: 8, type: true, day1: '4/9', day2: '4/10', day3: '4/11', day4: '4/12', day5: '4/13', day6: '4/14', day7: '4/15' }, { index: 9, type: true, day1: '4/16', day2: '4/17', day3: '4/18', day4: '4/19', day5: '4/20', day6: '4/21', day7: '4/22' }, { index: 10, type: true, day1: '4/23', day2: '4/24', day3: '4/25', day4: '4/26', day5: '4/27', day6: '4/28', day7: '4/29' }, { index: 11, type: true, day1: '4/30', day2: '5/1', day3: '5/2', day4: '5/3', day5: '5/4', day6: '5/5', day7: '5/6' }, { index: 12, type: true, day1: '5/7', day2: '5/8', day3: '5/9', day4: '5/10', day5: '5/11', day6: '5/12', day7: '5/13' }, { index: 13, type: true, day1: '5/14', day2: '5/15', day3: '5/16', day4: '5/17', day5: '5/18', day6: '5/19', day7: '5/20' }, { index: 14, type: true, day1: '5/21', day2: '5/22', day3: '5/23', day4: '5/24', day5: '5/25', day6: '5/26', day7: '5/27' }, { index: 15, type: true, day1: '5/28', day2: '5/29', day3: '5/30', day4: '5/31', day5: '6/1', day6: '6/2', day7: '6/3' }, { index: 16, type: true, day1: '6/4', day2: '6/5', day3: '6/6', day4: '6/7', day5: '6/8', day6: '6/9', day7: '6/10' }, { index: 17, type: true, day1: '6/11', day2: '6/12', day3: '6/13', day4: '6/14', day5: '6/15', day6: '6/16', day7: '6/17' }, { index: 18, type: true, day1: '6/18', day2: '6/19', day3: '6/20', day4: '6/21', day5: '6/22', day6: '6/23', day7: '6/24' }, { index: 19, type: true, day1: '6/25', day2: '6/26', day3: '6/27', day4: '6/28', day5: '6/29', day6: '6/30', day7: '7/1' }]})
     }
     console.log(this.data.M + '/' + this.data.D)
     if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大四上" }) }
