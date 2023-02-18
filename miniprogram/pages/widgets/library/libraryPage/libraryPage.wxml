@@ -1,3 +1,200 @@
-<!--pages/widgets/library/libraryPage/libraryPage.wxml-->
-<text>pages/widgets/library/libraryPage/libraryPage.wxml</text>
-<!--王晨涛-->
+<!--<view class="topbar">
+  <view class="returnBtn" bindtap="returnEvent">
+    <image class="returnIcon" style="width:18rpx; height:34rpx" src="/static/svg/returnIcon.svg"></image>
+  </view>
+  <view class="mypageTitle">
+    <view>首义图书馆</view>
+  </view>
+</view>
+<view class="bg"></view>
+<view class="swiper-container">
+  <view class="lefticon" bindtap="swiperChangeqian"><image class="lefticonImg" src="/static/svg/Vector1.svg"></image></view>
+  <swiper class="librarySwiper" swiperCurrent="swiper"  current="{{swiper}}" >
+   <swiper-item>
+   <image class="libraryIcon1" src="/static/svg/nanlibrary.svg"></image>
+  </swiper-item>
+  <swiper-item>
+   <image class="libraryIcon2" src="/static/svg/cenlibrary.svg"></image>
+  </swiper-item>
+  </swiper>
+  <view class="righticon" bindtap="swiperChangeho"><image class="lefticonImg" src="/static/svg/Vector1.svg"></image></view>
+  <view class="libarydialog">
+  <view class="title">请登录你的图书馆账号</view>
+  <view class="input">
+    <text class="label">学号</text>
+    <input value="{{xuehao}}" type="number" placeholder="eg:20191110040" placeholder-class="placeholder" bindinput="input1"/>
+  </view>
+  <view class="input" style="margin-top: 68rpx;">
+    <text class="label">密码</text>
+    <input value="{{mima}}" type="text" placeholder="eg:20191110040" password="true" placeholder-style="width: 300rpx;height: 40rpx;text-align: right;font-family: 'PingFang SC';font-style: normal;font-weight: 400;font-size: 28rpx;line-height: 40rpx;" bindinput="input2"/>
+  </view>
+  <view class="tips">密码默认为身份证后8位，如果您已改密码，则以您改后的密码为准。如果还不能登录，请点击下面按钮“网站尝试”，去图书馆官网验证您的密码是否正确。</view>
+  <view class="button">
+    <button type="default" class="cancel" 	hover-class="hover-cancel" bindtap="cancel">
+      <text>网站尝试</text>
+    </button>
+    <button type="primary" class="primary" bindtap="login">
+      <text>立即登录</text>
+    </button>
+  </view>
+  </view>
+</view>-->
+<!-- 提示组件 -->
+<!--<toast id="toast"></toast>-->
+<!-- 失败弹窗 -->
+<!--<dialogTitle title="你的账号或密码有误" stitle="请重新输入或前往图书馆官网尝试登录该账号密码，确保能登录！" wx:if="{{!haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
+    <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="showBindItem">绑定</button>
+  </view>
+</dialogTitle>-->
+
+<!--图书馆搜索界面--> 
+<topbar title="{{electricChargeTitle}}" immersion = "{{true}}">
+<view class="page"></view>
+<view class="boxreturn" bindtap="returned"></view>
+<view class="bigBox" wx:if="{{ifshowXiang}}">
+  <view class="search">
+    <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
+    <image class="image" src="../../../../static/svg/search.svg" bindtap="search"></image>
+  </view>
+  <view class="searchRecord" wx:if="{{ifsearch}}">
+    <view class="mark">搜索记录</view>
+    <view class="deleteMark" bindtap="deleteMark">清除记录</view>
+  </view>
+  <view class="markBox" wx:if="{{ifsearch}}">
+    <view class="markMake" wx:if="{{!ifshow}}" wx:for="{{shuju}}" wx:key="index">
+      <view class="text" wx:if="{{!item.ifshow}}" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
+      <view class="text1" wx:if="{{item.ifshow}}" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
+    </view>
+    <view class="nonemarkMake" wx:if="{{ifshow}}">暂无搜索记录</view>
+  </view>
+  <view class="library" wx:if="{{ifsearch}}">
+    <view class="lefticon" bindtap="swiperChangeqian">
+      <image class="lefticonImg2" src="/static/svg/vector.svg"></image>
+    </view>
+    <swiper class="librarySwiper" swiperCurrent="swiper" current="{{swiper}}">
+      <swiper-item>
+        <image class="libraryIcon1" src="/static/svg/nanlibrary.svg"></image>
+      </swiper-item>
+      <swiper-item>
+        <image class="libraryIcon2" src="/static/svg/genlibrary.svg"></image>
+      </swiper-item>
+      <swiper-item>
+        <image class="libraryIcon3" src="/static/svg/schoolBuilt/zhongqutushuguan.svg"></image>
+      </swiper-item>
+      <swiper-item>
+        <image class="libraryIcon4" src="/static/svg/jiayulibrary.svg"></image>
+      </swiper-item>
+    </swiper>
+    <view class="righticon" bindtap="swiperChangeho">
+      <image class="lefticonImg2" src="/static/svg/vector.svg"></image>
+    </view>
+  </view>
+  <view wx:if="{{!ifsearch}}">
+    <view class="allsearch">
+      <view class="leftBox">
+        {{word}} 搜索结果
+      </view>
+      <view class="rightBox">
+        <view class="lefticon2" bindtap="againrequest">
+          <image class="lefticonImg" src="/static/svg/vector2.svg"></image>
+        </view>
+        <view class="pagenum" wx:if="{{b+1<10?true:false}}">0{{b+1}}</view>
+        <view class="pagenum" wx:else>{{b+1}}</view>
+        <view class="righticon2" bindtap="leftrequest">
+          <image class="lefticonImg" src="/static/svg/vector2.svg"></image>
+        </view>
+      </view>
+    </view>
+    <view class="classBox" wx:for="{{allbook}}" wx:key="index" bindtap="showXQ" wx:for-index="index" data-index="{{index}}">
+      <view class="leftClass">
+        <view class="className">{{item.title}}</view>
+        <view class="classForm">{{item.author}}</view>
+        <view class="classFormplace">{{item.dates}} | {{item.publisher}}</view>
+        <view class="placeBox">
+          <view class="place" wx:if="{{item.showzong==true?true:false}}">总馆</view>
+          <view class="place" wx:if="{{item.showjia==true?true:false}}">嘉鱼</view>
+          <view class="place" wx:if="{{item.shownan==true?true:false}}">南区</view>
+          <view class="place" wx:if="{{item.showzhong==true?true:false}}">中区</view>
+        </view>
+      </view>
+      <view class="rightBox">
+        <view class="bookNum">{{item.books.length}}</view>
+        <view class="bookText">本在馆</view>
+        <view class="borrow">外借图书</view>
+      </view>
+    </view>
+  </view>
+  <view class="none1"></view>
+</view>
+<view wx:if="{{!ifshowXiang}}">
+  <view class="bookXQ">
+    <view class="bookName">{{allbook[num].title}}</view>
+    <view class="all">
+      <image class="picture" src="http://www.bookcovers.cn/index.php?client=whzy&isbn={{allbook[num].ISBN}}号码/cover"></image>
+      <view class="leftall">
+        <view class="box">
+          <view class="textpart">作者: </view>
+          <view class="textparts"> {{allbook[num].author}}</view>
+        </view>
+        <view class="box">
+          <view class="textpart">出版社: </view>
+          <view class="textparts"> {{allbook[num].publisher}}</view>
+        </view>
+        <view class="box">
+          <view class="textpart">出版时间: </view>
+          <view class="textparts"> {{allbook[num].dates}}</view>
+        </view>
+        <view class="box">
+          <view class="textpart">在馆数: </view>
+          <view class="textparts"> {{allbook[num].books.length}}本</view>
+        </view>
+        <view class="box">
+          <view class="textpart">累借次数: </view>
+          <view class="textparts"> {{allbook[num].add}}次</view>
+        </view>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="placeBox">
+        <view class="place" wx:if="{{allbook[num].showzong==true?true:false}}">总馆</view>
+        <view class="place" wx:if="{{allbook[num].showjia==true?true:false}}">嘉鱼</view>
+        <view class="place" wx:if="{{allbook[num].shownan==true?true:false}}">南区</view>
+        <view class="place" wx:if="{{allbook[num].showzhong==true?true:false}}">中区</view>
+      </view>
+      <view style="margin-top: -55rpx;margin-left: 450rpx;">
+        <view class="borrow">外借图书</view>
+      </view>
+    </view>
+  </view>
+  <view class="gen" wx:for="{{allbook[num].num}}" wx:key="index">
+    <view class="gentop">
+      <view class="gentopRight">
+        <view>
+          <image style="width: 40rpx;height: 40rpx;float: left;" src="../../../../static/svg/place.svg"></image>
+          <view class="gentext">{{item.place}}</view>
+        </view>
+        <view class="genpart">
+          <view class="genpart1">索书号 {{item.hao}}</view>
+          <view class="genpart2">在馆数 {{item.num}}本</view>
+        </view>
+      </view>
+      <image class="gentopLeft" src="{{item.image}}"></image>
+    </view>
+    <view class="genprogress">
+      <view class="genprogressBox">条码号</view>
+      <view class="genprogressBox">馆藏状态</view>
+      <view class="genprogressBox">流通类型</view>
+    </view>
+    <view class="genprogressNext" wx:for="{{item.myarr}}" wx:key="index">
+      <view class="genprogressBox2">{{item.leixing}}</view>
+      <view class="genprogressBox2">{{item.num}}</view>
+      <view class="genprogressBox2">{{item.zhuangtai}}</view>
+    </view>
+  </view>
+  <view class="none"></view>
+</view>
+</topbar>
+<!-- 提示组件 -->
+<toast id="toast"></toast>

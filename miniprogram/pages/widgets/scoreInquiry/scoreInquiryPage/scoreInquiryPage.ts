@@ -81,8 +81,8 @@ Page({
      * 获取本地缓存，判断是否绑定数据
      */
      var bindScore = { 
-      zh:zh=wx.getStorageSync('key1'),
-      mm:mm=wx.getStorageSync('key2'),
+      zh:wx.getStorageSync('zh'),
+      mm:wx.getStorageSync('mm'),
       id: this.data.userScoreInfo[academic_year_y][term_y][row].jxb_id,
       xnm:this.data.userScoreInfo[academic_year_y][term_y][row].xnm,
       xqm:this.data.userScoreInfo[academic_year_y][term_y][row].xqm,
@@ -93,6 +93,15 @@ Page({
         this.courseTaped(bindScore);
       }  
 
+},
+// 关闭成绩弹窗
+closeTap: function (e:any) {
+  var that = this;
+  that.setData({
+    courseTapdetail: false,
+    termTitleTapdetail: false,
+    scoreCountdetail: false
+  })
 },
   //弹窗
     async courseTaped(from: ScoreInquiryeItem) {
@@ -382,14 +391,12 @@ Page({
    * 初始化页面渲染函数
    */
  async initPageData() {
-    var zh;
-    var mm;
     /**
      * 获取本地缓存，判断是否绑定数据
      */
      var bindData = { 
-      zh:zh=wx.getStorageSync('key1'),
-      mm:mm=wx.getStorageSync('key2'),
+      zh:wx.getStorageSync('zh'),
+      mm:wx.getStorageSync('mm'),
     } as ScoreInquiryeItem;
       console.log(bindData)
       if (bindData) {
@@ -404,7 +411,7 @@ Page({
   async getUserInfoData(from: ScoreInquiryeItem) {
     console.log(from);
    const {data: res1 } = await getUserInfo(from) as unknown as IResult<any>;
-   const {data: res2 } = await getScoreInfo(from) as unknown as Iresult<any>
+   const {data: res2 } = await getScoreInfo(from) as unknown as IResult<any>
    console.log(res1)
    if(!res1){
      this.showToast(true,'error',"请求失败");

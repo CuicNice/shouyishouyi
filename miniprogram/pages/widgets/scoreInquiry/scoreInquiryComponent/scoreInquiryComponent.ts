@@ -34,14 +34,5 @@ Component({
    * 组件的方法列表
    */
   methods: {
-// 关闭成绩弹窗
-  closeTap: function (e:any) {
-    var that = this;
-    that.setData({
-      courseTapdetail: false,
-      termTitleTapdetail: false,
-      scoreCountdetail: false
-    })
-  },
   }
 })

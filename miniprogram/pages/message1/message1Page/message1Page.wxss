@@ -6,22 +6,28 @@
   /* 背景 */
   background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
   }
-  .messageList{
+  .messageList:nth-child(1){
    width: 100%;
    height: 100%;
    margin-top: 16rpx;
    margin-left:46rpx ;
    margin-right: 44rpx;
   }
+  .messageList{
+    width: 100%;
+    height: 100%;
+    margin-top: 16rpx;
+    margin-left:46rpx ;
+    margin-right: 44rpx;
+   }
   .firstMessage{
-  margin-top: 20rpx;
+  margin-top: 32rpx;
   width: 660rpx;
   height: 292rpx;
   background: #FFFFFF;
   border: 4rpx solid #4BDCAB;
   border-radius: 20rpx;
   }
-  
   .title{
     margin: 16rpx 0rpx 10rpx 32rpx;
     width: 544rpx;
@@ -67,6 +73,7 @@
   align-items: center;
   padding: 0px;
   gap: 6px;
+  width: 180rpx;
   height: 48rpx;
   }
   .clock{
@@ -74,7 +81,6 @@
     height: 28rpx;
   }
   .timeShow text{
-  letter-spacing: 1px;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
@@ -115,7 +121,7 @@
   position: absolute;
   width: 640rpx;
   height: 1748rpx;
-  margin-top: 50rpx;
+  margin-top: 46rpx;
   margin-left: 56rpx;
   margin-right: 54rpx;
   }

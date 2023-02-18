@@ -42,6 +42,7 @@ Component({
   observers:{
     'showDialog':function(showDialog){
       var that = this;
+      console.log("jianting",that.data)
       if(showDialog){
         that.setData({
           showOut:true,
