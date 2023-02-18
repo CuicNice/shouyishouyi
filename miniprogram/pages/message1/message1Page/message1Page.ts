@@ -23,6 +23,7 @@ Page({
         popupFabulous:this.data.popupFabulous,
       },
       success:((res)=>{
+        console.log(res.data.data.list)
         this.putColors();
         //渲染颜色 
         for(var i=0,j=0;i<res.data.data.list.length;i++,j++){
@@ -39,18 +40,46 @@ Page({
         this.setData({
           list:res.data.data.list,
         }) 
-         //判断数据是否已读
+         //判断数据是否已读;
          var isUnread;
          isUnread=wx.getStorageSync('unread');
-         if(isUnread.length == res.data.data.list.length){
-          for(var i=0;i<res.data.data.list.length;i++){
-            if(this.data.list[i].color !== undefined || this.data.list[i].color !== '' )
-             this.setData({list:isUnread})
-          } 
-         } 
+         if(isUnread){
+          if(isUnread.length == res.data.data.list.length){
+            for(var i=0;i<res.data.data.list.length;i++){
+              //有时候减一个又增一个，长度不变，需要更进一步判断
+               if(isUnread[i].popupId !== res.data.data.list[i].popupId){
+                isUnread[i]=this.data.list[i];  continue;
+               }
+                 //下面是判断标题内容是否发生更改
+                if(isUnread[i].popupJumpTextContent !== res.data.data.list[i].popupJumpTextContent){
+                  isUnread[i]=this.data.list[i]; continue;
+                }
+                  if(isUnread[i].popupJumpTextImage !== res.data.data.list[i].popupJumpTextImage){
+                    isUnread[i]=this.data.list[i]; continue;
+                  }
+                    if(isUnread[i].popupJumpTextTitle !== res.data.data.list[i].popupJumpTextTitle){
+                      isUnread[i]=this.data.list[i]; continue;
+                    }
+                      if(isUnread[i].popupSystemHeadline !== res.data.data.list[i].popupSystemHeadline){
+                        isUnread[i]=this.data.list[i]; continue;
+                      }
+                        if(isUnread[i].popupSystemSubtitle !== res.data.data.list[i].popupSystemSubtitle){
+                        isUnread[i]=this.data.list[i];
+                        }
+              }this.setData({list:isUnread});
+            }else{
+             for(var i=0;i<isUnread.length;i++){
+               //有时候减一个又增一个，长度不变，需要更进一步判断
+                if(isUnread[i].popupId !== res.data.data.list[i].popupId){
+                   delete isUnread[i];continue;
+                }
+               }this.setData({list:isUnread});
+           } 
+           }else{this.setData({list:res.data.data.list})}
       })
      })
    },
+
  //打乱颜色
  putColors(){
    //打乱颜色数组
@@ -63,11 +92,21 @@ Page({
  },
 //点击进入信息详情
 getMessage(e){
-  this.setData({
+  if(this.data.list[e.currentTarget.dataset.row].popupJumpUrl !== null){
+    wx.setStorageSync('Url',this.data.list[e.currentTarget.dataset.row].popupJumpUrl);
+    wx.navigateTo({
+      url:'../web-view/webView'
+    })
+  }
+  if(!this.data.list[e.currentTarget.dataset.row].popupJumpUrl){
+    this.setData({
     row:e.currentTarget.dataset.row,
     isHidden:false,
     title:"标题",
   }) 
+  }
+  
+  
  //已读和未读的处理
    let Array = this.data.list;
    let index =0;

@@ -31,44 +31,40 @@ Page({
         this.setData({
            messageList:res.data.data.list,
         })  
-        var appear = this.data.messageList[0].popupPublishTime;
-        wx.setStorageSync('key3',appear);
         //判断是否有未读消息
         var isUnread;
-        isUnread=wx.getStorageSync('unread')
-        console.log(isUnread)
+        isUnread = wx.getStorageSync('unread')
         if(isUnread.length == res.data.data.list.length){
-          console.log(1)
           for(var a=0;a<res.data.data.list.length;a++){
-          if(isUnread[a].isShow == true){
+          if(isUnread[a].isShow == true){ 
             this.setData({x:0})
           }else{
-            this.setData({x:1})        
+            this.setData({x:1});
+            break;        
           }
           }
-        }if(res.data.data.list.length > 0&& !isUnread){
+        }else if(res.data.data.list.length > 0){
           this.setData({x:1})
-        }
+        }else{this.setData({x:0})}
       })
      })
    },
    //是否出现弹窗
     isPop(){
-       wx.request({
+        wx.request({
         url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletAppearPopup',
         method:'POST',
-        success:((res)=>{
+        success:((res:any)=>{
         console.log(res)  
         this.setData({
          popupState:res.data.data
          })
-         if(res.data.data.popupPublishTime !== wx.getStorageSync('key3')){
+         if(res.data.data.popupId != null ){
            if(this.data.query !=='1'){
               wx.navigateTo({
             url:'../popup1/popup1Page/popup1Page'
            })
            }
-          
          }
         })  
  })
@@ -163,7 +159,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    var appear = this.data.messageList[0].popupPublishTime;
+    wx.setStorageSync('key3',appear);
   },
 
   /**
