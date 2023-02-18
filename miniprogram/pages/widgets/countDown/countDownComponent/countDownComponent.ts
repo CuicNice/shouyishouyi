@@ -89,6 +89,7 @@ Component({
         while (cdlist.length < 3) {
           cdlist.push(res.pop())
         }
+        console.log("cdlist",cdlist)
         let cdlist3 = [];
         // 变成数字
         // 处理时间列表
@@ -128,7 +129,6 @@ Component({
       let tapCountDownDataItem = that.data.cdlist3[dateItemId]
       let tapCountDownName = tapCountDownDataItem["countDownName"]
       let tapCountDownEndDate = tapCountDownDataItem["countDownEndDate"]
-      console.log("localCountDownDat--a", tapCountDownName)
       // if()
       try {
         let localCountDownDataDic = wx.getStorageSync('widgets-userCountDown')
@@ -144,7 +144,7 @@ Component({
             if (item["countDownName"] == tapCountDownName) {
               let isNetWork = false as boolean
               setTimeout(() => {
-                wx.redirectTo({
+                wx.navigateTo({
                   key: 'localCountDownName',
                   url: '/pages/widgets/countDown/countDownPage/countDownPage?localCountDownName=' + item["countDownName"] + '&localCountDownEndDate=' + item["countDownEndDate"] + '&isNetWork=' + isNetWork + '&localItemPosition=' + dicItemID
                 })
@@ -156,7 +156,7 @@ Component({
           // 远程数据，其他的本地参数不传递
           let isNetWork = true as boolean
           setTimeout(() => {
-            wx.redirectTo({
+            wx.navigateTo({
               key: 'localCountDownName',
               url: '/pages/widgets/countDown/countDownPage/countDownPage?isNetWork=' + isNetWork
             })
@@ -166,7 +166,7 @@ Component({
         } else {
           let isNetWork = true as boolean
           setTimeout(() => {
-            wx.redirectTo({
+            wx.navigateTo({
               key: 'localCountDownName',
               url: '/pages/widgets/countDown/countDownPage/countDownPage?isNetWork=' + isNetWork
             })

@@ -3,7 +3,7 @@
 <!-- <topBar model:title="倒计时设置"></topBar> -->
 <view class="bg"></view>
 <!-- topbar -->
-<topBar>
+<topBar title="{{countDownTitle}}" immersion="{{true}}" Threshold="0.2">
 <view class="container">
 <!-- 这个里面是输入表单 -->
 <form bindsubmit="formSubmit">

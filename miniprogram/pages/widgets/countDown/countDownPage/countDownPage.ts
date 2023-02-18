@@ -72,7 +72,7 @@ Page({
   // 跳转
   gotoBd() {
     setTimeout(() => {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage',
       })
     }, 500)
@@ -80,7 +80,7 @@ Page({
   // 跳转
   mCancel() {
     setTimeout(() => {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/miniprogram/pages/index/index',
 
       })
@@ -88,7 +88,7 @@ Page({
   },
   returnPage() {
     console.log("chufa1")
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage',
     })
   },
