@@ -75,7 +75,6 @@
   align-items: center;
   padding: 0px;
   gap: 6px;
-  width: 180rpx;
   height: 48rpx;
   }
   .clock{
@@ -83,6 +82,7 @@
     height: 28rpx;
   }
   .timeShow text{
+  letter-spacing: 1px;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;

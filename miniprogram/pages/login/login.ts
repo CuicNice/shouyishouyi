@@ -25,7 +25,7 @@ Page({
       method:'POST',
       data:{
         currentPage:1,
-        pageSize:1000000,
+        pageSize:1000000000,
       },
       success:((res)=>{
         this.setData({

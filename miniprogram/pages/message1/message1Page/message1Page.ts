@@ -19,7 +19,7 @@ Page({
       method:'POST',
       data:{
         currentPage:1,
-        pageSize:10000,
+        pageSize:100000000,
         popupFabulous:this.data.popupFabulous,
       },
       success:((res)=>{
