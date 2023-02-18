@@ -13,7 +13,7 @@
    margin-left:46rpx ;
    margin-right: 44rpx;
   }
-  .firstMessage:first-child{
+  .firstMessage{
   margin-top: 20rpx;
   width: 660rpx;
   height: 292rpx;
@@ -21,14 +21,6 @@
   border: 4rpx solid #4BDCAB;
   border-radius: 20rpx;
   }
-  .firstMessage:not(:first-child){
-    margin-top: 38rpx;
-    width: 660rpx;
-    height: 292rpx;
-    background: #FFFFFF;
-    border: 4rpx solid #4BDCAB;
-    border-radius: 20rpx;
-    }
   
   .title{
     margin: 16rpx 0rpx 10rpx 32rpx;
