@@ -1,7 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "topbar":"/components/fmin-topbar/fmin-topbar"
-  
-  }
-}
