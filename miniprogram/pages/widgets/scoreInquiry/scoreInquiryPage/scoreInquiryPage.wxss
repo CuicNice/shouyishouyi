@@ -937,7 +937,7 @@ margin-top: 27rpx;
 }
 .scoredetailBox {
   z-index: 200;
-  margin: 46rpx 27rpx 21rpx 46rpx;
+  margin: 46rpx 46rpx 21rpx 41rpx;
   position: absolute;
   width: 640rpx;
   left: 2.5%;

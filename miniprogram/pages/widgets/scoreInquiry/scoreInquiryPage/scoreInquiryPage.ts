@@ -150,7 +150,7 @@ closeTap: function (e:any) {
       }else if(res3.Details.length ==2){
         this.setData({height:594})
       }else if(res3.Details.length ==1){
-        this.setData({height:498})
+        this.setData({height:488})
       }
       this.setData({
         Detail:res3,
