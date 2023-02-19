@@ -1,7 +1,4 @@
 // pages/message/messageInfo/messageInfo.ts
-import {getFabulous} from '../../../api/popupApi';
-export interface fablouseItem {
-}
 Page({
 
   /**
@@ -15,41 +12,20 @@ Page({
   /**
  * 初始化页面渲染函数
  */
-async initPageData() {
-  /**
-   * 获取本地缓存，判断是否绑定数据
-   */
-   var bindData = { //bindData为空，因为请求这个接口不需要任何数据
-  } as fablouseItem;
-    console.log(bindData)
-    if (bindData) {
-      this.getPopupData(bindData);
-    }  
-  },
-  /**
-  * 发送请求，渲染数据
-  * @param from popup弹窗
-  */
-  async getPopupData(from: fablouseItem) {
-  const {data: FablousById } = await getFabulous(from) as unknown as IResult<any>;
-    /**
-   * 渲染
-   */
-  this.setData({FablousById:FablousById})
-  /*
-  *数据处理
-  */
+
  
-  },
+
   //点赞的函数
   getLike(){
-    wx.
-    var row = this.data.row;
-    if(this.data.Info[row].show == 'green'||this.data.Info[row].show == undefined){
-      this.setData({popupFabulous:1})
-    } 
+    //给接口这个的Id，来获取点赞量。很简单我就用request了
+    wx.request({
+      url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/addPopupFabulousById',
+      data:{
+        popupId:this.data.Info[this.data.row].popupId
+      }
+    })
     //点赞
-    this.data.Info[row].show = 'active'; 
+    this.data.Info[this.data.row].show = 'active'; 
     this.setData({Info:this.data.Info}) 
     wx.setStorageSync('unread',this.data.Info); 
 },
@@ -58,7 +34,6 @@ async initPageData() {
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.initPageData();
     this.setData({row:options.row})
     var Info = wx.getStorageSync('unread');
     this.setData({Info:Info})
