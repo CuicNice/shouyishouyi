@@ -10,12 +10,12 @@ Page({
     a: 1,
     b: 0,
     num: 0,
-    electricChargeTitle:'首义图书馆',
+    electricChargeTitle: '首义图书馆',
   },
 
   returnEvent() {
-    this.setData({ ifsearch: true,})
-    
+    this.setData({ ifsearch: true, })
+
   },
 
   return() {
@@ -31,11 +31,11 @@ Page({
     // 先获取缓存中的内容
     let array = wx.getStorageSync(abc) || []
     // 向数组中追加
-    var ifshow=false
-    if(this.data.word.length>6){ifshow=!ifshow}
+    var ifshow = false
+    if (this.data.word.length > 6) { ifshow = !ifshow }
     array.push({
       item: this.data.word,
-      ifshow:ifshow
+      ifshow: ifshow
     })
     // 重新设置缓存
     wx.setStorageSync(abc, array)
@@ -51,7 +51,7 @@ Page({
   },
 
   search() {
-    this.setData({ a: 1, b: 0, allbook: []})
+    this.setData({ a: 1, b: 0, allbook: [] })
     wx.removeStorage({
       key: 'book',
     })
@@ -88,7 +88,7 @@ Page({
         }
       }
     }
-},
+  },
 
   webrequest(a: number) {
     this.selectComponent("#toast").showToast("请求中....", "lodding");
@@ -255,8 +255,8 @@ Page({
 
   showXQ(res: any) {
     this.setData({ num: res.currentTarget.dataset.index })
-    var all=JSON.stringify(this.data.allbook)
-    wx.navigateTo({url:'/pages/widgets/library/librarycom/librarycom?all=' + all+'&num=' +this.data.num})
+    var all = JSON.stringify(this.data.allbook)
+    wx.navigateTo({ url: '/pages/widgets/library/librarycom/librarycom?all=' + all + '&num=' + this.data.num })
   },
 
   leftrequest() {
@@ -269,19 +269,19 @@ Page({
 
   //获取缓存的内容
   get() {
-      var myarr = wx.getStorageSync('item')
-      if (myarr.length != 0) {
-        var arr = []
-        console.log(myarr)
-        for (var i = myarr.length - 1; i >= 0; i--) {
-          arr.push(myarr[i])
-        }
-        console.log(arr)
-        this.setData({
-          shuju: arr,
-          ifshow: false
-        })
+    var myarr = wx.getStorageSync('item')
+    if (myarr.length != 0) {
+      var arr = []
+      console.log(myarr)
+      for (var i = myarr.length - 1; i >= 0; i--) {
+        arr.push(myarr[i])
       }
+      console.log(arr)
+      this.setData({
+        shuju: arr,
+        ifshow: false
+      })
+    }
   },
 
   //查重
@@ -302,7 +302,7 @@ Page({
    */
   onLoad(e) {
     console.log(e)
-    this.setData({word:e.word})
+    this.setData({ word: e.word })
     this.webrequest(this.data.a)
   },
 
