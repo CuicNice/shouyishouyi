@@ -8,6 +8,7 @@ Page({
     isHidden:true,
     row:'',
     Info:[],
+    xz:1,//限制点赞量，点一次变为2
   },
   /**
  * 初始化页面渲染函数
@@ -17,7 +18,8 @@ Page({
 
   //点赞的函数
   getLike(){
-    //给接口这个的Id，来获取点赞量。很简单我就用request了
+    if(this.data.xz == 1){
+      //给接口这个的Id，来获取点赞量。很简单我就用request了
     wx.request({
       url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/addPopupFabulousById',
       method:'POST',
@@ -31,7 +33,11 @@ Page({
     //点赞
     this.data.Info[this.data.row].show = 'active'; 
     this.data.Info[this.data.row].popupFabulous = this.data.Info[this.data.row].popupFabulous+1
-    this.setData({Info:this.data.Info}) 
+    }
+    this.setData({
+      Info:this.data.Info,
+      xz:2
+    }) 
     wx.setStorageSync('unread',this.data.Info); 
 },
 

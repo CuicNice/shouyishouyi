@@ -1,7 +1,7 @@
 .background{
   position: absolute;
   width: 750rpx;
-  height: 1852rpx;
+  height: 100%;
   /* 背景 */
   background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
   }
