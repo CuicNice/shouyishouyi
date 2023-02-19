@@ -434,10 +434,10 @@
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails"></view>
 <scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
-<block wx:for="{{detailClass}}" wx:key="index">
-<view class="courseDetails" style="border-color: {{item.zindex==3?#4BDCAB:#E3E3E5}};">
+<block class="block" wx:for="{{detailClass}}" wx:key="index">
+<view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
   <view class="course">
-    <view class="courseName">{{classSchedule.data.all_tables[G].name}}</view>
+    <view class="courseName">{{item.name}}</view>
     <view class="courseifBox">
       <view class="courseif" wx:if="{{item.zindex==3}}"style="color: white;">本周</view>
       <view class="courseif1" wx:else style="color:#757575;">非本周</view> 
@@ -447,22 +447,22 @@
     <view class="courseplace">
       <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/didian.svg':'../../../../static/svg/gareyplace.svg'}}" />
       <view class="cuorseGuding">地点:</view>
-      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].local}}</view>
+      <view class="cuorseXuigai">{{item.local}}</view>
     </view>
     <view class="courseplace">
       <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/teacher.svg':'../../../../static/svg/gareyteacher.svg'}}" />
       <view class="cuorseGuding">老师:</view>
-      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].teacher}}</view>
+      <view class="cuorseXuigai">{{item.teacher}}</view>
     </view>
     <view class="courseplace">
       <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/jieshu.svg':'../../../../static/svg/gareytime.svg'}}" />
       <view class="cuorseGuding">节数:</view>
-      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].day}} | {{classSchedule.data.all_tables[G].num}}</view>
+      <view class="cuorseXuigai">{{item.day}} | {{item.num}}</view>
     </view>
     <view class="courseplace">
       <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/zhuoci.svg':'../../../../static/svg/gareyzho.svg'}}" />
       <view class="cuorseGuding">周次:</view>
-      <view class="cuorseXuigai">{{classSchedule.data.all_tables[G].day_num}}</view>
+      <view class="cuorseXuigai">{{item.day_num}}</view>
     </view>
   </view>
 </view>
@@ -505,3 +505,4 @@
 </view>
 </block> -->
 </scroll-view>
+<toast id="toast"></toast>
