@@ -1,8 +1,10 @@
 /* pages/widgets/popup/popupPage/popupPage.wxss */
 .unbound{
-  width: 750rpx;
-  height: 1618rpx;
+  position: absolute;
+  width: 100%;
+  height: 1800rpx;
   background: #E6E6E6;
+  z-index: -999;
   }
   .setup{
   display: flex;
@@ -12,7 +14,7 @@
   height: 518rpx;
   position: absolute;
   left: 150rpx;
-  top: 550rpx;
+  top: 490rpx;
   }
   .photoShow{
   width: 450rpx;
@@ -20,7 +22,12 @@
   background: #FFFFFF;
   border-radius: 18rpx;
   }
+  .photoShow image{
+    width: 450rpx;
+    height: 450rpx;
+  }
   .dispel2{
+    margin-top: 14rpx;
     width: 54rpx;
     height: 54rpx;
   }
