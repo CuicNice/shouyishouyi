@@ -136,7 +136,7 @@
 <!-- 成绩详情弹窗 -->
 <!-- 成绩详情弹窗 -->
 <view class="scoresearchGrey" bindtap="closeTap"wx:if="{{courseTapdetail}}"catchtouchmove="ture"></view>
-<view class="scoredetailBox" wx:if="{{courseTapdetail}}">
+<view class="scoredetailBox" style="height:{{height}}rpx;" wx:if="{{courseTapdetail}}">
 <view  class="dispelbox" bindtap="closeTap">
 <image class="dispel" src="/static/svg/dispel.svg"></image></view>
 <view class="scoredetailBox-top">
@@ -172,7 +172,7 @@
             </view>
             <block>
             <view class="tr" wx:for="{{Details}}"  wx:key="index" >
-                    <view class="td1" >[{{item.cjfx.length == 4 ?item.cjfx[0]+item.cjfx[1]:item.cjfx}}]</view>
+                    <view class="td1" >[{{item.cjfx.length >= 4 ?item.cjfx[0]+item.cjfx[1]:item.cjfx}}]</view>
                     <view class="td2">{{item.cjfxbl}}</view>
                     <view class="td3">{{item.cj}}</view>
             </view>

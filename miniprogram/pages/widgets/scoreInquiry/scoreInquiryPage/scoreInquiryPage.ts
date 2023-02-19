@@ -142,6 +142,13 @@ closeTap: function (e:any) {
         /**
        * 渲染
        */
+      if(res3.Details.length >=3){
+        this.setData({height:750})
+      }else if(res3.Details.length ==2){
+        this.setData({height:674})
+      }else if(res3.Details.length ==1){
+        this.setData({height:588})
+      }
       this.setData({
         Detail:res3,
         Details:res3.Details,
