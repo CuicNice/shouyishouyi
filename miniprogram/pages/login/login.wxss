@@ -133,6 +133,17 @@ page {
 }
 
 /* 下面是popup的样式 */
+.scoresearchGrey {
+  z-index: 30;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+}
 .setup{
   display: flex;
   flex-direction: column;

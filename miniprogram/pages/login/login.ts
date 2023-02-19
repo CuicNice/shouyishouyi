@@ -66,6 +66,7 @@ Page({
 //关闭popup弹窗
 closePhoto(){
   this.setData({
+    termTitleTapdetail:false,
     tc1:false,
     tc2:false,
   })
@@ -106,11 +107,13 @@ this.setData({
 var popupType = popupAppear.popupType;
 if(popupType == 'custom'){
  this.setData({
+  termTitleTapdetail:true,
   tc1:true,
   tc2:false,
 })
 }else if(popupType == 'system'){
  this.setData({
+  termTitleTapdetail:true,
    tc1:false,
    tc2:true,
 })

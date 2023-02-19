@@ -41,6 +41,7 @@
 </dialogTitle>
 
 <!-- popup弹窗页面 -->
+<view class="scoresearchGrey" bindtap="closePhoto"wx:if="{{termTitleTapdetail}}"catchtouchmove="ture"></view>
 <view class="setup"wx:if='{{tc1}}'>
 <view class="photoShow">
 <image src="{{ima}}" ></image>
