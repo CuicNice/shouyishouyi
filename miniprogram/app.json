@@ -12,9 +12,9 @@
     "pages/widgets/library/librarycom/librarycom",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/library/librarytext/librarytext",
-    "pages/message1/message1Page/message1Page",
-    "pages/popup1/popup1Page/popup1Page",
-    "pages/message1/web-view/webView"
+    "pages/message/messagePage/messagePage",
+    "pages/popup/popupPage/popupPage",
+    "pages/message/web-view/webView"
   ],
   "window": {
     "backgroundTextStyle": "light",
