@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "topbar":"/components/fmin-topbar/fmin-topbar",
+    "dialog":"/components/fmin-dialog/fmin-dialog"
+  }
+}
