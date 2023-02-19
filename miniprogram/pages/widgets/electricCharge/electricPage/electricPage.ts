@@ -134,7 +134,7 @@ Page({
     // that.selectComponent("#toast").showToast("请求中....", "lodding");
     const { data: res } = await getElectric(from) as unknown as IResult<any>;
     if (!res) {
-      that.selectComponent("#toast").showToastAuto("请求失败", "error");
+      // that.selectComponent("#toast").showToastAuto("请求失败", "error");
       console.log("请求失败，请重新绑定")
       that.setData({
         showImg: false,

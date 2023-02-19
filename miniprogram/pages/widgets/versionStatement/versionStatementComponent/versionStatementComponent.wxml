@@ -1,0 +1,11 @@
+<!--pages/widgets/versionStatement/versionStatementComponent/versionStatementComponent.wxml-->
+<view class="boardBox">
+  <view class="whiteBox">
+    <view class="greenBoxBar">
+      <view class="title">{{boardTitle}}</view>
+    </view>
+    <view class="statementBox">
+    <slot></slot>
+    </view>
+  </view>
+</view>

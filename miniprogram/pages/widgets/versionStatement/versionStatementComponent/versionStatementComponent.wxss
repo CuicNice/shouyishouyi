@@ -1,0 +1,89 @@
+/* pages/widgets/versionStatement/versionStatementComponent/versionStatementComponent.wxss */
+
+
+/* 包含的东西 */
+
+.boardBox {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0rpx;
+    margin-left: 24rpx;
+    margin-right: 26rpx;
+    width: 700rpx;
+    /* height: auto; */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+/* 最外层盒子 */
+
+.whiteBox {
+    display: flex;
+    flex-direction: column;
+    padding: 0rpx;
+    /* height: 406rpx; */
+    box-shadow: 0rpx 20rpx 34rpx -10rpx rgba(108, 211, 167, 0.19);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.greenBoxBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* padding: 20rpx; */
+    gap: 20rpx;
+    width: 700rpx;
+    height: 82rpx;
+    background: #20C38C;
+    border-radius: 34rpx 34rpx 0rpx 0rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.title {
+    /* 小程序版本详情 */
+    /* width: 222rpx; */
+    height: 42rpx;
+    letter-spacing: 1px;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30rpx;
+    line-height: 42rpx;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.statementBox {
+    /* 陈述部分 */
+    /* Frame 26 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 34rpx 38rpx;
+    gap: 28rpx;
+    isolation: isolate;
+    background: #FFFFFF;
+    border-radius: 0rpx 0rpx 34rpx 34rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
