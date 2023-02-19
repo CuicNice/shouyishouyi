@@ -81,8 +81,8 @@ Page({
      * 获取本地缓存，判断是否绑定数据
      */
      var bindScore = { 
-      zh:wx.getStorageSync('zh'),
-      mm:wx.getStorageSync('mm'),
+      zh:'20191107124',
+      mm:'200169wxf',
       id: this.data.userScoreInfo[academic_year_y][term_y][row].jxb_id,
       xnm:this.data.userScoreInfo[academic_year_y][term_y][row].xnm,
       xqm:this.data.userScoreInfo[academic_year_y][term_y][row].xqm,
@@ -142,12 +142,15 @@ closeTap: function (e:any) {
         /**
        * 渲染
        */
-      if(res3.Details.length >=3){
-        this.setData({height:750})
+      if(res3.Details.length >=4 ){
+        this.setData({height:700})
+      }
+      else if(res3.Details.length ==3){
+        this.setData({height:640})
       }else if(res3.Details.length ==2){
-        this.setData({height:674})
+        this.setData({height:594})
       }else if(res3.Details.length ==1){
-        this.setData({height:588})
+        this.setData({height:498})
       }
       this.setData({
         Detail:res3,
@@ -402,8 +405,8 @@ closeTap: function (e:any) {
      * 获取本地缓存，判断是否绑定数据
      */
      var bindData = { 
-      zh:wx.getStorageSync('zh'),
-      mm:wx.getStorageSync('mm'),
+      zh:'20191107124',
+      mm:'200169wxf',
     } as ScoreInquiryeItem;
       console.log(bindData)
       if (bindData) {
