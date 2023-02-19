@@ -11,7 +11,6 @@
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",
-    "pages/popup/popupPage/popupPage",
     "pages/message/web-view/webView",
     "pages/message/messageInfo/messageInfo"
   ],
