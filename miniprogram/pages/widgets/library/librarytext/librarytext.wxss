@@ -360,6 +360,7 @@ components/topbar/topbar.wxss
   gap: 20rpx;
   border: 3rpx solid #20C38C;
   margin-left: 65rpx;
+  margin-top: 40rpx;
 }
 
 .mininput {
@@ -473,7 +474,7 @@ components/topbar/topbar.wxss
 
 .lefticon2 {
   position: absolute;
-  top: 345rpx;
+  top: 350rpx;
   left: 670rpx;
   width: 50rpx;
   height: 50rpx;
@@ -504,7 +505,7 @@ components/topbar/topbar.wxss
 
 .righticon2 {
   position: absolute;
-  top: 345rpx;
+  top: 350rpx;
   left: 590rpx;
   width: 40rpx;
   height: 40rpx;
@@ -576,7 +577,7 @@ components/topbar/topbar.wxss
 
 .pagenum {
   position: absolute;
-  top: 348rpx;
+  top: 353rpx;
   left: 602rpx;
   width: 100rpx;
   height: 34rpx;
