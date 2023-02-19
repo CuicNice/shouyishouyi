@@ -970,6 +970,9 @@ z-index: 0;
   height: 476rpx;
   border-radius: 20rpx;
   background: white;
+  display:inline-block;
+  border: 2rpx solid #E3E3E5;
+  margin-left: 30rpx;
 }
 
 .CourseDetailsTop {
@@ -994,18 +997,6 @@ z-index: 0;
   color: #292945;
 }
 
-.CourseDetailsWeek {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 6rpx 12rpx;
-  gap: 20rpx;
-  width: 96rpx;
-  height: 44rpx;
-  background: #E6E6E6;
-  border-radius: 5px;
-}
 
 .CourseDetailsWeektext {
   width: 100rpx;
@@ -1276,8 +1267,10 @@ z-index: 0;
   height: 476rpx;
   border-radius: 20rpx;
   background: white;
-  border: 2rpx solid #4BDCAB;
+  border: 2rpx solid;
   z-index: 100;
+  margin-left: 30rpx;
+  display:inline-block;
 }
 
 .course {
@@ -1292,6 +1285,7 @@ z-index: 0;
   margin-left: 50rpx;
   width: 440rpx;
   height: 268rpx;
+  display:inline-block;
 }
 
 .courseName {
@@ -1314,6 +1308,9 @@ z-index: 0;
 .courseplace {
   height: 40rpx;
   margin-top: 36rpx;
+  margin-left: 5rpx;
+  display:flex;
+  flex-direction: row;
 }
 
 .courseif {
@@ -1322,17 +1319,23 @@ z-index: 0;
   border-radius: 20rpx;
   background-color: #4BDCAB;
   line-height: 44rpx;
-  margin-left: 340rpx;
+  margin-left: 370rpx;
+  text-align: center;
+}
+.courseif1 {
+  width: 96rpx;
+  height: 44rpx;
+  border-radius: 20rpx;
+  background-color:#E6E6E6;
+  line-height: 44rpx;
+  margin-left: 370rpx;
   text-align: center;
 }
 
 .courseplaceImage {
-  position: absolute;
-  left: 20rpx;
   height: 32rpx;
   width: 40rpx;
   text-align: center;
-  float: left;
 }
 
 .cuorseGuding {
@@ -1342,7 +1345,6 @@ z-index: 0;
   font-weight: bold;
   font-size: 28rpx;
   margin-left: 30rpx;
-  float: left;
 }
 
 .cuorseXuigai {
@@ -1359,8 +1361,11 @@ z-index: 0;
 }
 
 .classScroll1 {
-  height: 1000rpx;
-  margin-top: -1200rpx;
+  height: 500rpx;
+  width: 600rpx;
+  margin-top: -800rpx;
+  white-space: nowrap;
+  margin-left: 100rpx;
 }
 
 .mask {
@@ -2292,23 +2297,6 @@ height: 199.5rpx;
  background-repeat: no-repeat;
 }
 
-.CourseDetailsBox{
-box-sizing: border-box;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 40rpx 50rpx;
-gap: 40rpx;
-position: relative;
-width: 540rpx;
-height:476rpx;
-background: #FFFFFF;
-border: 2rpx solid #E3E3E5;
-border-radius: 20rpx;
-margin-left: 130rpx;
-margin-top: -750rpx;
-z-index: 10;
-}
 
 .CourseDetailsTop{
 display: flex;
@@ -2343,18 +2331,6 @@ width: 96rpx;
 height: 44rpx;
 background: #E6E6E6;
 border-radius: 5px;
-}
-.CourseDetailsWeektext{
-width: 100rpx;
-height: 34rpx;
-text-align: center;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 24rpx;
-line-height: 34rpx;
-/* identical to box height */
-color: #757575;
 }
 
 .CourseDetailsNext{
@@ -2605,17 +2581,6 @@ height:336rpx;
   letter-spacing: -0.4352rpx;
 }
 
-.courseDetails{
-  position: absolute;
-  width: 540rpx;
-  height: 476rpx;
-  border-radius: 20rpx;
-  background: white;
-  border: 2rpx solid #4BDCAB;
-  left: 17%;
-  top: 40%;
-  z-index: 100;
-}
 .course{
   margin-top: 40rpx;
   margin-left: 50rpx;
@@ -2647,23 +2612,7 @@ height:336rpx;
   height: 40rpx;
   margin-top: 36rpx;
 }
-.courseif{
-  width: 96rpx;
-  height: 44rpx;
-  border-radius: 20rpx;
-  background-color: #4BDCAB;
-  line-height: 44rpx;
-  margin-left: 340rpx;
-  text-align: center;
-}
-.courseplaceImage{
-  position: absolute;
-  left: 20rpx;
-  height: 32rpx;
-  width: 40rpx;
-  text-align: center;
-  float: left;
-}
+
 .cuorseGuding{
   color: #292945;
   height: 40rpx;
