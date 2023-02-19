@@ -353,14 +353,15 @@ components/topbar/topbar.wxss
 }
 
 .search {
-  width: 545rpx;
+  width: 541rpx;
   height: 41rpx;
   border-radius: 164rpx;
   padding: 20rpx 40rpx 20rpx 40rpx;
   gap: 20rpx;
   border: 3rpx solid #20C38C;
   margin-left: 65rpx;
-  margin-top: -24rpx;
+  margin-top: -26rpx;
+  background-color: white;
 }
 
 .mininput {
@@ -378,7 +379,6 @@ components/topbar/topbar.wxss
   width: 40rpx;
   height: 40rpx;
   float: right;
-  margin-right: 3rpx;
   margin-top: 2rpx;
 }
 
@@ -393,7 +393,8 @@ components/topbar/topbar.wxss
   font-size: 32rpx;
   text-transform: capitalize;
   color: #000000;
-  margin-left: 70rpx;
+  margin-top: -6rpx;
+  margin-left: 62rpx;
   float: left;
 }
 
@@ -413,13 +414,17 @@ components/topbar/topbar.wxss
 
 .markBox {
   width: 622rpx;
-  height: 190rpx;
   display: flex;
-  overflow: hidden;
-  position: absolute;
-  top: 430rpx;
-  left: 50rpx;
   flex-wrap: wrap;
+  position: absolute;
+  top: 403rpx;
+  left: 50rpx;
+}
+
+.hidden{
+  width: 622rpx;
+  height: 60rpx;
+  border: 1rpx solid black;
 }
 
 .text {
@@ -449,7 +454,7 @@ components/topbar/topbar.wxss
   border-radius: 148rpx;
   margin-left: 20rpx;
   background: #EBEBEB;
-  margin-top: 15rpx;
+  margin-top: 30rpx;
 }
 .nonemarkMake {
   font-family: 'PingFang SC';
@@ -460,16 +465,16 @@ components/topbar/topbar.wxss
   text-transform: capitalize;
   color: #000000;
   opacity: 0.6;
-  margin-top: 6rpx;
-  margin-left: 25rpx;
+  margin-top: 18rpx;
+  margin-left: 10rpx;
 }
 
 .lefticon {
   position: absolute;
-  width: 32rpx;
+  width: 40rpx;
   height: 100rpx;
-  left: 680rpx;
-  top: 472rpx;
+  left: 676rpx;
+  top: 442rpx;
 }
 
 .lefticon2 {
@@ -496,10 +501,10 @@ components/topbar/topbar.wxss
 
 .righticon {
   position: absolute;
-  width: 32rpx;
+  width: 40rpx;
   height: 100rpx;
   left: 38rpx;
-  top: 476rpx;
+  top: 446rpx;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 

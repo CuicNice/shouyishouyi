@@ -361,6 +361,7 @@ components/topbar/topbar.wxss
   border: 3rpx solid #20C38C;
   margin-left: 57rpx;
   margin-top: 30rpx;
+  background-color: white;
 }
 
 .mininput {
@@ -596,9 +597,9 @@ components/topbar/topbar.wxss
 }
 
 .classBox {
-  margin-top: 50rpx;
-  width: 610rpx;
-  height: 238rpx;
+  margin-top: 42rpx;
+  width: 624rpx;
+  height: 240rpx;
   margin-left: 63rpx;
   border-bottom: 1rpx dashed black;
 }

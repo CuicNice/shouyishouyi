@@ -40,6 +40,7 @@
       </view>
     </view>
   </view>
+  <view style="margin-top: 198rpx;">
   <view class="gen" wx:for="{{allbook[num].num}}" wx:key="index">
     <view class="gentop">
       <view class="gentopRight">
@@ -66,5 +67,6 @@
     </view>
   </view>
   <view class="none"></view>
+</view>
 </view>
 </topbar>

@@ -11,12 +11,12 @@
       </view>
       <view class="rightBox">
         <view class="lefticon2" bindtap="againrequest">
-          <image class="lefticonImg" src="/static/svg/vector2.svg"></image>
+          <image class="lefticonImg" src="/static/svg/vect.svg"></image>
         </view>
         <view class="pagenum" wx:if="{{b+1<10?true:false}}">0{{b+1}}</view>
         <view class="pagenum" wx:else>{{b+1}}</view>
         <view class="righticon2" bindtap="leftrequest">
-          <image class="lefticonImg" src="/static/svg/vector2.svg"></image>
+          <image class="lefticonImg" src="/static/svg/vect.svg"></image>
         </view>
       </view>
     </view>

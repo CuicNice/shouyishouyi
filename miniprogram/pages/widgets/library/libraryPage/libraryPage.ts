@@ -126,10 +126,11 @@ objHeavy: function (arr: { [x: string]: any }) {
           // 重新设置缓存
           wx.setStorageSync('item', arrays)
         }
-      }}
+      }
       this.get()
-    wx.navigateTo({url:'/pages/widgets/library/librarytext/librarytext?word='+this.data.word})
-    this.setData({word:''})
+      wx.navigateTo({url:'/pages/widgets/library/librarytext/librarytext?word='+this.data.word})
+      this.setData({word:''})
+    }
   },
 
   swiperChangeho: function () {

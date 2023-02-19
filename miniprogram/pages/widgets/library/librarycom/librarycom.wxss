@@ -656,7 +656,7 @@ components/topbar/topbar.wxss
 }
 
 .placeBox {
-  margin-left: -2rpx;
+  margin-left: -12rpx;
   margin-top: 18rpx;
   width: 470rpx;
   height: 40rpx;
@@ -735,7 +735,7 @@ components/topbar/topbar.wxss
   margin-top: 14rpx;
   margin-left: 60rpx;
   gap: 20rpx;
-  width: 158rpx;
+  width: 146rpx;
   height: 40rpx;
   background: rgba(41, 41, 69, 0.6);
   opacity: 0.6;
@@ -751,12 +751,11 @@ components/topbar/topbar.wxss
 }
 
 .bookXQ {
-  margin-top: 56rpx;
+  margin-top: 60rpx;
   margin-left: 33rpx;
   padding: 20rpx 24rpx;
   gap: 20rpx;
   width: 640rpx;
-  height: 500rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
   border-radius: 20rpx;
@@ -777,7 +776,6 @@ components/topbar/topbar.wxss
 .all {
   margin-top: 20rpx;
   width: 640rpx;
-  height: 260rpx;
   padding-bottom: 50rpx;
   border-bottom: 1rpx dashed #C0C0C0;
 }
@@ -827,7 +825,7 @@ components/topbar/topbar.wxss
 }
 
 .bottom {
-  margin-top: 42rpx;
+  margin-top: 35rpx;
   height: 40rpx;
 }
 
@@ -844,9 +842,10 @@ components/topbar/topbar.wxss
 
 .gentop {
   height: 122rpx;
-  width: 640rpx;
+  width: 610rpx;
   border-bottom: 1rpx dashed #C0C0C0;
   display: inline-flex;
+  margin-left: 26rpx;
 }
 
 .gentopRight {
@@ -872,6 +871,7 @@ components/topbar/topbar.wxss
   line-height: 44rpx;
   color: #292945;
   float: left;
+  margin-left: 10rpx;
 }
 
 .genpart {
@@ -898,7 +898,7 @@ components/topbar/topbar.wxss
   font-size: 30rpx;
   line-height: 42rpx;
   color: #292945;
-  float: right;
+  margin-left: 300rpx;
   margin-top: -42rpx;
 }
 

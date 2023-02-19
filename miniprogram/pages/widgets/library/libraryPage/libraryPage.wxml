@@ -55,7 +55,7 @@
 <view class="bigBox">
   <view class="search">
     <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
-    <image class="image" src="../../../../static/svg/search.svg" bindtap="search"></image>
+    <image class="image" src="../../../../static/svg/search.svg"  bindtap="search" ></image>
   </view>
   <view class="searchRecord">
     <view class="mark">搜索记录</view>
@@ -68,6 +68,7 @@
     </view>
     <view class="nonemarkMake" wx:if="{{ifshow}}">暂无搜索记录</view>
   </view>
+  <view class="hidden"></view>
   <view class="library">
     <view class="lefticon" bindtap="swiperChangeqian">
       <image class="lefticonImg2" src="/static/svg/vector.svg"></image>
