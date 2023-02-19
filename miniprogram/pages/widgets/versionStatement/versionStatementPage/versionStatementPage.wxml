@@ -62,9 +62,7 @@
       <view class="devDescript">
       <view class="devDescriptItem" wx:for="{{devClassList}}">
         <view class="teamTypeBox">
-          <view class="typeText">
-            {{item}}
-          </view>
+          <view class="typeText">{{item}}</view>
         </view>
         <view class="teamMenbersBox">
           <view class="teamMenber" wx:for="{{devList[item]}}" wx:for-index="idx" wx:for-item="dever">
