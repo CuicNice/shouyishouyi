@@ -5,14 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    show:'',
     isHidden:true,
     colors : [' #4BDCAB','#3EBAD0','#FBDE71'],
     list:[],
     row:'',
-    popupFabulous:'',
     title:"消息中心",
-    pageSize:1000,
+    pageSize:5,
   },
   getList(){
     wx.request({
@@ -21,35 +19,38 @@ Page({
       data:{
         currentPage:1,
         pageSize:this.data.pageSize,
-        popupFabulous:this.data.popupFabulous,
       },
       success:((res)=>{
-        if(this.data.pageSize ==res.data.data.list.length+50){
-          this.setData({
-            pageSize:this.data.pageSize+1000,
-          })
-        }
+        this.setData({list:res.data.data.list})
+        console.log(res)
         this.putColors();
         //渲染颜色 
-        for(var i=0,j=0;i<res.data.data.list.length;i++,j++){
+        for(var i=0,j=0;i<this.data.list.length;i++,j++){
              if(j>=3){j=0;this.putColors();}
-             if(i>=3&&i%3==0&&res.data.data.list[i-1].color ==this.data.colors[0]){this.putColors();}//防止连续两个颜色一样
+             if(i>=3&&i%3==0&&this.data.list[i-1].color ==this.data.colors[0]){this.putColors();}//防止连续两个颜色一样
+             if(i>=3&&i%3==0&&this.data.list[i-1].color ==this.data.colors[0]){this.putColors();}//防止连续两个颜色一样
               var number = i;
-              var color = this.data.colors[j];
-              var show = this.data.show;
-              res.data.data.list[i].show = show;
-              res.data.data.list[i].color = color;
-              res.data.data.list[i].number = number;  
-              res.data.data.list[i].popupPublishTime =    res.data.data.list[i].popupPublishTime.slice(0,11)
-          }                   
-        this.setData({
-          list:res.data.data.list,
-        }) 
+              var color = this.data.colors[j]; 
+              if(wx.getStorageSync('unread').length>0){
+                  var isUnread = wx.getStorageSync('unread');
+                  if(isUnread[i].show == 'active'){
+                    this.data.list[i].show = isUnread[i].show;
+                  }
+              }
+              else{
+                var show = 'green';
+                this.data.list[i].show =show; 
+              }  
+              this.data.list[i].color = color;
+              this.data.list[i].number = number;  
+              this.data.list[i].popupPublishTime =  this.data.list[i].popupPublishTime.slice(0,11)
+          }     
          //判断数据是否已读;
          var isUnread;
-         isUnread=wx.getStorageSync('unread');
-         if(isUnread){
-          if(isUnread.length == res.data.data.list.length){
+         isUnread = wx.getStorageSync('unread');
+         console.log(wx.getStorageSync('unread'))
+         if(isUnread.length>0){
+          if(isUnread.length == this.data.list.length){
             for(var i=0;i<res.data.data.list.length;i++){
               //有时候减一个又增一个，长度不变，需要更进一步判断
                if(isUnread[i].popupId !== res.data.data.list[i].popupId){
@@ -97,7 +98,6 @@ Page({
       })
      })
    },
-
  //打乱颜色
  putColors(){
    //打乱颜色数组
@@ -109,30 +109,18 @@ Page({
   }
  },
 //点击进入信息详情
-getMessage(e){
-  if(this.data.list[e.currentTarget.dataset.row].popupJumpType !== 'noJump'){
+getMessage(e:any){
+  this.setData({row:e.currentTarget.dataset.row})
    if(this.data.list[e.currentTarget.dataset.row].popupJumpUrl !== null){
     wx.setStorageSync('Url',this.data.list[e.currentTarget.dataset.row].popupJumpUrl);
     wx.navigateTo({
       url:'../web-view/webView'
     })
-  }
-  if(!this.data.list[e.currentTarget.dataset.row].popupJumpUrl){
-    this.setData({
-    row:e.currentTarget.dataset.row,
-    isHidden:false,
-    title:"标题",
-  }) 
-  }
   }else{
-    this.setData({
-    isHidden:true,
-    title:"消息中心",
-  }) 
-}
-  
-  
-  
+    wx.navigateTo({
+      url:'../messageInfo/messageInfo?row='+e.currentTarget.dataset.row
+    })
+  } 
  //已读和未读的处理
    let Array = this.data.list;
    let index =0;
@@ -147,42 +135,25 @@ getMessage(e){
    this.setData({list:Array})
    wx.setStorageSync('unread',this.data.list);
 },
-getLike(){
-      if(this.data.list[this.data.row].show == ''){
-        this.setData({popupFabulous:this.data.list[this.data.row].popupFabulous + 1})
-      } 
-      //点赞
-      let show = "active";
-      this.data.list[this.data.row].show = show; 
-      this.data.list[this.data.row].popupFabulous = this.data.popupFabulous
-      this.setData({
-        list:this.data.list,
-      }) 
-      wx.setStorageSync('unread',this.data.list)          
-},
-getChild(){
-  this.setData({isHidden:true})
-},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(){
    this.setData({title:'消息中心'});
-   this.getList();
-   this.getLike();
+   
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
+  onReady(){
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getList();
   },
 
   /**
@@ -210,6 +181,8 @@ getChild(){
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
+    this.setData({pageSize:this.data.pageSize+5})
+    this.getList();
   },
 
   /**

@@ -1,0 +1,31 @@
+<!-- 点进后的信息详情弹窗 与上面不同--> 
+<view class="background"></view>
+<topbar  immersion="{{true}}" Threshold="1">
+<view wx:if="{{Info[row].popupJumpUrl !== null?!isHidden:isHidden}}">
+  <view class="messageDetail">
+  <view class="detailTitle">
+  <text>{{Info[row].popupJumpTextTitle}}</text>
+  </view>
+  <view class="timeShow">
+  <image src="/static/svg/message/clock.svg" class="clock"></image>
+  <text>{{Info[row].popupPublishTime}}</text>
+  </view>
+  <view class="messageText">
+  <view class="text">
+  <text>{{Info[row].popupJumpTextContent ==Null?'':Info[row].popupJumpTextContent}}</text>
+  </view>
+  <view class="photo" wx:if="{{Info[row].popupJumpTextImage !== null}}">
+   <image src="http://{{Info[row].popupJumpTextImage}}" ></image>
+  </view>
+  <view class="textLike">
+  <view class="likeImage" bindtap="getLike">
+  <image src="/static/svg/message/{{Info[row].show}}Like.svg"></image>
+  </view>
+  <view class="likeBottom">
+  <text>{{Info[row].show !== 'green'?Info[row].popupFabulous+'人赞过':'喜欢就点个赞吧~'}}</text>
+  </view>
+  </view>
+  </view>
+  </view>
+</view>
+</topbar>

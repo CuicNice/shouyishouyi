@@ -1,16 +1,2 @@
-<view class="unbound"></view>
-<topbar title="{{title}}" immersion="{{true}}" Threshold="0.2">
-<view class="setup"wx:if='{{tc1}}'>
-<view class="photoShow">
-<image src="{{ima}}" ></image>
-</view>
-<image class="dispel2" src="/static/svg/message/dispel2.svg" bindtap="closePhoto"></image>
-</view>
-<view class="dialogShow" wx:if="{{tc2}}" >
-  <dialog title="{{data1.popupSystemHeadline}}" stitle="{{data1.popupSystemSubtitle}}" schoolBuiltSrc="/static/svg/schoolBuilt/zhonglou.svg" showDialog="{{showDialog}}">
-  <view style="display: flex;">
-    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closePhoto">确定</button>
-  </view>
-</dialog>
-</view>
-</topbar>
+
+

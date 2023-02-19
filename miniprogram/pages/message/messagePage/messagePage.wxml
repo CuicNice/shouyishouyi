@@ -7,12 +7,12 @@
 <view class="firstMessage" style="border: 4rpx solid {{item.color}}" wx:for="{{list}}" wx:key="index" data-row="{{index}}" wx:for-item="item"bindtap="getMessage">
 <view class="text-box">
   <view class="title" >
-  <text class="titleText">{{item.popupType == 'system'?item.popupSystemHeadline:item.popupTitle}}</text>
+  <text class="titleText">{{item.popupJumpTextTitle}}</text>
   </view>
-  <view class="{{item.isShow?'hide':'show'}}" >未读
+  <view class="{{item.isShow?'hide':'show'}}">未读
   </view></view>
   <view class="stitle">
-  <text class="stitleText">{{item.popupType == 'system'?item.popupSystemSubtitle:''}}</text>
+  <text class="stitleText">{{item.popupJumpTextContent}}</text>
   </view>
   <view class="bottomShow">
   <view class="timeShow">
@@ -26,34 +26,6 @@
   </view>
 </view>
 </scroll-view>
-</view>
-<!-- 点进后的信息详情弹窗 与上面不同--> 
-  <view wx:if="{{list[row].popupJumpUrl !== null?'':!isHidden}}">
-  <view class="messageDetail">
-  <view class="detailTitle">
-  <text>{{list[row].popupJumpTextTitle}}</text>
-  </view>
-  <view class="timeShow">
-  <image src="/static/svg/message/clock.svg" class="clock"></image>
-  <text>{{list[row].popupPublishTime}}</text>
-  </view>
-  <view class="messageText">
-  <view class="text">
-  <text>{{list[row].popupJumpTextContent ==Null?'':list[row].popupJumpTextContent}}</text>
-  </view>
-  <view class="photo">
-   <image src="http://{{list[row].popupJumpTextImage}}" ></image>
-  </view>
-  <view class="textLike">
-  <view class="likeImage" bindtap="getLike">
-  <image src="/static/svg/message/{{list[row].show == ''?'green':list[row].show}}Like.svg"></image>
-  </view>
-  <view class="likeBottom">
-  <text>{{list[row].show !==''?list[row].popupFabulous+'人赞过':'喜欢就点个赞吧~'}}</text>
-  </view>
-  </view>
-  </view>
-  </view>
 </view>
 </topbar>
 

@@ -1,5 +1,7 @@
 //import { getScore } from "../../api/scoreInquiryApi";
-
+import {getPopup} from '../../api/popupApi';
+export interface popupeItem {
+}
 // pages/login/login.ts
 Page({
 
@@ -7,17 +9,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Y:'',
-    M:'',
-    D:'',
+    showDialog:true,
+    currentPage:1,//默认初始第一页数据
+    popupAppear:'',
+    ima:'',
+    info:'',
+    popupSystemSubtitle:'',
+    popupSystemHeadline:'',
     showBindDialog:false, // 显示绑定弹窗
     showLoginDialog:false,// 显示登录弹窗
     zh:'',
     mm:'',
     query:'',
-    x:0,
+    x:0,//x为0时，爪子图案为黑色
     messageList:[],
-    popupState:{},
     pageSize:1000,
   },
   getList(){
@@ -58,46 +63,70 @@ Page({
       })
      })
    },
-   //是否出现弹窗
-    isPop(){
-        wx.request({
-        url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletAppearPopup',
-        method:'POST',
-        success:((res:any)=>{
-        console.log(res)  
-        this.setData({
-         popupState:res.data.data
-         })
-         if(res.data.data.popupId !== null ){
-           if(this.data.query !=='1'){
-              wx.navigateTo({
-            url:'../popup1/popup1Page/popup1Page'
-           })
-           }
-         }
-        })  
+//关闭popup弹窗
+closePhoto(){
+  this.setData({
+    tc1:false,
+    tc2:false,
+  })
+},
+/**
+ * 初始化页面渲染函数
+ */
+async initPageData() {
+/**
+ * 获取本地缓存，判断是否绑定数据
+ */
+ var bindData = { //bindData为空，因为请求这个接口不需要任何数据
+} as popupeItem;
+  console.log(bindData)
+  if (bindData) {
+    this.getPopupData(bindData);
+  }  
+},
+/**
+* 发送请求，渲染数据
+* @param from popup弹窗
+*/
+async getPopupData(from: popupeItem) {
+console.log(from);
+const {data: popupAppear } = await getPopup(from) as unknown as IResult<any>;
+console.log(popupAppear)
+  /**
+ * 渲染
+ */
+var popupImage = popupAppear.popupImage;
+this.setData({
+  popupAppear: popupAppear,
+  ima:'http://'+popupImage,
+})
+/*
+*数据处理
+*/
+var popupType = popupAppear.popupType;
+if(popupType == 'custom'){
+ this.setData({
+  tc1:true,
+  tc2:false,
+})
+}else if(popupType == 'system'){
+ this.setData({
+   tc1:false,
+   tc2:true,
+})
+}
+if(!popupAppear){
+ this.setData({
+  ima:'http://image-2023-01-30-14-08-04-182.png'
  })
+}
 },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  onLoad() {
+    this.initPageData();
     this.getList();
-    //判断是否打开过popup
-    this.setData({
-      query:options.appear
-    })
-    var timestamp = Date.parse(new Date());
-   var date = new Date(timestamp);
-    //获取年份  
-  this.setData({
-    Y :date.getFullYear(),
-    //获取月份  
-    M : (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1),
-    //获取当日日期 
-    D : date.getDate() < 10 ? '0' + date.getDate() : date.getDate() })
-
-    // this.selectComponent("#toast").showToastAuto("test", "success",2);
   },
   /**
    * 获取学号和密码
@@ -118,7 +147,7 @@ Page({
    */
   showBindDialog(){
     wx.navigateTo({
-      url:'/pages/message1/message1Page/message1Page'
+      url:'../message/messagePage/messagePage'
     })
     this.setData({
       showBindDialog:true
