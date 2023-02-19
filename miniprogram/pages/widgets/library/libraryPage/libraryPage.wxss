@@ -360,6 +360,7 @@ components/topbar/topbar.wxss
   gap: 20rpx;
   border: 3rpx solid #20C38C;
   margin-left: 65rpx;
+  margin-top: -24rpx;
 }
 
 .mininput {
@@ -407,7 +408,7 @@ components/topbar/topbar.wxss
   opacity: 0.6;
   float: right;
   margin-top: 10rpx;
-  margin-right: 62rpx;
+  margin-right: 70rpx;
 }
 
 .markBox {
@@ -467,8 +468,8 @@ components/topbar/topbar.wxss
   position: absolute;
   width: 32rpx;
   height: 100rpx;
-  left: 668rpx;
-  top: 386rpx;
+  left: 680rpx;
+  top: 472rpx;
 }
 
 .lefticon2 {
@@ -489,16 +490,16 @@ components/topbar/topbar.wxss
 }
 
 .lefticonImg2 {
-  width: 25rpx;
-  height: 80rpx;
+  width: 100%;
+  height: 100%;
 }
 
 .righticon {
   position: absolute;
   width: 32rpx;
   height: 100rpx;
-  left: 50rpx;
-  top: 390rpx;
+  left: 38rpx;
+  top: 476rpx;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
@@ -518,7 +519,7 @@ components/topbar/topbar.wxss
 .librarySwiper {
   position: absolute;
   width: 504rpx;
-  height: 504rpx;
+  height: 550rpx;
   left: 120rpx;
   top: 222rpx;
 }
@@ -526,6 +527,8 @@ components/topbar/topbar.wxss
 .libraryIcon1 {
   width: 100%;
   height: 100%;
+  margin-top: 72rpx;
+  margin-left: 2rpx;
 }
 
 .libraryIcon2 {

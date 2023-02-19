@@ -35,7 +35,7 @@
         <view class="place" wx:if="{{allbook[num].shownan==true?true:false}}">南区</view>
         <view class="place" wx:if="{{allbook[num].showzhong==true?true:false}}">中区</view>
       </view>
-      <view style="margin-top: -55rpx;margin-left: 450rpx;">
+      <view style="margin-top: -55rpx;margin-left: 432rpx;">
         <view class="borrow">外借图书</view>
       </view>
     </view>
@@ -44,7 +44,7 @@
     <view class="gentop">
       <view class="gentopRight">
         <view>
-          <image style="width: 40rpx;height: 40rpx;float: left;" src="../../../../static/svg/place.svg"></image>
+          <image style="width: 40rpx;height: 40rpx;float: left;margin-left: -10rpx;" src="../../../../static/svg/place.svg"></image>
           <view class="gentext">{{item.place}}</view>
         </view>
         <view class="genpart">

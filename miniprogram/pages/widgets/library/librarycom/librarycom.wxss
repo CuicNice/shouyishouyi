@@ -656,7 +656,7 @@ components/topbar/topbar.wxss
 }
 
 .placeBox {
-  margin-left: -20rpx;
+  margin-left: -2rpx;
   margin-top: 18rpx;
   width: 470rpx;
   height: 40rpx;
@@ -735,7 +735,7 @@ components/topbar/topbar.wxss
   margin-top: 14rpx;
   margin-left: 60rpx;
   gap: 20rpx;
-  width: 140rpx;
+  width: 158rpx;
   height: 40rpx;
   background: rgba(41, 41, 69, 0.6);
   opacity: 0.6;
@@ -751,11 +751,11 @@ components/topbar/topbar.wxss
 }
 
 .bookXQ {
-  margin-top: 68rpx;
-  margin-left: 23rpx;
+  margin-top: 56rpx;
+  margin-left: 33rpx;
   padding: 20rpx 24rpx;
   gap: 20rpx;
-  width: 650rpx;
+  width: 640rpx;
   height: 500rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
@@ -776,7 +776,7 @@ components/topbar/topbar.wxss
 
 .all {
   margin-top: 20rpx;
-  width: 680rpx;
+  width: 640rpx;
   height: 260rpx;
   padding-bottom: 50rpx;
   border-bottom: 1rpx dashed #C0C0C0;
@@ -833,10 +833,10 @@ components/topbar/topbar.wxss
 
 .gen {
   margin-top: 44rpx;
-  margin-left: 13rpx;
+  margin-left: 33rpx;
   padding: 20rpx 24rpx;
   gap: 20rpx;
-  width: 680rpx;
+  width: 640rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
   border-radius: 20rpx;
@@ -844,8 +844,9 @@ components/topbar/topbar.wxss
 
 .gentop {
   height: 122rpx;
-  width: 670rpx;
+  width: 640rpx;
   border-bottom: 1rpx dashed #C0C0C0;
+  display: inline-flex;
 }
 
 .gentopRight {
@@ -903,9 +904,10 @@ components/topbar/topbar.wxss
 
 .genprogress {
   height: 40rpx;
-  width: 670rpx;
+  width: 626rpx;
   margin-top: 18rpx;
   display: flex;
+  margin-left: 22rpx;
   justify-content: space-between;
 }
 
@@ -924,9 +926,10 @@ components/topbar/topbar.wxss
 
 .genprogressNext {
   height: 40rpx;
-  width: 670rpx;
+  width: 626rpx;
   margin-top: 18rpx;
   display: flex;
+  margin-left: 22rpx;
   justify-content: space-between;
 }
 
