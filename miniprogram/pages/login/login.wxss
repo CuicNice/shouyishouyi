@@ -156,7 +156,6 @@ page {
   .photoShow{
   width: 450rpx;
   height: 450rpx;
-  background: #FFFFFF;
   border-radius: 20rpx;
   }
   .photoShow image{
