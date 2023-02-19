@@ -1,17 +1,18 @@
-// pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage.js
+// pages/widgets/popup/popupPage/popupPage.ts
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    title:"默认页面",
+    showDialog:true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  onLoad() {
 
   },
 

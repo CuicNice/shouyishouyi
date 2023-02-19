@@ -4,10 +4,15 @@
     "pages/login/login",
     "pages/index/index",
     "pages/indexText/indexText",
-    "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
-    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage"
+    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
+    "pages/widgets/library/librarycom/librarycom",
+    "pages/widgets/library/libraryPage/libraryPage",
+    "pages/widgets/library/librarytext/librarytext",
+    "pages/message1/message1Page/message1Page",
+    "pages/popup1/popup1Page/popup1Page",
+    "pages/message1/web-view/webView"
   ],
   "window": {
     "backgroundTextStyle": "light",
