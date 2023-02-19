@@ -160,6 +160,7 @@ page {
   border-radius: 18rpx;
   }
   .photoShow image{
+    border-radius: 10px;
     width: 450rpx;
     height: 450rpx;
   }
