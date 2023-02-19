@@ -20,12 +20,17 @@ Page({
     //给接口这个的Id，来获取点赞量。很简单我就用request了
     wx.request({
       url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/addPopupFabulousById',
+      method:'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
+      },
       data:{
         popupId:this.data.Info[this.data.row].popupId
-      }
+      },
     })
     //点赞
     this.data.Info[this.data.row].show = 'active'; 
+    this.data.Info[this.data.row].popupFabulous = this.data.Info[this.data.row].popupFabulous+1
     this.setData({Info:this.data.Info}) 
     wx.setStorageSync('unread',this.data.Info); 
 },
