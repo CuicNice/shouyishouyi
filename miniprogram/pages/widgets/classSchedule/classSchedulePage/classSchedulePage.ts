@@ -108,35 +108,6 @@ Page({
         success: (res:any) => {
           resolve(res);
           console.log(res)
-         /*  var add=res.data.data.all_tables
-          console.log(add)
-          for(var i=0;i<add.length;i++){
-            console.log(add[i].day_num)
-            for(var j=0;j<add[i].day_num.lenth;j++){
-              console.log(j)
-              if(add[i].day=="星期日"){
-                console.log(this.data.week[add[i].day_num[j]].day1)
-              }
-              if(add[i].day=="星期一"){
-                console.log(this.data.week[add[i].day_num[j]].day2)
-              }
-              if(add[i].day=="星期二"){
-                console.log(this.data.week[add[i].day_num[j]].day3)
-              }
-              if(add[i].day=="星期三"){
-                console.log(this.data.week[add[i].day_num[j]].day4)
-              }
-              if(add[i].day=="星期四"){
-                console.log(this.data.week[add[i].day_num[j]].day5)
-              }
-              if(add[i].day=="星期五"){
-                console.log(this.data.week[add[i].day_num[j]].day6)
-              }
-              if(add[i].day=="星期六"){
-                console.log(this.data.week[add[i].day_num[j]].day7)
-              }
-            }
-          } */
         },
         fail: (e) => {
           console.log(e.data.msg);
@@ -180,7 +151,7 @@ Page({
     var list = [];
     for (var j = 0; j < day_num.length; j++) {
       var double_index = day_num[j].search('双');
-      var day_num_item = day_num[j].match(/\d+(\.\d+)?/g);
+      var day_num_item = day_num[j].match(/\d+(\.\d+)?/g)!;
       if (day_num_item.length == 2) {
         for (var k = parseInt(day_num_item[0]); k <= parseInt(day_num_item[1]); k++) {
           if (double_index != -1) {
@@ -222,7 +193,7 @@ Page({
     var num = all_table.num.split(",");
     var list = [];
     for (var j = 0; j < num.length; j++) {
-      var day_num_item = num[j].match(/\d+(\.\d+)?/g);
+      var day_num_item = num[j].match(/\d+(\.\d+)?/g)!;
       if (day_num_item.length == 2) {
         for (var k = parseInt(day_num_item[0]); k <= parseInt(day_num_item[1]); k++) {
           list.push(k);
@@ -275,7 +246,7 @@ Page({
           }
           for (var j = 0; j < all_tables[i].day_num.length; j++) {
             // 匹配周数
-            var dayIndex = week.findIndex(function (v, index, arr) {
+            var dayIndex = week.findIndex(function (v) {
               return v.name == all_tables[i].day_num[j]
             });
             // console.log(dayIndex)
@@ -311,14 +282,14 @@ Page({
               var itemIndex = week[week.length - 1].data.findIndex(function (v) {
                 return v.day == all_tables[i].day
               })
-              week[week.length - 1].data[itemIndex].item.push(all_tables[i]);
+              week[week.length - 1].data[itemIndex].item.push((all_tables[i]) as unknown as never);
             } else { // 有就push周
               // 查找星期
               var itemIndex = week[dayIndex].data.findIndex(function (v) {
                 return v.day == all_tables[i].day
               })
               if (itemIndex == -1) console.log(all_tables[i].day)
-              week[dayIndex].data[itemIndex].item.push(all_tables[i]);
+              week[dayIndex].data[itemIndex].item.push((all_tables[i]) as unknown as never);
             }
           }
         }
@@ -344,44 +315,6 @@ Page({
         console.log(res.data.msg)
       }
     }
-          console.log(all_tables)
-          for(var i=0;i<all_tables.length;i++){
-            console.log(all_tables[i].day_num)
-            var data: never[]=[]
-            all_tables[i].data=data
-            //console.log(Object.keys(all_tables[i].day_num).length)
-            for(var j=0;j<Object.keys(all_tables[i].day_num).length;j++){
-              if(all_tables[i].day=="星期日"){
-                console.log(this.data.week[all_tables[i].day_num[j]].day1)
-                all_tables[i].data.item=this.data.week[all_tables[i].day_num[j]].day1
-              }
-              if(all_tables[i].day=="星期一"){
-                console.log(this.data.week[all_tables[i].day_num[j]].day2)
-                all_tables[i].data.item=this.data.week[all_tables[i].day_num[j]].day2
-              }
-              if(all_tables[i].day=="星期二"){
-                console.log(this.data.week[all_tables[i].day_num[j]].day3)
-                all_tables[i].data.item=this.data.week[all_tables[i].day_num[j]].day3
-              }
-              if(all_tables[i].day=="星期三"){
-                console.log(this.data.week[all_tables[i].day_num[j]].day4)
-                all_tables[i].data.item=this.data.week[all_tables[i].day_num[j]].day4
-              }
-              if(all_tables[i].day=="星期四"){
-                console.log(this.data.week[all_tables[i].day_num[j]].day5)
-                all_tables[i].data.item=this.data.week[all_tables[i].day_num[j]].day5
-              }
-              if(all_tables[i].day=="星期五"){
-                console.log(this.data.week[all_tables[i].day_num[j]].day6)
-                all_tables[i].data.item=this.data.week[all_tables[i].day_num[j]].day6
-              }
-              if(all_tables[i].day=="星期六"){
-                console.log(this.data.week[all_tables[i].day_num[j]].day7)
-                all_tables[i].data.item=this.data.week[all_tables[i].day_num[j]].day7
-              }
-            }
-          }
-          console.log(all_tables)
     that.selectComponent("#toast").showToastAuto("请求成功", "success")
   },
   /**
