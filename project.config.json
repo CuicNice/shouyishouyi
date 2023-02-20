@@ -8,7 +8,7 @@
   "compileType": "miniprogram",
   "projectname": "ts-demo",
   "setting": {
-    "ignoreDevUnusedFiles": false,
+    "ignoreDevUnusedFiles": true,
     "ignoreUploadUnusedFiles": true,
     "useCompilerPlugins": [
       "typescript"
