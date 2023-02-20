@@ -290,7 +290,7 @@
     <swiper>
       <block>
         <swiper-item>
-          <view class="dailyNavigationtext">第{{number+1}}周 {{M}}月{{D}}日 周{{Chineseday}}（日程表）</view>
+          <view class="dailyNavigationtext">第1周 2月19日 周一（日程表）</view>
         </swiper-item>
       </block>
     </swiper>
@@ -467,42 +467,5 @@
   </view>
 </view>
 </block>
-<!-- 非本周课程的详情页 -->
-<!-- <block>
-<view class="CourseDetailsBox">
-  <view class="CourseDetailsTop">
-    <view class="CourseDetailsText">{{classSchedule.data.all_tables[G].name}}</view>
-    <view class="CourseDetailsWeek">
-      <view class="CourseDetailsWeektext">非本周</view>
-    </view>
-  </view>
-  <view class="CourseDetailsNext">
-    <view class="CourseDetailsplaceBox">
-      <view class="placeIcon">
-        <image src="../../../../static/svg/gareyplace.svg"></image>
-      </view>
-      <view class="placeTxt">{{classSchedule.data.all_tables[G].local}}</view>
-    </view>
-    <view class="CourseDetailsteacherBox">
-      <view class="teacherIcon">
-        <image src="../../../../static/svg/gareyteacher.svg"></image>
-      </view>
-      <view class="teacherTxt">老师：{{classSchedule.data.all_tables[G].teacher}}</view>
-    </view>
-    <view class="CourseDetailsnumberBox">
-      <view class="numberIcon">
-        <image src="../../../../static/svg/gareytime.svg"></image>
-      </view>
-      <view class="numberTxt">节数：{{classSchedule.data.all_tables[G].day}} | {{classSchedule.data.all_tables[G].num}}</view>
-    </view>
-    <view class="CourseDetailsweekBox">
-      <view class="weekIcon">
-        <image src="../../../../static/svg/gareyzho.svg"></image>
-      </view>
-      <view class="weekTxt">周次：{{classSchedule.data.all_tables[G].day_num}}</view>
-    </view>
-  </view>
-</view>
-</block> -->
 </scroll-view>
 <toast id="toast"></toast>

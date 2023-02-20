@@ -1,0 +1,51 @@
+<!--pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting.wxml-->
+<view class="bg"></view>
+<tb title="{{classScheduleSetTitle}}"></tb>
+
+<view class="setContainer">
+    <view class="Option-box">
+      <view class="Option-one">
+        <view class="choice-text">刷新课表</view>
+        <view class="Update-icon"></view>
+      </view>
+      <view class="Option-one">
+        <view class="switch-text">仅显示本周要上的课程</view>
+        <view class="swichclass">
+          <switch type="switch" class="wx-switch-input" checked="true" bindchange="switchChange"></switch>
+        </view>
+      </view>
+      <view class="Option-two">
+        <view class="choice-text">个性换肤</view>
+        <view class="choice-icon"></view>
+      </view>
+      <view class="Option-two">
+        <view class="switch-text">选择武汉/嘉鱼校区时间</view>
+      </view>
+        <view class="Option-small"> 
+         <view class="choiceSmall1">
+          <view class="choiceSmall-text">自动识别</view>
+          <view class="choiceSmallIcon"></view>
+           <label class="weui-check__label">
+           <checkbox  checked="true"/>
+           </label>
+         </view>
+         <view class="choiceSmall">
+          <view class="choiceSmall-text">武昌校区</view>
+          <label class="weui-check__label">
+           <checkbox checked="true"/>
+           </label>
+         </view>
+         <view class="choiceSmall">
+          <view class="choiceSmall-text">嘉鱼校区</view>
+          <label class="weui-check__label">
+           <checkbox  checked="true"/>
+           </label>
+         </view>
+        </view>
+      <view class="Option-two">
+        <view class="choice-text">课表有问题？联系南南反馈</view>
+        <view class="choice-icon"></view>
+      </view>
+    </view>
+</view>
+

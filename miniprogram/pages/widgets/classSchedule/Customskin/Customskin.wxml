@@ -1,0 +1,76 @@
+<!--pages/widgets/classSchedule/Customskin/Customskin.wxml-->
+<view class="bg"></view>
+<tb title="{{CustomskinTitle}}"></tb>
+<view class="CustomskinContainer">
+  <view class="CustomskinBox">
+    <view class="skin-box-top">
+      <view class="skin-icon1"></view>
+      <view class="skin-top-text">课表背景</view>
+    </view>
+    <view class="skin-box-choice">
+     <view class="colorselBox">
+       <view class="colorBox1">
+            <view class="skin-choice-day">
+            <image class="check-icon" src="../../images/check.png"></image>
+            </view>
+          </view>
+          <view class="skin-choice-title">简约白</view>
+     </view>
+     <view class="colorselBox">
+          <view class="skin-choice-night">
+          </view>
+          <view class="skin-choice-title">暗夜黑</view>
+     </view>
+     <view class="colorselBox">
+          <view class="checkBox"><image src="../../../../static/svg/zidingyi.svg"></image></view>
+          <view class="skin-choice-title">自定义</view>
+     </view>
+    </view>
+  </view>
+
+  <view class="CustomskinBox">
+    <view class="skin-box-top">
+      <view class="skin-icon2"></view>
+      <view class="skin-top-text">首义建筑限定皮肤（自定义背景不可用）</view>
+    </view>
+    <view class="skin-box-choice">
+      <view class="colorselBox">
+       <view class="colorBox1"><image src="../../../../static/svg/cardzhonglou.svg"></image></view>
+      <view class="skin-choice-title">首义钟楼</view>
+     </view>
+     <view class="colorselBox">
+      <view class="colorBox2"><image src="../../../../static/svg/cardxingzhenlou.svg"></image></view>
+      <view class="skin-choice-title">嘉鱼行政楼</view>
+     </view>
+     <view class="colorselBox">
+      <view class="colorBox3"><image src="../../../../static/svg/cardtushuguan.svg"></image></view>
+      <view class="skin-choice-title">图书馆总馆</view>
+     </view>
+    </view>
+  </view>
+  <view class="CustomskinBox">
+    <view class="skin-box-top">
+      <view class="skin-icon3"></view>
+      <view class="skin-top-text">课程卡片风格</view>
+    </view>
+    <view class="skin-box-choice">
+      <view class="colorStyleBox">
+          <view class="colorStyle"><image src="../../../../static/svg/shensecard.svg"></image></view>
+          <view class="colorStyle-title">深色</view>
+     </view>
+     <view class="colorStyleBox">
+          <view class="colorStyle"><image src="../../../../static/svg/qiansecard.svg"></image></view>
+          <view class="colorStyle-title">浅色</view>
+     </view>
+    </view>
+  </view>
+
+  <view class="button">
+    <button type="default" class="cancel" 	hover-class="hover-cancel" bindtap="cancel">
+      <text>取消</text>
+    </button>
+    <button type="primary" class="primary" bindtap="login">
+      <text>确定</text>
+    </button>
+  </view>
+</view>

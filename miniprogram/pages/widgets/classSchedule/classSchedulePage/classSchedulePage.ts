@@ -229,6 +229,9 @@ Page({
             }
           }
         }
+        console.log("=============")
+        console.log(all_tables);
+        console.log("=============")
         var maxWeeks = 0;
         var week = [];
         // var classTableXYZ = [];
