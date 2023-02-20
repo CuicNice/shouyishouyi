@@ -11,7 +11,6 @@
      <view class="colorselBox">
        <view class="colorBox1">
             <view class="skin-choice-day">
-            <image class="check-icon" src="../../images/check.png"></image>
             </view>
           </view>
           <view class="skin-choice-title">简约白</view>
