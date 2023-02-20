@@ -40,7 +40,7 @@ margin-top: 26rpx;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  height: 218rpx;
+  height: 224rpx;
 }
 
 .scoreTop-imgBox{
@@ -107,7 +107,7 @@ flex: none;
   flex-grow: 0;
   margin-left: 2rpx;
   position: relative;
-  bottom: -5rpx;
+  bottom: -6rpx;
 }
 .aveScore {
 display: flex;
@@ -157,7 +157,7 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 4rpx 0rpx;
+padding: 4rpx 0rpx 1rpx 0rpx;
 width: 198rpx;
 height: 34rpx;
 /* 主题色 */
@@ -238,7 +238,7 @@ flex-grow: 0;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 4rpx 0rpx;
+  padding: 4rpx 0rpx 1rpx 0rpx;
   width: 198rpx;
   height: 34rpx;
   /* 主题色 */
@@ -298,7 +298,7 @@ flex-grow: 0;
   order: 0;
   align-self: stretch;
   flex-grow: 0; 
-  margin-top: 6rpx;
+  margin-top: 9rpx;
 }
 .semScore-num {
   /* width: 40rpx; */
@@ -324,7 +324,7 @@ flex-grow: 0;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 4rpx 0rpx;
+padding: 1rpx 0rpx 4rpx 0rpx;
 width: 198rpx;
 height: 34rpx;
 /* 主题色 */
@@ -383,7 +383,7 @@ flex-grow: 0;
   order: 0;
   align-self: stretch;
   flex-grow: 0; 
-  margin-top: 6rpx;
+  margin-top: 9rpx;
 }
 .semGdp-num {
   /* width: 40rpx; */
@@ -409,7 +409,7 @@ flex-grow: 0;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 4rpx 0rpx;
+padding: 1rpx 0rpx 4rpx 0rpx;
 width: 198rpx;
 height: 34rpx;
 /* 主题色 */
@@ -423,7 +423,7 @@ flex-grow: 0;
 }
 
 .semGdp-text {
-  width: 180rpx;
+width: 180rpx;
 height: 28rpx;
 font-family: 'PingFang SC';
 font-style: normal;
@@ -460,8 +460,8 @@ flex-grow: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0rpx 12rpx;
-  gap: 6rpx;
+  padding: 0rpx 9rpx;
+  gap:6rpx;
   height: 34rpx;
   background: rgba(216, 216, 216, 0.2);
   border-radius: 100rpx;
@@ -487,8 +487,8 @@ color: rgba(41, 41, 69, 0.64);
 display: flex;
 flex-direction: row;
 align-items: center;
-padding: 0rpx 12rpx;
-gap: 6rpx;
+padding: 0rpx 9rpx;
+  gap:6rpx;
 height: 34rpx;
 background: rgba(216, 216, 216, 0.2);
 border-radius: 100px;
@@ -517,8 +517,8 @@ color: rgba(41, 41, 69, 0.64);
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0rpx 12rpx;
-  gap: 6rpx;
+  padding: 0rpx 9rpx;
+  gap:6rpx;
   height: 34rpx;
   background: rgba(216, 216, 216, 0.2);
   border-radius: 100rpx;
@@ -777,7 +777,7 @@ border-radius: 10rpx;
   width: 280rpx;
   height: 356rpx;  
 }
-.courseItem:nth-child(1) {
+.courseItem:first-child {
 position: relative;
  margin-top:38rpx;
  margin-left: 64rpx;
@@ -790,7 +790,7 @@ position: relative;
   border-radius: 14rpx;
   padding: 0rpx 30rpx 0rpx 30rpx;
 }
-.courseItem{
+.courseItem:not(:first-child){
   position: relative;
    margin-top:36rpx;
    margin-left: 64rpx;
@@ -828,7 +828,7 @@ position: relative;
   /* Style */
   background: #3EBAD0;
   border-radius: 14rpx;
-  margin-top: 18rpx;
+  margin-top: 28rpx;
 }
 
 .courseType-box-public {
@@ -844,7 +844,7 @@ position: relative;
   /* Style */
   background: #20C38C;
   border-radius: 14rpx;
-  margin-top: 18rpx;
+  margin-top: 27rpx;
 }
 
 .courseType-box-other {
@@ -860,7 +860,7 @@ position: relative;
   /* Style */
   background: #FBDE71;
   border-radius: 14rpx;
-  margin-top: 18rpx;
+  margin-top: 27rpx;
 }
 
 .courseType {
@@ -870,7 +870,7 @@ position: relative;
   font-style: normal;
   font-weight: 400;
   font-size: 20rpx;
-  line-height: 28rpx;
+  line-height: 27rpx;
   /* identical to box height */
   text-align: center;
   color: #FFFFFF;
@@ -891,7 +891,7 @@ line-height: 40rpx;
 
 color: #292945;
 margin-left: 20rpx;
-margin-top: 18rpx;
+margin-top: 27rpx;
 }
 
 .scoreMsg {
@@ -937,10 +937,9 @@ margin-top: 18rpx;
 }
 .scoredetailBox {
   z-index: 200;
-  margin: 46rpx 27rpx 21rpx 46rpx;
+  margin: 46rpx 46rpx 21rpx 41rpx;
   position: absolute;
   width: 640rpx;
-  height: 750rpx;
   left: 2.5%;
   top: 20%;
   background: linear-gradient(180deg, #D7F5ED 0%, #FFFFFF 84.72%);
@@ -949,9 +948,10 @@ margin-top: 18rpx;
 } 
 .dispelbox{
   position: absolute;
-  width: 120rpx;
-  height: 120rpx;
-  left: 530rpx;
+  width: 40rpx;
+  height: 40rpx;
+  top: 20rpx;
+  left: 580rpx;
   /* top: 30rpx;   */
 }
 .dispel{
@@ -974,23 +974,19 @@ margin-top: 18rpx;
   margin-right:26rpx;    */
   }
   .detailTitle{
-    /* position: absolute; */
-    left: 0rpx;
-    top: 0rpx;
+    width: 300rpx;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
     margin-top: 60rpx;
     margin-left: 26rpx;
-    margin-bottom: 52rpx;
     margin-right: 56rpx;
     }
     .scoredetailBox-detail{
       display: flex;
       flex-direction: column;
-      margin-bottom: 30rpx;
-     
       }
       .scoredetailBox-detail-tittle{
         position: absolute;
@@ -1045,32 +1041,26 @@ margin-top: 18rpx;
              /* text */
              width: 284rpx;
              height: 0rpx;
-             border-top: 1rpx dashed rgba(41, 41, 69, 0.3);
+             border-top: 3rpx dashed rgba(41, 41, 69, 0.3);
             }
             .scoredetail-courseTitle{
               display: flex;
-             position: absolute; 
-            top:136rpx;
-            left: 22rpx;
-            /* width: 160rpx; */
-            height: 80rpx;
+              flex-direction: column;
+              margin-top: 80rpx;
+            width: 292rpx;
             font-family: 'PingFang SC';
             font-style: normal;
             font-weight: 400;
             font-size: 28rpx;
             line-height: 44rpx;
-        
             color: #292945; 
             } 
             .detailcourse{
-              position: absolute;
-              top: 240rpx;
-              left: 22rpx;
               display: flex;
               flex-direction: column;
               align-items: flex-start;
               width: 100%;
-              height: 122rpx;
+              height: 100%;
               /* margin-left: 26rpx;
               margin-bottom: 52rpx; */
               }
@@ -1088,7 +1078,8 @@ margin-top: 18rpx;
               .detailcourse-teacherDetail {
                 letter-spacing: 0.2px;
                 /* 老师任课 */
-                height: 34rpx;
+                width: 300rpx;
+                height: 100%;
                 font-family: 'PingFang SC';
                 font-style: normal;
                 font-weight: 400;
@@ -1115,7 +1106,6 @@ margin-top: 18rpx;
                position: absolute;
                top: 60rpx;
                right: 37rpx;
-                margin-bottom: 80rpx;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -1204,30 +1194,27 @@ margin-top: 18rpx;
                     color: #20C38C;
                 }        
                 .classDetailborder {
-                   position: absolute;
-                  top: 412rpx;
+                  margin-top: 30rpx;
                   /* text */
                   width: 584rpx;
                   height: 0px;
                   margin-left: 28rpx;
                   margin-right: 28rpx;
-                  border-top: 1rpx dashed rgba(41, 41, 69, 0.3);
+                  border-top: 3rpx dashed rgba(41, 41, 69, 0.3);
                   }
   .scoreForm {
   display: flex;
   flex-direction: column;
   align-items: center;
-   width: 648rpx;
+  width: 648rpx;
   height: 236rpx;
-  position: absolute;
-  top: 434rpx;
+  margin-top: 10rpx;
   }
     
   .tr {
   display: flex;
   flex-direction: row;
   /* height: 3rem; */
-  align-items: center;
   width: 100%;
   margin-bottom: 32rpx;
   }
@@ -1235,7 +1222,6 @@ margin-top: 18rpx;
   .trTitle {
       display: flex;
       width: 100%;
-      
       /* height: 3rem; */
       align-items: center;
       margin-bottom: 36rpx;
@@ -1422,7 +1408,7 @@ margin-top: 18rpx;
     height: 190rpx;
     font-family: 'PingFang SC';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 24rpx;
     line-height: 34rpx;
     text-align: justify;
@@ -1591,9 +1577,9 @@ line-height: 34rpx;
 text-align: center;
 color: rgba(41, 41, 69, 0.6);
 position: absolute;
-top: 690rpx;
+top: 700rpx;
 left: 128rpx;
-letter-spacing: 0.2px;
+letter-spacing: 0.6px;
 }
 
 
