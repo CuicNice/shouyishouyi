@@ -17,7 +17,7 @@
     <image class="switchIcon" bindtap="changeicon" src="../../../../static/svg/{{weekSchedule}}icon.svg"></image>
   </view>
   <!-- 刷新的icon -->
-  <view class="flushIconBox">
+  <view class="flushIconBox" bindtap="refresh">
     <image class="flushIcon"></image>
   </view>
   <!-- 学期选择 -->
@@ -167,23 +167,23 @@
           </view>
           <view class="timeTable">
             <view class="number">5</view>
-            <view class="time">13:30</view>
-            <view class="time">14:15</view>
+            <view class="time">14:00</view>
+            <view class="time">14:45</view>
           </view>
           <view class="timeTable">
             <view class="number">6</view>
-            <view class="time">14:20</view>
-            <view class="time">15:05</view>
+            <view class="time">14:50</view>
+            <view class="time">15:35</view>
           </view>
           <view class="timeTable">
             <view class="number">7</view>
-            <view class="time">15:20</view>
-            <view class="time">16:05</view>
+            <view class="time">15:50</view>
+            <view class="time">16:35</view>
           </view>
           <view class="timeTable">
             <view class="number">8</view>
-            <view class="time">16:10</view>
-            <view class="time">16:55</view>
+            <view class="time">16:40</view>
+            <view class="time">17:25</view>
           </view>
           <view class="timeTable">
             <view class="number">9</view>
@@ -469,3 +469,9 @@
 </block>
 </scroll-view>
 <toast id="toast"></toast>
+<dialogTitle title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
+<view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
+  </view>
+</dialogTitle>

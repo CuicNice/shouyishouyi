@@ -6,6 +6,7 @@ Page({
   data: {
     weekSchedule: true,
     nowWeek: 1,
+    dialogTip:false,
     semester: '大一上',
     showAll: true,
     nowDate: '',
@@ -96,6 +97,15 @@ Page({
     wx.navigateTo({url: '/pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting'})
   },
 
+  refresh(){
+    wx.removeStorageSync('classSchedule')
+    this.setData({weekSchedule:true})
+    try{this.initPageData();}
+    catch(error){
+      this.setData({dialogTip:true})
+    }
+  },
+  
   /**
    * 通过网络请求获得课表，并且缓存进本地
    * @param {年份} year 
@@ -549,8 +559,7 @@ Page({
     if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大一上" }) }
     if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大一下" }) }
     this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string })
-    if(!wx.getStorageSync('classSchedule')){
-    this.initPageData();}
+    this.initPageData();
   },
 
   /**

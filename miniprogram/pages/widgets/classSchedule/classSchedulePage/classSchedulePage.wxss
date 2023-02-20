@@ -7,6 +7,30 @@ page {
   height: 100%;
 }
 
+.dialogText{
+  width: 398rpx;
+height: 142rpx;
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 30rpx;
+line-height: 48rpx;
+color: #000000;
+mix-blend-mode: normal;
+opacity: 0.5;
+}
+
+.btn {
+  border-radius: 75rpx;
+  height: 84rpx;
+  /* font-size: 14px; */
+  font-weight: 500;
+  font-size: 32rpx;
+  padding: 0;
+  line-height: 84rpx;
+  margin-top: 50rpx;
+}
+
 .bg {
   position: fixed;
   z-index: 0;

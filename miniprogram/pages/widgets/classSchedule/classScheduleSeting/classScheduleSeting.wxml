@@ -6,7 +6,7 @@
     <view class="Option-box">
       <view class="Option-one">
         <view class="choice-text">刷新课表</view>
-        <view class="Update-icon"></view>
+        <view class="Update-icon" bindtap="refresh"></view>
       </view>
       <view class="Option-one">
         <view class="switch-text">仅显示本周要上的课程</view>
@@ -24,7 +24,7 @@
         <view class="Option-small"> 
          <view class="choiceSmall1">
           <view class="choiceSmall-text">自动识别</view>
-          <view class="choiceSmallIcon"></view>
+          <view class="choiceSmallIcon" bindtap="details"></view>
            <label class="weui-check__label">
            <checkbox  checked="true"/>
            </label>
@@ -48,4 +48,11 @@
       </view>
     </view>
 </view>
+<!-- 提示弹窗 -->
+<dialogTitle title="校区时间自动识别规则" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhongqutushuguan.svg">
+<view class="dialogText">暂无您的该学年课表，新学期课表出来后，南南会第一时间通知你的噢~</view>
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
+  </view>
+</dialogTitle>
 

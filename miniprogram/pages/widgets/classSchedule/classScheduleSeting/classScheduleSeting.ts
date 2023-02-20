@@ -5,7 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    classScheduleSetTitle:"设置"
+    classScheduleSetTitle:"设置",
+    dialogTip:false
+  },
+
+  closeDialogTip(){
+    this.setData({dialogTip:false})
+  },
+
+  refresh(){
+    var pages=getCurrentPages();
+    var beforePage=pages[pages.length-2]
+    wx.navigateBack({
+      delta:1,
+      success:function(){
+        beforePage.refresh();
+      }
+    })
+  },
+
+  details(){
+    this.setData({dialogTip:true})
   },
 
   /**
