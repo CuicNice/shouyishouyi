@@ -33,7 +33,7 @@ opacity: 0.5;
 
 .bg {
   position: fixed;
-  z-index: 0;
+  z-index: -10;
   width: 100%;
   overflow-x: hidden;
   left: 0;
@@ -1603,9 +1603,10 @@ opacity: 0.3;
   
 }
 .flushIcon{
-  width: 44rpx;
-  height: 44rpx;
+  width: 42rpx;
+  height: 42rpx;
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAyMSAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2LjMzMzYgMTYuODMzNkMxNC44NDA3IDE4LjMyNjYgMTIuNzc4MiAxOS4yNSAxMC41IDE5LjI1QzUuOTQzNjYgMTkuMjUgMi4yNSAxNS41NTYzIDIuMjUgMTFDMi4yNSA2LjQ0MzY2IDUuOTQzNjYgMi43NSAxMC41IDIuNzVDMTIuNzc4MiAyLjc1IDE0Ljg0MDcgMy42NzM0MSAxNi4zMzM2IDUuMTY2MzhDMTcuMDkzNSA1LjkyNjMgMTguNzUgNy43OTE2NyAxOC43NSA3Ljc5MTY3IiBzdHJva2U9IiMzMzMzMzMiIHN0cm9rZS13aWR0aD0iMS43MzY4NCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xOC43NSAzLjY2NjY5VjcuNzkxNjlIMTQuNjI1IiBzdHJva2U9IiMzMzMzMzMiIHN0cm9rZS13aWR0aD0iMS40NjczMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=");
+  background-repeat:no-repeat;
 }
 .TitleLeft {
   margin-top: 50rpx;
@@ -1952,6 +1953,92 @@ gap: 4rpx;
 width: 66rpx;
 height: 116rpx;
 background: rgba(255, 255, 255, 0.8);
+}
+.timeTableLine{
+  width: 66rpx;
+  border-bottom: 2rpx solid #20C38C;
+}
+.classXuLine1{
+  position: relative;
+  left:66rpx;
+  top:228rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
+}
+.classXuLine2{
+  position: relative;
+  left:66rpx;
+  top:333rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
+}
+.classXuLine3{
+  position: relative;
+  left:66rpx;
+  top:455rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
+}
+.classXuLine4{
+  position: relative;
+  left:66rpx;
+  top:567rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
+}
+.classXuLine5{
+  position: relative;
+  left:66rpx;
+  top:685rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
+}
+.classXuLine6{
+  position: relative;
+  left:66rpx;
+  top:803rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
+}
+
+.classXuLine7{
+  position: relative;
+  left:66rpx;
+  top:926rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
+}
+.classXuLine8{
+  position: relative;
+  left:66rpx;
+  top:1034rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
+}
+.classXuLine9{
+  position: relative;
+  left:66rpx;
+  top:1160rpx;
+  width: 684rpx;
+  height: 2rpx;
+  border-bottom: 2rpx dashed #EAEAEC;
+  z-index: -10;
 }
 
 .time {
@@ -2668,7 +2755,7 @@ height:336rpx;
   float: left;
 }
 .classScroll{
-  height: 900rpx;/*如果要依真机测试为主，则需要改成1200rpx*/
+  height: 1200rpx;/*如果要依真机测试为主，则需要改成1200rpx*/
 }
 .mask{
   width: 100%;

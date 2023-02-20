@@ -117,8 +117,8 @@ Page({
         url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/classTable',
         method: 'POST',
         data: {
-          "zh": wx.getStorageSync('key1'),
-          "mm": wx.getStorageSync('key2'),
+          "zh": '20201101116',
+          "mm": "77889900Czx.",
           "year": year,
           "num": num
         },
