@@ -15,7 +15,7 @@
   <text>{{Info[row].popupJumpTextContent ==Null?'':Info[row].popupJumpTextContent}}</text>
   </view>
   <view class="photo" wx:if="{{Info[row].popupJumpTextImage !== null}}">
-   <image src="http://{{Info[row].popupJumpTextImage}}" ></image>
+   <image src="http://{{Info[row].popupJumpTextImage}}"  mode='aspectFill' ></image>
   </view>
   <view class="textLike">
   <view class="likeImage" bindtap="getLike">
