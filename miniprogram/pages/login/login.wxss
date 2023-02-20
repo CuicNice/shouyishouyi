@@ -154,14 +154,14 @@ page {
   top: 490rpx;
   }
   .photoShow{
-  width: 450rpx;
-  height: 450rpx;
+  width: 225px;
+  height: 225px;
   border-radius: 20rpx;
   }
   .photoShow image{
     border-radius: 20rpx;
-    width: 450rpx;
-    height: 450rpx;
+    width: 225px;
+    height: 225px;
   }
   .dispel2{
     margin-top: 14rpx;
