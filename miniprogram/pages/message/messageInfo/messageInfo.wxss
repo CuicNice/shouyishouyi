@@ -18,9 +18,7 @@
     }
     .detailTitle{
     width: 640rpx;
-    height: 96rpx;
     margin: 0rpx;
-    
     }
     .detailTitle text{
     font-family: 'PingFang SC';
