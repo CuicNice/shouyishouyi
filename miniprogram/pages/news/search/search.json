@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "searchbar":"../../../pages/widgets/news/newsComponent/searchbar/searchbar"
+  },
+    "navigationBarTitleText": "搜索"
+}

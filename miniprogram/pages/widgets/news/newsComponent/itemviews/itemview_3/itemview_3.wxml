@@ -1,0 +1,19 @@
+<!--components/itemviews/gray-itemview/gray-itemview.wxml-->
+<wxs src='../../../../../../wxs/utils.wxs' module='tools'/>         <!-- 引入切割字符串 -->
+<navigator  class="infor-box" wx:for="{{list_3}}" wx:key="index" url="/pages/inDetail/inDetail?href={{item.href}}">
+
+  <view class="title-box">
+  <view class="item-title" >{{item.title}}</view>
+ 
+  <view class="type"> 
+   
+    <view item-lable>  <text class="item-type">{{item.type}}</text></view>
+  </view>
+  </view>
+  <view class="time-box">
+    <view class="time-day">{{tools.substring(item.date,8,10)}}</view>
+    <view class="time-year">{{tools.substring(item.date,0,4)}}.{{tools.substring(item.date,5,7)}}</view>
+
+  </view>
+
+</navigator>

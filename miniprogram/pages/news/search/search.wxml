@@ -1,0 +1,27 @@
+<!--pages/search/search.wxml-->
+<!-- 背景 改动-->
+<!-- <image class="background-box" src="http://tiku.mcdd.top/image/bbg.png"></image> -->
+
+<!-- 搜索框 -->
+<searchbar bindhaveInput="onSearchInputEvent"></searchbar>
+
+<view wx:if="{{isHave == 1}}" class="unfind"> <text decode="true"> 未搜索到结果，，，～(￣▽￣～)~</text></view>
+<!-- 测试用，可删除 -->
+<!-- <searchlist></searchlist> -->
+<wxs src='../.././../wxs/utils.wxs' module='tools'/>         <!-- 引入切割字符串 -->
+<view class="search-list" wx:if="{{isHave == 2}}" wx:for="{{items}}" wx:key="item" bindtap="onItemTapEvent" data-href="{{item.href}}">
+  <view class="search-left">
+    <view class="search-left-top">
+      <view class="searchtextbox">
+      <text class="search-left-top-text">{{tools.substring(item.date,0,4)}}</text></view>
+    </view>
+    <view class="search-left-bottom">{{tools.substring(item.date,5,7)}}.{{tools.substring(item.date,8,10)}}</view>
+  </view>
+  <view class="search-right">
+    <view class="search-right-top" >{{item.title}}</view>
+    <view class="search-right-bottom">
+      <view class="search-right-bottom-text">{{item.introduction}}</view>
+      <view class="search-right-bottom-type">【{{item.type}}】</view>
+    </view>
+  </view>
+</view>

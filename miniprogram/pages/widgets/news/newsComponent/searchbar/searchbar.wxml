@@ -1,0 +1,4 @@
+<view class="search-group">
+  <input class="search-input" type="text" placeholder="输入你想了解的快讯" bindinput='onInputEvent'></input>
+  <icon class="icon-open-new icon"></icon>
+</view>

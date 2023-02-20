@@ -1,0 +1,17 @@
+{
+  "component": true,
+    "usingComponents": {
+    "itemview_1":"../../../pages/widgets/news/newsComponent/itemviews/itemview_1/itemview_1",
+    "itemview_2":"../../../pages/widgets/news/newsComponent/itemviews/itemview_2/itemview_2",
+    "itemview_3":"../../../pages/widgets/news/newsComponent/itemviews/itemview_3/itemview_3",
+    "itemview_a":"../../../pages/widgets/news/newsComponent/itemviews/itemview_a/itemview_a",
+    "itemview_b":"../../../pages/widgets/news/newsComponent/itemviews/itemview_b/itemview_b",
+    "itemview_c":"../../../pages/widgets/news/newsComponent/itemviews/itemview_c/itemview_c",
+    "searchbar":"../../../pages/widgets/news/newsComponent/searchbar/searchbar"
+  },
+  "navigationStyle": "custom",
+  "onReachBottomDistance":300,
+  "disableScroll": true,
+  "enablePullDownRefresh": true
+   
+}
