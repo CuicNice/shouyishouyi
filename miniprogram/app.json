@@ -1,5 +1,9 @@
 {
   "pages": [
+    "pages/widgets/library/libraryPage/libraryPage",
+    "pages/widgets/electricCharge/electricPage/electricPage",
+    "pages/widgets/countDown/countDownPage/countDownPage",
+    "pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage",
     "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
     "pages/login/login",
     "pages/index/index",
@@ -8,7 +12,6 @@
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
     "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
     "pages/widgets/library/librarycom/librarycom",
-    "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",
     "pages/popup/popupPage/popupPage",

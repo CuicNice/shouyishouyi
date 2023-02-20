@@ -450,6 +450,7 @@ components/topbar/topbar.wxss
   background: #EBEBEB;
   margin-top: 15rpx;
 }
+
 .nonemarkMake {
   font-family: 'PingFang SC';
   font-style: normal;
@@ -656,7 +657,7 @@ components/topbar/topbar.wxss
 }
 
 .placeBox {
-  margin-left: -20rpx;
+  margin-left: -12rpx;
   margin-top: 18rpx;
   width: 470rpx;
   height: 40rpx;
@@ -688,13 +689,15 @@ components/topbar/topbar.wxss
   text-align: center;
   color: #FFFFFF;
 }
-.boxreturn{
+
+.boxreturn {
   position: fixed;
   top: 30rpx;
   z-index: 1000;
   width: 100rpx;
   height: 100rpx;
 }
+
 .rightBox {
   width: 210rpx;
   float: right;
@@ -726,7 +729,7 @@ components/topbar/topbar.wxss
   font-size: 29rpx;
   line-height: 40rpx;
   text-align: center;
-  letter-spacing:5rpx;
+  letter-spacing: 5rpx;
   text-transform: capitalize;
   color: #292945;
 }
@@ -735,7 +738,7 @@ components/topbar/topbar.wxss
   margin-top: 14rpx;
   margin-left: 60rpx;
   gap: 20rpx;
-  width: 140rpx;
+  width: 146rpx;
   height: 40rpx;
   background: rgba(41, 41, 69, 0.6);
   opacity: 0.6;
@@ -751,12 +754,11 @@ components/topbar/topbar.wxss
 }
 
 .bookXQ {
-  margin-top: 68rpx;
-  margin-left: 23rpx;
-  padding: 20rpx 24rpx;
+  margin-top: 60rpx;
+  margin-left: 33rpx;
+  padding: 30rpx 24rpx;
   gap: 20rpx;
-  width: 650rpx;
-  height: 500rpx;
+  width: 640rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
   border-radius: 20rpx;
@@ -764,7 +766,6 @@ components/topbar/topbar.wxss
 
 .bookName {
   width: 632rpx;
-  height: 88rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
@@ -776,17 +777,20 @@ components/topbar/topbar.wxss
 
 .all {
   margin-top: 20rpx;
-  width: 680rpx;
-  height: 260rpx;
+  width: 640rpx;
   padding-bottom: 50rpx;
-  border-bottom: 1rpx dashed #C0C0C0;
+  border-bottom: 3rpx dashed rgba(41, 41, 69, 0.1);
 }
 
 .picture {
+  margin-top: -13rpx;
   margin-left: 40rpx;
   width: 150rpx;
   height: 200rpx;
   border-radius: 15rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
 }
 
 .leftall {
@@ -827,16 +831,16 @@ components/topbar/topbar.wxss
 }
 
 .bottom {
-  margin-top: 42rpx;
+  margin-top: 35rpx;
   height: 40rpx;
 }
 
 .gen {
   margin-top: 44rpx;
-  margin-left: 13rpx;
+  margin-left: 33rpx;
   padding: 20rpx 24rpx;
   gap: 20rpx;
-  width: 680rpx;
+  width: 640rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
   border-radius: 20rpx;
@@ -844,8 +848,10 @@ components/topbar/topbar.wxss
 
 .gentop {
   height: 122rpx;
-  width: 670rpx;
-  border-bottom: 1rpx dashed #C0C0C0;
+  width: 610rpx;
+  border-bottom: 3rpx dashed rgba(41, 41, 69, 0.1);
+  display: inline-flex;
+  margin-left: 26rpx;
 }
 
 .gentopRight {
@@ -858,19 +864,21 @@ components/topbar/topbar.wxss
   height: 190rpx;
   width: 190rpx;
   margin-top: -60rpx;
-  margin-left: 40rpx;
+  position: relative;
+  left: 60rpx;
 }
 
 .gentext {
-  width: 64rpx;
+  width: 70rpx;
   height: 44rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
-  font-size: 28rpx;
+  font-size: 35rpx;
   line-height: 44rpx;
   color: #292945;
   float: left;
+  margin-left: 10rpx;
 }
 
 .genpart {
@@ -897,15 +905,16 @@ components/topbar/topbar.wxss
   font-size: 30rpx;
   line-height: 42rpx;
   color: #292945;
-  float: right;
+  margin-left: 300rpx;
   margin-top: -42rpx;
 }
 
 .genprogress {
   height: 40rpx;
-  width: 670rpx;
+  width: 626rpx;
   margin-top: 18rpx;
   display: flex;
+  margin-left: 22rpx;
   justify-content: space-between;
 }
 
@@ -924,9 +933,10 @@ components/topbar/topbar.wxss
 
 .genprogressNext {
   height: 40rpx;
-  width: 670rpx;
+  width: 626rpx;
   margin-top: 18rpx;
   display: flex;
+  margin-left: 22rpx;
   justify-content: space-between;
 }
 

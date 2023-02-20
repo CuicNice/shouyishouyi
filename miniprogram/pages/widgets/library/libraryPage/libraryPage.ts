@@ -22,7 +22,7 @@ Page({
     a: 1,
     b: 0,
     num: 0,
-    electricChargeTitle:'首义图书馆',
+    electricChargeTitle: '首义图书馆',
   },
 
   swiperChangeqian: function () {
@@ -47,11 +47,11 @@ Page({
     // 先获取缓存中的内容
     let array = wx.getStorageSync(abc) || []
     // 向数组中追加
-    var ifshow=false
-    if(this.data.word.length>6){ifshow=!ifshow}
+    var ifshow = false
+    if (this.data.word.length > 6) { ifshow = !ifshow }
     array.push({
       item: this.data.word,
-      ifshow:ifshow
+      ifshow: ifshow
     })
     // 重新设置缓存
     wx.setStorageSync(abc, array)
@@ -60,11 +60,11 @@ Page({
   markMake(e: any) {
     var num = wx.getStorageSync('item').length - e.currentTarget.dataset.index - 1
     var add = wx.getStorageSync('item')[num].item
-    this.setData({ word: add})
+    this.setData({ word: add })
     setTimeout(() => {
-      wx.navigateTo({url:'/pages/widgets/library/librarytext/librarytext?word='+this.data.word}),
-      this.setData({word:''})
-    this.get()
+      wx.navigateTo({ url: '/pages/widgets/library/librarytext/librarytext?word=' + this.data.word }),
+        this.setData({ word: '' })
+      this.get()
     }, 500)
   },
 
@@ -82,22 +82,22 @@ Page({
     })
   },
 
-//查重
-objHeavy: function (arr: { [x: string]: any }) {
-  let arr1 = [];
-  let newArr = [];
-  for (let i in arr) {
-    if (arr1.indexOf(arr[i].item) == -1) {
-      arr1.push(arr[i].item);
-      newArr.push(arr[i]);
+  //查重
+  objHeavy: function (arr: { [x: string]: any }) {
+    let arr1 = [];
+    let newArr = [];
+    for (let i in arr) {
+      if (arr1.indexOf(arr[i].item) == -1) {
+        arr1.push(arr[i].item);
+        newArr.push(arr[i]);
+      }
     }
-  }
-  return newArr;
-},
+    return newArr;
+  },
 
   search() {
     if (this.data.word != "") {
-      if (wx.getStorageSync('item').length < 10) {
+      if (wx.getStorageSync('item').length < 6) {
         this.cache('item')
         var arr = this.objHeavy(wx.getStorageSync('item'))
         wx.setStorage({
@@ -105,17 +105,17 @@ objHeavy: function (arr: { [x: string]: any }) {
           data: arr,
         })
       }
-      if (wx.getStorageSync('item').length == 10) {
+      if (wx.getStorageSync('item').length == 6) {
         this.cache('item')
         var arr = this.objHeavy(wx.getStorageSync('item'))
-        if (arr.length == 10) {
+        if (arr.length == 6) {
           // 重新设置缓存
           wx.setStorage({
             key: 'item',
             data: arr,
           })
         }
-        if (arr.length == 11) {
+        if (arr.length == 7) {
           let array = wx.getStorageSync('item')
           let arrays = []
           for (var i = 0; i < array.length; i++) {
@@ -126,10 +126,11 @@ objHeavy: function (arr: { [x: string]: any }) {
           // 重新设置缓存
           wx.setStorageSync('item', arrays)
         }
-      }}
+      }
       this.get()
-    wx.navigateTo({url:'/pages/widgets/library/librarytext/librarytext?word='+this.data.word})
-    this.setData({word:''})
+      wx.navigateTo({ url: '/pages/widgets/library/librarytext/librarytext?word=' + this.data.word })
+      this.setData({ word: '' })
+    }
   },
 
   swiperChangeho: function () {
@@ -147,19 +148,19 @@ objHeavy: function (arr: { [x: string]: any }) {
 
   //获取缓存的内容
   get() {
-      var myarr = wx.getStorageSync('item')
-      if (myarr.length != 0) {
-        var arr = []
-        console.log(myarr)
-        for (var i = myarr.length - 1; i >= 0; i--) {
-          arr.push(myarr[i])
-        }
-        console.log(arr)
-        this.setData({
-          shuju: arr,
-          ifshow: false
-        })
+    var myarr = wx.getStorageSync('item')
+    if (myarr.length != 0) {
+      var arr = []
+      console.log(myarr)
+      for (var i = myarr.length - 1; i >= 0; i--) {
+        arr.push(myarr[i])
       }
+      console.log(arr)
+      this.setData({
+        shuju: arr,
+        ifshow: false
+      })
+    }
   },
 
 

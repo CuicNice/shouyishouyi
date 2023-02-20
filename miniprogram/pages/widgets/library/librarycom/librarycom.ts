@@ -6,13 +6,13 @@ Page({
   data: {
     allbook: [] as any,
     num: 0,
-    electricChargeTitle:'图书详情'
+    electricChargeTitle: '图书详情'
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(e) {
-    this.setData({num:(e.num)as unknown as number,allbook:JSON.parse((e.all)as unknown as string)})
+    this.setData({ num: (e.num) as unknown as number, allbook: JSON.parse((e.all) as unknown as string) })
   },
 
   /**
