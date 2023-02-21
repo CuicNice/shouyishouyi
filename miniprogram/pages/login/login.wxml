@@ -44,7 +44,7 @@
 <view class="scoresearchGrey" bindtap="closePhoto"wx:if="{{termTitleTapdetail}}"catchtouchmove="ture"></view>
 <view class="setup"wx:if='{{tc1}}'>
 <view class="photoShow">
-<image src="{{ima}}"  mode='aspectFill' ></image>
+<image src="{{ima}}"  mode='widthFix' ></image>
 </view>
 <image class="dispel2" src="/static/svg/message/dispel2.svg" bindtap="closePhoto"></image>
 </view>
