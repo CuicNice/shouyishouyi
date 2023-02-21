@@ -411,7 +411,8 @@
 </dialogTitle>
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails"></view>
-<scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
+<view class="bottom_box" catchtouchmove="bottomTouchMove" id="bottomBox">
+  <scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
   <block class="block" wx:for="{{detailClass}}" wx:key="index">
     <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
       <view class="course">
@@ -446,6 +447,8 @@
     </view>
   </block>
 </scroll-view>
+</view>
+
 <toast id="toast"></toast>
 <dialogTitle title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
   <view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
