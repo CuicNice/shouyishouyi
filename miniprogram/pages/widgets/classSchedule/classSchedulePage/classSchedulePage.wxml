@@ -47,6 +47,15 @@
   </scroll-view>
 </view>
 <view class="container" style="background-color: {{bgc}};" wx:if="{{weekSchedule}}">
+  <view class="classXuLine1"></view>
+  <view class="classXuLine2"></view>
+  <view class="classXuLine3"></view>
+  <view class="classXuLine4"></view>
+  <view class="classXuLine5"></view>
+  <view class="classXuLine6"></view>
+  <view class="classXuLine7"></view>
+  <view class="classXuLine8"></view>
+  <view class="classXuLine9"></view>
   <view class="top">
     <view class="smallBox" style="background-color:  #F8F8F8;">
       <text class="smallBoxtxt">{{schoolPlace}}校区</text>
@@ -142,7 +151,7 @@
   </view>
 
   <view class="WHQscroll" wx:if="{{weekSchedule}}">
-    <scroll-view class="classScroll" scroll-y="true" lower-threshold='30' upper-threshold='30'>
+    <scroll-view class="classScroll" scroll-y="true" lower-threshold='10' upper-threshold='10'>
       <view style="width:100%;display:flex;">
         <view class="leftBox">
           <view class="timeTable">
@@ -165,6 +174,7 @@
             <view class="time">11:15</view>
             <view class="time">12:00</view>
           </view>
+          <view class="timeTableLine"></view>
           <view class="timeTable">
             <view class="number">5</view>
             <view class="time">{{time.time1}}</view>
@@ -185,6 +195,7 @@
             <view class="time">{{time.time7}}</view>
             <view class="time">{{time.time8}}</view>
           </view>
+          <view class="timeTableLine"></view>
           <view class="timeTable">
             <view class="number">9</view>
             <view class="time">{{time.time9}}</view>
@@ -205,6 +216,7 @@
             <view class="time">{{time.time15}}</view>
             <view class="time">{{time.time16}}</view>
           </view>
+          <view class="timeTableLine"></view>
         </view>
 
         <!--课表-->
@@ -218,7 +230,6 @@
               </view>
             </view>
           </view>
-
           <view class="table-day" wx:if="{{showAll}}">
             <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" bindtap="showClassDetail" data-cls="{{table}}" wx:for="{{nowWeekData[index].item}}" wx:for-item="table" wx:key="index">
               <view class="flex-item-double" wx:if="{{table.double==true}}" style="background:{{table.zindex == 3?table.color:'rgba(198, 198, 198, 0.6)'}} ;height: {{115*table.num.length-11}}rpx;z-index: {{table.zindex}};">
@@ -233,39 +244,6 @@
               </view>
             </view>
           </view>
-          <!-- 全部本周 -->
-          <!-- <view class="table-day">
-            <block wx:for="{{classSchedule.week}}" wx:for-index="idx" wx:for-item="week">
-              <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;z-index:{{(week.name == nowWeek)>0?5:1}};" 
-              class="table-num" 
-            wx:for="{{week.data[index].item}}" wx:for-item="table" wx:key="index" wx:for-index="num_idx">
-              <view class="flex-item" 
-              style="background:{{week.name == nowWeek ?'#59ADDF':'rgba(198, 198, 198, 0.6)'}};height: {{115*table.num.length-6}}rpx;"  >
-                <view class="smalltext">{{table.name}}</view>
-                <view class="smalltextad">{{table.local}}</view>
-              </view>
-            </view>
-            </block>
-          </view> -->
-          <!-- 本周 -->
-          <!-- <block>
-            <view bindtap="showXQ" data-index="{{index}}" wx:if="{{item.day_num.indexof(nowWeek)!=-1}}">
-              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.long==1?'170':'400'}}rpx; background: {{item.color}};z-index: 1;">
-                <view class="smalltext" style="color: {{item.fontsize}};">{{item.name}}</view>
-                <view class="smalltextad" style="color: {{item.fontsize}};">{{item.local}}</view>
-              </view>
-            </view>
-          </block> -->
-          <!-- 非本周 -->
-          <!-- <block>
-            <view bindtap="showFXQ" data-index="{{index}}" wx:if="{{item.add.ifshow}}">
-              <view class="flex-item" style="margin-left:{{item.daynum*95+12}}rpx;margin-top:{{(item.start-1)*115+20}}rpx;height:{{item.long==1?'170':'400'}}rpx; background:#F5F5F5;">
-                <view class="nosmalltextword">非本周</view>
-                <view class="smalltext" style="color: rgba(41, 41, 69, 0.4);">{{item.name}}</view>
-                <view class="smalltextad" style="color: rgba(41, 41, 69, 0.4);">{{item.local}}</view>
-              </view>
-            </view>
-          </block> -->
         </block>
 
       </view>
