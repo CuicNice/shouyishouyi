@@ -410,8 +410,7 @@
   </view>
 </dialogTitle>
 <!--课程的具体详情-->
-<view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails"></view>
-<view class="bottom_box" catchtouchmove="bottomTouchMove" id="bottomBox">
+<view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails">
   <scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
   <block class="block" wx:for="{{detailClass}}" wx:key="index">
     <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">

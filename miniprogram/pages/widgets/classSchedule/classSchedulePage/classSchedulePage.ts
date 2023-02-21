@@ -98,9 +98,6 @@ Page({
   showPopupA(){
     wx.navigateTo({url: '/pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting'})
   },
-  bottomTouchMove() {
-    return false
-  },
   refresh(){
     wx.removeStorageSync('classSchedule')
     this.setData({weekSchedule:true})
