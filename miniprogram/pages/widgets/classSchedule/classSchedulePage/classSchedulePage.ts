@@ -250,7 +250,7 @@ Page({
   async initClassData() {
     var that = this;
     if (!this.getTableDataFromLocal()) {
-      that.selectComponent("#toast").showToast("请求中....", "lodding");
+      that.selectComponent("#toast").showToast("课表刷新中", "lodding");
       var res = await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I) as any;
       //console.log(res)
       if (res.data.code == 20000) {
@@ -357,7 +357,7 @@ Page({
         console.log(res.data.msg)
       }
     }
-    that.selectComponent("#toast").showToastAuto("请求成功", "success")
+    that.selectComponent("#toast").showToastAuto("刷新成功", "success")
   },
   /**
    * 渲染全部课表临时页面
