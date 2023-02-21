@@ -131,10 +131,34 @@ Page({
           console.log(e.data.msg);
           reject(e);
         }
-      })
+      }),
+      setTimeout(() => {
+        var value = wx.getStorageSync('classSchedule')
+          if(!value){
+          this.selectComponent("#toast").showToastAuto("请求失败", "error")
+          this.setData({
+          dialogTip:true
+          })
+        }
+        const task = wx.request({
+          url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/classTable',
+              method: 'POST',
+              data: {
+                "zh": '20201101116',
+                "mm": "77889900Czx.",
+                "year": this.data.Y,
+                "num": this.data.I
+              },
+          })
+          task.abort();
+      }, 3000);
     })
   },
-
+  closeDialogTip(){
+ this.setData({
+  dialogTip:false
+ })
+  },
   /**
    * 从本地缓存中读取课表，若成功返回true，失败为false
    */

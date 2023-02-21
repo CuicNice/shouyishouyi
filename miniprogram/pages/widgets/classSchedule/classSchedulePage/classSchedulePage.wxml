@@ -449,7 +449,7 @@
 </view>
 
 <toast id="toast"></toast>
-<dialogTitle title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
+<dialogTitle  class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
   <view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>

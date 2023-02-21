@@ -1716,7 +1716,7 @@ color: #292945;
   /* z-index: ; */
   /* flex-direction: row; */
   height: 82rpx;
-  margin-top: 12rpx;
+  margin-top: -30rpx;
 }
 
 .smallBox {
@@ -2756,4 +2756,8 @@ height:336rpx;
   align-items: center;
   justify-content: center;
   z-index: 10;
+}
+.dialogTitleClass{
+  z-index: 1000;
+  position: relative;
 }
