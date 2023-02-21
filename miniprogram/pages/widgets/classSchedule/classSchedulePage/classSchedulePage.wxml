@@ -49,7 +49,7 @@
 <view class="container" style="background-color: {{bgc}};" wx:if="{{weekSchedule}}">
   <view class="top">
     <view class="smallBox" style="background-color:  #F8F8F8;">
-      <text class="smallBoxtxt">武昌校区</text>
+      <text class="smallBoxtxt">{{schoolPlace}}校区</text>
     </view>
     <!-- 周和日期-->
     <view class="weekbigBox">
@@ -167,43 +167,43 @@
           </view>
           <view class="timeTable">
             <view class="number">5</view>
-            <view class="time">14:00</view>
-            <view class="time">14:45</view>
+            <view class="time">{{time.time1}}</view>
+            <view class="time">{{time.time2}}</view>
           </view>
           <view class="timeTable">
             <view class="number">6</view>
-            <view class="time">14:50</view>
-            <view class="time">15:35</view>
+            <view class="time">{{time.time3}}</view>
+            <view class="time">{{time.time4}}</view>
           </view>
           <view class="timeTable">
             <view class="number">7</view>
-            <view class="time">15:50</view>
-            <view class="time">16:35</view>
+            <view class="time">{{time.time5}}</view>
+            <view class="time">{{time.time6}}</view>
           </view>
           <view class="timeTable">
             <view class="number">8</view>
-            <view class="time">16:40</view>
-            <view class="time">17:25</view>
+            <view class="time">{{time.time7}}</view>
+            <view class="time">{{time.time8}}</view>
           </view>
           <view class="timeTable">
             <view class="number">9</view>
-            <view class="time">18:30</view>
-            <view class="time">19:15</view>
+            <view class="time">{{time.time9}}</view>
+            <view class="time">{{time.time10}}</view>
           </view>
           <view class="timeTable">
             <view class="number">10</view>
-            <view class="time">19:20</view>
-            <view class="time">20:05</view>
+            <view class="time">{{time.time11}}</view>
+            <view class="time">{{time.time12}}</view>
           </view>
           <view class="timeTable">
             <view class="number">11</view>
-            <view class="time">20:15</view>
-            <view class="time">21:00</view>
+            <view class="time">{{time.time13}}</view>
+            <view class="time">{{time.time14}}</view>
           </view>
           <view class="timeTable">
             <view class="number">12</view>
-            <view class="time">21:05</view>
-            <view class="time">21:50</view>
+            <view class="time">{{time.time15}}</view>
+            <view class="time">{{time.time16}}</view>
           </view>
         </view>
 
@@ -222,12 +222,12 @@
           <view class="table-day" wx:if="{{showAll}}">
             <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" bindtap="showClassDetail" data-cls="{{table}}" wx:for="{{nowWeekData[index].item}}" wx:for-item="table" wx:key="index">
               <view class="flex-item-double" wx:if="{{table.double==true}}" style="background:{{table.zindex == 3?table.color:'rgba(198, 198, 198, 0.6)'}} ;height: {{115*table.num.length-11}}rpx;z-index: {{table.zindex}};">
-               <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view> 
+                <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view>
                 <view class="smalltext">{{table.name}}</view>
                 <view class="smalltextad">{{table.local}}</view>
               </view>
               <view class="flex-item-single" wx:else style="background:{{table.zindex == 3?table.color:'rgba(198, 198, 198, 0.6)'}} ;height: {{115*table.num.length-6}}rpx;z-index: {{table.zindex}};">
-                <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view> 
+                <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view>
                 <view class="smalltext">{{table.name}}</view>
                 <view class="smalltextad">{{table.local}}</view>
               </view>
@@ -434,43 +434,43 @@
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails"></view>
 <scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
-<block class="block" wx:for="{{detailClass}}" wx:key="index">
-<view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
-  <view class="course">
-    <view class="courseName">{{item.name}}</view>
-    <view class="courseifBox">
-      <view class="courseif" wx:if="{{item.zindex==3}}"style="color: white;">本周</view>
-      <view class="courseif1" wx:else style="color:#757575;">非本周</view> 
+  <block class="block" wx:for="{{detailClass}}" wx:key="index">
+    <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
+      <view class="course">
+        <view class="courseName">{{item.name}}</view>
+        <view class="courseifBox">
+          <view class="courseif" wx:if="{{item.zindex==3}}" style="color: white;">本周</view>
+          <view class="courseif1" wx:else style="color:#757575;">非本周</view>
+        </view>
+      </view>
+      <view class="courseOther">
+        <view class="courseplace">
+          <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/didian.svg':'../../../../static/svg/gareyplace.svg'}}" />
+          <view class="cuorseGuding">地点:</view>
+          <view class="cuorseXuigai">{{item.local}}</view>
+        </view>
+        <view class="courseplace">
+          <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/teacher.svg':'../../../../static/svg/gareyteacher.svg'}}" />
+          <view class="cuorseGuding">老师:</view>
+          <view class="cuorseXuigai">{{item.teacher}}</view>
+        </view>
+        <view class="courseplace">
+          <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/jieshu.svg':'../../../../static/svg/gareytime.svg'}}" />
+          <view class="cuorseGuding">节数:</view>
+          <view class="cuorseXuigai">{{item.day}} | {{item.old_num}}</view>
+        </view>
+        <view class="courseplace">
+          <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/zhuoci.svg':'../../../../static/svg/gareyzho.svg'}}" />
+          <view class="cuorseGuding">周次:</view>
+          <view class="cuorseXuigai">{{item.old_day_num}}</view>
+        </view>
+      </view>
     </view>
-  </view>
-  <view class="courseOther">
-    <view class="courseplace">
-      <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/didian.svg':'../../../../static/svg/gareyplace.svg'}}" />
-      <view class="cuorseGuding">地点:</view>
-      <view class="cuorseXuigai">{{item.local}}</view>
-    </view>
-    <view class="courseplace">
-      <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/teacher.svg':'../../../../static/svg/gareyteacher.svg'}}" />
-      <view class="cuorseGuding">老师:</view>
-      <view class="cuorseXuigai">{{item.teacher}}</view>
-    </view>
-    <view class="courseplace">
-      <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/jieshu.svg':'../../../../static/svg/gareytime.svg'}}" />
-      <view class="cuorseGuding">节数:</view>
-      <view class="cuorseXuigai">{{item.day}} | {{item.old_num}}</view>
-    </view>
-    <view class="courseplace">
-      <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/zhuoci.svg':'../../../../static/svg/gareyzho.svg'}}" />
-      <view class="cuorseGuding">周次:</view>
-      <view class="cuorseXuigai">{{item.old_day_num}}</view>
-    </view>
-  </view>
-</view>
-</block>
+  </block>
 </scroll-view>
 <toast id="toast"></toast>
 <dialogTitle title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
-<view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
+  <view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>

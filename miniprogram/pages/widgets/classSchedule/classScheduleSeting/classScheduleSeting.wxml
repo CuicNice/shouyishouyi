@@ -16,7 +16,7 @@
       </view>
       <view class="Option-two">
         <view class="choice-text">个性换肤</view>
-        <view class="choice-icon"></view>
+        <view class="choice-icon" bindtap="customskin"></view>
       </view>
       <view class="Option-two">
         <view class="switch-text">选择武汉/嘉鱼校区时间</view>
@@ -25,21 +25,24 @@
          <view class="choiceSmall1">
           <view class="choiceSmall-text">自动识别</view>
           <view class="choiceSmallIcon" bindtap="details"></view>
+          <checkbox-group bindchange="check">
            <label class="weui-check__label">
-           <checkbox  checked="true"/>
-           </label>
+           <checkbox value="aa" checked="{{automatic}}"/>
+           </label></checkbox-group>
          </view>
          <view class="choiceSmall">
           <view class="choiceSmall-text">武昌校区</view>
+          <checkbox-group bindchange="check">
           <label class="weui-check__label">
-           <checkbox checked="true"/>
-           </label>
+           <checkbox value="bb" checked="{{WC}}"/>
+           </label></checkbox-group>
          </view>
          <view class="choiceSmall">
           <view class="choiceSmall-text">嘉鱼校区</view>
+          <checkbox-group bindchange="check">
           <label class="weui-check__label">
-           <checkbox  checked="true"/>
-           </label>
+           <checkbox value="cc" checked="{{JY}}"/>
+           </label></checkbox-group>
          </view>
         </view>
       <view class="Option-two">

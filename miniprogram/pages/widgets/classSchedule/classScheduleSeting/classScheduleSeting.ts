@@ -6,7 +6,10 @@ Page({
    */
   data: {
     classScheduleSetTitle:"设置",
-    dialogTip:false
+    dialogTip:false,
+    automatic:true,
+    WC:'',
+    JY:''
   },
 
   closeDialogTip(){
@@ -24,8 +27,17 @@ Page({
     })
   },
 
-  details(){
+  customskin(){
+    wx.navigateTo({url: '/pages/widgets/classSchedule/Customskin/Customskin'})
+  },
+
+  details(e:any){
+    console.log(e.detail.value)
     this.setData({dialogTip:true})
+  },
+
+  check(e:any){
+    console.log(e)
   },
 
   /**
