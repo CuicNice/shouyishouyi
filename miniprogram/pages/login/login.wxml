@@ -43,7 +43,7 @@
 <!-- popup弹窗页面 -->
 <view class="scoresearchGrey" bindtap="closePhoto"wx:if="{{termTitleTapdetail}}"catchtouchmove="ture"></view>
 <view class="setup"wx:if='{{tc1}}'>
-<view class="photoShow">
+<view class="photoShow" bindtap="loginInfo">
 <image src="{{ima}}"  mode='widthFix' ></image>
 </view>
 <image class="dispel2" src="/static/svg/message/dispel2.svg" bindtap="closePhoto"></image>

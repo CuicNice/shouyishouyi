@@ -90,6 +90,7 @@
     height: 80rpx;
     }
     .likeBottom{
+    margin-top: 20rpx;
     width: 640rpx;
     height: 40rpx;
     text-align: center;

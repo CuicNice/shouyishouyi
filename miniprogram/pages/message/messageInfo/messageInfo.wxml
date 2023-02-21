@@ -4,18 +4,18 @@
 <view wx:if="{{Info[row].popupJumpUrl !== null?!isHidden:isHidden}}">
   <view class="messageDetail">
   <view class="detailTitle">
-  <text>{{Info[row].popupJumpTextTitle}}</text>
+  <text>{{row?Info[row].popupJumpTextTitle:popupAppear.popupJumpTextTitle}}</text>
   </view>
   <view class="timeShow">
   <image src="/static/svg/message/clock.svg" class="clock"></image>
-  <text>{{Info[row].popupPublishTime}}</text>
+  <text>{{row?Info[row].popupPublishTime:popupAppear.popupPublishTime}}</text>
   </view>
   <view class="messageText">
   <view class="text">
-  <text>{{Info[row].popupJumpTextContent ==Null?'':Info[row].popupJumpTextContent}}</text>
+  <text>{{row?(Info[row].popupJumpTextContent ==Null?'':Info[row].popupJumpTextContent):(popupAppear.popupJumpTextContent ==Null?'':popupAppear.popupJumpTextContent)}}</text>
   </view>
-  <view class="photo" wx:if="{{Info[row].popupJumpTextImage !== null}}">
-   <image src="http://{{Info[row].popupJumpTextImage}}"  mode='aspectFill' ></image>
+  <view class="photo" wx:if="{{Info[row].popupJumpTextImage !== null || popupAppear.popupJumpTextImage !== null}}">
+   <image src="http://{{row?Info[row].popupJumpTextImage:popupAppear.popupJumpTextImage}}"  mode='aspectFill' ></image>
   </view>
   <view class="textLike">
   <view class="likeImage" bindtap="getLike">

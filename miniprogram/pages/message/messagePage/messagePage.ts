@@ -33,18 +33,22 @@ Page({
               var color = this.data.colors[j]; 
               if(wx.getStorageSync('unread').length>0){
                   var isUnread = wx.getStorageSync('unread');
-                  if(isUnread[i].show == 'active'){
+                for(var a=0; a<this.data.list.length;a++){
+                  if(isUnread[i].popupId == this.data.list[a].popupId){
+                     if(isUnread[i].show == 'active'){
                     this.data.list[i].show = isUnread[i].show;
                   }
-              }
-              else{
+                  }
+                }
+              }else{
                 var show = 'green';
                 this.data.list[i].show =show; 
               }  
               this.data.list[i].color = color;
               this.data.list[i].number = number;  
               this.data.list[i].popupPublishTime =  this.data.list[i].popupPublishTime.slice(0,11)
-          }     
+          }
+
          //判断数据是否已读;
          var isUnread;
          isUnread = wx.getStorageSync('unread');
@@ -71,7 +75,7 @@ Page({
                       }
                         if(isUnread[i].popupSystemSubtitle !== res.data.data.list[i].popupSystemSubtitle){
                         isUnread[i]=this.data.list[i];
-                        }
+                        }        
               }this.setData({list:isUnread});
             }else if(isUnread.length <= res.data.data.list.length){
              for(var i=0;i<res.data.data.list.length;i++){
@@ -139,8 +143,8 @@ getMessage(e:any){
    * 生命周期函数--监听页面加载
    */
   onLoad(){
+   this.getList();
    this.setData({title:'消息中心'});
-   
   },
 
   /**
