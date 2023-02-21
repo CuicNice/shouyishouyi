@@ -73,15 +73,19 @@ closePhoto(){
 },
 //点击popup弹窗的图片或点击查看详情，进入具体的信息页面
  loginInfo(){
-   if (this.data.popupAppear.popupJumpType == 'link') {
-     wx.setStorageSync('Url',this.data.popupAppear.popupJumpUrl)
-     wx.navigateTo({url:'../message/web-view/webView'});
+   if (this.data.popupAppear.popupJumpType == 'noJump') {
+     this.setData({tc1:false,tc2:false})
+   }else{
+    if (this.data.popupAppear.popupJumpType == 'link'){
+      wx.setStorageSync('Url',this.data.popupAppear.popupJumpUrl)
+      wx.navigateTo({url:'../message/web-view/webView'});
+    }
+    if(this.data.popupAppear.popupJumpType == 'article'){
+      wx.navigateTo({
+     url:'../message/messageInfo/messageInfo?popupId='+this.data.popupAppear.popupId
+   })
+    } 
    }
-   if(this.data.popupAppear.popupJumpType == 'article'){
-     wx.navigateTo({
-    url:'../message/messageInfo/messageInfo?popupAppear='+this.data.popupAppear
-  })
-   } 
  },
 /**
  * 初始化页面渲染函数

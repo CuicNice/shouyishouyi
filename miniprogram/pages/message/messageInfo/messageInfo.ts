@@ -8,8 +8,47 @@ Page({
     row:'',
     Info:[],
     xz:1,//限制点赞量，点一次变为2
+    xy:1,//从弹窗直接过来的，判断是否是第二次进入
     popupId:'',
-    popupApear:'',
+    popupAppear:{},
+    Form:true//穿过来的途径，来决定显示哪一个
+
+  },
+  //通过传过来的popupId获取数据
+  getInfo(){
+      wx.request({
+        url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/getPopupById',
+        method:'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
+        },
+        data:{
+          popupId:this.data.popupId
+        },
+        success:((res)=>{
+          console.log(res)
+          this.setData({
+            popupAppear:res.data.data//第一次给值
+          })
+          this.data.popupAppear.show = "green";
+          this.data.popupAppear.isShow = true; //插入是否已读
+          this.setData({popupAppear:res.data.data})//插入show后再又给值
+            var isUnread = wx.getStorageSync('unread');
+            console.log(isUnread.length)
+            for(var a=0;a<isUnread.length;a++){
+            if(this.data.popupAppear.popupId == isUnread[a].popupId){
+              isUnread[a] = this.data.popupAppear
+              wx.setStorageSync('unread',isUnread)
+            }else{
+              isUnread[isUnread.length]=this.data.popupAppear;
+              wx.setStorageSync('unread',isUnread);
+            }
+          }if(isUnread.length==0){
+            wx.setStorageSync('unread',this.data.popupAppear)
+          }
+        })
+      })
+
   },
   //点赞的函数
   getLike(){
@@ -22,7 +61,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
       },
       data:{
-        popupId:this.data.popupApear?this.data.popupApear.popupId:this.data.Info[this.data.row].popupId
+        popupId:this.data.popupAppear?this.data.popupAppear.popupId:this.data.Info[this.data.row].popupId
       },
     })
     if (this.data.row) {
@@ -35,21 +74,20 @@ Page({
     }) 
     wx.setStorageSync('unread',this.data.Info); 
   }else{
-    this.data.popupApear.show = 'active';
-    this.data.popupApear.popupFablous = this.data.popupApear.popupFabulous+1
+    this.data.popupAppear.show ='active';
+    this.data.popupAppear.popupFablous = this.data.popupAppear.popupFabulous+1
     this.setData({
-      popupApear:this.data.popupApear,
-      xz:2
+      popupAppear:this.data.popupAppear,
     }) 
     var isUnread = wx.getStorageSync('unread');
-    this.data.popupApear.isShow = true //插入是否已读
       for(var a=0;a<isUnread.length;a++){
-        if(this.data.popupApear.popupId == isUnread[a].popupId){
-          isUnread[a] == this.data.popupApear
+        if(this.data.popupAppear.popupId == isUnread[a].popupId){
+          isUnread[a] = this.data.popupAppear
         }
       }
       wx.setStorageSync('unread',isUnread)
   }
+  
 } 
 },
 
@@ -61,13 +99,19 @@ Page({
     if(options.row){
       this.setData({row:options.row});
       var Info = wx.getStorageSync('unread');
-      this.setData({Info:Info})
+      this.setData({
+        Form:false,
+        Info:Info
+      })
     }
     //从一开始的pop弹窗过来的
-    else if (options.popupApear) {
-      this.setData({popupApear:options.popupApear})
+    else if (options.popupId) {
+      this.setData({
+        Form:true,
+        popupId:options.popupId,
+      });
+      this.getInfo()
     }
-   
   },
 
   /**
@@ -89,12 +133,13 @@ Page({
   onHide() {
     if (this.data.popupAppear) {
       var isUnread = wx.getStorageSync('unread');
-      this.data.popupApear.isShow = true //插入是否已读
+      this.data.popupAppear.isShow = true //插入是否已读
         for(var a=0;a<isUnread.length;a++){
-          if(this.data.popupApear.popupId == isUnread[a].popupId){
-            isUnread[a] == this.data.popupApear
+          if(this.data.popupAppear.popupId == isUnread[a].popupId){
+            isUnread[a] == this.data.popupAppear
           }
         }
+
     }
   },
 
@@ -102,7 +147,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    this.setData({xy:2})
   },
 
   /**
