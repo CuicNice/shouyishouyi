@@ -49,8 +49,9 @@ Page({
         if(isUnread){
           if(isUnread.length <= res.data.data.list.length){
             for(var a=0;a<res.data.data.list.length;a++){
-              if(isUnread[a].popupId == res.data.data.list[a].popupId){
-                if(isUnread[a].isShow == true){ 
+              for(var i=0;i<isUnread.length;a++)
+              if(isUnread[i].popupId == res.data.data.list[a].popupId){
+                if(isUnread[i].isShow == true){ 
               this.setData({x:0})
             }else{
               this.setData({x:1});
@@ -59,9 +60,14 @@ Page({
               }
             }
           }else{this.setData({x:0})}
-        }else if(this.data.messageList.length==0&&wx.getStorageSync('unreadOne').popupId ==this.data.messageList[0].popupId){this.setData({x:0})}
-        else if(res.data.data.list.length>0){
-          this.setData({x:1})
+        }else{
+          if(wx.getStorageSync('unreadOne')){
+            if(wx.getStorageSync('unreadOne').popupId ==this.data.popupAppear.popupId){this.setData({x:0})}
+          }else if(!wx.getStorageSync('unreadOne')&&this.data.messageList.length>0){
+            this.setData({x:1})
+          }else if(this.data.messageList.length>0&&!isUnread&&!wx.getStorageSync('unreadOne')){
+            this.setData({x:1})
+          }
         }
       })
      })
@@ -161,6 +167,10 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
      tc2:false,
   })
 }
+},
+onNavigate:function(){
+  this.initPageData();
+    this.getList();
 },
   /**
    * 生命周期函数--监听页面加载

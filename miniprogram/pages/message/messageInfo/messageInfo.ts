@@ -18,9 +18,6 @@ Page({
       wx.request({
         url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/getPopupById',
         method:'POST',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
-        },
         data:{
           popupId:this.data.popupId
         },
