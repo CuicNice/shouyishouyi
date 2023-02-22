@@ -248,7 +248,12 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.initPageData();
+    this.getList();
+    if(this.data.popupAppear.popupId ==wx.getStorageSync('unreadOne').popupId ){
+      if(wx.getStorageSync('unreadOne').isShow !==true){
+       this.initPageData();
+    }
+    }else{this.initPageData();}
     this.getList();
     if(this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
       this.setData({
@@ -276,7 +281,11 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    this.initPageData();
+    if(this.data.popupAppear.popupId ==wx.getStorageSync('unreadOne').popupId ){
+      if(wx.getStorageSync('unreadOne').isShow !==true){
+       this.initPageData();
+    }
+    }else{this.initPageData();}
   },
 
   /**
