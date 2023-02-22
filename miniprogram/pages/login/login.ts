@@ -45,12 +45,15 @@ Page({
           })
         }
         //判断是否有未读消息
-        var isUnread;
-        isUnread = wx.getStorageSync('unread')
-        if(isUnread){
+        var unreadOne= wx.getStorageSync('unreadOne');
+        var isUnread = wx.getStorageSync('unread')
+        if(this.data.messageList.length>0){//信息中心有数据时
+          if(!isUnread&&!unreadOne){//未点击过其他信息，或者未点击过弹窗
+            this.setData({x:1});
+        }if(isUnread){//点击过其他信息
           if(isUnread.length <= res.data.data.list.length){
             for(var a=0;a<res.data.data.list.length;a++){
-              for(var i=0;i<isUnread.length;a++)
+              for(var i=0;i<isUnread.length;i++)
               if(isUnread[i].popupId == res.data.data.list[a].popupId){
                 if(isUnread[i].isShow == true){ 
               this.setData({x:0})
@@ -58,21 +61,19 @@ Page({
               this.setData({x:1});
               break;        
             }
-              }
+              }break;
             }
           }else{this.setData({x:0})}
-        }else if(!isUnread){
-          if(wx.getStorageSync('unreadOne')){
-            if(wx.getStorageSync('unreadOne').popupId ==this.data.popupAppear.popupId){
-              this.setData({popupAppear:wx.getStorageSync('unreadOne')})
-              if(wx.getStorageSync('unreadOne').isShow ==true){
-                 this.setData({x:0})}
-              } 
-          }else if(!wx.getStorageSync('unreadOne')&&this.data.messageList.length>0){
-            this.setData({x:1})
-          }else if(this.data.messageList.length>0&&!isUnread&&!wx.getStorageSync('unreadOne')){
-            this.setData({x:1})
+        }if(unreadOne){//点击过弹窗
+          for(var c=0;c<this.data.messageList.length;c++){
+            if(unreadOne.popupId == this.data.messageList[c].popupId){
+              this.setData({x:0})
+            }else{this.setData({x:1});break;}
           }
+          if(unreadOne.isShow == true){//点击进入过推文
+            this.setData({x:0})
+          }
+        }
         }
       })
      })
