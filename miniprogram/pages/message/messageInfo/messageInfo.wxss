@@ -11,7 +11,7 @@
     gap: 36rpx;
     position: absolute;
     width: 640rpx;
-    height: 1748rpx;
+    height: 110%;
     margin-top: 46rpx;
     margin-left: 56rpx;
     margin-right: 54rpx;
@@ -39,8 +39,7 @@
     height: 100%;
     }
     .text{
-    width: 640r0px;
-    
+    width: 644rpx;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
@@ -50,6 +49,7 @@
     color: #292945;
     }
     .text text{
+    width: 100%;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
@@ -60,17 +60,11 @@
     }
     .photo{
     width: 640rpx;
-    height: 100%;
     border-radius: 20rpx;
     margin-top: 28rpx;
     margin-bottom: 36rpx;
+    height: 100%;
     }
-    .photo image{
-      border-radius: 20rpx;
-      width: 640rpx;
-      height: 100%;
-    }
-  
     .textLike{
     display: flex;
     flex-direction: column;
@@ -78,6 +72,7 @@
     /* padding: 0px; */
     gap: 4rpx;
     width: 640rpx;
+    height: 164rpx;
     }
     .likeImage{
     display: flex;
@@ -91,12 +86,12 @@
     height: 80rpx;
     }
     .likeBottom{
-    margin-top: 20rpx;
     width: 640rpx;
     height: 40rpx;
     text-align: center;
     }
     .likeBottom text{
+    color: rgba(41, 41, 69, 0.6);
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;

@@ -44,7 +44,7 @@
 <view class="popGrey" bindtap="closePhoto" wx:if="{{termTitleTapdetail}}" catchtouchmove="ture"></view>
 <view class="setup"wx:if='{{tc1}}'>
 <view class="photoShow" bindtap="loginInfo">
-<image src="{{ima}}"  mode='widthFix' ></image>
+<image src="{{ima}}"  mode='aspectFit' ></image>
 </view>
 <image class="dispel2" src="/static/svg/message/dispel2.svg" bindtap="closePhoto"></image>
 </view>
