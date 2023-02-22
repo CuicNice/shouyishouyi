@@ -73,9 +73,16 @@ Page({
     }catch (e) {
       console.log('写入value发生错误')
     }
-    if(this.data.shuju != null){
+    var arr=wx.getStorageSync('key')
+    if(this.data.shuju != null && arr.charAt(0) != "/"){
     wx.navigateTo({
       url: '../indexText/indexText',
+    })
+  }else{
+    var place=wx.getStorageSync('key')
+    console.log(place)
+    wx.navigateTo({
+      url: place,
     })
   }
   },
