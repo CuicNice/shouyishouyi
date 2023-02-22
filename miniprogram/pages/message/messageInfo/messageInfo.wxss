@@ -11,7 +11,7 @@
     gap: 36rpx;
     position: absolute;
     width: 640rpx;
-    height: 110%;
+    height: 120%;
     margin-top: 46rpx;
     margin-left: 56rpx;
     margin-right: 54rpx;
@@ -61,9 +61,13 @@
     .photo{
     width: 640rpx;
     border-radius: 20rpx;
-    margin-top: 28rpx;
+    margin-top: 10rpx;
     margin-bottom: 36rpx;
-    height: 100%;
+    }
+    .photo image{
+      height: 100%;
+      width: 640rpx;
+      border-radius: 20rpx;
     }
     .textLike{
     display: flex;
