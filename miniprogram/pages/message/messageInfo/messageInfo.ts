@@ -7,7 +7,6 @@ Page({
     isHidden:true,
     row:'',
     Info:[],
-    xy:1,//从弹窗直接过来的，判断是否是第二次进入
     popupId:'',
     popupAppear:{},
     Form:true//穿过来的途径，来决定显示哪一个
@@ -18,6 +17,9 @@ Page({
       wx.request({
         url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/getPopupById',
         method:'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
+        },
         data:{
           popupId:this.data.popupId
         },
@@ -57,6 +59,9 @@ Page({
     wx.request({
       url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/addPopupFabulousById',
       method:'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
+      },
       data:{
         popupId:this.data.popupAppear?this.data.popupAppear.popupId:this.data.Info[this.data.row].popupId
       },
@@ -122,12 +127,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    this.getInfo()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.getInfo()
   },
 
   /**
