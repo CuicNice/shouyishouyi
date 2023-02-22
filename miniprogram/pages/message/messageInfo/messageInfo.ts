@@ -60,9 +60,6 @@ Page({
     wx.request({
       url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/addPopupFabulousById',
       method:'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
-      },
       data:{
         popupId:this.data.popupAppear?this.data.popupAppear.popupId:this.data.Info[this.data.row].popupId
       },

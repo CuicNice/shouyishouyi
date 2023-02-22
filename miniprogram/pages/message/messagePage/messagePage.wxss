@@ -48,14 +48,23 @@
   width: 596rpx;
   height: 100%;
   padding: 0rpx 32rpx 0rpx 32rpx;
+  display: -webkit-box;  /*设置为弹性盒子*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp: 2;  /*最多显示2行*/
+  font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24rpx;
+    line-height: 30rpx;
+    text-align: justify;
+    color: #000000;
+    mix-blend-mode: normal;
   }
   .stitleText{
-    display: -webkit-box;  /*设置为弹性盒子*/
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp: 2;  /*最多显示2行*/
+    width: 100%;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;

@@ -15,7 +15,7 @@
   <view class="text">
   <text style="width: 640rpx;">{{popupAppear.popupJumpTextContent!=='null'?popupAppear.popupJumpTextContent:''}}</text>
   </view>
-   <image class="photo" wx:if="{{popupAppear.popupJumpTextImage !== 'null'}}" src="http://{{popupAppear.popupJumpTextImage}}"  mode='widthFit' ></image>
+   <image class="photo" wx:if="{{popupAppear.popupJumpTextImage !== 'null'}}" src="http://{{popupAppear.popupJumpTextImage}}" style="width: 640rpx; border-radius: 20rpx;margin-top: 10rpx;margin-bottom: 36rpx;height: 100%;"  mode='widthFix' ></image>
   <view class="textLike">
   <view class="likeImage" bindtap="getLike">
   <image src="/static/svg/message/{{popupAppear.show}}Like.svg"></image>
@@ -42,7 +42,7 @@
   <view class="text">
   <text>{{Info[row].popupJumpTextContent!=='null'?Info[row].popupJumpTextContent:''}}</text>
   </view>
-   <image class="photo" wx:if="{{Info[row].popupJumpTextImage !== 'null'}}"src="http://{{Info[row].popupJumpTextImage}}"  mode='widthFix' ></image>
+   <image class="photo" wx:if="{{Info[row].popupJumpTextImage !== 'null'}}"src="http://{{Info[row].popupJumpTextImage}}" style="width: 640rpx; border-radius: 20rpx;margin-top: 10rpx;margin-bottom: 36rpx;height: 100%;" mode='widthFix' ></image>
   <view class="textLike">
   <view class="likeImage" bindtap="getLike">
   <image src="/static/svg/message/{{Info[row].show}}Like.svg"></image>
