@@ -1,6 +1,6 @@
 <!--pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting.wxml-->
 <view class="bg"></view>
-<tb title="{{classScheduleSetTitle}}"></tb>
+<tb title="{{classScheduleSetTitle}}" bindtap="return"></tb>
 
 <view class="setContainer">
     <view class="Option-box">
@@ -11,7 +11,7 @@
       <view class="Option-one">
         <view class="switch-text">仅显示本周要上的课程</view>
         <view class="swichclass">
-          <switch type="switch" class="wx-switch-input" checked="true" bindchange="switchChange"></switch>
+          <switch type="switch" class="wx-switch-input" checked="{{checked}}" bindchange="switchChange"></switch>
         </view>
       </view>
       <view class="Option-two">

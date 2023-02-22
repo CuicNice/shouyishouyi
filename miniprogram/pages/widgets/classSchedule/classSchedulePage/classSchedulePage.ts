@@ -92,7 +92,7 @@ Page({
     this.initClassData()
     setTimeout(function () {
       wx.removeStorageSync('classSchedule')
-    }, 4000)
+    }, 6000)
   },
 
   showPopupA(){
@@ -118,8 +118,8 @@ Page({
         url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/classTable',
         method: 'POST',
         data: {
-          "zh": '20201101116',
-          "mm": "77889900Czx.",
+          "zh": wx.getStorageSync('key1'),
+          "mm": wx.getStorageSync('key2'),
           "year": year,
           "num": num
         },
@@ -144,14 +144,14 @@ Page({
           url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/classTable',
               method: 'POST',
               data: {
-                "zh": '20201101116',
-                "mm": "77889900Czx.",
+                "zh": wx.getStorageSync('key1'),
+                "mm": wx.getStorageSync('key2'),
                 "year": this.data.Y,
                 "num": this.data.I
               },
           })
           task.abort();
-      }, 3000);
+      }, 5000);
     })
   },
   closeDialogTip(){

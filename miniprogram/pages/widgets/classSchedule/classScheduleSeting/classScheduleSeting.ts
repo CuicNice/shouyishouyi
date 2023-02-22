@@ -9,11 +9,23 @@ Page({
     dialogTip:false,
     automatic:true,
     WC:'',
-    JY:''
+    JY:'',
+    checked:false
   },
 
   closeDialogTip(){
     this.setData({dialogTip:false})
+  },
+
+  switchChange(e: any){
+    console.log(e)
+    this.setData({
+      checked:e.detail.value
+    })
+  },
+
+  return(e:any){
+    console.log(e)
   },
 
   refresh(){
