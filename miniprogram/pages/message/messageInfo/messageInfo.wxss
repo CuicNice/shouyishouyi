@@ -64,7 +64,7 @@
     /* padding: 0px; */
     gap: 4rpx;
     width: 640rpx;
-    height: 164rpx;
+    height: 230rpx;
     }
     .likeImage{
     display: flex;

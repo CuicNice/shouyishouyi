@@ -52,11 +52,9 @@ Page({
               this.data.list[i].number = number;  
               this.data.list[i].popupPublishTime =  this.data.list[i].popupPublishTime.slice(0,11)
           }
-
          //判断数据是否已读;
          var isUnread;
          isUnread = wx.getStorageSync('unread');
-         console.log(wx.getStorageSync('unread'))
          if(isUnread.length>0){
           if(isUnread.length == this.data.list.length){
             for(var i=0;i<res.data.data.list.length;i++){
@@ -119,7 +117,7 @@ Page({
 //点击进入信息详情
 getMessage(e:any){
   this.setData({row:e.currentTarget.dataset.row})
-   if(this.data.list[e.currentTarget.dataset.row].popupJumpType =="link" ){
+   if(this.data.list[e.currentTarget.dataset.row].popupJumpType =='link' ){
     wx.setStorageSync('Url',this.data.list[e.currentTarget.dataset.row].popupJumpUrl);
     wx.navigateTo({
       url:'../web-view/webView'

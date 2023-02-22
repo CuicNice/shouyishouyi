@@ -23,7 +23,6 @@ Page({
         data:{
           popupId:this.data.popupId
         },
-        fail:(()=>{this.getInfo()}),
         success:((res)=>{
           console.log(res)
           this.setData({
@@ -34,13 +33,12 @@ Page({
           this.data.popupAppear.isShow = true; //插入是否已读
           this.setData({popupAppear:res.data.data})//插入show后再又给值
             var isUnread = wx.getStorageSync('unread');
-            console.log(isUnread.length)
             if(isUnread){
               for(var a=0;a<isUnread.length;a++){
                 if(this.data.popupAppear.popupId == isUnread[a].popupId){
                   isUnread[a] = this.data.popupAppear
                   wx.setStorageSync('unread',isUnread)
-                }else if(this.data.popupAppear.popupId !== isUnread[a].popupId){
+                }else if(this.data.popupAppear.popupId !== isUnread[a].popupId&&this.data.popupAppear.popupIsSave !== 'false'){
                   isUnread[isUnread.length]=this.data.popupAppear;
                   wx.setStorageSync('unread',isUnread);
                 }
@@ -51,7 +49,7 @@ Page({
           }
         })
       })
-
+      wx.setStorageSync('unreadOne',this.data.popupAppear)
   },
   //点赞的函数
   getLike(){
@@ -77,7 +75,7 @@ Page({
     wx.setStorageSync('unread',this.data.Info); 
   }else{
     this.data.popupAppear.show ='active';
-    this.data.popupAppear.popupFablous = this.data.popupAppear.popupFabulous+1
+    this.data.popupAppear.popupFabulous = this.data.popupAppear.popupFabulous+1
     this.setData({
       popupAppear:this.data.popupAppear,
     }) 

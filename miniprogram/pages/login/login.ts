@@ -61,9 +61,13 @@ Page({
               }
             }
           }else{this.setData({x:0})}
-        }else{
+        }else if(!isUnread){
           if(wx.getStorageSync('unreadOne')){
-            if(wx.getStorageSync('unreadOne').popupId ==this.data.popupAppear.popupId){this.setData({x:0})}
+            if(wx.getStorageSync('unreadOne').popupId ==this.data.popupAppear.popupId){
+              this.setData({popupAppear:wx.getStorageSync('unreadOne')})
+              if(wx.getStorageSync('unreadOne').isShow ==true){
+                 this.setData({x:0})}
+              } 
           }else if(!wx.getStorageSync('unreadOne')&&this.data.messageList.length>0){
             this.setData({x:1})
           }else if(this.data.messageList.length>0&&!isUnread&&!wx.getStorageSync('unreadOne')){
@@ -89,6 +93,8 @@ closePhoto(){
      this.setData({tc1:false,tc2:false,termTitleTapdetail:false,})
    }else if(this.data.popupAppear.popupJumpType !== 'noJump'){
     if (this.data.popupAppear.popupJumpType == 'link'){
+      this.data.popupAppear.isShow = true;
+      wx.setStorageSync('unreadOne',this.data.popupAppear)
       wx.setStorageSync('Url',this.data.popupAppear.popupJumpUrl)
       wx.navigateTo({url:'../message/web-view/webView'});
     }
@@ -117,7 +123,8 @@ async initPageData() {
 async getPopupData(from: popupeItem) {
 const {data: popupAppear } = await getPopup(from) as unknown as IResult<any>;
 if(!popupAppear){this.initPageData()}
-console.log(popupAppear)
+
+
   /**
  * 渲染
  */
@@ -242,6 +249,27 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
   onShow() {
     this.initPageData();
     this.getList();
+    if(this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
+      this.setData({
+        termTitleTapdetail:false,
+         tc1:false,
+         tc2:false,
+      })
+    }
+    if(this.data.popupAppear.popupId == wx.getStorageSync('noJump').popupId){
+      this.setData({
+        termTitleTapdetail:false,
+         tc1:false,
+         tc2:false,
+      })
+    }
+    if(this.data.popupAppear.popupId == wx.getStorageSync('isNoread')){
+      this.setData({
+        termTitleTapdetail:false,
+         tc1:false,
+         tc2:false,
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -254,7 +282,10 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    if(this.data.popupAppear.popupId == null){
+      wx.removeStorageSync('unreadOne');
+      wx.removeStorageSync('isNoread')
+    }
   },
 
   /**

@@ -3,7 +3,7 @@
 <topbar  immersion="{{true}}" Threshold="1">
 <!-- 直接点击弹窗进入 -->
 <view wx:if="{{Form}}">
-  <view class="messageDetail" wx:if="{{popupAppear.popupJumpType == 'link'?!isHidden:isHidden}}">
+  <view class="messageDetail" wx:if="{{popupAppear.popupJumpType =='link'?!isHidden:isHidden}}">
   <view class="detailTitle">
   <text>{{popupAppear.popupJumpTextTitle}}</text>
   </view>
@@ -13,9 +13,9 @@
   </view>
   <view class="messageText">
   <view class="text">
-  <text style="width: 640rpx;">{{popupAppear.popupJumpTextContent!=='null'?popupAppear.popupJumpTextContent:''}}</text>
+  <text style="width: 640rpx;">{{popupAppear.popupJumpTextContent!==null?popupAppear.popupJumpTextContent:''}}</text>
   </view>
-   <image class="photo" wx:if="{{popupAppear.popupJumpTextImage !== 'null'}}" src="http://{{popupAppear.popupJumpTextImage}}" style="width: 640rpx; border-radius: 20rpx;margin-top: 10rpx;margin-bottom: 36rpx;height: 100%;"  mode='widthFix' ></image>
+   <image class="photo" wx:if="{{popupAppear.popupJumpTextImage !== null}}" src="http://{{popupAppear.popupJumpTextImage}}" style="width: 640rpx; border-radius: 20rpx;margin-top: 10rpx;margin-bottom: 36rpx;height: 100%;"  mode='widthFix' ></image>
   <view class="textLike">
   <view class="likeImage" bindtap="getLike">
   <image src="/static/svg/message/{{popupAppear.show}}Like.svg"></image>
@@ -40,9 +40,9 @@
   </view>
   <view class="messageText">
   <view class="text">
-  <text>{{Info[row].popupJumpTextContent!=='null'?Info[row].popupJumpTextContent:''}}</text>
+  <text>{{Info[row].popupJumpTextContent!==null?Info[row].popupJumpTextContent:''}}</text>
   </view>
-   <image class="photo" wx:if="{{Info[row].popupJumpTextImage !== 'null'}}"src="http://{{Info[row].popupJumpTextImage}}" style="width: 640rpx; border-radius: 20rpx;margin-top: 10rpx;margin-bottom: 36rpx;height: 100%;" mode='widthFix' ></image>
+   <image class="photo" wx:if="{{Info[row].popupJumpTextImage !== null}}"src="http://{{Info[row].popupJumpTextImage}}" style="width: 640rpx; border-radius: 20rpx;margin-top: 10rpx;margin-bottom: 36rpx;height: 100%;" mode='widthFix' ></image>
   <view class="textLike">
   <view class="likeImage" bindtap="getLike">
   <image src="/static/svg/message/{{Info[row].show}}Like.svg"></image>
