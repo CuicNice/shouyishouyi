@@ -63,11 +63,7 @@
     border-radius: 20rpx;
     margin-top: 10rpx;
     margin-bottom: 36rpx;
-    }
-    .photo image{
-      height: 100%;
-      width: 640rpx;
-      border-radius: 20rpx;
+    height: 100%;
     }
     .textLike{
     display: flex;
