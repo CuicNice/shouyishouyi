@@ -1,61 +1,63 @@
 <!--pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting.wxml-->
 <view class="bg"></view>
-<tb title="{{classScheduleSetTitle}}" bindtap="return"></tb>
+<tb title="{{classScheduleSetTitle}}"></tb>
 
 <view class="setContainer">
-    <view class="Option-box">
-      <view class="Option-one">
-        <view class="choice-text">刷新课表</view>
-        <view class="Update-icon" bindtap="refresh"></view>
-      </view>
-      <view class="Option-one">
-        <view class="switch-text">仅显示本周要上的课程</view>
-        <view class="swichclass">
-          <switch type="switch" class="wx-switch-input" checked="{{checked}}" bindchange="switchChange"></switch>
-        </view>
-      </view>
-      <view class="Option-two">
-        <view class="choice-text">个性换肤</view>
-        <view class="choice-icon" bindtap="customskin"></view>
-      </view>
-      <view class="Option-two">
-        <view class="switch-text">选择武汉/嘉鱼校区时间</view>
-      </view>
-        <view class="Option-small"> 
-         <view class="choiceSmall1">
-          <view class="choiceSmall-text">自动识别</view>
-          <view class="choiceSmallIcon" bindtap="details"></view>
-          <checkbox-group bindchange="check">
-           <label class="weui-check__label">
-           <checkbox value="aa" checked="{{automatic}}"/>
-           </label></checkbox-group>
-         </view>
-         <view class="choiceSmall">
-          <view class="choiceSmall-text">武昌校区</view>
-          <checkbox-group bindchange="check">
-          <label class="weui-check__label">
-           <checkbox value="bb" checked="{{WC}}"/>
-           </label></checkbox-group>
-         </view>
-         <view class="choiceSmall">
-          <view class="choiceSmall-text">嘉鱼校区</view>
-          <checkbox-group bindchange="check">
-          <label class="weui-check__label">
-           <checkbox value="cc" checked="{{JY}}"/>
-           </label></checkbox-group>
-         </view>
-        </view>
-      <view class="Option-two">
-        <view class="choice-text">课表有问题？联系南南反馈</view>
-        <view class="choice-icon"></view>
+  <view class="Option-box">
+    <view class="Option-one">
+      <view class="choice-text">刷新课表</view>
+      <view class="Update-icon" bindtap="refresh"></view>
+    </view>
+    <view class="Option-one">
+      <view class="switch-text">仅显示本周要上的课程</view>
+      <view class="swichclass">
+        <switch type="switch" class="wx-switch-input" checked="{{checked}}" bindchange="switchChange"></switch>
       </view>
     </view>
+    <view class="Option-two">
+      <view class="choice-text">个性换肤</view>
+      <view class="choice-icon" bindtap="customskin"></view>
+    </view>
+    <view class="Option-two">
+      <view class="switch-text">选择武汉/嘉鱼校区时间</view>
+    </view>
+    <view class="Option-small">
+      <view class="choiceSmall1">
+        <view class="choiceSmall-text">自动识别</view>
+        <view class="choiceSmallIcon" bindtap="details"></view>
+        <checkbox-group bindchange="check">
+          <label class="weui-check__label">
+            <checkbox value="aa" checked="{{automatic}}" />
+          </label>
+        </checkbox-group>
+      </view>
+      <view class="choiceSmall">
+        <view class="choiceSmall-text">武昌校区</view>
+        <checkbox-group bindchange="check">
+          <label class="weui-check__label">
+            <checkbox value="bb" checked="{{WC}}" />
+          </label>
+        </checkbox-group>
+      </view>
+      <view class="choiceSmall">
+        <view class="choiceSmall-text">嘉鱼校区</view>
+        <checkbox-group bindchange="check">
+          <label class="weui-check__label">
+            <checkbox value="cc" checked="{{JY}}" />
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+    <view class="Option-two">
+      <view class="choice-text">课表有问题？联系南南反馈</view>
+      <view class="choice-icon"></view>
+    </view>
+  </view>
 </view>
 <!-- 提示弹窗 -->
 <dialogTitle title="校区时间自动识别规则" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhongqutushuguan.svg">
-<view class="dialogText">暂无您的该学年课表，新学期课表出来后，南南会第一时间通知你的噢~</view>
+  <view class="dialogText">暂无您的该学年课表，新学期课表出来后，南南会第一时间通知你的噢~</view>
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>
 </dialogTitle>
-
