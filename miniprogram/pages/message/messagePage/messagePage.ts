@@ -44,6 +44,9 @@ Page({
                 var show = 'green';
                 this.data.list[i].show =show; 
               }  
+              if(this.data.list[i].popupId == wx.getStorageSync('unreadOne').popupId){
+                this.data.list[i] = wx.getStorageSync('unreadOne');
+              }
               this.data.list[i].color = color;
               this.data.list[i].number = number;  
               this.data.list[i].popupPublishTime =  this.data.list[i].popupPublishTime.slice(0,11)

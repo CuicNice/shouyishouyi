@@ -7,7 +7,6 @@ Page({
     isHidden:true,
     row:'',
     Info:[],
-    xz:1,//限制点赞量，点一次变为2
     xy:1,//从弹窗直接过来的，判断是否是第二次进入
     popupId:'',
     popupAppear:{},
@@ -31,20 +30,24 @@ Page({
             popupAppear:res.data.data//第一次给值
           })
           this.data.popupAppear.show = "green";
+          this.data.popupAppear.popupPublishTime =  this.data.popupAppear.popupPublishTime.slice(0,11)
           this.data.popupAppear.isShow = true; //插入是否已读
           this.setData({popupAppear:res.data.data})//插入show后再又给值
             var isUnread = wx.getStorageSync('unread');
             console.log(isUnread.length)
-            for(var a=0;a<isUnread.length;a++){
-            if(this.data.popupAppear.popupId == isUnread[a].popupId){
-              isUnread[a] = this.data.popupAppear
-              wx.setStorageSync('unread',isUnread)
-            }else{
-              isUnread[isUnread.length]=this.data.popupAppear;
-              wx.setStorageSync('unread',isUnread);
+            if(isUnread){
+              for(var a=0;a<isUnread.length;a++){
+                if(this.data.popupAppear.popupId == isUnread[a].popupId){
+                  isUnread[a] = this.data.popupAppear
+                  wx.setStorageSync('unread',isUnread)
+                }else if(this.data.popupAppear.popupId !== isUnread[a].popupId){
+                  isUnread[isUnread.length]=this.data.popupAppear;
+                  wx.setStorageSync('unread',isUnread);
+                }
+              }
             }
-          }if(isUnread.length==0){
-            wx.setStorageSync('unread',this.data.popupAppear)
+           if(isUnread.length==0){
+            wx.setStorageSync('unreadOne',this.data.popupAppear)
           }
         })
       })
@@ -52,7 +55,7 @@ Page({
   },
   //点赞的函数
   getLike(){
-    if(this.data.xz == 1){
+    if(this.data.popupAppear.show == 'green'||this.data.Info[this.data.row].show == 'green'){
   //给接口这个的Id，来获取点赞量。很简单我就用request了
     wx.request({
       url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/addPopupFabulousById',
@@ -70,7 +73,6 @@ Page({
     this.data.Info[this.data.row].popupFabulous = this.data.Info[this.data.row].popupFabulous+1
     this.setData({
       Info:this.data.Info,
-      xz:2
     }) 
     wx.setStorageSync('unread',this.data.Info); 
   }else{
@@ -80,14 +82,18 @@ Page({
       popupAppear:this.data.popupAppear,
     }) 
     var isUnread = wx.getStorageSync('unread');
-      for(var a=0;a<isUnread.length;a++){
+    if(isUnread){
+       for(var a=0;a<isUnread.length;a++){
         if(this.data.popupAppear.popupId == isUnread[a].popupId){
           isUnread[a] = this.data.popupAppear
         }
       }
       wx.setStorageSync('unread',isUnread)
+    }else{
+      isUnread = this.data.popupAppear;
+      wx.setStorageSync('unreadOne',isUnread);
+    }
   }
-  
 } 
 },
 
@@ -110,6 +116,10 @@ Page({
         Form:true,
         popupId:options.popupId,
       });
+      if(wx.getStorageSync('unreadOne').popupId == options.popupId){
+        var popupAppear=wx.getStorageSync('unreadOne') //单独存个，方便存入大数组里
+        this.setData({popupAppear:popupAppear})
+      }
       this.getInfo()
     }
   },
@@ -147,7 +157,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    this.setData({xy:2})
   },
 
   /**

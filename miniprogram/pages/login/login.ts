@@ -70,10 +70,12 @@ closePhoto(){
     tc1:false,
     tc2:false,
   })
+  wx.setStorageSync('isNoread',this.data.popupAppear.popupId)//当不想点击弹窗看，而且不想去看信息时,限制弹一次
 },
 //点击popup弹窗的图片或点击查看详情，进入具体的信息页面
  loginInfo(){
-   if (this.data.popupAppear.popupJumpType == 'noJump') {
+   if (this.data.popupAppear.popupJumpType == 'noJump'){
+     wx.setStorageSync('noJump',this.data.popupAppear.popupId)
      this.setData({tc1:false,tc2:false})
    }else{
     if (this.data.popupAppear.popupJumpType == 'link'){
@@ -103,9 +105,7 @@ async initPageData() {
 * @param from popup弹窗
 */
 async getPopupData(from: popupeItem) {
-console.log(from);
 const {data: popupAppear } = await getPopup(from) as unknown as IResult<any>;
-console.log(popupAppear)
   /**
  * 渲染
  */
@@ -135,6 +135,27 @@ if(!popupAppear){
  this.setData({
   ima:'http://image-2023-01-30-14-08-04-182.png'
  })
+}
+if(popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
+  this.setData({
+    termTitleTapdetail:false,
+     tc1:false,
+     tc2:false,
+  })
+}
+if(popupAppear.popupId == wx.getStorageSync('noJump').popupId){
+  this.setData({
+    termTitleTapdetail:false,
+     tc1:false,
+     tc2:false,
+  })
+}
+if(popupAppear.popupId == wx.getStorageSync('isNoread')){
+  this.setData({
+    termTitleTapdetail:false,
+     tc1:false,
+     tc2:false,
+  })
 }
 },
   /**
@@ -199,7 +220,7 @@ if(!popupAppear){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
- 
+    
   },
 
   /**
