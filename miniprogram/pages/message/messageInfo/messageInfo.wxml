@@ -3,7 +3,7 @@
 <topbar  immersion="{{true}}" Threshold="1">
 <!-- 直接点击弹窗进入 -->
 <view wx:if="{{Form}}">
-  <view class="messageDetail" wx:if="{{popupAppear.popupJumpUrl !== null?!isHidden:isHidden}}">
+  <view class="messageDetail" wx:if="{{popupAppear.popupJumpType == 'link'?!isHidden:isHidden}}">
   <view class="detailTitle">
   <text>{{popupAppear.popupJumpTextTitle}}</text>
   </view>
@@ -30,7 +30,7 @@
 
 <!-- 点击信息中心进入 -->
 <view wx:if="{{!Form}}">
-  <view class="messageDetail" wx:if="{{Info[row].popupJumpUrl !== null?!isHidden:isHidden}}">
+ <view class="messageDetail" wx:if="{{Info[row].popupJumpType == 'link'?!isHidden:isHidden}}">
   <view class="detailTitle">
   <text>{{Info[row].popupJumpTextTitle}}</text>
   </view>

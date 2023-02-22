@@ -9,7 +9,6 @@
     display: flex;
     flex-direction: column;
     gap: 36rpx;
-    position: absolute;
     width: 640rpx;
     height: 120%;
     margin-top: 46rpx;

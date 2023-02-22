@@ -118,12 +118,12 @@ Page({
 //点击进入信息详情
 getMessage(e:any){
   this.setData({row:e.currentTarget.dataset.row})
-   if(this.data.list[e.currentTarget.dataset.row].popupJumpUrl !== null){
+   if(this.data.list[e.currentTarget.dataset.row].popupJumpType =="link" ){
     wx.setStorageSync('Url',this.data.list[e.currentTarget.dataset.row].popupJumpUrl);
     wx.navigateTo({
       url:'../web-view/webView'
     })
-  }else{
+  }else if(this.data.list[e.currentTarget.dataset.row].popupJumpType =='article'){
     wx.navigateTo({
       url:'../messageInfo/messageInfo?row='+e.currentTarget.dataset.row
     })

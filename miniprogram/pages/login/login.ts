@@ -29,9 +29,6 @@ Page({
     wx.request({
       url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/appletPopupList',
       method:'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
-      },
       data:{
         currentPage:1,
         pageSize:this.data.pageSize,
@@ -62,7 +59,10 @@ Page({
               }
             }
           }else{this.setData({x:0})}
-        }else if(res.data.data.list.length>0){this.setData({x:1})}
+        }else if(this.data.messageList.length==0&&wx.getStorageSync('unreadOne').popupId ==this.data.messageList[0].popupId){this.setData({x:0})}
+        else if(res.data.data.list.length>0){
+          this.setData({x:1})
+        }
       })
      })
    },
@@ -79,8 +79,8 @@ closePhoto(){
  loginInfo(){
    if (this.data.popupAppear.popupJumpType == 'noJump'){
      wx.setStorageSync('noJump',this.data.popupAppear.popupId)
-     this.setData({tc1:false,tc2:false})
-   }else{
+     this.setData({tc1:false,tc2:false,termTitleTapdetail:false,})
+   }else if(this.data.popupAppear.popupJumpType !== 'noJump'){
     if (this.data.popupAppear.popupJumpType == 'link'){
       wx.setStorageSync('Url',this.data.popupAppear.popupJumpUrl)
       wx.navigateTo({url:'../message/web-view/webView'});
@@ -109,6 +109,7 @@ async initPageData() {
 */
 async getPopupData(from: popupeItem) {
 const {data: popupAppear } = await getPopup(from) as unknown as IResult<any>;
+console.log(popupAppear)
   /**
  * 渲染
  */
@@ -230,13 +231,14 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.initPageData();
     this.getList();
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    this.initPageData();
   },
 
   /**

@@ -1,7 +1,5 @@
 import { Consts } from "../Consts";
-
 const app = getApp();
-
 export type Method =
 | 'OPTIONS'
 | 'GET'
