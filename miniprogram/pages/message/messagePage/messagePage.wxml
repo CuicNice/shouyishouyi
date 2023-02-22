@@ -18,7 +18,7 @@
   <image src="/static/svg/message/clock.svg" class="clock"></image>
   <text>{{item.popupPublishTime}}</text>
   </view>
-  <view class="likeBox">
+  <view class="likeBox" wx:if="{{item.popupJumpType == 'link'?'':true}}">
   <image src="/static/svg/message/like.svg"></image>
   <text>{{item.popupFabulous == Null ? '0':item.popupFabulous}}人赞过</text>
   </view>

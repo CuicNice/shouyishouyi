@@ -66,6 +66,7 @@
     margin-bottom: 36rpx;
     }
     .photo image{
+      border-radius: 20rpx;
       width: 640rpx;
       height: 100%;
     }
