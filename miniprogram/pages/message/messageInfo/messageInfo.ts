@@ -23,6 +23,7 @@ Page({
         data:{
           popupId:this.data.popupId
         },
+        fail:(()=>{this.getInfo()}),
         success:((res)=>{
           console.log(res)
           this.setData({

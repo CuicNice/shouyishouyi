@@ -33,6 +33,7 @@ Page({
         currentPage:1,
         pageSize:this.data.pageSize,
       },
+      fail:(()=>{this.getList()}),
       success:((res)=>{
         this.setData({
            messageList:res.data.data.list,
@@ -115,6 +116,7 @@ async initPageData() {
 */
 async getPopupData(from: popupeItem) {
 const {data: popupAppear } = await getPopup(from) as unknown as IResult<any>;
+if(!popupAppear){this.initPageData()}
 console.log(popupAppear)
   /**
  * 渲染
@@ -168,10 +170,7 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
   })
 }
 },
-onNavigate:function(){
-  this.initPageData();
-    this.getList();
-},
+
   /**
    * 生命周期函数--监听页面加载
    */

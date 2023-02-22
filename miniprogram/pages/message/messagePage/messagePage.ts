@@ -20,6 +20,7 @@ Page({
         currentPage:1,
         pageSize:this.data.pageSize,
       },
+      fail:(()=>{this.getList()}),
       success:((res)=>{
         this.setData({list:res.data.data.list})
         console.log(res)
@@ -155,10 +156,6 @@ getMessage(e:any){
    */
   onReady(){
   
-  },
-  // 页面即将创建，但还未创建的时候
-  onNavigate:function(){
-    this.getList();
   },
 
   /**
