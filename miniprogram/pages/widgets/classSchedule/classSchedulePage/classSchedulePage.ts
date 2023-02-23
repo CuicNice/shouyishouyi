@@ -13,9 +13,7 @@ Page({
     ifshow: false,
     schoolPlace: "武昌",
     startDate: "2023/2/13",
-    showClass: false,
     suorec: '',
-    data: [],
     colorcardLight: ['#A9E6FF', '#FFDDDC', '#F5DFFA', '#D4EFFF', '#F9EABA', '#FFD698', '#F0FFC4', '#FEFCC9', '#DFFFD4', '#FFD8D2', '#FFFFF0', '#CCFFED', '#BFC1FF', '#FFC8E6', '#E9EDF1', '#EFDCC9'],
     colorcardDark: ['#6290E9', '#B791DC', '#ABA6E9', '#E39ACA', '#F091A2', '#FF9470', '#FDB165', '#F3D257', '#5DD39E', '#B2DB7C', '#68D8D6', '#A9B7BD', '#59ADDF', '#7895BC', '#75AEAE', '#EFDCC9'],
     colorcardZi: ['#4794B6', '#D67979', '#BF74CE', '#559AC2', '#BD9825', '#B97B1E', '#689658', '#9C982F', '#60A049', '#C76D5F', '#8585A5', '#5EAA91', '#6568C9', '#C8619A', '#8585B1', '#B8906F'],
@@ -255,19 +253,14 @@ Page({
       //console.log(res)
       if (res.data.code == 20000) {
         var all_tables = res.data.data.all_tables;
-        var list = all_tables
-        var arr = this.objHeavy(list);//筛选有多少门课程
+        var arr = this.objHeavy(all_tables);//筛选有多少门课程
         var myarr = this.randArr(arr); //把存放课程的数组打乱
         var leng = myarr.length;
-        // console.log(arr)
-        // console.log(leng)
-        for (var i = 0; i < list.length; i++) {
+        for (var i = 0; i < all_tables.length; i++) {
           for (var j = 0; j < leng; j++) {
-            if (list[i].name == myarr[j].name) {
+            if (all_tables[i].name == myarr[j].name) {
               var color = this.data.colorcardDark[j]
               all_tables[i].color = color
-              var kebiao = all_tables
-              all_tables = kebiao
             }
           }
         }
@@ -508,8 +501,7 @@ Page({
     console.log(list)
     this.setData({
       ifshow: true,
-      detailClass: list,
-      showClass: true
+      detailClass: list
     })
   },
   changeicon() {
