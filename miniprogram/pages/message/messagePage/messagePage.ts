@@ -23,13 +23,11 @@ Page({
       fail:(()=>{this.getList()}),
       success:((res)=>{
         this.setData({list:res.data.data.list})
-        console.log(res)
         this.putColors();
         //渲染颜色 
         for(var i=0,j=0;i<this.data.list.length;i++,j++){
              if(j>=3){j=0;this.putColors();}
-             if(i>=3&&i%3==0&&this.data.list[i-1].color ==this.data.colors[0]){this.putColors();}//防止连续两个颜色一样
-             if(i>=3&&i%3==0&&this.data.list[i-1].color ==this.data.colors[0]){this.putColors();}//防止连续两个颜色一样
+             if(i>=3&&i%3==0&&this.data.list[i-1].color ==this.data.colors[0]){this.putColors();i=i-1;continue;}//防止连续两个颜色一样
               var number = i;
               var color = this.data.colors[j]; 
               if(wx.getStorageSync('unread').length>0){

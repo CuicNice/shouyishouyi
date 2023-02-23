@@ -38,8 +38,7 @@ Page({
         this.setData({
            messageList:res.data.data.list,
         })  
-        console.log(res)
-        if(this.data.pageSize+10 >= res.data.data.list.length){
+        if(this.data.pageSize >= res.data.data.list.length+10){
           this.setData({
             pageSize:this.data.pageSize+10,            
           })

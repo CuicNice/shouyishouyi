@@ -38,7 +38,7 @@ Page({
                 if(this.data.popupAppear.popupId == isUnread[a].popupId){
                   isUnread[a] = this.data.popupAppear
                   wx.setStorageSync('unread',isUnread)
-                }else if(this.data.popupAppear.popupId !== isUnread[a].popupId&&this.data.popupAppear.popupIsSave !== 'false'){
+                }else if(this.data.popupAppear.popupId !== isUnread[a].popupId&&this.data.popupAppear.popupIsSave !== false){
                   isUnread[isUnread.length]=this.data.popupAppear;
                   wx.setStorageSync('unread',isUnread);
                 }
