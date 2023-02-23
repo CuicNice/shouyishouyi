@@ -39,10 +39,11 @@ Page({
            messageList:res.data.data.list,
         })  
         console.log(res)
-        if(this.data.pageSize == res.data.data.list.length+10){
+        if(this.data.pageSize+10 >= res.data.data.list.length){
           this.setData({
-            pageSize:this.data.pageSize+10,
+            pageSize:this.data.pageSize+10,            
           })
+          this.getList();
         }
         //判断是否有未读消息
         var unreadOne= wx.getStorageSync('unreadOne');
@@ -50,7 +51,7 @@ Page({
         if(this.data.messageList.length>0){//信息中心有数据时
           if(isUnread==''&&unreadOne==''){//未点击过其他信息，或者未点击过弹窗
             this.setData({x:1});
-        }if(isUnread !==''){//点击过其他信息
+        }if(isUnread.length>0){//点击过其他信息
           if(isUnread.length <= res.data.data.list.length){
             for(var a=0;a<res.data.data.list.length;a++){
               for(var i=0;i<isUnread.length;i++)
@@ -350,6 +351,7 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
+    this.getList();
   },
 
   /**
