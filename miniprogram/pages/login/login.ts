@@ -230,17 +230,18 @@ for(var i=0;i<3;i++){
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getList();
-      if(this.data.popupAppear.popupId==wx.getStorageSync('unreadOne').popupId ){
+    this.getList(); 
+    var isUnread =wx.getStorageSync('unreadOne')
+      if(this.data.popupAppear.popupId==isUnread.popupId ){
         if(wx.getStorageSync('unreadOne').isShow !==true){
          this.initPageData();
       }
     }
-      if(wx.getStorageSync('unreadOne').length>0){
-      if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
+      if(isUnread.length>0){
+      if(this.data.popupAppear.popupId !==isUnread.popupId){
         this.initPageData();
       }
-      if(this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
+      if(this.data.popupAppear.popupId == isUnread.popupId){
         this.setData({
           termTitleTapdetail:false,
            tc1:false,
@@ -261,8 +262,6 @@ for(var i=0;i<3;i++){
     day3.setTime(day3.getTime()+24*60*60*1000);
     var s3 = day3.getFullYear()+"-" +(day3.getMonth()+1)+ "-" + day3.getDate();
     this.setData({s1:s1,s2:s2,s3:s3})
-     
-  
   },
   /**
    * 获取学号和密码
