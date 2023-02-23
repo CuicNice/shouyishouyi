@@ -48,7 +48,7 @@ Page({
         var unreadOne= wx.getStorageSync('unreadOne');
         var isUnread = wx.getStorageSync('unread')
         if(this.data.messageList.length>0){//信息中心有数据时
-          if(isUnread==''&&unreadOne==''){//未点击过其他信息，或者未点击过弹窗
+          if(!isUnread&&!unreadOne){//未点击过其他信息，或者未点击过弹窗
             this.setData({x:1});
         }if(isUnread.length>0){//点击过其他信息
           if(isUnread.length <= res.data.data.list.length){
@@ -76,16 +76,16 @@ Page({
               }break;
             }
               }
-        }if(unreadOne.length>0){//点击过弹窗
+        }if(unreadOne){//点击过弹窗
           for(var c=0;c<this.data.messageList.length;c++){
             if(unreadOne.popupId == this.data.messageList[c].popupId){
-              if(unreadOne.isShow==true){
+              if(unreadOne.isShow == true){
                 this.setData({x:0})
-              }else{this.setData({x:1});break;}
+              }else if(unreadOne.isShow !== true){this.setData({x:1});break;}
             }
           }
         }
-        }
+        }else if(this.data.messageList.length==0){this.setData({x:0})}
       })
      })
    },
@@ -156,8 +156,7 @@ async initPageData() {
 async getPopupData(from: popupeItem) {
 const {data: popupAppear } = await getPopup(from) as unknown as IResult<any>;
 if(!popupAppear){this.initPageData()}
-
-
+if(popupAppear.popupId == null){wx.removeStorageSync('Time');}
   /**
  * 渲染
  */
@@ -215,23 +214,24 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-     //第一次时间，第二次时间，第三次时间,依次避免两个同样的弹窗连续两天，我没弹。
-  var unreadOne = wx.getStorageSync('unreadOne');
-  for(var i=0;i<3;i++){
-    var arr = [unreadOne .popupFirstTime,unreadOne .popupSecondTime,unreadOne .popupSecondTime]
-    if(this.data.s1==arr[i]){
-    if(this.data.s2==arr[i]){
-      wx.removeStorageSync('unreadOne');
-      wx.removeStorageSync('isNoread');
-    }
-  }}
     this.getList();
-    if(this.data.popupAppear.popupId ==wx.getStorageSync('unreadOne').popupId ){
-      if(wx.getStorageSync('unreadOne').isShow !==true){
-       this.initPageData();
+      if(this.data.popupAppear.popupId==wx.getStorageSync('unreadOne').popupId ){
+        if(wx.getStorageSync('unreadOne').isShow !==true){
+         this.initPageData();
+      }
     }
-    }else if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
-      this.initPageData();
+      if(wx.getStorageSync('unreadOne').length>0){
+      if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
+        wx.removeStorageSync('Time');
+        this.initPageData();
+      }
+      if(this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
+        this.setData({
+          termTitleTapdetail:false,
+           tc1:false,
+           tc2:false,
+        })
+      }
     }
     //昨天的时间
    var day1 = new Date();
@@ -246,6 +246,21 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
     day3.setTime(day3.getTime()+24*60*60*1000);
     var s3 = day3.getFullYear()+"-" +(day3.getMonth()+1)+ "-" + day3.getDate();
     this.setData({s1:s1,s2:s2,s3:s3})
+     //第一次时间，第二次时间，第三次时间,依次避免两个同样的弹窗连续两天，我没弹。
+    if(wx.getStorageSync('Time') !==1){
+      var unreadOne = wx.getStorageSync('unreadOne');
+      for(var i=0;i<3;i++){
+        var arr = [unreadOne .popupFirstTime,unreadOne .popupSecondTime,unreadOne .popupSecondTime]
+        if(this.data.s1==arr[i]){
+        if(this.data.s2==arr[i+1]){
+          wx.setStorageSync('Time',1);
+          wx.removeStorageSync('unreadOne');
+          wx.removeStorageSync('isNoread');
+          break;
+        }
+      }}
+    }
+  
   },
   /**
    * 获取学号和密码
@@ -302,22 +317,25 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    
     this.getList();
-    if(this.data.popupAppear.popupId ==wx.getStorageSync('unreadOne').popupId ){
-      if(wx.getStorageSync('unreadOne').isShow !==true){
-       this.initPageData();
+    if(wx.getStorageSync('unreadOne').length>0){
+      if(this.data.popupAppear.popupId ==wx.getStorageSync('unreadOne').popupId ){
+        if(wx.getStorageSync('unreadOne').isShow !==true){
+         this.initPageData();
+      }
+      }else if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
+        wx.removeStorageSync('Time');
+        this.initPageData();
+      }
+      if(this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
+        this.setData({
+          termTitleTapdetail:false,
+           tc1:false,
+           tc2:false,
+        })
+      }
     }
-    }else if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
-      this.initPageData();
-    }
-    if(this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
-      this.setData({
-        termTitleTapdetail:false,
-         tc1:false,
-         tc2:false,
-      })
-    }
+    
     if(this.data.popupAppear.popupId == wx.getStorageSync('noJump').popupId){
       this.setData({
         termTitleTapdetail:false,
@@ -331,11 +349,6 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
          tc1:false,
          tc2:false,
       })
-    }
-    //当没有弹窗时候，清除已有缓存
-    if(this.data.popupAppear.popupId == null){
-      wx.removeStorageSync('unreadOne');
-      wx.removeStorageSync('isNoread')
     }
   },
 
@@ -354,9 +367,15 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
          tc2:false,
       })
     }
-    }else if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
+    }
+if(wx.getStorageSync('unreadOne').length>0){
+if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
+      wx.removeStorageSync('Time')
       this.initPageData();
     }
+}
+
+   
   },
   /**
    * 生命周期函数--监听页面隐藏
