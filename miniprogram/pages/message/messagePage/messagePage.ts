@@ -113,6 +113,7 @@ Page({
  },
 //点击进入信息详情
 getMessage(e:any){
+  wx.removeStorageSync('isNoread');
   this.setData({row:e.currentTarget.dataset.row})
    if(this.data.list[e.currentTarget.dataset.row].popupJumpType =='link' ){
     wx.setStorageSync('Url',this.data.list[e.currentTarget.dataset.row].popupJumpUrl);

@@ -48,11 +48,15 @@ Page({
         var unreadOne= wx.getStorageSync('unreadOne');
         var isUnread = wx.getStorageSync('unread')
         if(this.data.messageList.length>0){//信息中心有数据时
+          if(!(unreadOne.length>0)){
           for(var k=0;k<this.data.messageList.length;k++){
-          if(wx.getStorageSync('isNoread') == this.data.messageList[k].popupId){//未点击过其他信息，或者未点击过弹窗
+               if(wx.getStorageSync('isNoread') == this.data.messageList[k].popupId){//未点击过其他信息，或者未点击过弹窗
             this.setData({x:1});
-            break;
+          }if(wx.getStorageSync('isNoread') ==unreadOne.popupId){
+            this.setData({x:0})
           }
+            }
+
         }
         if(isUnread.length>0){//点击过其他信息
           if(isUnread.length <= res.data.data.list.length){
@@ -104,6 +108,7 @@ closePhoto(){
 },
 //点击popup弹窗的图片或点击查看详情，进入具体的信息页面
  loginInfo(){
+  wx.removeStorageSync('isNoread');
    if (this.data.popupAppear.popupJumpType == 'noJump'){
      wx.setStorageSync('noJump',this.data.popupAppear.popupId)
      this.setData({tc1:false,tc2:false,termTitleTapdetail:false,})
@@ -248,7 +253,7 @@ for(var i=0;i<3;i++){
            tc2:false,
         })
       }
-    }
+    }else{this.initPageData();}
     //昨天的时间
    var day1 = new Date();
    day1.setTime(day1.getTime()-24*60*60*1000);
