@@ -24,12 +24,11 @@ Page({
           popupId:this.data.popupId
         },
         success:((res)=>{
-          console.log(res)
           this.setData({
             popupAppear:res.data.data//第一次给值
           })
           this.data.popupAppear.show = "green";
-          this.data.popupAppear.popupPublishTime =  this.data.popupAppear.popupPublishTime.slice(0,11)
+          this.data.popupAppear.popupPublishTime =  this.data.popupAppear.popupPublishTime.slice(0,10)
           this.data.popupAppear.isShow = true; //插入是否已读
           this.setData({popupAppear:res.data.data})//插入show后再又给值
             var isUnread = wx.getStorageSync('unread');
@@ -49,10 +48,12 @@ Page({
           }
         })
       })
+
   },
   //点赞的函数
   getLike(){
-    if(this.data.popupAppear.show == 'green'||this.data.Info[this.data.row].show == 'green'){
+    if(this.data.popupAppear!==null?this.data.popupAppear.show == 'green':this.data.Info[this.data.row].show == 'green'){
+      console.log(1)
   //给接口这个的Id，来获取点赞量。很简单我就用request了
     wx.request({
       url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/addPopupFabulousById',
@@ -61,10 +62,10 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
       },
       data:{
-        popupId:this.data.popupAppear?this.data.popupAppear.popupId:this.data.Info[this.data.row].popupId
+        popupId:this.data.popupAppear!==null?this.data.popupAppear.popupId:this.data.Info[this.data.row].popupId
       },
     })
-    if (this.data.row) {
+    if (this.data.row=='0'?true:this.data.row) {
     //点赞
     this.data.Info[this.data.row].show = 'active'; 
     this.data.Info[this.data.row].popupFabulous = this.data.Info[this.data.row].popupFabulous+1
@@ -72,7 +73,7 @@ Page({
       Info:this.data.Info,
     }) 
     wx.setStorageSync('unread',this.data.Info); 
-  }else if(this.data.popupId){
+  }if(this.data.popupId){
     this.data.popupAppear.show ='active';
     this.data.popupAppear.popupFabulous = this.data.popupAppear.popupFabulous+1
     this.setData({

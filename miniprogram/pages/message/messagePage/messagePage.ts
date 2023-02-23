@@ -40,8 +40,7 @@ Page({
                   }
                 }
               }else{
-                var show = 'green';
-                this.data.list[i].show =show; 
+                this.data.list[i].show ='green'; 
               }  
               if(this.data.list[i].popupId == wx.getStorageSync('unreadOne').popupId){
                 this.data.list[i] = wx.getStorageSync('unreadOne');
