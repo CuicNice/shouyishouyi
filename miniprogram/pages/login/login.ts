@@ -374,7 +374,6 @@ for(var i=0;i<3;i++){
     }
 if(wx.getStorageSync('unreadOne').length>0){
 if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
-      wx.removeStorageSync('Time')
       this.initPageData();
     }
 }

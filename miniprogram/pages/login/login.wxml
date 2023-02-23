@@ -2,7 +2,7 @@
 <view class="bg"></view>
 <view class="container">
   <view wx:if="{{!isLogin}}">
-    <text class="title" bindtap="showBindDialog">首义的朋友请点击登录哇！</text>
+    <text class="title" bindtap="showBindDialog">首义的朋友请点击登录！</text>
     <image class="paw" src="/static/svg/paw{{x}}.svg"></image>
   </view>
   <input wx:if="{{isLogin&&!nickname}}" type="nickname" class="weui-input" placeholder="请输入昵称" placeholder-class="title" />
