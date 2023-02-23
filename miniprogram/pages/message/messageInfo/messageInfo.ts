@@ -49,7 +49,6 @@ Page({
           }
         })
       })
-      wx.setStorageSync('unreadOne',this.data.popupAppear)
   },
   //点赞的函数
   getLike(){
@@ -73,7 +72,7 @@ Page({
       Info:this.data.Info,
     }) 
     wx.setStorageSync('unread',this.data.Info); 
-  }else{
+  }else if(this.data.popupId){
     this.data.popupAppear.show ='active';
     this.data.popupAppear.popupFabulous = this.data.popupAppear.popupFabulous+1
     this.setData({

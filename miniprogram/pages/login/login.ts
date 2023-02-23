@@ -48,9 +48,13 @@ Page({
         var unreadOne= wx.getStorageSync('unreadOne');
         var isUnread = wx.getStorageSync('unread')
         if(this.data.messageList.length>0){//信息中心有数据时
-          if(!isUnread&&!unreadOne){//未点击过其他信息，或者未点击过弹窗
+          for(var k=0;k<this.data.messageList.length;k++){
+          if(wx.getStorageSync('isNoread') == this.data.messageList[k].popupId){//未点击过其他信息，或者未点击过弹窗
             this.setData({x:1});
-        }if(isUnread.length>0){//点击过其他信息
+            break;
+          }
+        }
+        if(isUnread.length>0){//点击过其他信息
           if(isUnread.length <= res.data.data.list.length){
             for(var a=0;a<res.data.data.list.length;a++){
               for(var i=0;i<isUnread.length;i++)
@@ -70,22 +74,21 @@ Page({
                 if(isUnread[i].isShow == true){ 
               this.setData({x:0})
             }else if(isUnread[i].isShow !== true){
-              this.setData({x:1});   
-              break;     
+              this.setData({x:1});     
             }
               }break;
             }
               }
-        }if(unreadOne){//点击过弹窗
+        }if(unreadOne.length>0){//点击过弹窗
           for(var c=0;c<this.data.messageList.length;c++){
             if(unreadOne.popupId == this.data.messageList[c].popupId){
               if(unreadOne.isShow == true){
                 this.setData({x:0})
-              }else if(unreadOne.isShow !== true){this.setData({x:1});break;}
+              }else if(unreadOne.isShow !== true){this.setData({x:1})}
             }
           }
         }
-        }else if(this.data.messageList.length==0){this.setData({x:0})}
+        }
       })
      })
    },
@@ -97,6 +100,7 @@ closePhoto(){
     tc2:false,
   })
   wx.setStorageSync('isNoread',this.data.popupAppear.popupId)//当不想点击弹窗看，而且不想去看信息时,限制弹一次
+  this.getList();
 },
 //点击popup弹窗的图片或点击查看详情，进入具体的信息页面
  loginInfo(){
@@ -105,8 +109,6 @@ closePhoto(){
      this.setData({tc1:false,tc2:false,termTitleTapdetail:false,})
    }else if(this.data.popupAppear.popupJumpType !== 'noJump'){
     if (this.data.popupAppear.popupJumpType == 'link'){
-      this.data.popupAppear.isShow = true;
-      wx.setStorageSync('unreadOne',this.data.popupAppear)
       wx.setStorageSync('Url',this.data.popupAppear.popupJumpUrl)
       wx.navigateTo({url:'../message/web-view/webView'});
     }
@@ -207,7 +209,21 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
      tc1:false,
      tc2:false,
   })
-}
+}//第一次时间，第二次时间，第三次时间,依次避免两个同样的弹窗连续两天，我没弹。
+var unreadOne =popupAppear; 
+var arr = [unreadOne.popupFirstTime,unreadOne.popupSecondTime,unreadOne.popupSecondTime]
+console.log(arr)
+for(var i=0;i<3;i++){
+  if(arr[i].substring(8,10) == this.data.s1.substring(7,10) ){
+  if(this.data.s2.substring(7,10) == arr[i+1].substring(8,10)){
+    if(wx.getStorageSync('time')!==this.data.s2||wx.getStorageSync('time')=='undefined'){
+    wx.setStorageSync('time',this.data.s2);
+    wx.removeStorageSync('unreadOne');
+    wx.removeStorageSync('isNoread');
+    }
+    break;
+  }
+}}
 },
 
   /**
@@ -222,7 +238,6 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
     }
       if(wx.getStorageSync('unreadOne').length>0){
       if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
-        wx.removeStorageSync('Time');
         this.initPageData();
       }
       if(this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
@@ -246,20 +261,7 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
     day3.setTime(day3.getTime()+24*60*60*1000);
     var s3 = day3.getFullYear()+"-" +(day3.getMonth()+1)+ "-" + day3.getDate();
     this.setData({s1:s1,s2:s2,s3:s3})
-     //第一次时间，第二次时间，第三次时间,依次避免两个同样的弹窗连续两天，我没弹。
-    if(wx.getStorageSync('Time') !==1){
-      var unreadOne = wx.getStorageSync('unreadOne');
-      for(var i=0;i<3;i++){
-        var arr = [unreadOne .popupFirstTime,unreadOne .popupSecondTime,unreadOne .popupSecondTime]
-        if(this.data.s1==arr[i]){
-        if(this.data.s2==arr[i+1]){
-          wx.setStorageSync('Time',1);
-          wx.removeStorageSync('unreadOne');
-          wx.removeStorageSync('isNoread');
-          break;
-        }
-      }}
-    }
+     
   
   },
   /**
@@ -323,8 +325,8 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
         if(wx.getStorageSync('unreadOne').isShow !==true){
          this.initPageData();
       }
-      }else if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId){
-        wx.removeStorageSync('Time');
+      }if(this.data.popupAppear.popupId !==wx.getStorageSync('unreadOne').popupId&&wx.getStorageSync('unreadOne').length>0){
+
         this.initPageData();
       }
       if(this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId){
@@ -350,6 +352,8 @@ if(popupAppear.popupId == wx.getStorageSync('isNoread')){
          tc2:false,
       })
     }
+    
+    
   },
 
   /**

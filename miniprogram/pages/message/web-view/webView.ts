@@ -14,6 +14,9 @@ Page({
    */
   onLoad() {
     this.setData({webUrl:wx.getStorageSync('Url')})
+    var popupAppear = wx.getStorageSync('unreadOne');
+    popupAppear.isShow = true;
+    wx.setStorageSync('unreadOne',popupAppear)
   },
 
   /**
