@@ -5,38 +5,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-    classScheduleSetTitle:"设置",
-    dialogTip:false,
-    automatic:true,
-    WC:'',
-    JY:''
+    classScheduleSetTitle: "设置",
+    dialogTip: false,
+    automatic: true,
+    WC: '',
+    JY: '',
+    checked: false
   },
 
-  closeDialogTip(){
-    this.setData({dialogTip:false})
+  closeDialogTip() {
+    this.setData({ dialogTip: false })
   },
 
-  refresh(){
-    var pages=getCurrentPages();
-    var beforePage=pages[pages.length-2]
+  switchChange(e: any) {
+    console.log(e.detail.value)
+    this.setData({
+      checked: e.detail.value
+    })
+    wx.setStorageSync("ifshowAllclass", !this.data.checked)
+  },
+
+  refresh() {
+    var pages = getCurrentPages();
+    var beforePage = pages[pages.length - 2]
     wx.navigateBack({
-      delta:1,
-      success:function(){
+      delta: 1,
+      success: function () {
         beforePage.refresh();
       }
     })
   },
 
-  customskin(){
-    wx.navigateTo({url: '/pages/widgets/classSchedule/Customskin/Customskin'})
+  customskin() {
+    wx.navigateTo({ url: '/pages/widgets/classSchedule/Customskin/Customskin' })
   },
 
-  details(e:any){
+  details(e: any) {
     console.log(e.detail.value)
-    this.setData({dialogTip:true})
+    this.setData({ dialogTip: true })
   },
 
-  check(e:any){
+  check(e: any) {
     console.log(e)
   },
 
@@ -51,7 +60,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    this.setData({
+      checked: !wx.getStorageSync('ifshowAllclass')
+    })
   },
 
   /**
