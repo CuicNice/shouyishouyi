@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //昨天，今天，明天的日期。
     s1:'',
     s2:'',
     s3:'',
@@ -16,13 +17,10 @@ Page({
     currentPage:1,//默认初始第一页数据
     popupAppear:'',
     ima:'',
-    popupSystemSubtitle:'',
-    popupSystemHeadline:'',
     showBindDialog:false, // 显示绑定弹窗
     showLoginDialog:false,// 显示登录弹窗
     zh:'',
     mm:'',
-    query:'',
     x:0,//x为0时，爪子图案为黑色
     messageList:[],
     pageSize:10,
@@ -41,7 +39,7 @@ Page({
            messageList:res.data.data.list,
         })  
         console.log(res)
-        if(this.data.pageSize ==res.data.data.list.length+10){
+        if(this.data.pageSize == res.data.data.list.length+10){
           this.setData({
             pageSize:this.data.pageSize+10,
           })
