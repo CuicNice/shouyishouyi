@@ -63,7 +63,19 @@ Page({
             }
               }break;
             }
-          }else{this.setData({x:0})}
+          }else if(isUnread.length>res.data.data.list.length){
+            for(var a=0;a<res.data.data.list.length;a++){
+              for(var i=0;i<isUnread.length;i++)
+              if(isUnread[i].popupId == res.data.data.list[a].popupId){
+                if(isUnread[i].isShow == true){ 
+              this.setData({x:0})
+            }else if(isUnread[i].isShow !== true){
+              this.setData({x:1});   
+              break;     
+            }
+              }break;
+            }
+              }
         }if(unreadOne.length>0){//点击过弹窗
           for(var c=0;c<this.data.messageList.length;c++){
             if(unreadOne.popupId == this.data.messageList[c].popupId){
