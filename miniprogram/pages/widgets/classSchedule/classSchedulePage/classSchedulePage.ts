@@ -67,7 +67,7 @@ Page({
     })
   },
 
-  async bindEletricCharge() {
+  bindEletricCharge() {
     if (this.data.suorec == '大一下学期' || this.data.suorec == '大二下学期' || this.data.suorec == '大三下学期' || this.data.suorec == '大四下学期') {
       this.setData({
         I: 12,
@@ -250,7 +250,7 @@ Page({
     if (!this.getTableDataFromLocal()) {
       that.selectComponent("#toast").showToast("课表刷新中", "lodding");
       var res = await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I) as any;
-      //console.log(res)
+      console.log(res)
       if (res.data.code == 20000) {
         var all_tables = res.data.data.all_tables;
         var arr = this.objHeavy(all_tables);//筛选有多少门课程
@@ -276,6 +276,7 @@ Page({
           all_tables[i].old_num = all_tables[i].num
           all_tables[i].num = that.getNum(all_tables[i]);
           // 记录下最大的周数
+          console.log(all_tables[i])
           if (all_tables[i].day_num[all_tables[i].day_num.length - 1] > maxWeeks) {
             maxWeeks = all_tables[i].day_num[all_tables[i].day_num.length - 1];
           }
