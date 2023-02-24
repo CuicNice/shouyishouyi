@@ -7,11 +7,11 @@
 <view class="firstMessage" style="border: 4rpx solid {{item.color}}" wx:for="{{list}}" wx:key="index" data-row="{{index}}" wx:for-item="item"bindtap="getMessage">
 <view class="text-box">
   <view class="title" >
-  <text class="titleText">{{item.popupJumpTextTitle == 'null'?item.popupJumpTitle:item.popupJumpTextTitle}}</text>
+  <text class="titleText">{{item.popupJumpType == 'link'?item.popupJumpTitle:item.popupJumpTextTitle}}</text>
   </view>
   <view class="{{item.isShow?'hide':'show'}}">未读</view></view>
   <view class="stitle">
-  <text class="stitleText">{{item.popupJumpTextContent == 'null'?'':item.popupJumpTextContent}}</text>
+  <text class="stitleText">{{item.popupJumpTextContent == null?'':item.popupJumpTextContent}}</text>
   </view>
   <view class="bottomShow">
   <view class="timeShow">
@@ -20,7 +20,7 @@
   </view>
   <view class="likeBox" wx:if="{{item.popupJumpType == 'link'?'':true}}">
   <image src="/static/svg/message/like.svg"></image>
-  <text>{{item.popupFabulous == Null ? '0':item.popupFabulous}}人赞过</text>
+  <text>{{item.popupFabulous == 0 ? '0':item.popupFabulous}}人赞过</text>
   </view>
   </view>
 </view>

@@ -56,7 +56,6 @@ Page({
             this.setData({x:0})
           }
             }
-
         }
         if(isUnread.length>0){//点击过其他信息
           if(isUnread.length <= res.data.data.list.length){
@@ -69,18 +68,18 @@ Page({
               this.setData({x:1});   
               break;     
             }
-              }break;
+              }
             }
           }else if(isUnread.length>res.data.data.list.length){
-            for(var a=0;a<res.data.data.list.length;a++){
+           hdd: for(var a=0;a<res.data.data.list.length;a++){
               for(var i=0;i<isUnread.length;i++)
               if(isUnread[i].popupId == res.data.data.list[a].popupId){
                 if(isUnread[i].isShow == true){ 
               this.setData({x:0})
             }else if(isUnread[i].isShow !== true){
-              this.setData({x:1});     
+              this.setData({x:1});  break hdd; //hdd第一个循环的名字，直接跳出第一个循环，当有一个未读时  
             }
-              }break;
+              }break; 
             }
               }
         }if(unreadOne.length>0){//点击过弹窗
@@ -88,7 +87,7 @@ Page({
             if(unreadOne.popupId == this.data.messageList[c].popupId){
               if(unreadOne.isShow == true){
                 this.setData({x:0})
-              }else if(unreadOne.isShow !== true){this.setData({x:1})}
+              }else if(unreadOne.isShow !== true){this.setData({x:1});break;}
             }
           }
         }
@@ -114,6 +113,7 @@ closePhoto(){
      this.setData({tc1:false,tc2:false,termTitleTapdetail:false,})
    }else if(this.data.popupAppear.popupJumpType !== 'noJump'){
     if (this.data.popupAppear.popupJumpType == 'link'){
+      wx.setStorageSync('unreadOne',this.data.popupAppear);
       wx.setStorageSync('Url',this.data.popupAppear.popupJumpUrl)
       wx.navigateTo({url:'../message/web-view/webView'});
     }

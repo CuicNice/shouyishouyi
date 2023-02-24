@@ -142,7 +142,9 @@ Page({
   onHide() {
     if (this.data.popupAppear) {
       var isUnread = wx.getStorageSync('unread');
-      this.data.popupAppear.isShow = true //插入是否已读
+      if(this.data.popupAppear.popupIsSave == true){
+        this.data.popupAppear.isShow = true //插入是否已读
+      }
         for(var a=0;a<isUnread.length;a++){
           if(this.data.popupAppear.popupId == isUnread[a].popupId){
             isUnread[a] == this.data.popupAppear

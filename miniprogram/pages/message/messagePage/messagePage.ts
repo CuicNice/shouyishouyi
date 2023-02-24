@@ -48,6 +48,7 @@ Page({
               this.data.list[i].color = color;
               this.data.list[i].number = number;  
               this.data.list[i].popupPublishTime =  this.data.list[i].popupPublishTime.slice(0,11)
+              
           }
          //判断数据是否已读;
          var isUnread;
@@ -151,7 +152,7 @@ getMessage(e:any){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady(){
-  
+    this.getList();
   },
 
   /**
