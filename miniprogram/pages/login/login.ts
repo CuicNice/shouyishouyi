@@ -38,7 +38,7 @@ Page({
         this.setData({
            messageList:res.data.data.list,
         })  
-        if(this.data.pageSize >= res.data.data.list.length+10){
+        if(this.data.pageSize >= res.data.data.list.length+11){
           this.setData({
             pageSize:this.data.pageSize+10,            
           })
@@ -48,11 +48,11 @@ Page({
         var unreadOne= wx.getStorageSync('unreadOne');
         var isUnread = wx.getStorageSync('unread')
         if(this.data.messageList.length>0){//信息中心有数据时
-          if(!(unreadOne.length>0)){
+          if(!(unreadOne.length>0&&isUnread.length>0)){
           for(var k=0;k<this.data.messageList.length;k++){
                if(wx.getStorageSync('isNoread') == this.data.messageList[k].popupId){//未点击过其他信息，或者未点击过弹窗
-            this.setData({x:1});
-          }if(wx.getStorageSync('isNoread') ==unreadOne.popupId){
+            this.setData({x:1}); break;
+          }if(wx.getStorageSync('isNoread') == unreadOne.popupId){
             this.setData({x:0})
           }
             }
