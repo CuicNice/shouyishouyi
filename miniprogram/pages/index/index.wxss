@@ -1,6 +1,4 @@
 .banner{
-  /* position: relative;
-  left: 17rpx; */
   float: left;
   margin-left: 17rpx;
 }
