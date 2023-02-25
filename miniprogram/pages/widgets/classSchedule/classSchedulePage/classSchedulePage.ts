@@ -122,6 +122,7 @@ Page({
           "num": num
         },
         success: (res: any) => {
+          console.log(res)
           resolve(res);
           console.log(res)
         },
@@ -152,6 +153,7 @@ Page({
         }, 5000);
     })
   },
+
   closeDialogTip() {
     this.setData({
       dialogTip: false
@@ -250,9 +252,10 @@ Page({
     if (!this.getTableDataFromLocal()) {
       that.selectComponent("#toast").showToast("课表刷新中", "lodding");
       var res = await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I) as any;
-      //console.log(res)
+      // console.log(res)
       if (res.data.code == 20000) {
         var all_tables = res.data.data.all_tables;
+        console.log(all_tables)
         var arr = this.objHeavy(all_tables);//筛选有多少门课程
         var myarr = this.randArr(arr); //把存放课程的数组打乱
         var leng = myarr.length;
