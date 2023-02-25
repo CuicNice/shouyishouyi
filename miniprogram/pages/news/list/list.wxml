@@ -3,67 +3,59 @@
 <!-- 背景 -->
 
 <view class="bg">
+<!-- 背景柱子 -->
+<view class="bgThingsBox">
+<image class="bgThings" src="{{bgSvgUrl}}" mode=""/>
+</view>
 </view>
 <!-- topbar -->
-
-  <!-- 导航栏 -->
-  <!-- 状态栏 {{status + navHeight}}rpx; -->
-  <!-- <view style='height: {{jiaonangHeight}}px;'> -->
-  <view style='height: {{lineHeight+statusBarTop-29}}px;'>
+<topBar title="{{newsListTitle}}" immersion="{{true}}" Threshold="0.2">
+  <!-- 搜索框 -->
+  <!-- 上半部分固定 -->
+    <view class="searchBarBox" bindtap="tosSarchNews">
+    <view class="searchContent">
+      <text class="textInfo" selectable="false" space="false" decode="false">搜索你想要的首义快讯</text>
+    </view>
+    <view class="searchIconBox">
+      <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+    </view>
   </view>
+  <!-- 导航栏 -->
   <!-- 标题栏 -->
-<view>
-  xinwen
-</view>
-  <!-- {{myheight}} -->
-  <scroll-view scroll-y style="height:1450rpx;" bindscroll="scroll" enhanced="{{true}}" bounces="{{false}}" bindscrolltolower='scrollToLower' lower-threshold='150'></scroll-view>
 
-    <!-- 新闻选择 -->
-    <view class="NewsChoose">
-      <view class="NewsButtonBox">
-        <view class="OutOFSchoolNews" bindtap="ChooseShcoolNews">
-          <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}">校园快讯</view>
-          <view class="newsiconGrey" wx:if="{{tapbarCtrl}}"></view>
-          <view class="Newstitle" wx:if="{{!tapbarCtrl}}">校园快讯</view>
-          <view class="newsicon" wx:if="{{!tapbarCtrl}}"></view>
-        </view>
-        <view class="InsideSchoolNews" bindtap="ChooseInNews">
-          <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}">首义快讯</view>
-          <view class="newsiconGrey" wx:if="{{!tapbarCtrl}}"></view>
-          <view class="Newstitle" wx:if="{{tapbarCtrl}}">首义快讯</view>
-          <view class="newsicon" wx:if="{{tapbarCtrl}}"></view>
-        </view>
+  <!-- 新闻选择 -->
+  <view class="NewsChoose">
+    <view class="NewsButtonBox">
+      <view class="OutOFSchoolNews" bindtap="ChooseShcoolNews">
+        <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}">校园快讯</view>
+        <view class="newsiconGrey" wx:if="{{tapbarCtrl}}"></view>
+        <view class="Newstitle" wx:if="{{!tapbarCtrl}}">校园快讯</view>
+        <view class="newsicon" wx:if="{{!tapbarCtrl}}"></view>
+      </view>
+      <view class="InsideSchoolNews" bindtap="ChooseInNews">
+        <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}">首义快讯</view>
+        <view class="newsiconGrey" wx:if="{{!tapbarCtrl}}"></view>
+        <view class="Newstitle" wx:if="{{tapbarCtrl}}">首义快讯</view>
+        <view class="newsicon" wx:if="{{tapbarCtrl}}"></view>
       </view>
     </view>
-
+  </view>
+  <!-- 滑动触发加载更多的新闻scroll -->
+  <scroll-view scroll-y style="height:1450rpx;" bindscroll="scroll" enhanced="{{true}}" bounces="{{false}}" bindscrolltolower='scrollToMoreList' lower-threshold='150'>
     <!-- list搜索栏部分 -->
-    <view class="list-group" wx:if="{{isLogin}}">
-      <itemview_1 list_1="{{list_1}}" wx:if="{{tapbarCtrl}}"></itemview_1>
-      <itemview_2 list_2="{{list_2}}" wx:if="{{tapbarCtrl}}"></itemview_2>
-      <itemview_3 list_3="{{list_3}}" wx:if="{{tapbarCtrl}}"></itemview_3>
+    <view class="list-group" wx:if="{{tapbarCtrl}}">
+      <itemview_1 list_1="{{list_1}}"></itemview_1>
+      <itemview_2 list_2="{{list_2}}"></itemview_2>
+      <itemview_3 list_3="{{list_3}}"></itemview_3>
     </view>
 
-    <view wx:else>
-      <view class="WHQimg" wx:if="{{tapbarCtrl}}">
-        <view class="imglogo1">
-          <image src="/images/nologin.png"></image>
-        </view>
-        <view class="imglogo2">
-          <image src="https://pic.imgdb.cn/item/60f06feb5132923bf87fdb64.png"></image>
-        </view>
-        <view class="imglogo3">
-          <image src="/images/zhongqu.png"></image>
-        </view>
-      </view>
+    <view class="list-group" wx:if="{{!tapbarCtrl}}">
+      <itemview_a list_a="{{list_a}}"></itemview_a>
+      <itemview_b list_b="{{list_b}}"></itemview_b>
+      <itemview_c list_c="{{list_c}}"></itemview_c>
     </view>
 
-    <view class="list-group">
-      <itemview_a list_a="{{list_a}}" wx:if="{{!tapbarCtrl}}"></itemview_a>
-      <itemview_b list_b="{{list_b}}" wx:if="{{!tapbarCtrl}}"></itemview_b>
-      <itemview_c list_c="{{list_c}}" wx:if="{{!tapbarCtrl}}"></itemview_c>
-    </view>
-
-    <view id="he" hidden="{{flag == 1 ? true : false}}" wx:if="{{isLogin}}">
+    <view id="he" hidden="{{flag == 1 ? true : false}}">
       <view class="mybox">
         <view class="item"></view>
         <view class="item"></view>
@@ -76,24 +68,5 @@
         <view class="item"></view>
       </view>
     </view>
-
-<!-- 跳转菜单 -->
-<!-- <view class="mask-con {{!hidden ? 'mask-con-show' : ''}} tableBar-page" style="opacity:{{opac}};">
-  <view class="circle" bindtap="chooseTable">
-    <iamge class="fireIcon"></iamge>
-    <view class="circleText">课表</view>
-  </view>
-  <view class="rectangle">
-    <view class="table-left">
-      <!--bindtap="chooseNews" -->
-      <!-- <image class="leftbar-icon"></image>
-      <view class="leftbar-text">快讯闻</view>
-    </view>
-
-    <view class="table-right" bindtap="chooseMypage">
-      <view class="rightbar-text">首义人</view>
-      <image class="rightbar-icon"></image>
-    </view>
-
-  </view>
-</view>  -->
+  </scroll-view>
+</topBar>

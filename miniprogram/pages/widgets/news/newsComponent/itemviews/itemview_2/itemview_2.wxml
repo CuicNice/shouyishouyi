@@ -4,24 +4,24 @@
 
   <wxs src='../../../../../../wxs/utils.wxs' module='tools'/>         <!-- 引入切割字符串 -->
 
-   <navigator class="infor-box" wx:for="{{list_2}}" wx:key="index" url="/pages/inDetail/inDetail?href={{item.href}}">
-    
+  <navigator class="infor-box" wx:for="{{list_2}}" wx:key="index" url="/pages/inDetail/inDetail?href={{item.outNewsHref}}">
+
+<view class="title-box">
+<view class="item-title" >{{item.outNewsTitle}}</view>
 
 
-  <view class="title-box">
-  <view class="item-title" >{{item.title}}</view>
- 
-  <view class="type">  
-    <view>  <text class="item-type">{{item.type}}</text></view>
-    <view class="typebox">
-    <view class="type-new" >  <image class='new-icon' src="http://tiku.mcdd.top/image/newtip.png"></image></view>
+<view class="type"> 
+  <view>  <text class="item-type">{{item.outNewsType}}</text></view>
+  <view class="typebox">
+        
+  <view class="type-new">  <image class='new-icon' src="/static/svg/news_new.svg"></image></view>
     </view>
 
   </view>
   </view>
   <view class="time-box">
-    <view class="time-day">{{tools.substring(item.date,8,10)}}</view>
-    <view class="time-year">{{tools.substring(item.date,0,4)}}.{{tools.substring(item.date,5,7)}}</view>
+    <view class="time-day">{{tools.substring(item.outNewsDate,8,10)}}</view>
+    <view class="time-year">{{tools.substring(item.outNewsDate,0,4)}}.{{tools.substring(item.outNewsDate,5,7)}}</view>
 
   </view>
  

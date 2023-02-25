@@ -1,10 +1,8 @@
 <!-- pages/widgets/news/newsPage/newsPage.wxml -->
 <view class="bg"></view>
-<topbar title="新闻" immersion="{{true}}" Threshold="0.1">
+<!-- <topbar title="新闻" immersion="{{true}}" Threshold="0.1"> -->
   <!-- 背景问题 -->
-  <view class="container">
-    <!-- 搜索 -->
-    <view class="searchBarBox">
+  <view class="searchBarBox" style="width: 90px;">
       <view class="searchContent">
         <text class="textInfo" selectable="false" space="false" decode="false">搜索你想要的首义快讯</text>
       </view>
@@ -12,9 +10,13 @@
         <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
       </view>
     </view>
+  <view class="container">
+    <!-- 搜索 -->
+
     <!-- 页面切换部分 -->
     <!-- 左部切换 -->
-    <view class="tapBarBox">
+    <tapBar>
+      <view class="tapBarBox">
       <view class="leftBar">
         <view class="leftBarText"></view>
         <view class="leftBarBottomLine"></view>
@@ -27,6 +29,8 @@
         <view class="rightBarBottomLine"></view>
       </view>
     </view>
+    </tapBar>
+
     <!-- 新闻部分 -->
     <view class="newsItemsContainer">
       <!-- 单个新闻 -->
@@ -63,4 +67,4 @@
       </view>
     </view>
   </view>
-</topbar>
+<!-- </topbar> -->

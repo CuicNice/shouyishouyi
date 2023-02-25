@@ -1,4 +1,6 @@
 <view class="search-group">
-  <input class="search-input" type="text" placeholder="输入你想了解的快讯" bindinput='onInputEvent'></input>
-  <icon class="icon-open-new icon"></icon>
+  <input class="search-input" type="text" placeholder="搜索你想要的首义快讯" placeholder-class="searchHolder" bindinput='onInputEvent'></input>
+  <view class="searchIconBox">
+      <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+    </view>
 </view>
