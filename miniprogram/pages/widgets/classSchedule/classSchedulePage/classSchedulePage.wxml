@@ -9,7 +9,7 @@
 <!-- 导航栏 -->
 <view class="navigationBar">
   <!--更多选择的icon  -->
-  <view class="NewIconBoxLeft" bindtap="showPopupA">
+  <view class="NewIconBoxLeft" bindtap="showSetting">
     <image class="NewIconLeft"></image>
   </view>
   <!-- 切换周、日的icon -->
@@ -154,67 +154,10 @@
     <scroll-view class="classScroll" scroll-y="true" lower-threshold='10' upper-threshold='10'>
       <view style="width:100%;display:flex;">
         <view class="leftBox">
-          <view class="timeTable">
-            <view class="number">1</view>
-            <view class="time">8:30</view>
-            <view class="time">9:15</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">2</view>
-            <view class="time">9:20</view>
-            <view class="time">10:05</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">3</view>
-            <view class="time">10:25</view>
-            <view class="time">11:10</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">4</view>
-            <view class="time">11:15</view>
-            <view class="time">12:00</view>
-          </view>
-          <view class="timeTableLine"></view>
-          <view class="timeTable">
-            <view class="number">5</view>
-            <view class="time">{{time.time1}}</view>
-            <view class="time">{{time.time2}}</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">6</view>
-            <view class="time">{{time.time3}}</view>
-            <view class="time">{{time.time4}}</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">7</view>
-            <view class="time">{{time.time5}}</view>
-            <view class="time">{{time.time6}}</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">8</view>
-            <view class="time">{{time.time7}}</view>
-            <view class="time">{{time.time8}}</view>
-          </view>
-          <view class="timeTableLine"></view>
-          <view class="timeTable">
-            <view class="number">9</view>
-            <view class="time">{{time.time9}}</view>
-            <view class="time">{{time.time10}}</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">10</view>
-            <view class="time">{{time.time11}}</view>
-            <view class="time">{{time.time12}}</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">11</view>
-            <view class="time">{{time.time13}}</view>
-            <view class="time">{{time.time14}}</view>
-          </view>
-          <view class="timeTable">
-            <view class="number">12</view>
-            <view class="time">{{time.time15}}</view>
-            <view class="time">{{time.time16}}</view>
+          <view class="timeTable" wx:for="{{time}}" wx:key="index">
+            <view class="number">{{index+1}}</view>
+            <view class="time">{{item.time1}}</view>
+            <view class="time">{{item.time2}}</view>
           </view>
           <view class="timeTableLine"></view>
         </view>
@@ -392,7 +335,7 @@
       <view class="title">请选择学期</view>
     </view>
     <view class="semesterpicker">
-      <picker-view indicator-style="height: 56px;" style="width: 100%; height: 45%;text-align:center; " bindchange="xqchange" value="{{selectedIdx}}">
+      <picker-view indicator-style="height: 56px;" style="width: 100%; height: 45%;text-align:center; " bindchange="SchoolTermChange" value="{{selectedIdx}}">
         <!--Columns-->
         <picker-view-column>
           <view wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
@@ -401,10 +344,10 @@
     </view>
   </view>
   <view class="button">
-    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindEletricCharge">
+    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindSchoolTermCharge">
       <text>取消</text>
     </button>
-    <button type="primary" class="primary" data-index="{{item}}" id="{{item}}" bindtap="bindEletricCharge">
+    <button type="primary" class="primary" data-index="{{item}}" id="{{item}}" bindtap="bindSchoolTermCharge">
       <text>完成</text>
     </button>
   </view>

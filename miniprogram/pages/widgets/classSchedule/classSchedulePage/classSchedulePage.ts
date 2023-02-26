@@ -21,7 +21,7 @@ Page({
     Y: '',
     D: '',
     I: 3,
-    time: { time1: '14:00', time2: '14:45', time3: '14:50', time4: '15:35', time5: '15:50', time6: '16:35', time7: '16:40', time8: '17:25', time9: '18:30', time10: '19:15', time11: '19:20', time12: '20:05', time13: '20:15', time14: '21:00', time15: '21:05', time16: '21:50' },
+    time: [ {time1: '8:30', time2: '9:15'}, {time1: '9:20', time2: '10:05'}, {time1: '10:25', time2: '11:10'}, {time1: '11:15', time2: '12:00'},{time1: '14:00', time2: '14:45'}, {time1: '14:50', time2: '15:35'}, {time1: '15:50', time2: '16:35'}, {time1: '16:40', time2: '17:25'}, {time1: '18:30', time2: '19:15'}, {time1: '19:20', time2: '20:05'}, {time1: '20:15', time2: '21:00'}, {time1: '21:05', time2: '21:50'} ],
     Semesterswitchingdetail: false,
     weeksStatic: [{
       title: "周日",
@@ -50,24 +50,34 @@ Page({
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
     classSchedule: [] as any
   },
-
-  cancelBindEletricCharge() {
+/* 
+*取消学期绑定
+*/
+  cancelBindSchoolTermCharge() {
     this.setData({
       Semesterswitchingdetail: false
     })
   },
 
+  /* 
+  *关闭弹窗
+  */
   closeDetails() {
     this.setData({ ifshow: false })
   },
-
-  xqchange(e: any) {
+  /* 
+  *学期的选择滑动
+  */
+ SchoolTermChange(e: any) {
     this.setData({
       suorec: this.data.semesterList[e.detail.value[0]]
     })
   },
 
-  bindEletricCharge() {
+  /* 
+  *绑定学期的按钮
+  */
+  bindSchoolTermCharge() {
     if (this.data.suorec == '大一下学期' || this.data.suorec == '大二下学期' || this.data.suorec == '大三下学期' || this.data.suorec == '大四下学期') {
       this.setData({
         I: 12,
@@ -80,10 +90,10 @@ Page({
         week: [{ index: 1, type: true, day1: '8/28', day2: '8/29', day3: '8/30', day4: '8/31', day5: '9/1', day6: '9/2', day7: '9/3' }, { index: 2, type: true, day1: '9/4', day2: '9/5', day3: '9/6', day4: '9/7', day5: '9/8', day6: '9/9', day7: '9/10' }, { index: 3, type: true, day1: '9/11', day2: '9/12', day3: '9/13', day4: '9/14', day5: '9/15', day6: '9/16', day7: '9/17' }, { index: 4, type: true, day1: '9/18', day2: '9/19', day3: '9/20', day4: '9/21', day5: '9/22', day6: '9/23', day7: '9/24' }, { index: 5, type: true, day1: '9/25', day2: '9/26', day3: '9/27', day4: '9/28', day5: '9/29', day6: '9/30', day7: '10/1' }, { index: 6, type: true, day1: '10/2', day2: '10/3', day3: '10/4', day4: '10/5', day5: '10/6', day6: '10/7', day7: '10/8' }, { index: 7, type: true, day1: '10/9', day2: '10/10', day3: '10/11', day4: '10/12', day5: '10/13', day6: '10/14', day7: '10/15' }, { index: 8, type: true, day1: '10/16', day2: '10/17', day3: '10/18', day4: '10/19', day5: '10/20', day6: '10/21', day7: '10/22' }, { index: 9, type: true, day1: '10/23', day2: '10/24', day3: '10/25', day4: '10/26', day5: '10/27', day6: '10/28', day7: '10/29' }, { index: 10, type: true, day1: '10/30', day2: '10/31', day3: '11/1', day4: '11/2', day5: '11/3', day6: '11/4', day7: '11/5' }, { index: 11, type: true, day1: '11/6', day2: '11/7', day3: '11/8', day4: '11/9', day5: '11/10', day6: '11/11', day7: '11/12' }, { index: 12, type: true, day1: '11/13', day2: '11/14', day3: '11/15', day4: '11/16', day5: '11/17', day6: '11/18', day7: '11/19' }, { index: 13, type: true, day1: '11/20', day2: '11/21', day3: '11/22', day4: '11/23', day5: '11/24', day6: '11/25', day7: '11/26' }, { index: 14, type: true, day1: '11/27', day2: '11/28', day3: '11/29', day4: '11/30', day5: '12/1', day6: '12/2', day7: '12/3' }, { index: 15, type: true, day1: '12/4', day2: '12/5', day3: '12/6', day4: '12/7', day5: '12/8', day6: '12/9', day7: '12/10' }, { index: 16, type: true, day1: '12/11', day2: '12/12', day3: '12/13', day4: '12/14', day5: '12/15', day6: '12/16', day7: '12/17' }, { index: 17, type: true, day1: '12/18', day2: '12/19', day3: '12/20', day4: '12/21', day5: '12/22', day6: '12/23', day7: '12/24' }, { index: 18, type: true, day1: '12/25', day2: '12/26', day3: '12/27', day4: '12/28', day5: '12/29', day6: '12/30', day7: '12/31' }, { index: 19, type: true, day1: '1/1', day2: '1/2', day3: '1/3', day4: '1/4', day5: '1/5', day6: '1/6', day7: '1/7' }]
       })
     }
-    if (this.data.suorec.slice(1, 2) == "一") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) as unknown as string, schoolPlace: "嘉鱼", time: { time1: '13:30', time2: '14:15', time3: '14:20', time4: '15:05', time5: '15:10', time6: '15:55', time7: '16:00', time8: '16:45', time9: '18:00', time10: '18:45', time11: '18:45', time12: '19:30', time13: '19:30', time14: '20:15', time15: '20:15', time16: '21:00' } }) }
-    if (this.data.suorec.slice(1, 2) == "二") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 1 as unknown as string, schoolPlace: "武昌", time: { time1: '14:00', time2: '14:45', time3: '14:50', time4: '15:35', time5: '15:50', time6: '16:35', time7: '16:40', time8: '17:25', time9: '18:30', time10: '19:15', time11: '19:20', time12: '20:05', time13: '20:15', time14: '21:00', time15: '21:05', time16: '21:50' }, }) }
-    if (this.data.suorec.slice(1, 2) == "三") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 2 as unknown as string, schoolPlace: "武昌", time: { time1: '14:00', time2: '14:45', time3: '14:50', time4: '15:35', time5: '15:50', time6: '16:35', time7: '16:40', time8: '17:25', time9: '18:30', time10: '19:15', time11: '19:20', time12: '20:05', time13: '20:15', time14: '21:00', time15: '21:05', time16: '21:50' }, }) }
-    if (this.data.suorec.slice(1, 2) == "四") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 3 as unknown as string, schoolPlace: "武昌", time: { time1: '14:00', time2: '14:45', time3: '14:50', time4: '15:35', time5: '15:50', time6: '16:35', time7: '16:40', time8: '17:25', time9: '18:30', time10: '19:15', time11: '19:20', time12: '20:05', time13: '20:15', time14: '21:00', time15: '21:05', time16: '21:50' }, }) }
+    if (this.data.suorec.slice(1, 2) == "一") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) as unknown as string, schoolPlace: "嘉鱼", time: [{time1: '8:30', time2: '9:15'}, {time1: '9:20', time2: '10:05'}, {time1: '10:25', time2: '11:10'}, {time1: '11:15', time2: '12:00'},{time1: '13:30', time2: '14:15'}, {time1: '14:20', time2: '15:05'}, {time1: '15:10', time2: '15:55'}, {time1: '16:00', time2: '16:45'}, {time1: '18:00', time2: '18:45'}, {time1: '18:45', time2: '19:30'}, {time1: '19:30', time2: '20:15'}, {time1: '20:15', time2: '21:00'} ] }) }
+    if (this.data.suorec.slice(1, 2) == "二") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 1 as unknown as string, schoolPlace: "武昌", time: [ {time1: '8:30', time2: '9:15'}, {time1: '9:20', time2: '10:05'}, {time1: '10:25', time2: '11:10'}, {time1: '11:15', time2: '12:00'},{time1: '14:00', time2: '14:45'}, {time1: '14:50', time2: '15:35'}, {time1: '15:50', time2: '16:35'}, {time1: '16:40', time2: '17:25'}, {time1: '18:30', time2: '19:15'}, {time1: '19:20', time2: '20:05'}, {time1: '20:15', time2: '21:00'}, {time1: '21:05', time2: '21:50'} ], }) }
+    if (this.data.suorec.slice(1, 2) == "三") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 2 as unknown as string, schoolPlace: "武昌", time: [ {time1: '8:30', time2: '9:15'}, {time1: '9:20', time2: '10:05'}, {time1: '10:25', time2: '11:10'}, {time1: '11:15', time2: '12:00'},{time1: '14:00', time2: '14:45'}, {time1: '14:50', time2: '15:35'}, {time1: '15:50', time2: '16:35'}, {time1: '16:40', time2: '17:25'}, {time1: '18:30', time2: '19:15'}, {time1: '19:20', time2: '20:05'}, {time1: '20:15', time2: '21:00'}, {time1: '21:05', time2: '21:50'} ], }) }
+    if (this.data.suorec.slice(1, 2) == "四") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 3 as unknown as string, schoolPlace: "武昌", time: [ {time1: '8:30', time2: '9:15'}, {time1: '9:20', time2: '10:05'}, {time1: '10:25', time2: '11:10'}, {time1: '11:15', time2: '12:00'},{time1: '14:00', time2: '14:45'}, {time1: '14:50', time2: '15:35'}, {time1: '15:50', time2: '16:35'}, {time1: '16:40', time2: '17:25'}, {time1: '18:30', time2: '19:15'}, {time1: '19:20', time2: '20:05'}, {time1: '20:15', time2: '21:00'}, {time1: '21:05', time2: '21:50'} ], }) }
     this.setData({ semester: this.data.suorec.slice(0, 3) })
     this.setData({ Semesterswitchingdetail: false })
     wx.removeStorageSync('classSchedule')
@@ -92,10 +102,15 @@ Page({
       wx.removeStorageSync('classSchedule')
     }, 6000)
   },
-
-  showPopupA() {
+  /* 
+  *跳转到课表设置界面
+  */
+  showSetting() {
     wx.navigateTo({ url: '/pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting' })
   },
+  /* 
+  *重新刷新功能
+  */
   refresh() {
     wx.removeStorageSync('classSchedule')
     this.setData({ weekSchedule: true })
@@ -152,11 +167,16 @@ Page({
         }, 5000);
     })
   },
+
+  /* 
+  *关闭弹窗
+  */
   closeDialogTip() {
     this.setData({
       dialogTip: false
     })
   },
+
   /**
    * 从本地缓存中读取课表，若成功返回true，失败为false
    */
@@ -204,6 +224,9 @@ Page({
     }
     return list;
   },
+  /* 
+  *查重
+  */
   objHeavy: function (arr: any) { //筛选一共有几门课
     let arr1 = []; //存名字
     let newArr = []; //存新数组
@@ -505,11 +528,18 @@ Page({
       detailClass: list
     })
   },
+
+  /* 
+  *切换周与日课表
+  */
   changeicon() {
     this.setData({
       weekSchedule: !this.data.weekSchedule
     })
   },
+  /* 
+  *展开学期选择弹窗
+  */
   selectSchoolTime() {
     this.setData({
       Semesterswitchingdetail: true
@@ -568,9 +598,9 @@ Page({
     if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大二上" }) }
     if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大二上" }) }
     if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大二下" }) }
-    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大一上", schoolPlace: "嘉鱼", time: { time1: '13:30', time2: '14:15', time3: '14:20', time4: '15:05', time5: '15:10', time6: '15:55', time7: '16:00', time8: '16:45', time9: '18:00', time10: '18:45', time11: '18:45', time12: '19:30', time13: '19:30', time14: '20:15', time15: '20:15', time16: '21:00' } }) }
-    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大一上", schoolPlace: "嘉鱼", time: { time1: '13:30', time2: '14:15', time3: '14:20', time4: '15:05', time5: '15:10', time6: '15:55', time7: '16:00', time8: '16:45', time9: '18:00', time10: '18:45', time11: '18:45', time12: '19:30', time13: '19:30', time14: '20:15', time15: '20:15', time16: '21:00' } }) }
-    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大一下", schoolPlace: "嘉鱼", time: { time1: '13:30', time2: '14:15', time3: '14:20', time4: '15:05', time5: '15:10', time6: '15:55', time7: '16:00', time8: '16:45', time9: '18:00', time10: '18:45', time11: '18:45', time12: '19:30', time13: '19:30', time14: '20:15', time15: '20:15', time16: '21:00' } }) }
+    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) { this.setData({ semester: "大一上", schoolPlace: "嘉鱼", time: [{time1: '8:30', time2: '9:15'}, {time1: '9:20', time2: '10:05'}, {time1: '10:25', time2: '11:10'}, {time1: '11:15', time2: '12:00'},{time1: '13:30', time2: '14:15'}, {time1: '14:20', time2: '15:05'}, {time1: '15:10', time2: '15:55'}, {time1: '16:00', time2: '16:45'}, {time1: '18:00', time2: '18:45'}, {time1: '18:45', time2: '19:30'}, {time1: '19:30', time2: '20:15'}, {time1: '20:15', time2: '21:00'} ] }) }
+    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) { this.setData({ semester: "大一上", schoolPlace: "嘉鱼", time: [ {time1: '8:30', time2: '9:15'}, {time1: '9:20', time2: '10:05'}, {time1: '10:25', time2: '11:10'}, {time1: '11:15', time2: '12:00'},{time1: '14:00', time2: '14:45'}, {time1: '14:50', time2: '15:35'}, {time1: '15:50', time2: '16:35'}, {time1: '16:40', time2: '17:25'}, {time1: '18:30', time2: '19:15'}, {time1: '19:20', time2: '20:05'}, {time1: '20:15', time2: '21:00'}, {time1: '21:05', time2: '21:50'} ] }) }
+    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大一下", schoolPlace: "嘉鱼", time: [ {time1: '8:30', time2: '9:15'}, {time1: '9:20', time2: '10:05'}, {time1: '10:25', time2: '11:10'}, {time1: '11:15', time2: '12:00'},{time1: '14:00', time2: '14:45'}, {time1: '14:50', time2: '15:35'}, {time1: '15:50', time2: '16:35'}, {time1: '16:40', time2: '17:25'}, {time1: '18:30', time2: '19:15'}, {time1: '19:20', time2: '20:05'}, {time1: '20:15', time2: '21:00'}, {time1: '21:05', time2: '21:50'} ] }) }
     this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, showAll: wx.getStorageSync('ifshowAllclass') })
     this.initPageData();
   },
