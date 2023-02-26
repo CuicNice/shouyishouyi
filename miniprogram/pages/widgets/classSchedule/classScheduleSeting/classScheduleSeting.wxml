@@ -49,8 +49,10 @@
       </view>
     </view>
     <view class="Option-two">
+    <button class="contactButton" open-type="contact">
       <view class="choice-text">课表有问题？联系南南反馈</view>
       <view class="choice-icon"></view>
+    </button>
     </view>
   </view>
 </view>
