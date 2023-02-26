@@ -62,7 +62,7 @@ maxlength="4">
 <!-- 南南问题单 -->
 <f-dialog showDialog="{{showDialog}}" title="{{dialogtitle}}"schoolBuiltSrc="{{schoolBuiltSrc}}" bname="{{bname}}" b1name="{{b1name}}">
   <view class="btn-box school-btn">
-        <button class="btn" type="primary" style="width: 214rpx;" plain="{{true}}" onclick="submitError('sheihsishi')" open-type="contact">{{bname}}</button>
+        <button class="btn" type="primary" style="width: 214rpx;" plain="{{true}}" onclick="submitError('')" open-type="contact">{{bname}}</button>
         <button class="btn" type="primary" style="width: 214rpx;background: #20C38C;" bindtap="gotoBd" >{{b1name}}</button>
       </view>   
 </f-dialog>

@@ -34,24 +34,24 @@ Page({
       },
       success:(res)=> {
         console.log(res.data)
-        this.setData({
-          homePics:res.data.data.list
-        })
+        // this.setData({
+        //   homePics:res.data.data.list
+        // })
         for(var i=0;i<this.data.homePics.length;i++){
-          if(this.data.homePics[i].bannerType == 'image'){
-            this.setData({
-              iftaiozhuan:false
-            })
-          }
-          if(this.data.homePics[i].bannerType != 'image'){
-            this.setData({
-              iftaiozhuan:true
-            })
-          }
-          var src='http://' + this.data.homePics[i].bannerImage
-          var iftiaozhuan=this.data.iftaiozhuan
-          this.data.homePics[i].src=src
-          this.data.homePics[i].iftiaozhuan=iftiaozhuan
+          // if(this.data.homePics[i].bannerType == 'image'){
+          //   this.setData({
+          //     iftaiozhuan:false
+          //   })
+          // }
+          // if(this.data.homePics[i].bannerType != 'image'){
+          //   this.setData({
+          //     iftaiozhuan:true
+          //   })
+          // }
+          // var src='http://' + this.data.homePics[i].bannerImage
+          // var iftiaozhuan=this.data.iftaiozhuan
+          // this.data.homePics[i].src=src
+          // this.data.homePics[i].iftiaozhuan=iftiaozhuan
         }
         this.setData({
           homePics:this.data.homePics
@@ -59,6 +59,15 @@ Page({
       }
     })
   },
+    //tabar设置初始值
+    show() {
+      if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 1
+        })
+      }
+    },
 
   tap(e:any){
     console.log(e.detail)
@@ -82,6 +91,8 @@ Page({
 
   onLoad() {
     // this.initPageData();
+    let that =this
+    that.show()
   },
   async initPageData(){
     var from = {

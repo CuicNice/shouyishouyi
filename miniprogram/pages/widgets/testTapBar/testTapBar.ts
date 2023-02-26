@@ -1,4 +1,4 @@
-// pages/widgets/classSchedule/classSchedulePage/classSchedulePage.ts
+// pages/widgets/testTapBar/testTapBar.ts
 Page({
 
   /**
@@ -14,15 +14,6 @@ Page({
   onLoad() {
 
   },
-  //tabar设置初始值
-  show() {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0
-      })
-    }
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -34,9 +25,13 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    let that =this
-    that.show()
+  onShow: function () {
+  /* 在list中每一个页面中设置，在页面显示时，动态设置一下getTabBar获得组件中的selected值，这样也确保了入口不固定时，每次高亮的tabBar都是正确的*/
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({  // 文档中有介绍 getTabBar用于获取当前组件实例
+        selected: 2 //这个部分的数值只需要填写，你需要填写当前页面对应的数值
+      })
+    }
   },
 
   /**

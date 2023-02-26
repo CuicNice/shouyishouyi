@@ -1,24 +1,51 @@
 {
   "pages": [
+    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
+    "pages/widgets/widgetsPages/widgetsPages",
+    "pages/widgets/testTapBar/testTapBar",
+    "pages/news/list/list",
+    "pages/news/search/search",
     "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
-    "pages/login/login",
     "pages/index/index",
     "pages/indexText/indexText",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
-    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
     "pages/widgets/library/librarycom/librarycom",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",
     "pages/popup/popupPage/popupPage",
-    "pages/message/web-view/webView"
+    "pages/message/web-view/webView",
+    "pages/test1/test"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
+        "text": "课程表",
+        "iconPath": "/static/svg/tapBar/courseTable_grey.png",
+        "selectedIconPath": "/static/svg/tapBar/courseTable_blue.png"
+      },
+      {
+        "pagePath": "pages/test1/test",
+        "text": "首页",
+        "iconPath": "./static/svg/tapBar/nanaHome_grey.png",
+        "selectedIconPath": "./static/svg/tapBar/nananHome_green.png"
+      },
+      {
+        "pagePath": "pages/widgets/widgetsPages/widgetsPages",
+        "text": "组件",
+        "iconPath": "./static/svg/tapBar/wedgetsBox_grey.png",
+        "selectedIconPath": "./static/svg/tapBar/wedgetsBox_yellow.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

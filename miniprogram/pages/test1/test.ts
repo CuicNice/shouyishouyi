@@ -1,4 +1,4 @@
-// pages/widgets/classSchedule/classSchedulePage/classSchedulePage.ts
+// pages/test1/test.ts
 Page({
 
   /**
@@ -11,17 +11,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-
-  },
-  //tabar设置初始值
   show() {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
-        selected: 0
+        selected: 1
       })
     }
+  },
+  onLoad() {
+
+
   },
 
   /**
@@ -37,6 +37,7 @@ Page({
   onShow() {
     let that =this
     that.show()
+
   },
 
   /**

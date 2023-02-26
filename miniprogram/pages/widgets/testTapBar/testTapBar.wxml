@@ -1,0 +1,3 @@
+<!--pages/widgets/testTapBar/testTapBar.wxml-->
+<!-- /* 测试tapBar页面 */ -->
+<tapBar></tapBar>
