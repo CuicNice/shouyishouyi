@@ -734,6 +734,22 @@ components/topbar/topbar.wxss
   color: #292945;
 }
 
+.borrowBox {
+  /*  margin-top: -55rpx;
+  margin-left: 432rpx; */
+  position: relative;
+  left: 432rpx;
+  top: -55rpx
+}
+
+.ima {
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+  position: relative;
+  right: 10rpx;
+}
+
 .borrow {
   margin-top: 14rpx;
   margin-left: 60rpx;
@@ -754,14 +770,19 @@ components/topbar/topbar.wxss
 }
 
 .bookXQ {
-  margin-top: 60rpx;
-  margin-left: 33rpx;
+
   padding: 30rpx 24rpx;
   gap: 20rpx;
   width: 640rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 20rpx rgba(32, 195, 140, 0.3);
   border-radius: 20rpx;
+}
+
+.bookBox {
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: center;
 }
 
 .bookName {

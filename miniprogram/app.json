@@ -11,7 +11,7 @@
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
     "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
-    "pages/widgets/library/librarycom/librarycom",
+    "pages/widgets/library/libraryDetailed/libraryDetailed",
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",
     "pages/popup/popupPage/popupPage",

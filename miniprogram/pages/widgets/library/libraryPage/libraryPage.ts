@@ -4,16 +4,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    /* swiperCurrent: 0,
-    libraryTitle:"首义图书馆",
-    circular: false, //是否采用衔接滑动
-    librarySvg: [
-      '/static/svg/schoolBuilt/zhonglou.svg',
-      '/static/svg/schoolBuilt/zhongqutushuguan.svg'
-    ],
-    xuehao:'',
-    mima:'',
-    haveBind:true */
     word: '',
     ifshow: true,
     swiper: 0,  //当前所在页面的 
@@ -25,6 +15,9 @@ Page({
     electricChargeTitle: '首义图书馆',
   },
 
+  /**
+  *轮播图右划
+  **/
   swiperChangeqian: function () {
     if (this.data.swiper == 3) {
       this.setData({
@@ -38,48 +31,54 @@ Page({
     }
   },
 
+  /** 
+  *点击输入框进行输入书名
+  **/
   getInputValue: function (e: any) {
-    this.setData({ word: e.detail.value })
+    this.setData({ word: e.detail.value });
   },
 
   //添加缓存
   cache(abc: string) {
     // 先获取缓存中的内容
-    let array = wx.getStorageSync(abc) || []
+    let array = wx.getStorageSync(abc) || [];
     // 向数组中追加
-    var ifshow = false
+    var ifshow = false;
     if (this.data.word.length > 6) { ifshow = !ifshow }
-    array.push({
+    array.item.push({
       item: this.data.word,
       ifshow: ifshow
-    })
+    });
     // 重新设置缓存
-    wx.setStorageSync(abc, array)
+    wx.setStorageSync(abc, array);
   },
 
+  /**
+  *点击搜索记录里的方框进行搜索
+  **/
   markMake(e: any) {
-    var num = wx.getStorageSync('item').length - e.currentTarget.dataset.index - 1
-    var add = wx.getStorageSync('item')[num].item
-    this.setData({ word: add })
+    var num = wx.getStorageSync('widget-library').item.length - e.currentTarget.dataset.index - 1;
+    var add = wx.getStorageSync('widget-library').item[num].item;
+    this.setData({ word: add });
     setTimeout(() => {
       wx.navigateTo({ url: '/pages/widgets/library/librarytext/librarytext?word=' + this.data.word }),
-        this.setData({ word: '' })
-      this.get()
-    }, 500)
+        this.setData({ word: '' });
+      this.get();
+    }, 500);
   },
 
+  /** 
+  *清除搜索记录
+  **/
   deleteMark() {
-    wx.removeStorage({
-      key: 'item',
-      success() {
-        console.log("清除缓存")
-      }
-    })
-    this.get()
+    let arr = wx.getStorageSync('widget-library');
+    arr.item = [];
+    wx.setStorageSync('widget-library', arr);
+    this.get();
     this.setData({
       ifshow: true,
       word: ''
-    })
+    });
   },
 
   //查重
@@ -95,109 +94,104 @@ Page({
     return newArr;
   },
 
+  /**
+  *搜索
+  **/
   search() {
     if (this.data.word != "") {
-      if (wx.getStorageSync('item').length < 6) {
-        this.cache('item')
-        var arr = this.objHeavy(wx.getStorageSync('item'))
-        wx.setStorage({
-          key: 'item',
-          data: arr,
-        })
+      if (wx.getStorageSync('widget-library').item.length < 6) {
+        this.cache('widget-library');
+        var arr = { item: this.objHeavy(wx.getStorageSync('widget-library').item), book: [] };
+        wx.setStorageSync('widget-library', arr);
       }
-      if (wx.getStorageSync('item').length == 6) {
-        this.cache('item')
-        var arr = this.objHeavy(wx.getStorageSync('item'))
-        if (arr.length == 6) {
+      if (wx.getStorageSync('widget-library').item.length == 6) {
+        this.cache('widget-library');
+        var arr = { item: this.objHeavy(wx.getStorageSync('widget-library').item), book: [] };
+        if (arr.item.length == 6) {
           // 重新设置缓存
-          wx.setStorage({
-            key: 'item',
-            data: arr,
-          })
+          wx.setStorageSync('widget-library', arr);
         }
-        if (arr.length == 7) {
-          let array = wx.getStorageSync('item')
-          let arrays = []
-          for (var i = 0; i < array.length; i++) {
+        if (arr.item.length == 7) {
+          let array = wx.getStorageSync('widget-library');
+          let arrays = { item: [] as any, book: [] as any };
+          for (var i = 0; i < array.item.length; i++) {
             if (i != 0) {
-              arrays.push(array[i])
+              arrays.item.push(array.item[i]);
             }
           }
           // 重新设置缓存
-          wx.setStorageSync('item', arrays)
+          wx.setStorageSync('widget-library', arrays);
         }
       }
-      this.get()
-      wx.navigateTo({ url: '/pages/widgets/library/librarytext/librarytext?word=' + this.data.word })
-      this.setData({ word: '' })
+      this.get();
+      wx.navigateTo({ url: '/pages/widgets/library/librarytext/librarytext?word=' + this.data.word });
+      this.setData({ word: '' });
     }
   },
 
+  /**
+  *轮播图左划
+  **/
   swiperChangeho: function () {
     if (this.data.swiper == 0) {
       this.setData({
         swiper: 0
-      })
+      });
     }
     else {
       this.setData({
         swiper: this.data.swiper - 1
-      })
+      });
     }
   },
 
   //获取缓存的内容
   get() {
-    var myarr = wx.getStorageSync('item')
-    if (myarr.length != 0) {
-      var arr = []
-      console.log(myarr)
-      for (var i = myarr.length - 1; i >= 0; i--) {
-        arr.push(myarr[i])
+    if (wx.getStorageSync('widget-library')) {
+      var myarr = wx.getStorageSync('widget-library');
+      if (myarr.item.length != 0) {
+        var arr = [];
+        for (var i = myarr.item.length - 1; i >= 0; i--) {
+          arr.push(myarr.item[i]);
+        };
+        this.setData({
+          shuju: arr,
+          ifshow: false
+        });
       }
-      console.log(arr)
-      this.setData({
-        shuju: arr,
-        ifshow: false
-      })
+    } else {
+      let arrays = { item: [] as any, book: [] as any };
+      wx.setStorageSync('widget-library', arrays);
     }
   },
 
 
   /**
    * 生命周期函数--监听页面加载
-   */
+   **/
   onLoad() {
-    wx.removeStorage({
-      key: 'book',
-    })
-    this.get()//初始化获取缓存
-
+    if (wx.getStorageSync('widget-library').item) {
+      var arr = wx.getStorageSync('widget-library');
+      arr.book = [];
+      wx.setStorageSync('widget-library', arr);
+    };//避免用户第一次进入没有widget-library这个缓存
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
-   */
+   **/
   onReady() {
-    /* var value1 = wx.getStorageSync('key1')
-    var value2 = wx.getStorageSync('key2')
-      var xx
-      var yy 
-      if(value1||value2){
-        xx=wx.getStorageSync('key1')
-        yy=wx.getStorageSync('key2')
-        this.setData({
-          xuehao:xx,
-          mima:yy
-        })
-      } */
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    var arr = wx.getStorageSync('widget-library')
+    arr.book = [];
+    wx.setStorageSync('widget-library', arr)
+    this.get();//初始化获取缓存
   },
 
   /**

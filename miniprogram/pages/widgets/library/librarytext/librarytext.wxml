@@ -7,7 +7,7 @@
   <view>
     <view class="allsearch">
       <view class="leftBox">
-       {{word}}  搜索结果
+        {{word}} 搜索结果
       </view>
       <view class="rightBox">
         <view class="lefticon2" bindtap="againrequest">

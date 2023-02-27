@@ -1,18 +1,22 @@
-// pages/widgets/library/libraryPage/libraryPage.js
+// pages/widgets/library/libraryPage/libraryPage.ts
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    allbook: [] as any,
+    num: 0,
+    electricChargeTitle: '图书详情'
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
 
+  /** 
+  *接收从上一个页面传递过来的数据
+  **/
+  onLoad(e) {
+    this.setData({ num: (e.num) as unknown as number, allbook: JSON.parse((e.all) as unknown as string) });
   },
 
   /**
