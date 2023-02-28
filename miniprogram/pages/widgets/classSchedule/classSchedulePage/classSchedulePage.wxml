@@ -30,7 +30,7 @@
 </view>
 <view class="select_box" wx:if="{{weekSchedule}}">
   <scroll-view scroll-x="true" scroll-with-animation="true" class="select_week" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:rgba(255, 255, 255, 0.8);">
-    <view wx:for="{{week}}" wx:key="index" style="display: inline-flex;height: 100%;align-items: center;">
+    <view wx:for="{{weekNum}}" wx:key="index" style="display: inline-flex;height: 100%;align-items: center;">
       <view class="select_one" wx:if="{{nowWeek == index+1}}" bindtap="selectWeekangian">
         <ul>
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
@@ -61,7 +61,7 @@
     </view>
     <!-- 周和日期-->
     <view class="weekbigBox">
-      <view class="weekBox{{week[nowWeek-1].day1 == nowDate ? 'Select':''}}">
+      <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周日</view>
         </view>
@@ -73,7 +73,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{week[nowWeek-1].day2 == nowDate ? 'Select':''}}">
+      <view class="weekBox{{weekTime[1] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周一</view>
         </view>
@@ -85,7 +85,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{week[nowWeek-1].day3 == nowDate ? 'Select':''}}">
+      <view class="weekBox{{weekTime[2] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周二</view>
         </view>
@@ -97,7 +97,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{week[nowWeek-1].day4 == nowDate ? 'Select':''}}">
+      <view class="weekBox{{weekTime[3] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周三</view>
         </view>
@@ -109,7 +109,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{week[nowWeek-1].day5 == nowDate ? 'Select':''}}">
+      <view class="weekBox{{weekTime[4] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周四</view>
         </view>
@@ -121,7 +121,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{week[nowWeek-1].day6 == nowDate ? 'Select':''}}">
+      <view class="weekBox{{weekTime[5] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周五</view>
         </view>
@@ -133,7 +133,7 @@
           </block>
         </view>
       </view>
-      <view class="weekBox{{week[nowWeek-1].day7 == nowDate ? 'Select':''}}">
+      <view class="weekBox{{weekTime[6] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="top-text">周六</view>
         </view>
