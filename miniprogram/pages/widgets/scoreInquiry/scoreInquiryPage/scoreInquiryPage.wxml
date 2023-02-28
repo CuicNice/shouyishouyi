@@ -114,10 +114,8 @@
       
       <view class="courseName-title">{{item.name}}</view>
     </view>
-    <view class="scoreMsg">课程学分：{{item.class_score}}  | 修得学分：{{item.class_score}} <!--{{item.jd =="None"?'无':item.jd }} --> | 正常考试 </view>
+    <view class="scoreMsg">课程学分：{{item.class_score}}  | 修得学分：{{item.class_score}} | 正常考试 </view>
   </view>
-    <!-- <view class="Score"  wx:if="{{item.score}}">{{item.score}}</view>
-    <view class="Score" wx:else="{{item.score=='优秀'||item.score=='良好'||item.score=='中等'||item.score=='及格'||item.score=='通过'}}" style="color:#137A54">{{item.score}}</view> -->
     <view class="Score" wx:if="{{item.score >0}}" style="font-size: 64rpx;">{{filters.toFix(item.score)}}</view>
     <view class="Score" wx:elif="{{item.score=='优秀'||item.score=='良好'||item.score=='中等'||item.score=='及格'||item.score=='通过'}}" style="font-size: 48rpx;">{{item.score}}</view>
      <view class="Score" wx:elif="{{item.score=='缺考'||item.score=='不及格'||item.score=='不通过'}}" style="font-size: 48rpx;">{{item.score}}</view>
@@ -144,7 +142,7 @@
         <view class="scoredetailBox-detail" >
             <view class="scoredetailBox-detail-tittle">
               <view class="scoredetailBox-text">成绩详情</view>
-              <view style="background: {{color}};"class="scoredetail-typeBox"><text class="scoredetail-typeText">{{kcxzmc}}</text></view>
+              <view style="background: {{color}}"class="scoredetail-typeBox"><text class="scoredetail-typeText">{{kcxzmc}}</text></view>
             </view>
             <view class="scoreDetailborder"></view>
             <view  class="scoredetail-courseTitle">{{kcmc}}</view>

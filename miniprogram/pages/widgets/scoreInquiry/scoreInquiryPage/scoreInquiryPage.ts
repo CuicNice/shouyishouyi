@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userScoreInfo:{},
+    userScoreInfo:[],
     scoreTitle:"成绩查询",
     courseTapdetail: false,
     termTitleTapdetail:false,
@@ -24,8 +24,12 @@ Page({
     term_y:'sxq',
     scoreLevel:0,//默认为等待入榜
     xqxfscore:'',
-    scoreDetail:''
+    scoreDetail:'',
+    color:''//专修必修选修的颜色
   },
+      /**
+     * 变化等级称号
+     */
   scoreLevels(xqxfscore: number){
     if(xqxfscore >=90 ){
       this.setData({
@@ -57,6 +61,9 @@ Page({
       })
     }
   },
+      /**
+     * 显示查询中或请求成功的小弹窗
+     */
   showToast(showToast: boolean, toastIcon: string, toastTitle: string) { 
     this.setData({ 
       showToast: showToast, 
@@ -64,16 +71,15 @@ Page({
       toastTitle: toastTitle 
     }) 
   }, 
-  //点击传值
+      /**
+     * 点击成绩卡片
+     */
  async courseTap(e:any){
-    var row = e.currentTarget.dataset.row;
-    var zh;
-    var mm;
-    //console.log(row);
-    var academic_year_y = this.data.academic_year_y;
+    var row = e.currentTarget.dataset.row;//成绩列表的下标
     var term_y = this.data.term_y;
+    var academic_year_y=this.data.academic_year_y
     this.showToast(true,"lodding","查询中……");
-    var jd = this.data.userScoreInfo[academic_year_y][term_y][row].jd
+    var jd = this.data.userScoreInfo[academic_year_y][term_y][row]["jd"]
     this.setData({
       jd:parseInt(jd)
     })
@@ -81,21 +87,22 @@ Page({
      * 获取本地缓存，判断是否绑定数据
      */
      var bindScore = { 
-      zh:wx.getStorageSync('zh'),
-      mm:wx.getStorageSync('mm'),
-      id: this.data.userScoreInfo[academic_year_y][term_y][row].jxb_id,
-      xnm:this.data.userScoreInfo[academic_year_y][term_y][row].xnm,
-      xqm:this.data.userScoreInfo[academic_year_y][term_y][row].xqm,
+      zh:wx.getStorageSync('login').zh,
+      mm:wx.getStorageSync('login').mm,
+      id: this.data.userScoreInfo[academic_year_y][term_y][row]["jxb_id"],
+      xnm:this.data.userScoreInfo[academic_year_y][term_y][row]["xnm"],
+      xqm:this.data.userScoreInfo[academic_year_y][term_y][row]["xqm"],
     } as ScoreInquiryeItem;
-      console.log(bindScore)
       if (bindScore) {
         this.showToast(true,'lodding',"查询中......");
         this.courseTaped(bindScore);
       }  
 
 },
-// 关闭成绩弹窗
-closeTap: function (e:any) {
+/**
+     * 关闭成绩弹窗
+     */
+closeTap: function () {
   var that = this;
   that.setData({
     courseTapdetail: false,
@@ -103,12 +110,13 @@ closeTap: function (e:any) {
     scoreCountdetail: false
   })
 },
-  //弹窗
+  /**
+     * 成绩详情弹窗
+     */
     async courseTaped(from: ScoreInquiryeItem) {
-      console.log(from);
-     const {data: res3 } = await getScoreDetail(from) as unknown as Iresult<any>
-     console.log(res3)
-     if(!res3){
+     //Detail 用来接受成绩详情的变量
+     const {data:Detail} = await getScoreDetail(from) as unknown as Iresult<any>
+     if(!Detail){
        this.showToast(true,'error',"请求失败");
      }else{
       this.showToast(true,'success',"请求成功");
@@ -116,52 +124,48 @@ closeTap: function (e:any) {
      /*
      *数据修饰
      */
-    
-    var kcxzmc = res3.allDetails.kcxzmc
+      var kcxzmc = Detail.allDetails.kcxzmc;
+      var color  = '';//专修必修选修的颜色
       if(kcxzmc == "必修"){
-       this.setData({
-         kcxzmc:"必修",
-        color:'#3EBAD0'
-      }) 
+         kcxzmc="必修";
+         color='#3EBAD0';
       }
       else if (kcxzmc == '公共选修') {
-      this.setData({
-        kcxzmc :"公选",
-        color :'#20C38C',
-      })
+        kcxzmc="公选";
+        color='#20C38C';
       } else if ( kcxzmc == '专业选修') {
-        this.setData({
-          kcxzmc : "专选",
-          color : '#FBDE71',
-        })
-      };
-      var score = res3.allDetails.score;
+          kcxzmc = "专选";
+          color ='#FBDE71';
+      }
+      var score = Detail.allDetails.score;
       if (score.indexOf(".0") >= 0) {
         score = parseInt(score);
-      };
+      }
         /**
        * 渲染
        */
-      if(res3.Details.length >=4 ){
+      if(Detail.Details.length >=4 ){
         this.setData({height:700})
       }
-      else if(res3.Details.length ==3){
+      else if(Detail.Details.length ==3){
         this.setData({height:640})
-      }else if(res3.Details.length ==2){
+      }else if(Detail.Details.length ==2){
         this.setData({height:594})
-      }else if(res3.Details.length ==1){
+      }else if(Detail.Details.length ==1){
         this.setData({height:488})
       }
       this.setData({
-        Detail:res3,
-        Details:res3.Details,
-        bj:res3.allDetails.bj,
-        jsxm:res3.allDetails.jsxm,
-        kcmc:res3.allDetails.kcmc,
+        Detail:Detail,
+        Details:Detail.Details,
+        bj:Detail.allDetails.bj,
+        jsxm:Detail.allDetails.jsxm,
+        kcmc:Detail.allDetails.kcmc,
         score:score,
-        xf:res3.allDetails.xf,
-        xnmmc:res3.allDetails.xnmmc,
-        xqmmc:res3.allDetails.xqmmc,
+        xf:Detail.allDetails.xf,
+        xnmmc:Detail.allDetails.xnmmc,
+        xqmmc:Detail.allDetails.xqmmc,
+        kcxzmc:kcxzmc,
+        color:color,
       })
       setTimeout(() => {
         this.setData({
@@ -169,79 +173,6 @@ closeTap: function (e:any) {
           courseTapdetail:true
         })
       }, 800);
-      
-  /*
-        success (res) {
-          if (res.data.code == 20000){
-            //console.log(res.data.data)
-            that.setData({
-              Details:res.data.data,
-              showToast:false,
-            },function(){
-              console.log(that.data)
-              var jsxm =that.data.Details.allDetails.jsxm;
-              var Details = this.data.Details;
-              var row = e.currentTarget.dataset.row;
-              var userScoreInfo = this.data.userScoreInfo;
-              var academic_year_y = this.data.academic_year_y;
-              var term_y = this.data.term_y;
-              var kcname= userScoreInfo[academic_year_y][term_y][row].name;
-              var score=userScoreInfo[academic_year_y][term_y][row].score;
-              if (score.indexOf(".0") >= 0) {
-                score = parseInt(score);
-              };
-              var my_class = userScoreInfo[academic_year_y][term_y][row].my_class;
-              var jd =  userScoreInfo[academic_year_y][term_y][row].jd;
-              var class_score =userScoreInfo[academic_year_y][term_y][row].class_score;
-              var xnm = userScoreInfo[academic_year_y][term_y][row].xnm;
-              var type =userScoreInfo[academic_year_y][term_y][row].type;
-              if (type == '公共选修') {
-                type = "公选"
-              } else if ( type == '专业选修') {
-                type  = "专选"
-              };
-              var xf = that.data.Details.allDetails.xf;
-              var xnmmc =that.data.Details.allDetails.xnmmc;
-              var xqmmc = that.data.Details.allDetails.xqmmc;
-              var Details = that.data.Details.Details;
-              var leng = Details.length;
-              if (leng != 0) {
-                for (var i = 0; i < Details.length; i++) {
-                  if (Details[i].cjfx == '平时成绩') {
-                    Details[i].cjfx = '平时'
-                  } else if (Details[i].cjfx == '考试成绩') {
-                    Details[i].cjfx = '考试'
-                  } else if (Details[i].cjfx == '实验成绩') {
-                    Details[i].cjfx = '实验'
-                  } else if (Details[i].cjfx == '实训内容成绩') {
-                    Details[i].cjfx = '实训'
-                  }
-                }
-              }
-                this.setData({
-                    jsxm:jsxm,
-                    type:type,
-                    my_class:my_class,
-                    score:score,
-                    kcname:kcname,
-                    jd:parseInt(jd),
-                    class_score:class_score,
-                    xf: xf,
-                    xnmmc: xnmmc,
-                    xqmmc: xqmmc,
-                    Details: Details,
-                    leng: leng,
-                    courseTapdetail: true,
-                    
-                })
-                
-            })
-        }else{
-          console.log(res.data.msg);
-        }
-      }
-    });
-    wx.hideLoading();*/
   },
   
 
@@ -375,20 +306,9 @@ closeTap: function (e:any) {
 
 
   choose: function (e: { currentTarget: { dataset: { academic_year: any; term: any; row: any } } }) {
-   // wx.vibrateShort(); // 1、使手机震动15ms
-   //this.showToast(true,"loading","查询中……");
-    // console.log( e.currentTarget.dataset)
     var academic_year = e.currentTarget.dataset.academic_year;
     var term = e.currentTarget.dataset.term;
     var row = e.currentTarget.dataset.row;
-    // var userScoreInfo = this.data.userScoreInfo;
-    // var academic_year_y = this.data.academic_year_y;
-    // var term_y = this.data.term_y;
-    // var score=userScoreInfo[academic_year_y][term_y][row].score;
-    // if (score.indexOf(".0") >= 0) {
-    //   score = parseInt(score);
-    // };
-    // console.log(academic_year, term)
     this.renderAcademicAndTermTap(academic_year, term);
     //wx.hideLoading();
     //改变称号
@@ -405,8 +325,8 @@ closeTap: function (e:any) {
      * 获取本地缓存，判断是否绑定数据
      */
      var bindData = { 
-      zh:wx.getStorageSync('zh'),
-      mm:wx.getStorageSync('mm'),
+      zh:wx.getStorageSync('login').zh,
+      mm:wx.getStorageSync('login').mm,
     } as ScoreInquiryeItem;
       console.log(bindData)
       if (bindData) {
@@ -459,66 +379,7 @@ closeTap: function (e:any) {
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    /*this.setData({
-      toastTitle:"查询中......",
-      toastIcon:'lodding',
-      showToast:true,
-      })
-    wx.request({
-      url: `http://www.fmin-courses.com:9527/api/v1/craw/user/userInfo`,
-      method:'POST',
-      data:{
-        zh: zh=wx.getStorageSync('key1'),
-        mm: mm=wx.getStorageSync('key2'),
-      },
-      success:((res) =>{
-        this.setData({
-          showinfo:res.data.data
-        })
-        console.log(res.data)
-      }), 
-    }),
-     
-    //this.initPageData();
-   this.renderAcademicAndTermTap(this.data.academic_year, this.data.term);
-   var zh;
-   var mm;
-    var that = this;
-    wx.request({
-      url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/userScore',
-      method:"POST",
-      data: {
-        zh: zh=wx.getStorageSync('key1'),
-        mm: mm=wx.getStorageSync('key2'),
-      },
-      success:((res)=> {
-        //console.log(res.data)
-        if (res.data){
-         // console.log(res.data.data)
-          var academic_year_y = that.data.academic_year_y;
-          var term_y = that.data.term_y;
-          that.scoreLevels(res.data.data[academic_year_y][term_y+'all'][0].xqxfscore)
-          that.setData({
-            userScoreInfo: res.data.data,
-            xqxfscore:res.data.data[academic_year_y][term_y+'all'][0].xqxfscore
-            
-          })
-          this.setData({
-            toastTitle:"绑定成功",
-            toastIcon:'success',
-            showToast:true,
-            })
-            setTimeout(() => {
-              this.setData({
-            showToast:false
-          })
-            }, 500);
-          
-        }else{
-          console.log(res.data.msg);
-        }
-      })
-    })*/
+   
   },
 
   /**
