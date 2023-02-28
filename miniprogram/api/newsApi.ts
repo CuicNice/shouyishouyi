@@ -10,8 +10,8 @@ import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
 // 分页的请求参数
-import {outnewsListItem,innernewsListItem} from "../pages/news/list/list";
-import {newsKeyWordsItem} from "../pages/news/search/search";
+import {outnewsListItem,innernewsListItem} from "../pages/news/newsList/list";
+import {newsKeyWordsItem} from "../pages/news/newsSearch/search";
 
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();

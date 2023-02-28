@@ -44,15 +44,11 @@
   <scroll-view scroll-y style="height:1450rpx;" bindscroll="scroll" enhanced="{{true}}" bounces="{{false}}" bindscrolltolower='scrollToMoreList' lower-threshold='150'>
     <!-- list搜索栏部分 -->
     <view class="list-group" wx:if="{{tapbarCtrl}}">
-      <itemview_1 list_1="{{list_1}}"></itemview_1>
-      <itemview_2 list_2="{{list_2}}"></itemview_2>
-      <itemview_3 list_3="{{list_3}}"></itemview_3>
+      <itemview list="{{list}}"></itemview>
     </view>
 
     <view class="list-group" wx:if="{{!tapbarCtrl}}">
-      <itemview_a list_a="{{list_a}}"></itemview_a>
-      <itemview_b list_b="{{list_b}}"></itemview_b>
-      <itemview_c list_c="{{list_c}}"></itemview_c>
+      <itemview list="{{list}}"></itemview>
     </view>
 
     <view id="he" hidden="{{flag == 1 ? true : false}}">

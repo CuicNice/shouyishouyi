@@ -1,7 +1,6 @@
 // import {
 //   Network
 // } from "../../../model/network.js";
-import tool from "../../../utils/tool.js";
 // 接口请求部分
 import {
   // 内网新闻
@@ -13,9 +12,6 @@ import {
 import {
   myStorage
 } from "../../../utils/newStorage.js";
-import {
-  admin
-} from '../../../utils/checkAdmin.js';
 // 定义请求数据结构
 // {
 //   "currentPage": "1",
@@ -35,15 +31,6 @@ export {
   outnewsListItem
 
 }
-let util = require('../../../utils/timeUtils.js');
-const app = getApp();
-let list_1: any[] = [];
-let list_2: any[] = [];
-let list_3: any[] = [];
-let list_a: any[] = [];
-let list_b: any[] = [];
-let list_c: any[] = [];
-
 Page({
   data: {
     lineHeight: 32,
@@ -72,12 +59,7 @@ Page({
     flag: 0, //底部加载显示。0显示
     clock: 1,
     // 关于新闻数据
-    list_1: [] as any, //当天的
-    list_2: [] as any, //近三天的
-    list_3: [] as any,
-    list_a: [] as any, //当天的
-    list_b: [] as any, //近三天的
-    list_c: [] as any,
+    list: [] as any,
   },
   changeClass: function () { //头像旋转
     let that = this
@@ -109,11 +91,6 @@ Page({
   checkDate: function (startTime: any, endTime: any) {
     // 使用阻塞
     //日期格式化
-    let a = "sssls"
-    console.log("startTime:any, endTime", startTime, endTime);
-
-    let b = a.replace("l", "jjj")
-    console.log("b", startTime)
     let startTimeStr = startTime.replace("/-/g", "/")
     let endTimeStr = endTime.replace("/-/g", "/")
     let start_date = new Date(startTimeStr);
@@ -153,11 +130,9 @@ Page({
   // 校园快讯，inner请求
  async getInnerSchoolNews(){
     let that=this
-    let mydate = util.formatDate(new Date()); // 调用函数时，传入new Date()参数，返回值是日期和时间
     wx.showLoading({
       title: '正在加载...',
     });
-    let pages = that.data.pages;
     // 获取内网新闻
     let innerPageParams=that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
@@ -165,38 +140,11 @@ Page({
 
     if (innerRes != null) {
       wx.hideLoading();
-      console.log("iiiii", innerRes);
-      let data = innerRes.list;
-      for (let i = 0; i < innerRes.pageSize; i++) {
-        let newdate = data[i].outNewsDate;
-        if (newdate != undefined && mydate != undefined) {
-          if (that.checkDate(mydate, newdate) < 8) {
-            list_1.push(data[i])
-          } else if (that.checkDate(mydate, newdate) < 9) {
-            list_2.push(data[i])
-          } else {
-            list_3.push(data[i])
-          }
-        } else {
-          list_3.push(data[i])
-          wx.showToast({
-            title: '刷新失败',
-            icon: 'error',
-            duration: 1500
-          })
-          wx.hideToast();
-          list_1 = list_2 = list_3 = [];
-        }
-
-      }
-
+      let list = innerRes.list;
       that.setData({
-        list_1: list_1, //当天的
-        list_2: list_2, //近三天的
-        list_3: list_3,
+        list: list, //当天的
       })
     }
-
   },
   // 外网首义
 async getOutSouyiNews(){
@@ -205,25 +153,13 @@ async getOutSouyiNews(){
  * 发送请求，渲染数据
  * @param from 楼栋数据
  */
-let mydate = util.formatDate(new Date()); // 调用函数时，传入new Date()参数，返回值是日期和时间
+// let mydate = util.formatDate(new Date());
+ // 调用函数时，传入new Date()参数，返回值是日期和时间
 let that=this
 let outPageParams = that.data.outPageParams
 let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
 if (outRes.pageSize != 0) {
-  let data = outRes.list;
-  for (let i = 0; i < outRes.pageSize; i++) {
-    let newdate = data[i].outNewsDate;
-    if (newdate != undefined && mydate != undefined) {
-    if (that.checkDate(mydate, newdate) < 1) {
-      list_a.push(data[i])
-    } else if (that.checkDate(mydate, newdate) < 3) {
-      list_b.push(data[i])
-    } else {
-      list_c.push(data[i])
-    }
-  }else{
-    list_a = list_b = list_c = [];
-  }}
+  var list = outRes.list;
 } else {
   wx.showToast({
     title: '刷新失败',
@@ -231,16 +167,10 @@ if (outRes.pageSize != 0) {
     duration: 1500
   })
   wx.hideToast();
-  list_a = list_b = list_c = [];
 }
 that.setData({
-  list_a: list_a, //当天的
-  list_b: list_b, //近三天的
-  list_c: list_c
+  list: list, 
 })
-console.log("list_a", that.data.list_a);
-console.log("list_b", list_b);
-console.log("list_c", list_c);
   },
 async scrollToMoreList(){
 // 滚动加载更多的数据，滚动一次多加载10条
@@ -316,22 +246,9 @@ if(that.data.tapbarCtrl){
   },
   async onLoad() {
     let that = this;
-    let flag = 1;
-    let fuck = 1
-    // list_1.length = 0;
     // 初始化新闻列表
 that.getInnerSchoolNews()
 that.getOutSouyiNews()
-    // list_2.length = 0;
-    // list_3.length = 0;
-    // list_a.length = 0;
-    // list_b.length = 0;
-    // list_c.length = 0;
-    // 当前的时间
-    //   {
-    //     "currentPage": "1",
-    //     "pageSize": "5"
-    // }
 //  外网请求调用
   },
 // 点击新闻搜索跳转新的页面
@@ -392,7 +309,6 @@ setTimeout(() => {
   },
   // 首义快讯
   ChooseInNews: function () {
-    let that = this
     this.setData({
       tapbarCtrl: true,
     })

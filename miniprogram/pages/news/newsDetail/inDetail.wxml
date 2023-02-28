@@ -1,0 +1,49 @@
+<!--pages/inDetail/inDetail.wxml-->
+<!-- <navbar navbar-data='{{nvabarData}}'></navbar> -->
+<import src="../../wxParse/wxParse.wxml" />
+<view class="bg">
+  <!-- 背景柱子 -->
+  <view class="bgThingsBox">
+    <image class="bgThings" src="{{bgSvgUrl}}" mode="" />
+  </view>
+</view>
+<!-- topbar -->
+<topBar title="{{newsDetailTitle}}" immersion="{{true}}" Threshold="0.1">
+  <view class="cont">
+    <!-- 顶部的图像 -->
+    <view class="top">
+      <image style="width: 330px;height: 59.38px;" src="{{topTitleSvgUrl}}" mode="" />
+    </view>
+    <!-- 新闻内容框子 -->
+    <view class="border" style="background:{{t_bg}}">
+      <view class="title" style="filter:{{light}}">{{item.title}}</view>
+      <!-- 南李路22号标题头 -->
+      <view class="contenTitle">
+        <image class="contentTitle"style="width: 622rpx;height: 28rpx;" src="{{contentTitle}}" mode="" />
+      </view>
+      <view class="letter">
+        <view class="text">
+          <view class="{{light=='brightness(10);'? 'NewwxParse' : 'wxParse'}}">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+          </view>
+        </view>
+        <view class="boderLine"></view>
+        <view class="ad" style="filter:{{light}}">更多讯息请微信关注：南李路二十二号</view>
+      </view>
+    </view>
+    <!-- 底部的背景 -->
+    <view class="bottom">
+      <view class="bottom_left" bindtap="switchColoe">
+        <!-- 南南的微信二维码 -->
+        <image class="erweima" src="{{nannanCode}}"></image>
+      </view>
+      <view class="bottom_right">
+        <view class="bottom_text" style="filter:{{light}}">扫码快速关注微信公众号</view>
+        <!-- 三个符号 -->
+        <view class="bottom_text" style="filter:{{light}}"><text decode="true">&lt;&lt;&lt;</text></view>
+        <view class="bottom_text" style="filter:{{light}}">首义学习资料，首义一手讯息</view>
+        <view class="bottom_text" style="filter:{{light}}">首义学分获取......</view>
+      </view>
+    </view>
+  </view>
+</topBar>

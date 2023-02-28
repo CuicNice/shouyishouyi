@@ -1,5 +1,4 @@
 var WxParse = require('../../../wxParse/wxParse.js');
-
 import {
   Network
 } from "../../../model/network.js";
@@ -7,32 +6,35 @@ import {
   myStorage
 } from "../../../utils/newStorage.js";
 var href = '';
-
 Page({
-
   /**
    * 页面的初始数据
    */
-
   data: {
     href: '',
     type: 0,
     bgc: "#FFF",
     light: "",
     t_bg: "",
+    newsDetailTitle:"快讯闻",
+    // 南南的微信二维码
+    nannanCode:"/static/svg/news/nanan_weixinCode.svg",
+    // 南南题目头
+    contentTitle:"/static/svg/news/contentTitle.svg",
+    topTitleSvgUrl:"/static/svg/news/topTitle.svg",
+    bgSvgUrl:"/static/svg/pillar.svg",
     bg_url: " url(http://tiku.mcdd.top/image/bg.png);",
     bg_size: "background-size: 418rpx 1052rpx;"
   },
-
-  onAddToFavorites(res) { //收藏
-    var href = JSON.stringify(this.data.href);
-    return {
-      //title: '自定义标题',
-      query: href = +href,
-
-    }
-  },
-
+// 基础库不支持IOS
+  // onAddToFavorites(res:any) { //收藏
+  //   console.log("any",res)
+  //   var href = JSON.stringify(this.data.href);
+  //   return {
+  //     //title: '自定义标题',
+  //     query: href = +href,
+  //   }
+  // },
   onShareAppMessage() { //分享
     var href = JSON.stringify(this.data.href);
     //   console.log(href)
@@ -49,19 +51,16 @@ Page({
       promise
     }
   },
-
-
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options) {
-    // //   console.log(options)
+  onLoad: async function (options:any) {
+       console.log(options)
     var that = this;
     var str2 = '<div class="pic"><img src="" title="" /><s class="prev" title="上一张"></s><s class="next" title="下一张"></s><span class="tips">最后一张了</span></div>';
     var str3 = '<li class="last">最后一张</li>';
     href = options.href;
     if (options.href.length > 15) {
-
       href = href.replace(/%2F/g, "/")
     }
     // //   console.log(href)
@@ -104,8 +103,7 @@ Page({
       });
     }
   },
-
-  wxParseTagDown: function (e) {
+  wxParseTagDown: function (e:any) {
     wx.showLoading({
       title: '下载中...',
     });
@@ -143,8 +141,7 @@ Page({
       }
     })
   },
-
-  switchColoe: function (res) {
+  switchColoe: function (res:any) {
     var that = this
     var type = that.data.type
     type++;

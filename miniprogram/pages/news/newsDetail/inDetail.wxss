@@ -1,0 +1,265 @@
+/* pages/inDetail/inDetail.wxss */
+@import '/wxParse/wxParse.wxss';
+/* 背景 */
+
+/* 背景颜色 */
+.bg {
+  /* Entering for the first time */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* 背景 */
+  background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
+  z-index: -999;
+}
+.top{
+  /* 距离顶部的距离 */
+  margin-top: 58rpx;
+  width: 330px;
+  height: 59.38px;
+}
+.topTitleSvg{
+  width: 330px !important;
+  height: 59.38px !important;
+}
+/* 背景的物体 */
+.bgThingsBox {
+  position: fixed;
+  left: 127.33px;
+  top: 266px;
+}
+
+.bgThings {
+  width: 178.74 !important;
+  height: 440.74px !important;
+}
+.one_page {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: scroll;
+}
+.cont {
+  display: flex;
+  /* 对齐的轴列 */
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  margin-left: 85rpx;
+  margin-top: 83rpx;
+}
+.border {
+  /* 由于使用的wxss解析插件，所以文本部分的宽度只能够使用宽度来解决 */
+  display: block;
+  /* padding内边框，外边框margin:10rpx 12rpx 14rpx 16rpx;  意思上元素块为10rpx，右元素块距离为12rpx ，下元素块距离为14rpx，左元素块距离16rpx */
+  width: 622rpx;
+  padding: 10% 29rpx 10% 29rpx;
+  /*关键点 利用边距撑大容器,使得背景图片也跟着变大变小.而不是给这个元素定个固定的高度.*/
+  margin: 74rpx 0rpx 55rpx 0rpx;
+  /* 长度根据内容多少决定 */
+  /* height: 867rpx; */
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 26rpx;
+  box-shadow: 0rpx 2rpx 8rpx -2rpx rgba(0, 0, 0, 0.5);
+}
+/* 虚线 */
+.boderLine{
+  box-sizing: border-box;
+  /* width: 622rpx; */
+/* Auto layout */
+/* margin-left: 29rpx;
+margin-right: 29rpx; */
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+align-items: center;
+padding: 0px 0px 11px;
+gap: 10px;
+border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+.title {
+  width: 474rpx;
+  /* height: 82rpx; */
+  text-align: center;
+  font-size: 29rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 900;
+  color: #2E2C2C;
+  line-height: 41rpx;
+  letter-spacing: 2rpx;
+  margin-left: 66rpx;
+}
+
+
+.title_small {
+  text-align: center;
+  width: 106rpx;
+  height: 20rpx;
+  font-size: 14rpx;
+  font-family: PingFangSC-Light, PingFang SC;
+  font-weight: 300;
+  color: #2E2C2C;
+  line-height: 20rpx;
+  letter-spacing: 1rpx;
+  margin-top: 17rpx;
+  margin-left: 105rpx;
+
+
+}
+
+.letter {
+  width: 546rpx;
+  /* height: 409rpx; */
+  /* margin-left: 30rpx; */
+  padding: 0rpx 29rpx;
+}
+
+.object {
+  font-size: 23rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #2E2C2C;
+  line-height: 38rpx;
+  letter-spacing: 1rpx;
+
+}
+.text {
+  font-size: 23rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #2E2C2C;
+  line-height: 38rpx;
+  letter-spacing: 1rpx;
+  margin-top: 30rpx;
+}
+
+.signdowns {
+  width: 546rpx;
+  height: 86rpx;
+  margin-top: 34rpx;
+}
+
+.signdown {
+  line-height: 38rpx;
+  text-align: right;
+  font-size: 23rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #2E2C2C;
+  letter-spacing: 2rpx;
+}
+
+.ad {
+  width: 445rpx;
+  /* height: 25rpx; */
+  font-size: 23rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #2E2C2C;
+  line-height: 32rpx;
+  letter-spacing: 1rpx;
+  text-align: center;
+  margin-top: 62rpx;
+  /* margin-left: 80rpx; */
+}
+.bottom {
+  display: flex;
+  justify-content: start;
+  /* 使用网格布局的grid */
+  gap: 140rpx;
+}
+/* 内容题头 */
+.contentTitle{
+  display: flex;
+  align-items: center;
+  width: 622rpx;
+  height: 28rpx;
+}
+.contentTitleSvg{
+  /* 内容题头部分 */
+  display: flex;
+  align-self: center;
+}
+.erweima {
+  width: 176rpx;
+  height: 176rpx;
+}
+.bottom_left {
+  width: 176rpx;
+  height: 176rpx;
+  display: flex;
+  margin-left: 40rpx;
+}
+.bottom_right {
+  width: 380rpx;
+  height: 162rpx;
+  font-size: 23rpx;
+  padding-top: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #2E2C2C;
+  line-height: 32rrpx;
+  letter-spacing: 1rpx;
+
+}
+
+.bottom_text {
+  font-size: 23rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #2E2C2C;
+  line-height: 32rpx;
+  letter-spacing: 1rpx;
+  word-wrap: wrap;
+
+}
+.detail-box {
+  width: 554rpx;
+  height: 176rpx;
+}
+.title2 {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 17rpx;
+}
+
+.title2 .title2_words {
+  /* width: 110rpx; */
+  height: 20rpx;
+  font-size: 14rpx;
+  font-family: PingFangSC-Light, PingFang SC;
+  font-weight: 300;
+  color: #2E2C2C;
+  line-height: 20rpx;
+  letter-spacing: 1rpx;
+  margin-left: 11rpx;
+  margin-right: 11rpx
+}
+
+.line2 {
+  float: left;
+  word-wrap: none;
+  width: 174rpx;
+  height: 2rpx;
+
+  background-color: black;
+}
