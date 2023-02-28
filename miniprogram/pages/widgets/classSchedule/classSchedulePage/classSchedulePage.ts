@@ -372,7 +372,6 @@ Page({
    * 渲染全部课表临时页面
    */
   getNowWeekData(classSchedule: { week: any; all_keshes?: any }, nowWeek: number) {
-    // console.log("getNowWeekData")
     var week = classSchedule.week;
     var nowWeekData = [{
       day: "星期日",
