@@ -33,7 +33,6 @@
     <view wx:for="{{week}}" wx:key="index" style="display: inline-flex;height: 100%;align-items: center;">
       <view class="select_one" wx:if="{{nowWeek == index+1}}" bindtap="selectWeekangian">
         <ul>
-          <!-- <view class="select_oneIconBox"> <image class="select_oneIcon"></image></view> -->
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
           <view class="select_oneweek">第{{index+1}}周</view>
         </ul>
@@ -69,7 +68,7 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{week[nowWeek-1].day1}}</view>
+              <view class="Box">{{weekTime[0]}}</view>
             </view>
           </block>
         </view>
@@ -81,7 +80,7 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{week[nowWeek-1].day2}}</view>
+              <view class="Box">{{weekTime[1]}}</view>
             </view>
           </block>
         </view>
@@ -93,7 +92,7 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{week[nowWeek-1].day3}}</view>
+              <view class="Box">{{weekTime[2]}}</view>
             </view>
           </block>
         </view>
@@ -105,7 +104,7 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{week[nowWeek-1].day4}}</view>
+              <view class="Box">{{weekTime[3]}}</view>
             </view>
           </block>
         </view>
@@ -117,7 +116,7 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{week[nowWeek-1].day5}}</view>
+              <view class="Box">{{weekTime[4]}}</view>
             </view>
           </block>
         </view>
@@ -129,7 +128,7 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{week[nowWeek-1].day6}}</view>
+              <view class="Box">{{weekTime[5]}}</view>
             </view>
           </block>
         </view>
@@ -141,7 +140,7 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{week[nowWeek-1].day7}}</view>
+              <view class="Box">{{weekTime[6]}}</view>
             </view>
           </block>
         </view>
