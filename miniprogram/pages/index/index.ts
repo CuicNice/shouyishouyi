@@ -4,6 +4,9 @@ export interface BannerItem {
   "pageSize": number
 }
 Page({
+  /* 
+  *数据声明
+  */
   data: {
     motto: 'Hello World',
     userInfo: {},
@@ -13,53 +16,48 @@ Page({
     shuju:''
   },
   // 事件处理函数
+  /* 
+  *点击图片跳转
+  */
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs',
     })
   },
 
+  /* 
+  *网络请求
+  */
   async onReady() {
     let value={"currentPage": 1,"pageSize": 5}
-    const res  = await getBanner(value) as unknown as IResult<any>;
+    var iftiaozhuan
+    const{data: res} = await getBanner(value) as unknown as IResult<any>;
     if(res){
-        console.log(res)
-        this.setData({
-          homePics:res
-        })
-        for(var i=0;i<this.data.homePics.length;i++){
-          if(this.data.homePics[i].bannerType == 'image'){
-            this.setData({
-              iftaiozhuan:false
-            })
+        var add=res.list
+        for(var i=0;i<add.length;i++){
+          if(add[i].bannerType == 'image'){
+              iftiaozhuan=false
           }
-          if(this.data.homePics[i].bannerType != 'image'){
-            this.setData({
-              iftaiozhuan:true
-            })
+          if(add[i].bannerType != 'image'){
+              iftiaozhuan=true
           }
-          var src='http://' + this.data.homePics[i].bannerImage
-          var iftiaozhuan=this.data.iftaiozhuan
-          this.data.homePics[i].src=src
-          this.data.homePics[i].iftiaozhuan=iftiaozhuan
+          var src='http://' + add[i].bannerImage
+          add[i].src=src
+          add[i].iftiaozhuan=iftiaozhuan
         }
         this.setData({
-          homePics:this.data.homePics
+          homePics:add
         })}
   },
 
   tap(e:any){
-    console.log(e.detail)
       this.setData({
       shuju:e.detail.bannerContent,
       iftaiozhuan: true
     })
-    console.log(this.data.shuju)
     try{
       wx.setStorageSync('key', this.data.shuju)
-      console.log('写入value成功')
     }catch (e) {
-      console.log('写入value发生错误')
     }
     var arr=wx.getStorageSync('key')
     if(this.data.shuju != null && arr.charAt(0) != "/"){
@@ -68,7 +66,6 @@ Page({
     })
   }else{
     var place=wx.getStorageSync('key')
-    console.log(place)
     wx.navigateTo({
       url: place,
     })
