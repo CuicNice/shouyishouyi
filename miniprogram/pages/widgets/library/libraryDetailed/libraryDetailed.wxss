@@ -428,7 +428,7 @@
   top: -55rpx
 }
 
-.ima {
+.imag {
   width: 40rpx;
   height: 40rpx;
   float: left;
@@ -514,7 +514,7 @@
   margin-top: -5rpx;
 }
 
-.textpart {
+.textPart {
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
@@ -526,7 +526,7 @@
   letter-spacing: 5rpx;
 }
 
-.textparts {
+.textParts {
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
@@ -553,7 +553,7 @@
   border-radius: 20rpx;
 }
 
-.gentop {
+.genTop {
   height: 122rpx;
   width: 610rpx;
   border-bottom: 3rpx dashed rgba(41, 41, 69, 0.1);
@@ -561,13 +561,13 @@
   margin-left: 26rpx;
 }
 
-.gentopRight {
+.genTopRight {
   height: 100%;
   width: 65%;
   float: left;
 }
 
-.gentopLeft {
+.genTopLeft {
   height: 190rpx;
   width: 190rpx;
   margin-top: -60rpx;
@@ -575,7 +575,7 @@
   left: 60rpx;
 }
 
-.gentext {
+.genText {
   width: 70rpx;
   height: 44rpx;
   font-family: 'PingFang SC';
@@ -588,12 +588,12 @@
   margin-left: 10rpx;
 }
 
-.genpart {
+.genPart {
   margin-top: 18rpx;
   width: 475rpx;
 }
 
-.genpart1 {
+.genPart1 {
   height: 42rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -604,7 +604,7 @@
   margin-top: 60rpx;
 }
 
-.genpart2 {
+.genPart2 {
   height: 42rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -616,7 +616,7 @@
   margin-top: -42rpx;
 }
 
-.genprogress {
+.genProgress {
   height: 40rpx;
   width: 626rpx;
   margin-top: 18rpx;
@@ -625,7 +625,7 @@
   justify-content: space-between;
 }
 
-.genprogressBox {
+.genProgressBox {
   width: 172rpx;
   height: 40rpx;
   font-family: 'PingFang SC';
@@ -638,7 +638,7 @@
   color: #20C38C;
 }
 
-.genprogressNext {
+.genProgressNext {
   height: 40rpx;
   width: 626rpx;
   margin-top: 18rpx;
@@ -647,7 +647,7 @@
   justify-content: space-between;
 }
 
-.genprogressBox2 {
+.genProgressBox2 {
   width: 172rpx;
   height: 40rpx;
   font-family: 'PingFang SC';

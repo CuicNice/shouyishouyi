@@ -27,6 +27,30 @@ Page({
   },
 
   /**
+     * 点击detail卡片进行复制
+     */
+  tapdetailCopy() {
+    var ab = this.data.allbook;//allbook的一个缩写
+    var nm = this.data.num;//num的一个缩写/allbook有十个，这里的num是找到对应的书
+    // if(ab[nm].num !== {}){} ,本来用这个判空，但是发现不行
+    if (ab[nm].showzong == true || ab[nm].showjia == true || ab[nm].shownan == true || ab[nm].showzhong == true) {
+      wx.setClipboardData({
+        data: '【南李路二十二号小程序提醒你】“' + ab[nm].title + '”, ' + (ab[nm].showzong == true ? '在总馆还有' + ab[nm].num.zongArr.num + '本,' : '') + (ab[nm].showjia == true ? '在嘉鱼分馆还有' + ab[nm].num.jiaArr.num + '本,' : '') + (ab[nm].shownan == true ? '在南区分馆还有' + ab[nm].num.nanArr.num + '本,' : '') + (ab[nm].showzhong == true ? '在中区分馆还有' + ab[nm].num.zhongArr.num + '本,' : '') + '索书号为：' + ab[nm].books[0].callno + ',如果还有任何问题,可联系我们南南微信：nanlilu22',
+      })
+    }
+  },
+  /**
+   * 点击下面的本地信息卡片，复制
+   */
+  localCopy(e: any) {
+    var ab = this.data.allbook;//allbook的一个缩写
+    var nm = this.data.num;//num的一个缩写/allbook有十个，这里的num是找到对应的书
+    var local = e.currentTarget.dataset.index;
+    wx.setClipboardData({
+      data: '【南李路二十二号小程序提醒你】“' + ab[nm].title + '”,' + '在' + (local == 'zongArr' ? '总馆还有' + ab[nm].num.zongArr.num + '本,' : ((local == 'jiaArr' ? '嘉鱼分馆还有' + ab[nm].num.jiaArr.num + '本,' : (local == 'nanArr' ? '南区分馆还有' + ab[nm].num.nanArr.num + '本,' : (local == 'zhongArr' ? '中区分馆还有' + ab[nm].num.zhongArr.num + '本,' : ''))))) + '索书号为：' + ab[nm].books[0].callno + ',如果还有任何问题,可联系我们南南微信：nanlilu22',
+    })
+  },
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
