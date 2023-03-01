@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function () {
     wx.getStorage({
-      key: 'key',
+      key: 'widget-banner',
       success:(res)=> {
         this.setData({shuju:res as unknown as string})
       }

@@ -56,16 +56,16 @@ Page({
       iftaiozhuan: true
     })
     try{
-      wx.setStorageSync('key', this.data.shuju)
+      wx.setStorageSync('widget-banner', this.data.shuju)
     }catch (e) {
     }
-    var arr=wx.getStorageSync('key')
+    var arr=wx.getStorageSync('widget-banner')
     if(this.data.shuju != null && arr.charAt(0) != "/"){
     wx.navigateTo({
       url: '../indexText/indexText',
     })
   }else{
-    var place=wx.getStorageSync('key')
+    var place=wx.getStorageSync('widget-banner')
     wx.navigateTo({
       url: place,
     })
