@@ -1,4 +1,4 @@
-import { getBanner } from '../../../miniprogram/api/bannerApi';
+import { getBanner } from '../../api/bannerApi';
 export interface BannerItem {
   "currentPage": number,
   "pageSize": number
@@ -21,11 +21,11 @@ Page({
 
   async onReady() {
     let value={"currentPage": 1,"pageSize": 5}
-    const { data: res } = await getBanner(value) as unknown as IResult<any>;
+    const res  = await getBanner(value) as unknown as IResult<any>;
     if(res){
-        console.log(res.data)
+        console.log(res)
         this.setData({
-          homePics:res.data.data.list
+          homePics:res
         })
         for(var i=0;i<this.data.homePics.length;i++){
           if(this.data.homePics[i].bannerType == 'image'){

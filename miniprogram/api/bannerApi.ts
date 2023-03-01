@@ -8,7 +8,7 @@ const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
 const apiList = {
   // post /front/blog/page（前台接口需要登录）
-  getBanner: baseUrl + '/mini/banner/listMiniBanners'
+  getBanner: baseUrl + '/api/v1/ad/mini/banner/listMiniBanners'
 }
 
 // 获取广告
