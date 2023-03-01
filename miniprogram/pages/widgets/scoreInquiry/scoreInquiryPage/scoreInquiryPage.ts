@@ -13,18 +13,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userScoreInfo:'',
+    userScoreInfo:'',//成绩列表
     scoreTitle:"成绩查询",
-    courseTapdetail: false,
-    termTitleTapdetail:false,
-    scoreCountdetail:false,
+    courseTapdetail: false,//成绩详情卡片是否显示
+    termTitleTapdetail:false,//称号规则是否显示
+    scoreCountdetail:false,//算法规则是否显示
     academic_year:1, // 学年 默认是大一
     academic_year_y: 'one',
     term:1, // 学期 默认是上学期
     term_y:'sxq',
     scoreLevel:0,//默认为等待入榜
-    xqxfscore:'',
-    scoreDetail:'',
+    xqxfscore:'',//本学期加权平均分
+    scoreDetail:'',//成绩详情
     color:''//专修必修选修的颜色
   },
       /**
