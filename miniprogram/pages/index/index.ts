@@ -1,18 +1,13 @@
-// index.ts
-// 获取应用实例
-import {getElectric} from '../../api/test';
-
-export interface ElectriceItem {
-  build: string,
-  room: string
+import { getBanner } from '../../../miniprogram/api/bannerApi';
+export interface BannerItem {
+  "currentPage": number,
+  "pageSize": number
 }
-
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    // index: 0,
     homePics:[] as any,
     iftaiozhuan:false,
     shuju:''
@@ -24,15 +19,10 @@ Page({
     })
   },
 
-  onReady() {
-    wx.request({
-      url: 'http://www.fmin-courses.com:9527/api/v1/ad/ad/banner/appletBannerList',
-      method:'POST',
-      data: {
-        "currentPage": "1",
-        "pageSize": "5"
-      },
-      success:(res:any)=> {
+  async onReady() {
+    let value={"currentPage": 1,"pageSize": 5}
+    const { data: res } = await getBanner(value) as unknown as IResult<any>;
+    if(res){
         console.log(res.data)
         this.setData({
           homePics:res.data.data.list
@@ -55,9 +45,7 @@ Page({
         }
         this.setData({
           homePics:this.data.homePics
-        })
-      }
-    })
+        })}
   },
 
   tap(e:any){
@@ -90,12 +78,4 @@ Page({
   onLoad() {
     // this.initPageData();
   },
-  async initPageData(){
-    var from = {
-      build:"西区2栋",
-      room:"507"
-    }as ElectriceItem;
-    const { data } = await getElectric(from) as unknown as IResult<ElectriceItem>;
-    console.log(data);
-  }
 })
