@@ -108,7 +108,7 @@ Page({
      */
   async courseTaped(from: ScoreInquiryeItem) {
     //Detail 用来接受成绩详情的变量
-    const { data: Detail } = await getScoreDetail(from) as unknown as IResult<any>//此处有问题，问过超哥。
+    const { data: Detail } = await getScoreDetail(from) as unknown as IResult<any>
     if (!Detail) {
       this.showToast(true, 'error', "请求失败");
       setTimeout(() => {
@@ -194,7 +194,7 @@ Page({
   /**
   * 渲染学期按钮 (学年，学期) 均为int类型
   */
-  renderAcademicAndTermTap: function (academic_year: number, term: number) {
+  renderAcademicAndTermTap: function (academic_year:number,term:number) {
     var academic_year_y = this.data.academic_year_y;
     var term_y = this.data.term_y;
     var fs = ''; //大一 Fresh
@@ -204,6 +204,8 @@ Page({
     var last = '';//上学期 last
     var next = ''; //下学期 next
     if (academic_year == 1 && term == 1) { //大一 上
+      term = term;
+      academic_year = academic_year;
       academic_year_y = 'one';
       term_y = 'sxq';
       fs = "#20C38C";
@@ -213,67 +215,81 @@ Page({
       last = "#20C38C";
       next = "rgba(41, 41, 69, 0.2)";
     } else if (academic_year == 1 && term == 2) { //下
+      term = term;
+      academic_year = academic_year;
       academic_year_y = 'one';
       term_y = 'xxq';
       fs = "#20C38C";
-      sh = "rgba(41; 41; 69; 0.2)";
-      jn = "rgba(41; 41; 69; 0.2)";
-      sn = "rgba(41; 41; 69; 0.2)";
-      last = "rgba(41; 41; 69; 0.2)";
+      sh = "rgba(41, 41, 69, 0.2)";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn ="rgba(41, 41, 69, 0.2)";
+      last = "rgba(41, 41, 69, 0.2)";
       next = "#20C38C";
     } else if (academic_year == 2 && term == 1) { //大二上
+      term = term;
+      academic_year = academic_year;
       academic_year_y = 'two';
       term_y = 'sxq';
-      fs = "rgba(41; 41; 69; 0.2)";
+      fs ="rgba(41, 41, 69, 0.2)";
       sh = "#20C38C";
-      jn = "rgba(41; 41; 69; 0.2)";
-      sn = "rgba(41; 41; 69; 0.2)";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn ="rgba(41, 41, 69, 0.2)";
       last = "#20C38C";
-      next = "rgba(41; 41; 69; 0.2)";
+      next = "rgba(41, 41, 69, 0.2)";
     } else if (academic_year == 2 && term == 2) { //大二下
+      term = term;
+      academic_year = academic_year;
       academic_year_y = 'two';
       term_y = 'xxq';
-      fs = "rgba(41; 41; 69; 0.2)";
+      fs = "rgba(41, 41, 69, 0.2)";
       sh = "#20C38C";
-      jn = "rgba(41; 41; 69; 0.2)4";
-      sn = "rgba(41; 41; 69; 0.2)";
-      last = "rgba(41; 41; 69; 0.2)";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn = "rgba(41, 41, 69, 0.2)";
+      last = "rgba(41, 41, 69, 0.2)";
       next = "#20C38C";
     } else if (academic_year == 3 && term == 1) { //大三上
+      term = term;
+      academic_year = academic_year;
       academic_year_y = 'three';
       term_y = 'sxq';
-      fs = "rgba(41; 41; 69; 0.2)";
-      sh = "rgba(41; 41; 69; 0.2)";
+      fs = "rgba(41, 41, 69, 0.2)";
+      sh = "rgba(41, 41, 69, 0.2)";
       jn = "#20C38C";
-      sn = "rgba(41; 41; 69; 0.2)";
+      sn = "rgba(41, 41, 69, 0.2)";
       last = "#20C38C";
-      next = "rgba(41; 41; 69; 0.2)";
+      next = "rgba(41, 41, 69, 0.2)";
     } else if (academic_year == 3 && term == 2) { //大三下
+      term = term;
+      academic_year = academic_year;
       academic_year_y = 'three';
       term_y = 'xxq';
-      fs = "rgba(41; 41; 69; 0.2)";
-      sh = "rgba(41; 41; 69; 0.2)";
+      fs = "rgba(41, 41, 69, 0.2)";
+      sh = "rgba(41, 41, 69, 0.2)";
       jn = "#20C38C";
-      sn = "rgba(41; 41; 69; 0.2)";
-      last = "rgba(41; 41; 69; 0.2)";
+      sn = "rgba(41, 41, 69, 0.2)";
+      last = "rgba(41, 41, 69, 0.2)";
       next = "#20C38C";
     } else if (academic_year == 4 && term == 1) { //大四上
+      term = term;
+      academic_year = academic_year;
       academic_year_y = 'four';
       term_y = 'sxq';
-      fs = "rgba(41; 41; 69; 0.2)";
-      sh = "rgba(41; 41; 69; 0.2)";
-      jn = "rgba(41; 41; 69; 0.2)";
+      fs = "rgba(41, 41, 69, 0.2)";
+      sh = "rgba(41, 41, 69, 0.2)";
+      jn ="rgba(41, 41, 69, 0.2)";
       sn = "#20C38C";
       last = "#20C38C";
-      next = "rgba(41; 41; 69; 0.2)";
+      next = "rgba(41, 41, 69, 0.2)";
     } else if (academic_year == 4 && term == 2) { //大四下
+      term = term;
+      academic_year = academic_year;
       academic_year_y = 'four';
       term_y = 'xxq';
-      fs = "rgba(41; 41; 69; 0.2)";
-      sh = "rgba(41; 41; 69; 0.2)";
-      jn = "rgba(41; 41; 69; 0.2)";
+      fs ="rgba(41, 41, 69, 0.2)";
+      sh ="rgba(41, 41, 69, 0.2)";
+      jn = "rgba(41, 41, 69, 0.2)";
       sn = "#20C38C";
-      last = "rgba(41; 41; 69; 0.2)";
+      last ="rgba(41, 41, 69, 0.2)";
       next = "#20C38C";
     }
     this.setData({
@@ -297,6 +313,7 @@ Page({
     console.log(e.currentTarget.dataset.term)
     var academic_year = e.currentTarget.dataset.academic_year;
     var term = e.currentTarget.dataset.term;
+    this.setData({academic_year:academic_year,term:term})
     this.renderAcademicAndTermTap(academic_year, term);
     /**
      *  改变称号
