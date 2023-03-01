@@ -13,6 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    info:'',//个人信息专业班级
     userScoreInfo:'',//成绩列表
     scoreTitle:"成绩查询",
     courseTapdetail: false,//成绩详情卡片是否显示
@@ -63,11 +64,15 @@ Page({
      * 点击成绩卡片
      */
  async courseTap(e:any){
+   interface StringArray{
+     [index:number]:string
+   }
     var row = e.currentTarget.dataset.row;//成绩列表的下标
     var term_y = this.data.term_y;
-    var academic_year_y = this.data.academic_year_y;
     this.showToast(true,"lodding","查询中……");
-    var jd = this.data.userScoreInfo[academic_year_y][term_y][row]["jd"];
+    var userScoreInfo:StringArray = this.data.userScoreInfo
+    var academic_year_y = this.data.academic_year_y
+    var jd = userScoreInfo[0]
     this.setData({
       jd:parseInt(jd)
     })
@@ -108,7 +113,7 @@ closeTap: function () {
      }else{
       this.showToast(true,'success',"请求成功");
      }
-     /*
+     /**
      *数据修饰
      */
       var kcxzmc = Detail.allDetails.kcxzmc;
@@ -295,7 +300,6 @@ closeTap: function () {
   choose: function (e: { currentTarget: { dataset: { academic_year: any; term: any; row: any } } }) {
     var academic_year = e.currentTarget.dataset.academic_year;
     var term = e.currentTarget.dataset.term;
-    var row = e.currentTarget.dataset.row;
     this.renderAcademicAndTermTap(academic_year, term);
     //wx.hideLoading();
     //改变称号
@@ -327,23 +331,21 @@ closeTap: function () {
    */
   async getUserInfoData(from: ScoreInquiryeItem) {
     console.log(from);
-   const {data: res1 } = await getUserInfo(from) as unknown as IResult<any>;
-   const {data: res2 } = await getScoreInfo(from) as unknown as IResult<any>
-   console.log(res1)
-   if(!res1){
+   const {data: info } = await getUserInfo(from) as unknown as IResult<any>;
+   const {data: userScoreInfo } = await getScoreInfo(from) as unknown as IResult<any>
+   console.log(info)
+   if(!info){
      this.showToast(true,'error',"请求失败");
-   }else if(res1){
+   }else if(info){
     this.showToast(true,'success',"请求成功");
    }
    
       /**
      * 渲染
      */
-    
     this.setData({
-      data1: res1,
-      userScoreInfo: res2,
-
+      info: info,
+      userScoreInfo:userScoreInfo
     })
     setTimeout(() => {
       this.setData({
