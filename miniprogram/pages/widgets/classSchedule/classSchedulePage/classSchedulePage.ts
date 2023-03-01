@@ -401,14 +401,14 @@ Page({
     }, {
       day: "星期六",
       item: []
-    }
-    ]
+    } 
+    ] as any
     try{
       for (var i = 0; i < week.length; i++) {
         // 优先显示本周的
         if (week[i].name == nowWeek) {
           for (var dataIdx = 0; dataIdx < week[i].data.length; dataIdx++) {
-            var idx = nowWeekData.findIndex(function (v) {
+            var idx = nowWeekData.findIndex(function (v: { day: any; }) {
               return v.day == week[i].data[dataIdx].day
             })
             for (var itemIdx = 0; itemIdx < week[i].data[dataIdx].item.length; itemIdx++) {
@@ -421,7 +421,7 @@ Page({
         // 其次显示大于本周的
         if (week[i].name > nowWeek) {
           for (var dataIdx = 0; dataIdx < week[i].data.length; dataIdx++) {
-            var idx = nowWeekData.findIndex(function (v) {
+            var idx = nowWeekData.findIndex(function (v: { day: any; }) {
               return v.day == week[i].data[dataIdx].day
             })
             for (var itemIdx = 0; itemIdx < week[i].data[dataIdx].item.length; itemIdx++) {
