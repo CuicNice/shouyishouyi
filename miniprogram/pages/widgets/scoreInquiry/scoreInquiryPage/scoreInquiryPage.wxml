@@ -157,7 +157,7 @@
     <view class="scoreNumBox">
       <view class="scoreNum" bindtap="closeTap">{{score}}</view>
       <view class="scoreCredit"><text class="scoreCredit-num">修得学分:{{xf? xf:"无"}}（满学分{{xf}}）</text></view>
-      <view class="scoreCredits"><text class="scoreCredit-nums">获得绩点:{{jd? jd:"无"}} (满绩:4)</text></view>
+      <view class="scoreCredits"><text class="scoreCredit-nums">获得绩点:{{Jd? Jd:"无"}} (满绩:4)</text></view>
     </view>
   </view>
   <view class="classDetailborder"></view>
