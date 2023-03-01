@@ -12,19 +12,27 @@ Page({
     JY: '',
     checked: false
   },
-
+  /* 
+  *关闭弹窗
+  */
   closeDialogTip() {
     this.setData({ dialogTip: false })
   },
-
+  /* 
+  *选择是否展示全部课表
+  */
   switchChange(e: any) {
     console.log(e.detail.value)
     this.setData({
       checked: e.detail.value
     })
-    wx.setStorageSync("ifshowAllclass", !this.data.checked)
+    let value=wx.getStorageSync('widget-classSchedule')
+    value.ifshowAllclass=!this.data.checked
+    wx.setStorageSync("widget-classSchedule", value)
   },
-
+  /* 
+  *刷新
+  */
   refresh() {
     var pages = getCurrentPages();
     var beforePage = pages[pages.length - 2]
@@ -35,16 +43,22 @@ Page({
       }
     })
   },
-
+  /* 
+  *进入个性换肤界面
+  */
   customskin() {
     wx.navigateTo({ url: '/pages/widgets/classSchedule/Customskin/Customskin' })
   },
-
+  /* 
+  *展开自动识别规则
+  */
   details(e: any) {
     console.log(e.detail.value)
     this.setData({ dialogTip: true })
   },
-
+  /* 
+  *监听自动识别的选择
+  */
   check(e: any) {
     console.log(e)
   },
@@ -61,7 +75,7 @@ Page({
    */
   onReady() {
     this.setData({
-      checked: !wx.getStorageSync('ifshowAllclass')
+      checked: !wx.getStorageSync('widget-classSchedule').ifshowAllclass
     })
   },
 
