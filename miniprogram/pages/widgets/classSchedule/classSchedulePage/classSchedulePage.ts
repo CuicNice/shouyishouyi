@@ -12,7 +12,7 @@ Page({
    */
   data: {
     weekSchedule: true,
-    weekNum:19,
+    weekNum: 19,
     nowWeek: 1,
     dialogTip: false,
     semester: '大一上',
@@ -20,7 +20,7 @@ Page({
     nowDate: '',
     ifshow: false,
     schoolPlace: "武昌",
-    startDate: "2023/2/13",
+    startDate: "2/19",
     suorec: '',
     colorcardLight: ['#A9E6FF', '#FFDDDC', '#F5DFFA', '#D4EFFF', '#F9EABA', '#FFD698', '#F0FFC4', '#FEFCC9', '#DFFFD4', '#FFD8D2', '#FFFFF0', '#CCFFED', '#BFC1FF', '#FFC8E6', '#E9EDF1', '#EFDCC9'],
     colorcardDark: ['#6290E9', '#B791DC', '#ABA6E9', '#E39ACA', '#F091A2', '#FF9470', '#FDB165', '#F3D257', '#5DD39E', '#B2DB7C', '#68D8D6', '#A9B7BD', '#59ADDF', '#7895BC', '#75AEAE', '#EFDCC9'],
@@ -29,9 +29,9 @@ Page({
     Y: '',
     D: '',
     I: 3,
-    time:[] as any,
-    timeWC: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '14:00', time2: '14:45' }, { time1: '14:50', time2: '15:35' }, { time1: '15:50', time2: '16:35' }, { time1: '16:40', time2: '17:25' }, { time1: '18:30', time2: '19:15' }, { time1: '19:20', time2: '20:05' }, { time1: '20:15', time2: '21:00' }, { time1: '21:05', time2: '21:50' }],/* 武昌校区时间 */
-    timeJY: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '13:30', time2: '14:15' }, { time1: '14:20', time2: '15:05' }, { time1: '15:10', time2: '15:55' }, { time1: '16:00', time2: '16:45' }, { time1: '18:00', time2: '18:45' }, { time1: '18:45', time2: '19:30' }, { time1: '19:30', time2: '20:15' }, { time1: '20:15', time2: '21:00' }],/* 嘉鱼校区时间 */
+    time: [] as any,
+    timeWu: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '14:00', time2: '14:45' }, { time1: '14:50', time2: '15:35' }, { time1: '15:50', time2: '16:35' }, { time1: '16:40', time2: '17:25' }, { time1: '18:30', time2: '19:15' }, { time1: '19:20', time2: '20:05' }, { time1: '20:15', time2: '21:00' }, { time1: '21:05', time2: '21:50' }],/* 武昌校区时间 */
+    timeJia: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '13:30', time2: '14:15' }, { time1: '14:20', time2: '15:05' }, { time1: '15:10', time2: '15:55' }, { time1: '16:00', time2: '16:45' }, { time1: '18:00', time2: '18:45' }, { time1: '18:45', time2: '19:30' }, { time1: '19:30', time2: '20:15' }, { time1: '20:15', time2: '21:00' }],/* 嘉鱼校区时间 */
     Semesterswitchingdetail: false,
     weeksStatic: [{
       title: "周日",
@@ -88,26 +88,45 @@ Page({
   *绑定学期的按钮
   */
   bindSchoolTermCharge() {
+    let year=0//选择学期的年份
+    let start//开始上课的时间
+    let schoolTerm=0//学期
+    let place//校区
+    let times={}//校区的上课时间
     if (this.data.suorec == '大一下学期' || this.data.suorec == '大二下学期' || this.data.suorec == '大三下学期' || this.data.suorec == '大四下学期') {
-      this.setData({
-        I: 12,
-        startDate:'2/19',
-        week: [{ index: 1, type: true, day1: '2/19', day2: '2/20', day3: '2/21', day4: '2/22', day5: '2/23', day6: '2/24', day7: '2/25' }, { index: 2, type: true, day1: '2/26', day2: '2/27', day3: '2/28', day4: '3/1', day5: '3/2', day6: '3/3', day7: '3/4' }, { index: 3, type: true, day1: '3/5', day2: '3/6', day3: '3/7', day4: '3/8', day5: '3/9', day6: '3/10', day7: '3/11' }, { index: 4, type: true, day1: '3/12', day2: '3/13', day3: '3/14', day4: '3/15', day5: '3/16', day6: '3/17', day7: '3/18' }, { index: 5, type: true, day1: '3/19', day2: '3/20', day3: '3/21', day4: '3/22', day5: '3/23', day6: '3/24', day7: '3/25' }, { index: 6, type: true, day1: '3/26', day2: '3/27', day3: '3/28', day4: '3/29', day5: '3/30', day6: '3/31', day7: '4/1' }, { index: 7, type: true, day1: '4/2', day2: '4/3', day3: '4/4', day4: '4/5', day5: '4/6', day6: '4/7', day7: '4/8' }, { index: 8, type: true, day1: '4/9', day2: '4/10', day3: '4/11', day4: '4/12', day5: '4/13', day6: '4/14', day7: '4/15' }, { index: 9, type: true, day1: '4/16', day2: '4/17', day3: '4/18', day4: '4/19', day5: '4/20', day6: '4/21', day7: '4/22' }, { index: 10, type: true, day1: '4/23', day2: '4/24', day3: '4/25', day4: '4/26', day5: '4/27', day6: '4/28', day7: '4/29' }, { index: 11, type: true, day1: '4/30', day2: '5/1', day3: '5/2', day4: '5/3', day5: '5/4', day6: '5/5', day7: '5/6' }, { index: 12, type: true, day1: '5/7', day2: '5/8', day3: '5/9', day4: '5/10', day5: '5/11', day6: '5/12', day7: '5/13' }, { index: 13, type: true, day1: '5/14', day2: '5/15', day3: '5/16', day4: '5/17', day5: '5/18', day6: '5/19', day7: '5/20' }, { index: 14, type: true, day1: '5/21', day2: '5/22', day3: '5/23', day4: '5/24', day5: '5/25', day6: '5/26', day7: '5/27' }, { index: 15, type: true, day1: '5/28', day2: '5/29', day3: '5/30', day4: '5/31', day5: '6/1', day6: '6/2', day7: '6/3' }, { index: 16, type: true, day1: '6/4', day2: '6/5', day3: '6/6', day4: '6/7', day5: '6/8', day6: '6/9', day7: '6/10' }, { index: 17, type: true, day1: '6/11', day2: '6/12', day3: '6/13', day4: '6/14', day5: '6/15', day6: '6/16', day7: '6/17' }, { index: 18, type: true, day1: '6/18', day2: '6/19', day3: '6/20', day4: '6/21', day5: '6/22', day6: '6/23', day7: '6/24' }, { index: 19, type: true, day1: '6/25', day2: '6/26', day3: '6/27', day4: '6/28', day5: '6/29', day6: '6/30', day7: '7/1' }]
-      })
+      schoolTerm=schoolTerm+12;
+      start='2/19'
     }
     if (this.data.suorec == '大一上学期' || this.data.suorec == '大二上学期' || this.data.suorec == '大三上学期' || this.data.suorec == '大四上学期') {
-      this.setData({
-        I: 3,
-        startDate:'8/28',
-        week: [{ index: 1, type: true, day1: '8/28', day2: '8/29', day3: '8/30', day4: '8/31', day5: '9/1', day6: '9/2', day7: '9/3' }, { index: 2, type: true, day1: '9/4', day2: '9/5', day3: '9/6', day4: '9/7', day5: '9/8', day6: '9/9', day7: '9/10' }, { index: 3, type: true, day1: '9/11', day2: '9/12', day3: '9/13', day4: '9/14', day5: '9/15', day6: '9/16', day7: '9/17' }, { index: 4, type: true, day1: '9/18', day2: '9/19', day3: '9/20', day4: '9/21', day5: '9/22', day6: '9/23', day7: '9/24' }, { index: 5, type: true, day1: '9/25', day2: '9/26', day3: '9/27', day4: '9/28', day5: '9/29', day6: '9/30', day7: '10/1' }, { index: 6, type: true, day1: '10/2', day2: '10/3', day3: '10/4', day4: '10/5', day5: '10/6', day6: '10/7', day7: '10/8' }, { index: 7, type: true, day1: '10/9', day2: '10/10', day3: '10/11', day4: '10/12', day5: '10/13', day6: '10/14', day7: '10/15' }, { index: 8, type: true, day1: '10/16', day2: '10/17', day3: '10/18', day4: '10/19', day5: '10/20', day6: '10/21', day7: '10/22' }, { index: 9, type: true, day1: '10/23', day2: '10/24', day3: '10/25', day4: '10/26', day5: '10/27', day6: '10/28', day7: '10/29' }, { index: 10, type: true, day1: '10/30', day2: '10/31', day3: '11/1', day4: '11/2', day5: '11/3', day6: '11/4', day7: '11/5' }, { index: 11, type: true, day1: '11/6', day2: '11/7', day3: '11/8', day4: '11/9', day5: '11/10', day6: '11/11', day7: '11/12' }, { index: 12, type: true, day1: '11/13', day2: '11/14', day3: '11/15', day4: '11/16', day5: '11/17', day6: '11/18', day7: '11/19' }, { index: 13, type: true, day1: '11/20', day2: '11/21', day3: '11/22', day4: '11/23', day5: '11/24', day6: '11/25', day7: '11/26' }, { index: 14, type: true, day1: '11/27', day2: '11/28', day3: '11/29', day4: '11/30', day5: '12/1', day6: '12/2', day7: '12/3' }, { index: 15, type: true, day1: '12/4', day2: '12/5', day3: '12/6', day4: '12/7', day5: '12/8', day6: '12/9', day7: '12/10' }, { index: 16, type: true, day1: '12/11', day2: '12/12', day3: '12/13', day4: '12/14', day5: '12/15', day6: '12/16', day7: '12/17' }, { index: 17, type: true, day1: '12/18', day2: '12/19', day3: '12/20', day4: '12/21', day5: '12/22', day6: '12/23', day7: '12/24' }, { index: 18, type: true, day1: '12/25', day2: '12/26', day3: '12/27', day4: '12/28', day5: '12/29', day6: '12/30', day7: '12/31' }, { index: 19, type: true, day1: '1/1', day2: '1/2', day3: '1/3', day4: '1/4', day5: '1/5', day6: '1/6', day7: '1/7' }]
-      })
+      schoolTerm=schoolTerm+3;
+      start='8/28'
     }
-    if (this.data.suorec.slice(1, 2) == "一") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) as unknown as string, schoolPlace: "嘉鱼", time: this.data.timeJY }) }
-    if (this.data.suorec.slice(1, 2) == "二") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 1 as unknown as string, schoolPlace: "武昌", time: this.data.timeWC, }) }
-    if (this.data.suorec.slice(1, 2) == "三") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 2 as unknown as string, schoolPlace: "武昌", time: this.data.timeWC, }) }
-    if (this.data.suorec.slice(1, 2) == "四") { this.setData({ Y: parseInt(wx.getStorageSync('key1').slice(0, 4)) + 3 as unknown as string, schoolPlace: "武昌", time: this.data.timeWC, }) }
-    this.setData({ semester: this.data.suorec.slice(0, 3) })
-    this.setData({ Semesterswitchingdetail: false })
+    if (this.data.suorec.slice(1, 2) == "一") {
+    year=year+parseInt(wx.getStorageSync('key1').slice(0, 4));
+    place='嘉鱼';
+    times=this.data.timeJia
+  }
+    if (this.data.suorec.slice(1, 2) == "二") {
+    year=year+parseInt(wx.getStorageSync('key1').slice(0, 4))+1;
+    place='武昌';
+    times=this.data.timeWu}
+    if (this.data.suorec.slice(1, 2) == "三") {
+    year=year+parseInt(wx.getStorageSync('key1').slice(0, 4))+2;
+    place='武昌';
+    times=this.data.timeWu}
+    if (this.data.suorec.slice(1, 2) == "四") { 
+    year=year+parseInt(wx.getStorageSync('key1').slice(0, 4))+3;
+    place='武昌';
+    times=this.data.timeWu}
+    this.setData({ 
+      semester: this.data.suorec.slice(0, 3), 
+      Semesterswitchingdetail: false,
+      Y:year as unknown as string,
+      schoolPlace:place,
+      time:times,
+      I:schoolTerm,
+      startDate:start
+    })
     wx.removeStorageSync('classSchedule')
     this.initClassData()
     setTimeout(function () {
@@ -229,7 +248,7 @@ Page({
         week: week,
         all_keshes: res.all_keshes
       };
-      var nowWeekData: { day: string; item: never[] }[] = []
+      var nowWeekData: { day: string; item: never[] }[] = [] as any
       if (that.data.showAll) {
         nowWeekData = that.getNowWeekData(classSchedule, that.data.nowWeek);
       }
@@ -397,54 +416,56 @@ Page({
       item: []
     }
     ]
-    for (var i = 0; i < week.length; i++) {
-      // 优先显示本周的
-      if (week[i].name == nowWeek) {
-        for (var dataIdx = 0; dataIdx < week[i].data.length; dataIdx++) {
-          var idx = nowWeekData.findIndex(function (v) {
-            return v.day == week[i].data[dataIdx].day
-          })
-          for (var itemIdx = 0; itemIdx < week[i].data[dataIdx].item.length; itemIdx++) {
-            week[i].data[dataIdx].item[itemIdx].zindex = 3;
-            week[i].data[dataIdx].item[itemIdx].double = false;
-            nowWeekData[idx].item.push((week[i].data[dataIdx].item[itemIdx]) as never);
+    if (this.data.classSchedule.length != 0) {
+      for (var i = 0; i < week.length; i++) {
+        // 优先显示本周的
+        if (week[i].name == nowWeek) {
+          for (var dataIdx = 0; dataIdx < week[i].data.length; dataIdx++) {
+            var idx = nowWeekData.findIndex(function (v) {
+              return v.day == week[i].data[dataIdx].day
+            })
+            for (var itemIdx = 0; itemIdx < week[i].data[dataIdx].item.length; itemIdx++) {
+              week[i].data[dataIdx].item[itemIdx].zindex = 3;
+              week[i].data[dataIdx].item[itemIdx].double = false;
+              nowWeekData[idx].item.push((week[i].data[dataIdx].item[itemIdx]) as never);
+            }
           }
         }
-      }
-      // 其次显示大于本周的
-      if (week[i].name > nowWeek) {
-        for (var dataIdx = 0; dataIdx < week[i].data.length; dataIdx++) {
-          var idx = nowWeekData.findIndex(function (v) {
-            return v.day == week[i].data[dataIdx].day
-          })
-          for (var itemIdx = 0; itemIdx < week[i].data[dataIdx].item.length; itemIdx++) {
-            // 根据起始判断是否重叠
-            var numSIdx = nowWeekData[idx].item.findIndex((v: any) => {
-              var itemNum = week[i].data[dataIdx].item[itemIdx].num;
-              if (v.num[0] == itemNum[0] || v.num[v.num.length - 1] == itemNum[itemNum.length - 1]) {
-                return true;
-              } else {
-                return false;
+        // 其次显示大于本周的
+        if (week[i].name > nowWeek) {
+          for (var dataIdx = 0; dataIdx < week[i].data.length; dataIdx++) {
+            var idx = nowWeekData.findIndex(function (v) {
+              return v.day == week[i].data[dataIdx].day
+            })
+            for (var itemIdx = 0; itemIdx < week[i].data[dataIdx].item.length; itemIdx++) {
+              // 根据起始判断是否重叠
+              var numSIdx = nowWeekData[idx].item.findIndex((v: any) => {
+                var itemNum = week[i].data[dataIdx].item[itemIdx].num;
+                if (v.num[0] == itemNum[0] || v.num[v.num.length - 1] == itemNum[itemNum.length - 1]) {
+                  return true;
+                } else {
+                  return false;
+                }
+              });
+              if (numSIdx == -1) {
+                week[i].data[dataIdx].item[itemIdx].zindex = 2;
+                nowWeekData[idx].item.push((week[i].data[dataIdx].item[itemIdx]) as never);
+              } else if (nowWeekData[idx].item[numSIdx].name != week[i].data[dataIdx].item[itemIdx].name) {
+                nowWeekData[idx].item[numSIdx].double = true;
               }
-            });
-            if (numSIdx == -1) {
-              week[i].data[dataIdx].item[itemIdx].zindex = 2;
-              nowWeekData[idx].item.push((week[i].data[dataIdx].item[itemIdx]) as never);
-            } else if (nowWeekData[idx].item[numSIdx].name != week[i].data[dataIdx].item[itemIdx].name) {
-              nowWeekData[idx].item[numSIdx].double = true;
-            }
-            // 根据末尾判断是否重叠
-            var numEIdx = nowWeekData[idx].item.findIndex((v: any) => {
-              var itemNum = week[i].data[dataIdx].item[itemIdx].num;
-              if (v.num[v.num.length - 1] == itemNum[itemNum.length - 1]) {
-                return true;
-              } else {
-                return false;
+              // 根据末尾判断是否重叠
+              var numEIdx = nowWeekData[idx].item.findIndex((v: any) => {
+                var itemNum = week[i].data[dataIdx].item[itemIdx].num;
+                if (v.num[v.num.length - 1] == itemNum[itemNum.length - 1]) {
+                  return true;
+                } else {
+                  return false;
+                }
+              });
+              if (numEIdx == -1) {
+              } else if (nowWeekData[idx].item[numEIdx].name != week[i].data[dataIdx].item[itemIdx].name) {
+                nowWeekData[idx].item[numEIdx].double = true;
               }
-            });
-            if (numEIdx == -1) {
-            } else if (nowWeekData[idx].item[numEIdx].name != week[i].data[dataIdx].item[itemIdx].name) {
-              nowWeekData[idx].item[numEIdx].double = true;
             }
           }
         }
@@ -494,17 +515,17 @@ Page({
   /**
    * 展示课表详情 
    */
-  showClassDetail(e: { currentTarget: { dataset: { cls: any } } }) {
-    var cls = e.currentTarget.dataset.cls;
-    console.log(cls);
+  showClassDetail(e: { currentTarget: { dataset: { detail: any } } }) {
+    var detail = e.currentTarget.dataset.detail;
+    console.log(detail);
     var week = this.data.classSchedule.week;
     var list = [];
     for (var iweek = 0; iweek < week.length; iweek++) {
       for (var idata = 0; idata < week[iweek].data.length; idata++) {
         for (var iitem = 0; iitem < week[iweek].data[idata].item.length; iitem++) {
           var item = week[iweek].data[idata].item[iitem];
-          if ((cls.num[0] == item.num[0] || cls.num[cls.num.length - 1] == item.num[item.num.length - 1]) &&
-            (cls.day == item.day) && (list.findIndex((v) => { return v.name == item.name }) == -1)
+          if ((detail.num[0] == item.num[0] || detail.num[detail.num.length - 1] == item.num[item.num.length - 1]) &&
+            (detail.day == item.day) && (list.findIndex((v) => { return v.name == item.name }) == -1)
           ) {
             list.push(item);
           }
@@ -568,35 +589,43 @@ Page({
       //获取当日日期
       D: date.getDate() < 10 ? (date.getDate()) as unknown as string : date.getDate() as unknown as string
     })
-    var time=this.data.Y+'/'+this.data.M+'/'+this.data.D
+    //获取当前周数的预处理定义变量进行储存数据
+    var time = this.data.Y + '/' + this.data.M + '/' + this.data.D
     var start_date = new Date(this.data.startDate.replace(/-/g, "/"));
     var end_date = new Date(time.replace(/-/g, "/"));
     var days = end_date.getTime() - start_date.getTime();
-    var day = (days / (1000 * 60 * 60 * 24)) as unknown as number; 
+    var day = (days / (1000 * 60 * 60 * 24)) as unknown as number;
+    //进行当前学期的判断
+    var schoolTerm//储存学期的变量
+    var year=0//储存年份的变量
     if (8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) {
-      this.setData({ Y: this.data.Y + 1, I: 3})
+      year=year+parseInt(this.data.Y)+1
+      schoolTerm=3
     }
     if (1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2) {
-      this.setData({ I: 3 })
+      year=year+parseInt(this.data.Y)
+      schoolTerm=3
     }
     if (2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-      this.setData({ I: 12})
+      year=year+parseInt(this.data.Y)
+      schoolTerm=12
     }
-    if ((this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12)||(this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) { this.setData({ semester: "大四上", time: this.data.timeWC,startDate:"8/28"}) }
-    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大四下", time: this.data.timeWC,startDate:"2/19"}) }
-    if ((this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12)||(this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) { this.setData({ semester: "大三上", time: this.data.timeWC,startDate:"8/28"}) }
-    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大三下", time: this.data.timeWC,startDate:"2/19"}) }
-    if ((this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12)||(this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) { this.setData({ semester: "大二上", time: this.data.timeWC,startDate:"8/28"}) }
-    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大二下", time: this.data.timeWC ,startDate:"2/19"}) }
-    if ((this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12)||(this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) { this.setData({ semester: "大一上", schoolPlace: "嘉鱼", time: this.data.timeJY ,startDate:"8/28"}) }
-    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大一下", schoolPlace: "嘉鱼",  time: this.data.timeJY,startDate:"2/19"}) }
-    this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, showAll: wx.getStorageSync('ifshowAllclass'), nowWeek:day%7})
-    this.initPageData();
-    //进行周的自动判断
+    this.setData({I:schoolTerm,Y:year as unknown as string})
+    if ((this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) { this.setData({ semester: "大四上", time: this.data.timeWu, startDate: "8/28" }) }
+    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大四下", time: this.data.timeWu, startDate: "2/19" }) }
+    if ((this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) { this.setData({ semester: "大三上", time: this.data.timeWu, startDate: "8/28" }) }
+    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大三下", time: this.data.timeWu, startDate: "2/19" }) }
+    if ((this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) { this.setData({ semester: "大二上", time: this.data.timeWu, startDate: "8/28" }) }
+    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大二下", time: this.data.timeWu, startDate: "2/19" }) }
+    if ((this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) { this.setData({ semester: "大一上", schoolPlace: "嘉鱼", time: this.data.timeJia, startDate: "8/28" }) }
+    if (this.data.Y as unknown as number - wx.getStorageSync('key1').slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) { this.setData({ semester: "大一下", schoolPlace: "嘉鱼", time: this.data.timeJia, startDate: "2/19" }) }
+    this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, showAll: wx.getStorageSync('ifshowAllclass'), nowWeek: day % 7 })
+    this.initPageData();//初始化页面数据
+    //通过定义的变量进行周的自动判断
     var index = this.data.nowWeek - 1;
     var nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
     var nowDate = new Date(time) //获取指定日期当周的一周日期
-    var date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index-1) * 7);
+    var date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - 1) * 7);
     this.getWeekTime(date);
     this.setData({
       nowWeekData: nowWeekData
