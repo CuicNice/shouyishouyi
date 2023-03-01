@@ -9,9 +9,6 @@ Page({
     swiper: 0,  //当前所在页面的 
     shuju: [] as any,
     allbook: [] as any,
-    a: 1,
-    b: 0,
-    num: 0,
     electricChargeTitle: '首义图书馆',
   },
 
