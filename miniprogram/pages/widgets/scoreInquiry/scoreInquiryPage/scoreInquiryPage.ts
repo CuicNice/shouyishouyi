@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userScoreInfo:[],
+    userScoreInfo:'',
     scoreTitle:"成绩查询",
     courseTapdetail: false,
     termTitleTapdetail:false,
@@ -31,35 +31,23 @@ Page({
      * 变化等级称号
      */
   scoreLevels(xqxfscore: number){
+    var scoreLevel = this.data.scoreLevel;
     if(xqxfscore >=90 ){
-      this.setData({
-        scoreLevel: 1,
-      })
+      scoreLevel = 1;
     }else if(xqxfscore >=85 && xqxfscore < 90 ){
-      this.setData({
-        scoreLevel: 2,
-      })
+      scoreLevel = 2;
     }else if(xqxfscore>=80 && xqxfscore< 85){
-      this.setData({
-        scoreLevel: 3,
-      })
+      scoreLevel = 3;
     }else if(xqxfscore>=70 && xqxfscore< 80){
-      this.setData({
-        scoreLevel: 4,
-      })
+      scoreLevel = 4;
     }else if(xqxfscore>=60 && xqxfscore< 70){
-      this.setData({
-        scoreLevel: 5,
-      })
+      scoreLevel = 5;
     }else if(xqxfscore<=60&&xqxfscore>=0){
-      this.setData({
-        scoreLevel: 6,
-      })
+      scoreLevel = 6;
     }else{
-      this.setData({
-        scoreLevel:0,
-      })
+      scoreLevel = 0;
     }
+    this.setData({scoreLevel:scoreLevel})
   },
       /**
      * 显示查询中或请求成功的小弹窗
@@ -77,9 +65,9 @@ Page({
  async courseTap(e:any){
     var row = e.currentTarget.dataset.row;//成绩列表的下标
     var term_y = this.data.term_y;
-    var academic_year_y=this.data.academic_year_y
+    var academic_year_y = this.data.academic_year_y;
     this.showToast(true,"lodding","查询中……");
-    var jd = this.data.userScoreInfo[academic_year_y][term_y][row]["jd"]
+    var jd = this.data.userScoreInfo[academic_year_y][term_y][row]["jd"];
     this.setData({
       jd:parseInt(jd)
     })
@@ -97,7 +85,6 @@ Page({
         this.showToast(true,'lodding',"查询中......");
         this.courseTaped(bindScore);
       }  
-
 },
 /**
      * 关闭成绩弹窗
@@ -114,8 +101,8 @@ closeTap: function () {
      * 成绩详情弹窗
      */
     async courseTaped(from: ScoreInquiryeItem) {
-     //Detail 用来接受成绩详情的变量
-     const {data:Detail} = await getScoreDetail(from) as unknown as Iresult<any>
+     //etail 用来接受成绩详情的变量
+     const {data:Detail} = await getScoreDetail(from) as unknown as Iresult<any>//此处有问题，问过超哥。
      if(!Detail){
        this.showToast(true,'error',"请求失败");
      }else{
