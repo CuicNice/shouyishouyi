@@ -75,24 +75,24 @@
     <view class="scoresearchPage">
       <!-- 中间浮动的学期 -->
       <view class="semesters">
-        <view class="firstSemester-box" style="border-color: {{bdc_1}}" bindtap="choose" data-academic_year="{{1}}" data-term="{{term}}">
+        <view class="firstSemester-box" style="border-color: {{fs}}" bindtap="choose" data-academic_year="{{1}}" data-term="{{term}}">
           <view class="firstSemester">大一</view>
         </view>
-        <view class="secondSemesterbox" style="border-color: {{bdc_2}}" bindtap="choose" data-academic_year="{{2}}" data-term="{{term}}">
+        <view class="secondSemesterbox" style="border-color: {{sh}}" bindtap="choose" data-academic_year="{{2}}" data-term="{{term}}">
           <view class="secondSemester">大二</view>
         </view>
-        <view class="thirdSemesterbox" style="border-color: {{bdc_3}}" bindtap="choose" data-academic_year="{{3}}" data-term="{{term}}">
+        <view class="thirdSemesterbox" style="border-color: {{jn}}" bindtap="choose" data-academic_year="{{3}}" data-term="{{term}}">
           <view class="thirdSemester">大三</view>
         </view>
-        <view class="fourthSemesterbox" style="border-color: {{bdc_4}}" bindtap="choose" data-academic_year="{{4}}" data-term="{{term}}">
+        <view class="fourthSemesterbox" style="border-color: {{sn}}" bindtap="choose" data-academic_year="{{4}}" data-term="{{term}}">
           <view class="fourthSemester">大四</view>
         </view>
       </view>
       <view class="semesterYear">
-        <view class="lastSemester-box" style="border-color: {{bdc_5}}" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{1}}">
+        <view class="lastSemester-box" style="border-color: {{last}}" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{1}}">
           <view class="lastSemester">上学期</view>
         </view>
-        <view class="nextSemester-box" style="border-color: {{bdc_6}}" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{2}}">
+        <view class="nextSemester-box" style="border-color: {{next}}" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{2}}">
           <view class="nextSemester">下学期</view>
         </view>
       </view>

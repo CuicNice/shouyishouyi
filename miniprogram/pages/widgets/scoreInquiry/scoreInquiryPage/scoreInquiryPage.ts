@@ -65,11 +65,11 @@ Page({
  * 点击成绩卡片
  */
   async courseTap(e: any) {
-    var row = e.currentTarget.dataset.row as unknown as number;//成绩列表的下标
-    var term_y = this.data.term_y as unknown as number;
+    var row = e.currentTarget.dataset.row;;//成绩列表的下标
+    var term_y = this.data.term_y;
     this.showToast(true, "lodding", "查询中……");
     var userScoreInfo = this.data.userScoreInfo as any
-    var academic_year_y = this.data.academic_year_y as unknown as number;
+    var academic_year_y = this.data.academic_year_y;
     var Jd = userScoreInfo[academic_year_y][term_y][row].jd //绩点
     this.setData({
       Jd: parseInt(Jd)
@@ -80,13 +80,16 @@ Page({
     var bindScore = {
       zh: wx.getStorageSync('login').zh,
       mm: wx.getStorageSync('login').mm,
-      id: userScoreInfo[academic_year_y][term_y][row].jxb_id ,
-      xnm:userScoreInfo[academic_year_y][term_y][row].xnm,
+      id: userScoreInfo[academic_year_y][term_y][row].jxb_id,
+      xnm: userScoreInfo[academic_year_y][term_y][row].xnm,
       xqm: userScoreInfo[academic_year_y][term_y][row].xqm,
     } as ScoreInquiryeItem;
     if (bindScore) {
       this.showToast(true, 'lodding', "查询中......");
       this.courseTaped(bindScore);
+    }
+    else if (!bindScore) {
+      this.showToast(true, 'error', "请求失败");
     }
   },
   /**
@@ -105,7 +108,7 @@ Page({
      */
   async courseTaped(from: ScoreInquiryeItem) {
     //Detail 用来接受成绩详情的变量
-    const { data: Detail } = await getScoreDetail(from) as unknown as Iresult<any>//此处有问题，问过超哥。
+    const { data: Detail } = await getScoreDetail(from) as unknown as IResult<any>//此处有问题，问过超哥。
     if (!Detail) {
       this.showToast(true, 'error', "请求失败");
       setTimeout(() => {
@@ -192,129 +195,117 @@ Page({
   * 渲染学期按钮 (学年，学期) 均为int类型
   */
   renderAcademicAndTermTap: function (academic_year: number, term: number) {
-    var academic_year = this.data.academic_year;
-    var term = this.data.term;
-    var academic_year_y = '';
-    var term_y = '';
-    var bdc_1 = ""; //大一
-    var bdc_2 = "";
-    var bdc_3 = "";
-    var bdc_4 = "";
-    var bdc_5 = "";//上学期
-    var bdc_6 = "";
+    var academic_year_y = this.data.academic_year_y;
+    var term_y = this.data.term_y;
+    var fs = ''; //大一 Fresh
+    var sh = ''; // 大二 Sophomore
+    var jn = '';// 大三 Junior
+    var sn = '';// 大四 Senior
+    var last = '';//上学期 last
+    var next = ''; //下学期 next
     if (academic_year == 1 && term == 1) { //大一 上
-      academic_year = academic_year;
-      term = term;
       academic_year_y = 'one';
       term_y = 'sxq';
-      bdc_1 = "#20C38C";
-      bdc_2 = "rgba(41, 41, 69, 0.2)";
-      bdc_3 = "rgba(41, 41, 69, 0.2)";
-      bdc_4 = "rgba(41, 41, 69, 0.2)";
-      bdc_5 = "#20C38C";
-      bdc_6 = "rgba(41, 41, 69, 0.2)";
+      fs = "#20C38C";
+      sh = "rgba(41, 41, 69, 0.2)";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn = "rgba(41, 41, 69, 0.2)";
+      last = "#20C38C";
+      next = "rgba(41, 41, 69, 0.2)";
     } else if (academic_year == 1 && term == 2) { //下
-      academic_year = academic_year;
-      term = term;
       academic_year_y = 'one';
       term_y = 'xxq';
-      bdc_1 = "#20C38C";
-      bdc_2 = "rgba(41; 41; 69; 0.2)";
-      bdc_3 = "rgba(41; 41; 69; 0.2)";
-      bdc_4 = "rgba(41; 41; 69; 0.2)";
-      bdc_5 = "rgba(41; 41; 69; 0.2)";
-      bdc_6 = "#20C38C";
+      fs = "#20C38C";
+      sh = "rgba(41; 41; 69; 0.2)";
+      jn = "rgba(41; 41; 69; 0.2)";
+      sn = "rgba(41; 41; 69; 0.2)";
+      last = "rgba(41; 41; 69; 0.2)";
+      next = "#20C38C";
     } else if (academic_year == 2 && term == 1) { //大二上
-      academic_year = academic_year;
-      term = term;
       academic_year_y = 'two';
       term_y = 'sxq';
-      bdc_1 = "rgba(41; 41; 69; 0.2)";
-      bdc_2 = "#20C38C";
-      bdc_3 = "rgba(41; 41; 69; 0.2)";
-      bdc_4 = "rgba(41; 41; 69; 0.2)";
-      bdc_5 = "#20C38C";
-      bdc_6 = "rgba(41; 41; 69; 0.2)";
+      fs = "rgba(41; 41; 69; 0.2)";
+      sh = "#20C38C";
+      jn = "rgba(41; 41; 69; 0.2)";
+      sn = "rgba(41; 41; 69; 0.2)";
+      last = "#20C38C";
+      next = "rgba(41; 41; 69; 0.2)";
     } else if (academic_year == 2 && term == 2) { //大二下
-      academic_year: academic_year;
-      term = term;
       academic_year_y = 'two';
       term_y = 'xxq';
-      bdc_1 = "rgba(41; 41; 69; 0.2)";
-      bdc_2 = "#20C38C";
-      bdc_3 = "rgba(41; 41; 69; 0.2)4";
-      bdc_4 = "rgba(41; 41; 69; 0.2)";
-      bdc_5 = "rgba(41; 41; 69; 0.2)";
-      bdc_6 = "#20C38C";
+      fs = "rgba(41; 41; 69; 0.2)";
+      sh = "#20C38C";
+      jn = "rgba(41; 41; 69; 0.2)4";
+      sn = "rgba(41; 41; 69; 0.2)";
+      last = "rgba(41; 41; 69; 0.2)";
+      next = "#20C38C";
     } else if (academic_year == 3 && term == 1) { //大三上
-      academic_year = academic_year;
-      term = term;
       academic_year_y = 'three';
       term_y = 'sxq';
-      bdc_1 = "rgba(41; 41; 69; 0.2)";
-      bdc_2 = "rgba(41; 41; 69; 0.2)";
-      bdc_3 = "#20C38C";
-      bdc_4 = "rgba(41; 41; 69; 0.2)";
-      bdc_5 = "#20C38C";
-      bdc_6 = "rgba(41; 41; 69; 0.2)";
+      fs = "rgba(41; 41; 69; 0.2)";
+      sh = "rgba(41; 41; 69; 0.2)";
+      jn = "#20C38C";
+      sn = "rgba(41; 41; 69; 0.2)";
+      last = "#20C38C";
+      next = "rgba(41; 41; 69; 0.2)";
     } else if (academic_year == 3 && term == 2) { //大三下
-      academic_year = academic_year;
-      term = term;
       academic_year_y = 'three';
       term_y = 'xxq';
-      bdc_1 = "rgba(41; 41; 69; 0.2)";
-      bdc_2 = "rgba(41; 41; 69; 0.2)";
-      bdc_3 = "#20C38C";
-      bdc_4 = "rgba(41; 41; 69; 0.2)";
-      bdc_5 = "rgba(41; 41; 69; 0.2)";
-      bdc_6 = "#20C38C";
+      fs = "rgba(41; 41; 69; 0.2)";
+      sh = "rgba(41; 41; 69; 0.2)";
+      jn = "#20C38C";
+      sn = "rgba(41; 41; 69; 0.2)";
+      last = "rgba(41; 41; 69; 0.2)";
+      next = "#20C38C";
     } else if (academic_year == 4 && term == 1) { //大四上
-      academic_year = academic_year;
-      term = term;
       academic_year_y = 'four';
       term_y = 'sxq';
-      bdc_1 = "rgba(41; 41; 69; 0.2)";
-      bdc_2 = "rgba(41; 41; 69; 0.2)";
-      bdc_3 = "rgba(41; 41; 69; 0.2)";
-      bdc_4 = "#20C38C";
-      bdc_5 = "#20C38C";
-      bdc_6 = "rgba(41; 41; 69; 0.2)";
+      fs = "rgba(41; 41; 69; 0.2)";
+      sh = "rgba(41; 41; 69; 0.2)";
+      jn = "rgba(41; 41; 69; 0.2)";
+      sn = "#20C38C";
+      last = "#20C38C";
+      next = "rgba(41; 41; 69; 0.2)";
     } else if (academic_year == 4 && term == 2) { //大四下
-      academic_year = academic_year;
-      term = term;
       academic_year_y = 'four';
       term_y = 'xxq';
-      bdc_1 = "rgba(41; 41; 69; 0.2)";
-      bdc_2 = "rgba(41; 41; 69; 0.2)";
-      bdc_3 = "rgba(41; 41; 69; 0.2)";
-      bdc_4 = "#20C38C";
-      bdc_5 = "rgba(41; 41; 69; 0.2)";
-      bdc_6 = "#20C38C";
+      fs = "rgba(41; 41; 69; 0.2)";
+      sh = "rgba(41; 41; 69; 0.2)";
+      jn = "rgba(41; 41; 69; 0.2)";
+      sn = "#20C38C";
+      last = "rgba(41; 41; 69; 0.2)";
+      next = "#20C38C";
     }
     this.setData({
       academic_year: academic_year,
       term: term,
       academic_year_y: academic_year_y,
       term_y: term_y,
-      bdc_1: bdc_1,
-      bdc_2: bdc_2,
-      bdc_3: bdc_3,
-      bdc_4: bdc_4,
-      bdc_5: bdc_5,
-      bdc_6: bdc_6,
+      fs: fs,
+      sh: sh,
+      jn: jn,
+      sn: sn,
+      last: last,
+      next: next,
     })
   },
-
-
-  choose: function (e: { currentTarget: { dataset: { academic_year: any; term: any; row: any, } } }, xqxfscore: any) {
+  /**
+   * 点击更换学期学年
+   */
+  choose: function (e: { currentTarget: { dataset: { academic_year: number; term: number; row: any, } } }) {
+    console.log( e.currentTarget.dataset.academic_year)
+    console.log(e.currentTarget.dataset.term)
     var academic_year = e.currentTarget.dataset.academic_year;
     var term = e.currentTarget.dataset.term;
     this.renderAcademicAndTermTap(academic_year, term);
-    //改变称号
+    /**
+     *  改变称号
+     */
     var that = this;
-    var academic_year_y = that.data.academic_year_y as unknown as number;
-    var term_y = that.data.term_y + 'all' as unknown as number;
-    var xqxfscores = that.data.userScoreInfo[academic_year_y][term_y][0][xqxfscore] as unknown as number;
+    var academic_year_y = that.data.academic_year_y;
+    var term_y = that.data.term_y;
+    var userScoreInfo = this.data.userScoreInfo as any;
+    var xqxfscores = userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore;
     that.scoreLevels(xqxfscores);
   },
   /**
@@ -363,13 +354,11 @@ Page({
       })
     }, 800);
     this.renderAcademicAndTermTap(this.data.academic_year, this.data.term);
-    //再未点击学期更换时，进入默认的大一上称号
-    var that = this;
-    var academic_year_y = that.data.academic_year_y as unknown as number;
-    var term_y = that.data.term_y + 'all' as unknown as number;
-    var xqxfscore: any //解决下面的找不到该属性的问题
-    var xqxfscores = that.data.userScoreInfo[academic_year_y][term_y][0][xqxfscore] as unknown as number;
-    that.scoreLevels(xqxfscores);
+    //在未点击学期更换时，进入默认的大一上称号
+    var academic_year_y = this.data.academic_year_y;
+    var term_y = this.data.term_y + 'all';
+    var xqxfscores = userScoreInfo[academic_year_y][term_y][0].xqxfscore;
+    this.scoreLevels(xqxfscores);
   },
 
 
@@ -383,7 +372,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.initPageData();
   },
 
   /**
