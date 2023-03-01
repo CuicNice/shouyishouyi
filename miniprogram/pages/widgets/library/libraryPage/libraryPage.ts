@@ -185,9 +185,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    if(wx.getStorageSync('widget-library')){
     var arr = wx.getStorageSync('widget-library')
     arr.book = [];
-    wx.setStorageSync('widget-library', arr)
+    wx.setStorageSync('widget-library', arr)}else{
+      let value= { item: [] as any, book: [] as any };
+      wx.setStorageSync('widget-library', value)
+    }
     this.get();//初始化获取缓存
   },
 
