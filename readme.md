@@ -42,3 +42,5 @@ typings
 3、测试页面：testCountDownComponentPage供大家做引入参考
 4、备注，自己写的topBar可以单独拿出来封装，目前测试兼容性还可以，在countDownPage页面。
 
+### 2023/3/2 score inquiry
+ 1.修改了代码规范。
