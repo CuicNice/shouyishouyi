@@ -29,7 +29,6 @@ interface outnewsListItem {
 export {
   innernewsListItem,
   outnewsListItem
-
 }
 Page({
   data: {
@@ -137,7 +136,6 @@ Page({
     let innerPageParams=that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
     console.log("ssuosuoss",innerRes)
-
     if (innerRes != null) {
       wx.hideLoading();
       let list = innerRes.list;
@@ -153,7 +151,6 @@ async getOutSouyiNews(){
  * 发送请求，渲染数据
  * @param from 楼栋数据
  */
-// let mydate = util.formatDate(new Date());
  // 调用函数时，传入new Date()参数，返回值是日期和时间
 let that=this
 let outPageParams = that.data.outPageParams
@@ -172,6 +169,7 @@ that.setData({
   list: list, 
 })
   },
+  // 触底函数 scrollToMoreList
 async scrollToMoreList(){
 // 滚动加载更多的数据，滚动一次多加载10条
 // 初始化数据

@@ -124,10 +124,7 @@ flex-grow: 0;
 }
 
 .letter {
-  width: 546rpx;
-  /* height: 409rpx; */
-  /* margin-left: 30rpx; */
-  padding: 0rpx 29rpx;
+  padding: 0rpx 30rpx;
 }
 
 .object {

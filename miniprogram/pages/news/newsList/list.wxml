@@ -1,56 +1,58 @@
 <!--pages/list/list.wxml-->
 <!--pages/list.wxml-->
 <!-- 背景 -->
-
 <view class="bg">
-<!-- 背景柱子 -->
-<view class="bgThingsBox">
-<image class="bgThings" src="{{bgSvgUrl}}" mode=""/>
-</view>
+  <!-- 背景柱子 -->
+  <view class="bgThingsBox">
+    <image class="bgThings" src="{{bgSvgUrl}}" mode="" />
+  </view>
 </view>
 <!-- topbar -->
 <topBar title="{{newsListTitle}}" immersion="{{true}}" Threshold="0.2">
   <!-- 搜索框 -->
   <!-- 上半部分固定 -->
+  <view class="fixedTop">
+    <!-- 滚动的时候固定不动 -->
     <view class="searchBarBox" bindtap="tosSarchNews">
-    <view class="searchContent">
-      <text class="textInfo" selectable="false" space="false" decode="false">搜索你想要的首义快讯</text>
+      <view class="searchContent">
+        <text class="textInfo" selectable="false" space="false" decode="false">搜索你想要的首义快讯</text>
+      </view>
+      <view class="searchIconBox">
+        <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+      </view>
     </view>
-    <view class="searchIconBox">
-      <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+    <!-- 导航栏 -->
+    <!-- 标题栏 -->
+    <!-- 新闻选择 -->
+    <view class="NewsChoose">
+      <view class="NewsButtonBox">
+        <view class="OutOFSchoolNews" bindtap="ChooseShcoolNews">
+          <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}">校园快讯</view>
+          <view class="newsiconGrey" wx:if="{{tapbarCtrl}}"></view>
+          <view class="Newstitle" wx:if="{{!tapbarCtrl}}">校园快讯</view>
+          <view class="newsicon" wx:if="{{!tapbarCtrl}}"></view>
+        </view>
+        <view class="InsideSchoolNews" bindtap="ChooseInNews">
+          <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}">首义快讯</view>
+          <view class="newsiconGrey" wx:if="{{!tapbarCtrl}}"></view>
+          <view class="Newstitle" wx:if="{{tapbarCtrl}}">首义快讯</view>
+          <view class="newsicon" wx:if="{{tapbarCtrl}}"></view>
+        </view>
+      </view>
     </view>
   </view>
-  <!-- 导航栏 -->
-  <!-- 标题栏 -->
 
-  <!-- 新闻选择 -->
-  <view class="NewsChoose">
-    <view class="NewsButtonBox">
-      <view class="OutOFSchoolNews" bindtap="ChooseShcoolNews">
-        <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}">校园快讯</view>
-        <view class="newsiconGrey" wx:if="{{tapbarCtrl}}"></view>
-        <view class="Newstitle" wx:if="{{!tapbarCtrl}}">校园快讯</view>
-        <view class="newsicon" wx:if="{{!tapbarCtrl}}"></view>
-      </view>
-      <view class="InsideSchoolNews" bindtap="ChooseInNews">
-        <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}">首义快讯</view>
-        <view class="newsiconGrey" wx:if="{{!tapbarCtrl}}"></view>
-        <view class="Newstitle" wx:if="{{tapbarCtrl}}">首义快讯</view>
-        <view class="newsicon" wx:if="{{tapbarCtrl}}"></view>
-      </view>
-    </view>
-  </view>
   <!-- 滑动触发加载更多的新闻scroll -->
-  <scroll-view scroll-y style="height:1450rpx;" bindscroll="scroll" enhanced="{{true}}" bounces="{{false}}" bindscrolltolower='scrollToMoreList' lower-threshold='150'>
+  <scroll-view scroll-y style="height:1450rpx;" class="scrollBox" bindscroll="scroll" enhanced="{{true}}" bounces="{{false}}" bindscrolltolower='scrollToMoreList' lower-threshold='150'>
+  <!-- 触底函数 -->
     <!-- list搜索栏部分 -->
+    <!-- 范围限定 -->
     <view class="list-group" wx:if="{{tapbarCtrl}}">
       <itemview list="{{list}}"></itemview>
     </view>
-
     <view class="list-group" wx:if="{{!tapbarCtrl}}">
       <itemview list="{{list}}"></itemview>
     </view>
-
     <view id="he" hidden="{{flag == 1 ? true : false}}">
       <view class="mybox">
         <view class="item"></view>

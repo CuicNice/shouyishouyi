@@ -17,11 +17,11 @@ const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
 const apiList = {
   // 新闻列表内网
-  // http://www.fmin-courses.com:9527/api/v1/sy/mini/outnews/appletOutNewsList
-  getInnerNewsListitemUrl: baseUrl + '/api/v1/sy/mini/outnews/appletOutNewsList',
+  // http://www.fmin-courses.com:9527/api/v1/sy/mini/innews/listInNews
+  getInnerNewsListitemUrl: baseUrl + '/api/v1/sy/mini/innews/listInNews',
   // 新闻列表外网
-  // http://www.fmin-courses.com:9527/api/v1/sy/mini/outnews/appletOutNewsList
-  getOutNewsListitemUrl:baseUrl + '/api/v1/sy/mini/outnews/appletOutNewsList',
+  // http://www.fmin-courses.com:9527/api/v1/sy/mini/outnews/listMiniOutNews
+  getOutNewsListitemUrl:baseUrl + '/api/v1/sy/mini/outnews/listMiniOutNews',
   // http://www.fmin-courses.com:9527/api/v1/sy/mini/innews/getNewsByTitle
   getPublicDesItemUrl: baseUrl + '/api/v1/sy/mini/innews/getNewsByTitle',
   // 根据ID获取新闻
