@@ -31,7 +31,7 @@
 <view class="select_box" wx:if="{{weekSchedule}}">
   <scroll-view scroll-x="true" scroll-with-animation="true" class="select_week" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:rgba(255, 255, 255, 0.8);">
     <view wx:for="{{weekNum}}" wx:key="index" style="display: inline-flex;height: 100%;align-items: center;">
-      <view class="select_one" wx:if="{{nowWeek == index+1}}" bindtap="selectWeekangian">
+      <view class="select_one" wx:if="{{nowWeek == index+1}}">
         <ul>
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
           <view class="select_oneweek">第{{index+1}}周</view>

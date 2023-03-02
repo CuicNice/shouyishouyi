@@ -20,7 +20,7 @@ Page({
     nowDate: '',
     ifshow: false,
     schoolPlace: "武昌",
-    startDate: "2/19",
+    startDate: "2023/2/19",
     suorec: '',
     colorcardLight: ['#A9E6FF', '#FFDDDC', '#F5DFFA', '#D4EFFF', '#F9EABA', '#FFD698', '#F0FFC4', '#FEFCC9', '#DFFFD4', '#FFD8D2', '#FFFFF0', '#CCFFED', '#BFC1FF', '#FFC8E6', '#E9EDF1', '#EFDCC9'],
     colorcardDark: ['#6290E9', '#B791DC', '#ABA6E9', '#E39ACA', '#F091A2', '#FF9470', '#FDB165', '#F3D257', '#5DD39E', '#B2DB7C', '#68D8D6', '#A9B7BD', '#59ADDF', '#7895BC', '#75AEAE', '#EFDCC9'],
@@ -130,15 +130,15 @@ Page({
       I: schoolTerm,
       startDate: start
     })
-    let value= wx.getStorageSync('widget-classSchedule')
-    value.classSchedule={}
-    wx.setStorageSync("widget-classSchedule",value)
+    let myarr=wx.getStorageSync('widget-classSchedule').ifshowAllclass
+    var arry={myarr}
+    wx.setStorageSync("widget-classSchedule",arry)
     this.initClassData()
     setTimeout(function () {
-      let value= wx.getStorageSync('widget-classSchedule')
-    value.classSchedule={}
-    wx.setStorageSync("widget-classSchedule",value)
-    }, 8000)
+      var value=wx.getStorageSync('widget-classSchedule').ifshowAllclass
+      var arr={value}
+      wx.setStorageSync("widget-classSchedule",arr)
+    }, 4000)
   },
   /* 
   *跳转到课表设置界面
@@ -150,8 +150,10 @@ Page({
   *重新刷新功能
   */
   refresh() {
-    wx.removeStorageSync('classSchedule')
-    this.setData({ weekSchedule: true })
+    var value=wx.getStorageSync('widget-classSchedule').ifshowAllclass
+    var arr={value}
+    wx.setStorageSync("widget-classSchedule",arr)
+    this.setData({ weekSchedule: true ,nowWeek:1})
     try { this.initPageData(); }
     catch (error) {
       this.setData({ dialogTip: true })
@@ -269,7 +271,19 @@ Page({
       })
     }
   },
-
+  /* 
+  *刷新本周的日期
+  */
+  reGetDay(time: string | number | Date){
+    let index = this.data.nowWeek - 1;
+    let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
+    let nowDate = new Date(time) //获取指定日期当周的一周日期
+    let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - 1) * 7);
+    this.getWeekTime(date);
+    this.setData({
+      nowWeekData: nowWeekData
+    })
+  },
   /* 
   *关闭弹窗
   */
@@ -286,7 +300,7 @@ Page({
     var that = this;
     try {
       var value = wx.getStorageSync('widget-classSchedule').classSchedule
-      if (value.length!=0) {
+      if (value) {
         var nowWeekData: { day: string; item: never[] }[] = []
         if (that.data.showAll) {
           nowWeekData = that.getNowWeekData(value, that.data.nowWeek);
@@ -464,6 +478,7 @@ Page({
    * 获取当前一周的日期
    */
   getWeekTime(date: Date) {
+    console.log(date)
     var timesStamp = date.getTime();
     var currenDay = date.getDay();
     var dates = [];
@@ -649,27 +664,14 @@ Page({
       times = this.data.timeJia;
       place = "嘉鱼";
     }
-    this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: day % 7-1, semester: schoolTime, schoolPlace: place, time: times, startDate: start })
+    this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start })
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
-    if(wx.getStorageSync('widget-classSchedule')){
-    let index = this.data.nowWeek - 1;
-    let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
-    let nowDate = new Date(time) //获取指定日期当周的一周日期
-    let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - 1) * 7);
-    this.getWeekTime(date);
-    this.setData({
-      nowWeekData: nowWeekData
-    })}else{setTimeout( () => {
-    let index = this.data.nowWeek - 1;
-    let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
-    let nowDate = new Date(time) //获取指定日期当周的一周日期
-    let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - 1) * 7);
-    this.getWeekTime(date);
-    this.setData({
-      nowWeekData: nowWeekData
-    })
-    }, 4500)}
+    if(wx.getStorageSync('widget-classSchedule').classSchedule){
+      this.reGetDay(time)
+    }else{setTimeout( () => {
+      this.reGetDay(time)
+    }, 4000)}//倒计时避免没有课表缓存造成当周课表无法显示
   },
 
   /**
