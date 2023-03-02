@@ -49,7 +49,7 @@ Page({
     } else {
       scoreLevel = 0;
     }
-    this.setData({ scoreLevel: scoreLevel })
+    this.setData({ scoreLevel: scoreLevel });
   },
   /**
    * 显示查询中或请求成功的小弹窗
@@ -65,12 +65,12 @@ Page({
     * 点击成绩卡片
     */
   async courseTap(e: any) {
-    var row = e.currentTarget.dataset.row;;//成绩列表的下标
+    var row = e.currentTarget.dataset.row;//成绩列表的下标
     var term_y = this.data.term_y;
     this.showToast(true, "lodding", "查询中……");
-    var userScoreInfo = this.data.userScoreInfo as any
+    var userScoreInfo = this.data.userScoreInfo as any;
     var academic_year_y = this.data.academic_year_y;
-    var Jd = userScoreInfo[academic_year_y][term_y][row].jd //绩点
+    var Jd = userScoreInfo[academic_year_y][term_y][row].jd ;//绩点
     this.setData({
       Jd: parseInt(Jd)
     })
@@ -108,7 +108,7 @@ Page({
      */
   async courseTaped(from: ScoreInquiryeItem) {
     //Detail 用来接受成绩详情的变量
-    const { data: Detail } = await getScoreDetail(from) as unknown as IResult<any>
+    const { data: Detail } = await getScoreDetail(from) as unknown as IResult<any>;
     if (!Detail) {
       this.showToast(true, 'error', "网络开小差了");
       setTimeout(() => {
@@ -311,7 +311,7 @@ Page({
   choose: function (e: { currentTarget: { dataset: { academic_year: number; term: number; row: any, } } }) {
     var academic_year = e.currentTarget.dataset.academic_year;
     var term = e.currentTarget.dataset.term;
-    this.setData({academic_year:academic_year,term:term})
+    this.setData({academic_year:academic_year,term:term});
     this.renderAcademicAndTermTap(academic_year, term);
     /**
      *  改变称号
@@ -348,7 +348,7 @@ Page({
    */
   async getUserInfoData(from: ScoreInquiryeItem) {
     const { data: info } = await getUserInfo(from) as unknown as IResult<any>;
-    const { data: userScoreInfo } = await getScoreInfo(from) as unknown as IResult<any>
+    const { data: userScoreInfo } = await getScoreInfo(from) as unknown as IResult<any>;
     if (!info) {
       this.showToast(true, 'error', "网络开小差了");
       setTimeout(() => {
