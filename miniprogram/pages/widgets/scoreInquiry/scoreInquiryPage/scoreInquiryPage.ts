@@ -336,14 +336,12 @@ Page({
       zh: wx.getStorageSync('login').zh,
       mm: wx.getStorageSync('login').mm,
     } as ScoreInquiryeItem;
-    if (bindData) {
       this.showToast(true, 'lodding', "查询中......");
       this.getUserInfoData(bindData);
-    }
   },
   /**
    * 发送请求，渲染数据
-   * @param from 用户信息
+   * @param from 用户信息和成绩列表
    */
   async getUserInfoData(from: ScoreInquiryeItem) {
     const { data: info } = await getUserInfo(from) as unknown as IResult<any>;
@@ -371,7 +369,9 @@ Page({
       })
     }, 800);
     this.renderAcademicAndTermTap(this.data.academic_year, this.data.term);
-    //在未点击学期更换时，进入默认的大一上称号
+    /**
+     * 在未点击学期更换时，进入默认的大一上称号
+     */
     var academic_year_y = this.data.academic_year_y;
     var term_y = this.data.term_y + 'all';
     var xqxfscores = userScoreInfo[academic_year_y][term_y][0].xqxfscore;
