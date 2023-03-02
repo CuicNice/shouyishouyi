@@ -1,6 +1,7 @@
 <topbar title="{{electricChargeTitle}}" immersion="{{true}}">
   <view class="page"></view>
   <view>
+    <!-- 图书主体部分 -->
     <view class="bookBox">
       <view class="bookXQ" bindtap="tapdetailCopy">
         <view class="bookName">{{allbook[num].title}}</view>
@@ -43,6 +44,7 @@
         </view>
       </view>
     </view>
+    <!-- 图书在各分馆的储存情况 -->
     <view>
       <view class="gen" wx:for="{{allbook[num].num}}" bindtap="localCopy" wx:key="index" data-index="{{index}}">
         <view class="genTop">

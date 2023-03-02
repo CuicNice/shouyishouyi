@@ -1,15 +1,19 @@
 <!--图书馆搜索界面-->
 <topbar title="{{electricChargeTitle}}" immersion="{{true}}">
   <view class="page"></view>
+  <!--主体部分 -->
   <view class="bigBox">
+  <!-- 搜索框部分 -->
     <view class="search">
       <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
       <image class="image" src="../../../../static/svg/search.svg" bindtap="search"></image>
     </view>
+    <!-- 搜索记录头部部分 -->
     <view class="searchRecord">
       <view class="mark">搜索记录</view>
       <view class="deleteMark" bindtap="deleteMark">清除记录</view>
     </view>
+    <!-- 搜索记录内容部分 -->
     <view class="markBox">
       <view class="markMake" wx:if="{{!ifshow}}" wx:for="{{shuju}}" wx:key="index">
         <view class="text" wx:if="{{!item.ifshow}}" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
@@ -17,6 +21,7 @@
       </view>
       <view class="nonemarkMake" wx:if="{{ifshow}}">暂无搜索记录</view>
     </view>
+    <!-- 图书馆轮播图部分 -->
     <view class="library">
       <view class="lefticon" bindtap="swiperChangeqian">
         <image class="lefticonImg2" src="/static/svg/vector.svg"></image>

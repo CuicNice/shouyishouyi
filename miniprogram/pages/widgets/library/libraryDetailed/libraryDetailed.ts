@@ -9,12 +9,9 @@ Page({
     electricChargeTitle: '图书详情'
   },
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面加载,
+   * 接收从上一个页面传递过来的数据
    */
-
-  /** 
-  *接收从上一个页面传递过来的数据
-  **/
   onLoad(e) {
     this.setData({ num: (e.num) as unknown as number, allbook: JSON.parse((e.all) as unknown as string) });
   },
