@@ -30,8 +30,8 @@ Page({
     height: '' //弹窗的长度
   },
   /**
- * 变化等级称号
- */
+   * 变化等级称号
+   */
   scoreLevels(xqxfscores: number) {
     var scoreLevel = this.data.scoreLevel;
     if (xqxfscores >= 90) {
@@ -52,8 +52,8 @@ Page({
     this.setData({ scoreLevel: scoreLevel })
   },
   /**
- * 显示查询中或请求成功的小弹窗
- */
+   * 显示查询中或请求成功的小弹窗
+   */
   showToast(showToast: boolean, toastIcon: string, toastTitle: string) {
     this.setData({
       showToast: showToast,
@@ -62,8 +62,8 @@ Page({
     })
   },
   /**
- * 点击成绩卡片
- */
+    * 点击成绩卡片
+    */
   async courseTap(e: any) {
     var row = e.currentTarget.dataset.row;;//成绩列表的下标
     var term_y = this.data.term_y;
@@ -89,10 +89,10 @@ Page({
       this.courseTaped(bindScore);
     }
     else if (!bindScore) {
-      this.showToast(true, 'error', "请求失败");
+      this.showToast(true, 'error', "未找到id");
     }
   },
-  /**
+      /**
        * 关闭成绩弹窗
        */
   closeTap: function () {
@@ -103,14 +103,14 @@ Page({
       scoreCountdetail: false
     })
   },
-  /**
+    /**
      * 成绩详情弹窗
      */
   async courseTaped(from: ScoreInquiryeItem) {
     //Detail 用来接受成绩详情的变量
     const { data: Detail } = await getScoreDetail(from) as unknown as IResult<any>
     if (!Detail) {
-      this.showToast(true, 'error', "请求失败");
+      this.showToast(true, 'error', "网络开小差了");
       setTimeout(() => {
         this.setData({
           showToast: false,
@@ -139,7 +139,7 @@ Page({
     if (score.indexOf(".0") >= 0) {
       score = parseInt(score);
     }
-    /**
+  /**
    * 渲染
    */
     var height = this.data.height;
@@ -309,8 +309,6 @@ Page({
    * 点击更换学期学年
    */
   choose: function (e: { currentTarget: { dataset: { academic_year: number; term: number; row: any, } } }) {
-    console.log( e.currentTarget.dataset.academic_year)
-    console.log(e.currentTarget.dataset.term)
     var academic_year = e.currentTarget.dataset.academic_year;
     var term = e.currentTarget.dataset.term;
     this.setData({academic_year:academic_year,term:term})
@@ -325,7 +323,7 @@ Page({
     var xqxfscores = userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore;
     that.scoreLevels(xqxfscores);
   },
-  /**
+    /**
      * 初始化页面渲染函数
      */
   async initPageData() {
@@ -336,8 +334,13 @@ Page({
       zh: wx.getStorageSync('login').zh,
       mm: wx.getStorageSync('login').mm,
     } as ScoreInquiryeItem;
+    if(wx.getStorageSync('login').zh&& wx.getStorageSync('login').mm){
       this.showToast(true, 'lodding', "查询中......");
       this.getUserInfoData(bindData);
+    }
+    else if(!(wx.getStorageSync('login').zh&& wx.getStorageSync('login').mm)){
+      this.showToast(true, 'error', "用户未绑定");
+    } 
   },
   /**
    * 发送请求，渲染数据
@@ -347,7 +350,7 @@ Page({
     const { data: info } = await getUserInfo(from) as unknown as IResult<any>;
     const { data: userScoreInfo } = await getScoreInfo(from) as unknown as IResult<any>
     if (!info) {
-      this.showToast(true, 'error', "请求失败");
+      this.showToast(true, 'error', "网络开小差了");
       setTimeout(() => {
         this.setData({
           showToast: false,
