@@ -5,7 +5,6 @@ Component({
    */
   properties: {
  termTitleTapdetail:Boolean,
-
 /*成绩详情弹窗*/
  courseTapdetail:Boolean,
  scoreCountdetail:Boolean,
