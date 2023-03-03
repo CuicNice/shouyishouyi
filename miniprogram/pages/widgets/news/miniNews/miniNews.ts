@@ -1,18 +1,9 @@
-// components/intview/intview.js
+// pages/widgets/news/miniNews/miniNews.ts
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    list_2:{
-      type:Array,
-      value:[]
-    },
-    itemurl:{
-      type:String,
-      value:""
-    },
-
 
   },
 
@@ -20,18 +11,13 @@ Component({
    * 组件的初始数据
    */
   data: {
-    
 
   },
-
-
-
-
 
   /**
    * 组件的方法列表
    */
   methods: {
-  
+
   }
 })

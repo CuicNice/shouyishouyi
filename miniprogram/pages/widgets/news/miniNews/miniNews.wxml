@@ -1,0 +1,116 @@
+<!--pages/widgets/news/miniNews/miniNews.wxml-->
+<!-- 新闻小组件 -->
+<view class="miniNewsBox">
+  <!-- 顶部的返回与icon -->
+  <!-- 左右布局 -->
+  <view class="miniNewsTop">
+    <view class="miniNewsTopLeftBox">
+      <view class="miniNewsTxt">
+        快询闻</view>
+      <!-- 图标 -->
+      <view class="miniNewsIconBox">
+        <image class="miniNewsIconSvg" src="../../../../static/svg/news/miniNews_Book.svg" mode="" />
+      </view>
+    </view>
+    <!-- 右边的返回键 -->
+    <view class="topReturnBox">
+      <image style="width: 20px;height: 20px;" src="../../../../static/svg/news/miniNews_return.svg" mode="" />
+    </view>
+  </view>
+  <!-- 新闻选择 -->
+  <view class="NewsChoose">
+    <view class="OutOFSchoolNews" bindtap="ChooseShcoolNews">
+      <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}"><text class="greenText">校园快讯
+      </text></view>
+      <view class="Newstitle" wx:if="{{!tapbarCtrl}}"><text class="whiteText">校园快讯
+      </text></view>
+    </view>
+    <view class="InsideSchoolNews" bindtap="ChooseInNews">
+      <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}"><text class="greenText">首义快讯
+      </text></view>
+      <view class="Newstitle" wx:if="{{tapbarCtrl}}"><text class="whiteText">首义快讯
+      </text></view>
+    </view>
+  </view>
+  <!-- 新闻list部分 -->
+  <!-- 范围限定 -->
+  <view class="list-group">
+    <!-- listItem list项部分 -->
+    <view class="newsItemBox">
+      <!-- 左边内容 -->
+      <view class="newsleftBox">
+        <!-- 文字部分 -->
+        <view class="newsItemContent">
+          喜迎党的二十大 学校举办教师节系列活动喜迎党的二十大 学校举办教师节系列活动
+        </view>
+        <!-- 学校要闻标签 -->
+        <view class="schoolTypeIndex">
+          学校要闻
+        </view>
+      </view>
+      <!-- 右边的日期 -->
+      <view class="rightNewsDate">
+        <!-- 天数 -->
+        <view class="newsDate">
+        31
+        </view>
+        <!-- 年月份 -->
+        <view class="newsYearAndMonth">
+        2023.1
+        </view>
+      </view>
+    </view>
+
+    <view class="newsItemBox">
+      <!-- 左边内容 -->
+      <view class="newsleftBox">
+        <!-- 文字部分 -->
+        <view class="newsItemContent">
+          喜迎党的二十大 学校举办教师节系列活动喜迎党的二十大 学校举办教师节系列活动
+        </view>
+        <!-- 学校要闻标签 -->
+        <view class="schoolTypeIndex">
+          学校要闻
+        </view>
+      </view>
+      <!-- 右边的日期 -->
+      <view class="rightNewsDate">
+        <!-- 天数 -->
+        <view class="newsDate">
+        31
+        </view>
+        <!-- 年月份 -->
+        <view class="newsYearAndMonth">
+        2023.1
+        </view>
+      </view>
+    </view>
+
+    <view class="newsItemBox">
+      <!-- 左边内容 -->
+      <view class="newsleftBox">
+        <!-- 文字部分 -->
+        <view class="newsItemContent">
+          喜迎党的二十大 学校举办教师节系列活动喜迎党的二十大 学校举办教师节系列活动
+        </view>
+        <!-- 学校要闻标签 -->
+        <view class="schoolTypeIndex">
+          学校要闻
+        </view>
+      </view>
+      <!-- 右边的日期 -->
+      <view class="rightNewsDate">
+        <!-- 天数 -->
+        <view class="newsDate">
+        31
+        </view>
+        <!-- 年月份 -->
+        <view class="newsYearAndMonth">
+        2023.1
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="list-group" wx:if="{{!tapbarCtrl}}">
+  </view>
+</view>

@@ -1,6 +1,6 @@
-<!--components/intview/intview.wxml-->
 <!-- <navigator url="/pages/detail/detail"> -->
-<wxs src='../../../../wxs/utils.wxs' module='tools' /> <!-- 引入切割字符串 -->
+<wxs src='../../../../wxs/utils.wxs' module='tools' /> 
+<!-- 引入切割字符串 -->
 <!-- 跳转 -->
 <navigator  class="infor-box" wx:for="{{list}}" wx:key="index" url="/pages/news/newsDetail/inDetail?newsID={{item.inNewsId}}">
   <view class="title-box">
