@@ -1,5 +1,5 @@
-//import { getScore } from "../../api/scoreInquiryApi";
-import { getPopup } from '../../api/popupApi';
+
+import { isPopup } from '../../api/popupApi';
 export interface popupeItem {
 }
 // pages/login/login.ts
@@ -13,6 +13,8 @@ Page({
     s1: '',
     s2: '',
     s3: '',
+
+
     showDialog: true,
     currentPage: 1,//默认初始第一页数据
     popupAppear: '',
@@ -145,6 +147,14 @@ Page({
       })
     }
   },
+  /** 
+    * 存入空数组，以存入其他缓存
+    */
+  getcache(){
+    var bindCache = ['','','','','',''];
+   
+    wx.setStorageSync('bindCache',bindCache)
+  },
   /**
    * 初始化页面渲染函数
    */
@@ -161,39 +171,35 @@ Page({
   * @param from popup弹窗
   */
   async getPopupData(from: popupeItem) {
-    const { data: popupAppear } = await getPopup(from) as unknown as IResult<any>;
-    if (!popupAppear) { this.initPageData() }
-    if (popupAppear.popupId == null) { wx.removeStorageSync('Time'); }
-    /**
-   * 渲染
-   */
-    var popupImage = popupAppear.popupImage;
-    this.setData({
-      popupAppear: popupAppear,
-      ima: 'http://' + popupImage,
-    })
+    const { data: popupAppear } = await isPopup(from) as unknown as IResult<any>;
+    // if (!popupAppear) { this.initPageData() }
+    // if (popupAppear.popupId == null) { wx.removeStorageSync('Time'); }
     /*
     *数据处理
     */
-    var popupType = popupAppear.popupType;
+    var popupType = popupAppear.popupType; //popupType 弹窗类型（自定义图片、系统默认弹窗）
+    var termTitleTapdetail = false;//蒙版的显示
+    var tc_custom = false;//自定义图片是否显示
+    var tc_system = false;//系统默认弹窗是否显示
+   /** 
+    * 当弹窗类型为自定义图片（custom）时
+    */
     if (popupType == 'custom') {
-      this.setData({
-        termTitleTapdetail: true,
-        tc1: true,
-        tc2: false,
-      })
-    } else if (popupType == 'system') {
-      this.setData({
-        termTitleTapdetail: true,
-        tc1: false,
-        tc2: true,
-      })
+        termTitleTapdetail = true;
+        tc_custom = true;
+        tc_system = false;
     }
-    if (!popupAppear) {
-      this.setData({
-        ima: 'http://image-2023-01-30-14-08-04-182.png'
-      })
+   /** 
+    * 当弹窗类型为系统默认弹窗（system）时
+    */
+    else if (popupType == 'system') {
+        termTitleTapdetail = true;
+        tc_custom = false;
+        tc_system = true;
     }
+   /** 
+    * 检测 今日出现的弹窗的ID是否出现过，并保存在缓存里
+    */
     if (popupAppear.popupId == wx.getStorageSync('unreadOne').popupId) {
       this.setData({
         termTitleTapdetail: false,
@@ -214,7 +220,11 @@ Page({
         tc1: false,
         tc2: false,
       })
-    }//第一次时间，第二次时间，第三次时间,依次避免两个同样的弹窗连续两天，我没弹。
+    }
+   /** 
+    * 避免两个同样ID的弹窗连续两天弹出。
+    */
+   wx.setStorageSync('bindCache[0]', this.data.s2);
     var unreadOne = popupAppear;
     var arr = [unreadOne.popupFirstTime, unreadOne.popupSecondTime, unreadOne.popupSecondTime]
     console.log(arr)
@@ -222,7 +232,7 @@ Page({
       if (arr[i].substring(8, 10) == this.data.s1.substring(7, 10)) {
         if (this.data.s2.substring(7, 10) == arr[i + 1].substring(8, 10)) {
           if (wx.getStorageSync('time') !== this.data.s2 || wx.getStorageSync('time') == 'undefined') {
-            wx.setStorageSync('time', this.data.s2);
+            wx.setStorageSync('bindCache[0]', this.data.s2);
             wx.removeStorageSync('unreadOne');
             wx.removeStorageSync('isNoread');
           }
@@ -230,6 +240,14 @@ Page({
         }
       }
     }
+    var popupImage = popupAppear.popupImage;
+    this.setData({
+      tc_custom:tc_custom,
+      tc_system:tc_system,
+      termTitleTapdetail:termTitleTapdetail,
+      popupAppear: popupAppear,
+      ima: 'http://' + popupImage,
+    })
   },
 
   /**
@@ -324,6 +342,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    this.getcache();
     this.getList();
     if (wx.getStorageSync('unreadOne').length > 0) {
       if (this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId) {
