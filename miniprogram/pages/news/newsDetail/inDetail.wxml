@@ -27,6 +27,7 @@
             <template is="wxParse" data="{{wxParseData:article.nodes}}" />
           </view>
         </view>
+        <!-- 新闻内容底部 -->
         <view class="boderLine"></view>
         <view class="ad" style="filter:{{light}}">更多讯息请微信关注：南李路二十二号</view>
       </view>

@@ -29,7 +29,10 @@ const apiList = {
   getDevDesItemUrl: baseUrl + '/api/v1/sy/mini/innews/getInNewsById',
   // 模糊查询
   // http://www.fmin-courses.com:9527/api/v1/sy/mini/innews/getNewsByTitle
-  getNewsByKeyWordsUrl:baseUrl+'/api/v1/sy/mini/innews/getNewsByTitle'
+  getNewsByKeyWordsUrl:baseUrl+'/api/v1/sy/mini/innews/getNewsByTitle',
+  // 获取根据新闻的url新闻详情
+  getNewsDetailByUrl:baseUrl+''
+
 
 }
 // http://www.fmin-courses.com:9527

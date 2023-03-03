@@ -55,7 +55,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options:any) {
-       console.log(options)
+    console.log("新闻内容",options)
     var that = this;
     var str2 = '<div class="pic"><img src="" title="" /><s class="prev" title="上一张"></s><s class="next" title="下一张"></s><span class="tips">最后一张了</span></div>';
     var str3 = '<li class="last">最后一张</li>';
@@ -63,10 +63,10 @@ Page({
     if (options.href.length > 15) {
       href = href.replace(/%2F/g, "/")
     }
-    // //   console.log(href)
     var res = await Network.getInContent(href);
+    console.log("plplp",res)
     if (res != null) {
-      ////   console.log(res)
+        console.log(res)
       // //   console.log(res.data.content)
       var html = res.data.content;
       var str1 = '<p style="text-indent:2em;">                                                                                                                                </p>'
@@ -96,7 +96,7 @@ Page({
       html = html.replace(/<li><a href="javascript:"(.*?) title="(.*?)">/g, "")
       html = html.replace(str2, "")
       html = html.replace(str3, "")
-      //   console.log(html)
+        console.log(html)
       WxParse.wxParse("article", "html", html, that, 5)
       that.setData({
         item: res.data

@@ -80,7 +80,11 @@ Page({
       })
     }
   },
-  searchEvent: function () { //搜索页面跳转
+  // 滚动
+  scroll(e:any) {
+    console.log(e)
+  },
+ searchEvent: function () { //搜索页面跳转
     wx.navigateTo({
       url: '/pages/search/search',
     })
@@ -135,7 +139,6 @@ Page({
     // 获取内网新闻
     let innerPageParams=that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
-    console.log("ssuosuoss",innerRes)
     if (innerRes != null) {
       wx.hideLoading();
       let list = innerRes.list;

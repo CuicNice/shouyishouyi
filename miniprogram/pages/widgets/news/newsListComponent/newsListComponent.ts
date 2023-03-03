@@ -12,8 +12,6 @@ Component({
       type: String,
       value: ""
     },
-
-
   },
   /**
    * 跳转到新闻详情页面
@@ -28,26 +26,16 @@ Component({
       // 跳转并且携带新闻的url参数
       let that = this
       wx.navigateTo({
-        url: "../newsDetail/inDetail?href={{item.outNewsHref}}",
+        url: "../newsDetail/inDetail?href={{item.newsHref}}",
         fail(e) {
           console.log("ee", e)
         }
       })
     },
   },
-
   /**
    * 组件的初始数据
    */
   data: {
-
-
   },
-
-
-
-
-
-
-
 })

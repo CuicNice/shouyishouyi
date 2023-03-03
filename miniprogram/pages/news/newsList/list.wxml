@@ -41,7 +41,6 @@
       </view>
     </view>
   </view>
-
   <!-- 滑动触发加载更多的新闻scroll -->
   <scroll-view scroll-y style="height:1450rpx;" class="scrollBox" bindscroll="scroll" enhanced="{{true}}" bounces="{{false}}" bindscrolltolower='scrollToMoreList' lower-threshold='150'>
   <!-- 触底函数 -->
