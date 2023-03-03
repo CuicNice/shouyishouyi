@@ -35,14 +35,19 @@
 
 .binDing-box-normal {
   width: 580rpx;
-  min-height: 320rpx;
+  /* min-height: 320rpx; */
+  padding-top: 60rpx;
+  padding-bottom: 60rpx;
+  padding-left: 34rpx;
+  padding-right: 34rpx;
+  gap:30rpx
 }
 
 .binDing-box-half-screen {
-  width: 100%;
   min-height: 600rpx;
   animation-duration: 0.3s;
   animation-name: popFromBottom;
+  padding: 76rpx 65rpx 62rpx 65rpx;
 }
 
 @keyframes popFromBottom {
@@ -80,10 +85,6 @@
 }
 
 .binDing {
-  margin-top: 60rpx;
-  margin-bottom: 60rpx;
-  margin-left: 34rpx;
-  margin-right: 34rpx;
   height: 100%;
 }
 
@@ -120,7 +121,6 @@
   order: 1;
   align-self: stretch;
   flex-grow: 0;
-  margin-top: 30rpx;
 }
 .school-text {
   font-family: 'PingFang SC';
