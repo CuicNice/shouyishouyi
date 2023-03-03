@@ -1,32 +1,35 @@
 var WxParse = require('../../../wxParse/wxParse.js');
 import {
-  Network
-} from "../../../model/network.js";
+  // 新闻详情
+  getNewsDetailByID,
+} from "../../../api/newsApi"
 import {
   myStorage
 } from "../../../utils/newStorage.js";
-var href = '';
+var newsID = '';
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    href: '',
+    newsID: '',
     type: 0,
     bgc: "#FFF",
     light: "",
     t_bg: "",
-    newsDetailTitle:"快讯闻",
+    newsDetailTitle: "快讯闻",
     // 南南的微信二维码
-    nannanCode:"/static/svg/news/nanan_weixinCode.svg",
+    nannanCode: "/static/svg/news/nanan_weixinCode.svg",
     // 南南题目头
-    contentTitle:"/static/svg/news/contentTitle.svg",
-    topTitleSvgUrl:"/static/svg/news/topTitle.svg",
-    bgSvgUrl:"/static/svg/pillar.svg",
+    contentTitle: "/static/svg/news/contentTitle.svg",
+    topTitleSvgUrl: "/static/svg/news/topTitle.svg",
+    bgSvgUrl: "/static/svg/pillar.svg",
     bg_url: " url(http://tiku.mcdd.top/image/bg.png);",
-    bg_size: "background-size: 418rpx 1052rpx;"
+    bg_size: "background-size: 418rpx 1052rpx;",
+    // 新闻ID
+    newsIDItem: ""
   },
-// 基础库不支持IOS
+  // 基础库不支持IOS
   // onAddToFavorites(res:any) { //收藏
   //   console.log("any",res)
   //   var href = JSON.stringify(this.data.href);
@@ -36,8 +39,8 @@ Page({
   //   }
   // },
   onShareAppMessage() { //分享
-    var href = JSON.stringify(this.data.href);
-    //   console.log(href)
+    var newsID = JSON.stringify(this.data.newsID);
+    console.log(newsID)
     const promise = new Promise(resolve => {
       setTimeout(() => {
         resolve({
@@ -47,26 +50,31 @@ Page({
     })
     return {
       //title: '自定义转发标题',
-      path: '/pages/inDetail/inDetail?href=' + href,
+      path: '/pages/inDetail/inDetail?newsID=' + newsID,
       promise
     }
   },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options:any) {
-    console.log("新闻内容",options)
+  onLoad: async function (options: any) {
+    console.log("新闻内容", options)
     var that = this;
     var str2 = '<div class="pic"><img src="" title="" /><s class="prev" title="上一张"></s><s class="next" title="下一张"></s><span class="tips">最后一张了</span></div>';
     var str3 = '<li class="last">最后一张</li>';
-    href = options.href;
-    if (options.href.length > 15) {
-      href = href.replace(/%2F/g, "/")
+    newsID = options.newsID;
+    console.log("newsId", newsID);
+    if (options.newsID.length > 15) {
+      newsID = newsID.replace(/%2F/g, "/")
     }
-    var res = await Network.getInContent(href);
-    console.log("plplp",res)
+    // 获取新闻的详情
+    // 通过ID获取新闻的详情
+    // 获取内网新闻
+    let { data: res } = await getNewsDetailByID(newsID) as unknown as IResult<any>;
     if (res != null) {
-        console.log(res)
+      console.log(res)
       // //   console.log(res.data.content)
       var html = res.data.content;
       var str1 = '<p style="text-indent:2em;">                                                                                                                                </p>'
@@ -96,14 +104,14 @@ Page({
       html = html.replace(/<li><a href="javascript:"(.*?) title="(.*?)">/g, "")
       html = html.replace(str2, "")
       html = html.replace(str3, "")
-        console.log(html)
+      console.log(html)
       WxParse.wxParse("article", "html", html, that, 5)
       that.setData({
         item: res.data
       });
     }
   },
-  wxParseTagDown: function (e:any) {
+  wxParseTagDown: function (e: any) {
     wx.showLoading({
       title: '下载中...',
     });
@@ -124,7 +132,7 @@ Page({
           })
           wx.openDocument({
             filePath: filePath,
-            success: function (res) {}
+            success: function (res) { }
           })
         } else {
           wx.showToast({
@@ -141,7 +149,7 @@ Page({
       }
     })
   },
-  switchColoe: function (res:any) {
+  switchColoe: function (res: any) {
     var that = this
     var type = that.data.type
     type++;

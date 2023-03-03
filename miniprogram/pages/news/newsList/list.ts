@@ -40,21 +40,21 @@ Page({
     duration: 1200,
     isChecked: true, //头像彩蛋
     tapbarCtrl: true,//点击哪一个tab栏
-    bgSvgUrl:"/static/svg/pillar.svg",
+    bgSvgUrl: "/static/svg/pillar.svg",
     type: 0,
     pages: 0,
     mypages: 0,
-    newsListTitle:"快讯闻",
+    newsListTitle: "快讯闻",
     // 内网：
-    innerPageParams : {
-        "currentPage": "1",
-        "pageSize": "10"
-    } as unknown as outnewsListItem,
-    // 外网
-    outPageParams : {
+    innerPageParams: {
       "currentPage": "1",
       "pageSize": "10"
-  }as unknown as outnewsListItem,
+    } as unknown as outnewsListItem,
+    // 外网
+    outPageParams: {
+      "currentPage": "1",
+      "pageSize": "10"
+    } as unknown as outnewsListItem,
     flag: 0, //底部加载显示。0显示
     clock: 1,
     // 关于新闻数据
@@ -80,11 +80,7 @@ Page({
       })
     }
   },
-  // 滚动
-  scroll(e:any) {
-    console.log(e)
-  },
- searchEvent: function () { //搜索页面跳转
+  searchEvent: function () { //搜索页面跳转
     wx.navigateTo({
       url: '/pages/search/search',
     })
@@ -131,13 +127,13 @@ Page({
     return obj
   },
   // 校园快讯，inner请求
- async getInnerSchoolNews(){
-    let that=this
+  async getInnerSchoolNews() {
+    let that = this
     wx.showLoading({
       title: '正在加载...',
     });
     // 获取内网新闻
-    let innerPageParams=that.data.innerPageParams
+    let innerPageParams = that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
     if (innerRes != null) {
       wx.hideLoading();
@@ -148,58 +144,62 @@ Page({
     }
   },
   // 外网首义
-async getOutSouyiNews(){
-       // 发起网络请求
+  async getOutSouyiNews() {
+    // 发起网络请求
     /**
  * 发送请求，渲染数据
  * @param from 楼栋数据
  */
- // 调用函数时，传入new Date()参数，返回值是日期和时间
-let that=this
-let outPageParams = that.data.outPageParams
-let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
-if (outRes.pageSize != 0) {
-  var list = outRes.list;
-} else {
-  wx.showToast({
-    title: '刷新失败',
-    icon: 'error',
-    duration: 1500
-  })
-  wx.hideToast();
-}
-that.setData({
-  list: list, 
-})
+    // 调用函数时，传入new Date()参数，返回值是日期和时间
+    let that = this
+    let outPageParams = that.data.outPageParams
+    let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
+    if (outRes.pageSize != 0) {
+      var list = outRes.list;
+    } else {
+      wx.showToast({
+        title: '刷新失败',
+        icon: 'error',
+        duration: 1500
+      })
+      wx.hideToast();
+    }
+    that.setData({
+      list: list,
+    })
   },
   // 触底函数 scrollToMoreList
-async scrollToMoreList(){
-// 滚动加载更多的数据，滚动一次多加载10条
-// 初始化数据
-let that =this
-let innerPageParamsCurrentPages=JSON.stringify(JSON.parse(that.data.innerPageParams.currentPage)+1)
-let outPageParamsCurrentPages=JSON.stringify(JSON.parse(that.data.outPageParams.currentPage)+1)
-// 设置setdata，关于页面请求数据
-// 区分是内网还是外网请求
-// 内网请求
-if(that.data.tapbarCtrl){
-  that.setData({
-    innerPageParams:{
-// 设置setdata，关于页面返回数据
-      "currentPage":innerPageParamsCurrentPages,
-      "pageSize": "10"}
-  })
-  await that.getInnerSchoolNews()
-}else{
-  // 外网请求
-  that.setData({
-// 设置setdata，关于页面返回数据
-    outPageParams:{
-      "currentPage":outPageParamsCurrentPages,
-      "pageSize": "10"}
-  })
-  await that.getOutSouyiNews()
-}
+  async scrollToMoreList() {
+    // 滚动加载更多的数据，滚动一次多加载10条
+    // 初始化数据
+    let that = this
+    let innerPageParamsCurrentPages = JSON.stringify(JSON.parse(that.data.innerPageParams.currentPage) + 1)
+    let outPageParamsCurrentPages = JSON.stringify(JSON.parse(that.data.outPageParams.currentPage) + 1)
+    // 设置setdata，关于页面请求数据
+    // 区分是内网还是外网请求
+    // 内网请求
+    if (that.data.tapbarCtrl) {
+      that.setData({
+        innerPageParams: {
+          // 设置setdata，关于页面返回数据
+          "currentPage": innerPageParamsCurrentPages,
+          "pageSize": "10"
+        }
+      })
+      console.log('请求内网数据')
+      await that.getInnerSchoolNews()
+    } else {
+      // 外网请求
+      that.setData({
+        // 设置setdata，关于页面返回数据
+        outPageParams: {
+          "currentPage": outPageParamsCurrentPages,
+          "pageSize": "10"
+        }
+      })
+      console.log('请求外网数据')
+      await that.getOutSouyiNews()
+    }
   },
 
   SoretArr: function (arr: any) {
@@ -241,35 +241,45 @@ if(that.data.tapbarCtrl){
     num = arr[0] + "." + arr[1].substr(0, 1)
     return num;
   },
-  // 初始化新闻列表
-  initNewsInfo() {
-    console.log("新闻显示")
+  /**
+   * 初始化新闻列表*/
+
+  async initNewsInfo() {
+    // 根据tapBar初始值
+    var that = this
+    if (that.data.tapbarCtrl) {
+      await that.getInnerSchoolNews()
+    } else {
+      // 外网请求
+      await that.getOutSouyiNews()
+    }
   },
-  async onLoad() {
+  onLoad() {
     let that = this;
     // 初始化新闻列表
-that.getInnerSchoolNews()
-that.getOutSouyiNews()
-//  外网请求调用
+    that.initNewsInfo()
   },
-// 点击新闻搜索跳转新的页面
-  tosSarchNews(){
-    console.log("tianzhaunanananan")
-// 点击跳转
-let that=this
-setTimeout(() => {
-  console.log("jaajajajaj")
-  wx.navigateTo({
-    url: '/pages/news/search/search?newsType='+that.data.tapbarCtrl,
-  })
-}, 500);
+  // 点击新闻搜索跳转新的页面
+  toSearchNews() {
+    // 点击跳转
+    let that = this
+    setTimeout(() => {
+      wx.navigateTo({
+        url: '../newsSearch/search',
+        fail:function(res){
+          console.log("res跳转",res)
+        }
+      })
+
+    }, 500);
+    console.log("跳转中断")
 
   },
   /**
    * 
    * 生命周期函数--监听页面显示
    */
-  
+
 
   onShow: function () {
     let that = this;
@@ -299,6 +309,21 @@ setTimeout(() => {
       statusBarTop: res.top,
     })
   },
+  scroll: function (e:any) {
+    ////   console.log(e);
+    var roll = e.detail.deltaY;
+    // //   console.log(roll)
+    var that = this;
+    if (roll < 0) {
+      that.setData({
+        hidden: true
+      })
+    } else if (roll > 0) {
+      that.setData({
+        hidden: false
+      })
+    }
+  },
   // 校园新闻,选中样式
   ChooseShcoolNews: function () {
     // 校园新闻选中后字体样式
@@ -307,12 +332,17 @@ setTimeout(() => {
     this.setData({
       tapbarCtrl: false,
     })
+    // 并且切换请求数据
+    this.initNewsInfo()
   },
   // 首义快讯
   ChooseInNews: function () {
+    console.log("tapbarinNews", this.data.tapbarCtrl);
     this.setData({
       tapbarCtrl: true,
     })
+    // 并且切换请求数据
+    this.initNewsInfo()
   },
 
   chooseTable: function () {

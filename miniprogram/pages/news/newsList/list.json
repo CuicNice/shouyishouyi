@@ -3,13 +3,7 @@
   "component": true,
     "usingComponents": {
       "itemview":"../../../pages/widgets/news/newsListComponent/newsListComponent",
-    "itemview_1":"../../../pages/widgets/news/newsComponent/itemviews/itemview_1/itemview_1",
-    "itemview_2":"../../../pages/widgets/news/newsComponent/itemviews/itemview_2/itemview_2",
-    "itemview_3":"../../../pages/widgets/news/newsComponent/itemviews/itemview_3/itemview_3",
-    "itemview_a":"../../../pages/widgets/news/newsComponent/itemviews/itemview_a/itemview_a",
-    "itemview_b":"../../../pages/widgets/news/newsComponent/itemviews/itemview_b/itemview_b",
-    "itemview_c":"../../../pages/widgets/news/newsComponent/itemviews/itemview_c/itemview_c",
-    "searchbar":"../../../pages/widgets/news/newsComponent/searchbar/searchbar",
+       "searchbar":"../../../pages/widgets/news/newsComponent/searchbar/searchbar",
     "topBar":"../../../components/fmin-topbar/fmin-topbar",
     "toast":"../../../components/fmin-toast/fmin-toast",
     "searchBar":"../../../components/fmin-topbar/fmin-topbar"

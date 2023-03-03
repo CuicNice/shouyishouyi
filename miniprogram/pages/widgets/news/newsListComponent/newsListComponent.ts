@@ -22,16 +22,6 @@ Component({
  * 组件的方法列表
  */
   methods: {
-    gotoNewsDeatil() {
-      // 跳转并且携带新闻的url参数
-      let that = this
-      wx.navigateTo({
-        url: "../newsDetail/inDetail?href={{item.newsHref}}",
-        fail(e) {
-          console.log("ee", e)
-        }
-      })
-    },
   },
   /**
    * 组件的初始数据

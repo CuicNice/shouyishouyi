@@ -13,7 +13,7 @@
   <!-- 上半部分固定 -->
   <view class="fixedTop">
     <!-- 滚动的时候固定不动 -->
-    <view class="searchBarBox" bindtap="tosSarchNews">
+    <view class="searchBarBox" bindtap="toSearchNews">
       <view class="searchContent">
         <text class="textInfo" selectable="false" space="false" decode="false">搜索你想要的首义快讯</text>
       </view>
