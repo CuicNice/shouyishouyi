@@ -6,7 +6,6 @@
       <view class="bookXQ" bindtap="tapdetailCopy">
         <view class="bookName">{{allbook[num].title}}</view>
         <view class="all">
-          <image class="picture" src="http://www.bookcovers.cn/index.php?client=whzy&isbn={{allbook[num].ISBN}}号码/cover"></image>
           <view class="leftall">
             <view class="box">
               <view class="textPart">作者: </view>
@@ -29,6 +28,7 @@
               <view class="textParts"> {{allbook[num].add}}次</view>
             </view>
           </view>
+          <image class="picture" src="http://www.bookcovers.cn/index.php?client=whzy&isbn={{allbook[num].ISBN}}号码/cover"></image>
         </view>
 
         <view class="bottom">

@@ -19,13 +19,15 @@ Page({
   },
 
   /**
-  *输入文本框中的文字
-  **/
+   * 输入文本框中的文字
+   */
   getInputValue: function (e: any) {
     this.setData({ word: e.detail.value });
   },
 
-  //添加缓存
+  /**
+   * 添加缓存
+   */
   cache(abc: string) {
     // 先获取缓存中的内容
     let array = wx.getStorageSync(abc) || [];
@@ -41,8 +43,8 @@ Page({
   },
 
   /**
-  *搜索
-  **/
+   * 搜索
+   */
   search() {
     this.setData({ a: 1, b: 0, allbook: [] });
     var myarr = wx.getStorageSync('widget-library');
@@ -59,7 +61,6 @@ Page({
         this.cache('widget-library');
         var arr2 = { item: this.objHeavy(wx.getStorageSync('widget-library').item), book: [] };
         if (arr2.item.length == 6) {
-          // 重新设置缓存
           wx.setStorageSync("widget-library", arr2);
         }
         if (arr2.item.length == 7) {
@@ -70,7 +71,6 @@ Page({
               arrays.item.push(array.item[i]);
             };
           };
-          // 重新设置缓存
           wx.setStorageSync('widget-library', arrays);
         }
       }
@@ -78,15 +78,14 @@ Page({
   },
 
   /**
-  *网络请求
-  **/
+   * 重新请求
+   */
   async webrequest(a: any) {
     this.selectComponent("#toast").showToast("请求中....", "lodding");
     var value = { page: a, word: this.data.word };
     const { data: res } = await getlibrary(value) as unknown as IResult<any>;
     if (res) {
       var arr = res;
-      //console.log(arr)
       try {
         if (arr.length != 0) {
           for (var j = 0; j < 10; j++) {
@@ -222,9 +221,9 @@ Page({
     }
   },
 
-  /** 
-  *点击右箭头请求
-  **/
+  /**
+   * 点击右箭头请求
+   */
   againrequest() {
     try {
       if (this.data.a == this.data.b + 1 && wx.getStorageSync('widget-library').book[this.data.b].item.length != 0) {
@@ -238,18 +237,18 @@ Page({
     } catch { };
   },
 
-  /** 
-  *跳转书本详情
-  **/
+  /**
+   * 跳转书本详情
+   */
   showXQ(res: any) {
     this.setData({ num: res.currentTarget.dataset.index });
     var all = JSON.stringify(this.data.allbook);
     wx.navigateTo({ url: '/pages/widgets/library/libraryDetailed/libraryDetailed?all=' + all + '&num=' + this.data.num });
   },
 
-  /**  
-  *点击左箭头看上一页的数据
-  **/
+  /**
+   * 点击左箭头看上一页的数据
+   */
   leftrequest() {
     if (this.data.b != 0) {
       this.setData({ b: this.data.b - 1 });
@@ -257,7 +256,9 @@ Page({
     };
   },
 
-  //获取缓存的内容
+  /**
+   * 获取缓存的内容
+   */
   get() {
     var myarr = wx.getStorageSync('widget-library').item;
     if (myarr.length != 0) {
@@ -272,7 +273,9 @@ Page({
     }
   },
 
-  //查重
+  /**
+   * 查重
+   */
   objHeavy: function (arr: { [x: string]: any }) {
     let arr1 = [];
     let newArr = [];
