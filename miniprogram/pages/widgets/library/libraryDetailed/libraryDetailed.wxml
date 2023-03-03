@@ -30,7 +30,7 @@
           </view>
           <image class="picture" src="http://www.bookcovers.cn/index.php?client=whzy&isbn={{allbook[num].ISBN}}号码/cover"></image>
         </view>
-
+        <!-- 此图书在哪几个馆有 -->
         <view class="bottom">
           <view class="placeBox">
             <view class="place" wx:if="{{allbook[num].showzong==true?true:false}}">总馆</view>
@@ -71,6 +71,7 @@
           <view class="genProgressBox2">{{item.zhuangtai}}</view>
         </view>
       </view>
+      <!-- 下方空白 -->
       <view class="none"></view>
     </view>
   </view>

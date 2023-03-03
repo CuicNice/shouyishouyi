@@ -299,7 +299,8 @@
   font-size: 30rpx;
   line-height: 42rpx;
   color: #292945;
-  margin-left: 80rpx;
+  position: relative;
+  left: 40rpx;
 }
 
 .genProgress {

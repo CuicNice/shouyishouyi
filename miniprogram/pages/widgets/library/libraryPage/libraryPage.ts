@@ -4,8 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    word: '',
-    ifshow: true,
+    word: '',//书的名字
+    ifshow: true,//控制是否有搜索记录
     swiper: 0,  //当前所在页面的 
     shuju: [] as any,
     allbook: [] as any,
@@ -19,13 +19,13 @@ Page({
     if (this.data.swiper == 3) {
       this.setData({
         swiper: 3
-      })
+      });
     }
     else {
       this.setData({
         swiper: this.data.swiper + 1
-      })
-    }
+      });
+    };
   },
 
   /**
@@ -43,7 +43,7 @@ Page({
     let array = wx.getStorageSync(abc) || [];
     // 向数组中追加
     var ifshow = false;
-    if (this.data.word.length > 6) { ifshow = !ifshow }
+    if (this.data.word.length > 6) { ifshow = !ifshow };
     array.item.push({
       item: this.data.word,
       ifshow: ifshow
@@ -90,8 +90,8 @@ Page({
       if (arr1.indexOf(arr[i].item) == -1) {
         arr1.push(arr[i].item);
         newArr.push(arr[i]);
-      }
-    }
+      };
+    };
     return newArr;
   },
 
@@ -104,7 +104,7 @@ Page({
         this.cache('widget-library');
         var arr = { item: this.objHeavy(wx.getStorageSync('widget-library').item), book: [] };
         wx.setStorageSync('widget-library', arr);
-      }
+      };
       if (wx.getStorageSync('widget-library').item.length == 6) {
         this.cache('widget-library');
         var arr = { item: this.objHeavy(wx.getStorageSync('widget-library').item), book: [] };
@@ -118,11 +118,11 @@ Page({
           for (var i = 0; i < array.item.length; i++) {
             if (i != 0) {
               arrays.item.push(array.item[i]);
-            }
-          }
+            };
+          };
           // 重新设置缓存
           wx.setStorageSync('widget-library', arrays);
-        }
+        };
       }
       this.get();
       wx.navigateTo({ url: '/pages/widgets/library/librarytext/librarytext?word=' + this.data.word });
@@ -161,13 +161,12 @@ Page({
           shuju: arr,
           ifshow: false
         });
-      }
+      };
     } else {
       let arrays = { item: [] as any, book: [] as any };
       wx.setStorageSync('widget-library', arrays);
-    }
+    };
   },
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -191,13 +190,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    if(wx.getStorageSync('widget-library')){
-    var arr = wx.getStorageSync('widget-library')
-    arr.book = [];
-    wx.setStorageSync('widget-library', arr)}else{
-      let value= { item: [] as any, book: [] as any };
-      wx.setStorageSync('widget-library', value)
-    }
+    if (wx.getStorageSync('widget-library')) {
+      var arr = wx.getStorageSync('widget-library');
+      arr.book = [];
+      wx.setStorageSync('widget-library', arr)
+    } else {
+      let value = { item: [] as any, book: [] as any };
+      wx.setStorageSync('widget-library', value);
+    };
     this.get();//初始化获取缓存
   },
 

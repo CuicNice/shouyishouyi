@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    word: '',
+    word: '',//上一个页面传递过来的书名
     shuju: [] as any,
     allbook: [] as any,
     a: 1,

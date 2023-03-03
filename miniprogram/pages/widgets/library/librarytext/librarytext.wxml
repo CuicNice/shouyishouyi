@@ -7,7 +7,7 @@
   </view>
   <!-- 下方主体部分 -->
   <view>
-  <!-- 可以左右切换页数部分 -->
+    <!-- 可以左右切换页数部分 -->
     <view class="allsearch">
       <view class="leftBox">
         {{word}} 搜索结果
