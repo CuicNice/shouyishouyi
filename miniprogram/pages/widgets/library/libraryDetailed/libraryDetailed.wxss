@@ -258,7 +258,7 @@
   width: 190rpx;
   position: relative;
   left: 60rpx;
-  top:-60rpx;
+  top: -60rpx;
 }
 
 .genText {

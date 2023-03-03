@@ -44,7 +44,7 @@
     </view>
   </view>
   <!-- 下方空格部分 -->
-  <view class="none1"></view>
+  <view class="none"></view>
 </topbar>
 <!-- 提示组件 -->
 <toast id="toast"></toast>
