@@ -1,4 +1,4 @@
-// pages/widgets/library/libraryPage/libraryPage.js
+// pages/index/index.js
 Page({
 
   /**

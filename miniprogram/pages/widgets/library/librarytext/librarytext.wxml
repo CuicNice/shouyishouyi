@@ -1,15 +1,18 @@
 <topbar title="{{electricChargeTitle}}" immersion="{{true}}">
   <view class="page"></view>
+  <!-- 搜索框部分 -->
   <view class="search">
     <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
     <image class="image" src="../../../../static/svg/search.svg" bindtap="search"></image>
   </view>
+  <!-- 下方主体部分 -->
   <view>
+    <!-- 可以左右切换页数部分 -->
     <view class="allsearch">
       <view class="leftBox">
-       {{word}}  搜索结果
+        {{word}} 搜索结果
       </view>
-      <view class="rightBox">
+      <view class="rightNumBox">
         <view class="lefticon2" bindtap="againrequest">
           <image class="lefticonImg" src="/static/svg/vect.svg"></image>
         </view>
@@ -20,6 +23,7 @@
         </view>
       </view>
     </view>
+    <!-- 下方搜索结果部分 -->
     <view class="classBox" wx:for="{{allbook}}" wx:key="index" bindtap="showXQ" wx:for-index="index" data-index="{{index}}">
       <view class="leftClass">
         <view class="className">{{item.title}}</view>
@@ -39,7 +43,8 @@
       </view>
     </view>
   </view>
-  <view class="none1"></view>
+  <!-- 下方空格部分 -->
+  <view class="none"></view>
 </topbar>
 <!-- 提示组件 -->
 <toast id="toast"></toast>
