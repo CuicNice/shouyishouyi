@@ -1,0 +1,34 @@
+/* pages/myWidgets/settingWidgets/settingWidgets.wxss */
+.remindBox {}
+
+.remindTxt {}
+
+.remindIconBox {}
+
+.remindIconSvg {}
+
+.settingTapBar {}
+
+.widgetSetteingBox {}
+
+.settingTabText {}
+
+.text {}
+
+.saveBar {}
+
+.saveText {}
+
+.saveButton {}
+
+.chooseItemsBox {}
+
+.itemBox {}
+
+.widgetBox {}
+
+.widgetTitle {}
+
+.wedgetItem {}
+
+.chooseTabBox {}
