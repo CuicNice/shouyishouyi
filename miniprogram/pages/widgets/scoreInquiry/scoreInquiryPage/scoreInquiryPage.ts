@@ -1,11 +1,11 @@
 // pages/Widgets/scoreInquiry/scoreInquiry.js
 import { getScoreDetail, getScoreInfo, getUserInfo } from '../../../../api/scoreInquiryApi';
 export interface ScoreInquiryeItem {
-zh: string,
-mm: string,
-id:string,
-xnm:string,
-xqm:string,
+  zh: string,
+  mm: string,
+  id: string,
+  xnm: string,
+  xqm: string,
 }
 Page({
 
@@ -13,533 +13,398 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userScoreInfo:{},
-    scoreTitle:"成绩查询",
-    courseTapdetail: false,
-    termTitleTapdetail:false,
-    scoreCountdetail:false,
-    academic_year:1, // 学年 默认是大一
+    info: '',//个人信息专业班级
+    userScoreInfo: '',//成绩列表
+    scoreTitle: "成绩查询",
+    courseTapdetail: false,//成绩详情卡片是否显示
+    termTitleTapdetail: false,//称号规则是否显示
+    scoreCountdetail: false,//算法规则是否显示
+    academic_year: 1, // 学年 默认是大一
     academic_year_y: 'one',
-    term:1, // 学期 默认是上学期
-    term_y:'sxq',
-    scoreLevel:0,//默认为等待入榜
-    xqxfscore:'',
-    scoreDetail:''
+    term: 1, // 学期 默认是上学期
+    term_y: 'sxq',
+    scoreLevel: 0,//默认为等待入榜
+    xqxfscores: '',//本学期加权平均分
+    scoreDetail: '',//成绩详情
+    color: '',//专修必修选修的颜色
+    height: '' //弹窗的长度
   },
-  scoreLevels(xqxfscore: number){
-    if(xqxfscore >=90 ){
-      this.setData({
-        scoreLevel: 1,
-      })
-    }else if(xqxfscore >=85 && xqxfscore < 90 ){
-      this.setData({
-        scoreLevel: 2,
-      })
-    }else if(xqxfscore>=80 && xqxfscore< 85){
-      this.setData({
-        scoreLevel: 3,
-      })
-    }else if(xqxfscore>=70 && xqxfscore< 80){
-      this.setData({
-        scoreLevel: 4,
-      })
-    }else if(xqxfscore>=60 && xqxfscore< 70){
-      this.setData({
-        scoreLevel: 5,
-      })
-    }else if(xqxfscore<=60&&xqxfscore>=0){
-      this.setData({
-        scoreLevel: 6,
-      })
-    }else{
-      this.setData({
-        scoreLevel:0,
-      })
+  /**
+   * 变化等级称号
+   */
+  scoreLevels(xqxfscores: number) {
+    var scoreLevel = this.data.scoreLevel;
+    if (xqxfscores >= 90) {
+      scoreLevel = 1;
+    } else if (xqxfscores >= 85 && xqxfscores < 90) {
+      scoreLevel = 2;
+    } else if (xqxfscores >= 80 && xqxfscores < 85) {
+      scoreLevel = 3;
+    } else if (xqxfscores >= 70 && xqxfscores < 80) {
+      scoreLevel = 4;
+    } else if (xqxfscores >= 60 && xqxfscores < 70) {
+      scoreLevel = 5;
+    } else if (xqxfscores <= 60 && xqxfscores >= 0) {
+      scoreLevel = 6;
+    } else {
+      scoreLevel = 0;
     }
+    this.setData({ scoreLevel: scoreLevel });
   },
-  showToast(showToast: boolean, toastIcon: string, toastTitle: string) { 
-    this.setData({ 
-      showToast: showToast, 
-      toastIcon: toastIcon, 
-      toastTitle: toastTitle 
-    }) 
-  }, 
-  //点击传值
- async courseTap(e:any){
-    var row = e.currentTarget.dataset.row;
-    var zh;
-    var mm;
-    //console.log(row);
-    var academic_year_y = this.data.academic_year_y;
-    var term_y = this.data.term_y;
-    this.showToast(true,"lodding","查询中……");
-    var jd = this.data.userScoreInfo[academic_year_y][term_y][row].jd
+  /**
+   * 显示查询中或请求成功的小弹窗
+   */
+  showToast(showToast: boolean, toastIcon: string, toastTitle: string) {
     this.setData({
-      jd:parseInt(jd)
+      showToast: showToast,
+      toastIcon: toastIcon,
+      toastTitle: toastTitle
+    })
+  },
+  /**
+    * 点击成绩卡片
+    */
+  async courseTap(e: any) {
+    var row = e.currentTarget.dataset.row;//成绩列表的下标
+    var term_y = this.data.term_y;
+    this.showToast(true, "lodding", "查询中……");
+    var userScoreInfo = this.data.userScoreInfo as any;
+    var academic_year_y = this.data.academic_year_y;
+    var Jd = userScoreInfo[academic_year_y][term_y][row].jd ;//绩点
+    this.setData({
+      Jd: parseInt(Jd)
     })
     /**
      * 获取本地缓存，判断是否绑定数据
      */
-     var bindScore = { 
-      zh:wx.getStorageSync('zh'),
-      mm:wx.getStorageSync('mm'),
-      id: this.data.userScoreInfo[academic_year_y][term_y][row].jxb_id,
-      xnm:this.data.userScoreInfo[academic_year_y][term_y][row].xnm,
-      xqm:this.data.userScoreInfo[academic_year_y][term_y][row].xqm,
+    var bindScore = {
+      zh: wx.getStorageSync('login').zh,
+      mm: wx.getStorageSync('login').mm,
+      id: userScoreInfo[academic_year_y][term_y][row].jxb_id,
+      xnm: userScoreInfo[academic_year_y][term_y][row].xnm,
+      xqm: userScoreInfo[academic_year_y][term_y][row].xqm,
     } as ScoreInquiryeItem;
-      console.log(bindScore)
-      if (bindScore) {
-        this.showToast(true,'lodding',"查询中......");
-        this.courseTaped(bindScore);
-      }  
-
-},
-// 关闭成绩弹窗
-closeTap: function (e:any) {
-  var that = this;
-  that.setData({
-    courseTapdetail: false,
-    termTitleTapdetail: false,
-    scoreCountdetail: false
-  })
-},
-  //弹窗
-    async courseTaped(from: ScoreInquiryeItem) {
-      console.log(from);
-     const {data: res3 } = await getScoreDetail(from) as unknown as Iresult<any>
-     console.log(res3)
-     if(!res3){
-       this.showToast(true,'error',"请求失败");
-     }else{
-      this.showToast(true,'success',"请求成功");
-     }
-     /*
-     *数据修饰
-     */
-    
-    var kcxzmc = res3.allDetails.kcxzmc
-      if(kcxzmc == "必修"){
-       this.setData({
-         kcxzmc:"必修",
-        color:'#3EBAD0'
-      }) 
-      }
-      else if (kcxzmc == '公共选修') {
-      this.setData({
-        kcxzmc :"公选",
-        color :'#20C38C',
-      })
-      } else if ( kcxzmc == '专业选修') {
-        this.setData({
-          kcxzmc : "专选",
-          color : '#FBDE71',
-        })
-      };
-      var score = res3.allDetails.score;
-      if (score.indexOf(".0") >= 0) {
-        score = parseInt(score);
-      };
-        /**
-       * 渲染
+    if (bindScore) {
+      this.showToast(true, 'lodding', "查询中......");
+      this.courseTaped(bindScore);
+    }
+    else if (!bindScore) {
+      this.showToast(true, 'error', "未找到id");
+    }
+  },
+      /**
+       * 关闭成绩弹窗
        */
-      if(res3.Details.length >=4 ){
-        this.setData({height:700})
-      }
-      else if(res3.Details.length ==3){
-        this.setData({height:640})
-      }else if(res3.Details.length ==2){
-        this.setData({height:594})
-      }else if(res3.Details.length ==1){
-        this.setData({height:488})
-      }
-      this.setData({
-        Detail:res3,
-        Details:res3.Details,
-        bj:res3.allDetails.bj,
-        jsxm:res3.allDetails.jsxm,
-        kcmc:res3.allDetails.kcmc,
-        score:score,
-        xf:res3.allDetails.xf,
-        xnmmc:res3.allDetails.xnmmc,
-        xqmmc:res3.allDetails.xqmmc,
-      })
+  closeTap: function () {
+    var that = this;
+    that.setData({
+      courseTapdetail: false,
+      termTitleTapdetail: false,
+      scoreCountdetail: false
+    })
+  },
+    /**
+     * 成绩详情弹窗
+     */
+  async courseTaped(from: ScoreInquiryeItem) {
+    //Detail 用来接受成绩详情的变量
+    const { data: Detail } = await getScoreDetail(from) as unknown as IResult<any>;
+    if (!Detail) {
+      this.showToast(true, 'error', "网络开小差了");
       setTimeout(() => {
         this.setData({
-          showToast:false,
-          courseTapdetail:true
+          showToast: false,
         })
       }, 800);
-      
-  /*
-        success (res) {
-          if (res.data.code == 20000){
-            //console.log(res.data.data)
-            that.setData({
-              Details:res.data.data,
-              showToast:false,
-            },function(){
-              console.log(that.data)
-              var jsxm =that.data.Details.allDetails.jsxm;
-              var Details = this.data.Details;
-              var row = e.currentTarget.dataset.row;
-              var userScoreInfo = this.data.userScoreInfo;
-              var academic_year_y = this.data.academic_year_y;
-              var term_y = this.data.term_y;
-              var kcname= userScoreInfo[academic_year_y][term_y][row].name;
-              var score=userScoreInfo[academic_year_y][term_y][row].score;
-              if (score.indexOf(".0") >= 0) {
-                score = parseInt(score);
-              };
-              var my_class = userScoreInfo[academic_year_y][term_y][row].my_class;
-              var jd =  userScoreInfo[academic_year_y][term_y][row].jd;
-              var class_score =userScoreInfo[academic_year_y][term_y][row].class_score;
-              var xnm = userScoreInfo[academic_year_y][term_y][row].xnm;
-              var type =userScoreInfo[academic_year_y][term_y][row].type;
-              if (type == '公共选修') {
-                type = "公选"
-              } else if ( type == '专业选修') {
-                type  = "专选"
-              };
-              var xf = that.data.Details.allDetails.xf;
-              var xnmmc =that.data.Details.allDetails.xnmmc;
-              var xqmmc = that.data.Details.allDetails.xqmmc;
-              var Details = that.data.Details.Details;
-              var leng = Details.length;
-              if (leng != 0) {
-                for (var i = 0; i < Details.length; i++) {
-                  if (Details[i].cjfx == '平时成绩') {
-                    Details[i].cjfx = '平时'
-                  } else if (Details[i].cjfx == '考试成绩') {
-                    Details[i].cjfx = '考试'
-                  } else if (Details[i].cjfx == '实验成绩') {
-                    Details[i].cjfx = '实验'
-                  } else if (Details[i].cjfx == '实训内容成绩') {
-                    Details[i].cjfx = '实训'
-                  }
-                }
-              }
-                this.setData({
-                    jsxm:jsxm,
-                    type:type,
-                    my_class:my_class,
-                    score:score,
-                    kcname:kcname,
-                    jd:parseInt(jd),
-                    class_score:class_score,
-                    xf: xf,
-                    xnmmc: xnmmc,
-                    xqmmc: xqmmc,
-                    Details: Details,
-                    leng: leng,
-                    courseTapdetail: true,
-                    
-                })
-                
-            })
-        }else{
-          console.log(res.data.msg);
-        }
-      }
-    });
-    wx.hideLoading();*/
-  },
-  
-
-  //点击学期称号打开弹窗
-  termTitleTap:function(){
-    this.setData({
-      termTitleTapdetail: true 
-  })
-  },
- //点击成绩计算打开弹窗
-  scoreCountTap:function(){
-    this.setData({
-      scoreCountdetail: true 
-  })
-  },
-  // 渲染学期按钮 (学年，学期) 均为int类型
-  renderAcademicAndTermTap: function(academic_year: number, term: number){
-    if (academic_year == 1 && term == 1) { //大一 上
-      this.setData({
-            academic_year: academic_year,
-            term: term,
-            academic_year_y:'one',
-            term_y:'sxq',
-            bdc_1: "#20C38C",
-            bdc_2: "rgba(41, 41, 69, 0.2)",
-            bdc_3: "rgba(41, 41, 69, 0.2)",
-            bdc_4: "rgba(41, 41, 69, 0.2)",
-            bdc_5: "#20C38C",
-            bdc_6: "rgba(41, 41, 69, 0.2)",   
-          }) 
-        } else if (academic_year ==1 && term == 2) { //下
-          this.setData({
-            academic_year: academic_year,
-            term: term,
-            academic_year_y:'one',
-            term_y:'xxq',
-            bdc_1: "#20C38C",
-            bdc_2: "rgba(41, 41, 69, 0.2)",
-            bdc_3: "rgba(41, 41, 69, 0.2)",
-            bdc_4: "rgba(41, 41, 69, 0.2)",
-            bdc_5: "rgba(41, 41, 69, 0.2)",
-            bdc_6: "#20C38C",
-          })
-         
-        } else if (academic_year == 2 && term == 1) { //大二上
-          this.setData({
-            academic_year: academic_year,
-            term: term,
-            academic_year_y:'two',
-            term_y:'sxq',
-            bdc_1: "rgba(41, 41, 69, 0.2)",
-            bdc_2: "#20C38C",
-            bdc_3: "rgba(41, 41, 69, 0.2)",
-            bdc_4: "rgba(41, 41, 69, 0.2)",
-            bdc_5: "#20C38C",
-            bdc_6: "rgba(41, 41, 69, 0.2)",
-          })
-          
-        } else if (academic_year == 2 && term == 2) { //大二下
-          this.setData({
-            academic_year: academic_year,
-            term: term,
-            academic_year_y:'two',
-            term_y:'xxq',
-            bdc_1: "rgba(41, 41, 69, 0.2)",
-            bdc_2: "#20C38C",
-            bdc_3: "rgba(41, 41, 69, 0.2)4",
-            bdc_4: "rgba(41, 41, 69, 0.2)",
-            bdc_5: "rgba(41, 41, 69, 0.2)",
-            bdc_6: "#20C38C",
-          })
-         
-        } else if (academic_year == 3 && term == 1) { //大三上
-          this.setData({
-            academic_year: academic_year,
-            term: term,
-            academic_year_y:'three',
-            term_y:'sxq',
-            bdc_1: "rgba(41, 41, 69, 0.2)",
-            bdc_2: "rgba(41, 41, 69, 0.2)",
-            bdc_3: "#20C38C",
-            bdc_4: "rgba(41, 41, 69, 0.2)",
-            bdc_5: "#20C38C",
-            bdc_6: "rgba(41, 41, 69, 0.2)",
-          })
-          
-        } else if (academic_year == 3 && term == 2) { //大三下
-          this.setData({
-            academic_year: academic_year,
-            term: term,
-            academic_year_y:'three',
-            term_y:'xxq',
-            bdc_1: "rgba(41, 41, 69, 0.2)",
-            bdc_2: "rgba(41, 41, 69, 0.2)",
-            bdc_3: "#20C38C",
-            bdc_4: "rgba(41, 41, 69, 0.2)",
-            bdc_5: "rgba(41, 41, 69, 0.2)",
-            bdc_6: "#20C38C",
-          })
-          
-        } else if (academic_year == 4 && term == 1) { //大四上
-          this.setData({
-            academic_year: academic_year,
-            term: term,
-            academic_year_y:'four',
-            term_y:'sxq',
-            bdc_1: "rgba(41, 41, 69, 0.2)",
-            bdc_2: "rgba(41, 41, 69, 0.2)",
-            bdc_3: "rgba(41, 41, 69, 0.2)",
-            bdc_4: "#20C38C",
-            bdc_5: "#20C38C",
-            bdc_6: "rgba(41, 41, 69, 0.2)",
-          })
-          
-        } else if (academic_year == 4 && term == 2) { //大四下
-          this.setData({
-            academic_year: academic_year,
-            term: term,
-            academic_year_y:'four',
-            term_y:'xxq',
-            bdc_1: "rgba(41, 41, 69, 0.2)",
-            bdc_2: "rgba(41, 41, 69, 0.2)",
-            bdc_3: "rgba(41, 41, 69, 0.2)",
-            bdc_4: "#20C38C",
-            bdc_5: "rgba(41, 41, 69, 0.2)",
-            bdc_6: "#20C38C",
-          })
-         
-        }
-  },
-
-
-  choose: function (e: { currentTarget: { dataset: { academic_year: any; term: any; row: any } } }) {
-   // wx.vibrateShort(); // 1、使手机震动15ms
-   //this.showToast(true,"loading","查询中……");
-    // console.log( e.currentTarget.dataset)
-    var academic_year = e.currentTarget.dataset.academic_year;
-    var term = e.currentTarget.dataset.term;
-    var row = e.currentTarget.dataset.row;
-    // var userScoreInfo = this.data.userScoreInfo;
-    // var academic_year_y = this.data.academic_year_y;
-    // var term_y = this.data.term_y;
-    // var score=userScoreInfo[academic_year_y][term_y][row].score;
-    // if (score.indexOf(".0") >= 0) {
-    //   score = parseInt(score);
-    // };
-    // console.log(academic_year, term)
-    this.renderAcademicAndTermTap(academic_year, term);
-    //wx.hideLoading();
-    //改变称号
-    var that = this;
-    var academic_year_y = that.data.academic_year_y;
-    var term_y = that.data.term_y;
-    that.scoreLevels(that.data.userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore);                      
-  },
-/**
-   * 初始化页面渲染函数
-   */
- async initPageData() {
+    } else {
+      this.showToast(true, 'success', "请求成功");
+    }
     /**
-     * 获取本地缓存，判断是否绑定数据
-     */
-     var bindData = { 
-      zh:wx.getStorageSync('zh'),
-      mm:wx.getStorageSync('mm'),
-    } as ScoreInquiryeItem;
-      console.log(bindData)
-      if (bindData) {
-        this.showToast(true,'lodding',"查询中......");
-        this.getUserInfoData(bindData);
-      }  
-  },
+    *数据修饰
+    */
+    var kcxzmc = Detail.allDetails.kcxzmc;
+    var color = '';//专修必修选修的颜色
+    if (kcxzmc == "必修") {
+      kcxzmc = "必修";
+      color = '#3EBAD0';
+    }
+    else if (kcxzmc == '公共选修') {
+      kcxzmc = "公选";
+      color = '#20C38C';
+    } else if (kcxzmc == '专业选修') {
+      kcxzmc = "专选";
+      color = '#FBDE71';
+    }
+    var score = Detail.allDetails.score;
+    if (score.indexOf(".0") >= 0) {
+      score = parseInt(score);
+    }
   /**
-   * 发送请求，渲染数据
-   * @param from 用户信息
+   * 渲染
    */
-  async getUserInfoData(from: ScoreInquiryeItem) {
-    console.log(from);
-   const {data: res1 } = await getUserInfo(from) as unknown as IResult<any>;
-   const {data: res2 } = await getScoreInfo(from) as unknown as IResult<any>
-   console.log(res1)
-   if(!res1){
-     this.showToast(true,'error',"请求失败");
-   }else if(res1){
-    this.showToast(true,'success',"请求成功");
-   }
-   
-      /**
-     * 渲染
-     */
-    
+    var height = this.data.height;
+    if (Detail.Details.length >= 4) {
+      height = '700';
+    }
+    else if (Detail.Details.length == 3) {
+      height = '640';
+    } else if (Detail.Details.length == 2) {
+      height = '594';
+    } else if (Detail.Details.length == 1) {
+      height = '488';
+    }
     this.setData({
-      data1: res1,
-      userScoreInfo: res2,
-
+      height: height,
+      Detail: Detail,
+      Details: Detail.Details,
+      bj: Detail.allDetails.bj,
+      jsxm: Detail.allDetails.jsxm,
+      kcmc: Detail.allDetails.kcmc,
+      score: score,
+      xf: Detail.allDetails.xf,
+      xnmmc: Detail.allDetails.xnmmc,
+      xqmmc: Detail.allDetails.xqmmc,
+      kcxzmc: kcxzmc,
+      color: color,
     })
     setTimeout(() => {
       this.setData({
-        showToast:false
+        showToast: false,
+        courseTapdetail: true
+      })
+    }, 800);
+  },
+
+  /**
+    * 点击学期称号打开弹窗
+    */
+  termTitleTap: function () {
+    this.setData({
+      termTitleTapdetail: true
+    })
+  },
+  /**
+  * 点击成绩计算打开弹窗
+  */
+  scoreCountTap: function () {
+    this.setData({
+      scoreCountdetail: true
+    })
+  },
+  /**
+  * 渲染学期按钮 (学年，学期) 均为int类型
+  */
+  renderAcademicAndTermTap: function (academic_year:number,term:number) {
+    var academic_year_y = this.data.academic_year_y;
+    var term_y = this.data.term_y;
+    var fs = ''; //大一 Fresh
+    var sh = ''; // 大二 Sophomore
+    var jn = '';// 大三 Junior
+    var sn = '';// 大四 Senior
+    var last = '';//上学期 last
+    var next = ''; //下学期 next
+    if (academic_year == 1 && term == 1) { //大一 上
+      term = term;
+      academic_year = academic_year;
+      academic_year_y = 'one';
+      term_y = 'sxq';
+      fs = "#20C38C";
+      sh = "rgba(41, 41, 69, 0.2)";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn = "rgba(41, 41, 69, 0.2)";
+      last = "#20C38C";
+      next = "rgba(41, 41, 69, 0.2)";
+    } else if (academic_year == 1 && term == 2) { //下
+      term = term;
+      academic_year = academic_year;
+      academic_year_y = 'one';
+      term_y = 'xxq';
+      fs = "#20C38C";
+      sh = "rgba(41, 41, 69, 0.2)";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn ="rgba(41, 41, 69, 0.2)";
+      last = "rgba(41, 41, 69, 0.2)";
+      next = "#20C38C";
+    } else if (academic_year == 2 && term == 1) { //大二上
+      term = term;
+      academic_year = academic_year;
+      academic_year_y = 'two';
+      term_y = 'sxq';
+      fs ="rgba(41, 41, 69, 0.2)";
+      sh = "#20C38C";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn ="rgba(41, 41, 69, 0.2)";
+      last = "#20C38C";
+      next = "rgba(41, 41, 69, 0.2)";
+    } else if (academic_year == 2 && term == 2) { //大二下
+      term = term;
+      academic_year = academic_year;
+      academic_year_y = 'two';
+      term_y = 'xxq';
+      fs = "rgba(41, 41, 69, 0.2)";
+      sh = "#20C38C";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn = "rgba(41, 41, 69, 0.2)";
+      last = "rgba(41, 41, 69, 0.2)";
+      next = "#20C38C";
+    } else if (academic_year == 3 && term == 1) { //大三上
+      term = term;
+      academic_year = academic_year;
+      academic_year_y = 'three';
+      term_y = 'sxq';
+      fs = "rgba(41, 41, 69, 0.2)";
+      sh = "rgba(41, 41, 69, 0.2)";
+      jn = "#20C38C";
+      sn = "rgba(41, 41, 69, 0.2)";
+      last = "#20C38C";
+      next = "rgba(41, 41, 69, 0.2)";
+    } else if (academic_year == 3 && term == 2) { //大三下
+      term = term;
+      academic_year = academic_year;
+      academic_year_y = 'three';
+      term_y = 'xxq';
+      fs = "rgba(41, 41, 69, 0.2)";
+      sh = "rgba(41, 41, 69, 0.2)";
+      jn = "#20C38C";
+      sn = "rgba(41, 41, 69, 0.2)";
+      last = "rgba(41, 41, 69, 0.2)";
+      next = "#20C38C";
+    } else if (academic_year == 4 && term == 1) { //大四上
+      term = term;
+      academic_year = academic_year;
+      academic_year_y = 'four';
+      term_y = 'sxq';
+      fs = "rgba(41, 41, 69, 0.2)";
+      sh = "rgba(41, 41, 69, 0.2)";
+      jn ="rgba(41, 41, 69, 0.2)";
+      sn = "#20C38C";
+      last = "#20C38C";
+      next = "rgba(41, 41, 69, 0.2)";
+    } else if (academic_year == 4 && term == 2) { //大四下
+      term = term;
+      academic_year = academic_year;
+      academic_year_y = 'four';
+      term_y = 'xxq';
+      fs ="rgba(41, 41, 69, 0.2)";
+      sh ="rgba(41, 41, 69, 0.2)";
+      jn = "rgba(41, 41, 69, 0.2)";
+      sn = "#20C38C";
+      last ="rgba(41, 41, 69, 0.2)";
+      next = "#20C38C";
+    }
+    this.setData({
+      academic_year: academic_year,
+      term: term,
+      academic_year_y: academic_year_y,
+      term_y: term_y,
+      fs: fs,
+      sh: sh,
+      jn: jn,
+      sn: sn,
+      last: last,
+      next: next,
+    })
+  },
+  /**
+   * 点击更换学期学年
+   */
+  choose: function (e: { currentTarget: { dataset: { academic_year: number; term: number; row: any, } } }) {
+    var academic_year = e.currentTarget.dataset.academic_year;
+    var term = e.currentTarget.dataset.term;
+    this.setData({academic_year:academic_year,term:term});
+    this.renderAcademicAndTermTap(academic_year, term);
+    /**
+     *  改变称号
+     */
+    var that = this;
+    var academic_year_y = that.data.academic_year_y;
+    var term_y = that.data.term_y;
+    var userScoreInfo = this.data.userScoreInfo as any;
+    var xqxfscores = userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore;
+    that.scoreLevels(xqxfscores);
+  },
+    /**
+     * 初始化页面渲染函数
+     */
+  async initPageData() {
+    /**
+     * 获取本地缓存，判断是否绑定数据
+     */
+    var bindData = {
+      zh: wx.getStorageSync('login').zh,
+      mm: wx.getStorageSync('login').mm,
+    } as ScoreInquiryeItem;
+    if(wx.getStorageSync('login').zh&& wx.getStorageSync('login').mm){
+      this.showToast(true, 'lodding', "查询中......");
+      this.getUserInfoData(bindData);
+    }
+    else if(!(wx.getStorageSync('login').zh&& wx.getStorageSync('login').mm)){
+      this.showToast(true, 'error', "用户未绑定");
+    } 
+  },
+  /**
+   * 发送请求，渲染数据
+   * @param from 用户信息和成绩列表
+   */
+  async getUserInfoData(from: ScoreInquiryeItem) {
+    const { data: info } = await getUserInfo(from) as unknown as IResult<any>;
+    const { data: userScoreInfo } = await getScoreInfo(from) as unknown as IResult<any>;
+    if (!info) {
+      this.showToast(true, 'error', "网络开小差了");
+      setTimeout(() => {
+        this.setData({
+          showToast: false,
+        })
+      }, 800);
+    } else if (info) {
+      this.showToast(true, 'success', "请求成功");
+    }
+    /**
+   * 渲染
+   */
+    this.setData({
+      info: info,
+      userScoreInfo: userScoreInfo
+    })
+    setTimeout(() => {
+      this.setData({
+        showToast: false
       })
     }, 800);
     this.renderAcademicAndTermTap(this.data.academic_year, this.data.term);
-    /*
-   *数据处理
-   */
-  var that = this;
-  var academic_year_y = that.data.academic_year_y;
-  var term_y = that.data.term_y;
-  that.scoreLevels(that.data.userScoreInfo[academic_year_y][term_y+'all'][0].xqxfscore);
-    
+    /**
+     * 在未点击学期更换时，进入默认的大一上称号
+     */
+    var academic_year_y = this.data.academic_year_y;
+    var term_y = this.data.term_y + 'all';
+    var xqxfscores = userScoreInfo[academic_year_y][term_y][0].xqxfscore;
+    this.scoreLevels(xqxfscores);
   },
-    
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    /*this.setData({
-      toastTitle:"查询中......",
-      toastIcon:'lodding',
-      showToast:true,
-      })
-    wx.request({
-      url: `http://www.fmin-courses.com:9527/api/v1/craw/user/userInfo`,
-      method:'POST',
-      data:{
-        zh: zh=wx.getStorageSync('key1'),
-        mm: mm=wx.getStorageSync('key2'),
-      },
-      success:((res) =>{
-        this.setData({
-          showinfo:res.data.data
-        })
-        console.log(res.data)
-      }), 
-    }),
-     
-    //this.initPageData();
-   this.renderAcademicAndTermTap(this.data.academic_year, this.data.term);
-   var zh;
-   var mm;
-    var that = this;
-    wx.request({
-      url: 'http://www.fmin-courses.com:9527/api/v1/craw/user/userScore',
-      method:"POST",
-      data: {
-        zh: zh=wx.getStorageSync('key1'),
-        mm: mm=wx.getStorageSync('key2'),
-      },
-      success:((res)=> {
-        //console.log(res.data)
-        if (res.data){
-         // console.log(res.data.data)
-          var academic_year_y = that.data.academic_year_y;
-          var term_y = that.data.term_y;
-          that.scoreLevels(res.data.data[academic_year_y][term_y+'all'][0].xqxfscore)
-          that.setData({
-            userScoreInfo: res.data.data,
-            xqxfscore:res.data.data[academic_year_y][term_y+'all'][0].xqxfscore
-            
-          })
-          this.setData({
-            toastTitle:"绑定成功",
-            toastIcon:'success',
-            showToast:true,
-            })
-            setTimeout(() => {
-              this.setData({
-            showToast:false
-          })
-            }, 500);
-          
-        }else{
-          console.log(res.data.msg);
-        }
-      })
-    })*/
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.initPageData();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    
+    this.initPageData();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
   },
 
   /**
@@ -571,7 +436,7 @@ closeTap: function (e:any) {
   },
   lifetimes: {
     // 生命周期函数
-    ready: function() {
+    ready: function () {
       const windowHeight = wx.getSystemInfoSync().windowHeight; // 屏幕的高度
       const windowWidth = wx.getSystemInfoSync().windowWidth; // 屏幕的宽度
       console.log(windowWidth)
