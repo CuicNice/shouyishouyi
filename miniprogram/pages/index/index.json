@@ -1,4 +1,5 @@
 {
+  "disableScroll":true,
   "usingComponents": {
     "banner":"/components/fmin-banner/fmin-banner"
   }
