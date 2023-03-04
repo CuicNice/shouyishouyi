@@ -36,6 +36,9 @@ typings
 4、合并代码。（前几次继超会带，后面需要自己发送pullrequest）
 5、绝对绝对不能直接提交master。开发新功能只能新建分支，开发完成后合并。
 
+<<<<<<< HEAD
+banner的规范已经修改完成
+=======
 ### UAT 2023/2/5 countdown
 1、countdown组件一个
 2、页面一个
@@ -44,3 +47,4 @@ typings
 
 ### 2023/3/2 score inquiry
  1.修改了代码规范。
+>>>>>>> 50add094df6706221639c78e282d391531f04d8e
