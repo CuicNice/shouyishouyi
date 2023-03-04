@@ -7,6 +7,12 @@ import {
   myStorage
 } from "../../../utils/newStorage.js";
 var newsID = '';
+interface newsIDitem {
+  "newsId": string
+}
+
+export {
+  newsIDitem,}
 Page({
   /**
    * 页面的初始数据
@@ -27,7 +33,9 @@ Page({
     bg_url: " url(http://tiku.mcdd.top/image/bg.png);",
     bg_size: "background-size: 418rpx 1052rpx;",
     // 新闻ID
-    newsIDItem: ""
+    newsIDitem: {
+      "newsId": "",
+    } as unknown as newsIDitem,
   },
   // 基础库不支持IOS
   // onAddToFavorites(res:any) { //收藏
@@ -54,8 +62,6 @@ Page({
       promise
     }
   },
-
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -65,19 +71,19 @@ Page({
     var str2 = '<div class="pic"><img src="" title="" /><s class="prev" title="上一张"></s><s class="next" title="下一张"></s><span class="tips">最后一张了</span></div>';
     var str3 = '<li class="last">最后一张</li>';
     newsID = options.newsID;
-    console.log("newsId", newsID);
-    if (options.newsID.length > 15) {
-      newsID = newsID.replace(/%2F/g, "/")
-    }
+    // 设置newsId
+    // newsIDitem 
+    that.setData({'newsIDitem.newsId':newsID,})
     // 获取新闻的详情
     // 通过ID获取新闻的详情
     // 获取内网新闻
-    let { data: res } = await getNewsDetailByID(newsID) as unknown as IResult<any>;
+    let { data: res } = await getNewsDetailByID(that.data.newsIDitem) as unknown as IResult<any>;
     if (res != null) {
       console.log(res)
       // //   console.log(res.data.content)
-      var html = res.data.content;
+      var html = res.content;
       var str1 = '<p style="text-indent:2em;">                                                                                                                                </p>'
+
       //html = html.replace("style=\"text-indent:2em\"","")
       html = html.replace("align=\"center\"", "")
       html = html.replace(/padding:(.*?)px (.*?)px;/g, "")
@@ -102,13 +108,18 @@ Page({
       html = html.replace(str1, "")
       html = html.replace(/align:right;">(.*?)武昌首义学院/, 'align:right;">武昌首义学院')
       html = html.replace(/<li><a href="javascript:"(.*?) title="(.*?)">/g, "")
+      // 去掉Script部分
+      html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,"")
+      console.log("okokok",html)
+      WxParse.wxParse("article", "html",html, that, 5)
       html = html.replace(str2, "")
       html = html.replace(str3, "")
-      console.log(html)
-      WxParse.wxParse("article", "html", html, that, 5)
+
+      // 洗页脚
       that.setData({
-        item: res.data
+        item: res
       });
+
     }
   },
   wxParseTagDown: function (e: any) {

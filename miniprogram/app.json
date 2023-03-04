@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/news/newsList/list",
+    "pages/news/newsDetail/inDetail",
     "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
     "pages/login/login",
     "pages/index/index",

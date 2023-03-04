@@ -1,5 +1,5 @@
 /* pages/inDetail/inDetail.wxss */
-@import '/wxParse/wxParse.wxss';
+@import '../../../wxParse/wxParse.wxss';
 /* 背景 */
 
 /* 背景颜色 */
@@ -14,9 +14,9 @@
 }
 .top{
   /* 距离顶部的距离 */
-  margin-top: 58rpx;
-  width: 330px;
-  height: 59.38px;
+  margin-top: 58rpx !important;
+  width: 330px !important;
+  height: 59.38px !important;
 }
 .topTitleSvg{
   width: 330px !important;

@@ -1,12 +1,12 @@
 <!--pages/inDetail/inDetail.wxml-->
 <!-- <navbar navbar-data='{{nvabarData}}'></navbar> -->
-<import src="../../wxParse/wxParse.wxml" />
-<view class="bg">
-  <!-- 背景柱子 -->
-  <view class="bgThingsBox">
+<import src="../../../wxParse/wxParse" />
+<!-- <view class="bg"> -->
+<!-- 背景柱子 -->
+<!-- <view class="bgThingsBox">
     <image class="bgThings" src="{{bgSvgUrl}}" mode="" />
   </view>
-</view>
+</view> -->
 <!-- topbar -->
 <topBar title="{{newsDetailTitle}}" immersion="{{true}}" Threshold="0.1">
   <view class="cont">
@@ -19,11 +19,12 @@
       <view class="title" style="filter:{{light}}">{{item.title}}</view>
       <!-- 南李路22号标题头 -->
       <view class="contenTitle">
-        <image class="contentTitle"style="width: 622rpx;height: 28rpx;" src="{{contentTitle}}" mode="" />
+        <image class="contentTitle" style="width: 622rpx;height: 28rpx;" src="{{contentTitle}}" mode="" />
       </view>
       <view class="letter">
         <view class="text">
           <view class="{{light=='brightness(10);'? 'NewwxParse' : 'wxParse'}}">
+            <!-- 数据引入 -->
             <template is="wxParse" data="{{wxParseData:article.nodes}}" />
           </view>
         </view>
