@@ -17,10 +17,19 @@
   margin-top: 58rpx !important;
   width: 330px !important;
   height: 59.38px !important;
+overflow: visible;
 }
 .topTitleSvg{
   width: 330px !important;
   height: 59.38px !important;
+}
+/*  顶部的图片*/
+.topSvg{
+  display: block;
+  width: 330px !important;
+height: 59.38px !important;
+/* 需要优先级高过wxparse里面的优先级 */
+/* overflow:visible !important; */
 }
 /* 背景的物体 */
 .bgThingsBox {

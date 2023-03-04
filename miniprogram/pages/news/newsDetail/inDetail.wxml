@@ -1,18 +1,18 @@
 <!--pages/inDetail/inDetail.wxml-->
 <!-- <navbar navbar-data='{{nvabarData}}'></navbar> -->
 <import src="../../../wxParse/wxParse" />
-<!-- <view class="bg"> -->
+<view class="bg">
 <!-- 背景柱子 -->
-<!-- <view class="bgThingsBox">
+<view class="bgThingsBox">
     <image class="bgThings" src="{{bgSvgUrl}}" mode="" />
   </view>
-</view> -->
+</view>
 <!-- topbar -->
 <topBar title="{{newsDetailTitle}}" immersion="{{true}}" Threshold="0.1">
   <view class="cont">
     <!-- 顶部的图像 -->
     <view class="top">
-      <image style="width: 330px;height: 59.38px;" src="{{topTitleSvgUrl}}" mode="" />
+      <image class="topSvg"style="width: 330px;height: 59.38px;" src="{{topTitleSvgUrl}}" mode="" />
     </view>
     <!-- 新闻内容框子 -->
     <view class="border" style="background:{{t_bg}}">
