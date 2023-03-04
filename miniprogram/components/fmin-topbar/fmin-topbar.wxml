@@ -17,7 +17,9 @@
   <view class="barLineItem">
     <view class="barText">{{title}}
     </view></view>
-  <view class="barLineItem"></view>
+  <view class="barLineItem">
+    <view style="width: 150rpx;"></view>
+  </view>
 </view>
 </view>
 
