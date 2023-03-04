@@ -1,1 +1,227 @@
-/* pages/widgets/electricCharge/electricComponent/electricComponent.wxss */
+/* pages/widgets/electric/electricComponment/electricComponent.wxss */
+
+.electricPageBox {
+  margin: 0 16rpx;
+}
+
+.electric {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20rpx 0rpx 28rpx;
+  gap: 20rpx;
+  width: 100%;
+  position: relative;
+  height: 166rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #E3E3E6;
+  border-radius: 20rpx;
+}
+
+.electric-txtLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rpx 28rpx;
+  gap: 20rpx;
+  height: 40rpx;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.electric-lighting {
+  display: flex;
+  order: 0;
+  flex-grow: 0;
+}
+
+.lightingSvg {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.returnIconSvg {
+  width: 45rpx;
+  height: 45rpx;
+}
+
+.electric-txt {
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #292945;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.cd-txt {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30rpx;
+  line-height: 28rpx;
+  color: #292945;
+}
+
+.electricPlace {
+  width: 300rpx;
+  height: 40rpx;
+  display: flex;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #7F7F8F;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.cdPlace {
+  display: flex;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.top_leftBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0rpx;
+  gap: 16rpx;
+  width: 500rpx;
+  height: 40rpx;
+}
+
+.top_rightBox {
+  float: right;
+}
+
+.returnSvg {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.electricAllBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 106rpx;
+  width: 630rpx;
+  gap: 10rpx;
+}
+
+.electricBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 106rpx;
+}
+.Box{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.splitLineBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rpx;
+  gap: 30rpx;
+  width: 718rpx;
+  height: 106rpx;
+}
+
+.splitLine {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 0rpx;
+  height: 70rpx;
+  border: 2rpx solid #ECECEC;
+}
+
+.cdName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cdTitle {
+  width: 100px;
+  height: 17px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+  margin-top: 8rpx;
+  color: rgba(41, 41, 69, 0.6);
+}
+
+.cdDay {
+  height: 68rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-size: 48rpx;
+  color: #20C38C;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.Postgraduate {
+  position: relative;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24rpx;
+  line-height: 12px;
+  text-align: center;
+  color: rgba(41, 41, 69, 0.6);
+}
+
+.cd-txt {
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.electricBox:nth-child(2):before,
+.electricBox:nth-child(2):after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 2rpx;
+  box-shadow: 0 0 0 19998rpx #ccc;
+  vertical-align: middle;
+}
+
+.electricBox:nth-child(2)::before {
+  margin-right: 20rpx;
+  clip-path: polygon(0 0, -19998rpx 0, -19998rpx 100%, 0 100%);
+}
+
+.electricBox:nth-child(2)::after {
+  margin-right: 20rpx;
+  clip-path: polygon(0 0, -19998rpx 0, -19998rpx 100%, 0 100%);
+}
+
+.splitLinner {
+  display: flex;
+  width: 0rpx;
+  height: 70rpx;
+  border: 2rpx solid #ECECEC;
+  flex-grow: 0;
+}
