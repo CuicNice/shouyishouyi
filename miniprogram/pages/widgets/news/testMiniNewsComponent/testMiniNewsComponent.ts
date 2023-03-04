@@ -43,7 +43,7 @@ Page({
   // 页面监听组件TapBar
   handleEventListener: function(e:any) {
     var that=this
-    //将组件B传递的num通过e.detail.num来获取
+    //将组件B传递的tapbarCtrl通过e.detail.tapbarCtrl来获取
     this.setData({
       tapbarCtrl: e.detail.tapbarCtrl
     })
