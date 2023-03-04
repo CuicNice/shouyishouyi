@@ -1,0 +1,4 @@
+<!--pages/widgets/news/testMiniNewsComponent/testMiniNewsComponent.wxml-->
+<!-- 用来调用miniNewsComponent组件部，做页面的测试 -->
+<!--监听点击事件 -->
+<miniNews bindeventListener="handleEventListener" list="{{list}}"></miniNews>
