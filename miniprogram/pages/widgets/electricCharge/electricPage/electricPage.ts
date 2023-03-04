@@ -134,7 +134,7 @@ Page({
     // that.selectComponent("#toast").showToast("请求中....", "lodding");
     const { data: res } = await getElectric(from) as unknown as IResult<any>;
     if (!res) {
-      that.selectComponent("#toast").showToastAuto("请求失败", "error");
+      // that.selectComponent("#toast").showToastAuto("请求失败", "error");
       console.log("请求失败，请重新绑定")
       that.setData({
         showImg: false,
@@ -159,52 +159,52 @@ Page({
     }
     console.log(res);
     //获取绘图的数据
-    var columnData = {
-      "categories":["2016","2017","2018","2019","2020","2021"],
-      "series":  [
-        {
-          name: "当日电费（元）",
-          data: [100,36,31,33,93,34]
-        }
-      ]
-    }
     // var columnData = {
-    //   "categories": [res.allDayValue[14].curDayTime.substring(8, 10),
-    //     '',
-    //   res.allDayValue[12].curDayTime.substring(8, 10),
-    //     '',
-    //   res.allDayValue[10].curDayTime.substring(8, 10),
-    //     '',
-    //   res.allDayValue[8].curDayTime.substring(8, 10),
-    //     '',
-    //   res.allDayValue[6].curDayTime.substring(8, 10),
-    //     '',
-    //   res.allDayValue[4].curDayTime.substring(8, 10),
-    //     '',
-    //   res.allDayValue[2].curDayTime.substring(8, 10),
-    //     '',
-    //   res.allDayValue[0].curDayTime.substring(8, 10)],
-    //   "series": [
+    //   "categories":["2016","2017","2018","2019","2020","2021"],
+    //   "series":  [
     //     {
     //       name: "当日电费（元）",
-    //       data: [res.allDayValue[14].dayUseMeony,
-    //       res.allDayValue[13].dayUseMeony,
-    //       res.allDayValue[12].dayUseMeony,
-    //       res.allDayValue[11].dayUseMeony,
-    //       res.allDayValue[10].dayUseMeony,
-    //       res.allDayValue[9].dayUseMeony,
-    //       res.allDayValue[8].dayUseMeony,
-    //       res.allDayValue[7].dayUseMeony,
-    //       res.allDayValue[6].dayUseMeony,
-    //       res.allDayValue[5].dayUseMeony,
-    //       res.allDayValue[4].dayUseMeony,
-    //       res.allDayValue[3].dayUseMeony,
-    //       res.allDayValue[2].dayUseMeony,
-    //       res.allDayValue[1].dayUseMeony,
-    //       res.allDayValue[0].dayUseMeony]
+    //       data: [100,36,31,33,93,34]
     //     }
     //   ]
     // }
+    var columnData = {
+      "categories": [res.allDayValue[14].curDayTime.substring(8, 10),
+        '',
+      res.allDayValue[12].curDayTime.substring(8, 10),
+        '',
+      res.allDayValue[10].curDayTime.substring(8, 10),
+        '',
+      res.allDayValue[8].curDayTime.substring(8, 10),
+        '',
+      res.allDayValue[6].curDayTime.substring(8, 10),
+        '',
+      res.allDayValue[4].curDayTime.substring(8, 10),
+        '',
+      res.allDayValue[2].curDayTime.substring(8, 10),
+        '',
+      res.allDayValue[0].curDayTime.substring(8, 10)],
+      "series": [
+        {
+          name: "当日电费（元）",
+          data: [res.allDayValue[14].dayUseMeony,
+          res.allDayValue[13].dayUseMeony,
+          res.allDayValue[12].dayUseMeony,
+          res.allDayValue[11].dayUseMeony,
+          res.allDayValue[10].dayUseMeony,
+          res.allDayValue[9].dayUseMeony,
+          res.allDayValue[8].dayUseMeony,
+          res.allDayValue[7].dayUseMeony,
+          res.allDayValue[6].dayUseMeony,
+          res.allDayValue[5].dayUseMeony,
+          res.allDayValue[4].dayUseMeony,
+          res.allDayValue[3].dayUseMeony,
+          res.allDayValue[2].dayUseMeony,
+          res.allDayValue[1].dayUseMeony,
+          res.allDayValue[0].dayUseMeony]
+        }
+      ]
+    }
     var lineData = {
       categories: [res.allMonthValue[5].The_Month.substring(4, 6),
       res.allMonthValue[4].The_Month.substring(4, 6),
@@ -272,7 +272,11 @@ Page({
           seriesGap: 5,
           barBorderRadius: [20, 20, 20, 20],
           legendShape: 'circle',
-          customColor: ["#78DAB9","#3EBAD0"]
+
+          
+           Color: [    
+            "#3EBAD0"
+          ]
         }
       },
     })

@@ -1,14 +1,24 @@
 {
   "pages": [
+<<<<<<< HEAD
     "pages/index/index",
+=======
+    "pages/widgets/library/libraryPage/libraryPage",
+>>>>>>> 50add094df6706221639c78e282d391531f04d8e
     "pages/widgets/electricCharge/electricPage/electricPage",
+    "pages/widgets/countDown/countDownPage/countDownPage",
+    "pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage",
+    "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
     "pages/login/login",
     "pages/indexText/indexText",
-    "pages/widgets/countDown/countDownPage/countDownPage",
-    "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
-    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage"
+    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
+    "pages/widgets/library/librarycom/librarycom",
+    "pages/widgets/library/librarytext/librarytext",
+    "pages/message/messagePage/messagePage",
+    "pages/popup/popupPage/popupPage",
+    "pages/message/web-view/webView"
   ],
   "window": {
     "backgroundTextStyle": "light",

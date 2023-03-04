@@ -1,0 +1,45 @@
+<topbar title="{{electricChargeTitle}}" immersion="{{true}}">
+  <view class="page"></view>
+  <view class="search">
+    <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
+    <image class="image" src="../../../../static/svg/search.svg" bindtap="search"></image>
+  </view>
+  <view>
+    <view class="allsearch">
+      <view class="leftBox">
+       {{word}}  搜索结果
+      </view>
+      <view class="rightBox">
+        <view class="lefticon2" bindtap="againrequest">
+          <image class="lefticonImg" src="/static/svg/vect.svg"></image>
+        </view>
+        <view class="pagenum" wx:if="{{b+1<10?true:false}}">0{{b+1}}</view>
+        <view class="pagenum" wx:else>{{b+1}}</view>
+        <view class="righticon2" bindtap="leftrequest">
+          <image class="lefticonImg" src="/static/svg/vect.svg"></image>
+        </view>
+      </view>
+    </view>
+    <view class="classBox" wx:for="{{allbook}}" wx:key="index" bindtap="showXQ" wx:for-index="index" data-index="{{index}}">
+      <view class="leftClass">
+        <view class="className">{{item.title}}</view>
+        <view class="classForm">{{item.author}}</view>
+        <view class="classFormplace">{{item.dates}} | {{item.publisher}}</view>
+        <view class="placeBox">
+          <view class="place" wx:if="{{item.showzong==true?true:false}}">总馆</view>
+          <view class="place" wx:if="{{item.showjia==true?true:false}}">嘉鱼</view>
+          <view class="place" wx:if="{{item.shownan==true?true:false}}">南区</view>
+          <view class="place" wx:if="{{item.showzhong==true?true:false}}">中区</view>
+        </view>
+      </view>
+      <view class="rightBox">
+        <view class="bookNum">{{item.books.length}}</view>
+        <view class="bookText">本在馆</view>
+        <view class="borrow">外借图书</view>
+      </view>
+    </view>
+  </view>
+  <view class="none1"></view>
+</topbar>
+<!-- 提示组件 -->
+<toast id="toast"></toast>

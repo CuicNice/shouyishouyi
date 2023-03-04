@@ -1,4 +1,4 @@
-<view class="topbar">
+<!--<view class="topbar">
   <view class="returnBtn" bindtap="returnEvent">
     <image class="returnIcon" style="width:18rpx; height:34rpx" src="/static/svg/returnIcon.svg"></image>
   </view>
@@ -38,13 +38,59 @@
     </button>
   </view>
   </view>
-</view>
+</view>-->
 <!-- 提示组件 -->
-<toast id="toast"></toast>
+<!--<toast id="toast"></toast>-->
 <!-- 失败弹窗 -->
-<dialogTitle title="你的账号或密码有误" stitle="请重新输入或前往图书馆官网尝试登录该账号密码，确保能登录！" wx:if="{{!haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
+<!--<dialogTitle title="你的账号或密码有误" stitle="请重新输入或前往图书馆官网尝试登录该账号密码，确保能登录！" wx:if="{{!haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
     <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="showBindItem">绑定</button>
   </view>
-</dialogTitle>
+</dialogTitle>-->
+
+<!--图书馆搜索界面-->
+<topbar title="{{electricChargeTitle}}" immersion="{{true}}">
+  <view class="page"></view>
+  <view class="bigBox">
+    <view class="search">
+      <input class="inputBox" type="text" placeholder="输入你想查询的图书的关键词" value="{{word}}" placeholder-class="mininput" bindinput='getInputValue' />
+      <image class="image" src="../../../../static/svg/search.svg" bindtap="search"></image>
+    </view>
+    <view class="searchRecord">
+      <view class="mark">搜索记录</view>
+      <view class="deleteMark" bindtap="deleteMark">清除记录</view>
+    </view>
+    <view class="markBox">
+      <view class="markMake" wx:if="{{!ifshow}}" wx:for="{{shuju}}" wx:key="index">
+        <view class="text" wx:if="{{!item.ifshow}}" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
+        <view class="text1" wx:if="{{item.ifshow}}" wx:for-index="index" data-index="{{index}}" bindtap="markMake">{{item.item}}</view>
+      </view>
+      <view class="nonemarkMake" wx:if="{{ifshow}}">暂无搜索记录</view>
+    </view>
+    <view class="library">
+      <view class="lefticon" bindtap="swiperChangeqian">
+        <image class="lefticonImg2" src="/static/svg/vector.svg"></image>
+      </view>
+      <swiper class="librarySwiper" swiperCurrent="swiper" current="{{swiper}}">
+        <swiper-item>
+          <image class="libraryIcon1" src="/static/svg/nanlibrary.svg"></image>
+        </swiper-item>
+        <swiper-item>
+          <image class="libraryIcon2" src="/static/svg/genlibrary.svg"></image>
+        </swiper-item>
+        <swiper-item>
+          <image class="libraryIcon3" src="/static/svg/schoolBuilt/zhongqutushuguan.svg"></image>
+        </swiper-item>
+        <swiper-item>
+          <image class="libraryIcon4" src="/static/svg/jiayulibrary.svg"></image>
+        </swiper-item>
+      </swiper>
+      <view class="righticon" bindtap="swiperChangeho">
+        <image class="lefticonImg2" src="/static/svg/vector.svg"></image>
+      </view>
+    </view>
+  </view>
+</topbar>
+<!-- 提示组件 -->
+<toast id="toast"></toast>

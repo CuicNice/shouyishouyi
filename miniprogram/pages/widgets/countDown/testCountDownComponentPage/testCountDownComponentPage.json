@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "component": true,
+  "usingComponents": {
+    "countDownWedget":"/pages/widgets/countDown/countDownComponent/countDownComponent"
+
+  }
+}

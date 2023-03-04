@@ -1,2 +1,68 @@
 <!--pages/widgets/countDown/countDownPage/countDownPage.wxml-->
-<text>pages/widgets/countDown/countDownPage/countDownPage.wxml</text>
+<!-- 弃用不好用 -->
+<!-- <topBar model:title="倒计时设置"></topBar> -->
+<view class="bg"></view>
+<!-- topbar -->
+<topBar title="{{countDownTitle}}" immersion="{{true}}" Threshold="0.2">
+<view class="container">
+<!-- 这个里面是输入表单 -->
+<form bindsubmit="formSubmit">
+<view class="inputFrame">
+<view class="thingSet">
+<view class="thingLable"><text>事件设置</text></view>
+    <!-- 涉及到焦点聚集 -->
+<view class="thingInput" >
+  <input class="InputTxt" 
+value="{{name}}"
+name="thingsInputTxt"
+style="height: 88rpx;"
+bindfocus="stationNameFocus"
+bindblur="stationNameBlur"
+placeholder_class="thingInputHolder"
+placeholder="填写样例：考研"  
+bind:myevent="getcount" 
+maxlength="4">
+</input>
+</view>
+
+<view class="thingAlarm"><text>倒计时设置2~4个字</text></view>
+
+</view>
+<view class="timeSet">
+<view class="timeLable"><text>时间设置</text>
+
+</view>
+<view class="timeInput" catchtouchmove="{{isInputTextMove}}" style="background: #FFFFFF;"> 
+ <picker mode="date" name="timeInputTxt" value="{{goalTime}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange"style="background: #FFFFFF;"> 
+  <view 
+   wx:if="{{goalTime}}" class="picker" style="background: #FFFFFF;">
+         {{goalTime}}
+     </view>
+     <!-- 未选择之前 -->
+<view class="pickerin"wx:else style="background: #FFFFFF;">{{goalTimePre}}</view>
+</picker> 
+</view> 
+</view>
+<view class="saveButtonBox">
+  <button class="saveButton" style="width: 100%;" form-type="submit"><text class="saveButtonText">保存设置</text>
+  </button>
+</view>
+</view>
+</form>
+<view class="Img" >
+  <image class="paw"src="{{sportBuild}}" ></image>
+</view>
+<view class="sportTxtBox">
+<view class="sportTxt">武昌首义学院（武汉校区）体育馆</view>
+</view>
+</view>
+</topBar>
+<!-- 弹窗引入 -->
+<toast id="toast" title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast> 
+<!-- 南南问题单 -->
+<f-dialog showDialog="{{showDialog}}" title="{{dialogtitle}}"schoolBuiltSrc="{{schoolBuiltSrc}}" bname="{{bname}}" b1name="{{b1name}}">
+  <view class="btn-box school-btn">
+        <button class="btn" type="primary" style="width: 214rpx;" plain="{{true}}" onclick="submitError('sheihsishi')" open-type="contact">{{bname}}</button>
+        <button class="btn" type="primary" style="width: 214rpx;background: #20C38C;" bindtap="gotoBd" >{{b1name}}</button>
+      </view>   
+</f-dialog>

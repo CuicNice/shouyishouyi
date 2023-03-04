@@ -1,0 +1,72 @@
+<topbar title="{{electricChargeTitle}}" immersion="{{true}}">
+  <view class="page"></view>
+  <view>
+    <view class="bookXQ">
+      <view class="bookName">{{allbook[num].title}}</view>
+      <view class="all">
+        <image class="picture" src="http://www.bookcovers.cn/index.php?client=whzy&isbn={{allbook[num].ISBN}}号码/cover"></image>
+        <view class="leftall">
+          <view class="box">
+            <view class="textpart">作者: </view>
+            <view class="textparts"> {{allbook[num].author}}</view>
+          </view>
+          <view class="box">
+            <view class="textpart">出版社: </view>
+            <view class="textparts"> {{allbook[num].publisher}}</view>
+          </view>
+          <view class="box">
+            <view class="textpart">出版时间: </view>
+            <view class="textparts"> {{allbook[num].dates}}</view>
+          </view>
+          <view class="box">
+            <view class="textpart">在馆数: </view>
+            <view class="textparts"> {{allbook[num].books.length}}本</view>
+          </view>
+          <view class="box">
+            <view class="textpart">累借次数: </view>
+            <view class="textparts"> {{allbook[num].add}}次</view>
+          </view>
+        </view>
+      </view>
+      <view class="bottom">
+        <view class="placeBox">
+          <view class="place" wx:if="{{allbook[num].showzong==true?true:false}}">总馆</view>
+          <view class="place" wx:if="{{allbook[num].showjia==true?true:false}}">嘉鱼</view>
+          <view class="place" wx:if="{{allbook[num].shownan==true?true:false}}">南区</view>
+          <view class="place" wx:if="{{allbook[num].showzhong==true?true:false}}">中区</view>
+        </view>
+        <view style="margin-top: -55rpx;margin-left: 432rpx;">
+          <view class="borrow">外借图书</view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class="gen" wx:for="{{allbook[num].num}}" wx:key="index">
+        <view class="gentop">
+          <view class="gentopRight">
+            <view>
+              <image style="width: 40rpx;height: 40rpx;float: left;margin-left: -10rpx;" src="../../../../static/svg/place.svg"></image>
+              <view class="gentext">{{item.place}}</view>
+            </view>
+            <view class="genpart">
+              <view class="genpart1">索书号 {{item.hao}}</view>
+              <view class="genpart2">在馆数 {{item.num}}本</view>
+            </view>
+          </view>
+          <image class="gentopLeft" src="{{item.image}}"></image>
+        </view>
+        <view class="genprogress">
+          <view class="genprogressBox">条码号</view>
+          <view class="genprogressBox">馆藏状态</view>
+          <view class="genprogressBox">流通类型</view>
+        </view>
+        <view class="genprogressNext" wx:for="{{item.myarr}}" wx:key="index">
+          <view class="genprogressBox2">{{item.leixing}}</view>
+          <view class="genprogressBox2">{{item.num}}</view>
+          <view class="genprogressBox2">{{item.zhuangtai}}</view>
+        </view>
+      </view>
+      <view class="none"></view>
+    </view>
+  </view>
+</topbar>

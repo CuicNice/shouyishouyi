@@ -1,13 +1,11 @@
 // pages/widgets/library/libraryPage/libraryPage.ts
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    swiperCurrent: 0,
+    /* swiperCurrent: 0,
     libraryTitle:"首义图书馆",
-    swiper: 0,  //当前所在页面的 index
     circular: false, //是否采用衔接滑动
     librarySvg: [
       '/static/svg/schoolBuilt/zhonglou.svg',
@@ -15,95 +13,165 @@ Page({
     ],
     xuehao:'',
     mima:'',
-    haveBind:true
+    haveBind:true */
+    word: '',
+    ifshow: true,
+    swiper: 0,  //当前所在页面的 
+    shuju: [] as any,
+    allbook: [] as any,
+    a: 1,
+    b: 0,
+    num: 0,
+    electricChargeTitle: '首义图书馆',
   },
 
-  swiperChangeqian: function() {
-    if(this.data.swiper == 1){
-    this.setData({
-      swiper: 1
-    })}
+  swiperChangeqian: function () {
+    if (this.data.swiper == 3) {
+      this.setData({
+        swiper: 3
+      })
+    }
     else {
       this.setData({
-        swiper:this.data.swiper+1
+        swiper: this.data.swiper + 1
       })
     }
   },
 
-  login() {
-    wx.request({
-      url: 'http://www.fmin-courses.com:9527/api/v1/craw/library/login',
-      method:"POST",
-      data:{
-        "userId": this.data.xuehao,
-        "password": this.data.mima
-      },
-      success:(res)=>{
-        console.log(res)
-        if(res.data.code == 20000){
-          this.selectComponent("#toast").showToastAuto("登录成功", "success");
-          setTimeout(()=>{
-            wx.navigateTo({
-              url: '/pages/Widgets/libraryCollection/libraryCollection?userId=' + this.data.xuehao + '&password=' + this.data.mima,
-            })
-          }, 1000)
-        }
-        if(res.data.code == 30000){
-          console.log('ddd')
-          this.setData({
-            haveBind:false
-          })
-        }
+  getInputValue: function (e: any) {
+    this.setData({ word: e.detail.value })
+  },
+
+  //添加缓存
+  cache(abc: string) {
+    // 先获取缓存中的内容
+    let array = wx.getStorageSync(abc) || []
+    // 向数组中追加
+    var ifshow = false
+    if (this.data.word.length > 6) { ifshow = !ifshow }
+    array.push({
+      item: this.data.word,
+      ifshow: ifshow
+    })
+    // 重新设置缓存
+    wx.setStorageSync(abc, array)
+  },
+
+  markMake(e: any) {
+    var num = wx.getStorageSync('item').length - e.currentTarget.dataset.index - 1
+    var add = wx.getStorageSync('item')[num].item
+    this.setData({ word: add })
+    setTimeout(() => {
+      wx.navigateTo({ url: '/pages/widgets/library/librarytext/librarytext?word=' + this.data.word }),
+        this.setData({ word: '' })
+      this.get()
+    }, 500)
+  },
+
+  deleteMark() {
+    wx.removeStorage({
+      key: 'item',
+      success() {
+        console.log("清除缓存")
       }
     })
-    try {
-      wx.setStorageSync('key1',this.data.xuehao)
-    } catch (e) {  
+    this.get()
+    this.setData({
+      ifshow: true,
+      word: ''
+    })
+  },
+
+  //查重
+  objHeavy: function (arr: { [x: string]: any }) {
+    let arr1 = [];
+    let newArr = [];
+    for (let i in arr) {
+      if (arr1.indexOf(arr[i].item) == -1) {
+        arr1.push(arr[i].item);
+        newArr.push(arr[i]);
+      }
     }
-    try {
-      wx.setStorageSync('key2', this.data.mima)
-    } catch (e) {  
+    return newArr;
+  },
+
+  search() {
+    if (this.data.word != "") {
+      if (wx.getStorageSync('item').length < 6) {
+        this.cache('item')
+        var arr = this.objHeavy(wx.getStorageSync('item'))
+        wx.setStorage({
+          key: 'item',
+          data: arr,
+        })
+      }
+      if (wx.getStorageSync('item').length == 6) {
+        this.cache('item')
+        var arr = this.objHeavy(wx.getStorageSync('item'))
+        if (arr.length == 6) {
+          // 重新设置缓存
+          wx.setStorage({
+            key: 'item',
+            data: arr,
+          })
+        }
+        if (arr.length == 7) {
+          let array = wx.getStorageSync('item')
+          let arrays = []
+          for (var i = 0; i < array.length; i++) {
+            if (i != 0) {
+              arrays.push(array[i])
+            }
+          }
+          // 重新设置缓存
+          wx.setStorageSync('item', arrays)
+        }
+      }
+      this.get()
+      wx.navigateTo({ url: '/pages/widgets/library/librarytext/librarytext?word=' + this.data.word })
+      this.setData({ word: '' })
     }
   },
 
-  cancel(){
-    wx.setClipboardData({
-      data: 'http://ilas.lib.wsyu.edu.cn/index.aspx',
-      success:()=> {
-        wx.hideLoading()
-        this.selectComponent("#toast").showToastAuto("复制链接成功", "success");
-     }
-    })
-  },
-
-  input1(res: { detail: { value: any } }){
-    this.setData({
-      xuehao:res.detail.value
-    })
-  },
-
-  input2(res: { detail: { value: any } }){
-    this.setData({
-      mima:res.detail.value
-    })
-  },
-
-  swiperChangeho: function() {
-    if(this.data.swiper == 0){
-    this.setData({
-      swiper: 0
-    })}
+  swiperChangeho: function () {
+    if (this.data.swiper == 0) {
+      this.setData({
+        swiper: 0
+      })
+    }
     else {
       this.setData({
-        swiper:this.data.swiper-1
+        swiper: this.data.swiper - 1
       })
     }
   },
+
+  //获取缓存的内容
+  get() {
+    var myarr = wx.getStorageSync('item')
+    if (myarr.length != 0) {
+      var arr = []
+      console.log(myarr)
+      for (var i = myarr.length - 1; i >= 0; i--) {
+        arr.push(myarr[i])
+      }
+      console.log(arr)
+      this.setData({
+        shuju: arr,
+        ifshow: false
+      })
+    }
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    wx.removeStorage({
+      key: 'book',
+    })
+    this.get()//初始化获取缓存
 
   },
 
@@ -111,7 +179,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    var value1 = wx.getStorageSync('key1')
+    /* var value1 = wx.getStorageSync('key1')
     var value2 = wx.getStorageSync('key2')
       var xx
       var yy 
@@ -122,7 +190,7 @@ Page({
           xuehao:xx,
           mima:yy
         })
-      }
+      } */
   },
 
   /**

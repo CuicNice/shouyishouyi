@@ -1,9 +1,13 @@
-// pages/widgets/countDown/countDownComponment/countDownComponment.ts
+// pages/widgets/versionStatement/versionStatementComponent/versionStatementComponent.ts
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
+    boardTitle:{
+      type:String,
+      value:""
+    } 
 
   },
 
