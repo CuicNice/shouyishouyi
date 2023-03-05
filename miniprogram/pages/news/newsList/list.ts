@@ -316,16 +316,13 @@ that.selectComponent("#toast").showToastAuto("加载错误", "fail", 1);}
    */
   onReady: function () {
     let res = wx.getMenuButtonBoundingClientRect();
-    //////   console.log(res)
     this.setData({
       lineHeight: res.height,
       statusBarTop: res.top,
     })
   },
   scroll: function (e:any) {
-    ////   console.log(e);
     var roll = e.detail.deltaY;
-    // //   console.log(roll)
     var that = this;
     if (roll < 0) {
       that.setData({

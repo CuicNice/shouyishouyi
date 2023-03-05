@@ -2,12 +2,9 @@
   "navigationStyle": "custom",
   "component": true,
   "usingComponents": {
-    "itemview":"../../../pages/widgets/news/newsListComponent/newsListComponent",
-    "searchbar":"../../../pages/widgets/news/newsComponent/searchbar/searchbar",
-    "topBar":"../../../components/fmin-topbar/fmin-topbar",
-    "toast":"../../../components/fmin-toast/fmin-toast",
-    "searchBar":"../../../components/fmin-topbar/fmin-topbar"
-
+    "searchbar":"/pages/widgets/news/searchbar/searchbar",
+    "topBar":"/components/fmin-topbar/fmin-topbar",
+    "toast":"/components/fmin-toast/fmin-toast"
   },
     "navigationBarTitleText": "搜索"
 }

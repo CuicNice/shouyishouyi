@@ -21,11 +21,12 @@ const apiList = {
   // http://www.fmin-courses.com:9527/api/v1/sy/mini/innews/getInNewsById
   getDevDesItemUrl: baseUrl + '/api/v1/sy/mini/innews/getInNewsById',
   // 模糊查询
-  // http://www.fmin-courses.com:9527/api/v1/sy/mini/innews/listNewsByTitle
+  // https://www.fmin-courses.com/api/v1/sy/mini/innews/listNewsByTitle
   getNewsByKeyWordsUrl:baseUrl+'/api/v1/sy/mini/innews/listNewsByTitle',
   // 获取根据新闻的url新闻详情
   // http://www.fmin-courses.com:9527/api/v1/sy/mini/innews/getNewsById
   getNewsDetailByID:baseUrl+'/api/v1/sy/mini/innews/getNewsById'
+  
 }
 // http://www.fmin-courses.com:9527
 // 内网新闻list
@@ -49,7 +50,7 @@ export const getNewsByKeyWords = async (newsKeyWordsItem:any) => {
   if (Consts.DEBUG) {
     return Result.mockSuccess("<h1> 倒计时查询成功 </h1>");
   } else {
-    return await request.get(apiList.getNewsByKeyWordsUrl,newsKeyWordsItem);
+    return await request.get(apiList.getNewsByKeyWordsUrl,newsKeyWordsItem,"application/x-www-form-urlencoded");
   }
 }
 // 通过查询新闻详情

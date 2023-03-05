@@ -20,9 +20,7 @@
   <view class="barLineItem"></view>
 </view>
 </view>
-
-<scroll-view scroll-y="true"	bindscroll="scroll"wx:if="{{immersion}}">
-  <!-- <scroll-view scroll-y="true"	bindscroll="scroll" style="height: {{screenHeight}}px;" wx:if="{{immersion}}"> -->
+  <scroll-view scroll-y="true"	bindscroll="scroll" style="height: {{screenHeight}}px;" wx:if="{{immersion}}">
 <!-- 占位符 -->
 <view  style="height:{{statusBarHeight + capsuleBoxHeight}}px;width: 100%;"></view>
 <!-- 放置页面主page -->

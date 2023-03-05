@@ -358,7 +358,7 @@ height: 28rpx; */
   margin-top: 122rpx;
   width: 100%;
   height: 120rpx;
-  padding: 30rpx 30rpx 0rpx 0rpx;
+  /* padding: 30rpx 30rpx 0rpx 0rpx; */
   display: flex;
   align-items: center;
   /* 由于布局的特殊性，需要固定布局 */
@@ -366,7 +366,7 @@ height: 28rpx; */
 }
 /* 滑动部分 */
 .scrollBox{
-  margin-top:300rpx;
+  margin-top:246rpx;
   position:fixed;
 }
 .NewsButtonBox {
