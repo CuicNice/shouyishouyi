@@ -88,6 +88,12 @@ Page({
   *绑定学期的按钮
   */
   bindSchoolTermCharge() {
+     /**
+    * 获取当前年
+    */
+   var timestamp = Date.parse(new Date() as unknown as string);
+   var date = new Date(timestamp);
+    let num=date.getFullYear() as unknown as string
     let year = 0//选择学期的年份
     let start//开始上课的时间
     let schoolTerm = 0//学期
@@ -95,11 +101,11 @@ Page({
     let times = {}//校区的上课时间
     if (this.data.suorec == '大一下学期' || this.data.suorec == '大二下学期' || this.data.suorec == '大三下学期' || this.data.suorec == '大四下学期') {
       schoolTerm = schoolTerm + 12;
-      start = '2/19'
+      start = num+'/2/19'
     }
     if (this.data.suorec == '大一上学期' || this.data.suorec == '大二上学期' || this.data.suorec == '大三上学期' || this.data.suorec == '大四上学期') {
       schoolTerm = schoolTerm + 3;
-      start = '8/28'
+      start = num+'/8/28'
     }
     if (this.data.suorec.slice(1, 2) == "一") {
       year = year + parseInt(wx.getStorageSync('zh').slice(0, 4));
@@ -130,14 +136,14 @@ Page({
       I: schoolTerm,
       startDate: start
     })
-    let myarr=wx.getStorageSync('widget-classSchedule').ifshowAllclass
-    var arry={myarr}
-    wx.setStorageSync("widget-classSchedule",arry)
+    let myarr = wx.getStorageSync('widget-classSchedule').ifshowAllclass
+    var arry = { myarr }
+    wx.setStorageSync("widget-classSchedule", arry)
     this.initClassData()
     setTimeout(function () {
-      var value=wx.getStorageSync('widget-classSchedule').ifshowAllclass
-      var arr={value}
-      wx.setStorageSync("widget-classSchedule",arr)
+      var value = wx.getStorageSync('widget-classSchedule').ifshowAllclass
+      var arr = { value }
+      wx.setStorageSync("widget-classSchedule", arr)
     }, 4000)
   },
   /* 
@@ -150,10 +156,10 @@ Page({
   *重新刷新功能
   */
   refresh() {
-    var value=wx.getStorageSync('widget-classSchedule').ifshowAllclass
-    var arr={value}
-    wx.setStorageSync("widget-classSchedule",arr)
-    this.setData({ weekSchedule: true ,nowWeek:1})
+    var value = wx.getStorageSync('widget-classSchedule').ifshowAllclass
+    var arr = { value }
+    wx.setStorageSync("widget-classSchedule", arr)
+    this.setData({ weekSchedule: true, nowWeek: 1 })
     try { this.initPageData(); }
     catch (error) {
       this.setData({ dialogTip: true })
@@ -266,7 +272,7 @@ Page({
         classSchedule: classSchedule,
         nowWeekData: nowWeekData
       }, function () {
-        let value={classSchedule:classSchedule,ifshowAllclass:false}
+        let value = { classSchedule: classSchedule, ifshowAllclass: false }
         wx.setStorageSync('widget-classSchedule', value);
       })
     }
@@ -274,11 +280,11 @@ Page({
   /* 
   *刷新本周的日期
   */
-  reGetDay(time: string | number | Date){
-    let index = this.data.nowWeek - 1;
+  reGetDay(time: string | number | Date) {
+    let index = this.data.nowWeek;
     let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
     let nowDate = new Date(time) //获取指定日期当周的一周日期
-    let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - 1) * 7);
+    let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - 3) * 7);
     this.getWeekTime(date);
     this.setData({
       nowWeekData: nowWeekData
@@ -313,7 +319,7 @@ Page({
       } else {
         return false;
       }
-    } catch{}
+    } catch { }
   },
   /**
    * 切割出周数  2-4周(双),5-8周 -> [ 2 4 5 6 7 8 ]
@@ -415,9 +421,9 @@ Page({
     }, {
       day: "星期六",
       item: []
-    } 
+    }
     ] as any
-    try{
+    try {
       for (var i = 0; i < week.length; i++) {
         // 优先显示本周的
         if (week[i].name == nowWeek) {
@@ -471,7 +477,7 @@ Page({
           }
         }
       }
-    }catch{}//防止没有课表缓存报错
+    } catch { }//防止没有课表缓存报错
     return nowWeekData;
   },
   /**
@@ -617,49 +623,49 @@ Page({
     }
     this.setData({ I: schoolTerm, Y: year as unknown as string })
     if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
-      start = "8/28"
+      start = this.data.Y+"/8/28"
       schoolTime = '大四上';
       times = this.data.timeWu;
       place = "武昌";
     }
     if (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-      start = "2/19"
+      start = this.data.Y+"/2/19"
       schoolTime = '大四下';
       times = this.data.timeWu;
       place = "武昌";
     }
     if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
-      start = "8/28"
+      start = this.data.Y+"/8/28"
       schoolTime = '大三上';
       times = this.data.timeWu;
       place = "武昌";
     }
     if (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-      start = "2/19"
+      start = this.data.Y+"/2/19"
       schoolTime = '大三下';
       times = this.data.timeWu;
       place = "武昌";
     }
     if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
-      start = "8/28"
+      start = this.data.Y+"/8/28"
       schoolTime = '大二上';
       times = this.data.timeWu;
       place = "武昌";
     }
     if (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-      start = "2/19"
+      start = this.data.Y+"/2/19"
       schoolTime = '大二下';
       times = this.data.timeWu;
       place = "武昌";
     }
     if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
-      start = "8/28";
+      start = this.data.Y+"/8/28";
       schoolTime = '大一上';
       times = this.data.timeJia;
       place = "嘉鱼";
     }
     if (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-      start = "2/19";
+      start =this.data.Y+"/2/19";
       schoolTime = '大一下';
       times = this.data.timeJia;
       place = "嘉鱼";
@@ -667,11 +673,13 @@ Page({
     this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start })
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
-    if(wx.getStorageSync('widget-classSchedule').classSchedule){
+    if (wx.getStorageSync('widget-classSchedule').classSchedule) {
       this.reGetDay(time)
-    }else{setTimeout( () => {
-      this.reGetDay(time)
-    }, 4000)}//倒计时避免没有课表缓存造成当周课表无法显示
+    } else {
+      setTimeout(() => {
+        this.reGetDay(time)
+      }, 4000)
+    }//倒计时避免没有课表缓存造成当周课表无法显示
   },
 
   /**
@@ -686,7 +694,7 @@ Page({
    */
   onShow: function () {
     this.setData({
-     showAll: wx.getStorageSync('widget-classSchedule').ifshowAllclass
+      showAll: wx.getStorageSync('widget-classSchedule').ifshowAllclass
     })
   },
 
