@@ -1,4 +1,6 @@
 /* components/intview/intview.wxss */
+/* 引入全局样式 */
+
 .infor-box {
   width:699rpx;
   height: 126rpx;
@@ -65,7 +67,7 @@ margin-left: 60rpx;
   font-size: 74rpx;
   font-family: PingFangSC-Light, PingFang SC;
   font-weight: 300;
-  color: var(--themeColor);
+  color: var(--color-grassGreen);
   line-height: 103rpx;
   text-align: center;
   /* margin-left: 20rpx; */
@@ -81,7 +83,7 @@ margin-left: 60rpx;
   font-size: 74rpx;
   font-family: PingFangSC-Light, PingFang SC;
   font-weight: 300;
-  color: #7F7F8F;
+  color: var(--color-seniorGrey);
   line-height: 103rpx;
   text-align: center;
   /* margin-left: 20rpx; */

@@ -414,7 +414,7 @@ height: 28rpx; */
   width: 20px;
   height: 3px;
   /* #20C38C */
-  background: #20C38C;
+  background:var(--color-grassGreen);
   border-radius: 100px;
   /* Inside auto layout */
   flex: none;
