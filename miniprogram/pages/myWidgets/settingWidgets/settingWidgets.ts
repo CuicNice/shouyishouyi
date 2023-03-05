@@ -5,7 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-    settingWidgetTitle:"设置小组件"
+    settingWidgetTitle:"设置小组件",
+    // 隐藏remindBox
+    hiddenRemindBox:false,
+    scrollTop: 20
+  },
+  /**
+   * 滑动remindBox消失
+   */
+  
+  onPageScroll(ev){
+    console.log("ev",ev)
+    if (ev.scrollTop <= 0) {
+      // 使用CSS选择器
+      ev.scrollTop = 0;
+    } else if (ev.scrollTop > wx.getSystemInfoSync().windowHeight) {
+      ev.scrollTop = wx.getSystemInfoSync().windowHeight;
+    }
+    if (ev.scrollTop > this.data.scrollTop || ev.scrollTop == wx.getSystemInfoSync().windowHeight) {
+     this.setData({
+      hiddenRemindBox:true
+     })
+    } else {
+      this.setData({
+        hiddenRemindBox:false
+      })
+    }
+    setTimeout( () => {
+      this.setData({
+        scrollTop: ev.scrollTop
+      })
+    }, 0)
   },
 
   /**

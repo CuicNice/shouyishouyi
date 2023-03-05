@@ -1,65 +1,81 @@
 <!--pages/myWidgets/settingWidgets/settingWidgets.wxml-->
 <!-- 组件设置页面 -->
+<!-- 背景 -->
+<view class="bg"></view>
 <!-- 顶部的状态bar -->
 <topBar title="{{settingWidgetTitle}}" immersion="{{true}}" Threshold="0.1">
-<view class="container">
-<!-- 顶部设置 -->
-<!-- 提示语 -->
-<view class="remindBox">
-<view class="remindTxt">
-</view>
-<view class="remindIconBox">
-<image src=""  class="remindIconSvg" mode=""/>
-</view>
-</view>
-<!-- 主页小组件，与设置小组件切换区域 -->
-<view class="settingTapBar">
-<!-- 左边主页组件 -->
-<view class="widgetSetteingBox">
-<view class="settingTabText">
-<view class="text">
-  主页小组件设置
-</view>
-</view>
-</view>
-<!-- 右边设置组件 -->
-<view class="widgetSetteingBox">
-<view class="settingTabText">
-<view class="text">
-  小组件页面设置
-</view>
-</view>
-</view>
-</view>
-<!-- 设置保存区域 -->
-<view class="saveBar">
-<view class="saveText">
-  长按右侧按钮拖动排序，分割线上方组件可展示
-</view>
-<button class="saveButton">保存设置
-</button>
-</view>
-<!-- 底部拖动区域 -->
-<view class="chooseItemsBox">
-<!-- 小组件拖动区块 -->
+  <view class="container">
+    <!-- 顶部设置 -->
+    <!-- 提示语 -->
+    <!-- 需要做滑动，滑动消失 -->
+    <view id="oldRemindBar" class="{{!hiddenRemindBox ? 'remindBox' : ''}}">
+      <view class="remindBoxDes">
+        <view class="remindTxt">在这里，你可以自由选择你需要的小组件并进行排序，定制最适合你的个性化首义+页面！
+        </view>
+        <view class="markTxt">
+          (注：此页面小组件数据为参考样式，非真实数据)</view>
+      </view>
+      <view class="remindIconBox">
+        <image src="/static/svg/schoolBuilt/pillar.svg" class="remindIconSvg" mode="" />
+      </view>
+    </view>
+    <!-- 主页小组件，与设置小组件切换区域 -->
+    <!-- 点击切换样式灰底变绿底 -->
+    <!-- 滑动后固定在头部的部分 -->
+    <view id="newFixedBar"class="{{!hiddenRemindBox ? 'settingTabBarBox' : ''}}" >
+      <view class="settingTapBar">
+        <!-- 左边主页组件 -->
+        <view class="widgetSetteingBox">
+          <view class="settingTabText">
+            <view class="text">
+              主页小组件设置
+            </view>
+          </view>
+        </view>
+        <!-- gap28px -->
 
-<view class="itemBox">
-<!-- 左边组件区域 -->
-<view class="widgetBox">
-<!-- title -->
-<view class="widgetTitle">
-</view>
-<!-- 组件 -->
-<view class="wedgetItem">
-</view>
-</view>
-<!-- 右边按压区域 -->
-<view class="chooseTabBox">
-<image src="/static/svg/myWidget/choose.svg" mode=""/>
-</view>
-</view>
-</view>
-<!-- 分割线区域 -->
-</view>
+        <!-- 右边设置组件 -->
+        <view class="greenWidgetSettingBox">
+          <view class="settingTabText">
+            <view class="text">
+              小组件页面设置
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 设置保存区域 -->
+      <view class="saveBar">
+        <view class="saveText">
+          长按右侧按钮拖动排序，分割线上方组件可展示
+        </view>
+        <button class="saveButton">
+          <view class="saveButtonText">
+            保存设置
+          </view>
+        </button>
+      </view>
+    </view>
+    <!-- 底部拖动区域 -->
+    <view class="chooseItemsBox">
+      <!-- 小组件拖动区块 -->
+
+      <view class="itemBox" wx:for="{{3}}">
+        <!-- 左边组件区域 -->
+        <view class="widgetBox">
+          <!-- title -->
+          <view class="widgetTitle">每日课表
+          </view>
+          <!-- 组件 -->
+          <view class="wedgetItem">
+          </view>
+        </view>
+        <!-- 右边按压区域 -->
+        <view class="chooseTabBox">
+          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
+        </view>
+      </view>
+    </view>
+    <!-- 分割线区域 -->
+  </view>
 
 </topBar>

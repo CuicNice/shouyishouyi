@@ -1,34 +1,327 @@
 /* pages/myWidgets/settingWidgets/settingWidgets.wxss */
-.remindBox {}
+/* 背景 */
+.bg {
+  /* Entering for the first time */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* 背景 */
+background: #20C38C;
+  z-index: -999;
+}
+/* 页面 */
+.container{
+margin-top: 20px;
+}
+.remindBox {
+  display: flex;
+  flex-wrap: nowrap;
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
+  padding: 8px 10px;
+  isolation: isolate;
+  margin: 0 17.5px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+/* 提示 */
+.remindBoxDes{
+  display: flex;
+  flex-wrap: wrap;
+}
 
-.remindTxt {}
+.remindTxt {
+  width: 282px;
+  height: 34px;
 
-.remindIconBox {}
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
 
-.remindIconSvg {}
+  color: rgba(41, 41, 69, 0.8);
 
-.settingTapBar {}
 
-.widgetSetteingBox {}
+  /* Inside auto layout */
 
-.settingTabText {}
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  z-index: 0;
+}
+
+.markTxt {
+  width: 282px;
+  height: 17px;
+
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #7F7F8F;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  z-index: 1;
+}
+
+.remindIconBox {
+  /* 以底线对齐 */
+align-self: flex-end;
+width: 37.89px;
+height: 93.44px;
+}
+
+.remindIconSvg {
+  width: 37.89px !important;
+height: 93.44px !important;
+}
+/* 顶部固定的部分 */
+/* .settingTabBarBox{
+position: fixed;
+margin: 14px  17.5px 0;
+
+} */
+.settingTapBar {
+box-sizing: border-box;
+display: flex;
+padding: 0px;
+/* 两边布局 */
+justify-content: space-between;
+border-bottom: 1px solid #E3E3E6;
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+.widgetSetteingBox {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0px;
+  gap: 10px;
+  width: 156px;
+  height: 34px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.greenWidgetSettingBox{
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 156px;
+  height: 34px;
+  border-bottom: 2px solid #20C38C;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.settingTabText {width: 112px;
+  height: 22px;
+  
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  
+  color: #292945;
+  
+  
+  /* Inside auto layout */
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;}
 
 .text {}
 
-.saveBar {}
+.saveBar {/* Auto layout */
 
-.saveText {}
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  margin:17px 17.5px;
+  height: 29px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  
+  /* Inside auto layout */
+  
+  flex: none;
+  order: 2;
+  flex-grow: 0;}
+.saveButtonText{
+  width: 48px;
+height: 17px;
 
-.saveButton {}
+font-family: 'PingFang SC';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 17px;
+/* identical to box height */
 
-.chooseItemsBox {}
 
-.itemBox {}
+color: #FFFFFF;
 
-.widgetBox {}
 
-.widgetTitle {}
+/* Inside auto layout */
 
-.wedgetItem {}
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.saveText {/* 长按右侧按钮拖动排序，分割线上方组件可展示 */
+  margin-left: 10px;
+  height: 17px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #7F7F8F;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;}
 
-.chooseTabBox {}
+.saveButton {display: flex;
+  align-items: center !important;
+  margin-right: 0px !important;
+  padding: 6px 10px !important;
+  width: 68px !important;
+  height: 29px !important;
+  background: #20C38C;
+  border-radius: 10px;
+  /* flex尾部 */
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;}
+
+.chooseItemsBox {
+  display: flex;
+flex-direction: column;
+padding: 0px;
+gap: 12px;
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.itemBox {
+  box-sizing: border-box;
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 10px 15px 10px 20px;
+margin:0 17.5px;
+background: #FAFAFA;
+border: 1px solid #E3E3E6;
+border-radius: 10px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.widgetBox {
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 250px;
+height: 232.52px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.widgetTitle {width: 56px;
+  height: 20px;
+  
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  
+  
+  color: #292945;
+  
+  
+  /* Inside auto layout */
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;}
+
+.wedgetItem {
+  box-sizing: border-box;
+
+/* Auto layout */
+
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 6.96379px 0px 9.7493px;
+gap: 2.79px;
+width: auto;
+height: auto;
+background: #FFFFFF;
+/* 边框 */
+border: 0.696379px solid #E3E3E6;
+border-radius: 6.96379px;
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.chooseTabBox {
+  width: 30px;
+  height: 30px;
+  
+  
+  /* Inside auto layout */
+  
+  flex: none;
+  order: 1;
+  flex-grow: 0;}
+.chooseTabSvg{
+  width: 30px !important;
+  height: 30px !important;
+}
