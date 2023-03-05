@@ -10,7 +10,14 @@ miniprogram
 ---pages // 页面。
 ------index // 主页面。
 ------login // 登录页面
+------news//新闻页面 
+---------newsDeatil//新闻详情页面
+---------newsList//新闻List页面
+---------newsSearch//新闻搜索页面
 ------widgets // 小组件
+---------news//新闻组件
+------------newsListComponent //新闻list组件
+------------searchBar //新闻搜索组件
 ---------xxxx //组件名称
 ------------xxxx //小组件样式（组件形式）
 ------------xxxx //组件页面（page形式）

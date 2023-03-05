@@ -67,3 +67,5 @@
     </view>
   </scroll-view>
 </topBar>
+<!-- 需要添加id才能被selectComponnet选中 -->
+<toast id="toast"></toast>

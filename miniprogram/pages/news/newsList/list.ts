@@ -30,8 +30,8 @@ export {
   innernewsListItem,
   outnewsListItem
 }
-var innerList=[] as AnyArray;
-var outerList=[] as AnyArray;
+var innerList = [] as AnyArray;
+var outerList = [] as AnyArray;
 Page({
   data: {
     lineHeight: 32,
@@ -61,7 +61,7 @@ Page({
     flag: 0, //底部加载显示。0显示
     clock: 1,
     // 关于新闻数据
-    list:[] as any
+    list: [] as any
   },
   changeClass: function () { //头像旋转
     let that = this
@@ -132,18 +132,16 @@ Page({
   // 校园快讯，inner请求
   async getInnerSchoolNews() {
     let that = this
-    wx.showLoading({
-      title: '正在加载...',
-    });
+    that.selectComponent("#toast").showToastAuto("加载中","lodding",0.5);
     // 获取内网新闻
     let innerPageParams = that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
-    console.log("innerRes222222",innerRes);
+    console.log("innerRes222222", innerRes);
     if (innerRes != null) {
       wx.hideLoading();
       // 解析添加数据
-      innerList=innerList.concat(innerRes.list)
-      console.log("innnerlIst",innerList)
+      innerList = innerList.concat(innerRes.list)
+      console.log("innnerlIst", innerList)
       that.setData({
         list: innerList, //当天的
       })
@@ -158,27 +156,24 @@ Page({
  */
     // 调用函数时，传入new Date()参数，返回值是日期和时间
     let that = this
+    that.selectComponent("#toast").showToastAuto("加载中","lodding",0.5);
     let outPageParams = that.data.outPageParams
     let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
-    if(outRes != null){
+    if (outRes != null) {
       if (outRes.pageSize != 0) {
         // 循环添加数据
-        outerList=outerList.concat(outRes.list)
-        console.log("outerList",outerList)
+        outerList = outerList.concat(outRes.list)
+        console.log("outerList", outerList)
         that.setData({
           list: outerList, //当天的
         })
       } else {
-        wx.showToast({
-          title: '刷新失败',
-          icon: 'error',
-          duration: 1500
-        })
-        wx.hideToast();
+        that.selectComponent("#toast").showToastAuto("加载错误", "error", 1);
       }
-    }else{
-// 网络问题,toast弹出
-that.selectComponent("#toast").showToastAuto("加载错误", "fail", 1);}
+    } else {
+      // 网络问题,toast弹出
+      that.selectComponent("#toast").showToastAuto("加载错误", "error", 1);
+    }
   },
   // 触底函数 scrollToMoreList
   async scrollToMoreList() {
@@ -198,7 +193,6 @@ that.selectComponent("#toast").showToastAuto("加载错误", "fail", 1);}
           "pageSize": "10"
         }
       })
-      console.log('请求内网数据')
       await that.getInnerSchoolNews()
       // 添加list数据
     } else {
@@ -210,7 +204,6 @@ that.selectComponent("#toast").showToastAuto("加载错误", "fail", 1);}
           "pageSize": "10"
         }
       })
-      console.log('请求外网数据')
       await that.getOutSouyiNews()
     }
   },
@@ -279,14 +272,11 @@ that.selectComponent("#toast").showToastAuto("加载错误", "fail", 1);}
     setTimeout(() => {
       wx.navigateTo({
         url: '../newsSearch/search',
-        fail:function(res){
-          console.log("res跳转",res)
+        fail: function (res) {
+          that.selectComponent("#toast").showToastAuto("跳转中断", "error", 1);
         }
       })
-
     }, 500);
-    console.log("跳转中断")
-
   },
   /**
    * 
@@ -321,7 +311,7 @@ that.selectComponent("#toast").showToastAuto("加载错误", "fail", 1);}
       statusBarTop: res.top,
     })
   },
-  scroll: function (e:any) {
+  scroll: function (e: any) {
     var roll = e.detail.deltaY;
     var that = this;
     if (roll < 0) {

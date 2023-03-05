@@ -12,7 +12,8 @@ interface newsIDitem {
 }
 
 export {
-  newsIDitem,}
+  newsIDitem,
+}
 Page({
   /**
    * 页面的初始数据
@@ -65,22 +66,23 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options: any) {
-    console.log("新闻内容", options)
+  // 初始化新闻页面
+  async initNewsDetail(options: any) {
     var that = this;
     var str2 = '<div class="pic"><img src="" title="" /><s class="prev" title="上一张"></s><s class="next" title="下一张"></s><span class="tips">最后一张了</span></div>';
     var str3 = '<li class="last">最后一张</li>';
     newsID = options.newsID;
     // 设置newsId
     // newsIDitem 
-    that.setData({'newsIDitem.newsId':newsID,})
+    that.setData({ 'newsIDitem.newsId': newsID, })
     // 获取新闻的详情
     // 通过ID获取新闻的详情
     // 获取内网新闻
+    that.selectComponent("#toast").showToastAuto("加载中","lodding",0.5);
+
     let { data: res } = await getNewsDetailByID(that.data.newsIDitem) as unknown as IResult<any>;
     if (res != null) {
-      console.log(res)
-      // //   console.log(res.data.content)
+      wx.hideLoading();
       var html = res.content;
       var str1 = '<p style="text-indent:2em;">                                                                                                                                </p>'
 
@@ -109,9 +111,9 @@ Page({
       html = html.replace(/align:right;">(.*?)武昌首义学院/, 'align:right;">武昌首义学院')
       html = html.replace(/<li><a href="javascript:"(.*?) title="(.*?)">/g, "")
       // 去掉Script部分
-      html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,"")
-      console.log("okokok",html)
-      WxParse.wxParse("article", "html",html, that, 5)
+      html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+      console.log("okokok", html)
+      WxParse.wxParse("article", "html", html, that, 5)
       html = html.replace(str2, "")
       html = html.replace(str3, "")
 
@@ -122,7 +124,13 @@ Page({
 
     }
   },
+  onLoad: function (options) {
+    // Do some initialize when page load.
+    var that = this
+    that.initNewsDetail(options)
+  },
   wxParseTagDown: function (e: any) {
+    var that=this
     wx.showLoading({
       title: '下载中...',
     });
@@ -137,26 +145,17 @@ Page({
         // //   console.log(filePath)
         wx.hideLoading();
         if (res.statusCode == 200) {
-          wx.showToast({
-            title: '下载成功，即将打开！',
-            icon: 'none'
-          })
+          that.selectComponent("#toast").showToastAuto("下载成功，即将打开！", "success", 1); 
           wx.openDocument({
             filePath: filePath,
             success: function (res) { }
           })
         } else {
-          wx.showToast({
-            title: '下载失败，服务器于半夜1：30后关闭，请白天再试！',
-            icon: 'none'
-          })
+          that.selectComponent("#toast").showToastAuto("下载失败，服务器于半夜1：30后关闭，请白天再试！", "error", 1); 
         }
       },
       fail(res) {
-        wx.showToast({
-          title: '下载失败，服务器于半夜1：30后关闭，请白天再试！',
-          icon: 'none'
-        })
+        that.selectComponent("#toast").showToastAuto("下载失败，服务器于半夜1：30后关闭，请白天再试！", "error", 1); 
       }
     })
   },

@@ -27,11 +27,11 @@ Page({
     bgSvgUrl: "/static/svg/pillar.svg",
     // 最新（3天）
     isNew: false as Boolean,
-    newsSearchTitle:"搜索"
+    newsSearchTitle:"搜索",
+    unfindSvg:"/static/svg/news/unfind.svg"
   },
   onLoad: function (options) {
     // 接收传参数据
-    console.log("optios", options)
     // false算做内网
   },
   checkDate: function (startTime: any, endTime: any) {
@@ -74,6 +74,7 @@ Page({
     // 当前的时间
     let mydate = util.formatDate(new Date()); // 调用函数时，传入new Date()参数，返回值是日期和时间
     let that = this;
+    that.selectComponent("#toast").showToastAuto("加载中","lodding",0.5);
     let keyword = event.detail.value;
     // 初始化请求
     let myKeywordsParams = {
@@ -112,12 +113,7 @@ Page({
           isHave: true
         })
       } else {
-        wx.showToast({
-          title: '刷新失败',
-          icon: 'error',
-          duration: 1500
-        }),
-          wx.hideToast(),
+    that.selectComponent("#toast").showToastAuto("刷新失败","error",0.5);
           that.setData({
             isHave: false,
             list: [],

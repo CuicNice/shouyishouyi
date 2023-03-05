@@ -12,7 +12,16 @@
 <topBar title="{{newsSearchTitle}}" immersion="{{true}}" Threshold="0.2">
 <!-- 搜索框 -->
 <searchbar bindhaveInput="onSearchInputEvent"></searchbar>
-<view wx:if="{{!isHave}}" class="unfind"> <text decode="true"> 未搜索到结果，，，～(￣▽￣～)~</text></view>
+<!-- 未搜索到的情况 -->
+<view wx:if="{{!isHave}}" class="unfind">
+<view class="unfindIconBox">
+<image class="unfindSvg"src="{{unfindSvg}}" mode=""/>
+</view>
+<!-- 未查询到的文字 -->
+<view class="unfindTxt">
+<text>暂无查询结果</text>
+</view>
+</view>
 <!-- 测试用，可删除 -->
 <!-- <searchlist></searchlist> -->
 <wxs src='../.././../wxs/utils.wxs' module='tools'/>         <!-- 引入切割字符串 -->
@@ -42,6 +51,8 @@
     <view class="time-year">{{tools.substring(item.date,0,4)}}.{{tools.substring(item.date,5,7)}}</view>
   </view>
 </navigator>
+<!-- 需要添加id才能被selectComponnet选中 -->
+<toast id="toast"></toast>
 
 </view>
 </topBar>
