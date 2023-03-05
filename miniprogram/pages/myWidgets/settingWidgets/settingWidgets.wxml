@@ -59,7 +59,7 @@
     <view class="chooseItemsBox">
       <!-- 小组件拖动区块 -->
 
-      <view class="itemBox" wx:for="{{3}}">
+      <view class="itemBox" wx:for="{{7}}">
         <!-- 左边组件区域 -->
         <view class="widgetBox">
           <!-- title -->
