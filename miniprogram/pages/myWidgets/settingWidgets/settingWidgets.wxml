@@ -8,7 +8,8 @@
     <!-- 顶部设置 -->
     <!-- 提示语 -->
     <!-- 需要做滑动，滑动消失 -->
-    <view id="oldRemindBar" class="{{!hiddenRemindBox ? 'remindBox' : ''}}">
+    <view id="oldRemindBar" class="remindBox" bindtouchstart="remindBartouchStart" 
+    catchtouchmove='remindTouchmove' bindtouchend="remindBartouchEnd">
       <view class="remindBoxDes">
         <view class="remindTxt">在这里，你可以自由选择你需要的小组件并进行排序，定制最适合你的个性化首义+页面！
         </view>
@@ -67,6 +68,7 @@
           </view>
           <!-- 组件 -->
           <view class="wedgetItem">
+          <!-- 新闻组件 -->
           </view>
         </view>
         <!-- 右边按压区域 -->
