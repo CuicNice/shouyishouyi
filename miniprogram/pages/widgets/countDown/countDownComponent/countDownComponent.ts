@@ -134,7 +134,6 @@ Component({
         let localCountDownDataDic = wx.getStorageSync('widgets-userCountDown')
         // 需要做判空
         console.log("localCountDownDataDic.length", localCountDownDataDic.length);
-
         if (localCountDownDataDic.length != 0) {
           console.log("loca", localCountDownDataDic)
           // 循环遍历做判断

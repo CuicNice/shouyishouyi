@@ -16,7 +16,8 @@
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",
     "pages/popup/popupPage/popupPage",
-    "pages/message/web-view/webView"
+    "pages/message/web-view/webView",
+    "pages/widgets/electricCharge/testElectricComponent/testElectricComponent"
   ],
   "window": {
     "backgroundTextStyle": "light",
