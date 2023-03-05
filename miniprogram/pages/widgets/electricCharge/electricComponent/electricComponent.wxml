@@ -1,2 +1,63 @@
 <!--pages/widgets/electricCharge/electricComponent/electricComponent.wxml-->
-<text>pages/widgets/electricCharge/electricComponent/electricComponent.wxml</text>
+<!-- 电费组件 -->
+<view class="electricPageBox">
+  <view class='electric'>
+    <view class="electric-txtLine">
+      <!-- 两侧布局——靠左盒子 -->
+      <view class="top_leftBox">
+        <!-- 闪电 -->
+        <view class="electric-lighting">
+          <image class="lightingSvg" src="/static/svg/electricComponent/lighting.svg" />
+        </view>
+        <!-- 标题 -->
+        <view class="electric-txt">
+          <text class='cd-txt'>寝室电费</text>
+        </view>
+        <view class="electricPlace">
+          <text class='cdPlace'>({{arr.build}}{{arr.room}})</text>
+        </view>
+      </view>
+      <view class="top_rightBox">
+        <image class="returnIconSvg" src="/static/svg/electricComponent/return.svg" bindtap="goElectric"/>
+      </view>
+      <slot></slot>
+    </view>
+    <!-- 由于有分隔符只能展开列表 -->
+    <!-- 左部 -->
+    <view class="Box">
+      <view class="electricAllBox">
+        <view class="electricBox">
+          <view class="cdName">
+            <view class="cdDay"><text>{{remainingAmount}}元</text></view>
+            <view class="cdTitle">
+              <text class="Postgraduate">剩余金额</text>
+            </view>
+          </view>
+        </view>
+        <view class="splitLinner">
+        </view>
+        <!-- 中部 -->
+        <view class="electricBox">
+          <view class="cdName">
+            <view class="cdDay"><text>{{remainingPower}}元</text></view>
+            <view class="cdTitle">
+              <text class="Postgraduate">剩余电量</text>
+            </view>
+          </view>
+        </view>
+        <!-- split -->
+        <view class="splitLinner">
+        </view>
+        <!-- 右部 -->
+        <view class="electricBox">
+          <view class="cdName">
+            <view class="cdDay"><text>{{sinceLastRecharge}}天</text></view>
+            <view class="cdTitle">
+              <text class="Postgraduate">距上次充值</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

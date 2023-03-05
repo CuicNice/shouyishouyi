@@ -59,8 +59,7 @@
     <!-- 底部拖动区域 -->
     <view class="chooseItemsBox">
       <!-- 小组件拖动区块 -->
-
-      <view class="itemBox" wx:for="{{7}}">
+      <view class="itemBox">
         <!-- 左边组件区域 -->
         <view class="widgetBox">
           <!-- title -->
@@ -69,6 +68,78 @@
           <!-- 组件 -->
           <view class="wedgetItem">
           <!-- 新闻组件 -->
+          <miniElectric></miniElectric>
+          </view>
+        </view>
+        <!-- 右边按压区域 -->
+        <view class="chooseTabBox">
+          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
+        </view>
+      </view>
+      <!-- 第1个组件 -->
+      <view class="itemBox">
+        <!-- 左边组件区域 -->
+        <view class="widgetBox">
+          <!-- title -->
+          <view class="widgetTitle">每日课表
+          </view>
+          <!-- 组件 -->
+          <view class="wedgetItem">
+<miniScore></miniScore>
+          
+          </view>
+        </view>
+        <!-- 右边按压区域 -->
+        <view class="chooseTabBox">
+          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
+        </view>
+      </view>
+      <view class="itemBox">
+        <!-- 左边组件区域 -->
+        <view class="widgetBox">
+          <!-- title -->
+          <view class="widgetTitle">每日课表
+          </view>
+          <!-- 组件 -->
+          <view class="wedgetItem">
+          <!-- 新闻组件 -->
+          <miniElectric></miniElectric>
+          </view>
+        </view>
+        <!-- 右边按压区域 -->
+        <view class="chooseTabBox">
+          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
+        </view>
+      </view>
+      <!-- 第二个组件 -->
+      <view class="itemBox">
+        <!-- 左边组件区域 -->
+        <view class="widgetBox">
+          <!-- title -->
+          <view class="widgetTitle">每日课表
+          </view>
+          <!-- 组件 -->
+          <view class="wedgetItem">
+ <miniNews></miniNews>
+          
+          </view>
+        </view>
+        <!-- 右边按压区域 -->
+        <view class="chooseTabBox">
+          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
+        </view>
+      </view>
+      <!-- 第三个组件 -->
+      <view class="itemBox">
+        <!-- 左边组件区域 -->
+        <view class="widgetBox">
+          <!-- title -->
+          <view class="widgetTitle">每日课表
+          </view>
+          <!-- 组件 -->
+          <view class="wedgetItem">
+          <!-- 新闻组件 -->
+          <countDown></countDown>
           </view>
         </view>
         <!-- 右边按压区域 -->
