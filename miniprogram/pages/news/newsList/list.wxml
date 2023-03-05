@@ -26,13 +26,13 @@
     <!-- 新闻选择 -->
     <view class="NewsChoose">
       <view class="NewsButtonBox">
-        <view class="OutOFSchoolNews" bindtap="ChooseShcoolNews">
+        <view class="OutOFSchoolNews" bindtap="chooseShcoolNews">
           <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}">校园快讯</view>
           <view class="newsiconGrey" wx:if="{{tapbarCtrl}}"></view>
           <view class="Newstitle" wx:if="{{!tapbarCtrl}}">校园快讯</view>
           <view class="newsicon" wx:if="{{!tapbarCtrl}}"></view>
         </view>
-        <view class="InsideSchoolNews" bindtap="ChooseInNews">
+        <view class="InsideSchoolNews" bindtap="chooseInNews">
           <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}">首义快讯</view>
           <view class="newsiconGrey" wx:if="{{!tapbarCtrl}}"></view>
           <view class="Newstitle" wx:if="{{tapbarCtrl}}">首义快讯</view>

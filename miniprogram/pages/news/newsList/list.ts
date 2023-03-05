@@ -30,6 +30,8 @@ export {
   innernewsListItem,
   outnewsListItem
 }
+var innerList=[] as AnyArray;
+var outerList=[] as AnyArray;
 Page({
   data: {
     lineHeight: 32,
@@ -55,10 +57,11 @@ Page({
       "currentPage": "1",
       "pageSize": "10"
     } as unknown as outnewsListItem,
+    // 新闻list
     flag: 0, //底部加载显示。0显示
     clock: 1,
     // 关于新闻数据
-    list: [] as any,
+    list:[] as any
   },
   changeClass: function () { //头像旋转
     let that = this
@@ -135,11 +138,14 @@ Page({
     // 获取内网新闻
     let innerPageParams = that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
+    console.log("innerRes222222",innerRes);
     if (innerRes != null) {
       wx.hideLoading();
-      let list = innerRes.list;
+      // 解析添加数据
+      innerList=innerList.concat(innerRes.list)
+      console.log("innnerlIst",innerList)
       that.setData({
-        list: list, //当天的
+        list: innerList, //当天的
       })
     }
   },
@@ -154,19 +160,25 @@ Page({
     let that = this
     let outPageParams = that.data.outPageParams
     let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
-    if (outRes.pageSize != 0) {
-      var list = outRes.list;
-    } else {
-      wx.showToast({
-        title: '刷新失败',
-        icon: 'error',
-        duration: 1500
-      })
-      wx.hideToast();
-    }
-    that.setData({
-      list: list,
-    })
+    if(outRes != null){
+      if (outRes.pageSize != 0) {
+        // 循环添加数据
+        outerList=outerList.concat(outRes.list)
+        console.log("outerList",outerList)
+        that.setData({
+          list: outerList, //当天的
+        })
+      } else {
+        wx.showToast({
+          title: '刷新失败',
+          icon: 'error',
+          duration: 1500
+        })
+        wx.hideToast();
+      }
+    }else{
+// 网络问题,toast弹出
+that.selectComponent("#toast").showToastAuto("加载错误", "fail", 1);}
   },
   // 触底函数 scrollToMoreList
   async scrollToMoreList() {
@@ -188,6 +200,7 @@ Page({
       })
       console.log('请求内网数据')
       await that.getInnerSchoolNews()
+      // 添加list数据
     } else {
       // 外网请求
       that.setData({
@@ -325,7 +338,7 @@ Page({
     }
   },
   // 校园新闻,选中样式
-  ChooseShcoolNews: function () {
+  chooseShcoolNews: function () {
     // 校园新闻选中后字体样式
     let that = this
     console.log("tapbar", that.data.tapbarCtrl);
@@ -336,7 +349,7 @@ Page({
     this.initNewsInfo()
   },
   // 首义快讯
-  ChooseInNews: function () {
+  chooseInNews: function () {
     console.log("tapbarinNews", this.data.tapbarCtrl);
     this.setData({
       tapbarCtrl: true,
