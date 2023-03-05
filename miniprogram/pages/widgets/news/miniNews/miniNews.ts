@@ -7,31 +7,6 @@ Component({
   新闻内容
   */
   properties: {
-    newsContnet: {
-      type: String,
-      value: "空"
-    },
-    /*
-新闻标签
-*/
-    schoolTypeIndex: {
-      type: String,
-      value: "空"
-    },
-    /*
-    日期
-    */
-    newsDate: {
-      type: String,
-      value: "空"
-    },
-    /*
-    年月
-    */
-    newsYearAndMonth: {
-      type: String,
-      value: "空"
-    },
     /**
      * 点击左右切换的部分
      */
