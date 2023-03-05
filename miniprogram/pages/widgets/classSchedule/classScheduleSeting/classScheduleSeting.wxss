@@ -17,6 +17,25 @@
   line-height: 84rpx;
   margin-top: 50rpx;
 }
+/* 联系南南的按钮 */
+.contactButton{
+  /* 网格布局 */
+  /* display: -moz-grid; */
+display: flex;
+width: 350px !important;
+align-content: space-around;
+padding: 0% !important;
+flex-wrap: nowrap;
+margin: 0% !important;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+height: 82rpx;
+/* 消去button原有的颜色 */
+background-color:transparent;
+/* border-style:none; */
+}
 
 .setContainer {
 display: flex;
@@ -93,12 +112,17 @@ switch .wx-switch-input:before {
 .choice-icon {
   width: 42rpx;
   height: 42rpx;
+  align-content: flex-end;
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMSAyMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTguMzEyNSA1LjI1TDEzLjU2MjUgMTAuNUw4LjMxMjUgMTUuNzUiIHN0cm9rZT0iIzMzMzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjc1IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==");
   background-size: cover;
 }
 
 .choice-text {
+  display: flex;
   height: 42rpx;
+  width: auto;
+  flex-direction: column;
+  align-content: flex-start;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
