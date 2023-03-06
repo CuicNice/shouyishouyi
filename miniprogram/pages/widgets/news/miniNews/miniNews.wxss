@@ -1,353 +1,393 @@
 /* pages/widgets/news/miniNews/miniNews.wxss */
 
+.miniNewsPageBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin: 0rpx 16rpx; */
+    margin: 0rpx 16rpx;
+    align-items: center;
+    padding: 20rpx 0rpx 12rpx;
+    gap: 24rpx;
+    /* height: 652rpx; */
+    background: #FFFFFF;
+    border: 2rpx solid #E3E3E6;
+    border-radius: 20rpx;
+}
+
 .miniNewsBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 20px 8px;
-  align-items: center;
-  padding: 10px 0px 6px;
-  gap: 12px;
-  /* height: 326px; */
-  background: #FFFFFF;
-  border: 1px solid #E3E3E6;
-  border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0rpx 16rpx;
+    align-items: center;
+    gap: 24rpx;
+    background: #FFFFFF;
 }
 
 .miniNewsTop {
-/* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-padding: 0px 14px;
-height: 20px;
-/* gap不兼容暂时不做使用 */
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rpx 28rpx;
+    height: 40rpx;
+    /* gap不兼容暂时不做使用 */
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
 .miniNewsTopLeftBox {
-  /* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 0px;
-gap: 8px;
-width: 66px;
-height: 20px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    padding: 0rpx;
+    gap: 16rpx;
+    width: 132rpx;
+    height: 40rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 .miniNewsTxt {
-/* 快讯闻 */
-width: 42px;
-height: 20px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 20px;
-/* identical to box height */
-color: #292945;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
+    /* 快讯闻 */
+    width: 84rpx;
+    height: 40rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    /* identical to box height */
+    color: #292945;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
-.miniNewsIconBox {
-  width: 16px;
-height: 16px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-/* newIcon */
-.miniNewsIconSvg{
-  width: 16px;
-  height: 16px;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-.topReturnBox {
-  /* direction */
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
-}
-.topReturnSvg{
 
+.miniNewsIconBox {
+    width: 32rpx;
+    height: 32rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
+
+
+/* newIcon */
+
+.miniNewsIconSvg {
+    width: 32rpx;
+    height: 32rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.topReturnBox {
+    /* direction */
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.topReturnSvg {}
 
 .NewsChoose {
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-height: 32px;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0rpx;
+    height: 64rpx;
+    gap: 20rpx;
+    margin: 0 19rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
 
 .NewsButtonBox {
-  /* Left Option (Selected) */
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 6px 58px 6px 56px;
-gap: 10px;
-
-width: 167px;
-height: 28px;
-
-/* #4BDCAB */
-
-background: #4BDCAB;
-border-radius: 10px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
+    /* Left Option (Selected) */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12rpx 116rpx 12rpx 112rpx;
+    gap: 20rpx;
+    width: 334rpx;
+    height: 56rpx;
+    /* #4BDCAB */
+    background: #4BDCAB;
+    border-radius: 20rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 .OutOFSchoolNews {
+    box-sizing: border-box;
+    width: 100%;
+    height: 56rpx;
+}
 
-}
 .NewstitleGrey {
-/* Right Option */
-box-sizing: border-box;
-/* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 0px;
-width: 159px;
-height: 30px;
-border: 1px solid #4BDCAB;
-border-radius: 10px;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 1;
+    /* Right Option */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0rpx;
+    width: 318rpx;
+    height: 56rpx;
+    border: 2rpx solid #4BDCAB;
+    border-radius: 20rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 1;
 }
+
+
 /* 绿色高亮字体 */
-.greenText{
-  width: 60px;
-  height: 18px;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
-  /* identical to box height, or 138% */
-  text-align: center;
-  letter-spacing: -0.078px;
-  /* #4BDCAB */
-  color: #4BDCAB;
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+
+.greenText {
+    width: 120rpx;
+    height: 36rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26rpx;
+    line-height: 36rpx;
+    /* identical to box height, or 138% */
+    text-align: center;
+    letter-spacing: -0.156rpx;
+    /* #4BDCAB */
+    color: #4BDCAB;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
+
+
 /* 白色xuan字体 */
-.whiteText{
-  width: 56px;
-  height: 18px;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  /* identical to box height, or 129% */
-  text-align: center;
-  letter-spacing: -0.084px;
-  color: #FFFFFF;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+
+.whiteText {
+    width: 120rpx;
+    height: 36rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28rpx;
+    line-height: 36rpx;
+    /* identical to box height, or 129% */
+    text-align: center;
+    letter-spacing: -0.168rpx;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
+
 .Newstitle {
-/* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-width: 167px;
-height: 28px;
-/* #4BDCAB */
-background: #4BDCAB;
-border-radius: 10px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 56rpx;
+    width: 334rpx;
+    /* #4BDCAB */
+    background: #4BDCAB;
+    border-radius: 20rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
+
 .InsideSchoolNews {
-  margin-right: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 56rpx;
 }
 
 .list-group {
-  /* Frame 432 */
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 0px;
-/* gap不兼容暂时不能使用 */
-/* Inside auto layout */
-flex: none;
-order: 2;
-flex-grow: 0;
-margin: 0 6.62px;
+    /* Frame 432 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0rpx;
+    /* gap不兼容暂时不能使用 */
+    /* Inside auto layout */
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    margin-left: 19rpx;
+    margin-right: 19rpx;
+    margin: 0 13.24rpx;
 }
 
 .newsItemBox {
-  /* Frame 427 */
-box-sizing: border-box;
-/* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-margin: 0 6.62px 8px;
-padding: 6px 10px;
-height: 70px;
-background: #F9F9F9;
-border: 1px solid #EAEAEC;
-border-radius: 5px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
+    /* Frame 427 */
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-left: 19rpx;
+    margin-right: 19rpx;
+    margin: 0 13.24rpx 16rpx;
+    padding: 12rpx 20rpx;
+    height: 140rpx;
+    gap: 20rpx;
+    background: #F9F9F9;
+    border: 2rpx solid #EAEAEC;
+    border-radius: 10rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 .newsleftBox {
-  /* Frame 425 */
-/* Auto layout */
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: flex-start;
-padding: 0px;
-gap: 4px;
-height: 58px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+    /* Frame 425 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0rpx;
+    gap: 8rpx;
+    height: 116rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
 .newsItemContent {
-  width: 255px;
-height: 40px;
-margin-right: 21px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 20px;
-/* 超出省略 */
+    width: 510rpx;
+    height: 80rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    color: #292945;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    /* 超出省略 */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-color: #292945;
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+    color: #292945;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
 .schoolTypeIndex {
-  /* 学校要闻 */
-width: 40px;
-height: 14px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 10px;
-line-height: 14px;
-/* identical to box height */
-color: #7F7F8F;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
+    /* 学校要闻 */
+    width: 80rpx;
+    height: 28rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20rpx;
+    line-height: 28rpx;
+    /* identical to box height */
+    color: #7F7F8F;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
 
 .rightNewsDate {
-  /* Frame 424 */
-/* Auto layout */
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 0px;
-height: 51px;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
+    /* Frame 424 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rpx;
+    height: 102rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
 
 .greenTime_day {
-  /* 31 */
-height: 34px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 34px;
-/* identical to box height */
-color: #4BDCAB;
-/* Inside auto layout */
-flex: none;
-order: 0;
+    /* 31 */
+    height: 68rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48rpx;
+    line-height: 68rpx;
+    /* identical to box height */
+    color: #4BDCAB;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
 }
+
 .greyTime_day {
-  /* 31 */
-height: 34px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 34px;
-/* identical to box height */
-color: #7F7F8F;
-/* Inside auto layout */
-flex: none;
-order: 0;
+    width: 50rpx;
+    height: 68rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48rpx;
+    line-height: 68rpx;
+    /* identical to box height */
+    color: #7F7F8F;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
+
 .newsYearAndMonth {
-  /* 2023.01 */
-height: 17px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 17px;
-/* identical to box height */
-color: #7F7F8F;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
+    /* 2023.01 */
+    height: 34rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24rpx;
+    line-height: 34rpx;
+    /* identical to box height */
+    color: #7F7F8F;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
