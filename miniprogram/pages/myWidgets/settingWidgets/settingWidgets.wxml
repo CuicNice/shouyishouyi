@@ -23,21 +23,19 @@
     <!-- 主页小组件，与设置小组件切换区域 -->
     <!-- 点击切换样式灰底变绿底 -->
     <!-- 滑动后固定在头部的部分 -->
-    <view id="newFixedBar"class="{{!hiddenRemindBox ? 'settingTabBarBox' : ''}}" >
+    <view class="{{!hiddenRemindBox ? 'settingTabBarBox' : ''}}" >
       <view class="settingTapBar">
         <!-- 左边主页组件 -->
-        <view class="widgetSetteingBox">
-          <view class="settingTabText">
+        <view class="{{isChooseSeetingwidget?'greenWidgetSettingBox':'widgetSetteingBox'}}" bindtap="chooseSeetingWidget">
+          <view class="{{isChooseSeetingwidget?'settingTabBoldText':'settingTabText'}}">
             <view class="text">
               主页小组件设置
             </view>
           </view>
         </view>
-        <!-- gap28px -->
-
         <!-- 右边设置组件 -->
-        <view class="greenWidgetSettingBox">
-          <view class="settingTabText">
+        <view class="{{!isChooseSeetingwidget?'greenWidgetSettingBox':'widgetSetteingBox'}}" bindtap="chooseIndexWidget">
+          <view class="{{!isChooseSeetingwidget?'settingTabBoldText':'settingTabText'}}">
             <view class="text">
               小组件页面设置
             </view>
@@ -50,32 +48,38 @@
           长按右侧按钮拖动排序，分割线上方组件可展示
         </view>
         <button class="saveButton">
-          <view class="saveButtonText">
+          <view class="saveButtonText" bindtap="saveSetting">
             保存设置
           </view>
         </button>
       </view>
     </view>
+
     <!-- 底部拖动区域 -->
-    <view class="chooseItemsBox">
+    <movable-area  class="chooseItemsBox" id="oldRemindBar" >
       <!-- 小组件拖动区块 -->
-      <view class="itemBox">
+      <block wx:for="{{tabList}}" wx:key="index" >
+ 
+      <movable-view class="itemBox" y="{{item.y}}" style="height:{{item.width}}px;"
+  class="item-{{index==moveId?'up':'down'}} item-bg-{{(index==nowItem && nowItem!= moveId)?'black':'write'}}" direction="vertical" 
+  bind:touchmove='moveStatus' bindtouchend='moveEnd'  bind:longpress="onLongPress"
+  data-moveid="{{index}}" disabled="{{!enable}}" animation="{{false}}">
         <!-- 左边组件区域 -->
-        <view class="widgetBox">
+        <view class="widgetBox">.
           <!-- title -->
-          <view class="widgetTitle">每日课表
+          <view class="widgetTitle">{{item.name}}
           </view>
           <!-- 组件 -->
-          <view class="wedgetItem">
           <!-- 新闻组件 -->
-          <miniElectric data></miniElectric>
-          </view>
+          <image class="wedgetItemSvg" src="{{item.wedgetSvgUrl}}" mode=""/>
+
         </view>
         <!-- 右边按压区域 -->
         <view class="chooseTabBox">
           <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
         </view>
-      </view>
+      </movable-view>
+    </block>
       <!-- 第1个组件 -->
       <view class="itemBox">
         <!-- 左边组件区域 -->
@@ -84,10 +88,7 @@
           <view class="widgetTitle">每日课表
           </view>
           <!-- 组件 -->
-          <view class="wedgetItem">
-<miniScore></miniScore>
-          
-          </view>
+            <image class="wedgetItemSvg" src="/static/svg/myWidget/scoreCard.png" mode=""/>
         </view>
         <!-- 右边按压区域 -->
         <view class="chooseTabBox">
@@ -101,10 +102,8 @@
           <view class="widgetTitle">每日课表
           </view>
           <!-- 组件 -->
-          <view class="wedgetItem">
           <!-- 新闻组件 -->
-          <miniElectric></miniElectric>
-          </view>
+          <image  class="wedgetItemSvg" src="/static/svg/myWidget/miniNews.png" mode=""/>
         </view>
         <!-- 右边按压区域 -->
         <view class="chooseTabBox">
@@ -119,10 +118,7 @@
           <view class="widgetTitle">每日课表
           </view>
           <!-- 组件 -->
-          <view class="wedgetItem">
- <miniNews></miniNews>
-          
-          </view>
+            <image  class="wedgetItemSvg" src="/static/svg/myWidget/electricCard.png" mode=""/>
         </view>
         <!-- 右边按压区域 -->
         <view class="chooseTabBox">
@@ -137,17 +133,15 @@
           <view class="widgetTitle">每日课表
           </view>
           <!-- 组件 -->
-          <view class="wedgetItem">
           <!-- 新闻组件 -->
-          <countDown></countDown>
-          </view>
+          <image  class="wedgetItemSvg" src="/static/svg/myWidget/countDown.png" mode=""/>
         </view>
         <!-- 右边按压区域 -->
         <view class="chooseTabBox">
           <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
         </view>
       </view>
-    </view>
+    </movable-area>>
     <!-- 分割线区域 -->
   </view>
 
