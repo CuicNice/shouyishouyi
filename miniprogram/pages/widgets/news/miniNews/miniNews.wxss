@@ -47,7 +47,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     padding: 0rpx;
     gap: 16rpx;
     width: 132rpx;
@@ -175,7 +175,7 @@
     line-height: 36rpx;
     /* identical to box height, or 138% */
     text-align: center;
-    letter-spacing: -0.156rpx;
+    letter-spacing: -0.0543175px;
     /* #4BDCAB */
     color: #4BDCAB;
     /* Inside auto layout */
@@ -197,7 +197,7 @@
     line-height: 36rpx;
     /* identical to box height, or 129% */
     text-align: center;
-    letter-spacing: -0.168rpx;
+    letter-spacing: -0.0543175px;
     color: #FFFFFF;
     /* Inside auto layout */
     flex: none;

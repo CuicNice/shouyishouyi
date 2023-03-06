@@ -14,7 +14,7 @@
         <image class="miniNewsIconSvg" src="../../../../static/svg/news/miniNews_Book.svg" mode="" />
     </view>
     <!-- 右边的返回键 -->
-    <view class="topReturnBox">
+    <view class="topReturnBox" bindtap="gotoNewsDetail">
       <image style="width: 20px;height: 20px;" src="../../../../static/svg/news/miniNews_return.svg" mode="" />
     </view>
   </view>
