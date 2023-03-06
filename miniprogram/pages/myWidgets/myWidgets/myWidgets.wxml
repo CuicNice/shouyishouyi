@@ -26,6 +26,13 @@
 <!-- 静态组件区域-->
 <view class="container">
   <!-- 组件展示 -->
+  <miniScore></miniScore>
+  <!-- 组件 -->
+  <!-- 组件 -->
+  <miniNews></miniNews>
+  <!-- 组件 -->
+  <countDown></countDown>
+  <miniElectric></miniElectric>
 </view>
 <!-- 设置按钮 -->
 <view class="myWidgetSettingCircle" bindtap="toSettingPage">

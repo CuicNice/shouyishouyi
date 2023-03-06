@@ -10,7 +10,11 @@
 }
 /* 页面 */
 .container{
-padding-top: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 100px 0 100px;
+gap: 20px;
 }
 /* 顶部状态栏开始 */
 .top-bar {

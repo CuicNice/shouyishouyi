@@ -11,8 +11,7 @@
 }
 /* 页面 */
 .container{
-  /* 不可以使用margin */
-padding-top: 20px;
+margin-top: 20px;
 }
 .remindBox {
   display: flex;
@@ -326,6 +325,3 @@ flex-grow: 0;
   width: 30px !important;
   height: 30px !important;
 }
-/* 新闻组件开始 */
-
-/* 新闻组件结束 */
