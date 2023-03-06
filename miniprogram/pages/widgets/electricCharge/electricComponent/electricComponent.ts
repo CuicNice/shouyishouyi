@@ -5,6 +5,18 @@ Component({
    */
   properties: {
     arr: {} as any,
+    remainingPower: {
+      type: String,
+      value: '',
+    },//剩余电量
+    remainingAmount: {
+      type: String,
+      value: '',
+    },//剩余金额
+    sinceLastRecharge: {
+      type: String,
+      value: '',
+    },//距上次充值天数
   },
 
   /**
@@ -56,8 +68,7 @@ Component({
     webRequest() {
       try {
         let money = this.data.arr.remainMoney.slice(0, 5)
-        let power
-        power=this.data.arr.remain.slice(0, 5)
+        let power = this.data.arr.remain.slice(0, 5)
         this.setData({
           remainingAmount: money,
           remainingPower: power,

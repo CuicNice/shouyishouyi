@@ -11,7 +11,8 @@
 }
 /* 页面 */
 .container{
-margin-top: 20px;
+  /* 不可以使用margin */
+padding-top: 20px;
 }
 .remindBox {
   display: flex;

@@ -1,2 +1,33 @@
 <!--pages/myWidgets/myWidgets/myWidgets.wxml-->
 <!-- 我的组件页面 -->
+<!-- 顶部的自定义导航栏 -->
+<!-- 背景 -->
+<view class="bg"></view>
+<!--胶囊区域 -->
+<view class="top-bar">
+  <!-- 信号区 -->
+  <view style="height:{{statusBarHeight}}px;">
+  </view>
+  <!-- 胶囊区 -->
+  <!-- 获取胶囊的高度来设置胶囊所在行的高度 -->
+  <view class="capsule-box" style="height:{{capsuleBoxHeight}}px;">
+
+    <view class="barLineItem">
+      <view class="barText">你好呀~棍棍
+      </view>
+      <!--头像后面的三个点 -->
+      <view class="barTextDot">
+        <image class="barTextDotSvg" src="/static/svg/myWidget/myWidget_dot.svg" mode="" />
+      </view>
+    </view>
+    <view class="barLineItem"></view>
+  </view>
+</view>
+<!-- 静态组件区域-->
+<view class="container">
+  <!-- 组件展示 -->
+</view>
+<!-- 设置按钮 -->
+<view class="myWidgetSettingCircle" bindtap="toSettingPage">
+  <view class="myWidgetSettingCircleText">设置</view>
+</view>

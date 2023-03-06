@@ -68,7 +68,7 @@
           <!-- 组件 -->
           <view class="wedgetItem">
           <!-- 新闻组件 -->
-          <miniElectric></miniElectric>
+          <miniElectric data></miniElectric>
           </view>
         </view>
         <!-- 右边按压区域 -->

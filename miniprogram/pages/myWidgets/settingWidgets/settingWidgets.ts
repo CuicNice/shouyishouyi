@@ -1,4 +1,41 @@
 // pages/myWidgets/settingWidgets/settingWidgets.ts
+// 接口请求部分
+import {
+  // 内网新闻
+  getInnerNewsListitem,
+  // 外网新闻
+  getOutNewsListitem
+} from "../../../api/newsApi"
+// 请求数据定义
+/**
+ * 电费
+ */
+import uCharts from "../../../../utils/u-charts";
+import { getElectric } from '../../../api/electricChargeApi';
+interface innernewsListItem {
+  "currentPage": string,
+  "pageSize": string
+}
+interface outnewsListItem {
+  "currentPage": string,
+  "pageSize": string
+}
+
+export {
+  innernewsListItem,
+  outnewsListItem
+}
+/**
+ * 电费
+ */
+export interface ElectriceItem {
+  build: string,
+  room: string
+}
+interface NodeSizeItem {
+  width: number,
+  height: number
+}
 Page({
 
   /**
@@ -20,8 +57,100 @@ Page({
       remindMoveY: 0,   // 滑动操作纵向的移动距离
       remindMaxMoveY: (200 - 60), //抽屉remindBox最大移动距离
       remindLastTranlateY: 0  //上次动画效果的平移距离，用于校准top值
-    } as any
-
+    } as any,
+/**
+ * 新闻组件
+ */
+    // 内网：
+    innerPageParams: {
+      "currentPage": "1",
+      "pageSize": "3"
+    } as unknown as outnewsListItem,
+    // 外网
+    outPageParams: {
+      "currentPage": "1",
+      "pageSize": "3"
+    } as unknown as outnewsListItem,
+    tapbarCtrl:true as Boolean,
+    // 列表数据
+    widgetMiniNewsList: [] as any,
+    //电费查询
+    widgetsElectricChargeData:[]as any,
+  },
+  /**
+   * 
+   * 新闻组件
+   */
+  async getInnerSchoolNews() {
+    let that = this
+    wx.showLoading({
+      title: '正在加载...',
+    });
+    // 获取内网新闻
+    let innerPageParams = that.data.innerPageParams
+    let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
+    console.log("innerRes",innerRes);
+     if (innerRes != null) {
+      wx.hideLoading();
+      let widgetMiniNewsList = innerRes.widgetMiniNewsList;
+      that.setData({
+        widgetMiniNewsList: widgetMiniNewsList, //当天的
+      })
+    }
+    /**
+     * 电费组件
+     */
+    electricData:[] as any
+  },
+  /**
+   * 电费请求
+   */
+  async webrequest(){
+    /**
+     * 获取组件内部要求的组件请求参数，进行网络请求
+     */
+    var value = wx.getStorageSync('widgets-electricCharge') as ElectriceItem;
+    const { data: widgetsElectricChargeRes } = await getElectric(value) as unknown as IResult<any>;
+    this.setData({
+      widgetsElectricChargeData:widgetsElectricChargeRes
+    })
+  },
+  // 外网首义
+  async getOutSouyiNews() {
+    // 发起网络请求
+    /**
+ * 发送请求，渲染数据
+ * @param from 楼栋数据
+ */
+    // 调用函数时，传入new Date()参数，返回值是日期和时间
+    let that = this
+    let outPageParams = that.data.outPageParams
+    let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
+    if (outRes.pageSize != 0) {
+      var widgetMiniNewsList = outRes.widgetMiniNewsList;
+      console.log("listmm",widgetMiniNewsList)
+    } else {
+      wx.showToast({
+        title: '刷新失败',
+        icon: 'error',
+        duration: 1500
+      })
+      wx.hideToast();
+    }
+    that.setData({
+      widgetMiniNewsList: widgetMiniNewsList,
+    })
+  },
+  // 初始化新闻页面的数据
+  async initNewsInfo() {
+    // 根据tapBar初始值
+    var that = this
+    if (that.data.tapbarCtrl) {
+      await that.getInnerSchoolNews()
+    } else {
+      // 外网请求
+      await that.getOutSouyiNews()
+    }
   },
   /**
    * 滑动remindBox消失
@@ -198,12 +327,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    
     // 获取屏幕高度
     // TODO: 迁移到app.js中因为已经多处调用
     var windowHeight = wx.getSystemInfoSync().windowHeight;
     this.setData({
       windowHeight: windowHeight
     })
+    var that=this
+    that.initNewsInfo()//初始化新闻
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -214,6 +346,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    var that=this
+    that.webrequest();//电费
+    
   },
   /**
    * 生命周期函数--监听页面隐藏
