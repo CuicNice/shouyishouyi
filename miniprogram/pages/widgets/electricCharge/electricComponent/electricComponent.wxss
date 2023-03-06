@@ -39,8 +39,8 @@
 }
 
 .lightingSvg {
-  width: 50rpx;
-  height: 50rpx;
+  width: 35rpx;
+  height: 35rpx;
 }
 
 .returnIconSvg {
@@ -65,7 +65,7 @@
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
-  font-size: 30rpx;
+  font-size: 28rpx;
   line-height: 28rpx;
   color: #292945;
 }
@@ -100,10 +100,14 @@
   gap: 16rpx;
   width: 500rpx;
   height: 40rpx;
+  position: relative;
+  right: 15rpx;
 }
 
 .top_rightBox {
   float: right;
+  position: relative;
+  top: 4rpx;
 }
 
 .returnSvg {
@@ -115,6 +119,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
+  right: 20rpx;
   height: 106rpx;
   width: 630rpx;
   gap: 10rpx;
@@ -128,6 +134,8 @@
   height: 106rpx;
 }
 .Box{
+  position: relative;
+  top: 4rpx;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -175,7 +183,7 @@
   height: 68rpx;
   font-family: 'PingFang SC';
   font-style: normal;
-  font-size: 48rpx;
+  font-size: 40rpx;
   color: #20C38C;
   font-weight: 700;
   letter-spacing: 2rpx;
@@ -183,6 +191,7 @@
 
 .Postgraduate {
   position: relative;
+  top: -7rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
@@ -220,6 +229,8 @@
   display: flex;
   width: 0rpx;
   height: 70rpx;
-  border: 2rpx solid #ECECEC;
+  position: relative;
+  top: 15rpx;
+  border: 1rpx solid #ECECEC;
   flex-grow: 0;
 }
