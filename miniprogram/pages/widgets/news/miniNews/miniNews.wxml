@@ -2,6 +2,7 @@
 <!-- 引入字符串切割 -->
 <wxs src='../../../../wxs/utils.wxs' module='tools' /> 
 <!-- 新闻小组件  点击跳转Detail页面-->
+<view class="miniNewsPageBox">
 
 <view class="miniNewsBox">
   <!-- 顶部的返回与icon -->
@@ -63,4 +64,5 @@
     </navigator>
     <!-- 跳转结束 -->
   </view>
+</view>
 </view>
