@@ -1,5 +1,4 @@
 /* pages/widgets/electric/electricComponment/electricComponent.wxss */
-
 .electricPageBox {
   margin: 0 16rpx;
 }
@@ -12,7 +11,7 @@
   gap: 20rpx;
   width: 100%;
   position: relative;
-  height: 166rpx;
+  height: 163rpx;
   background: #FFFFFF;
   border: 2rpx solid #E3E3E6;
   border-radius: 20rpx;
@@ -119,8 +118,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: relative;
-  right: 20rpx;
   height: 106rpx;
   width: 630rpx;
   gap: 10rpx;
@@ -136,8 +133,9 @@
 .Box{
   position: relative;
   top: 4rpx;
+  left: 50rpx;
   display: flex;
-  width: 100%;
+  width: 610rpx;
   justify-content: center;
 }
 
@@ -167,7 +165,6 @@
 }
 
 .cdTitle {
-  width: 100px;
   height: 17px;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -206,31 +203,10 @@
   font-weight: 700;
   letter-spacing: 1px;
 }
-/* 
-.electricBox:nth-child(2):before,
-.electricBox:nth-child(2):after {
-  content: '';
-  display: inline-block;
-  width: 0;
-  height: 2rpx;
-  box-shadow: 0 0 0 19998rpx #ccc;
-  vertical-align: middle;
-}
-
-.electricBox:nth-child(2)::before {
-  clip-path: polygon(0 0, -19998rpx 0, -19998rpx 100%, 0 100%);
-}
-
-.electricBox:nth-child(2)::after {
-  clip-path: polygon(0 0, -19998rpx 0, -19998rpx 100%, 0 100%);
-} */
 
 .splitLinner {
-  display: flex;
-  width: 0rpx;
   height: 70rpx;
   position: relative;
   top: 15rpx;
   border: 1rpx solid #ECECEC;
-  flex-grow: 0;
 }
