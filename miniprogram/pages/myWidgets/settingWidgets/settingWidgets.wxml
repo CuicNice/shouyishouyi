@@ -80,67 +80,6 @@
         </view>
       </movable-view>
     </block>
-      <!-- 第1个组件 -->
-      <view class="itemBox">
-        <!-- 左边组件区域 -->
-        <view class="widgetBox">
-          <!-- title -->
-          <view class="widgetTitle">每日课表
-          </view>
-          <!-- 组件 -->
-            <image class="wedgetItemSvg" src="/static/svg/myWidget/scoreCard.png" mode=""/>
-        </view>
-        <!-- 右边按压区域 -->
-        <view class="chooseTabBox">
-          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
-        </view>
-      </view>
-      <view class="itemBox">
-        <!-- 左边组件区域 -->
-        <view class="widgetBox">
-          <!-- title -->
-          <view class="widgetTitle">每日课表
-          </view>
-          <!-- 组件 -->
-          <!-- 新闻组件 -->
-          <image  class="wedgetItemSvg" src="/static/svg/myWidget/miniNews.png" mode=""/>
-        </view>
-        <!-- 右边按压区域 -->
-        <view class="chooseTabBox">
-          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
-        </view>
-      </view>
-      <!-- 第二个组件 -->
-      <view class="itemBox">
-        <!-- 左边组件区域 -->
-        <view class="widgetBox">
-          <!-- title -->
-          <view class="widgetTitle">每日课表
-          </view>
-          <!-- 组件 -->
-            <image  class="wedgetItemSvg" src="/static/svg/myWidget/electricCard.png" mode=""/>
-        </view>
-        <!-- 右边按压区域 -->
-        <view class="chooseTabBox">
-          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
-        </view>
-      </view>
-      <!-- 第三个组件 -->
-      <view class="itemBox">
-        <!-- 左边组件区域 -->
-        <view class="widgetBox">
-          <!-- title -->
-          <view class="widgetTitle">每日课表
-          </view>
-          <!-- 组件 -->
-          <!-- 新闻组件 -->
-          <image  class="wedgetItemSvg" src="/static/svg/myWidget/countDown.png" mode=""/>
-        </view>
-        <!-- 右边按压区域 -->
-        <view class="chooseTabBox">
-          <image class="chooseTabSvg" src="/static/svg/myWidget/choose.svg" mode="" />
-        </view>
-      </view>
     </movable-area>>
     <!-- 分割线区域 -->
   </view>
