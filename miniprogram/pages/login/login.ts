@@ -108,11 +108,11 @@ Page({
   /**
    * 点击完成按钮
    */
-  login(){ //模仿写出存入缓存
+  login(){ 
     var zh = this.data.zh;
     var mm = this.data.mm; 
-    wx.setStorageSync('zh',zh);
-    wx.setStorageSync('mm',mm);
+    var basicInfo={zh,mm}//需要传递给成绩页面或其他页面的账号密码数据
+    wx.setStorageSync('login',basicInfo);
   },
   /**
    * 显示是否绑定页面
