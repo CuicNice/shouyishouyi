@@ -1,7 +1,7 @@
 .top-bar {
-  position: fixed;
-  width: 100%;
-  z-index: 999;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
 }
 
 .btn-box {
@@ -86,7 +86,7 @@
     text-align: center;
     color: #000000;
     mix-blend-mode: normal;
-    letter-spacing: 1px;
+    letter-spacing: 2rpx;
     opacity: 0.9;
     align-self: center;
 }
