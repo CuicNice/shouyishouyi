@@ -20,11 +20,11 @@ Page({
     */
   async initPageData() {
     /**
-     * 获取本地缓存，判断是否绑定数据
+     * 获取本地缓存
      */
     var bindData = {
-      zh: wx.getStorageSync('login').zh,
-      mm: wx.getStorageSync('login').mm,
+      zh: wx.getStorageSync('login').zh,//缓存里的账号
+      mm: wx.getStorageSync('login').mm,//缓存里的密码
     } as ScoreCompontItem;
     this.getUserInfoData(bindData);
   },
