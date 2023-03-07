@@ -8,22 +8,28 @@
       <view class="skin-top-text">课表背景</view>
     </view>
     <view class="skin-box-choice">
-     <view class="colorselBox">
-       <view class="colorBox1">
-            <view class="skin-choice-day">
-            </view>
+      <view class="colorselBox">
+        <view class="colorBox1" bindtap="background1">
+          <view class="skin-choice-day">
           </view>
-          <view class="skin-choice-title">简约白</view>
-     </view>
-     <view class="colorselBox">
+        </view>
+        <view class="skin-choice-title">简约白</view>
+        <image wx:if="{{white}}" class="icon2" src="../../../../static/svg/tubiao.svg"></image>
+      </view>
+      <view class="colorselBox">
+        <view class="colorBox1" bindtap="background2">
           <view class="skin-choice-night">
           </view>
-          <view class="skin-choice-title">暗夜黑</view>
-     </view>
-     <view class="colorselBox">
-          <view class="checkBox"><image src="../../../../static/svg/zidingyi.svg"></image></view>
-          <view class="skin-choice-title">自定义</view>
-     </view>
+        </view>
+        <view class="skin-choice-title">暗夜黑</view>
+        <image wx:if="{{black}}" class="icon2" src="../../../../static/svg/tubiao.svg"></image>
+      </view>
+      <view class="colorselBox">
+        <view class="checkBox">
+          <image src="../../../../static/svg/zidingyi.svg" bindtap="background3"></image>
+        </view>
+        <view class="skin-choice-title">自定义</view>
+      </view>
     </view>
   </view>
 
@@ -34,17 +40,26 @@
     </view>
     <view class="skin-box-choice">
       <view class="colorselBox">
-       <view class="colorBox1"><image src="../../../../static/svg/cardzhonglou.svg"></image></view>
-      <view class="skin-choice-title">首义钟楼</view>
-     </view>
-     <view class="colorselBox">
-      <view class="colorBox2"><image src="../../../../static/svg/cardxingzhenlou.svg"></image></view>
-      <view class="skin-choice-title">嘉鱼行政楼</view>
-     </view>
-     <view class="colorselBox">
-      <view class="colorBox3"><image src="../../../../static/svg/cardtushuguan.svg"></image></view>
-      <view class="skin-choice-title">图书馆总馆</view>
-     </view>
+        <view class="colorBox1" bindtap="bellTower">
+          <image class="zhonglou" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
+          <image wx:if="{{bellTower}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
+        </view>
+        <view class="skin-choice-title">首义钟楼</view>
+      </view>
+      <view class="colorselBox">
+        <view class="colorBox2"  bindtap="administrativeBuilding">
+          <image class="jiayuxingzhenluo" src="../../../../static/svg/schoolBuilt/jiayuxingzhenluo.svg"></image>
+          <image wx:if="{{administrativeBuilding}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
+        </view>
+        <view class="skin-choice-title">嘉鱼行政楼</view>
+      </view>
+      <view class="colorselBox">
+        <view class="colorBox3"  bindtap="library">
+          <image class="zhongqutushuguan" src="../../../../static/svg/schoolBuilt/zhongqutushuguan.svg"></image>
+          <image wx:if="{{library}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
+        </view>
+        <view class="skin-choice-title">图书馆总馆</view>
+      </view>
     </view>
   </view>
   <view class="CustomskinBox">
@@ -54,18 +69,23 @@
     </view>
     <view class="skin-box-choice">
       <view class="colorStyleBox">
-          <view class="colorStyle"><image src="../../../../static/svg/shensecard.svg"></image></view>
-          <view class="colorStyle-title">深色</view>
-     </view>
-     <view class="colorStyleBox">
-          <view class="colorStyle"><image src="../../../../static/svg/qiansecard.svg"></image></view>
-          <view class="colorStyle-title">浅色</view>
-     </view>
+        <view class="colorStyle" bindtap="darking">
+          <image src="../../../../static/svg/shensecard.svg"></image>
+        </view>
+        <view class="colorStyle-title">深色</view>
+        <image wx:if="{{darking}}" class="icon3" src="../../../../static/svg/tubiao.svg"></image>
+      </view>
+      <view class="colorStyleBox">
+        <view class="colorStyle" bindtap="lighting">
+          <image src="../../../../static/svg/qiansecard.svg"></image>
+        </view>
+        <view class="colorStyle-title">浅色</view>
+        <image wx:if="{{lighting}}" class="icon3" src="../../../../static/svg/tubiao.svg"></image>
+      </view>
     </view>
   </view>
-
   <view class="button">
-    <button type="default" class="cancel" 	hover-class="hover-cancel" bindtap="cancel">
+    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancel">
       <text>取消</text>
     </button>
     <button type="primary" class="primary" bindtap="login">
