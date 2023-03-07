@@ -69,11 +69,3 @@
 </topBar>
 <!-- 需要添加id才能被selectComponnet选中 -->
 <toast id="toast"></toast>
-
-<f-dialog showDialog="{{true}}" title="下载失败，无法查看" stitle="学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~" schoolBuiltSrc="{{schoolBuiltSrc}}">
-  <view class="btn-box school-btn">
-    <button class="btn" type="primary" class="dialogCertainButon" bindtap="gotoBd">
-      <view>确定</view>
-    </button>
-  </view>
-</f-dialog>
