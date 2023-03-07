@@ -44,6 +44,8 @@ border-radius: 7px;
   margin-top: 30rpx;
   text-align: center;
   margin-bottom: 30rpx;
+  /* 解决优先级问题 */
+  overflow: visible !important;
 }
 
 .bg{

@@ -4,7 +4,7 @@
     <view class="binDing binDing-{{type}}">
       <view class="bd-text school-text">{{title}}</view>
       <view class="bd-stext">{{stitle}}</view>
-      <view style="width: 100%; margin-top: 50rpx;">
+      <view style="width: 100%;">
         <slot></slot>
       </view>           
     </view>
