@@ -47,6 +47,10 @@ typings
 
 图书馆的规范修改完成和合并了复制功能
 
-### 2023/3/2 score inquiry
+### 2023/3/2 （xiaokai） score inquiry
  1.修改了代码规范。
+### 2023/3/7（xiaokai） scoreCompont 
+ 1.渲染完成绩查询的小组件
+ 2.引入textCompont，用来测试
+ 2.修改规范
 
