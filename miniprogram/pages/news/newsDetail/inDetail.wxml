@@ -2,8 +2,8 @@
 <!-- <navbar navbar-data='{{nvabarData}}'></navbar> -->
 <import src="../../../wxParse/wxParse" />
 <view class="bg">
-<!-- 背景柱子 -->
-<view class="bgThingsBox">
+  <!-- 背景柱子 -->
+  <view class="bgThingsBox">
     <image class="bgThings" src="{{bgSvgUrl}}" mode="" />
   </view>
 </view>
@@ -12,7 +12,7 @@
   <view class="cont">
     <!-- 顶部的图像 -->
     <view class="top">
-      <image class="topSvg"style="width: 330px;height: 59.38px;" src="{{topTitleSvgUrl}}" mode="" />
+      <image class="topSvg" style="width: 330px;height: 59.38px;" src="{{topTitleSvgUrl}}" mode="" />
     </view>
     <!-- 新闻内容框子 -->
     <view class="border" style="background:{{t_bg}}">
@@ -52,8 +52,11 @@
 <!-- 需要添加id才能被selectComponnet选中 -->
 <toast id="toast"></toast>
 <!-- 南南问题单 -->
-<!-- <f-dialog showDialog="false" title="{{dialogtitle}}"schoolBuiltSrc="{{schoolBuiltSrc}}" bname="{{bname}}" b1name="{{b1name}}">
+<f-dialog showDialog="{{true}}" title="{{dialogTitle}}" stitle="{{dialogContent}}" schoolBuiltSrc="{{schoolBuiltSrc}}">
   <view class="btn-box school-btn">
-        <button class="btn" type="primary" style="width: 214rpx;background: #20C38C;" bindtap="gotoBd" >确定</button>
-      </view>   
-</f-dialog> -->
+    <button class="btn" type="primary" class="dialogCertainButon" bindtap="gotoBd">
+      <view>确定</view>
+    </button>
+  </view>
+</f-dialog>
+<!-- 学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~ -->

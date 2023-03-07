@@ -12,6 +12,27 @@
   background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
   z-index: -999;
 }
+/* 弹窗组件确定键 */
+.dialogCertainButon{
+  display: flex !important;
+flex-direction: row !important;
+justify-content: center !important;
+align-items: center !important;
+padding: 10px 14px !important;
+gap: 10px !important;
+width: 250px !important;
+height: 42px !important;
+overflow: visible !important;
+/* #20C38C */
+background: #20C38C !important;
+border-radius: 35px !important;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 1;
+}
 .top{
   /* 距离顶部的距离 */
   margin-top: 58rpx !important;

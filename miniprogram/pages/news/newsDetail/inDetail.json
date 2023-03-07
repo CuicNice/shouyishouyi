@@ -3,6 +3,7 @@
   "component": true,
   "usingComponents": {
     "toast":"/components/fmin-toast/fmin-toast",
-    "topBar":"/components/fmin-topbar/fmin-topbar"
+    "topBar":"/components/fmin-topbar/fmin-topbar",
+    "f-dialog":"/components/fmin-dialog/fmin-dialog"
     }
 }
