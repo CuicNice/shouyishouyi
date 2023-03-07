@@ -17,7 +17,7 @@
   border-radius: 20rpx;
 }
 
-.electric-txtLine {
+.electricTxtLine {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -31,7 +31,7 @@
   flex-grow: 0;
 }
 
-.electric-lighting {
+.electricLighting {
   display: flex;
   order: 0;
   flex-grow: 0;
@@ -47,7 +47,7 @@
   height: 45rpx;
 }
 
-.electric-txt {
+.electricTxt {
   height: 40rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -60,7 +60,7 @@
   flex-grow: 0;
 }
 
-.cd-txt {
+.electricTxt {
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
@@ -84,13 +84,13 @@
   flex-grow: 0;
 }
 
-.cdPlace {
+.electricPlace {
   display: flex;
   font-weight: 700;
   letter-spacing: 2rpx;
 }
 
-.top_leftBox {
+.topLeftBox {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -103,7 +103,7 @@
   right: 15rpx;
 }
 
-.top_rightBox {
+.topRightBox {
   float: right;
   position: relative;
   top: 4rpx;
@@ -130,7 +130,7 @@
   align-items: center;
   height: 106rpx;
 }
-.Box{
+.box{
   position: relative;
   top: 4rpx;
   left: 50rpx;
@@ -158,13 +158,13 @@
   border: 2rpx solid #ECECEC;
 }
 
-.cdName {
+.electricName {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.cdTitle {
+.electricTitle {
   height: 17px;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -176,7 +176,7 @@
   color: rgba(41, 41, 69, 0.6);
 }
 
-.cdDay {
+.electricDay {
   height: 68rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -186,7 +186,7 @@
   letter-spacing: 2rpx;
 }
 
-.Postgraduate {
+.postGraduate {
   position: relative;
   top: -7rpx;
   font-family: 'PingFang SC';

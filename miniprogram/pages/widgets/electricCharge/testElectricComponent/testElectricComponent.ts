@@ -1,13 +1,8 @@
 // pages/widgets/electricCharge/testElectricComponent/testElectricComponent.ts
-import uCharts from "../../../../utils/u-charts";
 import { getElectric } from '../../../../api/electricChargeApi';
 export interface ElectriceItem {
   build: string,
   room: string
-}
-interface NodeSizeItem {
-  width: number,
-  height: number
 }
 Page({
 

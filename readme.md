@@ -44,3 +44,7 @@ typings
 
 ### 2023/3/2 score inquiry
  1.修改了代码规范。
+
+### 2023/3/7（xiaowang）electric charge inquiry component
+1.完成小组件功能。
+2.修改代码规范。
