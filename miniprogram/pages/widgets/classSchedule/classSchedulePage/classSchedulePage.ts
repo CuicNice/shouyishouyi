@@ -293,7 +293,7 @@ Page({
           arr.classSchedule = classSchedule;
           wx.setStorageSync('widget-classSchedule', arr);
         } else {
-          let value = { classSchedule: classSchedule, ifshowAllclass: false, background:'',buliding:'zhonglou',dark:true};
+          let value = { classSchedule: classSchedule, ifshowAllclass: false, background:'',buliding:'zhonglou',dark:true,picture:''};
           wx.setStorageSync('widget-classSchedule', value);
         }
       })
@@ -716,7 +716,8 @@ Page({
       showAll: wx.getStorageSync('widget-classSchedule').ifshowAllclass,
       dark:wx.getStorageSync('widget-classSchedule').dark,
       buliding:wx.getStorageSync('widget-classSchedule').buliding,
-      bgc:wx.getStorageSync('widget-classSchedule').background
+      bgc:wx.getStorageSync('widget-classSchedule').background,
+      picture:wx.getStorageSync('widget-classSchedule').picture
     });
   },
 

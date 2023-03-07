@@ -8,27 +8,28 @@
 <view class="navigationBar" style="background-color: {{bgc}};" >
   <!--更多选择的icon  -->
   <view class="NewIconBoxLeft" bindtap="showSetting">
-    <image class="{{heise ==0? 'NewIconLeft' : 'NewIconLeftWhite'}}"></image>
+    <image class="{{bgc ==''? 'NewIconLeft' : 'NewIconLeftWhite'}}"></image>
   </view>
   <!-- 切换周、日的icon -->
   <view class="switchIconBox">
-    <image class="switchIcon" bindtap="changeicon" src="../../../../static/svg/{{weekSchedule}}icon.svg"></image>
+    <image class="switchIcon" wx:if="{{bgc==''}}" bindtap="changeicon" src="../../../../static/svg/{{weekSchedule}}icon.svg"></image>
+    <image class="switchIcon" wx:else bindtap="changeicon" src="../../../../static/svg/dark{{weekSchedule}}icon.svg"></image>
   </view>
   <!-- 刷新的icon -->
   <view class="flushIconBox" bindtap="refresh">
-    <image class="flushIcon"></image>
+    <image class="{{bgc == ''? 'flushIcon' : 'flushIconWhite'}}"></image>
   </view>
   <!-- 学期选择 -->
   <view class="TitleLeft">
     <view class="WeekOption">
-      <view class="text-WeekOption">{{semester}}</view>
-      <view class="icon-WeekOption" bindtap="selectSchoolTime"></view>
+      <view class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{semester}}</view>
+      <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}" bindtap="selectSchoolTime"></view>
     </view>
   </view>
 </view>
 <view class="select_box" wx:if="{{weekSchedule}}" style="background-color: {{bgc}};">
-  <scroll-view scroll-x="true" scroll-with-animation="true" class="select_week" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
-    <view wx:for="{{weekNum}}" wx:key="index" style="display: inline-flex;height: 100%;align-items: center;">
+  <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
+    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
       <view class="select_one" wx:if="{{nowWeek == index+1}}">
         <ul>
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
@@ -43,7 +44,7 @@
     </view>
   </scroll-view>
 </view>
-<view class="container" style="background-color: {{bgc}};" wx:if="{{weekSchedule}}">
+<view class="container" style="background-color: {{bgc}};background-image: url({{picture}});" wx:if="{{weekSchedule}}">
   <view class="classXuLine1"></view>
   <view class="classXuLine2"></view>
   <view class="classXuLine3"></view>
@@ -61,84 +62,84 @@
     <view class="weekbigBox">
       <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
         <view class="week">
-          <view class="top-text">周日</view>
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周日</view>
         </view>
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{weekTime[0]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[0]}}</view>
             </view>
           </block>
         </view>
       </view>
       <view class="weekBox{{weekTime[1] == nowDate ? 'Select':''}}">
         <view class="week">
-          <view class="top-text">周一</view>
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周一</view>
         </view>
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{weekTime[1]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[1]}}</view>
             </view>
           </block>
         </view>
       </view>
       <view class="weekBox{{weekTime[2] == nowDate ? 'Select':''}}">
         <view class="week">
-          <view class="top-text">周二</view>
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周二</view>
         </view>
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{weekTime[2]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[2]}}</view>
             </view>
           </block>
         </view>
       </view>
       <view class="weekBox{{weekTime[3] == nowDate ? 'Select':''}}">
         <view class="week">
-          <view class="top-text">周三</view>
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周三</view>
         </view>
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{weekTime[3]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[3]}}</view>
             </view>
           </block>
         </view>
       </view>
       <view class="weekBox{{weekTime[4] == nowDate ? 'Select':''}}">
         <view class="week">
-          <view class="top-text">周四</view>
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周四</view>
         </view>
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{weekTime[4]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[4]}}</view>
             </view>
           </block>
         </view>
       </view>
       <view class="weekBox{{weekTime[5] == nowDate ? 'Select':''}}">
         <view class="week">
-          <view class="top-text">周五</view>
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周五</view>
         </view>
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{weekTime[5]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[5]}}</view>
             </view>
           </block>
         </view>
       </view>
       <view class="weekBox{{weekTime[6] == nowDate ? 'Select':''}}">
         <view class="week">
-          <view class="top-text">周六</view>
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周六</view>
         </view>
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="Box">{{weekTime[6]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[6]}}</view>
             </view>
           </block>
         </view>
@@ -150,9 +151,9 @@
       <view style="width:100%;display:flex;">
         <view class="leftBox">
           <view class="timeTable" wx:for="{{time}}" wx:key="index">
-            <view class="number">{{index+1}}</view>
-            <view class="time">{{item.time1}}</view>
-            <view class="time">{{item.time2}}</view>
+            <view class="{{bgc==''?'number':'numberWhite'}}">{{index+1}}</view>
+            <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time1}}</view>
+            <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time2}}</view>
           </view>
           <view class="timeTableLine"></view>
         </view>
@@ -212,12 +213,12 @@
       <!-- 其他课程 -->
       <view class="WHQplus">
         <view class="WHQplusLeft">
-          <view class="otherCourses">其他课程</view>
+          <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
         </view>
         <view class="otherclass">
           <view class="kesehbox" wx:for="{{classSchedule.all_keshes}}" wx:key="index">
             <image class="kesheIcon"></image>
-            <view class="keshe">{{item.data}}</view>
+            <view class="{{bgc==''?'keshe':'kesheWhite'}}">{{item.data}}</view>
           </view>
         </view>
       </view>
