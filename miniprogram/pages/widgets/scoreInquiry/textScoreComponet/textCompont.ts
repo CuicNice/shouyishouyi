@@ -2,7 +2,7 @@ import { widgetScore } from '../../../../api/scoreInquiryApi';
 export interface ScoreCompontItem {
   zh: string,
   mm: string,
-}
+};
 Page({
 
   /**
@@ -91,13 +91,16 @@ Page({
         semester = '大四上';
       }
     }
+    /**
+     * 传值给scoreLevel方法，判断称号显示
+     */
     this.scoreLevels(score);
     this.setData({
       widget_score: widget_score,
       allxfscores: widget_score.allscore.allxfscores,
       alljdxfs: widget_score.allscore.alljdxfs,
       semester: semester,
-    })
+    });
   },
   /**
    * 变化等级称号
@@ -130,23 +133,21 @@ Page({
     */
     var timestamp = Date.parse(new Date() as unknown as string);
     var date = new Date(timestamp);
-    //获取年份
-    var Y = date.getFullYear() as unknown as string;
-    //获取月份
-    var M = (date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string;
+    var Y = date.getFullYear() as unknown as string;//年份
+    var M = (date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string; //月份
     /**
      * 进行当前学期的判断
      */
-    var year = 0//储存年份的变量
-    var schoolTime//学期名
+    var year = 0;//储存年份的变量
+    var schoolTime;//学期名
     if (8 <= parseInt(M) && parseInt(M) <= 12) {
-      year = year + parseInt(Y) + 1
+      year = year + parseInt(Y) + 1;
     }
     if (1 <= parseInt(M) && parseInt(M) < 2) {
-      year = year + parseInt(Y)
+      year = year + parseInt(Y);
     }
     if (2 <= parseInt(M) && parseInt(M) < 8) {
-      year = year + parseInt(Y)
+      year = year + parseInt(Y);
     }
     if ((Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 4 && 8 <= parseInt(M) && parseInt(M) <= 12) || (Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 4 && 1 <= parseInt(M) && parseInt(M) < 2)) {
       schoolTime = '大四上';
@@ -174,7 +175,7 @@ Page({
     }
     this.setData({
       semester: schoolTime,
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面加载
