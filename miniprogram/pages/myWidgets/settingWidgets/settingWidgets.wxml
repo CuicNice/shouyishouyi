@@ -58,7 +58,7 @@
     <!-- 底部拖动区域 -->
     <movable-area  class="chooseItemsBox" id="oldRemindBar" >
       <!-- 小组件拖动区块 -->
-      <block wx:for="{{tabList}}" wx:key="index" >
+      <block wx:for="{{tabList}}" wx:key="index" style="height: 1000px;" >
  
       <movable-view class="itemBox" y="{{item.y}}" style="height:{{item.width}}px;"
   class="item-{{index==moveId?'up':'down'}} item-bg-{{(index==nowItem && nowItem!= moveId)?'black':'write'}}" direction="vertical" 
