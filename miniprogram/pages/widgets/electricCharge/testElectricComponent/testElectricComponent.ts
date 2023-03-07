@@ -1,18 +1,30 @@
-// pages/widgets/countDown/countDownPage/countDownPage.js
+// pages/widgets/electricCharge/testElectricComponent/testElectricComponent.ts
+import { getElectric } from '../../../../api/electricChargeApi';
+export interface ElectriceItem {
+  build: string,
+  room: string
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    data:[] as any
   },
 
+  async webrequest(){
+    var value = wx.getStorageSync('widgets-electricCharge') as ElectriceItem;
+    const { data: res } = await getElectric(value) as unknown as IResult<any>;
+    this.setData({
+      data:res
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  onLoad() {
+    
   },
 
   /**
@@ -26,7 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.webrequest();
   },
 
   /**

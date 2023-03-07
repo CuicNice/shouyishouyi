@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/electricCharge/electricPage/electricPage",
+    "pages/widgets/electricCharge/electricComponent/electricComponent",
     "pages/widgets/countDown/countDownPage/countDownPage",
     "pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage",
     "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
@@ -16,7 +17,8 @@
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",
     "pages/popup/popupPage/popupPage",
-    "pages/message/web-view/webView"
+    "pages/message/web-view/webView",
+    "pages/widgets/electricCharge/testElectricComponent/testElectricComponent"
   ],
   "window": {
     "backgroundTextStyle": "light",
