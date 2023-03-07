@@ -3,7 +3,7 @@ import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
 import {ScoreInquiryeItem} from '../pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage';
-import {ScoreCompontItem} from '../pages/widgets/scoreInquiry/textCompont/textCompont';
+import {ScoreCompontItem} from '../pages/widgets/scoreInquiry/textScoreComponet/textCompont';
 
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();

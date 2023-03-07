@@ -1,9 +1,11 @@
 <view class="Box">
   <!-- 左边的盒子 -->
   <view class="leftBox">
+    <!-- 称号部分 -->
     <view class="scoreLevel">
       <image class="level" src="../../../../static/svg/scoreCompont/scoreLevel-{{scoreLevel}}.svg"></image>
     </view>
+    <!-- 学期学年部分 -->
     <view class="levelText">{{semester}}称号</view>
   </view>
   <view class="boatBox">

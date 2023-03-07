@@ -31,9 +31,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-  /**
-   * 点击右上角的箭头跳转成绩查询页面
-   */
+    /**
+     * 点击右上角的箭头跳转成绩查询页面
+     */
     loginScore() {
       wx.navigateTo({
         url: '../scoreInquiryPage/scoreInquiryPage'

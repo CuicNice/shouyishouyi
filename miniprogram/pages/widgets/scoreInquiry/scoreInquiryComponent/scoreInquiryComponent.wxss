@@ -1,6 +1,5 @@
 .Box {
   box-sizing: border-box;
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11,7 +10,6 @@
   width: 718rpx;
   height: 248rpx;
   background: #FFFFFF;
-  /* 边框 */
   border: 2rpx solid #E3E3E6;
   border-radius: 20rpx;
 }
@@ -30,7 +28,6 @@
   order: 0;
   flex-grow: 0;
   z-index: 0;
-  /* Inside auto layout */
 }
 
 .rightBox {
@@ -42,14 +39,12 @@
   gap: 12rpx;
   width: 410rpx;
   height: 172rpx;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 1;
 }
 
 .transcripts {
-  /* Auto layout */
   margin-bottom: 1rpx;
   display: flex;
   flex-direction: row;
@@ -57,7 +52,6 @@
   padding: 0rpx;
   width: 410rpx;
   height: 40rpx;
-  /* Inside auto layout */
   flex: none;
   order: 0;
   align-self: stretch;
@@ -107,10 +101,7 @@
   font-weight: 500;
   font-size: 28rpx;
   line-height: 40rpx;
-  /* identical to box height */
-  /* text */
   color: #292945;
-  /* Inside auto layout */
   flex: none;
   flex-grow: 0;
 }
@@ -121,10 +112,7 @@
   font-weight: 500;
   font-size: 28rpx;
   line-height: 40rpx;
-  /* identical to box height */
-  /* text */
   color: #707070;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -145,7 +133,6 @@
   gap: 24rpx;
   width: 410rpx;
   height: 120rpx;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   align-self: stretch;
@@ -161,7 +148,6 @@
   gap: 10rpx;
   width: 200rpx;
   height: 120rpx;
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -176,7 +162,6 @@
   font-size: 56rpx;
   line-height: 78rpx;
   color: #FBDE71;
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -191,13 +176,12 @@
   font-weight: 500;
   font-size: 24rpx;
   line-height: 34rpx;
-  /* identical to box height */
   color: #7F7F8F;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
 }
+
 .text-jd {
   margin-bottom: 12rpx;
   letter-spacing: 0.4px;
@@ -206,13 +190,12 @@
   font-weight: 500;
   font-size: 24rpx;
   line-height: 34rpx;
-  /* identical to box height */
   color: #7F7F8F;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
 }
+
 .scoreLevel {
   width: 220rpx;
   display: flex;
@@ -225,11 +208,13 @@
   flex-grow: 0;
   z-index: 1;
 }
+
 .level {
   margin-left: 4rpx;
   width: 186rpx;
   height: 62rpx;
 }
+
 .levelText {
   letter-spacing: 0.4px;
   margin-top: 30rpx;
@@ -242,9 +227,7 @@
   font-weight: 400;
   font-size: 24rpx;
   line-height: 34rpx;
-  /* identical to box height */
   color: #7F7F8F;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;

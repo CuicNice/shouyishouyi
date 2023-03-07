@@ -10,6 +10,7 @@
     "pages/indexText/indexText",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
+    "pages/widgets/scoreInquiry/textScoreComponet/textCompont",
     "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
     "pages/widgets/library/libraryDetailed/libraryDetailed",
     "pages/widgets/library/librarytext/librarytext",
