@@ -131,33 +131,31 @@ Page({
   },
   wxParseTagDown: function (e: any) {
     var that=this
-    wx.showLoading({
-      title: '下载中...',
-    });
-    var src = e.currentTarget.dataset.src;
-    src = src.replace('http://e.wsyu.edu.cn/wcm.files/', 'https://ambition.mcdd.top/wcm.files/')
-    // //   console.log(src)
-    wx.downloadFile({
-      url: src,
-      success(res) {
-        ////   console.log(res)
-        const filePath = res.tempFilePath;
-        // //   console.log(filePath)
-        wx.hideLoading();
-        if (res.statusCode == 200) {
-          that.selectComponent("#toast").showToastAuto("下载成功，即将打开！", "success", 1); 
-          wx.openDocument({
-            filePath: filePath,
-            success: function (res) { }
-          })
-        } else {
-          that.selectComponent("#toast").showToastAuto("下载失败，服务器于半夜1：30后关闭，请白天再试！", "error", 1); 
-        }
-      },
-      fail(res) {
-        that.selectComponent("#toast").showToastAuto("下载失败，服务器于半夜1：30后关闭，请白天再试！", "error", 1); 
-      }
-    })
+    that.selectComponent("#toast").showToastAuto("下载中", "lodding", 90); 
+    // var src = e.currentTarget.dataset.src;
+    // src = src.replace('http://e.wsyu.edu.cn/wcm.files/', 'https://ambition.mcdd.top/wcm.files/')
+    // // //   console.log(src)
+    // wx.downloadFile({
+    //   url: src,
+    //   success(res) {
+    //     ////   console.log(res)
+    //     const filePath = res.tempFilePath;
+    //     // //   console.log(filePath)
+    //     wx.hideLoading();
+    //     if (res.statusCode == 200) {
+    //       that.selectComponent("#toast").showToastAuto("正在打开", "lodding", 90); 
+    //       // wx.openDocument({
+    //       //   filePath: filePath,
+    //       //   success: function (res) { }
+    //       // })
+    //     } else {
+    //       that.selectComponent("#toast").showToastAuto("下载失败，服务器于半夜1：30后关闭，请白天再试！", "error", 1); 
+    //     }
+    //   },
+    //   fail(res) {
+    //     that.selectComponent("#toast").showToastAuto("下载失败，服务器于半夜1：30后关闭，请白天再试！", "error", 1); 
+    //   }
+    // })
   },
   switchColoe: function (res: any) {
     var that = this

@@ -6,7 +6,7 @@
   <view class="title-box">
     <view class="item-title">{{item.newsTitle}}</view>
     <view class="type">
-      <view> <text class="item-type">{{item.newsType}}</text></view>
+      <view class="item-typeBox"> <text class="item-type">{{item.newsType}}</text></view>
       <view class="typebox">
         <!--三天之内 -->
         <view class="type-new" wx:if="{{item.newsTime=='new'||item.newsTime=='today'}}">

@@ -355,7 +355,7 @@ height: 28rpx; */
 /* 需要固定新闻的选择 */
 .NewsChoose {
   position: fixed;
-  margin-top: 122rpx;
+  margin-top: 140rpx;
   width: 100%;
   height: 120rpx;
   /* padding: 30rpx 30rpx 0rpx 0rpx; */
