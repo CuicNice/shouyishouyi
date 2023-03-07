@@ -1,39 +1,18 @@
-<svg width="165" height="58" viewBox="0 0 165 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_dd_8735_124187)">
-<rect x="8" y="5" width="149" height="42" rx="10" fill="white"/>
-<rect x="11" y="10" width="17.875" height="16" rx="4" fill="#6290E9"/>
-<rect x="28.875" y="10" width="17.875" height="16" rx="4" fill="#B791DC"/>
-<rect x="46.75" y="10" width="17.875" height="16" rx="4" fill="#ABA6E9"/>
-<rect x="64.625" y="10" width="17.875" height="16" rx="4" fill="#E39ACA"/>
-<rect x="82.5" y="10" width="17.875" height="16" rx="4" fill="#F091A2"/>
-<rect x="100.375" y="10" width="17.875" height="16" rx="4" fill="#FF9470"/>
-<rect x="118.25" y="10" width="17.875" height="16" rx="4" fill="#FDB165"/>
-<rect x="136.125" y="10" width="17.875" height="16" rx="4" fill="#F3D257"/>
-<rect x="11" y="26" width="17.875" height="16" rx="4" fill="#5DD39E"/>
-<rect x="28.875" y="26" width="17.875" height="16" rx="4" fill="#B2DB7C"/>
-<rect x="46.75" y="26" width="17.875" height="16" rx="4" fill="#68D8D6"/>
-<rect x="64.625" y="26" width="17.875" height="16" rx="4" fill="#A9B7BD"/>
-<rect x="82.5" y="26" width="17.875" height="16" rx="4" fill="#59ADDF"/>
-<rect x="100.375" y="26" width="17.875" height="16" rx="4" fill="#7895BC"/>
-<rect x="118.25" y="26" width="17.875" height="16" rx="4" fill="#75AEAE"/>
-<rect x="136.125" y="26" width="17.875" height="16" rx="4" fill="#2DAEC1"/>
-<path d="M146.5 44.3334C148.801 44.3334 150.885 43.4007 152.393 41.8926C153.901 40.3846 154.833 38.3012 154.833 36.0001C154.833 33.6989 153.901 31.6156 152.393 30.1075C150.885 28.5995 148.801 27.6667 146.5 27.6667C144.199 27.6667 142.116 28.5995 140.608 30.1075C139.099 31.6156 138.167 33.6989 138.167 36.0001C138.167 38.3012 139.099 40.3846 140.608 41.8926C142.116 43.4007 144.199 44.3334 146.5 44.3334Z" fill="#20C38C" stroke="#20C38C" stroke-width="1.66667" stroke-linejoin="round"/>
-<path d="M143.167 36L145.667 38.5L150.667 33.5" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<filter id="filter0_dd_8735_124187" x="0.592593" y="0.555556" width="163.815" height="56.8148" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="1.48148"/>
-<feGaussianBlur stdDeviation="0.740741"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_8735_124187"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="2.96296"/>
-<feGaussianBlur stdDeviation="3.7037"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0.196078 0 0 0 0 0.196078 0 0 0 0 0.411765 0 0 0 0.15 0"/>
-<feBlend mode="normal" in2="effect1_dropShadow_8735_124187" result="effect2_dropShadow_8735_124187"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_8735_124187" result="shape"/>
-</filter>
-</defs>
+<svg width="143" height="32" viewBox="0 0 143 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="17.875" height="16" rx="4" fill="#6290E9"/>
+<rect x="17.875" width="17.875" height="16" rx="4" fill="#B791DC"/>
+<rect x="35.75" width="17.875" height="16" rx="4" fill="#ABA6E9"/>
+<rect x="53.625" width="17.875" height="16" rx="4" fill="#E39ACA"/>
+<rect x="71.5" width="17.875" height="16" rx="4" fill="#F091A2"/>
+<rect x="89.375" width="17.875" height="16" rx="4" fill="#FF9470"/>
+<rect x="107.25" width="17.875" height="16" rx="4" fill="#FDB165"/>
+<rect x="125.125" width="17.875" height="16" rx="4" fill="#F3D257"/>
+<rect y="16" width="17.875" height="16" rx="4" fill="#5DD39E"/>
+<rect x="17.875" y="16" width="17.875" height="16" rx="4" fill="#B2DB7C"/>
+<rect x="35.75" y="16" width="17.875" height="16" rx="4" fill="#68D8D6"/>
+<rect x="53.625" y="16" width="17.875" height="16" rx="4" fill="#A9B7BD"/>
+<rect x="71.5" y="16" width="17.875" height="16" rx="4" fill="#59ADDF"/>
+<rect x="89.375" y="16" width="17.875" height="16" rx="4" fill="#7895BC"/>
+<rect x="107.25" y="16" width="17.875" height="16" rx="4" fill="#75AEAE"/>
+<rect x="125.125" y="16" width="17.875" height="16" rx="4" fill="#2DAEC1"/>
 </svg>
