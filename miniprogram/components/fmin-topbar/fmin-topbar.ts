@@ -107,7 +107,8 @@ Component({
       this.setData({
         capsuleBoxHeight,
         statusBarHeight,
-        screenHeight
+        screenHeight,
+        menuButtonWidth
       })
   
     },

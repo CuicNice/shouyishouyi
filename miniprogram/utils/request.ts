@@ -10,7 +10,9 @@ export type Method =
 | 'PUT'
 | 'DELETE'
 | 'TRACE'
-| 'CONNECT'
+| 'CONNECT';
+
+export type  RequestFormType = 'application/json' | 'application/x-www-form-urlencoded' | "multipart/form-data;";
 
 class HttpUtils {
   private static instance: HttpUtils;
@@ -22,22 +24,21 @@ class HttpUtils {
     return HttpUtils.instance;
   }
 
-  public post(url: string, data?: object, formType = 'application/json', headers?: { [key: string]: string; }) {
-    return this.request("POST", url, data, formType, headers);
+  public post(url: string, data?: object, contentType: RequestFormType = 'application/json', headers?: { [key: string]: string; }) {
+    return this.request("POST", url, data, contentType, headers);
   }
-  public get(url: string, data?: object, formType = 'application/json', headers?: { [key: string]: string; }) {
-    return this.request("GET", url, data, formType, headers);
+  public get(url: string, data?: object, contentType: RequestFormType = 'application/json', headers?: { [key: string]: string; }) {
+    return this.request("GET", url, data, contentType, headers);
   }
-  public put(url: string, data?: object, formType = 'application/json', headers?: { [key: string]: string; }) {
-    return this.request("PUT", url, data, formType, headers);
+  public put(url: string, data?: object, contentType: RequestFormType = 'application/json', headers?: { [key: string]: string; }) {
+    return this.request("PUT", url, data, contentType, headers);
   }
-  public detete(url: string, data?: object, formType = 'application/json', headers?: { [key: string]: string; }) {
-    return this.request("DELETE", url, data, formType, headers);
+  public detete(url: string, data?: object, contentType: RequestFormType = 'application/json', headers?: { [key: string]: string; }) {
+    return this.request("DELETE", url, data, contentType, headers);
   }
 
-  private request<T = any>(method: Method, url: string, data?: object, formType?: string, headers?: {[key: string]: string}) {
+  private request<T = any>(method: Method, url: string, data?: object, contentType: RequestFormType = 'application/json', headers?: {[key: string]: string}) {
     return new Promise((resolve: (res: IResult<T>) => void, reject) => {
-      const comtentType = formType ? 'application/json' : 'application/x-www-form-urlencoded';
       // 检查 url
       const realUrl = /(http|https)/.test(url);
       if (!realUrl) {
@@ -50,7 +51,7 @@ class HttpUtils {
         timeout: Consts.HTTP_REQUEST_TIMEOUT,
         dataType: "json",
         header: {
-          "Content-Type": comtentType,
+          "Content-Type": contentType,
           ...headers
         },
         success(res) {
