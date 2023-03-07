@@ -39,6 +39,7 @@ border-radius: 7px;
   text-align: center;
   margin-bottom: 56rpx;
   line-height: 24rpx;
+  overflow: visible !important;
 }
 .ltitle{
   margin-top: 30rpx;
