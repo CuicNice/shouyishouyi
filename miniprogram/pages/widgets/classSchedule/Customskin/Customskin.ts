@@ -25,7 +25,7 @@ Page({
   background2() {
     this.setData({
       white: false,
-      black: true
+      black: true,
     })
   },
 

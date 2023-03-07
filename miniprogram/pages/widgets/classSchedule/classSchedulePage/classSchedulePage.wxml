@@ -8,7 +8,7 @@
 <view class="navigationBar" style="background-color: {{bgc}};" >
   <!--更多选择的icon  -->
   <view class="NewIconBoxLeft" bindtap="showSetting">
-    <image class="NewIconLeft"></image>
+    <image class="{{heise ==0? 'NewIconLeft' : 'NewIconLeftWhite'}}"></image>
   </view>
   <!-- 切换周、日的icon -->
   <view class="switchIconBox">
@@ -54,7 +54,7 @@
   <view class="classXuLine8"></view>
   <view class="classXuLine9"></view>
   <view class="top">
-    <view class="smallBox" style="background-color:  #F8F8F8;">
+    <view class="smallBox">
       <text class="smallBoxtxt">{{schoolPlace}}校区</text>
     </view>
     <!-- 周和日期-->
