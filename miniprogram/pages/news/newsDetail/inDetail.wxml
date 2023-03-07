@@ -43,8 +43,8 @@
         <view class="bottom_text" style="filter:{{light}}">扫码快速关注微信公众号</view>
         <!-- 三个符号 -->
         <view class="bottom_text" style="filter:{{light}}"><text decode="true">&lt;&lt;&lt;</text></view>
-        <view class="bottom_text" style="filter:{{light}}">首义学习资料，首义一手讯息</view>
-        <view class="bottom_text" style="filter:{{light}}">首义学分获取......</view>
+        <view class="bottom_text" style="filter:{{light}}">首义学习资料，首义一手讯</view>
+        <view class="bottom_text" style="filter:{{light}}">息首义学分获取......</view>
       </view>
     </view>
   </view>
@@ -52,9 +52,9 @@
 <!-- 需要添加id才能被selectComponnet选中 -->
 <toast id="toast"></toast>
 <!-- 南南问题单 -->
-<f-dialog showDialog="{{true}}" title="{{dialogTitle}}" stitle="{{dialogContent}}" schoolBuiltSrc="{{schoolBuiltSrc}}">
+<f-dialog showDialog="{{isShowDialog}}" title="{{dialogTitle}}" stitle="{{dialogContent}}" schoolBuiltSrc="{{schoolBuiltSrc}}">
   <view class="btn-box school-btn">
-    <button class="btn" type="primary" class="dialogCertainButon" bindtap="gotoBd">
+    <button class="btn" type="primary" class="dialogCertainButon" bindtap="dialogCertain">
       <view>确定</view>
     </button>
   </view>

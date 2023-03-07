@@ -4,7 +4,8 @@
   "usingComponents": {
     "searchbar":"/pages/widgets/news/searchbar/searchbar",
     "topBar":"/components/fmin-topbar/fmin-topbar",
-    "toast":"/components/fmin-toast/fmin-toast"
+    "toast":"/components/fmin-toast/fmin-toast",
+    "newsListItem":"/pages/widgets/news/newsListComponent/newsListComponent"
   },
     "navigationBarTitleText": "搜索"
 }

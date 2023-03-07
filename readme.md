@@ -57,3 +57,7 @@ typings
 ### 2023/3/2 score inquiry
  1.修改了代码规范。
 
+ ###2023/3/8 News
+ 1、news整个板块的编写（newsList newsSearch newsDetail）
+
+

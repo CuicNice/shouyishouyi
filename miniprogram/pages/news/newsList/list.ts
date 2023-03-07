@@ -1,7 +1,3 @@
-// import {
-//   Network
-// } from "../../../model/network.js";
-// 接口请求部分
 import {
   // 内网新闻
   getInnerNewsListitem,
@@ -12,11 +8,7 @@ import {
 import {
   myStorage
 } from "../../../utils/newStorage.js";
-// 定义请求数据结构
-// {
-//   "currentPage": "1",
-//   "pageSize": "5"
-// }
+
 interface innernewsListItem {
   "currentPage": string,
   "pageSize": string
@@ -63,33 +55,14 @@ Page({
     // 关于新闻数据
     list: [] as any
   },
-  changeClass: function () { //头像旋转
-    let that = this
-    let type = that.data.type;
-    type++
-    if (type > 1) {
-      type = 0;
-    }
-    if (type == 0) {
-      that.setData({
-        isChecked: true,
-        type: type
-      })
-    }
-    if (type == 1) {
-      that.setData({
-        isChecked: false,
-        type: type
-      })
-    }
-  },
   searchEvent: function () { //搜索页面跳转
     wx.navigateTo({
       url: '/pages/search/search',
     })
   },
-  // 初始化内网新闻
-  // 时间计算
+  /**
+   * 初始化内网新闻
+    时间计算*/
   checkDate: function (startTime: any, endTime: any) {
     // 使用阻塞
     //日期格式化
@@ -101,16 +74,13 @@ Page({
     let ms = start_date.getTime() - end_date.getTime() as number;
     //转换成天数     start_date.getTime()
     let day = ms / (1000 * 60 * 60 * 24) as number;
-    //console.log("day = ", day);
     return day;
     //do something
   },
 
   checkWorkDate: function (date: any) {
-    console.log("开始时间", date);
     let startTime = new Date(date); // 开始时间
     let endTime = new Date(); // 现在时间
-    console.log("starttime", startTime, typeof (startTime))
     let usedTime = startTime.getTime() - endTime.getTime(); // 相差的毫秒数
     let days = Math.floor(usedTime / (24 * 3600 * 1000)); // 计算出天数
     let leavel = usedTime % (24 * 3600 * 1000); // 计算天数后剩余的时间
@@ -132,16 +102,14 @@ Page({
   // 校园快讯，inner请求
   async getInnerSchoolNews() {
     let that = this
-    that.selectComponent("#toast").showToastAuto("加载中","lodding",0.5);
+    that.selectComponent("#toast").showToastAuto("加载中", "lodding", 0.5);
     // 获取内网新闻
     let innerPageParams = that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
-    console.log("innerRes222222", innerRes);
     if (innerRes != null) {
       wx.hideLoading();
       // 解析添加数据
       innerList = innerList.concat(innerRes.list)
-      console.log("innnerlIst", innerList)
       that.setData({
         list: innerList, //当天的
       })
@@ -156,14 +124,13 @@ Page({
  */
     // 调用函数时，传入new Date()参数，返回值是日期和时间
     let that = this
-    that.selectComponent("#toast").showToastAuto("加载中","lodding",0.5);
+    that.selectComponent("#toast").showToastAuto("加载中", "lodding", 0.5);
     let outPageParams = that.data.outPageParams
     let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
     if (outRes != null) {
       if (outRes.pageSize != 0) {
         // 循环添加数据
         outerList = outerList.concat(outRes.list)
-        console.log("outerList", outerList)
         that.setData({
           list: outerList, //当天的
         })
@@ -209,7 +176,6 @@ Page({
   },
 
   SoretArr: function (arr: any) {
-    console.log(arr)
     for (let i = 0; i < arr.length - 1; i++) {
       for (let j = 0; j < arr.length - i - 1; j++) {
         if (arr[j].message_id < arr[j + 1].message_id) {
@@ -265,7 +231,9 @@ Page({
     // 初始化新闻列表
     that.initNewsInfo()
   },
-  // 点击新闻搜索跳转新的页面
+  /**
+   *  点击新闻搜索跳转新的页面
+   *  */
   toSearchNews() {
     // 点击跳转
     let that = this
@@ -282,11 +250,8 @@ Page({
    * 
    * 生命周期函数--监听页面显示
    */
-
-
   onShow: function () {
     let that = this;
-    console.log("slslslslslls1")
     let wxRes = myStorage.get('vxUserinfo');
     if (wxRes != null) {
       let avatarUrl = wxRes.avatarUrl;
@@ -328,7 +293,6 @@ Page({
   chooseShcoolNews: function () {
     // 校园新闻选中后字体样式
     let that = this
-    console.log("tapbar", that.data.tapbarCtrl);
     this.setData({
       tapbarCtrl: false,
     })
@@ -337,7 +301,6 @@ Page({
   },
   // 首义快讯
   chooseInNews: function () {
-    console.log("tapbarinNews", this.data.tapbarCtrl);
     this.setData({
       tapbarCtrl: true,
     })
@@ -352,8 +315,7 @@ Page({
   },
 
   chooseMypage: function () {
-    // let lsp = getCurrentPages();
-    // //   console.log(lsp)
+
     wx.navigateTo({
       url: '/pages/myPage/myPage',
     })

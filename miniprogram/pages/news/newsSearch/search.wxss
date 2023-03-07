@@ -1,5 +1,8 @@
 /* pages/search/search.wxss */
+
+
 /* 背景颜色 */
+
 .bg {
   /* Entering for the first time */
   position: absolute;
@@ -10,25 +13,28 @@
   z-index: -999;
 }
 
+
 /* 背景的物体 */
+
 .bgThingsBox {
   position: fixed;
-  left: 127.33px;
-  top: 266px;
+  left: 254.66rpx;
+  top: 532rpx;
   opacity: 0.2;
 }
 
 .bgThings {
   width: 178.74 !important;
-  height: 440.74px !important;
+  height: 881.48rpx !important;
 }
 
-/* 组件部分 */
-.infor-box {
-  width:699rpx;
-  height: 126rpx;
-position: relative;
 
+/* 组件部分 */
+
+.infor-box {
+  width: 699rpx;
+  height: 126rpx;
+  position: relative;
   /* border: 2rpx solid #A3A3A3; */
   /* border-radius: 16rpx; */
   margin-left: 32rpx;
@@ -36,92 +42,102 @@ position: relative;
   margin-top: -4rpx;
   display: flex;
   /* justify-content: flex-start; */
-
   margin-bottom: 20rpx;
-  border-bottom:1rpx solid rgba(147, 149, 151, 0.3);
+  border-bottom: 1rpx solid rgba(147, 149, 151, 0.3);
   padding-bottom: 23rpx;
   /* background-color: #ca9c9c; */
-
 }
 
 .time-box {
   display: block;
-/* justify-items: end; */
+  /* justify-items: end; */
   /* display: flex; */
-justify-content: center;
-/* 设置弹性盒子元素在主轴的对齐方式，这里direction是column只设置垂直居中 */
-align-items: center;
-/* 子元素水平居中显示 */
-flex-direction: column;
-/* 垂直还是水平排列 */
-overflow: cover;
+  justify-content: center;
+  /* 设置弹性盒子元素在主轴的对齐方式，这里direction是column只设置垂直居中 */
+  align-items: center;
+  /* 子元素水平居中显示 */
+  flex-direction: column;
+  /* 垂直还是水平排列 */
+  overflow: cover;
   /* background-color: #000000; */
   position: relative;
-/* width: 126rpx; */
-
-margin-left: 60rpx;
+  /* width: 126rpx; */
+  margin-left: 60rpx;
   right: 0rpx;
-  text-align: center; 
-
+  text-align: center;
   overflow: hidden;
-  transform: translate(0rpx,17rpx);
+  transform: translate(0rpx, 17rpx);
 }
+
+
 /* 未查询到 */
-.unfind{
+
+.unfind {
+  /* Frame 297 */
+  /* Auto layout */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px;
-  gap: 10px;
-  
+  padding: 0rpx;
+  gap: 20rpx;
   position: absolute;
-  width: 140px;
-  height: 178px;
-  left: 117px;
-  top: 326px;
+  width: 280rpx;
+  height: 356rpx;
+  left: 234rpx;
+  top: 642rpx;
 }
-.unfindIconBox{
-  width: 140px;
-  height: 140px;
-  
-  
-  /* Inside auto layout */
-  
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-.unfindSvg{
-  width: 140px;
-  height: 140px;
-}
-.unfindText{
-  /* 暂无成绩信息 */
 
-
-  width: 120px;
-  height: 28px;
-  
+.unfindTxt {
+  width: 240rpx;
+  height: 56rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 40rpx;
+  line-height: 56rpx;
   /* identical to box height */
-  
   text-align: center;
-  
   /* text */
-  
   color: #292945;
-  
-  
   /* Inside auto layout */
-  
   flex: none;
   order: 1;
   flex-grow: 0;
 }
+
+.unfindIconBox {
+  width: 280rpx;
+  height: 280rpx;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.unfindSvg {
+  width: 280rpx;
+  height: 280rpx;
+}
+
+.unfindText {
+  /* 暂无成绩信息 */
+  width: 240rpx;
+  height: 56rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  /* identical to box height */
+  text-align: center;
+  /* text */
+  color: #292945;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
 .year-box {
   display: flex;
   justify-content: center;
@@ -132,7 +148,6 @@ margin-left: 60rpx;
   /* 垂直还是水平排列 */
   overflow: cover;
   text-align: center;
-
 }
 
 .greenTime_day {
@@ -151,7 +166,8 @@ margin-left: 60rpx;
   /* margin-left: 20rpx; */
   margin-top: -14rpx;
 }
-.greyTime_day{
+
+.greyTime_day {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,41 +192,39 @@ margin-left: 60rpx;
   color: #939597;
   line-height: 33rpx;
   margin-bottom: 1rpx;
-  transform: translate(0rpx,-1rpx);
-
-
+  transform: translate(0rpx, -1rpx);
 }
+
+
 /* list列表项 */
-.list-group{
+
+.list-group {
   /*装新闻项 */
-padding: 20px 0px;
+  padding: 25px 0px;
 }
+
 .title-box {
   width: 545rpx;
   height: 145rpx;
   margin-top: 8rpx;
   padding-bottom: 14rpx;
-
 }
 
 .item-title {
-
   width: 515rpx;
- height: 67rpx;
-font-size: 26rpx;
-font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
-color: #000000;
-line-height: 35rpx;
-letter-spacing: 1rpx;
-
+  height: 67rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  line-height: 35rpx;
+  letter-spacing: 1rpx;
   /* 文本内容显示限制 */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 .type {
@@ -218,13 +232,12 @@ letter-spacing: 1rpx;
   flex-direction: flex-start;
   float: left;
   flex-wrap: nowrap;
- /* margin-bottom: 0rpx; */
+  /* margin-bottom: 0rpx; */
   word-wrap: none;
   margin-top: 18rpx;
-
 }
 
-.typebox{
+.typebox {
   display: flex;
   flex-direction: flex-start;
   padding-top: 15rpx;
@@ -238,24 +251,22 @@ letter-spacing: 1rpx;
 
 .type-new {
   display: flex;
-margin-right: 19rpx;
+  margin-right: 19rpx;
   margin-bottom: 6rpx;
   word-wrap: none;
 }
 
 .item-type {
-
   width: 95rpx;
-height: 30rpx;
-font-size: 22rpx;
-font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
-color: #939597;
-line-height: 30rpx;
-letter-spacing: 1rpx;
-margin-right: 41rpx;
+  height: 30rpx;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #939597;
+  line-height: 30rpx;
+  letter-spacing: 1rpx;
+  margin-right: 41rpx;
   word-wrap: none;
-
   margin-bottom: 14rpx;
 }
 
@@ -322,7 +333,9 @@ margin-right: 41rpx;
   animation: newflash 2s infinite ease;
 }
 
+
 /* 搜索列表 */
+
 .search-list {
   margin-left: 38rpx;
   margin-top: 42rpx;
@@ -330,7 +343,9 @@ margin-right: 41rpx;
   justify-content: space-between;
 }
 
+
 /* 左边样式 */
+
 .search-left {
   width: 101rpx;
   height: 100rpx;
@@ -376,7 +391,9 @@ margin-right: 41rpx;
   line-height: 46rpx;
 }
 
+
 /* 右边样式 */
+
 .search-right {
   margin-left: 17rpx;
 }
@@ -396,7 +413,6 @@ margin-right: 41rpx;
   word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 .search-right-bottom {
@@ -435,8 +451,4 @@ margin-right: 41rpx;
 
 .high {
   color: #f00;
-}
-
-.unfind {
-  padding: 30rpx;
 }

@@ -10,49 +10,27 @@
 </view>
 <!-- topbar -->
 <topBar title="{{newsSearchTitle}}" immersion="{{true}}" Threshold="0.2">
-<!-- 搜索框 -->
-<searchbar bindhaveInput="onSearchInputEvent"></searchbar>
-<!-- 未搜索到的情况 -->
-<view wx:if="{{!isHave}}" class="unfind">
-<view class="unfindIconBox">
-<image class="unfindSvg"src="{{unfindSvg}}" mode=""/>
-</view>
-<!-- 未查询到的文字 -->
-<view class="unfindTxt">
-<text>暂无查询结果</text>
-</view>
-</view>
-<!-- 测试用，可删除 -->
-<!-- <searchlist></searchlist> -->
-<wxs src='../.././../wxs/utils.wxs' module='tools'/>         <!-- 引入切割字符串 -->
-<!-- 样式做了替换 -->
-<view class="list-group">
-<!-- 新闻展示 -->
-<navigator  class="infor-box" wx:for="{{list}}" wx:key="index" url="/pages/news/newsDetail/inDetail?newsID={{item.id}}">
-  <view class="title-box">
-    <view class="item-title">{{item.title}}</view>
-    <view class="type">
-      <view> <text class="item-type">{{item.type}}</text></view>
-      <view class="typebox">
-        <!--三天之内 -->
-        <view class="type-new" wx:if="{{item.isNew||item.isToday}}">
-          <image class='new-icon' src="/static/svg/news_new.svg"></image>
-        </view>
-        <!-- 当日的 -->
-        <view class="type-today" wx:if="{{item.isToday}}">
-                  <image class='today-icon' src="/static/svg/news_today.svg"></image>
-        </view>
-      </view>
+  <!-- 搜索框 -->
+  <searchbar bindhaveInput="onSearchInputEvent"></searchbar>
+  <!-- 未搜索到的情况 -->
+  <view wx:if="{{!isHave}}" class="unfind">
+    <view class="unfindIconBox">
+      <image class="unfindSvg" src="{{unfindSvg}}" mode="" />
+    </view>
+    <!-- 未查询到的文字 -->
+    <view class="unfindTxt">
+      <text>暂无查询结果</text>
     </view>
   </view>
-  <view class="time-box">
-    <!-- 当日的日期需要变绿 -->
-    <view class="{{item.newsTime=='today'?'greenTime_day':'greyTime_day'}}">{{tools.substring(item.date,8,10)}}</view>
-    <view class="time-year">{{tools.substring(item.date,0,4)}}.{{tools.substring(item.date,5,7)}}</view>
-  </view>
-</navigator>
-<!-- 需要添加id才能被selectComponnet选中 -->
-<toast id="toast"></toast>
+  <!-- 测试用，可删除 -->
+  <!-- <searchlist></searchlist> -->
+  <wxs src='../.././../wxs/utils.wxs' module='tools' /> <!-- 引入切割字符串 -->
+  <!-- 样式做了替换 -->
+  <view class="list-group">
+    <!-- 新闻展示 -->
+    <newsListItem list="{{list}}"></newsListItem>
+    <!-- 需要添加id才能被selectComponnet选中 -->
+    <toast id="toast"></toast>
 
-</view>
+  </view>
 </topBar>

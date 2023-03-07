@@ -19,16 +19,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dialogTitle:"下载失败，无法查看",
-    dialogContent:"学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~",
-    isShowDialog:false,//组件弹窗(问题单)
+    dialogTitle: "下载失败，无法查看",
+    dialogContent: "学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~",
+    isShowDialog: false,//组件弹窗(问题单)
     newsID: '',
     type: 0,
     bgc: "#FFF",
     light: "",
     t_bg: "",
     newsDetailTitle: "快讯闻",
-    schoolBuiltSrc:"/static/svg/schoolBuilt/zhonglou.svg",
+    schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
     // 南南的微信二维码
     nannanCode: "/static/svg/news/nanan_weixinCode.svg",
     // 南南题目头
@@ -42,18 +42,8 @@ Page({
       "newsId": "",
     } as unknown as newsIDitem,
   },
-  // 基础库不支持IOS
-  // onAddToFavorites(res:any) { //收藏
-  //   console.log("any",res)
-  //   var href = JSON.stringify(this.data.href);
-  //   return {
-  //     //title: '自定义标题',
-  //     query: href = +href,
-  //   }
-  // },
   onShareAppMessage() { //分享
     var newsID = JSON.stringify(this.data.newsID);
-    console.log(newsID)
     const promise = new Promise(resolve => {
       setTimeout(() => {
         resolve({
@@ -82,7 +72,7 @@ Page({
     // 获取新闻的详情
     // 通过ID获取新闻的详情
     // 获取内网新闻
-    that.selectComponent("#toast").showToastAuto("加载中","lodding",0.5);
+    that.selectComponent("#toast").showToastAuto("加载中", "lodding", 0.5);
 
     let { data: res } = await getNewsDetailByID(that.data.newsIDitem) as unknown as IResult<any>;
     if (res != null) {
@@ -116,7 +106,6 @@ Page({
       html = html.replace(/<li><a href="javascript:"(.*?) title="(.*?)">/g, "")
       // 去掉Script部分
       html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
-      console.log("okokok", html)
       WxParse.wxParse("article", "html", html, that, 5)
       html = html.replace(str2, "")
       html = html.replace(str3, "")
@@ -133,45 +122,46 @@ Page({
     var that = this
     that.initNewsDetail(options)
   },
+  /**
+   * 
+   * dialog组件确定按钮点击事件
+   */
+  dialogCertain() {
+    var that = this
+    that.setData({
+      isShowDialog: false//关闭弹窗
+    })
+  },
   wxParseTagDown: function (e: any) {
-    var that=this
-    that.selectComponent("#toast").showToastAuto("正在打开文件", "lodding",1); 
+    var that = this
+    that.selectComponent("#toast").showToastAuto("正在打开文件", "lodding", 1);
     var src = e.currentTarget.dataset.src;
     src = src.replace('http://e.wsyu.edu.cn/wcm.files/', 'https://ambition.mcdd.top/wcm.files/')
-    // //   console.log(src)
     wx.downloadFile({
       url: src,
       success(res) {
-        ////   console.log(res)
         const filePath = res.tempFilePath;
-        // //   console.log(filePath)
         wx.hideLoading();
         if (res.statusCode == 200) {
           wx.openDocument({
             filePath: filePath,
             success: function (res) {
-             },
-             fail: function (e) {
-              console.log("error",e)
+            },
+            fail: function (e) {
             },
           })
         } else {
           that.setData({
-            isShowDialog:true
+            isShowDialog: true
           })
-          that.selectComponent("#toast").showToastAuto("下载失败，服务器于半夜1：30后关闭，请白天再试！", "error", 1); 
         }
       },
-      fail(res) {
-        that.selectComponent("#toast").showToastAuto("下载失败，服务器于半夜1：30后关闭，请白天再试！", "error", 1); 
-      }
     })
   },
   switchColoe: function (res: any) {
     var that = this
     var type = that.data.type
     type++;
-    ////   console.log(type)
     if (type > 2) {
       type = 0;
     }

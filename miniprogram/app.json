@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/news/newsList/list",
+    "pages/news/newsSearch/search",
     "pages/news/newsDetail/inDetail",
     "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
     "pages/login/login",
@@ -9,7 +10,6 @@
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
     "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
-    "pages/widgets/library/librarycom/librarycom",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",

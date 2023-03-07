@@ -1,8 +1,12 @@
 /* pages/inDetail/inDetail.wxss */
+
 @import '../../../wxParse/wxParse.wxss';
+
 /* 背景 */
 
+
 /* 背景颜色 */
+
 .bg {
   /* Entering for the first time */
   position: absolute;
@@ -12,57 +16,67 @@
   background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
   z-index: -999;
 }
+
+
 /* 弹窗组件确定键 */
-.dialogCertainButon{
+
+.dialogCertainButon {
+  margin-top: 60rpx;
   display: flex !important;
-flex-direction: row !important;
-justify-content: center !important;
-align-items: center !important;
-padding: 10px 14px !important;
-gap: 10px !important;
-width: 250px !important;
-height: 42px !important;
-overflow: visible !important;
-/* #20C38C */
-background: #20C38C !important;
-border-radius: 35px !important;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 1;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 20rpx 28rpx !important;
+  gap: 20rpx !important;
+  width: 500rpx !important;
+  height: 84rpx !important;
+  overflow: visible !important;
+  /* #20C38C */
+  background: #20C38C !important;
+  border-radius: 70rpx !important;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 1;
 }
-.top{
+
+.top {
   /* 距离顶部的距离 */
-  margin-top: 58rpx !important;
-  width: 330px !important;
-  height: 59.38px !important;
-overflow: visible;
+  width: 660rpx !important;
+  height: 118.76rpx !important;
+  overflow: visible;
 }
-.topTitleSvg{
-  width: 330px !important;
-  height: 59.38px !important;
+
+.topTitleSvg {
+  width: 660rpx !important;
+  height: 118.76rpx !important;
 }
+
+
 /*  顶部的图片*/
-.topSvg{
+
+.topSvg {
   display: block;
-  width: 330px !important;
-height: 59.38px !important;
-/* 需要优先级高过wxparse里面的优先级 */
-/* overflow:visible !important; */
+  width: 660rpx !important;
+  height: 118.76rpx !important;
+  /* 需要优先级高过wxparse里面的优先级 */
+  /* overflow:visible !important; */
 }
+
+
 /* 背景的物体 */
+
 .bgThingsBox {
   position: fixed;
-  left: 127.33px;
-  top: 266px;
+  left: 254.66rpx;
+  top: 532rpx;
 }
 
 .bgThings {
   width: 178.74 !important;
-  height: 440.74px !important;
+  height: 881.48rpx !important;
 }
+
 .one_page {
   min-height: 100vh;
   background-repeat: no-repeat;
@@ -75,6 +89,7 @@ height: 59.38px !important;
   left: 0;
   overflow: scroll;
 }
+
 .cont {
   display: flex;
   /* 对齐的轴列 */
@@ -82,49 +97,54 @@ height: 59.38px !important;
   align-items: center;
   /* height: 100%; */
   margin: 0 auto;
+  padding: 58rpx 0 86rpx;
 }
+
 .background {
   width: 100%;
   height: 100%;
   margin-left: 85rpx;
   margin-top: 83rpx;
 }
+
 .border {
   /* 由于使用的wxss解析插件，所以文本部分的宽度只能够使用宽度来解决 */
   display: block;
   /* padding内边框，外边框margin:10rpx 12rpx 14rpx 16rpx;  意思上元素块为10rpx，右元素块距离为12rpx ，下元素块距离为14rpx，左元素块距离16rpx */
   width: 622rpx;
-  padding: 10% 29rpx 10% 29rpx;
+  padding: 40rpx 29rpx;
   /*关键点 利用边距撑大容器,使得背景图片也跟着变大变小.而不是给这个元素定个固定的高度.*/
-  margin: 74rpx 0rpx 55rpx 0rpx;
+  margin: 40rpx 0rpx 17.24rpx 0rpx;
   /* 长度根据内容多少决定 */
   /* height: 867rpx; */
   background: rgba(255, 255, 255, 0.7);
   border-radius: 26rpx;
   box-shadow: 0rpx 2rpx 8rpx -2rpx rgba(0, 0, 0, 0.5);
 }
+
+
 /* 虚线 */
-.boderLine{
+
+.boderLine {
   box-sizing: border-box;
-  /* width: 622rpx; */
-/* Auto layout */
-/* margin-left: 29rpx;
-margin-right: 29rpx; */
-display: flex;
-flex-direction: row;
-justify-content: flex-end;
-align-items: center;
-padding: 0px 0px 11px;
-gap: 10px;
-border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
-/* Inside auto layout */
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0rpx 0rpx 22rpx;
+  gap: 20rpx;
+  width: 622rpx;
+  border-bottom: 2rpx dashed rgba(0, 0, 0, 0.4);
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
 }
+
 .title {
-  width: 474rpx;
+  width: 279px;
   /* height: 82rpx; */
   text-align: center;
   font-size: 29rpx;
@@ -133,9 +153,8 @@ flex-grow: 0;
   color: #2E2C2C;
   line-height: 41rpx;
   letter-spacing: 2rpx;
-  margin-left: 66rpx;
+  margin: 0 auto;
 }
-
 
 .title_small {
   text-align: center;
@@ -149,12 +168,23 @@ flex-grow: 0;
   letter-spacing: 1rpx;
   margin-top: 17rpx;
   margin-left: 105rpx;
-
-
 }
 
 .letter {
-  padding: 0rpx 30rpx;
+  /* padding: 0rpx 30rpx; */
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  text-align: justify;
+  text-transform: capitalize;
+  color: rgba(41, 41, 69, 0.8);
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
 }
 
 .object {
@@ -164,9 +194,12 @@ flex-grow: 0;
   color: #2E2C2C;
   line-height: 38rpx;
   letter-spacing: 1rpx;
-
 }
+
 .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 23rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
@@ -193,73 +226,105 @@ flex-grow: 0;
 }
 
 .ad {
-  width: 445rpx;
-  /* height: 25rpx; */
-  font-size: 23rpx;
-  font-family: PingFangSC-Regular, PingFang SC;
+  /* 更多讯息请微信关注：南李路二十二号 */
+  width: 476rpx;
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
   font-weight: 400;
-  color: #2E2C2C;
-  line-height: 32rpx;
-  letter-spacing: 1rpx;
-  text-align: center;
-  margin-top: 62rpx;
-  /* margin-left: 80rpx; */
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /* identical to box height */
+  text-transform: capitalize;
+  margin: 46rpx auto 0;
+  color: #292945;
+  align-self: center;
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  flex-grow: 0;
 }
+
 .bottom {
   display: flex;
-  justify-content: start;
-  /* 使用网格布局的grid */
-  gap: 140rpx;
+  box-sizing: border-box;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0rpx 20rpx 40rpx;
+  gap: 148rpx;
+  width: 680rpx;
+  height: 228rpx;
+  background: #FFFFFF;
+  opacity: 0.8;
+  border-radius: 20rpx;
 }
+
+
 /* 内容题头 */
-.contentTitle{
+
+.contentTitle {
   display: flex;
   align-items: center;
   width: 622rpx;
   height: 28rpx;
+  margin: 14px auto 0px;
 }
-.contentTitleSvg{
+
+.contentTitleSvg {
   /* 内容题头部分 */
   display: flex;
   align-self: center;
 }
-.erweima {
-  width: 176rpx;
-  height: 176rpx;
-}
-.bottom_left {
-  width: 176rpx;
-  height: 176rpx;
-  display: flex;
-  margin-left: 40rpx;
-}
-.bottom_right {
-  width: 380rpx;
-  height: 162rpx;
-  font-size: 23rpx;
-  padding-top: 20rpx;
-  font-family: PingFangSC-Regular, PingFang SC;
-  font-weight: 400;
-  color: #2E2C2C;
-  line-height: 32rrpx;
-  letter-spacing: 1rpx;
 
+.erweima {
+  width: 94px;
+  height: 94px;
+  /* Inside auto layout */
+  overflow: visible !important;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.bottom_left {
+  display: flex;
+  overflow: visible !important;
+}
+
+.bottom_right {
+  width: 310rpx;
+  height: 136rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #292945;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
 
 .bottom_text {
-  font-size: 23rpx;
-  font-family: PingFangSC-Regular, PingFang SC;
+  font-family: 'PingFang SC';
+  font-style: normal;
   font-weight: 400;
-  color: #2E2C2C;
-  line-height: 32rpx;
-  letter-spacing: 1rpx;
-  word-wrap: wrap;
-
+  font-size: 12px;
+  line-height: 34rpx;
+  color: #292945;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
+
 .detail-box {
   width: 554rpx;
   height: 176rpx;
 }
+
 .title2 {
   display: flex;
   align-items: center;
@@ -287,6 +352,5 @@ flex-grow: 0;
   word-wrap: none;
   width: 174rpx;
   height: 2rpx;
-
   background-color: black;
 }

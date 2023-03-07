@@ -1,257 +1,247 @@
 /* components/intview/intview.wxss */
+
+
 /* 引入全局样式 */
 
 .infor-box {
-display: flex;
-justify-content: space-between;
-  height: 126rpx;
-  position: relative;
-  margin: 0 61rpx 20rpx 61rpx;
-  display: flex;
-  gap: 36rpx;
-  /* justify-content: flex-start; */
-  border-bottom: 1px dashed rgba(41, 41, 69, 0.4);
-  padding-bottom: 23rpx;
-  /* background-color: #ca9c9c; */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 174rpx;
+    margin: 0 61rpx 20rpx 61rpx;
+    gap: 36rpx;
+    /* justify-content: flex-start; */
+    border-bottom: 2rpx dashed rgba(41, 41, 69, 0.4);
+    /* background-color: #ca9c9c; */
+    padding: 13px 0px 10px;
 }
 
 .time-box {
-  justify-content: center;
-  /* 设置弹性盒子元素在主轴的对齐方式，这里direction是column只设置垂直居中 */
-  align-items: center;
-  align-self: center;
-  /* 子元素水平居中显示 */
-  flex-direction: column;
-  /* 垂直还是水平排列 */
-  overflow: cover;
-  /* background-color: #000000; */
-  position: relative;
-  /* width: 126rpx; */
-  right: 0rpx;
-  text-align: center;
-  overflow: hidden;
+    display: flex;
+    /* 设置弹性盒子元素在主轴的对齐方式，这里direction是column只设置垂直居中 */
+    align-items: center;
+    align-self: center;
+    height: 145rpx;
+    /* 子元素水平居中显示 */
+    flex-direction: column;
+    /* 垂直还是水平排列 */
+    overflow: cover;
+    text-align: center;
+    overflow: hidden;
 }
 
 .year-box {
-  display: flex;
-  justify-content: center;
-  /* 设置弹性盒子元素在主轴的对齐方式，这里direction是column只设置垂直居中 */
-  align-items: center;
-  /* 子元素水平居中显示 */
-  flex-direction: column;
-  /* 垂直还是水平排列 */
-  overflow: cover;
-  text-align: center;
-
+    display: flex;
+    justify-content: center;
+    /* 设置弹性盒子元素在主轴的对齐方式，这里direction是column只设置垂直居中 */
+    align-items: center;
+    /* 子元素水平居中显示 */
+    flex-direction: column;
+    /* 垂直还是水平排列 */
+    overflow: cover;
+    text-align: center;
 }
 
 .greenTime_day {
-  align-self:center;
-  width: 44px;
-  height: 50px;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 50px;
-  /* Style */
-  color:var(--color-grassGreen);
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+    align-self: center;
+    width: 88rpx;
+    height: 100rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 72rpx;
+    line-height: 100rpx;
+    /* Style */
+    color: var(--color-grassGreen);
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 .greyTime_day {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  overflow: cover;
-  text-align: center;
-  width: 44px;
-  height: 50px;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 50px;
-  /* Style */
-  color: #7F7F8F;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    overflow: cover;
+    text-align: center;
+    width: 88rpx;
+    height: 100rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 72rpx;
+    line-height: 100rpx;
+    /* Style */
+    color: #7F7F8F;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 .time-year {
-  height: 17px;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 17px;
-  /* identical to box height */
-  color: #7F7F8F;
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+    height: 34rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24rpx;
+    line-height: 34rpx;
+    /* identical to box height */
+    color: #7F7F8F;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
 
 .title-box {
-  height: 145rpx;
-  padding-bottom: 14rpx;
+    height: 145rpx;
 }
 
 .item-title {
-  width: 251px;
-  height: 40px;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
-  /* text */
-  color: #292945;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  letter-spacing: 1rpx;
-  /* 文本内容显示限制 */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
+    width: 502rpx;
+    height: 80rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26rpx;
+    line-height: 38rpx;
+    /* text */
+    color: #292945;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    letter-spacing: 1rpx;
+    /* 文本内容显示限制 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /* 保留行数 */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .type {
-  display: flex;
-  flex-direction: flex-start;
-  float: left;
-  flex-wrap: nowrap;
-  /* margin-bottom: 0rpx; */
-  word-wrap: none;
-  margin-top: 18rpx;
+    display: flex;
+    flex-direction: flex-start;
+    float: left;
+    flex-wrap: nowrap;
+    margin-top: 12rpx;
+    word-wrap: none;
+}
 
+.item-typeBox {
+    /* 盒子 */
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+    padding: 2rpx 16rpx;
+    gap: 8rpx;
+    height: 36rpx;
+    background: #FFFFFF;
+    border: 2rpx solid #E3E3E6;
+    border-radius: 100rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
-.item-typeBox{
-  /* 盒子 */
-  box-sizing: border-box;
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 1px 8px;
-gap: 4px;
-height: 18px;
-background: #FFFFFF;
-border: 1px solid #E3E3E6;
-border-radius: 50px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-}
+
 .typebox {
-  display: flex;
-  flex-direction: flex-start;
-  margin-left: 16.08px;
-  padding-top: 15rpx;
+    display: flex;
+    flex-direction: flex-start;
+    margin-left: 16.08px;
+    padding-top: 15rpx;
 }
 
 .type-today {
-  display: flex;
-  margin-bottom: 6rpx;
-  word-wrap: none;
+    display: flex;
+    margin-bottom: 6rpx;
+    word-wrap: none;
 }
 
 .type-new {
-  display: flex;
-  margin-right: 19rpx;
-  margin-bottom: 6rpx;
-  word-wrap: none;
+    display: flex;
+    margin-right: 19rpx;
+    margin-bottom: 6rpx;
+    word-wrap: none;
 }
 
 .item-type {
-  width: 48px;
-  height: 16px;
-  /* body Text/Inter/12/Medium */
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  /* identical to box height, or 133% */
-  color: #20C38C;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+    width: 96rpx;
+    height: 32rpx;
+    /* body Text/Inter/12/Medium */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24rpx;
+    line-height: 32rpx;
+    /* identical to box height, or 133% */
+    color: #20C38C;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 @keyframes newflash {
-  0% {
-    transform-origin: left bottom;
-    transform: rotateZ(0deg);
-  }
-
-  5% {
-    transform-origin: left bottom;
-    transform: rotateZ(-2deg);
-  }
-
-  15% {
-    transform-origin: left bottom;
-    transform: rotateZ(-8deg);
-  }
-
-  50% {
-    transform-origin: left bottom;
-    transform: rotateZ(-10deg);
-  }
-
-  60% {
-    transform-origin: left bottom;
-    transform: rotateZ(-8deg);
-  }
-
-  65% {
-    transform-origin: left bottom;
-    transform: rotateZ(-5deg);
-  }
-
-  70% {
-    transform-origin: left bottom;
-    transform: rotateZ(-3deg);
-  }
-
-  80% {
-    transform-origin: left bottom;
-    transform: rotateZ(-1.5deg);
-  }
-
-  100% {
-    transform-origin: left bottom;
-    transform: rotateZ(0deg);
-  }
+    0% {
+        transform-origin: left bottom;
+        transform: rotateZ(0deg);
+    }
+    5% {
+        transform-origin: left bottom;
+        transform: rotateZ(-2deg);
+    }
+    15% {
+        transform-origin: left bottom;
+        transform: rotateZ(-8deg);
+    }
+    50% {
+        transform-origin: left bottom;
+        transform: rotateZ(-10deg);
+    }
+    60% {
+        transform-origin: left bottom;
+        transform: rotateZ(-8deg);
+    }
+    65% {
+        transform-origin: left bottom;
+        transform: rotateZ(-5deg);
+    }
+    70% {
+        transform-origin: left bottom;
+        transform: rotateZ(-3deg);
+    }
+    80% {
+        transform-origin: left bottom;
+        transform: rotateZ(-1.5deg);
+    }
+    100% {
+        transform-origin: left bottom;
+        transform: rotateZ(0deg);
+    }
 }
 
 .today-icon {
-  width: 74rpx;
-  height: 25rpx;
-  background: #FFFFFF;
-  animation: newflash 2s infinite ease;
-  /* margin-left: 30rpx; */
-  /* 通过new的右边距来确定 */
+    width: 74rpx;
+    height: 25rpx;
+    background: #FFFFFF;
+    animation: newflash 2s infinite ease;
+    /* margin-left: 30rpx; */
+    /* 通过new的右边距来确定 */
 }
 
 .new-icon {
-  width: 49rpx;
-  height: 25rpx;
-  background: #FFFFFF;
-  animation: newflash 2s infinite ease;
+    width: 49rpx;
+    height: 25rpx;
+    background: #FFFFFF;
+    animation: newflash 2s infinite ease;
 }

@@ -25,25 +25,23 @@
     <!-- 标题栏 -->
     <!-- 新闻选择 -->
     <view class="NewsChoose">
-      <view class="NewsButtonBox">
-        <view class="OutOFSchoolNews" bindtap="chooseShcoolNews">
-          <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}">校园快讯</view>
-          <view class="newsiconGrey" wx:if="{{tapbarCtrl}}"></view>
-          <view class="Newstitle" wx:if="{{!tapbarCtrl}}">校园快讯</view>
-          <view class="newsicon" wx:if="{{!tapbarCtrl}}"></view>
-        </view>
-        <view class="InsideSchoolNews" bindtap="chooseInNews">
-          <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}">首义快讯</view>
-          <view class="newsiconGrey" wx:if="{{!tapbarCtrl}}"></view>
-          <view class="Newstitle" wx:if="{{tapbarCtrl}}">首义快讯</view>
-          <view class="newsicon" wx:if="{{tapbarCtrl}}"></view>
-        </view>
+      <view class="OutOFSchoolNews" bindtap="chooseShcoolNews">
+        <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}">校园快讯</view>
+        <view class="newsiconGrey" wx:if="{{tapbarCtrl}}"></view>
+        <view class="Newstitle" wx:if="{{!tapbarCtrl}}">校园快讯</view>
+        <view class="newsicon" wx:if="{{!tapbarCtrl}}"></view>
+      </view>
+      <view class="InsideSchoolNews" bindtap="chooseInNews">
+        <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}">首义快讯</view>
+        <view class="newsiconGrey" wx:if="{{!tapbarCtrl}}"></view>
+        <view class="Newstitle" wx:if="{{tapbarCtrl}}">首义快讯</view>
+        <view class="newsicon" wx:if="{{tapbarCtrl}}"></view>
       </view>
     </view>
   </view>
   <!-- 滑动触发加载更多的新闻scroll -->
   <scroll-view scroll-y style="height:1450rpx;" class="scrollBox" bindscroll="scroll" enhanced="{{true}}" bounces="{{false}}" bindscrolltolower='scrollToMoreList' lower-threshold='150'>
-  <!-- 触底函数 -->
+    <!-- 触底函数 -->
     <!-- list搜索栏部分 -->
     <!-- 范围限定 -->
     <view class="list-group" wx:if="{{tapbarCtrl}}">
