@@ -47,7 +47,7 @@
   height: 45rpx;
 }
 
-.electricTxt {
+.electricTxtd {
   height: 40rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -69,7 +69,7 @@
   color: #292945;
 }
 
-.electricPlace {
+.electricPlaced {
   width: 300rpx;
   height: 40rpx;
   display: flex;

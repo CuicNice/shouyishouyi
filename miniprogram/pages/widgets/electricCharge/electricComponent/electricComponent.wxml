@@ -10,10 +10,10 @@
           <image class="lightingSvg" src="/static/svg/electricComponent/lighting.svg" />
         </view>
         <!-- 标题 -->
-        <view class="electricTxt">
+        <view class="electricTxtd">
           <text class='electricTxt'>寝室电费</text>
         </view>
-        <view class="electricPlace">
+        <view class="electricPlaced">
           <text class='electricPlace'>({{arr.build}}{{arr.room}})</text>
         </view>
       </view>
