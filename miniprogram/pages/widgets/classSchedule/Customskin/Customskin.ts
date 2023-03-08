@@ -177,7 +177,7 @@ Page({
       wx.setStorageSync('widget-classSchedule', value)
     }
     let value = wx.getStorageSync('widget-classSchedule');
-    value.picture = "";
+    value.picture = this.data.picture;
     wx.setStorageSync('widget-classSchedule', value);
     wx.navigateBack()
   },
