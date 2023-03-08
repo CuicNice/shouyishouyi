@@ -104,32 +104,55 @@ Page({
       tc1: false,
       tc2: false,
     })
-    // wx.setStorageSync('isNoread', this.data.popupAppear.popupId)//当不想点击弹窗看，而且不想去看信息时,限制弹一次
-    // this.getList();
+   var bindCache= wx.getStorageSync('bindCache');
+    var popupAppear = this.data.popupAppear as any;
+   /**
+    *  当用户不想点击弹窗看，而且不想去看信息时,存入缓存，方便限制弹一次
+    */
+    bindCache.isNoread = popupAppear.popupId;
+    wx.setStorageSync('bindCache',bindCache);
   },
-  //点击popup弹窗的图片或点击查看详情，进入具体的信息页面
+  /**
+   * 点击popup弹窗的图片或点击查看详情，进入具体的信息页面
+   */
   loginInfo() {
     var bindCache = wx.getStorageSync('bindCache');
       bindCache.isNoread = '';
-    var popupAppear = this.data.popupAppear as any;
+    var popupAppear = this.data.popupAppear as any;    
+    var termTitleTapdetail = false;
+    var tc_custom = false;
+    var tc_system = false;
+    /**
+     * 当此弹窗为不跳转的弹窗时
+     */
     if (popupAppear.popupJumpType == 'noJump') {
       bindCache.noJump = popupAppear.popupId;
-      //  this.setData({ tc1: false, tc2: false, termTitleTapdetail: false, })
-    } else if (popupAppear.popupJumpType !== 'noJump') {
+      termTitleTapdetail= false;
+        tc_custom=false;
+        tc_system= false;
+    }
+    /**
+     * 当弹窗可以点击跳转时
+     */
+    else if (popupAppear.popupJumpType !== 'noJump') {
+      /**
+       * 当弹窗时微信推文时
+       */
       if (popupAppear.popupJumpType == 'link') {
         bindCache.unreadOne = popupAppear;
         bindCache.Url = popupAppear.popupJumpUrl;
         wx.navigateTo({ url: '../message/web-view/webView' });
       }
+      /**
+       * 当弹窗是文本内容时
+       */
       if (popupAppear.popupJumpType == 'article') {
         wx.navigateTo({
           url: '../message/messageInfo/messageInfo?popupId=' + popupAppear.popupId
         })
       }
     }
-    var termTitleTapdetail = false;
-    var tc_custom = false;
-    var tc_system = false;
+
     if (popupAppear.popupId == bindCache.unreadOne.popupId) {
         termTitleTapdetail= false;
         tc_custom=false;
@@ -156,14 +179,14 @@ Page({
     * 存入空数组，以存入其他缓存
     */
   getcache() {
-    var bindCache = {
+    var bindCache = [{
       'unreadOne': {},
       'unread': [],
       'isNoread': '',
-      'Time': this.data.s2,
+      'Time': '',
       'noJump': '',
       'Url': '',
-    }
+    }]
     wx.setStorageSync('bindCache', bindCache)
   },
   /**
