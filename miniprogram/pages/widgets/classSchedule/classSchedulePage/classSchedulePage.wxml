@@ -19,7 +19,9 @@
   <view class="flushIconBox" bindtap="refresh">
     <image class="{{bgc == ''? 'flushIcon' : 'flushIconWhite'}}"></image>
   </view>
-  <image class="ima" src="{{picture}}"></image>
+  
+  <!-- 自定义图片 -->
+  <image class="ima" src="{{picture}}"></image> 
   <!-- 学期选择 -->
   <view class="TitleLeft">
     <view class="WeekOption">
