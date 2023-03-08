@@ -7,9 +7,9 @@ Page({
   data: {
     classScheduleSetTitle: "设置",
     dialogTip: false,
-    automatic: true,
-    WC: '',
-    JY: '',
+    voluntarily: true,
+    wu: false,
+    jia: false,
     checked: false
   },
   /* 
@@ -59,7 +59,11 @@ Page({
   *监听自动识别的选择
   */
   check(e: any) {
-    console.log(e)
+    console.log(e.detail.value[0])
+    var arr=e.detail.value[0]
+    if(arr=="undefined"){
+      
+    }
   },
 
   /**

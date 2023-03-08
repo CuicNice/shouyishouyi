@@ -27,7 +27,7 @@
         <view class="choiceSmallIcon" bindtap="details"></view>
         <checkbox-group bindchange="check">
           <label class="weui-check__label">
-            <checkbox value="aa" checked="{{automatic}}" />
+            <checkbox value="voluntarily" checked="{{voluntarily}}" />
           </label>
         </checkbox-group>
       </view>
@@ -35,7 +35,7 @@
         <view class="choiceSmall-text">武昌校区</view>
         <checkbox-group bindchange="check">
           <label class="weui-check__label">
-            <checkbox value="bb" checked="{{WC}}" />
+            <checkbox value="wu" checked="{{wu}}" />
           </label>
         </checkbox-group>
       </view>
@@ -43,7 +43,7 @@
         <view class="choiceSmall-text">嘉鱼校区</view>
         <checkbox-group bindchange="check">
           <label class="weui-check__label">
-            <checkbox value="cc" checked="{{JY}}" />
+            <checkbox value="jia" checked="{{jia}}" />
           </label>
         </checkbox-group>
       </view>
