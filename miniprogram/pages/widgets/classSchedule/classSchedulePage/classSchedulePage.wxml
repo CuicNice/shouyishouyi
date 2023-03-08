@@ -3,9 +3,9 @@
   <image class="background-box" src="../../../../static/svg/schoolBuilt/{{buliding}}.svg"></image>
 </view>
 <!-- 顶部状态栏div -->
-<view class="status_bar" style='height: {{statusBarHeight}}px; background-color: {{bgc}};'></view>
+<view class="status_bar" style='background-color: {{bgc}};'></view>
 <!-- 导航栏 -->
-<view class="navigationBar" style="background-color: {{bgc}};" >
+<view class="navigationBar" style="background-color: {{bgc}};">
   <!--更多选择的icon  -->
   <view class="NewIconBoxLeft" bindtap="showSetting">
     <image class="{{bgc ==''? 'NewIconLeft' : 'NewIconLeftWhite'}}"></image>
@@ -19,6 +19,7 @@
   <view class="flushIconBox" bindtap="refresh">
     <image class="{{bgc == ''? 'flushIcon' : 'flushIconWhite'}}"></image>
   </view>
+  <image class="ima" src="{{picture}}"></image>
   <!-- 学期选择 -->
   <view class="TitleLeft">
     <view class="WeekOption">
@@ -44,7 +45,7 @@
     </view>
   </scroll-view>
 </view>
-<view class="container" style="background-color: {{bgc}};background-image: url({{picture}});" wx:if="{{weekSchedule}}">
+<view class="container" style="background-color: {{bgc}};" wx:if="{{weekSchedule}}">
   <view class="classXuLine1"></view>
   <view class="classXuLine2"></view>
   <view class="classXuLine3"></view>

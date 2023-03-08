@@ -44,9 +44,12 @@ Page({
       sizeType: ['original'],
       success(res) {
         var tempFilePath = res.tempFiles[0].tempFilePath
+        // console.log(tempFilePath)
         try {
           const FileSystemManager = wx.getFileSystemManager()
+          //FileSystemManager.saveFile 的同步版本 
           var url = FileSystemManager.saveFileSync(tempFilePath, wx.env.USER_DATA_PATH + '/' + tempFilePath.replace("wxfile://", ""));
+          console.log(url)
           that.setData({
             library: false,
             administrativeBuilding: false,
@@ -55,7 +58,6 @@ Page({
             white: true,
             picture: url
           })
-          console.log(that.data.picture)
         } catch {
           wx.showToast({
             title: '设置失败',
