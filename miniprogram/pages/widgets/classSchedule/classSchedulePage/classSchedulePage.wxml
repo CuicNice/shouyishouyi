@@ -1,6 +1,6 @@
 <!-- 背景的学校建筑 -->
 <view class="bg">
-  <image wx:if="{{!isHidden}}" class="background-box" src="../../../../static/svg/schoolBuilt/{{buliding}}.svg"></image>
+  <image class="background-box" src="../../../../static/svg/schoolBuilt/{{buliding}}.svg"></image>
 </view>
 <!-- 顶部状态栏div -->
 <view class="status_bar" style='height: {{statusBarHeight}}px; background-color: {{bgc}};'></view>
