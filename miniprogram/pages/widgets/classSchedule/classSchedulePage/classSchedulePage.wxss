@@ -33,10 +33,8 @@ page {
 
 .bg {
   position: fixed;
-  z-index: -100;
   width: 100%;
   overflow-x: hidden;
-  left: 0;
   width: 100%;
   height: 100%;
 }
@@ -66,7 +64,6 @@ page {
 .btn {
   border-radius: 75rpx;
   height: 84rpx;
-  /* font-size: 14px; */
   font-weight: 500;
   font-size: 32rpx;
   padding: 0;
@@ -2546,7 +2543,7 @@ page {
 }
 
 .classScroll {
-  height: 950rpx;
+  height: 1200rpx;
   /*如果要依真机测试为主，则需要改成1200rpx*/
 }
 

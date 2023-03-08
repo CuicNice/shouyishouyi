@@ -22,7 +22,6 @@ Page({
   *选择是否展示全部课表
   */
   switchChange(e: any) {
-    console.log(e.detail.value)
     this.setData({
       checked: e.detail.value
     })
