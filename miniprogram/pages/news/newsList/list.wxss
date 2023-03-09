@@ -395,12 +395,15 @@ height: 28rpx; */
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  width: 132rpx !important;
+  /* width: 132rpx !important; */
   gap: 4rpx;
   height: 70rpx;
   text-align: center;
 }
-
+/* 新闻内容区 */
+.list-group{
+  padding-bottom: 300rpx;
+}
 .InsideSchoolNews {
   display: flex;
   align-items: center;

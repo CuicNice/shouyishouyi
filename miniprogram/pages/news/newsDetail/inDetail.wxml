@@ -35,7 +35,7 @@
     </view>
     <!-- 底部的背景 -->
     <view class="bottom">
-      <view class="bottom_left" bindtap="switchColoe">
+      <view class="bottom_left">
         <!-- 南南的微信二维码 -->
         <image class="erweima" src="{{nannanCode}}"></image>
       </view>
