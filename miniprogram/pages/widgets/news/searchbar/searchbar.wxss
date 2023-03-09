@@ -1,5 +1,5 @@
 /* 搜索栏 */
-.search-group{
+.search-group {
   /* searchbar */
   margin-top: 20px;
   box-sizing: border-box;
@@ -17,7 +17,8 @@
   border: 1px solid #20C38C;
   border-radius: 82px;
 }
-.search-input{
+
+.search-input {
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
@@ -28,6 +29,26 @@
   /* text */
 
 }
+
+/* 输入框默认样式 */
+.searchHolder {
+  /* 输入你要搜索的图书 */
+  height: 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
 /* 搜索图标样式 */
 /* icon图标样式 */
 
@@ -70,27 +91,28 @@
   order: 1;
   flex-grow: 0;
 }
-.searchHolder{
-  
-width: 140px;
-height: 20px;
 
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 20px;
-/* identical to box height */
+.searchHolder {
 
-text-transform: capitalize;
+  width: 140px;
+  height: 20px;
 
-color: #000000;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
 
-opacity: 0.6;
+  text-transform: capitalize;
 
-/* Inside auto layout */
+  color: #000000;
 
-flex: none;
-order: 0;
-flex-grow: 0;
+  opacity: 0.6;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }

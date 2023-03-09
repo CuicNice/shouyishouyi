@@ -293,8 +293,8 @@ Page({
   chooseShcoolNews: function () {
     // 校园新闻选中后字体样式
     let that = this
-    this.setData({
-      tapbarCtrl: false,
+    that.setData({
+      tapbarCtrl: true,
     })
     // 并且切换请求数据
     this.initNewsInfo()
@@ -302,7 +302,7 @@ Page({
   // 首义快讯
   chooseInNews: function () {
     this.setData({
-      tapbarCtrl: true,
+      tapbarCtrl: false,
     })
     // 并且切换请求数据
     this.initNewsInfo()

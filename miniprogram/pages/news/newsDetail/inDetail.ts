@@ -30,7 +30,7 @@ Page({
     newsDetailTitle: "快讯闻",
     schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
     // 南南的微信二维码
-    nannanCode: "/static/svg/news/nanan_weixinCode.svg",
+    nannanCode: "/static/svg/news/nanan_weixinCode.png",
     // 南南题目头
     contentTitle: "/static/svg/news/contentTitle.svg",
     topTitleSvgUrl: "/static/svg/news/topTitle.svg",
