@@ -30,7 +30,6 @@ Page({
     let tempObj = [{}, {}, {}];
     const res = arr.reduce((returnVal: any, currentVal: any) => {
       // 观察同一属性的值，并放入对象中，若对象中存在该值，则表明重复不进行处理，若对象中不存在该值，表示新值，需要存进去
-      console.log(tempObj)  // 所有存在的值放入这个对象当中
       if (!tempObj[currentVal.name]) {
         tempObj[currentVal.name] = true; // 若值为true，表示这个值存在，不会走里面的push方法
         // 添加元素
@@ -57,7 +56,6 @@ Page({
   //提交信息
   submitError(error: String) {
     // if(err)
-    console.log("error", error)
     let str = '你好！我目前有：' + error + '等BUGS,请尽快解决';
     wx.setClipboardData({
       data: str,
@@ -87,7 +85,6 @@ Page({
     }, 500)
   },
   returnPage() {
-    console.log("chufa1")
     wx.navigateTo({
       url: '/pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage',
     })
@@ -119,7 +116,6 @@ Page({
   isDuplicated(countDownList: any, goalName: string) {
     for (let countDownListItemID = 0; countDownListItemID < countDownList.length; countDownListItemID++) {
       let countDownListItem = countDownList[countDownListItemID]
-      console.log("重复的", countDownListItem["countDownName"])
       if (countDownListItem["countDownName"] !== goalName) {
         // 不重复的情况
         // 直接set
@@ -167,13 +163,11 @@ Page({
         }
         // 删除重复的数据
         // countDownList = this.duplicatedArray(countDownList)
-        console.log("concocococooc", countDownList);
         wx.setStorageSync("widgets-userCountDown",
           // 本地数据去重
           countDownList
         )
         try {
-          console.log("0o0o0o", wx.getStorageSync('widgets-userCountDown'))
           that.selectComponent("#toast").showToastAuto("设置成功", "success", 1);
           that.gotoBd()
         } catch (error) {
@@ -220,7 +214,6 @@ Page({
     let day = endDateObj.getDate();
     let dayStr = day > 10 ? day : '0' + day;
     let endDateStr = endDateObj.getFullYear() + '-' + monthStr + '-' + dayStr;
-    console.log("endDateStr", endDateStr)
     return endDateStr
 
   },

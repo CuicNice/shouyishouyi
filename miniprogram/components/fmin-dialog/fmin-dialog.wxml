@@ -2,8 +2,11 @@
   <view class="binDing-box binDing-box-{{type}}">
     <image wx:if="{{type == 'normal'}}" class='bg-built' src="{{schoolBuiltSrc}}"></image>
     <view class="binDing binDing-{{type}}">
+    <view class="dialogDes">
       <view class="bd-text school-text">{{title}}</view>
       <view class="bd-stext">{{stitle}}</view>
+    </view>
+
       <view style="width: 100%;">
         <slot></slot>
       </view>           

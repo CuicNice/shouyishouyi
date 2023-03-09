@@ -89,7 +89,6 @@ Component({
         while (cdlist.length < 3) {
           cdlist.push(res.pop())
         }
-        console.log("cdlist",cdlist)
         let cdlist3 = [];
         // 变成数字
         // 处理时间列表
@@ -122,7 +121,6 @@ Component({
        */
       // 判断这个数据本地是不是存在
       // 获取当前ID
-      console.log("guany1e", e.currentTarget.dataset.id)
       // id存起来
       let dateItemId = e.currentTarget.dataset.id;
       // 判断这个值本地有没有
@@ -133,10 +131,7 @@ Component({
       try {
         let localCountDownDataDic = wx.getStorageSync('widgets-userCountDown')
         // 需要做判空
-        console.log("localCountDownDataDic.length", localCountDownDataDic.length);
-
         if (localCountDownDataDic.length != 0) {
-          console.log("loca", localCountDownDataDic)
           // 循环遍历做判断
           for (let dicItemID in localCountDownDataDic) {
             let item = localCountDownDataDic[dicItemID]
