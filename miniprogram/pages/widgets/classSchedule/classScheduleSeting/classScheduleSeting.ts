@@ -10,7 +10,7 @@ Page({
     voluntarily: true,
     wu: false,
     jia: false,
-    checked: false
+    checked: false,
   },
   /* 
   *关闭弹窗
@@ -59,11 +59,46 @@ Page({
   *监听自动识别的选择
   */
   check(e: any) {
-    console.log(e.detail.value[0])
-    var arr=e.detail.value[0]
-    if(arr=="undefined"){
-      
-    }
+    let voluntarily;
+    let jia;
+    let wu;
+    var arr=e.detail.value[0];
+    if(arr==undefined){
+        voluntarily=this.data.voluntarily;
+        jia=this.data.jia;
+        wu=this.data.wu;
+    };
+    if(arr=='voluntarily'){
+        voluntarily=true;
+        jia=false;
+        wu=false;
+    };
+    if(arr=='jia'){
+        voluntarily=false;
+        jia=true;
+        wu=false;
+    };
+    if(arr=='wu'){
+        voluntarily=false;
+        jia=false;
+        wu=true;
+    };
+    this.setData({
+      voluntarily:voluntarily,
+      jia:jia,
+      wu:wu
+    });
+   let value= wx.getStorageSync('widget-classSchedule')
+   if(this.data.voluntarily==true){
+    value.place='';
+   };
+   if(this.data.jia==true){
+    value.place='嘉鱼';
+   };
+   if(this.data.wu==true){
+    value.place='武昌';
+   };
+   wx.setStorageSync('widget-classSchedule',value);
   },
 
   /**
@@ -77,9 +112,26 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    var value=wx.getStorageSync('widget-classSchedule');
+    var wu=false;
+    var jia=false;
+    var voluntarily=false;
+    if(value.place!=''){
+      if(value.place=='武昌'){
+        wu=true;
+      };
+      if(value.place=='嘉鱼'){
+        jia=true;
+      };
+    }else{
+      voluntarily=true;
+    };
     this.setData({
-      checked: !wx.getStorageSync('widget-classSchedule').ifshowAllclass
-    })
+      checked: !value.ifshowAllclass,
+      wu:wu,
+      jia:jia,
+      voluntarily:voluntarily
+    });
   },
 
   /**

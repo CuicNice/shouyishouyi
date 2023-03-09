@@ -15,41 +15,48 @@ Page({
     picture: ''
   },
 
+  /**
+   * 点击简约白
+   */
   background1() {
     this.setData({
       white: true,
       black: false,
       picture: ''
-    })
+    });
   },
 
+  /**
+   * 点击暗夜黑
+   */
   background2() {
     this.setData({
       white: false,
       black: true,
       picture: ''
-    })
+    });
   },
 
+  /**
+   * 点击自定义
+   */
   background3() {
-    var that = this
+    var that = this;
     this.setData({
       white: false,
       black: false
-    })
+    });
+    //从相册获取照片
     wx.chooseMedia({
       count: 1,
       mediaType: ['image'],
       sourceType: ['album'],
       sizeType: ['original'],
       success(res) {
-        var tempFilePath = res.tempFiles[0].tempFilePath
-        // console.log(tempFilePath)
+        var tempFilePath = res.tempFiles[0].tempFilePath;
         try {
-          const FileSystemManager = wx.getFileSystemManager()
-          //FileSystemManager.saveFile 的同步版本 
+          const FileSystemManager = wx.getFileSystemManager();
           var url = FileSystemManager.saveFileSync(tempFilePath, wx.env.USER_DATA_PATH + '/' + tempFilePath.replace("wxfile://", ""));
-          console.log(url)
           that.setData({
             library: false,
             administrativeBuilding: false,
@@ -57,135 +64,162 @@ Page({
             black: false,
             white: true,
             picture: url
-          })
+          });
         } catch {
           wx.showToast({
             title: '设置失败',
             icon: 'error',
             duration: 2000
-          })
+          });
         }
         if (that.data.picture != "") {
-          let value = wx.getStorageSync('widget-classSchedule')
+          let value = wx.getStorageSync('widget-classSchedule');
           value.picture = that.data.picture;
           value.background = "";
           value.buliding = "";
-          wx.setStorageSync('widget-classSchedule', value)
-        }
+          wx.setStorageSync('widget-classSchedule', value);
+        };
+        //返回课表页面
         wx.navigateBack({
           delta: 2
-        })
+        });
       },
       fail() {
         wx.showToast({
           title: '上传失败',
           icon: 'error',
           duration: 2000
-        })
+        });
       }
-    })
+    });
   },
 
+  /**
+   * 点击首义钟楼
+   */
   bellTower() {
-    let bellTower = true
+    let bellTower = true;
     if (this.data.picture != "") {
-      bellTower = false
-    }
+      bellTower = false;
+    };
     this.setData({
       bellTower: bellTower,
       administrativeBuilding: false,
       library: false
-    })
+    });
   },
 
+  /**
+   * 点击嘉鱼行政楼
+   */
   administrativeBuilding() {
-    let administrativeBuilding = true
+    let administrativeBuilding = true;
     if (this.data.picture != "") {
       administrativeBuilding = false
-    }
+    };
     this.setData({
       bellTower: false,
       administrativeBuilding: administrativeBuilding,
       library: false
-    })
+    });
   },
 
+  /**
+   * 点击图书馆总馆
+   */
   library() {
-    let library = true
+    let library = true;
     if (this.data.picture != "") {
-      library = false
-    }
+      library = false;
+    };
     this.setData({
       bellTower: false,
       administrativeBuilding: false,
       library: library
-    })
+    });
   },
 
+  /**
+   * 点击深色色系卡片
+   */
   darking() {
     this.setData({
       darking: true,
       lighting: false
-    })
+    });
   },
 
+  /**
+   * 点击浅色色系卡片
+   */
   lighting() {
     this.setData({
       darking: false,
       lighting: true
-    })
+    });
   },
 
+  /**
+   * 点击取消按钮
+   */
   cancel() {
-    wx.navigateBack()
+    wx.navigateBack();
   },
 
+  /**
+   * 点击确定将更改的数据存至缓存
+   */
   login() {
     if (this.data.white == true) {
-      let value = wx.getStorageSync('widget-classSchedule')
-      value.background = ""
-      value.picture = ""
-      wx.setStorageSync('widget-classSchedule', value)
-    }
+      let value = wx.getStorageSync('widget-classSchedule');
+      value.background = "";
+      value.picture = "";
+      wx.setStorageSync('widget-classSchedule', value);
+    };
     if (this.data.black == true) {
-      let value = wx.getStorageSync('widget-classSchedule')
-      value.background = "#333333",
-        value.picture = ""
-      wx.setStorageSync('widget-classSchedule', value)
-    }
+      let value = wx.getStorageSync('widget-classSchedule');
+      value.background = "#333333";
+      value.picture = "";
+      wx.setStorageSync('widget-classSchedule', value);
+    };
     if (this.data.bellTower == true) {
-      let value = wx.getStorageSync('widget-classSchedule')
-      value.buliding = "zhonglou"
-      wx.setStorageSync('widget-classSchedule', value)
-    }
+      let value = wx.getStorageSync('widget-classSchedule');
+      value.buliding = "zhonglou";
+      wx.setStorageSync('widget-classSchedule', value);
+    };
     if (this.data.administrativeBuilding == true) {
-      let value = wx.getStorageSync('widget-classSchedule')
-      value.buliding = "jiayuxingzhenluo"
-      wx.setStorageSync('widget-classSchedule', value)
-    }
+      let value = wx.getStorageSync('widget-classSchedule');
+      value.buliding = "jiayuxingzhenluo";
+      wx.setStorageSync('widget-classSchedule', value);
+    };
     if (this.data.library == true) {
-      let value = wx.getStorageSync('widget-classSchedule')
-      value.buliding = "zhongqutushuguan"
-      wx.setStorageSync('widget-classSchedule', value)
-    }
+      let value = wx.getStorageSync('widget-classSchedule');
+      value.buliding = "zhongqutushuguan";
+      wx.setStorageSync('widget-classSchedule', value);
+    };
     if (this.data.lighting == true) {
-      let value = wx.getStorageSync('widget-classSchedule')
-      value.dark = false
-      wx.setStorageSync('widget-classSchedule', value)
-    }
+      let value = wx.getStorageSync('widget-classSchedule');
+      value.dark = false;
+      wx.setStorageSync('widget-classSchedule', value);
+    };
     if (this.data.darking == true) {
-      let value = wx.getStorageSync('widget-classSchedule')
-      value.dark = true
-      wx.setStorageSync('widget-classSchedule', value)
+      let value = wx.getStorageSync('widget-classSchedule');
+      value.dark = true;
+      wx.setStorageSync('widget-classSchedule', value);
     }
     let value = wx.getStorageSync('widget-classSchedule');
     value.picture = this.data.picture;
     wx.setStorageSync('widget-classSchedule', value);
-    wx.navigateBack()
+    if (this.data.picture == "" && this.data.bellTower == false && this.data.administrativeBuilding == false && this.data.library == false) {
+      let value = wx.getStorageSync('widget-classSchedule');
+      value.buliding = "zhonglou";
+      wx.setStorageSync('widget-classSchedule', value);
+    };
+    wx.navigateBack();
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面加载，读取缓存
    */
   onLoad() {
     let arr = wx.getStorageSync('widget-classSchedule');
@@ -196,7 +230,7 @@ Page({
     let bellTower;
     let black;
     let white;
-    let picture;
+    let picture = '';
     if (arr.dark == false) {
       lighting = true;
       darking = false;
@@ -235,7 +269,7 @@ Page({
       bellTower = false;
       administrativeBuilding = false;
       library = false;
-      picture=arr.picture
+      picture = arr.picture
     };
     if (arr.background == '#333333') {
       white = false;
@@ -249,8 +283,8 @@ Page({
       bellTower: bellTower,
       black: black,
       white: white,
-      picture:picture
-    })
+      picture: picture
+    });
   },
 
   /**

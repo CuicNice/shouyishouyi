@@ -292,7 +292,7 @@ Page({
           arr.classSchedule = classSchedule;
           wx.setStorageSync('widget-classSchedule', arr);
         } else {
-          let value = { classSchedule: classSchedule, ifshowAllclass: false, background:'',buliding:'zhonglou',dark:true,picture:''};
+          let value = { classSchedule: classSchedule, ifshowAllclass: false, background:'',buliding:'zhonglou',dark:true,picture:'',place:''};
           wx.setStorageSync('widget-classSchedule', value);
         }
       })
@@ -710,12 +710,43 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let schoolPlace;
+    let time;
+    if(wx.getStorageSync('widget-classSchedule').place==''){
+      if(this.data.semester.slice(1,2)=="一"){
+        schoolPlace="嘉鱼";
+        time=this.data.timeJia;
+      };
+      if(this.data.semester.slice(1,2)=="二"){
+        schoolPlace="武昌";
+        time=this.data.timeWu;
+      };
+      if(this.data.semester.slice(1,2)=="三"){
+        schoolPlace="武昌";
+        time=this.data.timeWu;
+      };
+      if(this.data.semester.slice(1,2)=="四"){
+        schoolPlace="武昌";
+        time=this.data.timeWu;
+      };
+    }else{
+      if(wx.getStorageSync('widget-classSchedule').place=="嘉鱼"){
+        time=this.data.timeJia;
+        schoolPlace="嘉鱼";
+      };
+      if(wx.getStorageSync('widget-classSchedule').place=="武昌"){
+        time=this.data.timeWu;
+        schoolPlace="武昌";
+      };
+    };
     this.setData({
       showAll: wx.getStorageSync('widget-classSchedule').ifshowAllclass,
       dark:wx.getStorageSync('widget-classSchedule').dark,
       buliding:wx.getStorageSync('widget-classSchedule').buliding,
       bgc:wx.getStorageSync('widget-classSchedule').background,
-      picture:wx.getStorageSync('widget-classSchedule').picture
+      picture:wx.getStorageSync('widget-classSchedule').picture,
+      schoolPlace:schoolPlace,
+      time:time
     });
   },
 
