@@ -31,6 +31,7 @@
           </label>
         </checkbox-group>
       </view>
+      <view class="timeLine"></view>
       <view class="choiceSmall">
         <view class="choiceSmall-text">武昌校区</view>
         <checkbox-group bindchange="check">
@@ -39,6 +40,7 @@
           </label>
         </checkbox-group>
       </view>
+      <view class="timeLine"></view>
       <view class="choiceSmall">
         <view class="choiceSmall-text">嘉鱼校区</view>
         <checkbox-group bindchange="check">
@@ -47,6 +49,7 @@
           </label>
         </checkbox-group>
       </view>
+      <view class="timeLine"></view>
     </view>
     <view class="Option-two">
     <button class="contactButton" open-type="contact">

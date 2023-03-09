@@ -1737,9 +1737,9 @@ page {
 
 .classXuLine1 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 228rpx;
-  width: 684rpx;
+  width: 670rpx;
   height: 2rpx;
   border-bottom: 2rpx dashed #EAEAEC;
   z-index: -10;
@@ -1747,7 +1747,7 @@ page {
 
 .classXuLine2 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 333rpx;
   width: 684rpx;
   height: 2rpx;
@@ -1757,7 +1757,7 @@ page {
 
 .classXuLine3 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 455rpx;
   width: 684rpx;
   height: 2rpx;
@@ -1767,7 +1767,7 @@ page {
 
 .classXuLine4 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 567rpx;
   width: 684rpx;
   height: 2rpx;
@@ -1777,7 +1777,7 @@ page {
 
 .classXuLine5 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 685rpx;
   width: 684rpx;
   height: 2rpx;
@@ -1787,7 +1787,7 @@ page {
 
 .classXuLine6 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 803rpx;
   width: 684rpx;
   height: 2rpx;
@@ -1797,7 +1797,7 @@ page {
 
 .classXuLine7 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 926rpx;
   width: 684rpx;
   height: 2rpx;
@@ -1807,7 +1807,7 @@ page {
 
 .classXuLine8 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 1034rpx;
   width: 684rpx;
   height: 2rpx;
@@ -1817,7 +1817,7 @@ page {
 
 .classXuLine9 {
   position: relative;
-  left: 66rpx;
+  left: 78rpx;
   top: 1160rpx;
   width: 684rpx;
   height: 2rpx;
