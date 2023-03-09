@@ -161,7 +161,7 @@
           <view class="timeTableLine"></view>
         </view>
         <!--课表-->
-        <block wx:for="{{weeksStatic}}" wx:key="index">
+        <block wx:for="{{weekTime}}" wx:key="index">
           <!-- 本周 -->
           <view wx:if="{{dark}}">
             <view class="table-day" wx:if="{{!showAll}}">
