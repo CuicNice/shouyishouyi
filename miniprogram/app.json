@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
+"pages/myWidgets/settingWidgets/settingWidgets",
+      "pages/index/index",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/electricCharge/electricPage/electricPage",
     "pages/widgets/electricCharge/electricComponent/electricComponent",
