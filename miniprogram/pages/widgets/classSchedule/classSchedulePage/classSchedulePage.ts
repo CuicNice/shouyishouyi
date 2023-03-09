@@ -287,14 +287,9 @@ Page({
         classSchedule: classSchedule,
         nowWeekData: nowWeekData
       }, function () {
-        if (wx.getStorageSync('widget-classSchedule')) {
           let arr = wx.getStorageSync('widget-classSchedule');
           arr.classSchedule = classSchedule;
           wx.setStorageSync('widget-classSchedule', arr);
-        } else {
-          let value = { classSchedule: classSchedule, ifshowAllclass: false, background:'',buliding:'zhonglou',dark:true,picture:'',place:''};
-          wx.setStorageSync('widget-classSchedule', value);
-        }
       })
     }
   },
@@ -571,6 +566,7 @@ Page({
       weekSchedule: !this.data.weekSchedule
     });
   },
+
   /* 
   *展开学期选择弹窗
   */
@@ -600,9 +596,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    /**
-    * 获取当前年月
-    */
+    //给用户添加缓存
+    let value = { classSchedule: '', ifshowAllclass: false, background:'',buliding:'zhonglou',dark:true,picture:'',place:''};
+    wx.setStorageSync('widget-classSchedule', value);
+    //获取当前年月
     var timestamp = Date.parse(new Date() as unknown as string);
     var date = new Date(timestamp);
     this.setData({
@@ -611,7 +608,7 @@ Page({
       //获取月份
       M: (date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string,
       //获取当日日期
-      D: date.getDate() < 10 ? (date.getDate()) as unknown as string : date.getDate() as unknown as string
+      D: date.getDate() < 10 ? (date.getDate()) as unknown as string : date.getDate() as unknown as string,
     });
     //获取当前周数的预处理定义变量进行储存数据
     var time = this.data.Y + '/' + this.data.M + '/' + this.data.D;
@@ -639,6 +636,7 @@ Page({
       schoolTerm = 12;
     };
     this.setData({ I: schoolTerm, Y: year as unknown as string })
+    try{
     if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
       start = this.data.Y + "/8/28";
       schoolTime = '大四上';
@@ -687,7 +685,7 @@ Page({
       times = this.data.timeJia;
       place = "嘉鱼";
     };
-    this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start });
+    this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start });}catch{};
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
     if (wx.getStorageSync('widget-classSchedule').classSchedule) {
@@ -713,6 +711,7 @@ Page({
     let schoolPlace;
     let time;
     if(wx.getStorageSync('widget-classSchedule').place==''){
+      try{
       if(this.data.semester.slice(1,2)=="一"){
         schoolPlace="嘉鱼";
         time=this.data.timeJia;
@@ -728,7 +727,7 @@ Page({
       if(this.data.semester.slice(1,2)=="四"){
         schoolPlace="武昌";
         time=this.data.timeWu;
-      };
+      };}catch{}
     }else{
       if(wx.getStorageSync('widget-classSchedule').place=="嘉鱼"){
         time=this.data.timeJia;
