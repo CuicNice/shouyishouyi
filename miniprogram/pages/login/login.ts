@@ -1,6 +1,9 @@
 
 import { getPopup } from '../../api/popupApi';
+import { listPopup } from '../../api/popupApi'
 export interface popupeItem {
+  currentPage: String,
+  pageSize: String,
 }
 // pages/login/login.ts
 Page({
@@ -14,9 +17,11 @@ Page({
     s2: '',
     s3: '',
 
-
+    tc_custom: false,//自定义弹窗
+    tc_system: false,//系统默认弹窗
+    termTitleTapdetail: false,//弹窗蒙版显示
     showDialog: true,
-    currentPage: 1,//默认初始第一页数据
+    currentPage: '1',//默认初始第一页数据
     popupAppear: '',
     ima: '',
     showBindDialog: false, // 显示绑定弹窗
@@ -25,7 +30,7 @@ Page({
     mm: '',
     x: 0,//x为0时，爪子图案为黑色
     messageList: [],
-    pageSize: 10,
+    pageSize: '5',
   },
   // getList() {
   //   wx.request({
@@ -101,24 +106,24 @@ Page({
   closePhoto() {
     this.setData({
       termTitleTapdetail: false,
-      tc1: false,
-      tc2: false,
+      tc_custom: false,
+      tc_system: false,
     })
-   var bindCache= wx.getStorageSync('bindCache');
+    var bindCache = wx.getStorageSync('bindCache');
     var popupAppear = this.data.popupAppear as any;
-   /**
-    *  当用户不想点击弹窗看，而且不想去看信息时,存入缓存，方便限制弹一次
-    */
+    /**
+     *  当用户不想点击弹窗看，而且不想去看信息时,存入缓存，方便限制弹一次
+     */
     bindCache.isNoread = popupAppear.popupId;
-    wx.setStorageSync('bindCache',bindCache);
+    wx.setStorageSync('bindCache', bindCache);
   },
   /**
    * 点击popup弹窗的图片或点击查看详情，进入具体的信息页面
    */
   loginInfo() {
     var bindCache = wx.getStorageSync('bindCache');
-      bindCache.isNoread = '';
-    var popupAppear = this.data.popupAppear as any;    
+    bindCache.isNoread = '';
+    var popupAppear = this.data.popupAppear as any;
     var termTitleTapdetail = false;
     var tc_custom = false;
     var tc_system = false;
@@ -127,9 +132,9 @@ Page({
      */
     if (popupAppear.popupJumpType == 'noJump') {
       bindCache.noJump = popupAppear.popupId;
-      termTitleTapdetail= false;
-        tc_custom=false;
-        tc_system= false;
+      termTitleTapdetail = false;
+      tc_custom = false;
+      tc_system = false;
     }
     /**
      * 当弹窗可以点击跳转时
@@ -154,26 +159,26 @@ Page({
     }
 
     if (popupAppear.popupId == bindCache.unreadOne.popupId) {
-        termTitleTapdetail= false;
-        tc_custom=false;
-        tc_system= false;
+      termTitleTapdetail = false;
+      tc_custom = false;
+      tc_system = false;
     }
     if (popupAppear.popupId == bindCache.noJump.popupId) {
-      termTitleTapdetail= false;
-        tc_custom=false;
-        tc_system= false;
+      termTitleTapdetail = false;
+      tc_custom = false;
+      tc_system = false;
     }
     if (popupAppear.popupId == bindCache.isNoread) {
-      termTitleTapdetail= false;
-      tc_custom=false;
-      tc_system= false;
+      termTitleTapdetail = false;
+      tc_custom = false;
+      tc_system = false;
     }
     this.setData({
-       termTitleTapdetail:termTitleTapdetail,
-        tc_custom:tc_custom,
-        tc_system:tc_system,
+      termTitleTapdetail: termTitleTapdetail,
+      tc_custom: tc_custom,
+      tc_system: tc_system,
     });
-    wx.setStorageSync('bindCache',bindCache);
+    wx.setStorageSync('bindCache', bindCache);
   },
   /** 
     * 存入空数组，以存入其他缓存
@@ -196,7 +201,11 @@ Page({
     /**
      * 获取本地缓存，判断是否绑定数据
      */
-    var bindData = { //bindData为空，因为请求这个接口不需要任何数据
+    var currentPage = this.data.currentPage;
+    var pageSize = this.data.pageSize;
+    var bindData = {
+      currentPage: currentPage,
+      pageSize: pageSize,
     } as popupeItem;
     this.getPopupData(bindData);
   },
@@ -206,18 +215,19 @@ Page({
   */
   async getPopupData(from: popupeItem) {
     const { data: popupAppear } = await getPopup(from) as unknown as IResult<any>;
+    const { data: popupList } = await listPopup(from) as unknown as IResult<any>;
+    console.log(popupList.list)
     console.log(popupAppear)
-
     // if (!popupAppear) { this.initPageData() }
-    // if (popupAppear.popupId == null) { wx.removeStorageSync('Time'); }
-    /*
-    *数据处理
-    */
+    //if (popupAppear.popupId == null) { wx.removeStorageSync('Time'); }
+    /**
+     *数据处理
+     */
     var bindCache = wx.getStorageSync('bindCache');
     var popupType = popupAppear.popupType; //popupType 弹窗类型（自定义图片、系统默认弹窗）
-    var termTitleTapdetail = false;//蒙版的显示
-    var tc_custom = false;//自定义图片是否显示
-    var tc_system = false;//系统默认弹窗是否显示
+    var termTitleTapdetail = this.data.termTitleTapdetail;//蒙版的显示
+    var tc_custom = this.data.tc_custom;//自定义图片是否显示
+    var tc_system = this.data.tc_system;//系统默认弹窗是否显示
     /** 
      * 当弹窗类型为自定义图片（custom）时
      */
@@ -234,30 +244,26 @@ Page({
       tc_custom = false;
       tc_system = true;
     }
+    if(bindCache.unreadOne !== undefined){
     /** 
      * 检测 今日出现的弹窗的ID是否出现过，并保存在缓存里
      */
     if (popupAppear.popupId == wx.getStorageSync('bindCache').unreadOne.popupId) {
-      this.setData({
-        termTitleTapdetail: false,
-        tc1: false,
-        tc2: false,
-      })
+        termTitleTapdetail= false;
+        tc_custom= false;
+        tc_system= false;
     }
     if (popupAppear.popupId == wx.getStorageSync('bindCache').noJump.popupId) {
-      this.setData({
-        termTitleTapdetail: false,
-        tc1: false,
-        tc2: false,
-      })
+        termTitleTapdetail= false;
+        tc_custom= false;
+        tc_system= false;
     }
     if (popupAppear.popupId == wx.getStorageSync('bindCache').isNoread) {
-      this.setData({
-        termTitleTapdetail: false,
-        tc1: false,
-        tc2: false,
-      })
+        termTitleTapdetail= false;
+        tc_custom= false;
+        tc_system= false;
     }
+  }
     /** 
      * 避免两个同样ID的弹窗连续两天弹出。
      */
@@ -283,7 +289,6 @@ Page({
       popupAppear: popupAppear,
       ima: 'http://' + popupImage,
     })
-    var bindCache = wx.getStorageSync('bindCache')
     bindCache.unreadOne = popupAppear;
     console.log(bindCache)
     wx.setStorageSync('bindCache', bindCache)
@@ -293,27 +298,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.initPageData();
-    this.getcache();
-    // this.getList();
-    // var isUnread = wx.getStorageSync('unreadOne')
-    // if (this.data.popupAppear.popupId == isUnread.popupId) {
-    //   if (wx.getStorageSync('unreadOne').isShow !== true) {
-    //     this.initPageData();
-    //   }
-    // }
-    // if (isUnread.length > 0) {
-    //   if (this.data.popupAppear.popupId !== isUnread.popupId) {
-    //     this.initPageData();
-    //   }
-    //   if (this.data.popupAppear.popupId == isUnread.popupId) {
-    //     this.setData({
-    //       termTitleTapdetail: false,
-    //       tc1: false,
-    //       tc2: false,
-    //     })
-    //   }
-    // } else { this.initPageData(); }
+    /**
+     * 计算昨天，今天，明天的时间，解决连续两天弹窗问题
+     */
     //昨天的时间
     var day1 = new Date();
     day1.setTime(day1.getTime() - 24 * 60 * 60 * 1000);
@@ -326,7 +313,11 @@ Page({
     var day3 = new Date();
     day3.setTime(day3.getTime() + 24 * 60 * 60 * 1000);
     var s3 = day3.getFullYear() + "-" + (day3.getMonth() + 1) + "-" + day3.getDate();
-    this.setData({ s1: s1, s2: s2, s3: s3 })
+    this.setData({
+      s1: s1,
+      s2: s2,
+      s3: s3,
+    })
   },
   /**
    * 获取学号和密码
@@ -383,8 +374,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    // this.getcache();
-    // this.getList();
     // if (wx.getStorageSync('unreadOne').length > 0) {
     //   if (this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId) {
     //     if (wx.getStorageSync('unreadOne').isShow !== true) {
@@ -397,7 +386,7 @@ Page({
     //   if (this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId) {
     //     this.setData({
     //       termTitleTapdetail: false,
-    //       tc1: false,
+    //       tc_custom: false,
     //       tc2: false,
     //     })
     //   }
@@ -406,7 +395,7 @@ Page({
     // if (this.data.popupAppear.popupId == wx.getStorageSync('noJump').popupId) {
     //   this.setData({
     //     termTitleTapdetail: false,
-    //     tc1: false,
+    //     tc_custom: false,
     //     tc2: false,
     //   })
     // }
@@ -425,31 +414,98 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // this.getList();
-    // if (this.data.popupAppear.popupId == wx.getStorageSync('unreadOne').popupId) {
-    //   if (wx.getStorageSync('unreadOne').isShow !== true) {
-    //     this.initPageData();
-    //   } else if (wx.getStorageSync('unreadOne').isShow == true) {
-    //     this.setData({
-    //       termTitleTapdetail: false,
-    //       tc1: false,
-    //       tc2: false,
-    //     })
-    //   }
-    // }
-    // if (wx.getStorageSync('unreadOne').length > 0) {
-    //   if (this.data.popupAppear.popupId !== wx.getStorageSync('unreadOne').popupId) {
-    //     this.initPageData();
-    //   }
-    // }
-
-
+    var bindCache = wx.getStorageSync('bindCache');
+    var popupAppear = this.data.popupAppear as any;
+    var termTitleTapdetail = this.data.termTitleTapdetail;
+    var tc_custom = this.data.tc_custom;
+    var tc_system = this.data.tc_system;
+    this.initPageData();
+    this.getcache();
+    var bindCache = wx.getStorageSync('bindCache');
+    var popupAppear = this.data.popupAppear as any;
+    /**
+     * 当用户点击蒙版不看弹窗的时候，存入的缓存ID存在时
+     */
+    if (bindCache.isUnread !== undefined) {
+      /**
+       * 判断弹窗的Id是否与缓存中的Id相同
+       */
+      if (popupAppear.popupId == bindCache.isUnread.popupId) {
+        /**
+         * 判断缓存中的unreadOne，是否已读
+         */
+        if (bindCache.unreadOne.isShow !== true) {
+          this.initPageData();
+        }
+      }
+      /**
+       * 判断缓存的Id是否等于弹窗的Id时
+       */
+      if (popupAppear.popupId !== bindCache.isUnread.popupId) {
+        this.initPageData();
+      }
+      if (popupAppear.popupId == bindCache.isUnread.popupId) {
+        termTitleTapdetail = false;
+        tc_custom = false;
+        tc_system = false;
+      }
+    } else {
+      this.initPageData();
+    }
+    /**
+     * 判断是否有点击弹窗存入的缓存
+     */
+    if (bindCache.unreadOne !== undefined) {
+      /**
+       * 判断弹窗是否与点击弹窗后存入的缓存unreadOne的ID是否相同
+       */
+      if (popupAppear.popupId == bindCache.unreadOne.popupId) {
+        /**
+         * 判断是否点击过弹窗
+         */
+        if (bindCache.unreadOne.isShow !== true) {
+          this.initPageData();
+        }
+        if (bindCache.unreadOne.isShow == true) {
+          this.setData({
+            termTitleTapdetail: false,
+            tc_custom: false,
+            tc_system: false,
+          })
+        }
+      }
+      else if (popupAppear.popupId !== bindCache.unreadOne.popupId) {
+        this.initPageData();
+      }
+    }
+    if(bindCache.noJump !== undefined){
+    /**
+     * 判断是否与'不跳转'存入的缓存相同
+     */
+    if (popupAppear.popupId == bindCache.noJump.popupId) {
+      termTitleTapdetail = false;
+      tc_custom = false;
+      tc_system = false;
+    }
+    /**
+     * 判断是否与’不点击‘存入的缓存相同
+     */
+    if (popupAppear.popupId == bindCache.isNoread) {
+      termTitleTapdetail = false;
+      tc_custom = false;
+      tc_system = false;
+    }
+  }
+    this.setData({
+      termTitleTapdetail: termTitleTapdetail,
+      tc_custom: tc_custom,
+      tc_system: tc_system,
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    // this.getList();
   },
 
   /**
