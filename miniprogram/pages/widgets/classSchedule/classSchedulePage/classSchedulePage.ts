@@ -37,7 +37,8 @@ Page({
     timeJia: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '13:30', time2: '14:15' }, { time1: '14:20', time2: '15:05' }, { time1: '15:10', time2: '15:55' }, { time1: '16:00', time2: '16:45' }, { time1: '18:00', time2: '18:45' }, { time1: '18:45', time2: '19:30' }, { time1: '19:30', time2: '20:15' }, { time1: '20:15', time2: '21:00' }],/* 嘉鱼校区时间 */
     Semesterswitchingdetail: false,
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
-    classSchedule: [] as any
+    classSchedule: {all_keshes:[],week:[]} as any,
+    nowWeekData:[] as any
   },
 
   /* 
@@ -146,10 +147,12 @@ Page({
     try {
       this.initPageData();
       setTimeout(() => {
+        let nowWeekData = this.getNowWeekData(this.data.classSchedule, 1);
+        this.setData({nowWeekData:nowWeekData});
         let myarr = wx.getStorageSync('widget-classSchedule');
         delete myarr.classSchedule;
         wx.setStorageSync('widget-classSchedule', myarr);
-      }, 6500);
+      }, 4000);
     }
     catch (error) {
       this.setData({ dialogTip: true });
@@ -276,14 +279,14 @@ Page({
   *刷新本周的日期
   */
   reGetDay(time: string | number | Date) {
-    let index = this.data.nowWeek;
+    let index =this.data.nowWeek
     let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
     let nowDate = new Date(time); //获取指定日期当周的一周日期
     let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - 3) * 7);
     this.getWeekTime(date);
     this.setData({
       nowWeekData: nowWeekData
-    });
+    })
   },
 
   /* 
@@ -591,7 +594,7 @@ Page({
   onLoad: function () {
     if(!wx.getStorageSync('widget-classSchedule')){
     //给用户添加缓存
-    let value = { classSchedule: '', ifshowAllclass: false, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };
+    let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };
     wx.setStorageSync('widget-classSchedule', value);}
     //获取当前年月
     var timestamp = Date.parse(new Date() as unknown as string);
