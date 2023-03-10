@@ -26,6 +26,9 @@ var innerList = [] as AnyArray;
 var outerList = [] as AnyArray;
 Page({
   data: {
+    isShowDialog: false,
+    dialogTitle: "南南提醒你：",
+    dialogContent: "学校官网在24点后，部分资源无法加载显示，属于正常现象，可在白天再次尝试~",
     lineHeight: 32,
     hidden: false,
     myscrollTop: 200,
@@ -34,6 +37,7 @@ Page({
     duration: 1200,
     isChecked: true, //头像彩蛋
     tapbarCtrl: true,//点击哪一个tab栏
+    schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
     bgSvgUrl: "/static/svg/pillar.svg",
     type: 0,
     pages: 0,
@@ -226,7 +230,26 @@ Page({
       await that.getOutSouyiNews()
     }
   },
+  /**
+ * 
+ * dialog组件确定按钮点击事件
+ */
+  dialogCertain() {
+    var that = this
+    that.setData({
+      isShowDialog: false//关闭弹窗
+    })
+  },
   onLoad() {
+    // 获取当前时间并且做判断
+    var myDate = new Date
+    var hours = myDate.getHours();
+    // 如果时间超过了那么就弹出弹窗
+    if (hours = 12 || hours < 8) {
+      this.setData({
+        isShowDialog: true,
+      })
+    }
     let that = this;
     // 初始化新闻列表
     that.initNewsInfo()

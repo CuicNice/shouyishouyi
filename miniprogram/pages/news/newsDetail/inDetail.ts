@@ -25,6 +25,7 @@ Page({
     newsID: '',
     builtList: ["/static/svg/news/zhonglou.svg", "/static/svg/news/redBuilt.svg", "/static/svg/pillar.svg"],
     builtListNum: 2,
+    
     type: 0,
     bgc: "#FFF",
     light: "",

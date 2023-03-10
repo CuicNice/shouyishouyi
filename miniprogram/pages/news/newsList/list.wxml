@@ -67,3 +67,11 @@
 </topBar>
 <!-- 需要添加id才能被selectComponnet选中 -->
 <toast id="toast"></toast>
+<!-- 南南问题单 -->
+<f-dialog showDialog="{{isShowDialog}}" title="{{dialogTitle}}" stitle="{{dialogContent}}" schoolBuiltSrc="{{schoolBuiltSrc}}">
+  <view class="btn-box school-btn">
+    <button class="btn" type="primary" class="dialogCertainButon" bindtap="dialogCertain">
+      <view>确定</view>
+    </button>
+  </view>
+</f-dialog>

@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "component": true,
     "usingComponents": {
+      "f-dialog":"/components/fmin-dialog/fmin-dialog",
       "itemview":"/pages/widgets/news/newsListComponent/newsListComponent",
        "searchbar":"/pages/widgets/news/searchbar/searchbar",
     "topBar":"/components/fmin-topbar/fmin-topbar",

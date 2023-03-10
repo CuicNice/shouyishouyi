@@ -222,6 +222,28 @@ page {
   overflow: hidden;
   /* width: auto; */
 }
+/* 弹窗组件确定键 */
+
+.dialogCertainButon {
+  margin-top: 60rpx;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 20rpx 28rpx !important;
+  gap: 20rpx !important;
+  width: 500rpx !important;
+  height: 84rpx !important;
+  overflow: visible !important;
+  /* #20C38C */
+  background: #20C38C !important;
+  border-radius: 70rpx !important;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
 
 .searchIcon {
   /* width: 27rpx;
