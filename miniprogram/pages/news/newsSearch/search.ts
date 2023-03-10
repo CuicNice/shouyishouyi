@@ -19,7 +19,6 @@ export {
   newsKeyWordsItem
 }
 
-var newsListItems = [] as any//初始化新闻列表
 const getInf = (str: string, key: string) => str.replace(new RegExp(`${key}`, 'g'), `%%${key}%%`).split('%%');
 Page({
   data: {
@@ -71,6 +70,13 @@ Page({
     let minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
     return days + '天' + hours + '时' + minutes + '分';
   },
+  // 搜索
+  onInputEvent: function (event: any) {
+    var that=this
+    //查找函数
+    that.onSearchInputEvent(event)
+    // this.triggerEvent("haveInput",detail,options);父子组件传值
+  },
   onSearchInputEvent: async function (event: any) {
     // 当前的时间
     var mydate = util.formatDate(new Date()); // 调用函数时，传入new Date()参数，返回值是日期和时间
@@ -84,6 +90,7 @@ Page({
     let { data: res } = await getNewsByKeyWords(myKeywordsParams) as unknown as IResult<any>;
     // length存在否
     if (res) {
+      var newsListItems = [] as any//初始化新闻列表
       if (res.length != 0) {
         for (let i = 0; i < res.length - 1; i++) {
           //日期的判断
@@ -103,7 +110,7 @@ Page({
           } else if (that.checkDate(mydate, newdate) < 1) {
             // 当天
             // 添加一条
-            newsListItems[i]["newsTime"] = "today"
+            newsListItems[i].newsTime = "today"
           } else if (that.checkDate(mydate, newdate) < 3) {
             // 三天内的
             newsListItems[i].newsTime = "new"
@@ -112,6 +119,7 @@ Page({
             newsListItems[i].newsTime = "old"
           }
         }
+        console.log("newsListItems", newsListItems);
         that.setData({
           list: newsListItems,
           isHave: true
@@ -125,6 +133,6 @@ Page({
       }
     }
 
-  }
+  },
 }
 )

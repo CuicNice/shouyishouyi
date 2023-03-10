@@ -17,8 +17,7 @@
   border: 1px solid #20C38C;
   border-radius: 82px;
 }
-
-.search-input {
+.searchInput {
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
@@ -26,8 +25,13 @@
   line-height: 40rpx;
   /* identical to box height */
   text-transform: lowercase;
+  opacity: 0.6;
   /* text */
 
+}
+
+.searchInput:focus {
+  opacity: 1;
 }
 
 /* 输入框默认样式 */
@@ -42,7 +46,7 @@
   /* identical to box height */
   text-transform: capitalize;
   color: #000000;
-   opacity: 0.6;
+  opacity: 0.6;
   /* Inside auto layout */
   flex: none;
   order: 0;
@@ -93,25 +97,37 @@
 }
 
 .searchHolder {
-
   width: 140px;
   height: 20px;
-
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   /* identical to box height */
-
   text-transform: capitalize;
-
   color: #000000;
-
   opacity: 0.6;
-
   /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
 
+/* 格式化文档 */
+::-webkit-input-placeholder {
+  width: 140px;
+  height: 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6 !important;
+  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;

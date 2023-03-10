@@ -11,7 +11,14 @@
 <!-- topbar -->
 <topBar title="{{newsSearchTitle}}" immersion="{{true}}" Threshold="0.2">
   <!-- 搜索框 -->
-  <searchbar bindhaveInput="onSearchInputEvent"></searchbar>
+
+  <!-- <searchbar bindhaveInput="onSearchInputEvent"></searchbar> -->
+  <view class="search-group">
+    <input class="searchInput" type="text" placeholder="搜索你想要的首义快讯" bindinput='onInputEvent'></input>
+    <view class="searchIconBox">
+      <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+    </view>
+  </view>
   <!-- 未搜索到的情况 -->
   <view wx:if="{{!isHave}}" class="unfind">
     <view class="unfindIconBox">
@@ -31,6 +38,5 @@
     <newsListItem list="{{list}}"></newsListItem>
     <!-- 需要添加id才能被selectComponnet选中 -->
     <toast id="toast"></toast>
-
   </view>
 </topBar>

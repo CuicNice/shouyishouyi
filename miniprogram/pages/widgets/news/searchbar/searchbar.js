@@ -23,7 +23,8 @@ Component({
       var value = event.detail.value;
       var detail = {"value":value};
       var options = {};
-      this.triggerEvent("haveInput",detail,options);
+      console.log("detail",detail);
+      this.triggerEvent("haveInput",detail,options);父子组件传值
  
      }
   }
