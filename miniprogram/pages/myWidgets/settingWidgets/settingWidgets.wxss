@@ -9,17 +9,126 @@
   background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
   z-index: -999;
 }
-/* 页面 */
-.container{
-padding-top: 20px;
+
+/* 滑动元素 */
+.contant {
+  width: 100%;
 }
+
+.item-up {
+  height: 100rpx;
+  width: 80%;
+  background: rgb(255, 255, 255);
+  border: 2px solid #4BDCAB;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 8px 24px rgba(75, 220, 171, 1);
+  z-index: 2;
+}
+
+.item-down {
+  height: 100rpx;
+  width: 80%;
+  background: #FFFFFF;
+  border: 2px solid #4BDCAB;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.item-bg-black {
+  background-color: rgb(214, 208, 208);
+}
+
+.item-bg-write {
+  background-color: rgb(255, 255, 255, 0.8);
+}
+
+.reminBar {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  background-color: red;
+}
+
+.TopBar {
+  position: fixed;
+  background-color: #4BDCAB;
+  top: 40px;
+  z-index: 2;
+}
+
+/* 动画过渡 */
+.mask {
+  height: 200px;
+  background-color: #4BDCAB;
+  animation: fadenum 5s ease infinite;
+  overflow: hidden;
+  opacity: 0;
+}
+
+@keyframes fadenum {
+  from {
+    top: 100px;
+    opacity: 100;
+  }
+
+  to {
+    top: 50px;
+    opacity: 0;
+  }
+}
+
+/* 动画 */
+/* 显示或关闭动画*/
+.open {
+  animation: slideContentUp 0.3s linear both;
+}
+
+.close {
+  animation: slideContentDown 0.3s linear both;
+}
+
+/* 动态设置高度 */
+@keyframes slideContentUp {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 80vh;
+  }
+}
+
+@keyframes slideContentDown {
+  from {
+    height: 80vh;
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+/* 元素滑动结束 */
+/* 页面 */
+.container {
+  padding-top: 20px;
+}
+
 /* 关键吸顶元素 */
-.settingTabBarBox{
+.settingTabBarBox {
   position: sticky;
   top: 85px;
   z-index: 666;
   background: linear-gradient(#B9EFE1 0.04%, #FCFCFC 30%);
 }
+
 .remindBox {
   display: flex;
   flex-wrap: nowrap;
@@ -35,8 +144,9 @@ padding-top: 20px;
   order: 0;
   flex-grow: 0;
 }
+
 /* 提示 */
-.remindBoxDes{
+.remindBoxDes {
   display: flex;
   flex-wrap: wrap;
 }
@@ -82,15 +192,16 @@ padding-top: 20px;
 
 .remindIconBox {
   /* 以底线对齐 */
-align-self: flex-end;
-width: 37.89px;
-height: 93.44px;
+  align-self: flex-end;
+  width: 37.89px;
+  height: 93.44px;
 }
 
 .remindIconSvg {
   width: 37.89px !important;
-height: 93.44px !important;
+  height: 93.44px !important;
 }
+
 /* 顶部固定的部分 */
 /* .settingTabBarBox{
 position: fixed;
@@ -98,17 +209,19 @@ margin: 14px  17.5px 0;
 
 } */
 .settingTapBar {
-box-sizing: border-box;
-display: flex;
-padding: 0px;
-/* 两边布局 */
-justify-content: space-between;
-border-bottom: 1px solid #E3E3E6;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
+  background-color: #20C38C;
+  box-sizing: border-box;
+  display: flex;
+  padding: 0px;
+  /* 两边布局 */
+  justify-content: space-between;
+  border-bottom: 1px solid #E3E3E6;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
+
 .widgetSetteingBox {
   box-sizing: border-box;
   display: flex;
@@ -123,7 +236,8 @@ flex-grow: 0;
   order: 0;
   flex-grow: 0;
 }
-.greenWidgetSettingBox{
+
+.greenWidgetSettingBox {
   box-sizing: border-box;
   /* Auto layout */
   display: flex;
@@ -139,7 +253,8 @@ flex-grow: 0;
   flex-grow: 0;
 }
 
-.settingTabText {width: 112px;
+.settingTabText {
+  width: 112px;
   height: 22px;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -147,70 +262,79 @@ flex-grow: 0;
   font-size: 16px;
   line-height: 22px;
   text-align: center;
-  
+
   color: #292945;
-  
-  
+
+
   /* Inside auto layout */
-  
+
   flex: none;
   order: 0;
-  flex-grow: 0;}
-  
-  .settingTabBoldText {width: 112px;
-    height: 22px;
-    
-    font-family: 'PingFang SC';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    text-align: center;
-    color: #292945;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;}
+  flex-grow: 0;
+}
+
+.settingTabBoldText {
+  width: 112px;
+  height: 22px;
+
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #292945;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
 .text {}
 
-.saveBar {/* Auto layout */
+.saveBar {
+  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0px;
-  margin:17px 17.5px;
+  margin: 17px 17.5px;
   height: 29px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
-  
+
   /* Inside auto layout */
-  
+
   flex: none;
   order: 2;
-  flex-grow: 0;}
-.saveButtonText{
-  width: 48px;
-height: 17px;
-
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 17px;
-/* identical to box height */
-
-
-color: #FFFFFF;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
+  flex-grow: 0;
 }
-.saveText {/* 长按右侧按钮拖动排序，分割线上方组件可展示 */
+
+.saveButtonText {
+  width: 48px;
+  height: 17px;
+
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.saveText {
+  /* 长按右侧按钮拖动排序，分割线上方组件可展示 */
   margin-left: 10px;
   height: 17px;
   font-family: 'PingFang SC';
@@ -223,9 +347,11 @@ flex-grow: 0;
   /* Inside auto layout */
   flex: none;
   order: 0;
-  flex-grow: 0;}
+  flex-grow: 0;
+}
 
-.saveButton {display: flex;
+.saveButton {
+  display: flex;
   align-items: center !important;
   margin-right: 0px !important;
   padding: 6px 10px !important;
@@ -237,115 +363,121 @@ flex-grow: 0;
   /* Inside auto layout */
   flex: none;
   order: 1;
-  flex-grow: 0;}
+  flex-grow: 0;
+}
 
 .chooseItemsBox {
   display: flex;
-flex-direction: column;
-padding: 0px;
-gap: 12px;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
+  flex-direction: column;
+  padding: 0px;
+  gap: 12px;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
 
 .itemBox {
   box-sizing: border-box;
-/* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-padding: 10px 15px 10px 20px;
-margin:0 17.5px;
-background: #FAFAFA;
-border: 1px solid #E3E3E6;
-border-radius: 10px;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px 10px 20px;
+  margin: 0 17.5px;
+  background: #FAFAFA;
+  border: 1px solid #E3E3E6;
+  border-radius: 10px;
 
-/* Inside auto layout */
+  /* Inside auto layout */
 
-flex: none;
-order: 0;
-flex-grow: 0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .widgetBox {
   display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 5px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 5px;
 
-width: 250px;
-height: 232.52px;
+  width: 250px;
+  height: 232.52px;
 
 
-/* Inside auto layout */
+  /* Inside auto layout */
 
-flex: none;
-order: 0;
-flex-grow: 0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
-.widgetTitle {width: 56px;
+.widgetTitle {
+  width: 56px;
   height: 20px;
-  
+
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   /* identical to box height */
-  
-  
+
+
   color: #292945;
-  
-  
+
+
   /* Inside auto layout */
-  
+
   flex: none;
   order: 0;
-  flex-grow: 0;}
+  flex-grow: 0;
+}
 
 .wedgetItem {
   box-sizing: border-box;
 
-/* Auto layout */
+  /* Auto layout */
 
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 6.96379px 0px 9.7493px;
-gap: 2.79px;
-width: auto;
-height: auto;
-background: #FFFFFF;
-/* 边框 */
-border: 0.696379px solid #E3E3E6;
-border-radius: 6.96379px;
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6.96379px 0px 9.7493px;
+  gap: 2.79px;
+  width: auto;
+  height: auto;
+  background: #FFFFFF;
+  /* 边框 */
+  border: 0.696379px solid #E3E3E6;
+  border-radius: 6.96379px;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
 
 .chooseTabBox {
   width: 30px;
   height: 30px;
-  
-  
+
+
   /* Inside auto layout */
-  
+
   flex: none;
   order: 1;
-  flex-grow: 0;}
-.chooseTabSvg{
+  flex-grow: 0;
+}
+
+.chooseTabSvg {
   width: 30px !important;
   height: 30px !important;
 }
+
 /* 组件图片样式*/
-.wedgetItemSvg{
+.wedgetItemSvg {
   width: 250px !important;
   /* height: auto; */
   object-fit: contain;

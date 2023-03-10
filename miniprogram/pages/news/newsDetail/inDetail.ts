@@ -7,40 +7,47 @@ import {
   myStorage
 } from "../../../utils/newStorage.js";
 var newsID = '';
+interface newsIDitem {
+  "newsId": string
+}
+
+export {
+  newsIDitem,
+}
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    dialogTitle: "下载失败，无法查看",
+    dialogContent: "学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~",
+    isShowDialog: false,//组件弹窗(问题单)
     newsID: '',
+    builtList: ["/static/svg/news/zhonglou.svg", "/static/svg/news/redBuilt.svg", "/static/svg/pillar.svg"],
+    builtListNum: 2,
     type: 0,
     bgc: "#FFF",
     light: "",
     t_bg: "",
+    isRedBgBuilt: false,//默认背景图片显示蓝色的图书馆
     newsDetailTitle: "快讯闻",
+    schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
     // 南南的微信二维码
-    nannanCode: "/static/svg/news/nanan_weixinCode.svg",
+    nannanCode: "/static/svg/news/nanan_weixinCode.png",
     // 南南题目头
     contentTitle: "/static/svg/news/contentTitle.svg",
     topTitleSvgUrl: "/static/svg/news/topTitle.svg",
+    redBgSvgUrl: "/static/svg/news/redBuilt.svg",
     bgSvgUrl: "/static/svg/pillar.svg",
     bg_url: " url(http://tiku.mcdd.top/image/bg.png);",
     bg_size: "background-size: 418rpx 1052rpx;",
     // 新闻ID
-    newsIDItem: ""
+    newsIDitem: {
+      "newsId": "",
+    } as unknown as newsIDitem,
   },
-  // 基础库不支持IOS
-  // onAddToFavorites(res:any) { //收藏
-  //   console.log("any",res)
-  //   var href = JSON.stringify(this.data.href);
-  //   return {
-  //     //title: '自定义标题',
-  //     query: href = +href,
-  //   }
-  // },
   onShareAppMessage() { //分享
     var newsID = JSON.stringify(this.data.newsID);
-    console.log(newsID)
     const promise = new Promise(resolve => {
       setTimeout(() => {
         resolve({
@@ -54,30 +61,54 @@ Page({
       promise
     }
   },
+  /**
+   * 
+   * 点击切换模式
+   */
+  swipTheme() {
+    // 切换背景图片
+    var that = this
+    var bgNum = that.data.builtListNum
+    bgNum = bgNum + 1
+    if (bgNum > 2) {
+      // 三个房子
+      bgNum = 0
+      //如果是以前是红色的房子
+      that.setData({
+        builtListNum: bgNum
+      })
+    } else {
+      console.log("蓝色的房子");
+      that.setData({
+        builtListNum: bgNum
+      })
+    }
 
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options: any) {
-    console.log("新闻内容", options)
+  // 初始化新闻页面
+  async initNewsDetail(options: any) {
     var that = this;
     var str2 = '<div class="pic"><img src="" title="" /><s class="prev" title="上一张"></s><s class="next" title="下一张"></s><span class="tips">最后一张了</span></div>';
     var str3 = '<li class="last">最后一张</li>';
     newsID = options.newsID;
-    console.log("newsId", newsID);
-    if (options.newsID.length > 15) {
-      newsID = newsID.replace(/%2F/g, "/")
-    }
+    // 设置newsId
+    // newsIDitem 
+    that.setData({ 'newsIDitem.newsId': newsID, })
     // 获取新闻的详情
     // 通过ID获取新闻的详情
     // 获取内网新闻
-    let { data: res } = await getNewsDetailByID(newsID) as unknown as IResult<any>;
+    that.selectComponent("#toast").showToastAuto("加载中", "lodding", 0.5);
+
+    let { data: res } = await getNewsDetailByID(that.data.newsIDitem) as unknown as IResult<any>;
     if (res != null) {
-      console.log(res)
-      // //   console.log(res.data.content)
-      var html = res.data.content;
+      wx.hideLoading();
+      var html = res.content;
       var str1 = '<p style="text-indent:2em;">                                                                                                                                </p>'
+
       //html = html.replace("style=\"text-indent:2em\"","")
       html = html.replace("align=\"center\"", "")
       html = html.replace(/padding:(.*?)px (.*?)px;/g, "")
@@ -102,58 +133,64 @@ Page({
       html = html.replace(str1, "")
       html = html.replace(/align:right;">(.*?)武昌首义学院/, 'align:right;">武昌首义学院')
       html = html.replace(/<li><a href="javascript:"(.*?) title="(.*?)">/g, "")
+      // 去掉Script部分
+      html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+      WxParse.wxParse("article", "html", html, that, 5)
       html = html.replace(str2, "")
       html = html.replace(str3, "")
-      console.log(html)
-      WxParse.wxParse("article", "html", html, that, 5)
+
+      // 洗页脚
       that.setData({
-        item: res.data
+        item: res
       });
+
     }
   },
+  onLoad: function (options) {
+    // Do some initialize when page load.
+    var that = this
+    that.initNewsDetail(options)
+  },
+  /**
+   * 
+   * dialog组件确定按钮点击事件
+   */
+  dialogCertain() {
+    var that = this
+    that.setData({
+      isShowDialog: false//关闭弹窗
+    })
+  },
   wxParseTagDown: function (e: any) {
-    wx.showLoading({
-      title: '下载中...',
-    });
+    var that = this
+    that.selectComponent("#toast").showToastAuto("正在打开文件", "lodding", 1);
     var src = e.currentTarget.dataset.src;
     src = src.replace('http://e.wsyu.edu.cn/wcm.files/', 'https://ambition.mcdd.top/wcm.files/')
-    // //   console.log(src)
     wx.downloadFile({
       url: src,
       success(res) {
-        ////   console.log(res)
         const filePath = res.tempFilePath;
-        // //   console.log(filePath)
         wx.hideLoading();
         if (res.statusCode == 200) {
-          wx.showToast({
-            title: '下载成功，即将打开！',
-            icon: 'none'
-          })
           wx.openDocument({
             filePath: filePath,
-            success: function (res) { }
+            success: function (res) {
+            },
+            fail: function (e) {
+            },
           })
         } else {
-          wx.showToast({
-            title: '下载失败，服务器于半夜1：30后关闭，请白天再试！',
-            icon: 'none'
+          that.setData({
+            isShowDialog: true
           })
         }
       },
-      fail(res) {
-        wx.showToast({
-          title: '下载失败，服务器于半夜1：30后关闭，请白天再试！',
-          icon: 'none'
-        })
-      }
     })
   },
   switchColoe: function (res: any) {
     var that = this
     var type = that.data.type
     type++;
-    ////   console.log(type)
     if (type > 2) {
       type = 0;
     }
