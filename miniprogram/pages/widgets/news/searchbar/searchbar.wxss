@@ -42,7 +42,7 @@
   /* identical to box height */
   text-transform: capitalize;
   color: #000000;
-  opacity: 0.6;
+   opacity: 0.6;
   /* Inside auto layout */
   flex: none;
   order: 0;

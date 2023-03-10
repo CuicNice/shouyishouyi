@@ -23,10 +23,13 @@ Page({
     dialogContent: "学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~",
     isShowDialog: false,//组件弹窗(问题单)
     newsID: '',
+    builtList: ["/static/svg/news/zhonglou.svg", "/static/svg/news/redBuilt.svg", "/static/svg/pillar.svg"],
+    builtListNum: 2,
     type: 0,
     bgc: "#FFF",
     light: "",
     t_bg: "",
+    isRedBgBuilt: false,//默认背景图片显示蓝色的图书馆
     newsDetailTitle: "快讯闻",
     schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
     // 南南的微信二维码
@@ -34,6 +37,7 @@ Page({
     // 南南题目头
     contentTitle: "/static/svg/news/contentTitle.svg",
     topTitleSvgUrl: "/static/svg/news/topTitle.svg",
+    redBgSvgUrl: "/static/svg/news/redBuilt.svg",
     bgSvgUrl: "/static/svg/pillar.svg",
     bg_url: " url(http://tiku.mcdd.top/image/bg.png);",
     bg_size: "background-size: 418rpx 1052rpx;",
@@ -56,6 +60,31 @@ Page({
       path: '/pages/inDetail/inDetail?newsID=' + newsID,
       promise
     }
+  },
+  /**
+   * 
+   * 点击切换模式
+   */
+  swipTheme() {
+    // 切换背景图片
+    var that = this
+    var bgNum = that.data.builtListNum
+    bgNum = bgNum + 1
+    if (bgNum > 2) {
+      // 三个房子
+      bgNum = 0
+      //如果是以前是红色的房子
+      that.setData({
+        builtListNum: bgNum
+      })
+    } else {
+      console.log("蓝色的房子");
+      that.setData({
+        builtListNum: bgNum
+      })
+    }
+
+
   },
   /**
    * 生命周期函数--监听页面加载

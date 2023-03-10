@@ -4,7 +4,7 @@
 <view class="bg">
   <!-- 背景柱子 -->
   <view class="bgThingsBox">
-    <image class="bgThings" src="{{bgSvgUrl}}" mode="" />
+    <image class="bgThings" src="{{builtList[builtListNum]}}" mode="" />
   </view>
 </view>
 <!-- topbar -->
@@ -35,7 +35,7 @@
     </view>
     <!-- 底部的背景 -->
     <view class="bottom">
-      <view class="bottom_left">
+      <view class="bottom_left" bindtap="swipTheme">
         <!-- 南南的微信二维码 -->
         <image class="erweima" src="{{nannanCode}}"></image>
       </view>
