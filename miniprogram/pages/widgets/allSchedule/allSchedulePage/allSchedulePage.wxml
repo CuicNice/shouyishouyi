@@ -20,7 +20,6 @@
     <text class="laberRight">{{grade?grade:"请选择年级"}}</text>
     </view>
       <view class="gradePicker" >
-        
         <picker mode="selector" bindchange="bindGrade" value="{{GradeId}}" range="{{gradeArray}}">
         <view class="textpicker">
           <view class="iconpicker"> <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image></view>
