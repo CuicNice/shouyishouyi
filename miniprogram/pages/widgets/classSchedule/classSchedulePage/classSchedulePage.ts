@@ -5,6 +5,7 @@ export interface ClassScheduleItem {
   "year": number,
   "num": number
 }
+var utils=require('../../../../utils/addCache');
 Page({
 
   /**
@@ -282,7 +283,7 @@ Page({
     let index =this.data.nowWeek
     let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
     let nowDate = new Date(time); //获取指定日期当周的一周日期
-    let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - 3) * 7);
+    let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - this.data.nowWeek) * 7);
     this.getWeekTime(date);
     this.setData({
       nowWeekData: nowWeekData
@@ -595,7 +596,9 @@ Page({
     if(!wx.getStorageSync('widget-classSchedule')){
     //给用户添加缓存
     let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };
-    wx.setStorageSync('widget-classSchedule', value);}
+    wx.setStorageSync('widget-classSchedule', value);
+  }
+   utils.mySetStorage('widget-classSchedule','background','#333333')
     //获取当前年月
     var timestamp = Date.parse(new Date() as unknown as string);
     var date = new Date(timestamp);
@@ -747,7 +750,7 @@ Page({
       time: time
     });
   },
-
+  
   /**
    * 生命周期函数--监听页面隐藏
    */
