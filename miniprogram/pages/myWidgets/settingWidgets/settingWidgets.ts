@@ -12,7 +12,7 @@ Page({
     windowHeight: 0 as number,//屏幕高度
     settingWidgetTitle: "设置小组件",
     hiddenRemindBox: false, // 隐藏remindBox
-    scrollTop:40,
+    scrollTop: 40,
     isRemindDisplayTag: true,
     // 滑动检测
     pageScrollState: 1,
@@ -22,52 +22,52 @@ Page({
     screenHeight: 0,
     topVarTop: 50,
     tag: true,
-    nowItem:-1 as number,
-    tmpH:50,
+    nowItem: -1 as number,
+    tmpH: 50,
     tabList: [{
-        name: '十步杀一人',
-        width: 30
-      },
-      {
-        name: '千里不留行',
-        width: 80
-      },
-      {
-        name: '事了拂衣去',
-        width: 120
-      },
-      {
-        name: '深藏身与名',
-        width: 60
-      },
-      {
-        name: '千里不留行2',
-        width: 200
-      },
-      {
-        name: '千里不留行3',
-        width: 200
-      },
-      {
-        name: '千里不留行4',
-        width: 200
-      },
-      {
-        name: '千里不留行5',
-        width: 200
-      },
-      {
-        name: '千里不留行6',
-        width: 200
-      },
-      {
-        name: '事了拂衣去',
-        width: 120
-      },
-      {
-        name: '深藏身与名',
-        width: 150
-      }
+      name: '十步杀一人',
+      width: 30
+    },
+    {
+      name: '千里不留行',
+      width: 80
+    },
+    {
+      name: '事了拂衣去',
+      width: 120
+    },
+    {
+      name: '深藏身与名',
+      width: 60
+    },
+    {
+      name: '千里不留行2',
+      width: 200
+    },
+    {
+      name: '千里不留行3',
+      width: 200
+    },
+    {
+      name: '千里不留行4',
+      width: 200
+    },
+    {
+      name: '千里不留行5',
+      width: 200
+    },
+    {
+      name: '千里不留行6',
+      width: 200
+    },
+    {
+      name: '事了拂衣去',
+      width: 120
+    },
+    {
+      name: '深藏身与名',
+      width: 150
+    }
     ],//移动元素区块
     //移动的是哪个元素块
     moveId: -1,//移动块ID
@@ -106,11 +106,11 @@ Page({
   /**
    * 顶部消失remindBox
    */
-   /**
-   * 
-   * 初始化排序
-   */
-  initSortData(tabList:any) {
+  /**
+  * 
+  * 初始化排序
+  */
+  initSortData(tabList: any) {
     var height = 0;
     var ls = [];
     for (var i = 0; i < tabList.length; i++) {
@@ -125,15 +125,16 @@ Page({
     })
   },
   //计算位置
-  moveStatus(e:any) {
+  moveStatus(e: any) {
     if (e.type == 'touchmove' && this.data.enable) {
       //最终坐标
       var y = e.changedTouches[0].pageY;//鼠标在页面上的位置,从页面左上角开始,即是以页面为参考点,不随滑动条移动而变化；
       var clientY = e.changedTouches[0].clientY;//鼠标的可视化范围（鼠标点击的可见范围）
       var nowItem = -1;
       var tabList = this.data.tabList;
-      tabList.forEach(function (obj:any, i) {
-        if (y > obj.y-100 && y < (obj.y + obj.width)+100) {
+      tabList.forEach(function (obj: any, i) {
+        // 顶部大概有300的距离,需要平移顶部的距离
+        if (y > obj.y+300 && y < (obj.y + obj.width)+300) {
           nowItem = i;//如果鼠标页面高度属于改选取块上下高度范围内》》标记该元素为当前块
         }
       })
@@ -143,7 +144,7 @@ Page({
       })
     }
   },
-  moveEnd(e:any) {
+  moveEnd(e: any) {
     var moveId = this.data.moveId;
     var nowItem = this.data.nowItem;
     var tabList = this.data.tabList;
@@ -166,18 +167,18 @@ Page({
     // this.fadeOnScroll("remind")
   },
   /** 页面滑动 */
-  _pageScroll(clientY:any) {
-    if (clientY + this.data.windowHeight  * 0.2 >= this.data.windowHeight ) {
+  _pageScroll(clientY: any) {
+    if (clientY + this.data.windowHeight * 0.2 >= this.data.windowHeight) {
       // 下滑接近屏幕底部
       wx.pageScrollTo({
-        scrollTop: this.data.scrollTop + (this.data.windowHeight  * 0.1),//调用pageScroll部分的函数进行获取scrollTop（实时）， (this.data.windowHeight  * 0.1)
+        scrollTop: this.data.scrollTop + (this.data.windowHeight * 0.1),//调用pageScroll部分的函数进行获取scrollTop（实时）， (this.data.windowHeight  * 0.1)
         duration: 100
       });//将页面滚动到目标位置，支持选择器和滚动距离两种方式定位
-    } else if (clientY - this.data.windowHeight  * 0.2 <= 0) {
+    } else if (clientY - this.data.windowHeight * 0.2 <= 0) {
       // 上滑接近屏幕顶部
       // console.log("up",clientY + (clientY - this.data.windowHeight*0.2)*20)
       wx.pageScrollTo({
-        scrollTop: this.data.scrollTop - (this.data.windowHeight  * 0.1),
+        scrollTop: this.data.scrollTop - (this.data.windowHeight * 0.1),
         duration: 100
       })
     }
@@ -186,7 +187,7 @@ Page({
    * 判断是不是划出remind框
    *  */
 
-  remindIsDisplay(remindScroll:number, scrollTop:number) {
+  remindIsDisplay(remindScroll: number, scrollTop: number) {
     // 获取滑动值：
     var scrollTop = scrollTop
     var remindScroll = remindScroll
@@ -207,32 +208,32 @@ Page({
     var remindOpacity = that.data.remindOpacity; // 1~0
     var topVarTop = that.data.topVarTop; // 50 ~ 0
     var scrollTop = e.scrollTop;
-    if(scrollTop > 40){
+    if (scrollTop > 40) {
       var tmp = scrollTop - 40; // 1~60
       // 透明度映射
-      remindOpacity = (60 - tmp)/60;
+      remindOpacity = (60 - tmp) / 60;
       // topbar上滑映射
-      topVarTop = ((60 - tmp)/60)*50;
+      topVarTop = ((60 - tmp) / 60) * 50;
       // 限制范围，防止值违规
-      if(remindOpacity < 0){
+      if (remindOpacity < 0) {
         remindOpacity = 0;
       }
-      if(topVarTop < 0){
+      if (topVarTop < 0) {
         topVarTop = 0;
       }
       that.setData({
-        remindOpacity:remindOpacity,//透明度
-        topVarTop:topVarTop,//吸顶元素高度
-        scrollTop:scrollTop//滚动高度
+        remindOpacity: remindOpacity,//透明度
+        topVarTop: topVarTop,//吸顶元素高度
+        scrollTop: scrollTop//滚动高度
       })
-    }else{
+    } else {
       that.setData({
-        remindOpacity:1,//提示栏透明度
-        topVarTop:50,//topBar高度
+        remindOpacity: 1,//提示栏透明度
+        topVarTop: 50,//topBar高度
       })
     }
   },
-  onLongPress(e:any) {
+  onLongPress(e: any) {
     console.log(e)
     var moveId = e.currentTarget.dataset.moveid;//获取长按对象的ID
     this.setData({

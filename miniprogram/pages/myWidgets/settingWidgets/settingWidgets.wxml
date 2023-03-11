@@ -56,6 +56,23 @@
     <!-- 占位元素 -->
     <view style="height: {{tmpH}}px;background-color:blue;width: 100%;">
 </view>
+<!-- 移动元素区块 -->
+<view class="moveGroup">
+<!-- 小的1移动区域 -->
+<view class="moveItem">
+<view class="moveItem-left">
+<view class="moveTitle">
+课表
+</view>
+<view class="moveComponent">
+<image src="" class="moveComponentSvg" mode=""/>
+</view>
+</view>
+<view class="moveItem-right">
+<image src="" class="moveItem-spotSvg" mode=""/>
+</view>
+</view>
+</view>
     <!-- 底部拖动区域 -->
     <movable-area class="contant" style="height: {{viewHeight}}px;">
       <block wx:for="{{tabList}}" wx:key="index">
