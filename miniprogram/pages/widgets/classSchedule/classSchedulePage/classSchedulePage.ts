@@ -598,7 +598,7 @@ Page({
     let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };
     wx.setStorageSync('widget-classSchedule', value);
   }
-   utils.mySetStorage('widget-classSchedule','background','#333333')
+   /* utils.mySetStorage('widget-classSchedule','background','#333333') */
     //获取当前年月
     var timestamp = Date.parse(new Date() as unknown as string);
     var date = new Date(timestamp);
