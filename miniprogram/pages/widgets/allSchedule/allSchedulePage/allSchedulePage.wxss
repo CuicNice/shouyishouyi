@@ -1,1 +1,207 @@
-/* pages/widgets/allSchedule/allSchedulePage/allSchedulePage.wxss */
+.chooseBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 50rpx;
+  width: 620rpx;
+  height: 620rpx;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.chooseTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0rpx;
+  gap: 20rpx;
+  width: 484rpx;
+  height: 48rpx;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.cogs {
+  width: 46rpx;
+  height: 44rpx;
+}
+
+.cogs image {
+  width: 100%;
+  height: 100%;
+}
+
+.cogsText {
+  width: 320rpx;
+  height: 48rpx;
+  font-family: 'Source Han Sans CN';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32rpx;
+  line-height: 48rpx;
+  text-transform: capitalize;
+  color: #000000;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.gradeBox {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 18rpx 0rpx;
+  gap: 96rpx;
+  width: 620rpx;
+  height: 80rpx;
+  border-bottom: 1rpx solid #C9C9C9;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.laberLeft {
+  width: 96rpx;
+  height: 44rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  text-align: center;
+  letter-spacing: -0.3px;
+  color: #000000;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.laberRight {
+  width: 316rpx;
+  height: 44rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  letter-spacing: -0.3px;
+  color: #000000;
+  opacity: 0.6;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.gradePicker {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.iconpicker {
+  width: 44rpx;
+  height: 44rpx;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.picker {
+  margin-right: 32.5rpx;
+}
+
+.iconpicker image {
+  width: 16rpx;
+  height: 24rpx;
+}
+
+.chooseMiddle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0rpx;
+  gap: 32rpx;
+  width: 620rpx;
+  height: 416rpx;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.chooseBottom {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0rpx;
+  gap: 40rpx;
+  width: 620rpx;
+  height: 56rpx;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 102rpx;
+  width: 500rpx;
+  margin-left: 60rpx;
+  margin-right: 60rpx;
+  margin-bottom: 62rpx;
+}
+
+.button .cancel {
+  /* Component 3 */
+  box-sizing: border-box;
+
+  /* Auto layout */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 28rpx;
+  gap: 20rpx;
+
+  width: 214rpx;
+  height: 84rpx;
+
+  background-color: #FFFFFF;
+  /* #20C38C */
+  border: 1px solid #20C38C;
+  border-radius: 70rpx;
+
+  /* #20C38C */
+  color: #20C38C;
+}
+
+.button .primary {
+  /* Auto layout */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 28rpx;
+  gap: 20rpx;
+
+  width: 214rpx;
+  height: 84rpx;
+
+  /* #20C38C */
+  background: #20C38C;
+  border-radius: 70rpx;
+}
+
+.button .text {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  letter-spacing: -0.4352rpx;
+}
