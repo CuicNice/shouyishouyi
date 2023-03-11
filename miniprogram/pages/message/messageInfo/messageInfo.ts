@@ -1,4 +1,8 @@
-// pages/message/messageInfo/messageInfo.ts
+import { getInfo } from '../../../api/popupApi'
+import { messageItem } from '../messagePage/messagePage';
+export interface infoItem {
+  popupId:String
+}
 Page({
   /**
    * 页面的初始数据
@@ -12,44 +16,49 @@ Page({
     Form:true//穿过来的途径，来决定显示哪一个
 
   },
-  //通过传过来的popupId获取数据
-  getInfo(){
-      wx.request({
-        url:'http://www.fmin-courses.com:9527/api/v1/ad/ad/mini/getPopupById',
-        method:'POST',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
-        },
-        data:{
-          popupId:this.data.popupId
-        },
-        success:((res)=>{
-          this.setData({
-            popupAppear:res.data.data//第一次给值
-          })
-          this.data.popupAppear.show = "green";
-          this.data.popupAppear.popupPublishTime =  this.data.popupAppear.popupPublishTime.slice(0,10)
-          this.data.popupAppear.isShow = true; //插入是否已读
-          this.setData({popupAppear:res.data.data})//插入show后再又给值
-            var isUnread = wx.getStorageSync('unread');
-            if(isUnread){
-              for(var a=0;a<isUnread.length;a++){
-                if(this.data.popupAppear.popupId == isUnread[a].popupId){
-                  isUnread[a] = this.data.popupAppear
-                  wx.setStorageSync('unread',isUnread)
-                }else if(this.data.popupAppear.popupId !== isUnread[a].popupId&&this.data.popupAppear.popupIsSave !== false){
-                  isUnread[isUnread.length]=this.data.popupAppear;
-                  wx.setStorageSync('unread',isUnread);
-                }
-              }
-            }
-           if(isUnread.length==0){
-            wx.setStorageSync('unreadOne',this.data.popupAppear)
-          }
-        })
-      })
-
+ /**
+   * 初始化页面渲染函数
+   */
+  async initPageData() {
+    /**
+     * 获取本地缓存，判断是否绑定数据
+     */
+    var bindData = {
+      popupId: this.data.popupId,
+    } as infoItem;
+    this.getPopupData(bindData);
   },
+  /**
+  * 发送请求，渲染数据
+  * @param from message信息中心
+  */
+  async getPopupData(from: infoItem) {
+    const { data: Info } = await getInfo(from) as unknown as IResult<any>;
+    console.log(info)},
+      
+      //     this.data.popupAppear.show = "green";
+      //     this.data.popupAppear.popupPublishTime =  this.data.popupAppear.popupPublishTime.slice(0,10)
+      //     this.data.popupAppear.isShow = true; //插入是否已读
+      //     this.setData({popupAppear:res.data.data})//插入show后再又给值
+      //       var isUnread = wx.getStorageSync('unread');
+      //       if(isUnread){
+      //         for(var a=0;a<isUnread.length;a++){
+      //           if(this.data.popupAppear.popupId == isUnread[a].popupId){
+      //             isUnread[a] = this.data.popupAppear
+      //             wx.setStorageSync('unread',isUnread)
+      //           }else if(this.data.popupAppear.popupId !== isUnread[a].popupId&&this.data.popupAppear.popupIsSave !== false){
+      //             isUnread[isUnread.length]=this.data.popupAppear;
+      //             wx.setStorageSync('unread',isUnread);
+      //           }
+      //         }
+      //       }
+      //      if(isUnread.length==0){
+      //       wx.setStorageSync('unreadOne',this.data.popupAppear)
+      //     }
+      //   })
+      // })
+
+  // },
   //点赞的函数
   getLike(){
     if(this.data.popupAppear!==null?this.data.popupAppear.show == 'green':this.data.Info[this.data.row].show == 'green'){
