@@ -26,9 +26,9 @@ var innerList = [] as AnyArray;
 var outerList = [] as AnyArray;
 Page({
   data: {
-    isShowDialog: false,
+    isShowDialog: false as Boolean,
     dialogTitle: "南南提醒你：",
-    dialogContent: "学校官网在24点后，部分资源无法加载显示，属于正常现象，可在白天再次尝试~",
+    dialogContent: "学校官网在0-6点间，部分资源无法加载显示，属于正常现象，可在白天再次尝试~",
     lineHeight: 32,
     hidden: false,
     myscrollTop: 200,
@@ -244,8 +244,8 @@ Page({
     // 获取当前时间并且做判断
     var myDate = new Date
     var hours = myDate.getHours();
-    // 如果时间超过了那么就弹出弹窗
-    if (hours = 12 || hours < 8) {
+      // 如果时间超过了那么就弹出弹窗
+    if (hours == 12 || hours < 6) {
       this.setData({
         isShowDialog: true,
       })
