@@ -156,7 +156,7 @@ Page({
     // 设置setdata，关于页面请求数据
     // 区分是内网还是外网请求
     // 内网请求
-    if (that.data.tapbarCtrl) {
+    if (!that.data.tapbarCtrl) {
       that.setData({
         innerPageParams: {
           // 设置setdata，关于页面返回数据
@@ -164,7 +164,7 @@ Page({
           "pageSize": "10"
         }
       })
-      await that.getInnerSchoolNews()
+      await that.getInnerSchoolNews() //内网
       // 添加list数据
     } else {
       // 外网请求
@@ -223,7 +223,7 @@ Page({
   async initNewsInfo() {
     // 根据tapBar初始值
     var that = this
-    if (that.data.tapbarCtrl) {
+    if (!that.data.tapbarCtrl) {
       await that.getInnerSchoolNews()
     } else {
       // 外网请求
