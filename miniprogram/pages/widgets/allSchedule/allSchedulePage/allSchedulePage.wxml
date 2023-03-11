@@ -1,0 +1,16 @@
+<!-- 选择学期学年部分 -->
+<view class="Box">
+<view class="chooseBox" style="background: sienna;">
+<view class="chooseTop">
+<!-- 齿轮svg' -->
+<view><image></image></view>
+<!-- 请选择你要查询的课表 -->
+<view>请选择你要查询的课表</view>
+</view>
+
+<!-- 中区四个选择部分 -->
+<view>
+<view><picker mode="multiSelector"></picker></view>
+</view>
+</view>
+</view>

@@ -18,7 +18,8 @@
     "pages/message/messagePage/messagePage",
     "pages/popup/popupPage/popupPage",
     "pages/message/web-view/webView",
-    "pages/widgets/electricCharge/testElectricComponent/testElectricComponent"
+    "pages/widgets/electricCharge/testElectricComponent/testElectricComponent",
+    "pages/widgets/allSchedule/allSchedulePage/allSchedulePage"
   ],
   "window": {
     "backgroundTextStyle": "light",
