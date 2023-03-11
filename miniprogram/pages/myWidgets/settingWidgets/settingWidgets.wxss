@@ -11,11 +11,9 @@
 }
 
 /* 滑动元素 */
-.contant {
-  width: 100%;
-}
 
 .item-up {
+  /* 向上滑动 */
   height: 100rpx;
   width: 80%;
   background: rgb(255, 255, 255);
@@ -29,6 +27,7 @@
 }
 
 .item-down {
+  /*  向下滑动*/
   height: 100rpx;
   width: 80%;
   background: #FFFFFF;
@@ -38,6 +37,33 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
+}
+/* 移动区域 */
+.moveGroup{
+  width: 100%;
+}
+/* 移动滑块 */
+.moveItem{
+  
+}
+.moveItem-left{
+
+}
+.moveTitle{
+
+}
+.moveComponent{
+
+}
+.moveComponentSvg{
+
+}
+/* 右边移动的区域 */
+.moveItem-right{
+
+}
+.moveItem-spotSvg{
+
 }
 
 .item-bg-black {
@@ -119,6 +145,7 @@
 /* 页面 */
 .container {
   padding-top: 20px;
+  display: flex;
 }
 
 /* 关键吸顶元素 */

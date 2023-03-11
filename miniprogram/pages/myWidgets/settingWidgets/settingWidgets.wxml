@@ -55,32 +55,27 @@
     </view>
     <!-- 占位元素 -->
     <view style="height: {{tmpH}}px;background-color:blue;width: 100%;">
-</view>
-<!-- 移动元素区块 -->
-<view class="moveGroup">
-<!-- 小的1移动区域 -->
-<view class="moveItem">
-<view class="moveItem-left">
-<view class="moveTitle">
-课表
-</view>
-<view class="moveComponent">
-<image src="" class="moveComponentSvg" mode=""/>
-</view>
-</view>
-<view class="moveItem-right">
-<image src="" class="moveItem-spotSvg" mode=""/>
-</view>
-</view>
-</view>
-    <!-- 底部拖动区域 -->
-    <movable-area class="contant" style="height: {{viewHeight}}px;">
+    </view>
+    <!-- 移动元素区块 -->
+    <view class="moveGroup" style="height: {{viewHeight}}px;">
+      <!-- 小的1移动区域 -->
       <block wx:for="{{tabList}}" wx:key="index">
         <movable-view y="{{item.y}}" style="height:{{item.width}}px;" class="item-{{index==moveId?'up':'down'}} item-bg-{{(index==nowItem && nowItem!= moveId)?'black':'write'}}" direction="vertical" bind:touchmove='moveStatus' bindtouchend='moveEnd' bind:longpress="onLongPress" data-moveid="{{index}}" disabled="{{!enable}}" animation="{{false}}">
-          {{item.name}}
+          <view class="moveItem-left">
+            <view class="moveTitle">
+              课表
+            </view>
+            <view class="moveComponent">
+              <image src="" class="moveComponentSvg" mode="" />
+            </view>
+          </view>
+          <view class="moveItem-right">
+            <image src="" class="moveItem-spotSvg" mode="" />
+          </view>
         </movable-view>
       </block>
-    </movable-area>
+    </view>
+
     <!-- 分割线区域 -->
   </view>
 
