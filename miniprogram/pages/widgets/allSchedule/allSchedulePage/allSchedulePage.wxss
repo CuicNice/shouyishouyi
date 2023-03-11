@@ -159,40 +159,28 @@
 }
 
 .button .cancel {
-  /* Component 3 */
   box-sizing: border-box;
-
-  /* Auto layout */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 20rpx 28rpx;
   gap: 20rpx;
-
   width: 214rpx;
   height: 84rpx;
-
   background-color: #FFFFFF;
-  /* #20C38C */
   border: 1px solid #20C38C;
   border-radius: 70rpx;
-
-  /* #20C38C */
   color: #20C38C;
 }
 
 .button .primary {
-  /* Auto layout */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 20rpx 28rpx;
   gap: 20rpx;
-
   width: 214rpx;
   height: 84rpx;
-
-  /* #20C38C */
   background: #20C38C;
   border-radius: 70rpx;
 }
