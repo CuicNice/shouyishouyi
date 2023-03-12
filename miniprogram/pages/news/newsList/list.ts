@@ -8,7 +8,6 @@ import {
 import {
   myStorage
 } from "../../../utils/newStorage.js";
-
 interface innernewsListItem {
   "currentPage": string,
   "pageSize": string
@@ -17,7 +16,6 @@ interface outnewsListItem {
   "currentPage": string,
   "pageSize": string
 }
-
 export {
   innernewsListItem,
   outnewsListItem
@@ -67,7 +65,7 @@ Page({
   /**
    * 初始化内网新闻
     时间计算*/
-  checkDate: function (startTime: any, endTime: any) {
+  checkDate: function (startTime: string, endTime: string) {
     // 使用阻塞
     //日期格式化
     let startTimeStr = startTime.replace("/-/g", "/")
@@ -81,7 +79,6 @@ Page({
     return day;
     //do something
   },
-
   checkWorkDate: function (date: any) {
     let startTime = new Date(date); // 开始时间
     let endTime = new Date(); // 现在时间
@@ -93,7 +90,6 @@ Page({
     let minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
     return days + '天' + hours + '时' + minutes + '分';
   },
-
   //传入一个需要排序的数组
   MsgSort: function (obj: any) {
     obj.sort((a: string, b: string) => {
@@ -105,19 +101,57 @@ Page({
   },
   // 校园快讯，inner请求
   async getInnerSchoolNews() {
+    var innerTempList = [] as AnyArray
     let that = this
+    var mydate = new Date
+    var myDate = mydate.toString()
     that.selectComponent("#toast").showToastAuto("加载中", "lodding", 0.5);
     // 获取内网新闻
     let innerPageParams = that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
     if (innerRes != null) {
+      // 解析
+      if (innerRes.list.length != 0) {
+        for (let i = 0; i < innerRes.list.length - 1; i++) {
+          //日期的判断
+          let newsItem = {
+            "newsDate": innerRes.list[i]["newsDate"],
+            "newsId": innerRes.list[i]["newsId"],
+            "newsTime": "",
+            "newsTitle": innerRes.list[i]["newsTitle"],
+            "newsType": innerRes.list[i]["newsType"]
+          }//创建单个新闻Json对象
+          innerTempList.push(newsItem)
+          let newdate = innerRes.list[i].newsDate;
+          if (that.checkDate(myDate, newdate) < 1) {
+            // 当天
+            innerTempList[i].newsTime = "today"
+          } else if (that.checkDate(myDate, newdate) < 3) {
+            // 三天内的
+            innerTempList[i].newsTime = "new"
+          } else {
+            //老新闻
+            innerTempList[i].newsTime = "old"
+          }
+        }
+        that.setData({
+          isHave: true
+        })
+      } else {
+        innerTempList = []
+        that.setData({
+          isHave: false,
+        })
+      }
       wx.hideLoading();
       // 解析添加数据
-      innerList = innerList.concat(innerRes.list)
-      that.setData({
-        list: innerList, //当天的
-      })
+    } else {
+      innerTempList = []
     }
+    innerList = innerList.concat(innerTempList);
+    that.setData({
+      list: innerList, //当天的
+    })
   },
   // 外网首义
   async getOutSouyiNews() {
@@ -128,23 +162,61 @@ Page({
  */
     // 调用函数时，传入new Date()参数，返回值是日期和时间
     let that = this
+    var mydate = new Date
+    var myDate = mydate.toString()
+    var outTempList = [] as AnyArray;
     that.selectComponent("#toast").showToastAuto("加载中", "lodding", 0.5);
     let outPageParams = that.data.outPageParams
     let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
     if (outRes != null) {
-      if (outRes.pageSize != 0) {
-        // 循环添加数据
-        outerList = outerList.concat(outRes.list)
+      // 解析
+      if (outRes.list.length != 0) {
+        for (let i = 0; i < outRes.list.length - 1; i++) {
+          //日期的判断
+          let newsItem = {
+            "newsDate": outRes.list[i]["newsDate"],
+            "newsId": outRes.list[i]["newsId"],
+            "newsTime": "",
+            "newsTitle": outRes.list[i]["newsTitle"],
+            "newsType": outRes.list[i]["newsType"]
+          }//创建单个新闻Json对象
+          outTempList.push(newsItem)
+          let newdate = outRes.list[i].newsDate;
+          if (that.checkDate(myDate, newdate) < 1) {
+            // 当天
+            // 添加一条
+            outTempList[i].newsTime = "today"
+          } else if (that.checkDate(myDate, newdate) < 3) {
+            // 三天内的
+            outTempList[i].newsTime = "new"
+          } else {
+            //老新闻
+            outTempList[i].newsTime = "old"
+          }
+        }
         that.setData({
-          list: outerList, //当天的
+          isHave: true
         })
       } else {
-        that.selectComponent("#toast").showToastAuto("加载错误", "error", 1);
+        outTempList = []
+        that.setData({
+          isHave: false,
+        })
       }
+      wx.hideLoading();
+      // 解析添加数据
     } else {
       // 网络问题,toast弹出
       that.selectComponent("#toast").showToastAuto("加载错误", "error", 1);
+      outTempList = []
+      that.setData({
+        isHave: false,
+      })
     }
+    outerList = outerList.concat(outTempList);
+    that.setData({
+      list: outerList, //当天的
+    })
   },
   // 触底函数 scrollToMoreList
   async scrollToMoreList() {
@@ -156,7 +228,7 @@ Page({
     // 设置setdata，关于页面请求数据
     // 区分是内网还是外网请求
     // 内网请求
-    if (!that.data.tapbarCtrl) {
+    if (that.data.tapbarCtrl) {
       that.setData({
         innerPageParams: {
           // 设置setdata，关于页面返回数据
@@ -223,7 +295,7 @@ Page({
   async initNewsInfo() {
     // 根据tapBar初始值
     var that = this
-    if (!that.data.tapbarCtrl) {
+    if (that.data.tapbarCtrl) {
       await that.getInnerSchoolNews()
     } else {
       // 外网请求
@@ -242,17 +314,16 @@ Page({
   },
   onLoad() {
     // 获取当前时间并且做判断
+    var that = this;
     var myDate = new Date
     var hours = myDate.getHours();
-      // 如果时间超过了那么就弹出弹窗
+    // 如果时间超过了那么就弹出弹窗
     if (hours == 12 || hours < 6) {
-      this.setData({
+      that.setData({
         isShowDialog: true,
       })
     }
-    let that = this;
     // 初始化新闻列表
-    that.initNewsInfo()
   },
   /**
    *  点击新闻搜索跳转新的页面
@@ -270,12 +341,12 @@ Page({
     }, 500);
   },
   /**
-   * 
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     let that = this;
     let wxRes = myStorage.get('vxUserinfo');
+    that.initNewsInfo()
     if (wxRes != null) {
       let avatarUrl = wxRes.avatarUrl;
       that.setData({
@@ -286,9 +357,7 @@ Page({
         avatarUrl: '../../images/mrtx.png',
       })
     }
-
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -330,33 +399,24 @@ Page({
     // 并且切换请求数据
     this.initNewsInfo()
   },
-
   chooseTable: function () {
     wx.reLaunch({
       url: '/pages/timeTable/timeTable',
     })
   },
-
   chooseMypage: function () {
-
     wx.navigateTo({
       url: '/pages/myPage/myPage',
     })
   },
-
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
   },
-
-
 })

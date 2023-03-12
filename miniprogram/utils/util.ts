@@ -9,12 +9,10 @@ class Utils {
     }
     return this.instance;
   }
-
   // 获取网络请求基本地址
   public static getBaseUrl(): string {
     return app.globalData.baseUrl;
   }
-
 }
 
 export = Utils;

@@ -119,7 +119,6 @@ Page({
             newsListItems[i].newsTime = "old"
           }
         }
-        console.log("newsListItems", newsListItems);
         that.setData({
           list: newsListItems,
           isHave: true

@@ -7,7 +7,6 @@
   */
  export const dateFormater = (format: string, date: string | Date) => {
   date = new Date(date);
-
   const dataRegIndexs = [0, 1, 2, 3, 4, 5];
   const dataRegKeys = ["Y+", "M+", "d+"];
   const dataItem = [
@@ -20,7 +19,6 @@
     date.getMinutes().toString(),
     date.getSeconds().toString(),
   ];
-
   let ret;
   for (const index in dataRegIndexs) {
     ret = new RegExp("(" + dataRegKeys[index] + ")").exec(format);
