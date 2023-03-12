@@ -50,7 +50,7 @@ Page({
   /* 
   *展开自动识别规则
   */
-  details(e: any) {
+  details() {
     this.setData({ dialogTip: true })
   },
   /* 
