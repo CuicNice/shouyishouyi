@@ -1,4 +1,5 @@
 // pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting.ts
+var utils=require('../../../../utils/addCache');
 Page({
 
   /**
@@ -25,9 +26,7 @@ Page({
     this.setData({
       checked: e.detail.value
     })
-    let value=wx.getStorageSync('widget-classSchedule')
-    value.ifshowAllclass=!this.data.checked
-    wx.setStorageSync("widget-classSchedule", value)
+    utils.mySetStorage('widget-classSchedule','ifshowAllclass',!this.data.checked)
   },
   /* 
   *刷新
@@ -52,7 +51,6 @@ Page({
   *展开自动识别规则
   */
   details(e: any) {
-    console.log(e.detail.value)
     this.setData({ dialogTip: true })
   },
   /* 
@@ -62,7 +60,8 @@ Page({
     let voluntarily;
     let jia;
     let wu;
-    var arr=e.detail.value[0];
+    let arr=e.detail.value[0];
+    let place;
     if(arr==undefined){
         voluntarily=this.data.voluntarily;
         jia=this.data.jia;
@@ -88,17 +87,16 @@ Page({
       jia:jia,
       wu:wu
     });
-   let value= wx.getStorageSync('widget-classSchedule')
    if(this.data.voluntarily==true){
-    value.place='';
+    place='';
    };
    if(this.data.jia==true){
-    value.place='嘉鱼';
+    place='嘉鱼';
    };
    if(this.data.wu==true){
-    value.place='武昌';
+    place='武昌';
    };
-   wx.setStorageSync('widget-classSchedule',value);
+   utils.mySetStorage('widget-classSchedule','place',place)
   },
 
   /**

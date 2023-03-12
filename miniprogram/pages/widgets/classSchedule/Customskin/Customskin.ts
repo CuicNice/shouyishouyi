@@ -1,3 +1,4 @@
+var utils=require('../../../../utils/addCache');
 Page({
 
   /**
@@ -73,11 +74,9 @@ Page({
           });
         }
         if (that.data.picture != "") {
-          let value = wx.getStorageSync('widget-classSchedule');
-          value.picture = that.data.picture;
-          value.background = "";
-          value.buliding = "";
-          wx.setStorageSync('widget-classSchedule', value);
+          utils.mySetStorage('widget-classSchedule','picture',that.data.picture)
+          utils.mySetStorage('widget-classSchedule','background',"")
+          utils.mySetStorage('widget-classSchedule','buliding',"")
         };
         //返回课表页面
         wx.navigateBack({
@@ -171,49 +170,31 @@ Page({
    */
   login() {
     if (this.data.white == true) {
-      let value = wx.getStorageSync('widget-classSchedule');
-      value.background = "";
-      value.picture = "";
-      wx.setStorageSync('widget-classSchedule', value);
+      utils.mySetStorage('widget-classSchedule','background',"")
+      utils.mySetStorage('widget-classSchedule','picture',"")
     };
     if (this.data.black == true) {
-      let value = wx.getStorageSync('widget-classSchedule');
-      value.background = "#333333";
-      value.picture = "";
-      wx.setStorageSync('widget-classSchedule', value);
+      utils.mySetStorage('widget-classSchedule','background',"#333333")
+      utils.mySetStorage('widget-classSchedule','picture',"")
     };
     if (this.data.bellTower == true) {
-      let value = wx.getStorageSync('widget-classSchedule');
-      value.buliding = "zhonglou";
-      wx.setStorageSync('widget-classSchedule', value);
+      utils.mySetStorage('widget-classSchedule','buliding',"zhonglou")
     };
     if (this.data.administrativeBuilding == true) {
-      let value = wx.getStorageSync('widget-classSchedule');
-      value.buliding = "jiayuxingzhenluo";
-      wx.setStorageSync('widget-classSchedule', value);
+      utils.mySetStorage('widget-classSchedule','buliding',"jiayuxingzhenluo")
     };
     if (this.data.library == true) {
-      let value = wx.getStorageSync('widget-classSchedule');
-      value.buliding = "zhongqutushuguan";
-      wx.setStorageSync('widget-classSchedule', value);
+      utils.mySetStorage('widget-classSchedule','buliding',"zhongqutushuguan")
     };
     if (this.data.lighting == true) {
-      let value = wx.getStorageSync('widget-classSchedule');
-      value.dark = false;
-      wx.setStorageSync('widget-classSchedule', value);
+      utils.mySetStorage('widget-classSchedule','dark',false)
     };
     if (this.data.darking == true) {
-      let value = wx.getStorageSync('widget-classSchedule');
-      value.dark = true;
-      wx.setStorageSync('widget-classSchedule', value);
+      utils.mySetStorage('widget-classSchedule','dark',true)
     }
-    let value = wx.getStorageSync('widget-classSchedule');
-    value.picture = this.data.picture;
-    wx.setStorageSync('widget-classSchedule', value);
+    utils.mySetStorage('widget-classSchedule','picture',this.data.picture)
     if (this.data.picture == "" && this.data.bellTower == false && this.data.administrativeBuilding == false && this.data.library == false) {
-      let value = wx.getStorageSync('widget-classSchedule');
-      value.buliding = "zhonglou";
-      wx.setStorageSync('widget-classSchedule', value);
+      utils.mySetStorage('widget-classSchedule','buliding',"zhonglou")
     };
     wx.navigateBack();
   },

@@ -269,9 +269,7 @@ Page({
         classSchedule: classSchedule,
         nowWeekData: nowWeekData
       }, function () {
-        let arr = wx.getStorageSync('widget-classSchedule');
-        arr.classSchedule = classSchedule;
-        wx.setStorageSync('widget-classSchedule', arr);
+        utils.mySetStorage('widget-classSchedule','classSchedule',classSchedule)
       })
     }
   },
