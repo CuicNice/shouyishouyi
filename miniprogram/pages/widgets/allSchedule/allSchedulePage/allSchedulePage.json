@@ -4,5 +4,6 @@
     "dialogTitle":"/components/fmin-dialog/fmin-dialog",
     "topbar":"/components/fmin-topbar/fmin-topbar",
     "toast": "/components/fmin-toast/fmin-toast"
-  }
+  },
+  "disableScroll":true
 }

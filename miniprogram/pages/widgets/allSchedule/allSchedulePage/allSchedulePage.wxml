@@ -1,5 +1,231 @@
+<!-- 背景的学校建筑 -->
+<view class="bg">
+  <image class="background-box" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
+</view>
+<!-- 顶部状态栏div -->
+<view class="status_bar" style='background-color: {{bgc}};'></view>
+<!-- 导航栏 -->
+<view class="navigationBar" style="background-color: {{bgc}};" bindtap="getClassDule">
+  <view class="vector">
+    <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
+  </view>
+  <!-- 班级选择 -->
+  <view class="TitleLeft">
+    <view class="WeekOption">
+      <view class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{classTitle?classTitle:"选择课表"}}</view>
+      <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}" ></view>
+    </view>
+  </view>
+</view>
+
+<view class="select_box" wx:if="{{weekSchedule}}" style="background-color: {{bgc}};">
+  <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
+    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
+      <view class="select_one" wx:if="{{nowWeek == index+1}}">
+        <ul>
+          <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
+          <view class="select_oneweek">第{{index+1}}周</view>
+        </ul>
+      </view>
+      <view class="select_which" wx:else bindtap="selectWeek" data-index='{{index}}'>
+        <ul>
+          <view class="noselect_oneweek">第{{index+1}}周</view>
+        </ul>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class="container" style="background-color: {{bgc}};" wx:if="{{weekSchedule}}">
+  <view class="classXuLine1"></view>
+  <view class="classXuLine2"></view>
+  <view class="classXuLine3"></view>
+  <view class="classXuLine4"></view>
+  <view class="classXuLine5"></view>
+  <view class="classXuLine6"></view>
+  <view class="classXuLine7"></view>
+  <view class="classXuLine8"></view>
+  <view class="classXuLine9"></view>
+  <view class="top">
+    <view class="smallBox">
+      <text class="smallBoxtxt">{{schoolPlace}}校区</text>
+    </view>
+    <!-- 周和日期-->
+    <view class="weekbigBox">
+      <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
+        <view class="week">
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周日</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[0]}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="weekBox{{weekTime[1] == nowDate ? 'Select':''}}">
+        <view class="week">
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周一</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[1]}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="weekBox{{weekTime[2] == nowDate ? 'Select':''}}">
+        <view class="week">
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周二</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[2]}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="weekBox{{weekTime[3] == nowDate ? 'Select':''}}">
+        <view class="week">
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周三</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[3]}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="weekBox{{weekTime[4] == nowDate ? 'Select':''}}">
+        <view class="week">
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周四</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[4]}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="weekBox{{weekTime[5] == nowDate ? 'Select':''}}">
+        <view class="week">
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周五</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[5]}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="weekBox{{weekTime[6] == nowDate ? 'Select':''}}">
+        <view class="week">
+          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周六</view>
+        </view>
+        <view class="day">
+          <block>
+            <view class="dateBox">
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[6]}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="WHQscroll" wx:if="{{weekSchedule}}">
+    <scroll-view class="classScroll" scroll-y="true" lower-threshold='10' upper-threshold='10'>
+      <view style="width:100%;display:flex;">
+        <view class="leftBox">
+          <view class="timeTable" wx:for="{{time}}" wx:key="index">
+            <view class="{{bgc==''?'number':'numberWhite'}}">{{index+1}}</view>
+            <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time1}}</view>
+            <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time2}}</view>
+          </view>
+          <view class="timeTableLine"></view>
+        </view>
+        <!--课表-->
+        <block wx:for="{{weekTime}}" wx:key="index">
+          <!-- 本周 -->
+          <view wx:if="{{dark}}">
+            <view class="table-day" wx:if="{{showAll}}">
+              <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
+                <view class="flex-item-single" style="background: {{table.colorDark}};height: {{115*table.num.length-6}}rpx;color: #F5F5F5;">
+                  <view class="smalltext">{{table.name}}</view>
+                  <view class="smalltextad">{{table.local}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <!-- 其他课程 -->
+      <view class="WHQplus">
+        <view class="WHQplusLeft">
+          <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
+        </view>
+        <view class="otherclass">
+          <view class="kesehbox" wx:for="{{classSchedule.all_keshes}}" wx:key="index">
+            <image class="kesheIcon"></image>
+            <view class="{{bgc==''?'keshe':'kesheWhite'}}">{{item.data}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<!--课程的具体详情-->
+<view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails">
+  <scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
+    <block class="block" wx:for="{{detailClass}}" wx:key="index">
+      <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
+        <view class="course">
+          <view class="courseName">{{item.name}}</view>
+          <view class="courseifBox">
+            <view class="courseif" wx:if="{{item.zindex==3}}" style="color: white;">本周</view>
+            <view class="courseif1" wx:else style="color:#757575;">非本周</view>
+          </view>
+        </view>
+        <view class="courseOther">
+          <view class="courseplace">
+            <image class="courseplaceImage" src="../../../../static/svg/didian.svg" />
+            <view class="cuorseGuding">地点:</view>
+            <view class="cuorseXuigai">{{item.local}}</view>
+          </view>
+          <view class="courseplace">
+            <image class="courseplaceImage" src="../../../../static/svg/teacher.svg" />
+            <view class="cuorseGuding">老师:</view>
+            <view class="cuorseXuigai">{{item.teacher}}</view>
+          </view>
+          <view class="courseplace">
+            <image class="courseplaceImage" src="../../../../static/svg/jieshu.svg" />
+            <view class="cuorseGuding">节数:</view>
+            <view class="cuorseXuigai">{{item.day}} | {{item.old_num}}</view>
+          </view>
+          <view class="courseplace">
+            <image class="courseplaceImage" src="../../../../static/svg/zhuoci.svg" />
+            <view class="cuorseGuding">周次:</view>
+            <view class="cuorseXuigai">{{item.old_day_num}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
+  <view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
+  </view>
+</dialogTitle>
+
+
 <!-- 选择学期学年部分 -->
-<dialogTitle type="half-screen" showDialog="{{electricChargedetail}}">
+<dialogTitle class="dialogBox" type="half-screen" showDialog="{{electricChargedetail}}">
   <view class="chooseBox">
     <view class="chooseTop">
       <!-- 齿轮svg' -->
@@ -9,71 +235,77 @@
       <!-- 请选择你要查询的课表 -->
       <view class="cogsText">请选择你要查询的课表</view>
     </view>
-
     <!-- 中区四个选择部分 -->
-
     <!-- 年级部分 -->
     <view class="chooseMiddle">
-    <view class="gradeBox">
-    <view class="laber">
-        <text class="laberLeft">年级：</text>
-    <text class="laberRight">{{grade?grade:"请选择年级"}}</text>
-    </view>
-      <view class="gradePicker" >
-        <picker mode="selector" bindchange="bindGrade" value="{{GradeId}}" range="{{gradeArray}}">
-        <view class="textpicker">
-          <view class="iconpicker"> <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image></view>
+      <view class="gradeBox">
+        <view class="laber">
+          <text class="laberLeft">年级：</text>
+          <text class="laberRight">{{grade?grade:"请选择年级"}}</text>
         </view>
-        </picker>    
+        <view class="gradePicker">
+          <picker class="pickerWidth" mode="selector" bindchange="bindGrade" value="{{GradeId}}" range="{{gradeArray}}">
+            <view class="textpicker">
+              <view class="iconpicker">
+                <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image>
+              </view>
+            </view>
+          </picker>
+        </view>
+      </view>
+      <!-- 学院 -->
+      <view class="gradeBox">
+        <view class="laber">
+          <text class="laberLeft">学院：</text>
+          <text class="laberRight">{{academy?academy:"请选择学院"}}</text>
+        </view>
+        <view class="gradePicker">
+          <picker mode="selector" bindchange="bindAcademy" value="{{academyId}}" range="{{academyArray}}">
+            <view class="textpicker">
+              <view class="iconpicker">
+                <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image>
+              </view>
+            </view>
+          </picker>
+        </view>
+      </view>
+      <!-- 班级 -->
+      <view class="gradeBox">
+        <view class="laber">
+          <text class="laberLeft">班级：</text>
+          <text class="laberRight">{{ClassId !==0?ClassArray[ClassId]:"请选择专业班级"}}</text>
+        </view>
+        <view class="gradePicker">
+          <picker mode="selector" bindchange="bindClass" value="{{ClassId}}" range="{{ClassArray}}">
+            <view class="textpicker">
+              <view class="iconpicker">
+                <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image>
+              </view>
+            </view>
+          </picker>
+        </view>
+      </view>
+      <!-- 学期 -->
+      <view class="gradeBox">
+        <view class="laber">
+          <text class="laberLeft">学期：</text>
+          <text class="laberRight">{{semesters?semesters:"请选择学期 "}}</text>
+        </view>
+        <view class="gradePicker">
+          <picker mode="selector" bindchange="bindSemester" value="{{semesterId}}" range="{{semesterArray}}">
+            <view class="textpicker">
+              <view class="iconpicker">
+                <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image>
+              </view>
+            </view>
+          </picker>
+        </view>
       </view>
     </view>
-    <!-- 学院 -->
-    <view class="gradeBox">
-    <view class="laber">
-        <text class="laberLeft">学院：</text>
-    <text class="laberRight">{{academy?academy:"请选择学院"}}</text>
+    <!-- 底部的缓存部分 -->
+    <view class="chooseBottom">
+      <view wx:for="{{all}}" wx:key="index" class="all" bindtap="getCache" wx:for-index="index" data-index="{{index}}">{{item.Class}}</view>
     </view>
-      <view class="gradePicker" >
-        <picker mode="selector" bindchange="bindAcademy" value="{{academyId}}" range="{{academyArray}}">
-        <view class="textpicker">
-          <view class="iconpicker"> <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image></view>
-        </view>
-        </picker>    
-      </view>
-    </view>
-    <!-- 班级 -->
-    <view class="gradeBox">
-    <view class="laber">
-        <text class="laberLeft">班级：</text>
-    <text class="laberRight">{{Class?Class:"请选择专业班级"}}</text>
-    </view>
-      <view class="gradePicker" >
-        <picker mode="selector" bindchange="bindClass" value="{{ClassId}}" range="{{ClassArray}}">
-        <view class="textpicker">
-          <view class="iconpicker"> <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image></view>
-        </view>
-        </picker>    
-      </view>
-    </view>
-    <!-- 学期 -->
-    <view class="gradeBox">
-    <view class="laber">
-        <text class="laberLeft">学期：</text>
-    <text class="laberRight">{{semesters?semesters:"请选择学期 "}}</text>
-    </view>
-      <view class="gradePicker" >
-        <picker mode="selector" bindchange="bindSemester" value="{{GradeId}}" range="{{semesterArray}}">
-        <view class="textpicker">
-          <view class="iconpicker"> <image src="../../../../static/svg/allSchedul/Vector-3.svg"></image></view>
-        </view>
-        </picker>    
-      </view>
-    </view>
-  </view>
-  <!-- 底部的缓存部分 -->
-  <view class="chooseBottom" style="background: red;">
-  <view></view>
-  </view>
   </view>
   <!-- 取消确定按钮 -->
   <view class="button">
@@ -81,9 +313,9 @@
       <text>取消</text>
     </button>
     <button type="primary" class="primary" bindtap="bind">
-      <text>完成</text>
+      <text>确定</text>
     </button>
   </view>
-  <!-- toast组件 -->
   <toast id="toast"></toast>
+
 </dialogTitle>
