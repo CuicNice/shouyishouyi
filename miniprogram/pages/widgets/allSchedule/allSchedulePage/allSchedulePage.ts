@@ -51,9 +51,27 @@ Page({
     nowWeekData: [] as any
   },
   /**
+   * 根据数据，查询课表,暂时没有接口，先用着
+   */
+  getAllSchdul(){  
+    wx.request({
+      url: 'https://syj.kkya.xyz/shouyijia/api/v2/user/getAllTable',
+      method: 'POST',
+      data: {
+        zh: wx.getStorageSync('login').zh,
+        mm: wx.getStorageSync('login').mm,
+        xy_id: '0' + xy_id,
+        nj: '2017',
+      },
+      success: ((res) => {
+
+      })
+  })
+},
+  /**
     * 根据学院id获取全部班级,暂时用这个，因为没有缓存
     */
-  async getClassInfo() {
+  getClassInfo() {
     var xy_id = this.data.academyId - 0 + 1;
     console.log(xy_id);
     wx.request({
