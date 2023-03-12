@@ -20,7 +20,7 @@ Page({
     semesterId: 0,
     electricChargedetail: false,
     all: [],//存入的选择过的班级专业的缓存,
-    allOne: {},//存入的单个缓存的数据
+    allOne: '',//存入的单个缓存的数据
     weekSchedule: true,
     weekNum: 19,
     nowWeek: 1,
@@ -246,7 +246,8 @@ Page({
     console.log(e)
     var index = e.currentTarget.dataset.index;
     this.setData({
-      allOne: wx.getStorageSync('widget-allSchedule')[index],
+      allOne: wx.getStorageSync('widgets-allSchedul')[index],
+      electricChargedetail:false,
       index: index,
     })
   },
