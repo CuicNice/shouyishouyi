@@ -1504,7 +1504,6 @@ page {
 
 .TitleLeft {
   margin-top: 50rpx;
-  height: 142rpx;
   width: 360rpx;
   transform: translate(230rpx, 10rpx);
   position: absolute;

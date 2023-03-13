@@ -1,10 +1,28 @@
 
+import { getAllClasses, getAllSchedule } from '../../../../api/allSchedule';
+export interface AllScheduleItem {
+  zh: string,
+  mm: string,
+  xy_id: string,
+  nj: string,
+}
+export interface AllScheduleItem {
+  zh: string,
+  mm: string,
+  xnm: string,
+  xqm: string,
+  njdm_id: string,
+  jg_id: string,
+  bh_id: string,
+  bh_name: string,
+}
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    classTitle:'',//标题部分的班级
+    allClass: [],//储存着通过学院id和年级请求到的数据
+    classTitle: '',//标题部分的班级
     index: 0,
     gradeId: 0,
     gradeArray: [],
@@ -51,48 +69,202 @@ Page({
     nowWeekData: [] as any
   },
   /**
-   * 根据数据，查询课表,暂时没有接口，先用着
+   * 绑定数据，获取全校课表
    */
-  getAllSchdul(){  
-    wx.request({
-      url: 'https://syj.kkya.xyz/shouyijia/api/v2/user/getAllTable',
-      method: 'POST',
-      data: {
-        zh: wx.getStorageSync('login').zh,
-        mm: wx.getStorageSync('login').mm,
-        xy_id: '0' + xy_id,
-        nj: '2017',
-      },
-      success: ((res) => {
-
-      })
-  })
-},
-  /**
-    * 根据学院id获取全部班级,暂时用这个，因为没有缓存
-    */
-  getClassInfo() {
-    var xy_id = this.data.academyId - 0 + 1;
-    console.log(xy_id);
-    wx.request({
-      url: 'https://syj.kkya.xyz/shouyijia/api/v2/user/getClassList',
-      method: 'POST',
-      data: {
-        zh: wx.getStorageSync('login').zh,
-        mm: wx.getStorageSync('login').mm,
-        xy_id: '0' + xy_id,
-        nj: '2017',
-      },
-      success: ((res) => {
-        var ClassArray = this.data.ClassArray as any;
-        for (var i = 0; i <= res.data.data.length; i++) {
-          ClassArray[i] = res.data.data[i]['bj'];
-          this.setData({
-            ClassArray: ClassArray
-          })
+  async getbindSchdul() {
+    var allClass = this.data.allClass as any;
+    var Class = this.data.Class;
+    /**
+     * 判断用户选择了哪个班级，然后得到其他数据
+     */
+    for (var i = 0; i < allClass.length; i++) {
+      if (Class == allClass[i].bj) {
+        var bh_id = allClass[i].bh_id;
+        var jg_id = allClass[i].jg_id;
+      }
+    }
+    /**
+     * 获取当前选择的学年学期，得到需要的number类型的学年学期数据
+     */
+    var grade = this.data.grade as any;
+    var semester = this.data.semester;
+    var xnm = 0 as any;
+    var xqm = 0;
+    if (semester == '大一上') {
+      xnm = grade;
+      xqm = 1;
+    }
+    if (semester == '大一下') {
+      xnm = grade - 0 + 1;
+      xqm = 2;
+    }
+    if (semester == '大二上') {
+      xnm = grade - 0 + 2;
+      xqm = 1;
+    }
+    if (semester == '大二下') {
+      xnm = grade - 0 + 2;
+      xqm = 2;
+    }
+    if (semester == '大三上') {
+      xnm = grade - 0 + 3;
+      xqm = 1;
+    }
+    if (semester == '大三下') {
+      xnm = grade - 0 + 3;
+      xqm = 2;
+    }
+    if (semester == '大四上') {
+      xnm = grade - 0 + 4;
+      xqm = 1;
+    }
+    if (semester == '大四下') {
+      xnm = grade - 0 + 4;
+      xqm = 2;
+    }
+    var bindSchdul = {
+      zh: wx.getStorageSync('login').zh,
+      mm: wx.getStorageSync('login').mm,
+      xnm: String(parseInt(xnm) - 1),
+      xqm: String(xqm) == '1' ? '3' : '12',
+      njdm_id: String(grade),
+      jg_id: String(jg_id),
+      bh_id: String(bh_id),
+    } as AllScheduleItem
+    this.getAllSchedule(bindSchdul);
+  },
+  async getAllSchedule(from: AllScheduleItem) {
+    const { data: res } = await getAllSchedule(from) as unknown as IResult<any>;
+    if (!res) {
+      this.selectComponent("#toast").showToastAuto("暂不支持查询", "lodding", 0.5);
+    }
+    else {
+      var all_tables = res.all_tables;
+      var arr = this.objHeavy(all_tables);//筛选有多少门课程
+      var myarr = this.randArr(arr); //把存放课程的数组打乱
+      var leng = myarr.length;
+      for (var i = 0; i < all_tables.length; i++) {
+        for (var j = 0; j < leng; j++) {
+          if (all_tables[i].name == myarr[j].name) {
+            var colorDark = this.data.colorcardDark[j];
+            var colorlight = this.data.colorcardLight[j];
+            var colorzi = this.data.colorcardZi[j];
+            all_tables[i].colorDark = colorDark;
+            all_tables[i].colorlight = colorlight;
+            all_tables[i].colorzi = colorzi;
+          }
         }
+      }
+      var maxWeeks = 0;
+      var week = [];
+      // 切割每个tables的day_num
+      for (var i = 0; i < all_tables.length; i++) {
+        all_tables[i].old_day_num = all_tables[i].day_num;
+        // 切割周数
+        all_tables[i].day_num = this.getDayNum(all_tables[i]);
+        // 切割节数
+        all_tables[i].old_num = all_tables[i].num;
+        all_tables[i].num = this.getNum(all_tables[i]);
+        // 记录下最大的周数
+        if (all_tables[i].day_num[all_tables[i].day_num.length - 1] > maxWeeks) {
+          maxWeeks = all_tables[i].day_num[all_tables[i].day_num.length - 1];
+        }
+        for (var j = 0; j < all_tables[i].day_num.length; j++) {
+          // 匹配周数
+          var dayIndex = week.findIndex(function (v) {
+            return v.name == all_tables[i].day_num[j];
+          });
+          if (dayIndex == -1) { //没有就新增
+            week.push({
+              name: all_tables[i].day_num[j],
+              data: [{
+                day: "星期日",
+                item: []
+              }, {
+                day: "星期一",
+                item: []
+              }, {
+                day: "星期二",
+                item: []
+              },
+              {
+                day: "星期三",
+                item: []
+              }, {
+                day: "星期四",
+                item: []
+              }, {
+                day: "星期五",
+                item: []
+              },
+              {
+                day: "星期六",
+                item: []
+              }
+              ]
+            })
+            var itemIndex = week[week.length - 1].data.findIndex(function (v) {
+              return v.day == all_tables[i].day;
+            })
+            week[week.length - 1].data[itemIndex].item.push((all_tables[i]) as unknown as never);
+          } else { // 有就push周
+            // 查找星期
+            var itemIndex = week[dayIndex].data.findIndex(function (v) {
+              return v.day == all_tables[i].day;
+            })
+            if (itemIndex == -1) console.log(all_tables[i].day)
+            week[dayIndex].data[itemIndex].item.push((all_tables[i]) as unknown as never);
+          }
+        }
+      }
+      week.sort(function (a, b) {
+        return parseInt(a.name) - parseInt(b.name);
+      });
+      var classSchedule = {
+        week: week,
+        all_keshes: res.all_keshes
+      };
+      var nowWeekData: { day: string; item: never[] }[] = [] as any
+      if (this.data.showAll) {
+        nowWeekData = this.getNowWeekData(classSchedule, this.data.nowWeek);
+      }
+      wx.hideLoading();
+      this.setData({
+        classSchedule: classSchedule,
+        nowWeekData: nowWeekData
       })
-    })
+
+      wx.setStorageSync('widgets-allSchedul',classSchedule)
+    }
+  },
+  /**
+   * 绑定账号，密码，学院id，年级，对其全部班级进行查询
+   */
+  async getbindInfo() {
+    var xy_id = this.data.academyId - 0 + 1;
+    console.log('0' + xy_id, this.data.grade);
+    var bind = {
+      zh: wx.getStorageSync('login').zh,
+      mm: wx.getStorageSync('login').mm,
+      xy_id: '0' + xy_id,
+      nj: String(this.data.grade),
+    } as AllScheduleItem
+    this.getAllClasses(bind)
+  },
+  /**
+   * 请求网络，获取当前条件下的全部班级
+   * @param from 
+   */
+  async getAllClasses(from: AllScheduleItem) {
+    const { data: res } = await getAllClasses(from) as unknown as IResult<any>;
+    var ClassArray = this.data.ClassArray as any;
+    for (var i = 0; i < res.length; i++) {
+      ClassArray[i] = res[i].bj;
+    };
+    this.setData({
+      ClassArray: ClassArray,
+      allClass: res,
+    });
   },
   /**
    * 选择年级
@@ -138,11 +310,12 @@ Page({
         academyId: e.detail.value,
         academy: that.data.academyArray[e.detail.value],
       })
-      this.getClassInfo();
     }
     else {
       that.selectComponent("#toast").showToastAuto("请先选择年级", "", 0.5);
     }
+    this.getbindInfo();
+    this.selectComponent("#toast").showToastAuto("查询班级中", "lodding", 2);
   },
   /**
    * 选择班级
@@ -176,7 +349,7 @@ Page({
      */
     for (var i = 0; i < Class.length; i++) {
       if (Class[i] == 'z' && Class[i + 1] == 's' && Class[i + 2] == 'b') {
-        semesterArray = ['大三上','大三下','大四上','大四下'];
+        semesterArray = ['大三上', '大三下', '大四上', '大四下'];
         console.log(1)
         break;
       }
@@ -187,6 +360,7 @@ Page({
       }
     }
     this.setData({
+      classTitle:Class,
       Class: Class,
       ClassId: ClassId,
       semesterArray: semesterArray,
@@ -218,12 +392,12 @@ Page({
     }
   },
   /**
-   * 对年级学院班级学期的数据处理
+   * 对年级学院的数据处理
    */
   changeInfo() {
     var gradeArray = this.data.gradeArray as any;
     var Y = this.data.Y as any;
-    gradeArray = ['', Y - 3, Y - 4, Y - 5, Y - 2, Y - 1, Y, Y + 1, Y + 2, Y + 3, Y + 4, Y + 5];
+    gradeArray = ['', Y - 5, Y - 4, Y - 3, Y - 2, Y - 1, Y, Y + 1, Y + 2, Y + 3, Y + 4, Y + 5];
     var academyArray = this.data.academyArray as any;
     academyArray = [
       '信息科学与工程学院',
@@ -247,7 +421,7 @@ Page({
     var index = e.currentTarget.dataset.index;
     this.setData({
       allOne: wx.getStorageSync('widgets-allSchedul')[index],
-      electricChargedetail:false,
+      electricChargedetail: false,
       index: index,
     })
   },
@@ -257,10 +431,10 @@ Page({
   getClassDule() {
     this.setData({
       electricChargedetail: true,
-      Class:'',
-      academy:'',
-      semesters:'',
-      grade:'',
+      Class: '',
+      academy: '',
+      semesters: '',
+      grade: '',
     })
   },
   /**
@@ -275,14 +449,15 @@ Page({
    * 点击确认,并存入缓存
    */
   bind() {
+    this.getbindSchdul();
     var electricChargedetail = this.data.electricChargedetail;
     var grade = this.data.grade;
     var Class = this.data.Class;
     var academy = this.data.academy;
     var semesters = this.data.semesters;
     if (wx.getStorageSync('widgets-allSchedul')) {
-      var all = wx.getStorageSync('widgets-allSchedul') as any;
-    } else if(this.data.gradeId !== 0 && this.data.academyId !== 0 && this.data.ClassId !== 0 && this.data.semesterId !== 0) {
+      var all = wx.getStorageSync('widgets-allSchedul').all as any;
+    } else if (Class&&this.data.semester&&academy&&grade) {
       var all = ['', '', ''] as any;
     }
     var allSchedul = {
@@ -299,12 +474,12 @@ Page({
         all[0] = allSchedul
         break;
       }
-      if (all[1] == '' && all[0] !== ''&&all[0].Class!==all[1].Class) {
+      if (all[1] == '' && all[0] !== '' && all[0].Class !== all[1].Class) {
         all[1] = all[0];
         all[0] = allSchedul;
         break;
       }
-      if (all[2] == '' && all[0] !== '' && all[1] !== ''&&all[1].Class!==all[2].Class!==all[0].Class) {
+      if (all[2] == '' && all[0] !== '' && all[1] !== '' && all[1].Class !== all[2].Class !== all[0].Class) {
         all[2] = all[1];
         all[1] = all[0];
         all[0] = allSchedul;
@@ -322,7 +497,9 @@ Page({
         }
       }
     }
-    if (this.data.gradeId !== 0 && this.data.academyId !== 0 && this.data.ClassId !== 0 && this.data.semesterId !== 0) {
+    if (Class&&this.data.semester&&academy&&grade ){
+      var myarr = wx.getStorageSync('widgets-allSchedul');
+      myarr.all = all;
       wx.setStorageSync('widgets-allSchedul', all)
       electricChargedetail = false;
       all = all;
@@ -331,7 +508,7 @@ Page({
       this.selectComponent("#toast").showToastAuto("请完善绑定条件", "", 0.5);
     }
     this.setData({
-      classTitle:wx.getStorageSync('widgets-allSchedul')[0].Class,
+      classTitle: wx.getStorageSync('widgets-allSchedul')[0].Class,
       electricChargedetail: electricChargedetail,
       all: all,
     })
@@ -402,7 +579,6 @@ Page({
     var timestamp = Date.parse(new Date() as unknown as string);
     var date = new Date(timestamp);
     let num = date.getFullYear() as unknown as string;
-    let year = 0;//选择学期的年份
     let start;//开始上课的时间
     let schoolTerm = 0;//学期
     let place;//校区
@@ -416,29 +592,24 @@ Page({
       start = num + '/8/28';
     };
     if (this.data.suorec.slice(1, 2) == "一") {
-      year = year + parseInt(wx.getStorageSync('login').zh.slice(0, 4));
       place = '嘉鱼';
       times = this.data.timeJia;
     };
     if (this.data.suorec.slice(1, 2) == "二") {
-      year = year + parseInt(wx.getStorageSync('login').zh.slice(0, 4)) + 1;
       place = '武昌';
       times = this.data.timeWu;
     };
     if (this.data.suorec.slice(1, 2) == "三") {
-      year = year + parseInt(wx.getStorageSync('login').zh.slice(0, 4)) + 2;
       place = '武昌';
       times = this.data.timeWu;
     };
     if (this.data.suorec.slice(1, 2) == "四") {
-      year = year + parseInt(wx.getStorageSync('login').zh.slice(0, 4)) + 3;
       place = '武昌';
       times = this.data.timeWu;
     };
     this.setData({
       semester: this.data.suorec.slice(0, 3),
       Semesterswitchingdetail: false,
-      Y: year as unknown as string,
       schoolPlace: place,
       time: times,
       I: schoolTerm,
@@ -485,119 +656,6 @@ Page({
     };
   },
 
-  /**
-   * 通过网络请求获得课表，并且缓存进本地
-   * @param {年份} year 
-   * @param {*} num 
-   */
-  async getTableDataFromApi(year: number, num: number) {
-    var that = this;
-    let vaule = {
-      "zh": wx.getStorageSync('login').zh,
-      "mm": wx.getStorageSync('login').mm,
-      "year": year,
-      "num": num
-    };
-    const { data: res } = await getClassSchedule(vaule) as unknown as IResult<any>;
-    if (res) {
-      var all_tables = res.all_tables;
-      var arr = this.objHeavy(all_tables);//筛选有多少门课程
-      var myarr = this.randArr(arr); //把存放课程的数组打乱
-      var leng = myarr.length;
-      for (var i = 0; i < all_tables.length; i++) {
-        for (var j = 0; j < leng; j++) {
-          if (all_tables[i].name == myarr[j].name) {
-            var colorDark = this.data.colorcardDark[j];
-            var colorlight = this.data.colorcardLight[j];
-            var colorzi = this.data.colorcardZi[j];
-            all_tables[i].colorDark = colorDark;
-            all_tables[i].colorlight = colorlight;
-            all_tables[i].colorzi = colorzi;
-          }
-        }
-      }
-      var maxWeeks = 0;
-      var week = [];
-      // 切割每个tables的day_num
-      for (var i = 0; i < all_tables.length; i++) {
-        all_tables[i].old_day_num = all_tables[i].day_num;
-        // 切割周数
-        all_tables[i].day_num = that.getDayNum(all_tables[i]);
-        // 切割节数
-        all_tables[i].old_num = all_tables[i].num;
-        all_tables[i].num = that.getNum(all_tables[i]);
-        // 记录下最大的周数
-        if (all_tables[i].day_num[all_tables[i].day_num.length - 1] > maxWeeks) {
-          maxWeeks = all_tables[i].day_num[all_tables[i].day_num.length - 1];
-        }
-        for (var j = 0; j < all_tables[i].day_num.length; j++) {
-          // 匹配周数
-          var dayIndex = week.findIndex(function (v) {
-            return v.name == all_tables[i].day_num[j];
-          });
-          if (dayIndex == -1) { //没有就新增
-            week.push({
-              name: all_tables[i].day_num[j],
-              data: [{
-                day: "星期日",
-                item: []
-              }, {
-                day: "星期一",
-                item: []
-              }, {
-                day: "星期二",
-                item: []
-              },
-              {
-                day: "星期三",
-                item: []
-              }, {
-                day: "星期四",
-                item: []
-              }, {
-                day: "星期五",
-                item: []
-              },
-              {
-                day: "星期六",
-                item: []
-              }
-              ]
-            })
-            var itemIndex = week[week.length - 1].data.findIndex(function (v) {
-              return v.day == all_tables[i].day;
-            })
-            week[week.length - 1].data[itemIndex].item.push((all_tables[i]) as unknown as never);
-          } else { // 有就push周
-            // 查找星期
-            var itemIndex = week[dayIndex].data.findIndex(function (v) {
-              return v.day == all_tables[i].day;
-            })
-            if (itemIndex == -1) console.log(all_tables[i].day)
-            week[dayIndex].data[itemIndex].item.push((all_tables[i]) as unknown as never);
-          }
-        }
-      }
-      week.sort(function (a, b) {
-        return parseInt(a.name) - parseInt(b.name);
-      });
-      var classSchedule = {
-        week: week,
-        all_keshes: res.all_keshes
-      };
-      var nowWeekData: { day: string; item: never[] }[] = [] as any
-      if (that.data.showAll) {
-        nowWeekData = that.getNowWeekData(classSchedule, that.data.nowWeek);
-      }
-      wx.hideLoading();
-      that.setData({
-        classSchedule: classSchedule,
-        nowWeekData: nowWeekData
-      }, function () {
-        utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
-      })
-    }
-  },
   /* 
   *刷新本周的日期
   */
@@ -623,25 +681,25 @@ Page({
   /**
    * 从本地缓存中读取课表，若成功返回true，失败为false
    */
-  getTableDataFromLocal() {
-    var that = this;
-    try {
-      var value = wx.getStorageSync('widget-classSchedule').classSchedule;
-      if (value) {
-        var nowWeekData: { day: string; item: never[] }[] = [];
-        if (that.data.showAll) {
-          nowWeekData = that.getNowWeekData(value, that.data.nowWeek);
-        }
-        that.setData({
-          classSchedule: value,
-          nowWeekData: nowWeekData
-        });
-        return true;
-      } else {
-        return false;
-      }
-    } catch { };
-  },
+  // getTableDataFromLocal() {
+  //   var that = this;
+  //   try {
+  //     var value = wx.getStorageSync('widgets-AllSchedule').classSchedule;
+  //     if (value) {
+  //       var nowWeekData: { day: string; item: never[] }[] = [];
+  //       if (that.data.showAll) {
+  //         nowWeekData = that.getNowWeekData(value, that.data.nowWeek);
+  //       }
+  //       that.setData({
+  //         classSchedule: value,
+  //         nowWeekData: nowWeekData
+  //       });
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   } catch { };
+  // },
 
   /**
    * 切割出周数  2-4周(双),5-8周 -> [ 2 4 5 6 7 8 ]
@@ -716,9 +774,8 @@ Page({
    */
   async initClassData() {
     var that = this;
-    if (!this.getTableDataFromLocal()) {
+    if (wx.getStorageSync('widgets-allSchedule').allSchedule !== ''){
       that.selectComponent("#toast").showToast("课表刷新中", "lodding");
-      await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I) as any;
     }
     that.selectComponent("#toast").showToastAuto("刷新成功", "success");
   },
@@ -872,15 +929,6 @@ Page({
     this.setData({
       ifshow: true,
       detailClass: list
-    });
-  },
-
-  /* 
-  *切换周与日课表
-  */
-  changeicon() {
-    this.setData({
-      weekSchedule: !this.data.weekSchedule
     });
   },
 
@@ -1050,7 +1098,7 @@ Page({
       time: time,
       all: all,
       Class: all[0].Class,
-      classTitle:wx.getStorageSync('widgets-allSchedul')[0].Class
+      classTitle: wx.getStorageSync('widgets-allSchedul')[0].Class
     });
   },
 })

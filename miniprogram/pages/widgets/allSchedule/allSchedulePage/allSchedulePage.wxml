@@ -273,7 +273,7 @@
       <view class="gradeBox">
         <view class="laber">
           <text class="laberLeft">班级：</text>
-          <text class="laberRight">{{ClassId !==0?ClassArray[ClassId]:"请选择专业班级"}}</text>
+          <text class="laberRight">{{Class?Class:"请选择专业班级"}}</text>
         </view>
         <view class="gradePicker">
           <picker mode="selector" bindchange="bindClass" value="{{ClassId}}" range="{{ClassArray}}">
