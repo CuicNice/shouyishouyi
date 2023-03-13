@@ -686,19 +686,6 @@ page {
   background: rgba(198, 198, 198, 0.6);
 }
 
-.dailyScheduleNavigation {
-  box-sizing: border-box;
-  /* Auto layout */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 16rpx;
-  width: 100%;
-  height: 72rpx;
-  /* #EAEAEC */
-  border-bottom: 1px solid #EAEAEC;
-}
-
 .dailyNavigationtext {
   height: 40rpx;
   font-family: 'PingFang SC';
@@ -706,89 +693,21 @@ page {
   font-weight: 500;
   font-size: 28rpx;
   line-height: 40rpx;
-  /* identical to box height */
-  /* text */
   color: #292945;
 }
 
-.dailyScheduleIndexList {
-  width: 100%;
-  height: 134rpx;
-  margin-top: 14rpx;
-  margin-left: 16rpx;
-  margin-right: 16rpx;
-  display: flex;
-  flex-direction: row;
+.dailyImage{
+  width: 184rpx;
+  height: 104rpx;
+  position: absolute;
+  left: 440rpx;
+  z-index: -1;
+  padding-top: 25rpx;
 }
 
-.dailyScheduleTime {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 58rpx;
-  height: 134rpx;
-}
-
-.dailyScheduleTime1 {
-  width: 58rpx;
-  height: 40rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28rpx;
-  line-height: 40rpx;
-  /* identical to box height */
-  color: rgba(41, 41, 69, 0.6);
-  margin-top: 16rpx;
-}
-
-.dailyScheduleTimeLine {
-  width: 24rpx;
-  height: 0rpx;
-  background: rgba(41, 41, 69, 0.6);
-  border: 2rpx solid rgba(41, 41, 69, 0.6);
-  transform: rotate(90deg);
-  margin-top: 18rpx;
-  margin-bottom: 4rpx;
-}
-
-.dailyScheduleBox {
-  box-sizing: border-box;
-  height: 134rpx;
-  background: #F9F9F9;
-  border: 2rpx solid rgba(216, 216, 216, 0.3);
-  border-radius: 8rpx;
-  margin-left: 34rpx;
-  margin-right: 16rpx;
-  width: 626rpx;
-  display: flex;
-  position: relative;
-  z-index: 0;
-
-}
-
-.dailySchedule {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0rpx;
-  gap: 16rpx;
-  width: 206rpx;
-  height: 94rpx;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
-  margin-left: 20rpx;
-}
-
-.dailyScheduleClass {
-  width: 148rpx;
-  height: 44rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32rpx;
-  line-height: 44rpx;
-  color: #292945;
+.swiper_container{
+  height: 50rpx;
+  width: 90%;
 }
 
 .dailyScheduleAdBox {
@@ -829,7 +748,6 @@ page {
   font-weight: 400;
   font-size: 12px;
   line-height: 17px;
-  /* identical to box height */
   color: rgba(41, 41, 69, 0.6);
   margin-left: 4rpx;
   margin-top: 10rpx;
@@ -845,19 +763,6 @@ page {
   margin-left: 260rpx;
 }
 
-.whichKc {
-  height: 34rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24rpx;
-  line-height: 34rpx;
-  /* identical to box height */
-  text-align: right;
-  /* text */
-  color: #292945;
-}
-
 .whichTc {
   width: 72rpx;
   height: 34rpx;
@@ -866,9 +771,7 @@ page {
   font-weight: 400;
   font-size: 24rpx;
   line-height: 34rpx;
-  /* identical to box height */
   text-align: right;
-  /* text */
   color: #292945;
   margin-top: 18rpx;
 }
@@ -888,15 +791,6 @@ page {
   height: 199.5rpx;
 }
 
-.havedailyScheduleBd {
-  position: absolute;
-  width: 199.5rpx;
-  height: 199.5rpx;
-  right: 0rpx;
-  top: -4rpx;
-  z-index: -1;
-}
-
 .havedailyScheduleBd image {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iNjciIHZpZXdCb3g9IjAgMCA5NiA2NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTM5Ljg2NjkgMzQuNTUyN1YzNS4wOTQ0SDYwLjI5NlYzNC41NTI3SDM5Ljg2NjlaTTM5Ljg2NjkgMzYuNzIzOFY0MC4yNjMzSDYwLjI5NlYzNi43MjM4SDM5Ljg2NjlaTTM5Ljg2NjkgNDEuODkzM1Y0Mi40MzVINjAuMjk2VjQxLjg5MzNIMzkuODY2OVpNMzkuODY2OSA0NC4wNjQ1VjY2LjY1ODdINDAuNTUxOVY1Ni41NDE5SDU5LjQ2NjRWNjYuNjU4N0g2MC4yOTZWNDQuMDY0NUgzOS44NjY5Wk0zOS44NjY5IDQyLjk3OTJWNDMuNTIwOUg2MC4yOTZWNDIuOTc5MkgzOS44NjY5Wk0zOS44NjY5IDQwLjgwNzVWNDEuMzQ5MUg2MC4yOTZWNDAuODA3NUgzOS44NjY5Wk0zOS44NjY5IDM1LjYzOFYzNi4xNzk3SDYwLjI5NlYzNS42MzhIMzkuODY2OVpNMzkuODY2OSAzMy40Njc1VjM0LjAwOTJINjAuMjk2VjMzLjQ2NzVIMzkuODY2OVpNNzQuNjk5NSAxNS41MTM2SDczLjQyNkw2OS4wNzQ2IDE3LjcyMTFWMTguNDQ0Mkg2Ny42OTUzVjE3LjcyMTFMNjMuNTU2MSAxNi4xMjE4TDYyLjA3MDQgMTYuMTk3OEw2MC42OTA0IDE3LjcyMTFWMjQuNDkzN0M2MC42OTA0IDI0LjQ5MzcgNTEuOTM4MiAyMy40Njc0IDUwLjA1MzYgMjMuNjE5M0M0OC4xNjc4IDIzLjQ2NzQgMzkuNDE2MSAyNC40OTM3IDM5LjQxNjEgMjQuNDkzN1YxNy43MjExTDM4LjAzNTYgMTYuMTk3OEwzNi41NDk5IDE2LjEyMThMMzIuNDEyIDE3LjcyMTFWMTguNDQ0MkgzMS4wMzE0VjE3LjcyMTFMMjYuNjgwNiAxNS41MTM2SDI1LjQwNzFMMjQuMjQwMSAxNi44MDcyVjI0LjE1MjJMMjQuMjMxOSAyNC4xNTI5VjY2LjY2TDI0LjI0MDEgNjYuNjU5M0gzOS40MTU1VjI5LjI4NkgzOS44NjYzVjMyLjkyMzNINjAuMjk1NFYyOS4yODZINjAuNzQ2OFY2Ni42NTkzSDc1Ljg2NjVWMTYuODA3Mkw3NC42OTk1IDE1LjUxMzZaTTYwLjc0NzQgMjguMjYyMkM2MC43NDc0IDI4LjI2MjIgNTEuMTk1NiAyNi4zNTkxIDM5LjQxNTUgMjguMjYyMlYyNy41MDE1QzM5LjQxNTUgMjcuNTAxNSA0OC42NDggMjUuOTc4OCA2MC43NDc0IDI3LjUwMTVWMjguMjYyMlpNNC4wNjM5NiAyNi4yODM4VjY2LjY1OTNIMjMuMzY4NVYyNC4yNDM5TDQuMDYzOTYgMjYuMjgzOFpNNzYuNzMxMiAyNC4yNDM5VjY2LjY1OTNIOTYuMDQzOVYyNi4yODM4TDc2LjczMTIgMjQuMjQzOVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+Cg==");
   width: 199.5rpx;
@@ -904,12 +798,8 @@ page {
   background-repeat: no-repeat;
 }
 
-
-.nodailyScheduleIndex {
-  width: 319.2rpx;
-  height: 117.66rpx;
-  margin-left: 214rpx;
-  margin-top: 166rpx;
+.dailyScheduleIndex{
+  height: 134rpx;
 }
 
 .CourseDetailsBox {
@@ -2041,7 +1931,6 @@ page {
 }
 
 .dailyScheduleClass {
-  width: 148rpx;
   height: 44rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -2049,6 +1938,16 @@ page {
   font-size: 32rpx;
   line-height: 44rpx;
   color: #292945;
+}
+
+.dailyScheduleClassWhite {
+  height: 44rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  color: #FFFFFF;
 }
 
 .dailyScheduleAdBox {

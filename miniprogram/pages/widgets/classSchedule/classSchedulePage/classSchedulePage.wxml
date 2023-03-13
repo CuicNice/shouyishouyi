@@ -1,3 +1,4 @@
+<wxs module="filters" src="../../../../utils/addmul.wxs"></wxs>
 <!-- 背景的学校建筑 -->
 <view class="bg">
   <image class="background-box" src="../../../../static/svg/schoolBuilt/{{buliding}}.svg"></image>
@@ -11,7 +12,7 @@
     <image class="{{bgc ==''? 'NewIconLeft' : 'NewIconLeftWhite'}}"></image>
   </view>
   <!-- 切换周、日的icon -->
-  <view class="switchIconBox">
+  <view class="switchIconBox"  bindtap="getDayTime">
     <image class="switchIcon" wx:if="{{bgc==''}}" bindtap="changeicon" src="../../../../static/svg/{{weekSchedule}}icon.svg"></image>
     <image class="switchIcon" wx:else bindtap="changeicon" src="../../../../static/svg/dark{{weekSchedule}}icon.svg"></image>
   </view>
@@ -229,117 +230,79 @@
   </view>
 </view>
 <!-- 日课表主页 -->
-<view class="dailyScheduleContainer" wx:if="{{!weekSchedule}}">
+<scroll-view scroll-y class="dailyScheduleContainer" wx:if="{{!weekSchedule}}">
   <view class="dailyScheduleNavigation">
-    <swiper>
-      <block>
-        <swiper-item>
-          <view class="dailyNavigationtext">第1周 2月19日 周一（日程表）</view>
-        </swiper-item>
-      </block>
+    <swiper current="{{currentTab}}" bindchange="handleSwiperChange" class="swiper_container">
+      <swiper-item class="dailyNavigationtext" wx:for="{{allTimes}}" wx:key='index'>
+        <scroll-view scroll-y>
+          <block>
+            <view class="dailyNavigationtext">第{{filters.toFix(index/7+1)}}周 {{item.month}}月{{item.data}}日 {{item.week}}（日程表）</view>
+          </block>
+        </scroll-view>
+      </swiper-item>
     </swiper>
   </view>
-  <view class="dailyScheduleIndex">
-    <view class="dailyScheduleIndexList">
+  <view class="dailyScheduleIndex" wx:for="{{classInfo}}" wx:key="index">
+    <view class="dailyScheduleIndexList"> 
       <view class="dailyScheduleTime">
-        <view class="dailyScheduleTime1">8:00</view>
+        <view class="dailyScheduleTime1">{{time[item.num[0]-1].time1}}</view>
         <view class="dailyScheduleTimeLine"></view>
-        <view class="dailyScheduleTime1">8:40</view>
+        <view class="dailyScheduleTime1">{{time[item.num[item.num.length-1]-1].time2}}</view>
       </view>
       <view class="dailyScheduleBox">
         <view class="dailySchedule">
           <view class="dailyScheduleClassBox">
-            <view class="dailyScheduleClass">大学英语3</view>
+            <view class="dailyScheduleClass">{{item.name}}</view>
           </view>
           <view class="dailyScheduleAdBox">
             <view class="dailyScheduleAdIcon">
               <image></image>
             </view>
-            <view class="dailyScheduleAd">18栋教学楼211</view>
+            <view class="dailyScheduleAd">{{item.local}}</view>
           </view>
         </view>
+        <image class="dailyImage" src="../../../../static/svg/lightLibrary.svg"/>
         <view class="dailyScheduleKc">
-          <view class="whichKc">第1~2节</view>
-          <view class="whichTc">蒋晶晶</view>
+          <view class="whichKc">第{{item.old_num}}</view>
+          <view class="whichTc">{{item.teacher}}</view>
         </view>
         <view class="dailyScheduleBd">
-          <image></image>
+          <image wx:if="{{item.local === '教学楼B328'}}"></image>
         </view>
       </view>
-    </view>
-    <view class="dailyScheduleIndexList">
-      <view class="dailyScheduleTime">
-        <view class="dailyScheduleTime1">8:00</view>
-        <view class="dailyScheduleTimeLine"></view>
-        <view class="dailyScheduleTime1">8:40</view>
-      </view>
-      <view class="dailyScheduleBox">
+      <!-- <view class="dailyScheduleBox" style="background-color: {{item.colorDark}};">
         <view class="dailySchedule">
           <view class="dailyScheduleClassBox">
-            <view class="dailyScheduleClass">大学英语3</view>
+            <view class="dailyScheduleClassWhite">{{item.name}}</view>
           </view>
           <view class="dailyScheduleAdBox">
             <view class="dailyScheduleAdIcon">
               <image></image>
             </view>
-            <view class="dailyScheduleAd">18栋教学楼211</view>
+            <view class="dailyScheduleAd">{{item.local}}</view>
           </view>
         </view>
+        <image class="dailyImage" src="../../../../static/svg/lightLibrary.svg"/>
         <view class="dailyScheduleKc">
-          <view class="whichKc">第1~2节</view>
-          <view class="whichTc">蒋晶晶</view>
+          <view class="whichKc">第{{item.old_num}}</view>
+          <view class="whichTc">{{item.teacher}}</view>
         </view>
         <view class="dailyScheduleBd">
-          <image></image>
+          <image wx:if="{{item.local === '教学楼B328'}}"></image>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
-
-  <view class="dailyScheduleIndexList">
-    <view class="dailyScheduleTime">
-      <view class="dailyScheduleTime1" style="color: #292945">8:00</view>
-      <view class="dailyScheduleTimeLine" style="border: 1px solid #292945;"></view>
-      <view class="dailyScheduleTime1" style="color: #292945">8:40</view>
-    </view>
-    <view class="dailyScheduleBox" style="background: #6290E9;">
-      <view class="dailySchedule">
-        <view class="dailyScheduleClassBox">
-          <view class="dailyScheduleClass" style="color: #FFFFFF;">大学英语3</view>
-        </view>
-        <view class="dailyScheduleAdBox">
-          <view class="havedailyScheduleAdIcon">
-            <image></image>
-          </view>
-          <view class="dailyScheduleAd" style="color: #FFFFFF;">18栋教学楼211</view>
-        </view>
-      </view>
-      <view class="dailyScheduleKc">
-        <view class="whichKc" style="color: #FFFFFF;">第1~2节</view>
-        <view class="whichTc" style="color: #FFFFFF;">蒋晶晶</view>
-      </view>
-      <view class="havedailyScheduleBd">
-        <image></image>
-      </view>
-    </view>
-  </view>
-</view>
+</scroll-view>
+<!-- 日课表的其他课程 -->
 <view class="WHQplus" style="bottom: 0rpx;" wx:if="{{!weekSchedule}}">
   <view class="WHQplusLeft">
     <view class="otherCourses">其他课程</view>
   </view>
   <view class="otherclass">
-    <view class="kesehbox">
+    <view class="kesehbox" wx:for="{{classSchedule.all_keshes}}" wx:key="index">
       <image class="kesheIcon"></image>
-      <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
-    </view>
-    <view class="kesehbox">
-      <image class="kesheIcon"></image>
-      <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
-    </view>
-    <view class="kesehbox">
-      <image class="kesheIcon"></image>
-      <view class="keshe">网络与新媒体专业综合实训*史春洁(共2周)/15-16周</view>
+      <view class="keshe">{{item.data}}</view>
     </view>
   </view>
 </view>

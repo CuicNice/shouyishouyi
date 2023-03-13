@@ -12,6 +12,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    dayTime: [] ,
+    currentTab: 0,  // 当前Tab位置
     weekSchedule: true,
     weekNum: 19,
     nowWeek: 1,
@@ -36,6 +38,7 @@ Page({
     time: [] as any,
     timeWu: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '14:00', time2: '14:45' }, { time1: '14:50', time2: '15:35' }, { time1: '15:50', time2: '16:35' }, { time1: '16:40', time2: '17:25' }, { time1: '18:30', time2: '19:15' }, { time1: '19:20', time2: '20:05' }, { time1: '20:15', time2: '21:00' }, { time1: '21:05', time2: '21:50' }],/* 武昌校区时间 */
     timeJia: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '13:30', time2: '14:15' }, { time1: '14:20', time2: '15:05' }, { time1: '15:10', time2: '15:55' }, { time1: '16:00', time2: '16:45' }, { time1: '18:00', time2: '18:45' }, { time1: '18:45', time2: '19:30' }, { time1: '19:30', time2: '20:15' }, { time1: '20:15', time2: '21:00' }],/* 嘉鱼校区时间 */
+    weekTime:[] as any,
     Semesterswitchingdetail: false,
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
     classSchedule: {all_keshes:[],week:[]} as any,
@@ -283,8 +286,17 @@ Page({
     let nowDate = new Date(time); //获取指定日期当周的一周日期
     let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - this.data.nowWeek) * 7);
     this.getWeekTime(date);
+    let value=0 as unknown as number
+    let weeknum=0 as unknown as number
+    for(let i=0;i<7;i++){
+      if(this.data.weekTime[i]==this.data.nowDate){
+        value=value+i
+      }
+    }
+    weeknum=weeknum+(this.data.nowWeek-1)*7+value
     this.setData({
-      nowWeekData: nowWeekData
+      nowWeekData: nowWeekData,
+      currentTab:weeknum
     })
   },
 
@@ -585,6 +597,81 @@ Page({
       nowWeek: index,
       nowWeekData: nowWeekData
     });
+  },
+
+dateLater: function(dates?:any, later?:any) {
+  let dateObj = {time:'',year: '', month:'', data:'',week: ''};
+  let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
+  let date = new Date(dates);
+  date.setDate(date.getDate() + later);
+  let day = date.getDay();
+  let yearDate = date.getFullYear();
+  let month = ((date.getMonth() + 1) < 10 ? (date.getMonth() + 1) : date.getMonth() + 1);
+  let dayFormate = (date.getDate() < 10 ? date.getDate() : date.getDate());
+  dateObj.time =  yearDate+'-'+ month + '-' + dayFormate;
+  dateObj.year =  yearDate as unknown as string;
+  dateObj.month =  month  as unknown as string;
+  dateObj.data =dayFormate as unknown as string;
+  dateObj.week = show_day[day];
+  return dateObj;
+},
+//todate默认参数是当前日期，可以传入对应时间 计算当前周数
+getDates(days : number, todate?:any) {
+  var dateArry = [];
+  for (var i = 0; i < days; i++) {
+    var dateObj = this.dateLater(todate, i);
+    dateArry.push(dateObj)
+  }
+  return dateArry;
+},
+
+handleSwiperChange(e : any) {
+  this.setData({
+    currentTab: e.detail.current,
+  });
+},
+
+  /**
+   * 获取每天的课程信息
+   */
+  getDayTime() {
+    var dayTime = this.data.dayTime;
+    console.log(dayTime)
+    var date = new Date(Date.parse(new Date() as unknown as string));
+    var nowDate = this.getDates(1, date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate())[0].time;
+    var classInfo = [];
+    let classScheduleWeekLength = (this.data.classSchedule.week.length != 0) ? this.data.classSchedule.week.length : 19;
+    var allTimes = this.getNewWeekTime();
+    var num = 0;
+    for(var i = 0; i < classScheduleWeekLength; i++) {
+      var classSchedule = this.data.classSchedule.week[i];
+      for(var j = 0; j < 7; j++) {
+        dayTime[allTimes[num].time] = classSchedule.data[j].item;
+        if (allTimes[num].time === nowDate) {
+          classInfo = classSchedule.data[j].item;
+        }
+        num++;
+      }
+    }
+    console.log(dayTime)
+    this.setData({
+      dayTime: dayTime,
+      classInfo: classInfo,
+    })
+    console.log(this.data.dayTime)
+  },
+
+  /**
+   * 获取当前学期的所有日期
+   */
+  getNewWeekTime() {
+    let classScheduleWeekLength = (this.data.classSchedule.week.length != 0) ? this.data.classSchedule.week.length : 19;
+    let classScheduleAllTime = classScheduleWeekLength * 7;
+    let allTimes = this.getDates(classScheduleAllTime, this.data.startDate);
+    this.setData({
+      allTimes: allTimes
+    })
+    return allTimes;
   },
 
   /**
