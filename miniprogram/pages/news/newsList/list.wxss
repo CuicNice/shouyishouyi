@@ -403,7 +403,12 @@ height: 28rpx; */
   margin-top: 246rpx;
   position: fixed;
 }
-
+/* 到顶部 */
+.scrollToTopBox{
+  top:246rpx;
+  /* margin-top: 246rpx; */
+  position: fixed;
+}
 .NewsButtonBox {
   margin: auto;
   gap: 132rpx;

@@ -24,6 +24,9 @@ var innerList = [] as AnyArray;
 var outerList = [] as AnyArray;
 Page({
   data: {
+    // top值
+    topNum:0,
+    toTop:false,
     isShowDialog: false as Boolean,
     dialogTitle: "南南提醒你：",
     dialogContent: "学校官网在0-6点间，部分资源无法加载显示，属于正常现象，可在白天再次尝试~",
@@ -34,7 +37,7 @@ Page({
     interval: 3000,
     duration: 1200,
     isChecked: true, //头像彩蛋
-    tapbarCtrl: true,//点击哪一个tab栏
+    tapbarCtrl: false,//点击哪一个tab栏
     schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
     bgSvgUrl: "/static/svg/pillar.svg",
     type: 0,
@@ -295,15 +298,24 @@ Page({
   async initNewsInfo() {
     // 根据tapBar初始值
     var that = this
+    that.scrollToTop()
     if (that.data.tapbarCtrl) {
       await that.getInnerSchoolNews()
     } else {
-      // 外网请求
-      await that.getOutSouyiNews()
+      // 内网请求
+    await that.getOutSouyiNews()
     }
   },
   /**
- * 
+   * 跳转到顶部
+   */
+  scrollToTop() {
+    var that=this
+    that.setData({
+      topNum: this.data.topNum = 0
+    });
+  },
+  /**
  * dialog组件确定按钮点击事件
  */
   dialogCertain() {
@@ -385,16 +397,19 @@ Page({
   chooseShcoolNews: function () {
     // 校园新闻选中后字体样式
     let that = this
+    that.scrollToTop()
     that.setData({
-      tapbarCtrl: true,
+      tapbarCtrl: false,
     })
     // 并且切换请求数据
     this.initNewsInfo()
   },
   // 首义快讯
   chooseInNews: function () {
-    this.setData({
-      tapbarCtrl: false,
+    var that=this
+    that.scrollToTop()
+    that.setData({
+      tapbarCtrl: true,
     })
     // 并且切换请求数据
     this.initNewsInfo()
