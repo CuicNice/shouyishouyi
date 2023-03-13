@@ -12,11 +12,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dayTime: [] ,
+    dayTime: [] as any,
     currentTab: 0,  // 当前Tab位置
     weekSchedule: true,
     weekNum: 19,
     nowWeek: 1,
+    nowtime:"",
     dialogTip: false,
     dark: true,
     buliding: 'zhonglou',
@@ -204,6 +205,8 @@ Page({
         // 切割节数
         all_tables[i].old_num = all_tables[i].num;
         all_tables[i].num = that.getNum(all_tables[i]);
+        //切割地点的第一个字
+        all_tables[i].alonePlace = all_tables[i].local.slice(0,2)
         // 记录下最大的周数
         if (all_tables[i].day_num[all_tables[i].day_num.length - 1] > maxWeeks) {
           maxWeeks = all_tables[i].day_num[all_tables[i].day_num.length - 1];
@@ -635,8 +638,9 @@ handleSwiperChange(e : any) {
    * 获取每天的课程信息
    */
   getDayTime() {
+    //获取当前的时间
+    var time=(new Date().toTimeString().substring(0,8)).slice(0,5)
     var dayTime = this.data.dayTime;
-    console.log(dayTime)
     var date = new Date(Date.parse(new Date() as unknown as string));
     var nowDate = this.getDates(1, date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate())[0].time;
     var classInfo = [];
@@ -646,19 +650,21 @@ handleSwiperChange(e : any) {
     for(var i = 0; i < classScheduleWeekLength; i++) {
       var classSchedule = this.data.classSchedule.week[i];
       for(var j = 0; j < 7; j++) {
-        dayTime[allTimes[num].time] = classSchedule.data[j].item;
+        var obj={
+          dateString:classSchedule.data[j].item
+        }
+        dayTime.push(obj);
         if (allTimes[num].time === nowDate) {
           classInfo = classSchedule.data[j].item;
         }
         num++;
       }
     }
-    console.log(dayTime)
     this.setData({
       dayTime: dayTime,
       classInfo: classInfo,
+      nowtime:time
     })
-    console.log(this.data.dayTime)
   },
 
   /**
