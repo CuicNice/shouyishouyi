@@ -289,7 +289,7 @@
       <view class="gradeBox">
         <view class="laber">
           <text class="laberLeft">学期：</text>
-          <text class="laberRight">{{semester?semester:"请选择学期 "}}</text>
+          <text class="laberRight">{{semesters?semesters:"请选择学期 "}}</text>
         </view>
         <view class="gradePicker">
           <picker mode="selector" bindchange="bindSemester" value="{{semesterId}}" range="{{semesterArray}}">
@@ -316,6 +316,5 @@
       <text>确定</text>
     </button>
   </view>
-  <toast id="toast"></toast>
-
 </dialogTitle>
+<toast id="toast"></toast>
