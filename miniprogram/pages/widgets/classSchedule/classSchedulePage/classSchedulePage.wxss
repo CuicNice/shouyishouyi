@@ -2185,7 +2185,6 @@ page {
   height: 199.5rpx;
   right: -40rpx;
   top: -4rpx;
-  z-index: -1;
 } 
 
 .nodailyScheduleIndex {

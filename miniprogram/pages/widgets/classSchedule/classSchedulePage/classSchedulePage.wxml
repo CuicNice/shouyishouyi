@@ -157,7 +157,7 @@
           <view class="timeTable" wx:for="{{time}}" wx:key="index">
             <view class="{{bgc==''?'number':'numberWhite'}}">{{index+1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time1}}</view>
-            <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time2}}</view>
+            <view class="{{bgc==''?'time':'timeWhite'}}" style="{{index+1==4?'border-bottom: 2rpx solid #20C38C;width: 78rpx;':''}}">{{item.time2}}</view>
           </view>
           <view class="timeTableLine"></view>
         </view>
