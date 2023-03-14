@@ -31,7 +31,7 @@
     </view>
   </view>
 </view>
-<view class="select_box" wx:if="{{weekSchedule}}" style="background-color: {{bgc}};">
+<view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'#ffffff':''}};">
   <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
     <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
       <view class="select_one" wx:if="{{nowWeek == index+1}}">
@@ -59,11 +59,11 @@
   <view class="classXuLine8"></view>
   <view class="classXuLine9"></view>
   <view class="top">
-    <view class="smallBox">
+    <view class="{{picture==''?'smallBox':'smallBoxWhite'}}">
       <text class="smallBoxtxt">{{schoolPlace}}校区</text>
     </view>
     <!-- 周和日期-->
-    <view class="weekbigBox">
+    <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}">
       <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周日</view>
@@ -153,13 +153,12 @@
   <view class="WHQscroll" wx:if="{{weekSchedule}}">
     <scroll-view class="classScroll" scroll-y="true" lower-threshold='10' upper-threshold='10'>
       <view style="width:100%;display:flex;">
-        <view class="leftBox">
+        <view class="{{picture==''?'leftBox':'leftBoxWhite'}}">
           <view class="timeTable" wx:for="{{time}}" wx:key="index">
             <view class="{{bgc==''?'number':'numberWhite'}}">{{index+1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time1}}</view>
-            <view class="{{bgc==''?'time':'timeWhite'}}" style="{{index+1==4?'border-bottom: 2rpx solid #20C38C;width: 78rpx;':''}}">{{item.time2}}</view>
+            <view class="{{bgc==''?'time':'timeWhite'}}" style="{{(index+1)%4==0?'border-bottom: 2rpx solid #20C38C;width: 78rpx;':''}}">{{item.time2}}</view>
           </view>
-          <view class="timeTableLine"></view>
         </view>
         <!--课表-->
         <block wx:for="{{weekTime}}" wx:key="index">
