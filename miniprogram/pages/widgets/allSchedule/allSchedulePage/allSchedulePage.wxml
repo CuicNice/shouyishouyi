@@ -216,10 +216,10 @@
     </block>
   </scroll-view>
 </view>
-
-
+<toast_1 id="toast_1"></toast_1>
 <!-- 选择学期学年部分 -->
 <dialogTitle class="dialogBox" type="half-screen" showDialog="{{electricChargedetail}}">
+  <toast_2 id="toast_2"></toast_2>
   <view class="chooseBox">
     <view class="chooseTop">
       <!-- 齿轮svg' -->
@@ -310,10 +310,10 @@
       <text>确定</text>
     </button>
   </view>
-  <toast id="toast"></toast>
 </dialogTitle>
 <dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>
 </dialogTitle>
+

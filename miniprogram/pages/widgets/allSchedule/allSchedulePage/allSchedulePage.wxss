@@ -1509,8 +1509,6 @@ page {
   position: absolute;
   right: 420rpx;
 }
-
-
 .text-WeekOption {
   height: 44rpx;
   font-family: 'PingFang SC';

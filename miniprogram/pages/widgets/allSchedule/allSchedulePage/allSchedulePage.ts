@@ -247,7 +247,7 @@ Page({
       var myArr = wx.getStorageSync('widget-allSchedule'); //myArr一个过渡变量
       myArr.classSchedule = classSchedule;
       wx.setStorageSync('widget-allSchedule', myArr)
-      this.selectComponent("#toast").showToastAuto("查询成功", "success");
+      this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
     }
     this.noInfo();//判断是否能请求到课表,代替了上面if的else
   },
@@ -264,7 +264,7 @@ Page({
       nj: String(this.data.grade),
     } as AllScheduleItem
     this.getAllClasses(bind)
-    this.selectComponent("#toast").showToastAuto("班级查询中", "lodding",2);
+    this.selectComponent("#toast_2").showToastAuto("班级查询中", "lodding", 2);
   },
   /**
    * 请求网络，获取当前条件下的全部班级
@@ -285,7 +285,7 @@ Page({
   /**
    * 点击返回上一页
    */
-  getBack(){
+  getBack() {
     wx.navigateBack();
   },
   /**
@@ -299,7 +299,7 @@ Page({
       })
       var arr = wx.getStorageSync('widget-allSchedule').classSchedule;
       delete arr.classSchedule;
-      wx.setStorageSync('widget-allSchedule',arr);
+      wx.setStorageSync('widget-allSchedule', arr);
     }
   },
   /**
@@ -348,7 +348,7 @@ Page({
       })
     }
     else {
-      that.selectComponent("#toast").showToastAuto("请先选择年级", "");
+      that.selectComponent("#toast_2").showToastAuto("请先选择年级", "");
     };
     this.getbindInfo();
   },
@@ -374,10 +374,10 @@ Page({
     }
     else {
       if (this.data.grade == '') {
-        that.selectComponent("#toast").showToastAuto("请先选择年级", "",);
+        that.selectComponent("#toast_2").showToastAuto("请先选择年级", "",);
       }
       if (this.data.grade !== '' && this.data.academy == '')
-        that.selectComponent("#toast").showToastAuto("请先选择学院", "",);
+        that.selectComponent("#toast_2").showToastAuto("请先选择学院", "",);
     }
     /**
      * 进行本科，专升本，专科的判断
@@ -417,12 +417,12 @@ Page({
     }
     else {
       if (this.data.grade == '') {
-        that.selectComponent("#toast").showToastAuto("请先选择年级", "",);
+        that.selectComponent("#toast_2").showToastAuto("请先选择年级", "",);
       }
       if (this.data.grade !== '' && this.data.academy == '')
-        that.selectComponent("#toast").showToastAuto("请先选择学院", "",);
+        that.selectComponent("#toast_2").showToastAuto("请先选择学院", "",);
       if (this.data.grade !== '' && this.data.academy !== '' && this.data.Class == '') {
-        that.selectComponent("#toast").showToastAuto("请先选择班级", "",);
+        that.selectComponent("#toast_2").showToastAuto("请先选择班级", "",);
       }
     }
     /**
@@ -503,9 +503,9 @@ Page({
         electricChargedetail: false,
         classTitle: wx.getStorageSync('widget-allSchedule').all[index].Class,
       })
-      this.selectComponent("#toast").showToastAuto("查询中", "lodding");
+      this.selectComponent("#toast_1").showToastAuto("查询中", "lodding");
     }
-    this.selectComponent("#toast").showToastAuto("查询成功", "success");
+    this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
   },
   /**
    * 点击‘选择课表’弹出选择弹窗
@@ -523,8 +523,16 @@ Page({
    * 取消绑定
    */
   cancelBind() {
+    /**
+     * 如果用户选择完了，但是点取消
+     */
     this.setData({
+      classTitle: wx.getStorageSync('widget-allSchedule').classSchedule.week == undefined ? '' : wx.getStorageSync('widget-allSchedule').all[0].Class,
       electricChargedetail: false,
+      Class: '',
+      academy: '',
+      semesters: '',
+      grade: '',
     })
   },
   /**
@@ -595,10 +603,10 @@ Page({
       wx.setStorageSync('widget-allSchedule', myarr)
       electricChargedetail = false;
       all = all;
-      this.selectComponent("#toast").showToastAuto("查询中", "lodding",3);
+      this.selectComponent("#toast_1").showToastAuto("查询中", "lodding", 3);
     }
     else {
-      this.selectComponent("#toast").showToastAuto("请完善绑定条件", "",);
+      this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
     }
     this.setData({
       classTitle: Class,
@@ -769,9 +777,9 @@ Page({
   async initClassData() {
     var that = this;
     if (this.getTableDataFromLocal()) {
-      that.selectComponent("#toast").showToastAuto("课表刷新中", "lodding");
+      that.selectComponent("#toast_1").showToastAuto("课表刷新中", "lodding");
     }
-    that.selectComponent("#toast").showToastAuto("刷新成功", "success");
+    that.selectComponent("#toast_1").showToastAuto("刷新成功", "success");
 
   },
 
