@@ -92,38 +92,38 @@ Page({
      * 获取当前选择的学年学期，得到需要的number类型的学年学期数据
      */
     var grade = this.data.grade as any;
-    var semester = this.data.semester;
+    var semesters = this.data.semesters;
     var xnm = 0 as any;
     var xqm = 0;
-    if (semester == '大一上') {
+    if (semesters == '大一上') {
       xnm = grade;
       xqm = 1;
     }
-    if (semester == '大一下') {
+    if (semesters == '大一下') {
       xnm = grade - 0 + 1;
       xqm = 2;
     }
-    if (semester == '大二上') {
+    if (semesters == '大二上') {
       xnm = grade - 0 + 2;
       xqm = 1;
     }
-    if (semester == '大二下') {
+    if (semesters == '大二下') {
       xnm = grade - 0 + 2;
       xqm = 2;
     }
-    if (semester == '大三上') {
+    if (semesters == '大三上') {
       xnm = grade - 0 + 3;
       xqm = 1;
     }
-    if (semester == '大三下') {
+    if (semesters == '大三下') {
       xnm = grade - 0 + 3;
       xqm = 2;
     }
-    if (semester == '大四上') {
+    if (semesters == '大四上') {
       xnm = grade - 0 + 4;
       xqm = 1;
     }
-    if (semester == '大四下') {
+    if (semesters == '大四下') {
       xnm = grade - 0 + 4;
       xqm = 2;
     }
@@ -349,7 +349,7 @@ Page({
       that.selectComponent("#toast").showToastAuto("请先选择年级", "" );
     }
     this.getbindInfo();
-    this.selectComponent("#toast").showToast("查询班级中", "lodding",2);
+      that.selectComponent("#toast").showToastAuto("查询班级中", "lodding");
   },
   /**
    * 选择班级
@@ -362,7 +362,7 @@ Page({
     if (this.data.Class !== this.data.ClassArray[e.detail.value]) {
       semesters = '';
     }
-    var semesterArray = this.data.semesterList as any;
+    var semesterArray = this.data.semesterArray as any;
     var that = this;
     var Class = this.data.Class;
     var ClassId = this.data.ClassId;
@@ -372,10 +372,10 @@ Page({
       Class = that.data.ClassArray[e.detail.value];
     }
     else {
-      if (this.data.gradeId == 0) {
+      if (this.data.grade== '') {
         that.selectComponent("#toast").showToastAuto("请先选择年级", "", );
       }
-      if (this.data.gradeId !== 0 && this.data.academyId == 0)
+      if (this.data.grade !== '' && this.data.academy == '')
         that.selectComponent("#toast").showToastAuto("请先选择学院", "", );
     }
     /**
@@ -384,13 +384,14 @@ Page({
     for (var i = 0; i < Class.length; i++) {
       if (Class[i] == 'z' && Class[i + 1] == 's' && Class[i + 2] == 'b') {
         semesterArray = ['大三上', '大三下', '大四上', '大四下'];
-        console.log(1)
         break;
       }
       else if (Class[i] == '专') {
         semesterArray = ['大一上', '大一下', '大二下', '大二下', '大三上', '大三下'];
-        console.log(2)
         break;
+      }
+      else{
+        semesterArray= ['大一上', '大一下', '大二下', '大二下', '大三上', '大三下','大四上','大四下']
       }
     }
     this.setData({
@@ -405,7 +406,7 @@ Page({
    * 选择学期
    */
   bindSemester(e: any) {
-    var  that = this;
+    var   that = this;
     var   semesterId=0 as any;
     var   semesters = '' as any;
     if (this.data.grade!=='' && this.data.academy!=='' && this.data.Class !== '') {
@@ -552,12 +553,11 @@ Page({
       njdm_id:this.data.njdm_id,
       jg_id: this.data.jg_id,
       bh_id: this.data.bh_id,
-      Class:wx.getStorageSync('widget-allSchedule').all[this.data.index]
+      Class:this.data.Class
     }
     /**
      * 由于最多三个，简单去重，和替换
      */
-    console.log(all[0])
     for (var i = 0; i < 3; i++) {
       /**
        * 当第一次输入信息的时候，长度为三，因为最长也只能为3个
@@ -601,7 +601,7 @@ Page({
       wx.setStorageSync('widget-allSchedule', myarr)
       electricChargedetail = false;
       all = all;
-      this.selectComponent("#toast").showToastAuto("课表查询中", "lodding", );
+      this.selectComponent("#toast").showToastAuto("课表查询中", "lodding", 1);
     }
     else{
       this.selectComponent("#toast").showToastAuto("请完善绑定条件", "", );
@@ -775,9 +775,10 @@ Page({
   async initClassData() {
     var that = this;
     if(this.getTableDataFromLocal()){
-    that.selectComponent("#toast").showToastAuto("课表刷新中", "lodding",);
-    }
+    that.selectComponent("#toast").showToastAuto("课表刷新中", "lodding");
     that.selectComponent("#toast").showToastAuto("课表刷新成功","success",);
+    }
+   
   },
 
   /**
@@ -953,10 +954,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    this.initPageData();
-    if (wx.getStorageSync('widget-allSchedule') == undefined) {
+    if (!wx.getStorageSync('widget-allSchedule')) {
       //给用户添加缓存
-      let value = { classSchedule: '', ifshowAllclass: true, place: '',all:['','',''] };
+      let value = { classSchedule: '', ifshowAllclass: true, place: '',all:[] };
       wx.setStorageSync('widget-allSchedule', value);
     }
     //获取当前年月
@@ -1045,7 +1045,7 @@ Page({
         times = this.data.timeJia;
         place = "嘉鱼";
       };
-      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start });
+      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semesters: schoolTime, schoolPlace: place, time: times, startDate: start });
     } catch { };
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
@@ -1056,12 +1056,13 @@ Page({
         this.reGetDay(time)
       }, 4000);
     };//倒计时避免没有课表缓存造成当周课表无法显示
+    this.initPageData();
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(wx.getStorageSync('widget-allSchedule').all!==[]){
+    if(wx.getStorageSync('widget-allSchedule').all !== undefined){
     var all = wx.getStorageSync('widget-allSchedule').all as any;
     var allOne = all[0].Class;
     }
@@ -1069,19 +1070,19 @@ Page({
     let time;
     if (wx.getStorageSync('widget-allSchedule').place == '') {
       try {
-        if (this.data.semester.slice(1, 2) == "一") {
+        if (this.data.semesters.slice(1, 2) == "一") {
           schoolPlace = "嘉鱼";
           time = this.data.timeJia;
         };
-        if (this.data.semester.slice(1, 2) == "二") {
+        if (this.data.semesters.slice(1, 2) == "二") {
           schoolPlace = "武昌";
           time = this.data.timeWu;
         };
-        if (this.data.semester.slice(1, 2) == "三") {
+        if (this.data.semesters.slice(1, 2) == "三") {
           schoolPlace = "武昌";
           time = this.data.timeWu;
         };
-        if (this.data.semester.slice(1, 2) == "四") {
+        if (this.data.semesters.slice(1, 2) == "四") {
           schoolPlace = "武昌";
           time = this.data.timeWu;
         };
@@ -1100,7 +1101,7 @@ Page({
       schoolPlace: schoolPlace,
       time: time,
       all: all,
-      classTitle:allOne
+      classTitle: allOne
     });
   },
 })
