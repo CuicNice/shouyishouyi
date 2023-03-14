@@ -12,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dayTime: [] as any,
+    dayTime: [],
     currentTab: 0,  // 当前Tab位置
     weekSchedule: true,
     weekNum: 19,
@@ -512,8 +512,8 @@ Page({
     for (var i = 0; i < 7; i++) {
       var das = new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 7) % 7));
       das = (das.getFullYear() + "/" + (das.getMonth() + 1) + "/" + das.getDate()) as unknown as Date;
-      das = das.replace(/[年月]/g, '.').replace(/[日上下午]/g, '').slice(5, das.length);
-      dates.push(das);
+       var newDas = das.toString().replace(/[年月]/g, '.').replace(/[日上下午]/g, '').slice(5, das.toString().length);
+      dates.push(newDas);
     };
     this.setData({
       weekTime: dates
@@ -638,9 +638,9 @@ handleSwiperChange(e : any) {
    * 获取每天的课程信息
    */
   getDayTime() {
-    //获取当前的时间
-    var time=(new Date().toTimeString().substring(0,8)).slice(0,5)
-    var dayTime = this.data.dayTime;
+    var time=(new Date().toTimeString().substring(0,8)).slice(0,5);
+    var dayTime = this.data.dayTime as Object;
+    console.log(dayTime)
     var date = new Date(Date.parse(new Date() as unknown as string));
     var nowDate = this.getDates(1, date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate())[0].time;
     var classInfo = [];
