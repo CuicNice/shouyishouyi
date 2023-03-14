@@ -5,19 +5,19 @@ export interface ClassScheduleItem {
   "year": number,
   "num": number
 }
-var utils=require('../../../../utils/addCache');
+var utils = require('../../../../utils/addCache');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    dayTime: [],
+    dayTime: [] as any,
     currentTab: 0,  // 当前Tab位置
     weekSchedule: true,
     weekNum: 19,
     nowWeek: 1,
-    nowtime:"",
+    nowtime: "",
     dialogTip: false,
     dark: true,
     buliding: 'zhonglou',
@@ -37,13 +37,13 @@ Page({
     I: 3,
     bgc: '',
     time: [] as any,
-    timeWu: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '14:00', time2: '14:45' }, { time1: '14:50', time2: '15:35' }, { time1: '15:50', time2: '16:35' }, { time1: '16:40', time2: '17:25' }, { time1: '18:30', time2: '19:15' }, { time1: '19:20', time2: '20:05' }, { time1: '20:15', time2: '21:00' }, { time1: '21:05', time2: '21:50' }],/* 武昌校区时间 */
-    timeJia: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '13:30', time2: '14:15' }, { time1: '14:20', time2: '15:05' }, { time1: '15:10', time2: '15:55' }, { time1: '16:00', time2: '16:45' }, { time1: '18:00', time2: '18:45' }, { time1: '18:45', time2: '19:30' }, { time1: '19:30', time2: '20:15' }, { time1: '20:15', time2: '21:00' }],/* 嘉鱼校区时间 */
-    weekTime:[] as any,
+    timeWu: [{ time1: '08:30', time2: '09:15' }, { time1: '09:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '14:00', time2: '14:45' }, { time1: '14:50', time2: '15:35' }, { time1: '15:50', time2: '16:35' }, { time1: '16:40', time2: '17:25' }, { time1: '18:30', time2: '19:15' }, { time1: '19:20', time2: '20:05' }, { time1: '20:15', time2: '21:00' }, { time1: '21:05', time2: '21:50' }],/* 武昌校区时间 */
+    timeJia: [{ time1: '08:30', time2: '09:15' }, { time1: '09:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '13:30', time2: '14:15' }, { time1: '14:20', time2: '15:05' }, { time1: '15:10', time2: '15:55' }, { time1: '16:00', time2: '16:45' }, { time1: '18:00', time2: '18:45' }, { time1: '18:45', time2: '19:30' }, { time1: '19:30', time2: '20:15' }, { time1: '20:15', time2: '21:00' }],/* 嘉鱼校区时间 */
+    weekTime: [] as any,
     Semesterswitchingdetail: false,
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
-    classSchedule: {all_keshes:[],week:[]} as any,
-    nowWeekData:[] as any
+    classSchedule: { all_keshes: [], week: [] } as any,
+    nowWeekData: [] as any
   },
 
   /* 
@@ -121,7 +121,8 @@ Page({
       schoolPlace: place,
       time: times,
       I: schoolTerm,
-      startDate: start
+      startDate: start,
+      dayTime: []
     });
     let myarr = wx.getStorageSync('widget-classSchedule');
     delete myarr.classSchedule
@@ -153,7 +154,7 @@ Page({
       this.initPageData();
       setTimeout(() => {
         let nowWeekData = this.getNowWeekData(this.data.classSchedule, 1);
-        this.setData({nowWeekData:nowWeekData});
+        this.setData({ nowWeekData: nowWeekData });
         let myarr = wx.getStorageSync('widget-classSchedule');
         delete myarr.classSchedule;
         wx.setStorageSync('widget-classSchedule', myarr);
@@ -206,7 +207,7 @@ Page({
         all_tables[i].old_num = all_tables[i].num;
         all_tables[i].num = that.getNum(all_tables[i]);
         //切割地点的第一个字
-        all_tables[i].alonePlace = all_tables[i].local.slice(0,2)
+        all_tables[i].alonePlace = all_tables[i].local.slice(0, 2)
         // 记录下最大的周数
         if (all_tables[i].day_num[all_tables[i].day_num.length - 1] > maxWeeks) {
           maxWeeks = all_tables[i].day_num[all_tables[i].day_num.length - 1];
@@ -275,7 +276,7 @@ Page({
         classSchedule: classSchedule,
         nowWeekData: nowWeekData
       }, function () {
-        utils.mySetStorage('widget-classSchedule','classSchedule',classSchedule)
+        utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
       })
     }
   },
@@ -284,22 +285,22 @@ Page({
   *刷新本周的日期
   */
   reGetDay(time: string | number | Date) {
-    let index =this.data.nowWeek
+    let index = this.data.nowWeek
     let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
     let nowDate = new Date(time); //获取指定日期当周的一周日期
     let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - this.data.nowWeek) * 7);
     this.getWeekTime(date);
-    let value=0 as unknown as number
-    let weeknum=0 as unknown as number
-    for(let i=0;i<7;i++){
-      if(this.data.weekTime[i]==this.data.nowDate){
-        value=value+i
+    let value = 0 as unknown as number
+    let weeknum = 0 as unknown as number
+    for (let i = 0; i < 7; i++) {
+      if (this.data.weekTime[i] == this.data.nowDate) {
+        value = value + i
       }
     }
-    weeknum=weeknum+(this.data.nowWeek-1)*7+value
+    weeknum = weeknum + (this.data.nowWeek - 1) * 7 + value
     this.setData({
       nowWeekData: nowWeekData,
-      currentTab:weeknum
+      currentTab: weeknum
     })
   },
 
@@ -412,6 +413,13 @@ Page({
       that.selectComponent("#toast").showToast("课表刷新中", "lodding");
       await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I) as any;
     }
+    var num = 0;
+    if (this.data.classSchedule.week[0].name != 1) {
+      num = num + (this.data.classSchedule.week[0].name - 1) * 7-1;
+    }
+    this.setData({
+      num: num
+    })
     that.selectComponent("#toast").showToastAuto("刷新成功", "success");
   },
 
@@ -512,7 +520,7 @@ Page({
     for (var i = 0; i < 7; i++) {
       var das = new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 7) % 7));
       das = (das.getFullYear() + "/" + (das.getMonth() + 1) + "/" + das.getDate()) as unknown as Date;
-       var newDas = das.toString().replace(/[年月]/g, '.').replace(/[日上下午]/g, '').slice(5, das.toString().length);
+      var newDas = das.toString().replace(/[年月]/g, '.').replace(/[日上下午]/g, '').slice(5, das.toString().length);
       dates.push(newDas);
     };
     this.setData({
@@ -602,69 +610,70 @@ Page({
     });
   },
 
-dateLater: function(dates?:any, later?:any) {
-  let dateObj = {time:'',year: '', month:'', data:'',week: ''};
-  let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
-  let date = new Date(dates);
-  date.setDate(date.getDate() + later);
-  let day = date.getDay();
-  let yearDate = date.getFullYear();
-  let month = ((date.getMonth() + 1) < 10 ? (date.getMonth() + 1) : date.getMonth() + 1);
-  let dayFormate = (date.getDate() < 10 ? date.getDate() : date.getDate());
-  dateObj.time =  yearDate+'-'+ month + '-' + dayFormate;
-  dateObj.year =  yearDate as unknown as string;
-  dateObj.month =  month  as unknown as string;
-  dateObj.data =dayFormate as unknown as string;
-  dateObj.week = show_day[day];
-  return dateObj;
-},
-//todate默认参数是当前日期，可以传入对应时间 计算当前周数
-getDates(days : number, todate?:any) {
-  var dateArry = [];
-  for (var i = 0; i < days; i++) {
-    var dateObj = this.dateLater(todate, i);
-    dateArry.push(dateObj)
-  }
-  return dateArry;
-},
+  dateLater: function (dates?: any, later?: any) {
+    let dateObj = { time: '', year: '', month: '', data: '', week: '' };
+    let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
+    let date = new Date(dates);
+    date.setDate(date.getDate() + later);
+    let day = date.getDay();
+    let yearDate = date.getFullYear();
+    let month = ((date.getMonth() + 1) < 10 ? (date.getMonth() + 1) : date.getMonth() + 1);
+    let dayFormate = (date.getDate() < 10 ? date.getDate() : date.getDate());
+    dateObj.time = yearDate + '-' + month + '-' + dayFormate;
+    dateObj.year = yearDate as unknown as string;
+    dateObj.month = month as unknown as string;
+    dateObj.data = dayFormate as unknown as string;
+    dateObj.week = show_day[day];
+    return dateObj;
+  },
+  //todate默认参数是当前日期，可以传入对应时间 计算当前周数
+  getDates(days: number, todate?: any) {
+    var dateArry = [];
+    for (var i = 0; i < days; i++) {
+      var dateObj = this.dateLater(todate, i);
+      dateArry.push(dateObj)
+    }
+    return dateArry;
+  },
 
-handleSwiperChange(e : any) {
-  this.setData({
-    currentTab: e.detail.current,
-  });
-},
+  handleSwiperChange(e: any) {
+    this.setData({
+      currentTab: e.detail.current,
+    });
+  },
 
   /**
    * 获取每天的课程信息
    */
   getDayTime() {
-    var time=(new Date().toTimeString().substring(0,8)).slice(0,5);
-    var dayTime = this.data.dayTime as Object;
-    console.log(dayTime)
-    var date = new Date(Date.parse(new Date() as unknown as string));
-    var nowDate = this.getDates(1, date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate())[0].time;
-    var classInfo = [];
-    let classScheduleWeekLength = (this.data.classSchedule.week.length != 0) ? this.data.classSchedule.week.length : 19;
-    var allTimes = this.getNewWeekTime();
-    var num = 0;
-    for(var i = 0; i < classScheduleWeekLength; i++) {
-      var classSchedule = this.data.classSchedule.week[i];
-      for(var j = 0; j < 7; j++) {
-        var obj={
-          dateString:classSchedule.data[j].item
+    if (this.data.dayTime.length == 0) {
+      var time = (new Date().toTimeString().substring(0, 8)).slice(0, 5);
+      var dayTime = this.data.dayTime;
+      var date = new Date(Date.parse(new Date() as unknown as string));
+      var nowDate = this.getDates(1, date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate())[0].time;
+      var classInfo = [];
+      let classScheduleWeekLength = (this.data.classSchedule.week.length != 0) ? this.data.classSchedule.week.length : 19;
+      var allTimes = this.getNewWeekTime();
+      var num = 0;
+      for (var i = 0; i < classScheduleWeekLength; i++) {
+        var classSchedule = this.data.classSchedule.week[i];
+        for (var j = 0; j < 7; j++) {
+          var obj = {
+            dateString: classSchedule.data[j].item
+          }
+          dayTime.push(obj);
+          if (allTimes[num].time === nowDate) {
+            classInfo = classSchedule.data[j].item;
+          }
+          num++;
         }
-        dayTime.push(obj);
-        if (allTimes[num].time === nowDate) {
-          classInfo = classSchedule.data[j].item;
-        }
-        num++;
       }
+      this.setData({
+        dayTime: dayTime,
+        classInfo: classInfo,
+        nowtime: time
+      })
     }
-    this.setData({
-      dayTime: dayTime,
-      classInfo: classInfo,
-      nowtime:time
-    })
   },
 
   /**
@@ -684,12 +693,12 @@ handleSwiperChange(e : any) {
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    if(!wx.getStorageSync('widget-classSchedule')){
-    //给用户添加缓存
-    let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };
-    wx.setStorageSync('widget-classSchedule', value);
-  }
-   /* utils.mySetStorage('widget-classSchedule','background','#333333') */
+    if (!wx.getStorageSync('widget-classSchedule')) {
+      //给用户添加缓存
+      let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };
+      wx.setStorageSync('widget-classSchedule', value);
+    }
+    /* utils.mySetStorage('widget-classSchedule','background','#333333') */
     //获取当前年月
     var timestamp = Date.parse(new Date() as unknown as string);
     var date = new Date(timestamp);
@@ -841,7 +850,7 @@ handleSwiperChange(e : any) {
       time: time
     });
   },
-  
+
   /**
    * 生命周期函数--监听页面隐藏
    */
