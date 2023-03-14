@@ -5,15 +5,15 @@
 <!-- 顶部状态栏div -->
 <view class="status_bar" style='background-color: {{bgc}};'></view>
 <!-- 导航栏 -->
-<view class="navigationBar" style="background-color: {{bgc}};" bindtap="getClassDule">
-  <view class="vector">
+<view class="navigationBar" style="background-color: {{bgc}};">
+  <view class="vector" bindtap="getBack">
     <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
   </view>
-  <!-- 班级选择 -->
-  <view class="TitleLeft">
+  <!-- 课表选择 -->
+  <view class="TitleLeft" bindtap="getClassDule">
     <view class="WeekOption">
       <view class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{classTitle?classTitle:"选择课表"}}</view>
-      <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}" ></view>
+      <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}"></view>
     </view>
   </view>
 </view>
@@ -216,12 +216,6 @@
     </block>
   </scroll-view>
 </view>
-<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
-  <view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
-  <view style="display: flex;">
-    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
-  </view>
-</dialogTitle>
 
 
 <!-- 选择学期学年部分 -->
@@ -316,5 +310,10 @@
       <text>确定</text>
     </button>
   </view>
+  <toast id="toast"></toast>
 </dialogTitle>
-<toast id="toast"></toast>
+<dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
+  </view>
+</dialogTitle>
