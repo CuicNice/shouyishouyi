@@ -25,8 +25,8 @@ var outerList = [] as AnyArray;
 Page({
   data: {
     // top值
-    topNum:0,
-    toTop:false,
+    topNum: 0,
+    toTop: false,
     isShowDialog: false as Boolean,
     dialogTitle: "南南提醒你：",
     dialogContent: "学校官网在0-6点间，部分资源无法加载显示，属于正常现象，可在白天再次尝试~",
@@ -71,6 +71,7 @@ Page({
   checkDate: function (startTime: string, endTime: string) {
     // 使用阻塞
     //日期格式化
+    
     let startTimeStr = startTime.replace("/-/g", "/")
     let endTimeStr = endTime.replace("/-/g", "/")
     let start_date = new Date(startTimeStr);
@@ -81,6 +82,26 @@ Page({
     let day = ms / (1000 * 60 * 60 * 24) as number;
     return day;
     //do something
+  },
+  /**
+   * 判断是不是同一天
+   */
+  isSameDays:function (endTime: string) {
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth()+1;
+      var d = new Date(year, month, 0);
+      d.getDate();
+    let endTimeStr = endTime.replace("/-/g", "/")
+    let endDate = new Date(endTimeStr);
+    var newDate = new Date //获取当天
+    var newDateDay = newDate.getDate()
+    var endDateDay=endDate.getDate()
+    if(newDateDay==endDateDay){
+      return true
+    }else{
+      return false
+    }
   },
   checkWorkDate: function (date: any) {
     let startTime = new Date(date); // 开始时间
@@ -126,7 +147,7 @@ Page({
           }//创建单个新闻Json对象
           innerTempList.push(newsItem)
           let newdate = innerRes.list[i].newsDate;
-          if (that.checkDate(myDate, newdate) < 1) {
+          if (that.checkDate(myDate, newdate) < 1&&that.isSameDays(newdate)) {
             // 当天
             innerTempList[i].newsTime = "today"
           } else if (that.checkDate(myDate, newdate) < 3) {
@@ -185,7 +206,7 @@ Page({
           }//创建单个新闻Json对象
           outTempList.push(newsItem)
           let newdate = outRes.list[i].newsDate;
-          if (that.checkDate(myDate, newdate) < 1) {
+          if (that.checkDate(myDate, newdate) < 1&&that.isSameDays(newdate)) {
             // 当天
             // 添加一条
             outTempList[i].newsTime = "today"
@@ -303,14 +324,14 @@ Page({
       await that.getInnerSchoolNews()
     } else {
       // 内网请求
-    await that.getOutSouyiNews()
+      await that.getOutSouyiNews()
     }
   },
   /**
    * 跳转到顶部
    */
   scrollToTop() {
-    var that=this
+    var that = this
     that.setData({
       topNum: this.data.topNum = 0
     });
@@ -406,7 +427,7 @@ Page({
   },
   // 首义快讯
   chooseInNews: function () {
-    var that=this
+    var that = this
     that.scrollToTop()
     that.setData({
       tapbarCtrl: true,
