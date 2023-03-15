@@ -43,7 +43,9 @@ Page({
     Semesterswitchingdetail: false,
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
     classSchedule: { all_keshes: [], week: [] } as any,
-    nowWeekData: [] as any
+    nowWeekData: [] as any,
+    allTimes:[] as any,
+    classInfo:[] as any
   },
 
   /* 
@@ -695,10 +697,9 @@ Page({
   onLoad: function () {
     if (!wx.getStorageSync('widget-classSchedule')) {
       //给用户添加缓存
-      let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };
+      let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: ''};
       wx.setStorageSync('widget-classSchedule', value);
     }
-    /* utils.mySetStorage('widget-classSchedule','background','#333333') */
     //获取当前年月
     var timestamp = Date.parse(new Date() as unknown as string);
     var date = new Date(timestamp);
@@ -791,9 +792,15 @@ Page({
     //通过定义的变量进行周的自动判断
     if (wx.getStorageSync('widget-classSchedule').classSchedule) {
       this.reGetDay(time)
+      this.getDayTime();//获取每天的课程信息
+      utils.mySetStorage('widget-classSchedule','dailySchedule',this.data.classInfo)
+      utils.mySetStorage('widget-classSchedule','time',this.data.time)
     } else {
       setTimeout(() => {
         this.reGetDay(time)
+        this.getDayTime();//获取每天的课程信息
+        utils.mySetStorage('widget-classSchedule','dailySchedule',this.data.classInfo)
+        utils.mySetStorage('widget-classSchedule','time',this.data.time)
       }, 4000);
     };//倒计时避免没有课表缓存造成当周课表无法显示
   },

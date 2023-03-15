@@ -12,7 +12,7 @@
     <image class="{{bgc ==''? 'NewIconLeft' : 'NewIconLeftWhite'}}"></image>
   </view>
   <!-- 切换周、日的icon -->
-  <view class="switchIconBox" bindtap="getDayTime">
+  <view class="switchIconBox">
     <image class="switchIcon" wx:if="{{bgc==''}}" bindtap="changeicon" src="../../../../static/svg/{{weekSchedule}}icon.svg"></image>
     <image class="switchIcon" wx:else bindtap="changeicon" src="../../../../static/svg/dark{{weekSchedule}}icon.svg"></image>
   </view>
