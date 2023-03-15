@@ -1,6 +1,10 @@
-/* pages/myWidgets/settingWidgets/settingWidgets.wxss */
+.contant {
+  width: 100%;
+  /* margin: 0 18px; */
+}
+
 /* 背景 */
-.bg {
+.pageBg {
   /* Entering for the first time */
   position: absolute;
   width: 100%;
@@ -9,61 +13,40 @@
   background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
   z-index: -999;
 }
-
-/* 滑动元素 */
-
+.widgetContainer{
+  padding: 33px 18px 66px 18px;
+}
 .item-up {
-  /* 向上滑动 */
-  height: 100rpx;
-  width: 80%;
+  box-sizing: border-box;
+  width: 340px;
   background: rgb(255, 255, 255);
   border: 2px solid #4BDCAB;
+  padding: 10px 15px 10px 20px;
   border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   box-shadow: 0px 8px 24px rgba(75, 220, 171, 1);
   z-index: 2;
 }
 
 .item-down {
-  /*  向下滑动*/
-  height: 100rpx;
-  width: 80%;
-  background: #FFFFFF;
-  border: 2px solid #4BDCAB;
-  border-radius: 10px;
+  box-sizing: border-box;
+  /* Auto layout */
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-/* 移动区域 */
-.moveGroup{
-  width: 100%;
-}
-/* 移动滑块 */
-.moveItem{
-  
-}
-.moveItem-left{
-
-}
-.moveTitle{
-
-}
-.moveComponent{
-
-}
-.moveComponentSvg{
-
-}
-/* 右边移动的区域 */
-.moveItem-right{
-
-}
-.moveItem-spotSvg{
-
+  padding: 10px 15px 10px 20px;
+  width: 340px;
+  height: 252.52px;
+  background: #FAFAFA;
+  border: 1px solid #E3E3E6;
+  border-radius: 10px;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .item-bg-black {
@@ -76,18 +59,23 @@
 
 .reminBar {
   position: fixed;
-  top: 0;
   z-index: 2;
-  width: 100%;
   background-color: red;
+  display: flex;
+  flex-wrap: nowrap;
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
+  padding: 8px 10px;
+  isolation: isolate;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
-.TopBar {
-  position: fixed;
-  background-color: #4BDCAB;
-  top: 40px;
-  z-index: 2;
-}
+
 
 /* 动画过渡 */
 .mask {
@@ -141,41 +129,12 @@
   }
 }
 
-/* 元素滑动结束 */
-/* 页面 */
-.container {
-  padding-top: 20px;
-  display: flex;
-}
-
-/* 关键吸顶元素 */
-.settingTabBarBox {
-  position: sticky;
-  top: 85px;
-  z-index: 666;
-  background: linear-gradient(#B9EFE1 0.04%, #FCFCFC 30%);
-}
-
-.remindBox {
-  display: flex;
-  flex-wrap: nowrap;
-  /* flex-direction: column; */
-  /* align-items: flex-start; */
-  padding: 8px 10px;
-  isolation: isolate;
-  margin: 0 17.5px;
-  height: 72px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 10px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
+/* 设置顶部topBar */
 
 /* 提示 */
 .remindBoxDes {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
 }
 
 .remindTxt {
@@ -228,15 +187,58 @@
   width: 37.89px !important;
   height: 93.44px !important;
 }
+/* 按钮 */
 
+.btn-box {
+  /* width: 600rpx;
+height: 210rpx; */
+  display: flex;
+  /* margin-left: 70rpx; */
+  /* margin:100rpx 0  0 70rpx; */
+}
+
+.school-btn {
+  gap: 26px;
+  margin-top: 40rpx;
+}
+.SplitSvg{
+  height: 57px;
+}
+.mCancel {
+  background-color: whitesmoke !important;
+}
+.cancelText{
+  color: #20C38C;
+}
+
+.btn {
+  box-sizing: border-box;
+  /* Auto layout */
+  width: 112px !important;
+  height: 42px;
+  /* #20C38C */
+  border: 1px solid #20C38C;
+  border-radius: 35px;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+.btn .button:not([size=mini]) {
+  width: 214rpx;
+  height: 84rpx;
+}
 /* 顶部固定的部分 */
-/* .settingTabBarBox{
-position: fixed;
-margin: 14px  17.5px 0;
+.settingTabBarBox {
+  position: fixed;
+  z-index: 9999;
+  /* background-color: #4BDCAB; */
+}
 
-} */
+
 .settingTapBar {
-  background-color: #20C38C;
+  /* background-color: #20C38C; */
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   padding: 0px;
@@ -301,6 +303,7 @@ margin: 14px  17.5px 0;
 }
 
 .settingTabBoldText {
+
   width: 112px;
   height: 22px;
 
@@ -324,9 +327,10 @@ margin: 14px  17.5px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 10px;
   align-items: center;
   padding: 0px;
-  margin: 17px 17.5px;
+  margin: 17px 0;
   height: 29px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
@@ -404,67 +408,44 @@ margin: 14px  17.5px 0;
   flex-grow: 0;
 }
 
-.itemBox {
-  box-sizing: border-box;
-  /* Auto layout */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px 10px 20px;
-  margin: 0 17.5px;
-  background: #FAFAFA;
-  border: 1px solid #E3E3E6;
-  border-radius: 10px;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+/* 移动区域 */
+.moveGroup {
+  width: 100%;
 }
 
-.widgetBox {
+/* 移动滑块 */
+.moveItem {}
+
+.moveItem-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 5px;
-
   width: 250px;
-  height: 232.52px;
-
-
   /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 
-.widgetTitle {
-  width: 56px;
+.moveTitle {
+  /* 每日课表 */
   height: 20px;
-
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   /* identical to box height */
-
-
   color: #292945;
-
-
   /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 
-.wedgetItem {
+.moveComponent {
   box-sizing: border-box;
 
   /* Auto layout */
@@ -472,10 +453,9 @@ margin: 14px  17.5px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6.96379px 0px 9.7493px;
+  /* padding: 6.96379px 0px 9.7493px; */
   gap: 2.79px;
-  width: auto;
-  height: auto;
+  /* width: 250px; */
   background: #FFFFFF;
   /* 边框 */
   border: 0.696379px solid #E3E3E6;
@@ -486,27 +466,25 @@ margin: 14px  17.5px 0;
   flex-grow: 0;
 }
 
-.chooseTabBox {
+.moveComponentSvg {
+width: 250px !important;
+}
+
+/* 右边移动的区域 */
+.moveItem-right {
   width: 30px;
   height: 30px;
-
-
   /* Inside auto layout */
-
   flex: none;
   order: 1;
   flex-grow: 0;
 }
 
-.chooseTabSvg {
+.moveItem-spotSvg {
   width: 30px !important;
   height: 30px !important;
 }
+.moveableContainer{
+width: 100%;
 
-/* 组件图片样式*/
-.wedgetItemSvg {
-  width: 250px !important;
-  /* height: auto; */
-  object-fit: contain;
-  /* 可以保持纵横比缩放图片 */
 }

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/myWidgets/myWidgets/myWidgets",
     "pages/myWidgets/settingWidgets/settingWidgets",
     "pages/index/index",
     "pages/widgets/library/libraryPage/libraryPage",

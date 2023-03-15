@@ -201,7 +201,6 @@ Page({
       await that.getOutSouyiNews()
     }
   },
-
   SoretArr: function (arr: any) {
     console.log(arr)
     for (let i = 0; i < arr.length - 1; i++) {

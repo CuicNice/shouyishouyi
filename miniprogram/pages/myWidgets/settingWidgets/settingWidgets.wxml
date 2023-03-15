@@ -1,14 +1,8 @@
-<!--pages/myWidgets/settingWidgets/settingWidgets.wxml-->
-<!-- 组件设置页面 -->
 <!-- 背景 -->
-<view class="bg"></view>
-<!-- 顶部的状态bar -->
-<topBar title="{{settingWidgetTitle}}" immersion="{{false}}" Threshold="0.1">
-  <view class="container">
-    <!-- 顶部设置 -->
-    <!-- 提示语 -->
-    <!-- 需要做滑动，滑动消失 -->
-    <view id="oldRemindBar" class="remindBox" bindtouchstart="remindBartouchStart" catchtouchmove='remindTouchmove' bindtouchend="remindBartouchEnd" style="height: {{remindHeight}}rpx; opacity: {{remindOpacity}};" wx:if="{{isRemindDisplayTag}}">
+<view class="pageBg"></view>
+<topBar title="{{settingIndexWIidgetTitle}}" immersion="{{false}}" Threshold="0.1">
+  <view class="widgetContainer">
+    <view class="reminBar" id="remind" style="height: {{remindHeight}}rpx; opacity: {{remindOpacity}};" wx:if="{{isRemindDisplayTag}}">
       <view class="remindBoxDes">
         <view class="remindTxt">在这里，你可以自由选择你需要的小组件并进行排序，定制最适合你的个性化首义+页面！
         </view>
@@ -19,22 +13,20 @@
         <image src="/static/svg/schoolBuilt/pillar.svg" class="remindIconSvg" mode="" />
       </view>
     </view>
-    <!-- 主页小组件，与设置小组件切换区域 -->
-    <!-- 点击切换样式灰底变绿底 -->
-    <!-- 滑动后固定在头部的部分 -->
-    <view class="settingTabBarBox" style="width: 100%; height: 30px; color:red;">
+    <!-- 固定的部分 -->
+    <view class="settingTabBarBox" style="top: {{topVarTop}}px;">
       <view class="settingTapBar">
         <!-- 左边主页组件 -->
-        <view class="{{isChooseSeetingwidget?'greenWidgetSettingBox':'widgetSetteingBox'}}" bindtap="chooseSeetingWidget">
-          <view class="{{isChooseSeetingwidget?'settingTabBoldText':'settingTabText'}}">
+        <view class="{{isChooseIndexSeetingWidget?'greenWidgetSettingBox':'widgetSetteingBox'}}" bindtap="chooseSeetingWidget">
+          <view class="{{isChooseIndexSeetingWidget?'settingTabBoldText':'settingTabText'}}">
             <view class="text">
               主页小组件设置
             </view>
           </view>
         </view>
         <!-- 右边设置组件 -->
-        <view class="{{!isChooseSeetingwidget?'greenWidgetSettingBox':'widgetSetteingBox'}}" bindtap="chooseIndexWidget">
-          <view class="{{!isChooseSeetingwidget?'settingTabBoldText':'settingTabText'}}">
+        <view class="{{!isChooseIndexSeetingWidget?'greenWidgetSettingBox':'widgetSetteingBox'}}" bindtap="chooseIndexWidget">
+          <view class="{{!isChooseIndexSeetingWidget?'settingTabBoldText':'settingTabText'}}">
             <view class="text">
               小组件页面设置
             </view>
@@ -53,30 +45,37 @@
         </button>
       </view>
     </view>
-    <!-- 占位元素 -->
-    <view style="height: {{tmpH}}px;background-color:blue;width: 100%;">
+    <view style="height: {{tmpH}}px;width: 100%;">
     </view>
-    <!-- 移动元素区块 -->
-    <view class="moveGroup" style="height: {{viewHeight}}px;">
-      <!-- 小的1移动区域 -->
-      <block wx:for="{{tabList}}" wx:key="index">
-        <movable-view y="{{item.y}}" style="height:{{item.width}}px;" class="item-{{index==moveId?'up':'down'}} item-bg-{{(index==nowItem && nowItem!= moveId)?'black':'write'}}" direction="vertical" bind:touchmove='moveStatus' bindtouchend='moveEnd' bind:longpress="onLongPress" data-moveid="{{index}}" disabled="{{!enable}}" animation="{{false}}">
-          <view class="moveItem-left">
-            <view class="moveTitle">
-              课表
+    <!-- 移动区域 -->
+    <view class="moveableContainer">
+      <!-- 可以选中移动区域 -->
+      <movable-area class="contant" style="height: {{viewHeight}}px;">
+        <block wx:for="{{tabList}}" wx:key="index">
+          <movable-view y="{{item.y}}" style="height:{{item.componentHeight}}px;" class="item-{{index==moveId?'up':'down'}} item-bg-{{(index==nowItem && nowItem!= moveId)?'black':'write'}}" direction="vertical" bind:touchmove='moveStatus' bindtouchend='moveEnd' bind:longpress="onLongPress" data-moveid="{{index}}" disabled="{{!enable}}" animation="{{false}}">
+            <!-- 移动内容 -->
+            <view class="moveItem-left">
+              <view class="moveTitle"wx:if="{{item.name!='splitLine'}}">{{item.name}}</view>
+              <view class="moveComponent">
+                <image src="{{item.svgSrc}}" wx:if="{{item.name!='splitLine'}}" style="height:{{item.componentHeight-47}}px;" class="{{item.name!='splitLine'}}?'moveComponentSvg':'SplitSvg'" mode="" />
+                <image src="{{item.svgSrc}}" wx:else style="height:60px;" class="moveComponentSvg" mode="" />
+              </view>
             </view>
-            <view class="moveComponent">
-              <image src="" class="moveComponentSvg" mode="" />
+            <view class="moveItem-right">
+              <image src="{{moveItemRightSvg}}" class="moveItem-spotSvg" mode="" />
             </view>
-          </view>
-          <view class="moveItem-right">
-            <image src="" class="moveItem-spotSvg" mode="" />
-          </view>
-        </movable-view>
-      </block>
+          </movable-view>
+        </block>
+      </movable-area>
     </view>
-
-    <!-- 分割线区域 -->
   </view>
-
 </topBar>
+<!-- 弹窗引入 -->
+<toast id="toast" title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast> 
+<!-- 问题弹窗 -->
+<f-dialog showDialog="{{showDialog}}" title="{{dialogtitle}}"schoolBuiltSrc="{{schoolBuiltSrc}}">
+  <view class="btn-box school-btn">
+        <button class="btn mCancel" type="primary" bindtap="cancelSetting"><text class="cancelText">{{cancelSettingName}}</text></button>
+        <button class="btn" type="primary" bindtap="certainSetting" >{{certainSettingName}}</button>
+      </view>   
+</f-dialog>
