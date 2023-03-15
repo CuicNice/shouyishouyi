@@ -270,7 +270,7 @@
           <image class="computerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
           <image class="electromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
-          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信'}}"></image>
+          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信息'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
           <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
         </view>
@@ -297,7 +297,7 @@
           <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
           <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
-          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信'}}"></image>
+          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信息'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
           <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
         </view>
@@ -307,9 +307,9 @@
   <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{!dark}}">
     <view class="dailyScheduleIndexList">
       <view class="dailyScheduleTime">
-        <view class="dailyScheduleTime1">{{time[item.num[0]-1].time1}}</view>
-        <view class="dailyScheduleTimeLine"></view>
-        <view class="dailyScheduleTime1">{{time[item.num[item.num.length-1]-1].time2}}</view>
+        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}">{{time[item.num[0]-1].time1}}</view>
+        <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"></view>
+        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
       </view>
       <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]-1].time1?false:true}}">
         <view class="dailySchedule">
@@ -330,10 +330,10 @@
         <view class="dailyScheduleBd">
           <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
           <image class="academicBuilding"wx:if="{{item.alonePlace == '教学'}}"></image>
-          <image class="computerBuilding" wx:if="{{item.alonePlace == '计'}}"></image>
+          <image class="computerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
           <image class="electromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
-          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信'}}"></image>
+          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信息'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
           <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
         </view>
@@ -360,7 +360,7 @@
           <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
           <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
-          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信'}}"></image>
+          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信息'}}"></image>
           <image class="noeighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
           <image class="noground" wx:if="{{item.alonePlace == '田径'}}"></image>
         </view>
@@ -380,7 +380,6 @@
     </view>
   </view>
 <!-- 日课表没有课的状态 -->
-<!-- wx:if="{{dayTime[currentTab-num].dateString.length==0?true:false||dayTime[currentTab-num].dateString.length==null?true:false}}" -->
 <view class="nodailyScheduleIndex">
   <image class="nodailyScheduleIndexImg"></image>
  </view> 
