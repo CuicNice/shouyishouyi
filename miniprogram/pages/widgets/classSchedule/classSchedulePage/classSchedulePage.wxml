@@ -330,7 +330,7 @@
         <view class="dailyScheduleBd">
           <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
           <image class="academicBuilding"wx:if="{{item.alonePlace == '教学'}}"></image>
-          <image class="computerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
+          <image class="computerBuilding" wx:if="{{item.alonePlace == '计'}}"></image>
           <image class="electromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
           <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信'}}"></image>
