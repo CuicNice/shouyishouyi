@@ -241,6 +241,7 @@
       </swiper-item>
     </swiper>
   </view>
+  <!-- 深色系版的日课表 -->
   <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{dark}}">
     <view class="dailyScheduleIndexList">
       <view class="dailyScheduleTime">
@@ -267,10 +268,10 @@
         <view class="dailyScheduleBd">
           <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
           <image class="academicBuilding"wx:if="{{item.alonePlace == '教学'}}"></image>
-          <image class="computerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
+          <image class="computerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
           <image class="electromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
-          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信息'}}"></image>
+          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
           <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
         </view>
@@ -294,16 +295,17 @@
         <view class="dailyScheduleBd">
           <image class="noacademicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
           <image class="nocollegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
-          <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
+          <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
           <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
-          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信息'}}"></image>
+          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
           <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
         </view>
       </view>
     </view>
   </view>
+  <!-- 浅色系版的日课表 -->
   <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{!dark}}">
     <view class="dailyScheduleIndexList">
       <view class="dailyScheduleTime">
@@ -330,10 +332,10 @@
         <view class="dailyScheduleBd">
           <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
           <image class="academicBuilding"wx:if="{{item.alonePlace == '教学'}}"></image>
-          <image class="computerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
+          <image class="computerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
           <image class="electromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
-          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信息'}}"></image>
+          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
           <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
         </view>
@@ -357,10 +359,10 @@
         <view class="dailyScheduleBd">
           <image class="nocollegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
           <image class="noacademicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
-          <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计算'}}"></image>
+          <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
           <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
-          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信息'}}"></image>
+          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="noeighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
           <image class="noground" wx:if="{{item.alonePlace == '田径'}}"></image>
         </view>
