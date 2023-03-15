@@ -26,13 +26,15 @@
 <!-- 静态组件区域-->
 <view class="container">
   <!-- 组件展示 -->
-  <miniScore></miniScore>
+  <block style="display: flex;" wx:for="{{myWidgetTabListTemp}}" wx:for-item="item" wx:key="{{index}}" >
+  <miniScore wx:if="{{item.name=='成绩单'}}" alljdxfs="{{alljdxfs}}" allxfscores="{{allxfscores}}" semester="{{semester}}" scoreLevel="{{scoreLevel}}" style="order:{{item.index}}"></miniScore>
   <!-- 组件 -->
   <!-- 组件 -->
-  <miniNews></miniNews>
+  <miniNews  wx:if="{{item.name=='快讯闻'}}" bindeventListener="handleEventListener" list="{{widgetMiniNewsList}}" style="order:{{item.index}}"></miniNews>
   <!-- 组件 -->
-  <countDown></countDown>
-  <miniElectric></miniElectric>
+  <countDown wx:if="{{item.name=='首义+倒计时'}}" style="order:{{item.index}}"></countDown>
+  <miniElectric  wx:if="{{item.name=='寝室电费'}}" arr="{{data}}" style="order:{{item.index}}"></miniElectric>
+</block>
 </view>
 <!-- 设置按钮 -->
 <view class="myWidgetSettingCircle" bindtap="toSettingPage">

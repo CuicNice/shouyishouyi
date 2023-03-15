@@ -1,5 +1,9 @@
 // pages/myWidgets/myWidgets/myWidgets.ts
 // 接口请求部分
+export interface ScoreCompontItem {
+  zh: string,
+  mm: string,
+};
 import {
   // 内网新闻
   getInnerNewsListitem,
@@ -10,8 +14,8 @@ import {
 /**
  * 电费
  */
-import uCharts from "../../../../utils/u-charts";
 import { getElectric } from '../../../api/electricChargeApi';
+import { widgetScore } from "../../../api/scoreInquiryApi";
 interface innernewsListItem {
   "currentPage": string,
   "pageSize": string
@@ -42,10 +46,65 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //topBar顶部的高度
+    topBarBottom:80,
+    // 小组件页面
+    myWidgetTabListTemp: [{
+      name: '每日课表',
+      componentHeight: 252.52,
+      svgSrc: '/static/svg/myWidget/weekSchedule.png',
+      y: 0,
+    },
+    {
+      name: '快讯闻',
+      componentHeight: 272.84,
+      svgSrc: '/static/svg/myWidget/miniNews.png',
+      y: 0,
+
+    },
+
+    {
+      name: '首义+倒计时',
+      componentHeight: 119.07,
+      svgSrc: '/static/svg/myWidget/countDown.png',
+      y: 0,
+
+    },
+    {
+      name: 'splitLine',//分割线上方展示在页面下方不展示
+      componentHeight: 80,
+      svgSrc: '/static/svg/myWidget/splitLine.png',
+      y: 0,
+
+    },
+    {
+      name: '寝室电费',
+      componentHeight: 117.66,
+      svgSrc: '/static/svg/myWidget/electricCard.png',
+      y: 0,
+
+
+    },
+    {
+      name: '成绩单',
+      componentHeight: 131.35,
+      svgSrc: '/static/svg/myWidget/scoreCard.png',
+      y: 0,
+    }
+    ], //移动元素区块
+    /**
+     * 成绩组件
+     */
+    widget_score: '',//请求到的每学期学年的成绩
+    alljdxfs: '',//总学分加权平均分
+    allxfscores: '',//总平均学分绩点
+    semester: '',//学年学期
+    scoreLevel: 0,//本学期称号
+
     /**
      * 状态；栏
      */
-    screenHeight:0,
+    screenHeight: 0,
 
     /**
      * 设置页面的动画
@@ -66,9 +125,9 @@ Page({
       remindMaxMoveY: (200 - 60), //抽屉remindBox最大移动距离
       remindLastTranlateY: 0  //上次动画效果的平移距离，用于校准top值
     } as any,
-/**
- * 新闻组件
- */
+    /**
+     * 新闻组件
+     */
     // 内网：
     innerPageParams: {
       "currentPage": "1",
@@ -79,11 +138,179 @@ Page({
       "currentPage": "1",
       "pageSize": "3"
     } as unknown as outnewsListItem,
-    tapbarCtrl:true as Boolean,
+    tapbarCtrl: true as Boolean,
     // 列表数据
     widgetMiniNewsList: [] as any,
-    //电费查询
-    widgetsElectricChargeData:[]as any,
+    //电费查讯
+    widgetsElectricChargeData: [] as any,
+  },
+  /**新闻
+   * 
+   */
+  /**
+  * 发送请求，渲染数据
+  * @param from 成绩
+  */
+  async getUserInfoData(from: ScoreCompontItem) {
+    const { data: widget_score } = await widgetScore(from) as unknown as IResult<any>;
+    var semester = this.data.semester;
+    var score = '' as unknown as number;//本学期成绩
+    /**
+     * 展示本学期称号，如果本学期暂无成绩，则展示近学期的成绩称号
+     */
+    if (semester == '大一上') {
+      score = widget_score.one.sxqall[0].xqxfscore;
+    }
+    else if (semester == '大一下') {
+      score = widget_score.one.xxqall[0].xqxfscore;
+      if (widget_score.one.xxqall[0].xqxfscore == 'None') {
+        score = widget_score.one.sxqall[0].xqxfscore;
+        semester = '大一上';
+      }
+    }
+    else if (semester == '大二上') {
+      score = widget_score.two.sxqall[0].xqxfscore;
+      if (widget_score.two.sxqall[0].xqxfscore == 'None') {
+        score = widget_score.one.xxqall[0].xqxfscore;
+        semester = '大一下';
+      }
+    }
+    else if (semester == '大二下') {
+      score = widget_score.two.xxqall[0].xqxfscore;
+      if (widget_score.two.xxqall[0].xqxfscore == 'None') {
+        score = widget_score.two.sxqall[0].xqxfscore;
+        semester = '大二上';
+      }
+    }
+    else if (semester == '大三上') {
+      score = widget_score.three.sxqall[0].xqxfscore;
+      if (widget_score.three.sxqall[0].xqxfscore == 'None') {
+        score = widget_score.two.xxqall[0].xqxfscore;
+        semester = '大二下';
+      }
+    }
+    else if (semester == '大三下') {
+      score = widget_score.three.xxqall[0].xqxfscore;
+      if (widget_score.three.xxqall[0].xqxfscore == 'None') {
+        score = widget_score.three.sxqall[0].xqxfscore;
+        semester = '大三上';
+      }
+    }
+    else if (semester == '大四上') {
+      score = widget_score.four.sxqall[0].xqxfscore;
+      if (widget_score.four.sxqall[0].xqxfscore == 'None') {
+        score = widget_score.three.xxqall[0].xqxfscore;
+        semester = '大三下';
+      }
+    }
+    else if (semester == '大四下') {
+      score = widget_score.four.xxqall[0].xqxfscore;
+      if (widget_score.four.xxqall[0].xqxfscore == 'None') {
+        score = widget_score.four.sxqall[0].xqxfscore;
+        semester = '大四上';
+      }
+    }
+    /**
+     * 传值给scoreLevel方法，判断称号显示
+     */
+    this.scoreLevels(score);
+    this.setData({
+      widget_score: widget_score,
+      allxfscores: widget_score.allscore.allxfscores,
+      alljdxfs: widget_score.allscore.alljdxfs,
+      semester: semester,
+    });
+  },
+  /**
+   * 变化等级称号
+   */
+  scoreLevels(score: number) {
+    var scoreLevel = this.data.scoreLevel as unknown as number;
+    if (score >= 90) {
+      scoreLevel = 1;
+    } else if (score >= 85 && score < 90) {
+      scoreLevel = 2;
+    } else if (score >= 80 && score < 85) {
+      scoreLevel = 3;
+    } else if (score >= 70 && score < 80) {
+      scoreLevel = 4;
+    } else if (score >= 60 && score < 70) {
+      scoreLevel = 5;
+    } else if (score <= 60 && score >= 0) {
+      scoreLevel = 6;
+    } else {
+      scoreLevel = 0;
+    }
+    this.setData({ scoreLevel: scoreLevel });
+  },
+  /**
+   * 获取目前的学年学期 如大一下
+   */
+  getScoreTime() {
+    /**
+    * 获取当前年月
+    */
+    var timestamp = Date.parse(new Date() as unknown as string);
+    var date = new Date(timestamp);
+    var Y = date.getFullYear() as unknown as string;//年份
+    var M = (date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string; //月份
+    /**
+     * 进行当前学期的判断
+     */
+    var year = 0;//储存年份的变量
+    var schoolTime;//学期名
+    if (8 <= parseInt(M) && parseInt(M) <= 12) {
+      year = year + parseInt(Y) + 1;
+    }
+    if (1 <= parseInt(M) && parseInt(M) < 2) {
+      year = year + parseInt(Y);
+    }
+    if (2 <= parseInt(M) && parseInt(M) < 8) {
+      year = year + parseInt(Y);
+    }
+    if ((Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 4 && 8 <= parseInt(M) && parseInt(M) <= 12) || (Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 4 && 1 <= parseInt(M) && parseInt(M) < 2)) {
+      schoolTime = '大四上';
+    }
+    if (Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 4 && 2 <= parseInt(M) && parseInt(M) < 8) {
+      schoolTime = '大四下';
+    }
+    if ((Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 3 && 8 <= parseInt(M) && parseInt(M) <= 12) || (Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 3 && 1 <= parseInt(M) && parseInt(M) < 2)) {
+      schoolTime = '大三上';
+    }
+    if (Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 3 && 2 <= parseInt(M) && parseInt(M) < 8) {
+      schoolTime = '大三下';
+    }
+    if ((Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 2 && 8 <= parseInt(M) && parseInt(M) <= 12) || (Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 2 && 1 <= parseInt(M) && parseInt(M) < 2)) {
+      schoolTime = '大二上';
+    }
+    if (Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 2 && 2 <= parseInt(M) && parseInt(M) < 8) {
+      schoolTime = '大二下';
+    }
+    if ((Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 1 && 8 <= parseInt(M) && parseInt(M) <= 12) || (Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 1 && 1 <= parseInt(M) && parseInt(M) < 2)) {
+      schoolTime = '大一上';
+    }
+    if (Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 1 && 2 <= parseInt(M) && parseInt(M) < 8) {
+      schoolTime = '大一下';
+    }
+    this.setData({
+      semester: schoolTime,
+    });
+  },
+  /**
+   * 新闻结束
+   */
+  /**
+  * 初始化页面渲染函数
+  */
+  async initPageData() {
+    /**
+     * 获取本地缓存
+     */
+    var bindData = {
+      zh: wx.getStorageSync('login').zh,//缓存里的账号
+      mm: wx.getStorageSync('login').mm,//缓存里的密码
+    } as ScoreCompontItem;
+    this.getUserInfoData(bindData);
   },
   /**
    * 
@@ -97,18 +324,15 @@ Page({
     // 获取内网新闻
     let innerPageParams = that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
-    console.log("innerRes",innerRes);
-     if (innerRes != null) {
+    console.log("innerRes", innerRes);
+    if (innerRes != null) {
       wx.hideLoading();
-      let widgetMiniNewsList = innerRes.widgetMiniNewsList;
+      let widgetMiniNewsList = innerRes.list;
       that.setData({
         widgetMiniNewsList: widgetMiniNewsList, //当天的
       })
     }
-    /**
-     * 电费组件
-     */
-    electricData:[] as any
+    console.log("widgetMiniNewsList", that.data.widgetMiniNewsList)
   },
   /**
    * 获取顶部的状态栏的信息
@@ -126,7 +350,7 @@ Page({
     // 获取信号区高度
     let statusBarHeight = systemInfo['statusBarHeight']
     // 设置胶囊行的高度
-    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight)*2;
+    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
     /* 
     根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
     开发工具 = 获取的高度
@@ -142,25 +366,37 @@ Page({
     } else {
       statusBarHeight = statusBarHeight
     }
+    var topBarBottom=statusBarHeight+capsuleBoxHeight
     this.setData({
       capsuleBoxHeight,
       statusBarHeight,
-      screenHeight
+      screenHeight,
+      topBarBottom,
     })
 
   },
   /**
    * 电费请求
    */
-  async webrequest(){
+  async webrequest() {
     /**
      * 获取组件内部要求的组件请求参数，进行网络请求
      */
     var value = wx.getStorageSync('widgets-electricCharge') as ElectriceItem;
     const { data: widgetsElectricChargeRes } = await getElectric(value) as unknown as IResult<any>;
     this.setData({
-      widgetsElectricChargeData:widgetsElectricChargeRes
+      widgetsElectricChargeData: widgetsElectricChargeRes
     })
+  },
+  // 页面监听组件TapBar
+  handleEventListener: function (e: any) {
+    var that = this
+    //将组件B传递的tapbarCtrl通过e.detail.tapbarCtrl来获取
+    this.setData({
+      tapbarCtrl: e.detail.tapbarCtrl
+    })
+    // 初始化数据
+    that.initNewsInfo()
   },
   // 外网首义
   async getOutSouyiNews() {
@@ -174,8 +410,8 @@ Page({
     let outPageParams = that.data.outPageParams
     let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
     if (outRes.pageSize != 0) {
-      var widgetMiniNewsList = outRes.widgetMiniNewsList;
-      console.log("listmm",widgetMiniNewsList)
+      var widgetMiniNewsList = outRes.list;
+      console.log("listmm", widgetMiniNewsList)
     } else {
       wx.showToast({
         title: '刷新失败',
@@ -347,7 +583,6 @@ Page({
   },
   onPageScroll(ev) {
     var that = this
-    console.log("ev", ev)
     if (ev.scrollTop <= 0) {
       // 使用CSS选择器
       ev.scrollTop = 0;
@@ -374,15 +609,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    
+    var that = this
+
     // 获取屏幕高度
     // TODO: 迁移到app.js中因为已经多处调用
     var windowHeight = wx.getSystemInfoSync().windowHeight;
-    this.setData({
+    that.setData({
       windowHeight: windowHeight
     })
-    var that=this
+    //组件序列
+    var myWidgetTabListTemp = that.data.myWidgetTabListTemp
+    try {
+      myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
+    } catch {
+      console.log("本地无数据")
+    }
+    myWidgetTabListTemp=that.deleteBelowSplitWidget(myWidgetTabListTemp)//数据存到data中
+    that.setData({
+      myWidgetTabListTemp: myWidgetTabListTemp
+    })
+    console.log("本地的列表",myWidgetTabListTemp,that.data.myWidgetTabListTemp);    
     that.initNewsInfo()//初始化新闻
+    that.initPageData();//初始化成绩
+    that.getScoreTime();//初始化成绩
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -390,12 +639,39 @@ Page({
   onReady() {
   },
   /**
+
+  /**
+   * 删除spplitLline后面的数据
+   */
+  deleteBelowSplitWidget(listTemp:AnyArray) {
+    var that = this
+    var tempWigetList = listTemp
+    var myWidgetTabListTemp = [] as AnyArray
+    var splitTag = 0
+    for (var i = 0; i < tempWigetList.length; i++) {
+      if (tempWigetList[i].name == "splitLine") {
+        splitTag = i
+      }
+    }
+    tempWigetList.splice(splitTag)
+    return tempWigetList
+  },
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    var that=this
+    var that = this
     that.webrequest();//电费
     that.getTarHeighgt();//获取顶部的状态栏信息
+    var myWidgetTabListTemp = that.data.myWidgetTabListTemp
+    try {
+      myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
+    } catch {
+      console.log("本地无数据")
+    }
+    that.setData({
+      myWidgetTabListTemp: that.deleteBelowSplitWidget(myWidgetTabListTemp)//数据存到data中
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -427,10 +703,10 @@ Page({
   /**
    * 点击跳转
    */
-  toSettingPage(){
-wx.navigateTo({
-  'url':"/pages/myWidgets/settingWidgets/settingWidgets"
-})
+  toSettingPage() {
+    wx.navigateTo({
+      'url': "/pages/myWidgets/settingWidgets/settingWidgets"
+    })
   },
   /**
    * 用户点击右上角分享

@@ -10,7 +10,7 @@
   <view class="miniNewsTop">
     <view class="miniNewsTopLeftBox">
       <view class="miniNewsTxt">
-        快询闻</view>
+        快讯闻</view>
       <!-- 图标 -->
       <view class="miniNewsIconBox">
         <image class="miniNewsIconSvg" src="../../../../static/svg/news/miniNews_Book.svg" mode="" />
@@ -53,7 +53,7 @@
       <!-- 右边的日期 -->
       <view class="rightNewsDate">
         <!-- 天数 需要有颜色切换判断 -->
-        <view class="item.newsTime=='new'?greenTime_day':'greyTime_day'">
+        <view class="{{item.newsTime=='today'?'greenTime_day':'greyTime_day'}}">
           {{tools.substring(item.newsDate,8,10)}}
         </view>
         <!-- 年月份 -->

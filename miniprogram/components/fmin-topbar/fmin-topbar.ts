@@ -9,6 +9,14 @@
  *          xxxxxxxxxxx
  *      </view>
  *    </topbar>
+ * 若要设置非沉浸时，topbar的颜色，可以这样设置，其中bgColor为rgb，格式为r,g,b
+ *  如:
+ *    <view class="bg"></view>
+ *    <topbar title="主标签" bgColor='255,255,255'></topbar>
+ *      <view> <!-- page页面 -->
+ *          xxxxxxxxxxx
+ *      </view>
+ *    
  */
 Component({
   /**
@@ -30,8 +38,11 @@ Component({
     speed:{ // 自动取消沉浸的速度
       type:Number,
       value:1
+    },
+    bgColor:{ // 非沉浸时的颜色
+      type:String,
+      value:'255,255,255'
     }
-    
   },
 
   /**

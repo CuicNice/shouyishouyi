@@ -1,38 +1,49 @@
 /* pages/myWidgets/myWidgets/myWidgets.wxss */
+
 .bg {
-  /* Entering for the first time */
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  /* 背景 */
-  background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
-  z-index: -999;
+    /* Entering for the first time */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* 背景 */
+    background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
+    z-index: -999;
 }
+
+
 /* 页面 */
-.container{
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 100px 0 100px;
-gap: 20px;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    padding: 200rpx 0 200rpx;
+    gap: 40rpx;
 }
+
+
 /* 顶部状态栏开始 */
+
 .top-bar {
-  position: fixed;
-  width: 100%;
-  z-index: 999;
-  padding-left: 40rpx;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    padding-left: 40rpx;
 }
+
+
 /* 名字后面的三个点 */
-.barTextDot{
-  display: flex;
-  width: 6.61px;
-  height: 7px;
-  align-items: flex-start;
+
+.barTextDot {
+    display: flex;
+    width: 13.22rpx;
+    height: 14rpx;
+    align-items: flex-start;
 }
-.barTextDotSvg{
-  width: 6.61px !important;
-height: 7px !important;
+
+.barTextDotSvg {
+    width: 13.22rpx !important;
+    height: 14rpx !important;
 }
 
 .btn-box {
@@ -110,46 +121,46 @@ height: 7px !important;
 .barText {
     /* transform: translateX(-10rpx); */
     /* 你好鸭~棍棍 */
-height: 22px;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 22px;
-color: #292945;
-mix-blend-mode: normal;
-letter-spacing: 1px;
-}/* 顶部状态栏结束 */
-/* 设置按钮 */
-.myWidgetSettingCircle{
-/* Frame 137 */
-
-
-position: absolute;
-width: 68px;
-height: 68px;
-left: 297px;
-top: 578px;
-
-background: #4BDCAB;
-box-shadow: 0px 1px 20px -6px #4BDCAB;
-border-radius: 66px;
+    height: 44rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    color: #292945;
+    mix-blend-mode: normal;
+    letter-spacing: 2rpx;
 }
-.myWidgetSettingCircleText{
-/* 设置 */
 
 
-position: absolute;
-width: 32px;
-height: 22px;
-left: 18px;
-top: 23px;
+/* 顶部状态栏结束 */
 
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 22px;
 
-color: #FFFFFF;
+/* 设置按钮 */
+
+.myWidgetSettingCircle {
+    /* Frame 137 */
+    position: absolute;
+    width: 136rpx;
+    height: 136rpx;
+    left: 594rpx;
+    top: 1156rpx;
+    background: #4BDCAB;
+    box-shadow: 0rpx 2rpx 40rpx -12rpx #4BDCAB;
+    border-radius: 132rpx;
+}
+
+.myWidgetSettingCircleText {
+    /* 设置 */
+    position: absolute;
+    width: 64rpx;
+    height: 44rpx;
+    left: 36rpx;
+    top: 46rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    color: #FFFFFF;
 }
