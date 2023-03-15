@@ -28,20 +28,31 @@ Page({
     bh_id: '',//班级id
     allClass: [],//储存着通过学院id和年级请求到的数据
     classTitle: '',//标题部分的班级
-    index: 0,
+    gradeTitle: '',//显示出来的年级
+    semesterTitle: '',//显示出来的学期
+    academyTitle: '',//显示出来的学院
+    classTitle_2: '',//显示出来的班级
+    shownj: false,
+    showxy: false,
+    showbj: false,
+    showxq: false,
+    //年级的数组
     gradeId: 0,
     gradeArray: [],
     grade: '',
+    //学院的数组
     academy: '',
     academyArray: [],
     academyId: 0,
+    //班级的数组
     Class: '',
     ClassArray: [],
     ClassId: 0,
+    //学期的数组
     semesters: '',
     semesterArray: [],
     semesterId: 0,
-    electricChargedetail: false,
+    Chargedetail: false,
     all: [],//存入的选择过的班级专业的缓存,
     allOne: '',//存入的单个缓存的数据
     weekSchedule: true,
@@ -282,6 +293,43 @@ Page({
     });
   },
   /**
+   * 点击进入年级弹窗
+   */
+  shownj() {
+    this.setData({
+      shownj: true,
+      Chargedetail: false,
+    })
+  },
+  /**
+   * 点击进入学院弹窗
+   */
+  showxy() {
+    this.setData({
+      showxy: true,
+      Chargedetail: false,
+    })
+  },
+  /**
+   * 点击进入班级弹窗
+   */
+  showbj() {
+    this.setData({
+      showbj: true,
+      Chargedetail: false,
+    })
+  },
+  /**
+   * 点击进入学期弹窗
+   */
+  showxq() {
+    this.setData({
+      showxq: true,
+      Chargedetail: false,
+    })
+  },
+
+  /**
    * 点击返回上一页
    */
   getBack() {
@@ -497,7 +545,7 @@ Page({
       this.setData({
         classSchedule: wx.getStorageSync('widget-allSchedule').all[index].classSchedule,
         allOne: wx.getStorageSync('widget-allSchedule').all[index],
-        electricChargedetail: false,
+        Chargedetail: false,
         classTitle: wx.getStorageSync('widget-allSchedule').all[index].Class,
       })
       this.selectComponent("#toast_1").showToastAuto("查询中", "lodding");
@@ -509,7 +557,7 @@ Page({
    */
   getClassDule() {
     this.setData({
-      electricChargedetail: true,
+      Chargedetail: true,
       Class: '',
       academy: '',
       semesters: '',
@@ -525,7 +573,7 @@ Page({
      */
     this.setData({
       classTitle: wx.getStorageSync('widget-allSchedule').classSchedule.week == undefined ? '' : wx.getStorageSync('widget-allSchedule').all[0].Class,
-      electricChargedetail: false,
+      Chargedetail: false,
       Class: '',
       academy: '',
       semesters: '',
@@ -535,8 +583,8 @@ Page({
   /**
    * 点击确认,并存入缓存
    */
-  bind() {
-    var electricChargedetail = this.data.electricChargedetail;
+  bind_all() {
+    var Chargedetail = this.data.Chargedetail;
     var grade = this.data.grade;
     var Class = this.data.Class;
     var academy = this.data.academy;
@@ -550,55 +598,64 @@ Page({
       var all = ['', '', ''] as any;
     }
     if (Class && semesters && academy && grade) {
-       /**
-     * 存入请求课表需要的数据 账号；密码；学年；学期；学院id；班级id；
-     */
-    var allSchedul = {
-      classSchedule: wx.getStorageSync('widget-allSchedule').classSchedule,
-      Class: this.data.Class
-    }
-    /**
-     * 由于最多三个，简单去重，和替换
-     */
-    for (var i = 0; i < 3; i++) {
       /**
-       * 当第一次输入信息的时候，长度为三，因为最长也只能为3个
-       */
-      if (all.length == 0) {
-        all[0] = allSchedul
-        break;
+    * 存入请求课表需要的数据 账号；密码；学年；学期；学院id；班级id；
+    */
+      var allSchedul = {
+        classSchedule: wx.getStorageSync('widget-allSchedule').classSchedule,
+        Class: this.data.Class
       }
       /**
-       * 如果输入的数据相同，则不二次存储
+       * 由于最多三个，简单去重，和替换
        */
-      if (all.length == 1) {
-        all[1] = all[0];
-        all[0] = allSchedul;
+      for (var i = 0; i < 3; i++) {
+        /**
+         * 个数少，简单去重
+         */
+        for(var a =0;a<3;a++){
+          if(all[a].Class == allSchedul.Class){
+          break;
+        }
         break;
-      }
-      if (all.length == 2) {
-        all[2] = all[1];
-        all[1] = all[0];
-        all[0] = allSchedul;
-        break;
-      }
-      /**
-       * 满了之后再次输入，将依次替换
-       */
-      if (all.length >= 3) {
-        all[2] = all[1];
-        all[1] = all[0];
-        if (Class !== all[i].Class && i !== 0) {
+        }
+        /**
+         * 当第一次输入信息的时候，长度为三，因为最长也只能为3个
+         */
+        if (all.length == 0) {
+          all[0] = allSchedul
+          break;
+        }
+        /**
+         * 如果输入的数据相同，则不二次存储
+         */
+        if (all.length == 1) {
+          all[1] = all[0];
           all[0] = allSchedul;
           break;
         }
+        if (all.length == 2) {
+          all[2] = all[1];
+          all[1] = all[0];
+          all[0] = allSchedul;
+          break;
+        }
+        /**
+         * 满了之后再次输入，将依次替换
+         */
+        if (all.length >= 3) {
+          all[2] = all[1];
+          all[1] = all[0];
+          if (Class !== all[i].Class && i !== 0) {
+            all[0] = allSchedul;
+            break;
+          }
+        }
       }
-    }
       this.getbindSchdul();
       var myarr = wx.getStorageSync('widget-allSchedule');
       myarr.all = all;
       wx.setStorageSync('widget-allSchedule', myarr)
-      electricChargedetail = false;
+      Chargedetail = false;
       all = all;
       this.selectComponent("#toast_1").showToastAuto("查询中", "lodding", 3);
     }
@@ -606,11 +663,38 @@ Page({
       this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
     }
     this.setData({
-      classTitle: Class,
-      electricChargedetail: electricChargedetail,
+      classTitle: Class?Class:all[0].Class,
+      Chargedetail: Chargedetail,
       all: all,
     })
-
+  },
+  /**
+   * 单独弹窗的绑定
+   */
+  bind() {
+    var shownj = false;
+    var showbj = false;
+    var showxq = false;
+    var showxy = false;
+    var Chargedetail = true;
+    /**
+     * 当点击确认时，跳出来所显示的内容
+     */
+    var gradeTitle = this.data.grade;
+    var semesterTitle = this.data.semesters;
+    var academyTitle = this.data.academy;
+    var classTitle_2 = this.data.Class;
+    this.setData({
+      gradeTitle: gradeTitle,
+      semesterTitle: semesterTitle,
+      academyTitle: academyTitle,
+      classTitle_2: classTitle_2,
+      Chargedetail: Chargedetail,
+      shownj: shownj,
+      showbj: showbj,
+      showxq: showxq,
+      showxy: showxy,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -655,7 +739,14 @@ Page({
   *关闭弹窗
   */
   closeDetails() {
-    this.setData({ ifshow: false });
+    this.setData({
+      ifshow: false,
+      shownj: false,
+      showbj: false,
+      showxq: false,
+      showxy: false,
+      Chargedetail: true
+    });
   },
   /* 
   *刷新本周的日期

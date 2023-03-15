@@ -1509,6 +1509,8 @@ page {
   position: absolute;
   right: 420rpx;
 }
+
+
 .text-WeekOption {
   height: 44rpx;
   font-family: 'PingFang SC';
@@ -2517,7 +2519,6 @@ page {
   padding: 0px;
   gap: 50rpx;
   width: 620rpx;
-  height: 620rpx;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -2644,11 +2645,9 @@ color: #7F7F8F;
   padding-left: 10rpx;
 }
 .iconpicker {
-  width: 600rpx;
+  width: 44rpx;
   height: 44rpx;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+
 }
 
 .picker {
@@ -2734,4 +2733,22 @@ color: #7F7F8F;
   font-size: 32rpx;
   line-height: 44rpx;
   letter-spacing: -0.4352rpx;
+}
+.active{
+  color: rgba(0, 0, 0, 0.9);
+  line-height: 100rpx; 
+  text-align: center;
+}
+.noactive{
+  color:rgba(0, 0, 0, 0.3);
+  line-height: 100rpx; 
+  text-align: center;
+}
+.picker_box{
+gap: 46rpx;
+width: 640rpx;
+}
+.dialog_2box{
+  position: absolute;
+  z-index: 1000;
 }
