@@ -245,11 +245,11 @@
   <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{dark}}">
     <view class="dailyScheduleIndexList">
       <view class="dailyScheduleTime">
-        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}">{{time[item.num[0]-1].time1}}</view>
-        <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"></view>
-        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
+        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[0]-1].time1}}</view>
+        <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}"></view>
+        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
       </view>
-      <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]-1].time1?false:true}}">
+      <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]].time2?false:true}}">
         <view class="dailySchedule">
           <view class="dailyScheduleClassBox">
             <view class="dailyScheduleClass">{{item.name}}</view>
@@ -309,11 +309,11 @@
   <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{!dark}}">
     <view class="dailyScheduleIndexList">
       <view class="dailyScheduleTime">
-        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}">{{time[item.num[0]-1].time1}}</view>
-        <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"></view>
-        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
+        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[0]-1].time1}}</view>
+        <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}"></view>
+        <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
       </view>
-      <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]-1].time1?false:true}}">
+      <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]].time2?false:true}}">
         <view class="dailySchedule">
           <view class="dailyScheduleClassBox">
             <view class="dailyScheduleClass">{{item.name}}</view>
