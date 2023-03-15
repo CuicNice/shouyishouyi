@@ -31,7 +31,7 @@
     </view>
   </view>
 </view>
-<view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'#ffffff':''}};">
+<view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'#ffffff':'#333333'}};">
   <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
     <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
       <view class="select_one" wx:if="{{nowWeek == index+1}}">
@@ -62,7 +62,7 @@
     <view class="{{picture==''?'smallBox':'smallBoxWhite'}}">
       <text class="smallBoxtxt">{{schoolPlace}}校区</text>
     </view>
-    <!-- 周和日期-->
+    <!-- 周和日期--><!-- {{picture==''?'smallBox':'smallBoxWhite'}} -->
     <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}">
       <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
         <view class="week">

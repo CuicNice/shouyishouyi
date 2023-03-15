@@ -266,6 +266,8 @@ page {
 }
 
 .select_box {
+  position: absolute;
+  z-index: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -292,12 +294,9 @@ page {
   font-weight: 400;
   font-size: 30rpx;
   line-height: 42rpx;
-  /* identical to box height */
   text-align: center;
-  /* #4BDCAB */
   color: #4BDCAB;
   margin-left: 56rpx;
-  /* margin-top: -10rpx; */
 }
 
 .select_oneIconBox {
@@ -329,9 +328,7 @@ page {
   font-weight: 400;
   font-size: 30rpx;
   line-height: 42rpx;
-  /* identical to box height */
   text-align: center;
-  /* text */
   color: #292945;
 }
 
@@ -351,6 +348,7 @@ page {
   width: 66rpx;
   height: 82rpx;
   background: #F8F8F8;
+  z-index: 1;
 }
 .smallBoxWhite {
   display: flex;
@@ -362,6 +360,7 @@ page {
   width: 66rpx;
   height: 82rpx;
   background:  rgba(248, 248, 248, 0.9);
+  z-index: 1;
 }
 .smallBoxtxt {
   width: 50rpx;
@@ -2225,7 +2224,7 @@ page {
   right: -15rpx;
   top: 0rpx;
   overflow: hidden;
-  /* z-index: -10; */
+  z-index: -1;
 } 
 
 .nodailyScheduleIndex {
