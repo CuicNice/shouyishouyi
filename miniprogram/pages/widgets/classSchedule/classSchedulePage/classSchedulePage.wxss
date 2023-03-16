@@ -321,9 +321,10 @@ margin-top: -48rpx;
   padding: 8rpx;
   gap: 20rpx;
   width: 66rpx;
-  height: 82rpx;
+  height: 68rpx;
   background: #F8F8F8;
   z-index: 1;
+  margin-top: 12rpx;
 }
 .smallBoxWhite {
   display: flex;
@@ -331,11 +332,11 @@ margin-top: -48rpx;
   justify-content: center;
   align-items: center;
   padding: 8rpx;
-  gap: 20rpx;
   width: 66rpx;
-  height: 82rpx;
+  height: 68rpx;
   background:  rgba(248, 248, 248, 0.9);
   z-index: 1;
+  margin-top: 15rpx;
 }
 .smallBoxtxt {
   width: 50rpx;
@@ -373,7 +374,7 @@ margin-top: -48rpx;
   border-bottom: 2rpx solid #EAEAEC;
   z-index: 9;
   background: rgba(255, 255, 255, 0.9);
-  margin-top: 13rpx;
+  margin-top: 13.8rpx;
 }
 .weekBox {
   width: 88rpx;
@@ -449,7 +450,7 @@ margin-top: -48rpx;
 }
 
 .leftBox {
-  margin-top: 20rpx;
+  margin-top: 18rpx;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -458,7 +459,7 @@ margin-top: -48rpx;
   width: 78rpx;
 }
 .leftBoxWhite{
-  margin-top: 15rpx;
+  margin-top: 16rpx;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2531,8 +2532,8 @@ page {
 }
 
 .classScroll {
-  height: 1200rpx;
-  /*如果要依真机测试为主，则需要改成1200rpx*/
+  height: 1300rpx;
+  /*如果要依真机测试为主，则需要改成1300rpx*/
 }
 
 .mask {
