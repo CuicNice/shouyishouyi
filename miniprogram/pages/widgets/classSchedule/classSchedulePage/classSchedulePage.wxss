@@ -216,14 +216,14 @@ page {
 
 
 .container{
-margin-top: -48rpx;
+margin-top: -18rpx;
 }
 
 .top {
   display: flex;
   justify-content: start;
   height: 82rpx;
-  margin-top: -1rpx;
+  margin-top: 4rpx;
 }
 
 .smallBox {
@@ -246,10 +246,10 @@ margin-top: -48rpx;
   align-items: center;
   padding: 8rpx;
   width: 66rpx;
-  height: 68rpx;
+  height: 70rpx;
   background:  rgba(248, 248, 248, 0.9);
   z-index: 1;
-  margin-top: 15rpx;
+  margin-top: 12rpx;
 }
 .smallBoxtxt {
   width: 50rpx;
@@ -287,7 +287,7 @@ margin-top: -48rpx;
   border-bottom: 2rpx solid #EAEAEC;
   z-index: 9;
   background: rgba(255, 255, 255, 0.9);
-  margin-top: 13.8rpx;
+  margin-top: 13.5rpx;
 }
 .weekBox {
   width: 88rpx;
@@ -322,11 +322,10 @@ margin-top: -48rpx;
   position: absolute;
 }
 .WHQplusWhite {
-  margin-top: -4rpx;
+  margin-top: -6rpx;
   width: 100%;
   height: 116rpx;
   display: flex;
-  position: absolute;
   background: rgba(255, 255, 255, 0.8);
 }
 .WHQplusLeft {
@@ -371,7 +370,7 @@ margin-top: -48rpx;
 }
 
 .leftBox {
-  margin-top: 18rpx;
+  margin-top: 16rpx;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -380,7 +379,7 @@ margin-top: -48rpx;
   width: 78rpx;
 }
 .leftBoxWhite{
-  margin-top: 16rpx;
+  margin-top: 14rpx;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1386,8 +1385,7 @@ page {
   margin-top: 50rpx;
   height: 142rpx;
   width: 200rpx;
-  transform: translate(230rpx, 10rpx);
-  margin-left: -120rpx;
+  transform: translate(80rpx, 15rpx);
 }
 
 .WeekOption {

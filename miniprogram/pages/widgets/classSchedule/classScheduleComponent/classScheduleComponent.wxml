@@ -1,24 +1,25 @@
 <view class="dailyScheduleContainer">
   <view class="dailyScheduleNavigation">
     <view class="dailyNavigationtext">第1周 2月19日 周一（日程表）</view>
+    <view class="dailyScheduleNavigationIcon" bindtap="godailySchedule"><image></image></view>
   </view>
-  <view class="dailyScheduleIndex">
+  <view class="dailyScheduleIndex" wx:key="index">
     <view class="dailyScheduleIndexList">
       <view class="dailyScheduleTime">
-        <view class="dailyScheduleTime1">8:00</view>
+        <view class="dailyScheduleTime1">{{time.time1}}</view>
         <view class="dailyScheduleTimeLine"></view>
-        <view class="dailyScheduleTime1">8:40</view>
+        <view class="dailyScheduleTime1">{{time2}}</view>
       </view>
       <view class="dailyScheduleBox">
         <view class="dailySchedule">
           <view class="dailyScheduleClassBox">
-            <view class="dailyScheduleClass">大学英语3</view>
+            <view class="dailyScheduleClass">{{dailySchedule[index].name}}</view>
           </view>
           <view class="dailyScheduleAdBox">
             <view class="dailyScheduleAdIcon">
               <image></image>
             </view>
-            <view class="dailyScheduleAd">18栋教学楼211</view>
+            <view class="dailyScheduleAd">{{item.local}}</view>
           </view>
         </view>
         <view class="dailyScheduleKc">
@@ -28,60 +29,6 @@
         <view class="dailyScheduleBd">
           <image></image>
         </view>
-      </view>
-    </view>
-    <view class="dailyScheduleIndexList">
-      <view class="dailyScheduleTime">
-        <view class="dailyScheduleTime1">8:00</view>
-        <view class="dailyScheduleTimeLine"></view>
-        <view class="dailyScheduleTime1">8:40</view>
-      </view>
-      <view class="dailyScheduleBox">
-        <view class="dailySchedule">
-          <view class="dailyScheduleClassBox">
-            <view class="dailyScheduleClass">大学英语3</view>
-          </view>
-          <view class="dailyScheduleAdBox">
-            <view class="dailyScheduleAdIcon">
-              <image></image>
-            </view>
-            <view class="dailyScheduleAd">18栋教学楼211</view>
-          </view>
-        </view>
-        <view class="dailyScheduleKc">
-          <view class="whichKc">第1~2节</view>
-          <view class="whichTc">蒋晶晶</view>
-        </view>
-        <view class="dailyScheduleBd">
-          <image></image>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="dailyScheduleIndexList">
-    <view class="dailyScheduleTime">
-      <view class="dailyScheduleTime1" style="color: #292945">8:00</view>
-      <view class="dailyScheduleTimeLine" style="border: 1px solid #292945;"></view>
-      <view class="dailyScheduleTime1" style="color: #292945">8:40</view>
-    </view>
-    <view class="dailyScheduleBox" style="background: #6290E9;">
-      <view class="dailySchedule">
-        <view class="dailyScheduleClassBox">
-          <view class="dailyScheduleClass" style="color: #FFFFFF;">大学英语3</view>
-        </view>
-        <view class="dailyScheduleAdBox">
-          <view class="havedailyScheduleAdIcon">
-            <image></image>
-          </view>
-          <view class="dailyScheduleAd" style="color: #FFFFFF;">18栋教学楼211</view>
-        </view>
-      </view>
-      <view class="dailyScheduleKc">
-        <view class="whichKc" style="color: #FFFFFF;">第1~2节</view>
-        <view class="whichTc" style="color: #FFFFFF;">蒋晶晶</view>
-      </view>
-      <view class="havedailyScheduleBd">
-        <image></image>
       </view>
     </view>
   </view>
