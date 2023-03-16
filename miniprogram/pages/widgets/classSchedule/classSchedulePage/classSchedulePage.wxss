@@ -286,25 +286,6 @@ page {
   height: 80rpx;
   background: rgba(255, 255, 255, 0.9);
 }
-.select_oneweek {
-  width: 48rpx;
-  height: 42rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30rpx;
-  line-height: 42rpx;
-  text-align: center;
-  color: #4BDCAB;
-  margin-left: 56rpx;
-}
-
-.select_oneIconBox {
-  width: 40rpx;
-  height: 40rpx;
-  margin-top: 22rpx;
-}
-
 .select_which {
   display: flex;
   flex-direction: row;
@@ -320,22 +301,16 @@ page {
   margin-left: 20rpx;
 }
 
-.noselect_oneweek {
-  width: 78rpx;
-  height: 42rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30rpx;
-  line-height: 42rpx;
-  text-align: center;
-  color: #292945;
+
+.container{
+margin-top: -48rpx;
 }
 
 .top {
   display: flex;
   justify-content: start;
-  margin-top: -50rpx;
+  height: 82rpx;
+  margin-top: -1rpx;
 }
 
 .smallBox {
@@ -398,12 +373,14 @@ page {
   border-bottom: 2rpx solid #EAEAEC;
   z-index: 9;
   background: rgba(255, 255, 255, 0.9);
+  margin-top: 13rpx;
 }
 .weekBox {
   width: 88rpx;
   display: flex;
   flex-direction: column;
   margin-left: 4rpx;
+  margin-top: 10rpx;
 }
 
 
@@ -472,6 +449,7 @@ page {
 }
 
 .leftBox {
+  margin-top: 20rpx;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -480,6 +458,7 @@ page {
   width: 78rpx;
 }
 .leftBoxWhite{
+  margin-top: 15rpx;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -514,19 +493,6 @@ page {
   height: 116rpx;
 }
 
-.time {
-  width: 34rpx;
-  height: 44rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16rpx;
-  line-height: 22rpx;
-  text-align: center;
-  color: #292945;
-  opacity: 0.6;
-  margin-top: 4rpx;
-}
 
 .timeWhite {
   width: 34rpx;
@@ -541,22 +507,6 @@ page {
   opacity: 0.6;
   margin-top: 4rpx;
 }
-
-.number {
-  width: 40rpx;
-  height: 44rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32rpx;
-  line-height: 44rpx;
-  text-align: center;
-  color: #292945;
-  margin-top: 12rpx;
-  margin-left: 16rpx;
-  margin-right: 16rpx;
-}
-
 .numberWhite {
   width: 40rpx;
   height: 44rpx;
@@ -1131,13 +1081,6 @@ page {
   line-height: 40rpx;
   color: #292945;
 }
-
-.image {
-  width: 40rpx;
-  height: 42rpx;
-  position: absolute;
-}
-
 .half-screen-top-box {
   display: flex;
   flex-direction: column;
@@ -1361,9 +1304,7 @@ page {
   height: 1394rpx;
   width: 88rpx;
   margin-right: 10rpx;
-  margin-top: 10rpx;
-  /* display: flex;
-  flex-direction: column; */
+  margin-top: 18rpx;
 }
 
 .table-num {
@@ -1675,7 +1616,7 @@ page {
 }
 
 .day {
-  margin-left: 5rpx;
+  margin-left: 3rpx;
   height: 28rpx;
   display: flex;
   flex-direction: row;
@@ -1710,10 +1651,12 @@ page {
   background: #4BDCAB;
   color: #FFFFFF;
   border-radius: 10rpx;
+  margin-top: 8rpx;
+  text-align: center;
 }
 
 .weekBoxSelect .week {
-  margin-left: 10rpx;
+  margin-left: 8rpx;
   height: 34rpx;
   font-weight: bold;
   display: flex;
@@ -1870,6 +1813,8 @@ page {
   color: #292945;
   opacity: 0.6;
   margin-top: 4rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
 }
 
 .number {

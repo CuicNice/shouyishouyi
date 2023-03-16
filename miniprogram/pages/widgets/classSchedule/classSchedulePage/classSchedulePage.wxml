@@ -4,7 +4,7 @@
   <image class="background-box" src="../../../../static/svg/schoolBuilt/{{buliding}}.svg"></image>
 </view>
 <!-- 顶部状态栏div -->
-<view class="status_bar" style='background-color: {{bgc}};'></view>
+<!-- <view class="status_bar" style='background-color: {{bgc}};'></view> -->
 <!-- 导航栏 -->
 <view class="navigationBar" style="background-color: {{bgc}};">
   <!--更多选择的icon  -->
@@ -31,7 +31,7 @@
     </view>
   </view>
 </view>
-<view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'#ffffff':'#333333'}};">
+<view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">
   <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
     <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
       <view class="select_one" wx:if="{{nowWeek == index+1}}">
@@ -157,7 +157,8 @@
           <view class="timeTable" wx:for="{{time}}" wx:key="index">
             <view class="{{bgc==''?'number':'numberWhite'}}">{{index+1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time1}}</view>
-            <view class="{{bgc==''?'time':'timeWhite'}}" style="{{(index+1)%4==0?'border-bottom: 2rpx solid #20C38C;width: 78rpx;':''}}">{{item.time2}}</view>
+            <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time2}}</view>
+            <view style="{{(index+1)%4==0?'border-bottom: 2rpx solid #20C38C;width:100%':''}}"></view>
           </view>
         </view>
         <!--课表-->
