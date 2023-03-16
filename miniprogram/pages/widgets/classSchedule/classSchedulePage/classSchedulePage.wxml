@@ -429,7 +429,7 @@
           <view class="courseplace">
             <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/jieshu.svg':'../../../../static/svg/gareytime.svg'}}" />
             <view class="cuorseGuding">节数:</view>
-            <view class="cuorseXuigai">{{item.day}} | {{item.old_num}}</view>
+            <view class="cuorseXuigai">{{item.day}} | 第{{item.old_num}}</view>
           </view>
           <view class="courseplace">
             <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/zhuoci.svg':'../../../../static/svg/gareyzho.svg'}}" />

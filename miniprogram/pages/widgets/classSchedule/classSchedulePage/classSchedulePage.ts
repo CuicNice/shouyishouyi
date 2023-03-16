@@ -17,7 +17,7 @@ Page({
     weekSchedule: true,
     weekNum: 19,
     nowWeek: 1,
-    beginSemester:'',
+    beginSemester: '',
     nowtime: "",
     dialogTip: false,
     dark: true,
@@ -150,11 +150,12 @@ Page({
   *重新刷新功能
   */
   refresh() {
-    var day=1
-    var time=this.data.startDate
-    if(this.data.semester==this.data.beginSemester){
-    day = this.nowWeek()
-    time = new Date().toLocaleDateString();}
+    var day = 1
+    var time = this.data.startDate
+    if (this.data.semester == this.data.beginSemester) {
+      day = this.nowWeek()
+      time = new Date().toLocaleDateString();
+    }
     this.reGetDay(time, day);
     var value = wx.getStorageSync('widget-classSchedule');
     delete value.classSchedule
@@ -580,6 +581,51 @@ Page({
         };
       };
     };
+    //将重复的课程周次合并
+    let num = this.objHeavy(list)
+      if (num.length != list.length) {
+        if(num[0].old_day_num.indexOf(",")<0){
+        for (let i = 0; i < num.length; i++) {
+          var arr = {} as any
+          for (let j = 0; j < list.length; j++) {
+            if (num[i].name == list[j].name) {
+              if (arr.day_num == undefined) {
+                arr = list[j]
+              } else {
+                arr.day_num=arr.day_num.concat(list[j].day_num)
+                arr.old_day_num=arr.old_day_num+","+(list[j].old_day_num)
+              }
+            }
+          }
+          num[i]=arr
+        } 
+      }
+      }
+    list=num
+    //给本周的赋值高的zindex
+    for(let i=0;i<list.length;i++){
+      var key=0
+      for(let j=0;j<list[i].day_num.length;j++){
+        if(list[i].day_num[j]==this.data.nowWeek){
+          list[i].zindex=3
+          key=key+1
+          break;
+        }
+      }
+      if(key==0){
+        list[i].zindex=2
+      }
+    }
+    //将zindex高的放在第一个展示
+    for(let i=0;i<list.length;i++){
+      if(list[i].zindex==3){
+        let abc=list[i]
+        let bcd=list[0]
+        list[0]=abc;
+        list[i]=bcd;
+        break;
+      }
+    }
     this.setData({
       ifshow: true,
       detailClass: list
@@ -808,7 +854,7 @@ Page({
         times = this.data.timeJia;
         place = "嘉鱼";
       };
-      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start ,beginSemester:schoolTime});
+      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime });
     } catch { };
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
