@@ -21,6 +21,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showDia: false,
     xnm: 0,//学年
     xqm: 0,//学期
     njdm_id: '',//年级
@@ -79,7 +80,6 @@ Page({
     time: [] as any,
     timeWu: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '14:00', time2: '14:45' }, { time1: '14:50', time2: '15:35' }, { time1: '15:50', time2: '16:35' }, { time1: '16:40', time2: '17:25' }, { time1: '18:30', time2: '19:15' }, { time1: '19:20', time2: '20:05' }, { time1: '20:15', time2: '21:00' }, { time1: '21:05', time2: '21:50' }],/* 武昌校区时间 */
     timeJia: [{ time1: '8:30', time2: '9:15' }, { time1: '9:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '13:30', time2: '14:15' }, { time1: '14:20', time2: '15:05' }, { time1: '15:10', time2: '15:55' }, { time1: '16:00', time2: '16:45' }, { time1: '18:00', time2: '18:45' }, { time1: '18:45', time2: '19:30' }, { time1: '19:30', time2: '20:15' }, { time1: '20:15', time2: '21:00' }],/* 嘉鱼校区时间 */
-    Semesterswitchingdetail: false,
     semesterList: ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'],
     classSchedule: { all_keshes: [], week: [] } as any,
     nowWeekData: [] as any
@@ -88,6 +88,7 @@ Page({
    * 绑定数据，获取全校课表
    */
   async getbindSchdul() {
+    this.selectComponent("#toast_1").showToastAuto("查询中", "lodding", 3.5);
     var allClass = this.data.allClass as any;
     var Class = this.data.Class;
     /**
@@ -266,7 +267,16 @@ Page({
    * 绑定账号，密码，学院id，年级，对其全部班级进行查询
    */
   async getbindInfo() {
-    var xy_id = this.data.academyId - 0 + 1;
+    var xy_id = 1;//学院id默认为0
+    /**
+     * 点击确定时，id清空了，所以需要判断
+     */
+    for (var i = 0; i < this.data.academyArray.length; i++) {
+      if (this.data.academy == this.data.academyArray[i]) {
+        xy_id = i + 1;
+        break;
+      };
+    }
     var grade = this.data.grade;
     var bind = {
       zh: wx.getStorageSync('login').zh,
@@ -297,6 +307,7 @@ Page({
    */
   shownj() {
     this.setData({
+      showDia: true,//包含picker弹窗的小组件，控制其是否显示
       shownj: true,
       Chargedetail: false,
     })
@@ -305,28 +316,55 @@ Page({
    * 点击进入学院弹窗
    */
   showxy() {
-    this.setData({
-      showxy: true,
-      Chargedetail: false,
-    })
+    if (this.data.grade == '') {
+      this.selectComponent("#toast_2").showToastAuto("请先选择年级", "");
+    }
+    else {
+      this.setData({
+        showDia: true,
+        showxy: true,
+        Chargedetail: false,
+      })
+    }
   },
   /**
    * 点击进入班级弹窗
    */
   showbj() {
-    this.setData({
-      showbj: true,
-      Chargedetail: false,
-    })
+    if (this.data.grade == '') {
+      this.selectComponent("#toast_2").showToastAuto("请先选择年级", "",);
+    }
+    if (this.data.grade !== '' && this.data.academy == '') {
+      this.selectComponent("#toast_2").showToastAuto("请先选择学院", "",);
+    }
+    else if (this.data.grade !== '' && this.data.academy !== '') {
+      this.setData({
+        showDia: true,
+        showbj: true,
+        Chargedetail: false,
+      })
+    }
   },
   /**
    * 点击进入学期弹窗
    */
   showxq() {
-    this.setData({
-      showxq: true,
-      Chargedetail: false,
-    })
+    if (this.data.grade == '') {
+      this.selectComponent("#toast_2").showToastAuto("请先选择年级", "",);
+    }
+    if (this.data.grade !== '' && this.data.academy == '')
+      this.selectComponent("#toast_2").showToastAuto("请先选择学院", "",);
+    if (this.data.grade !== '' && this.data.academy !== '' && this.data.Class == '') {
+      this.selectComponent("#toast_2").showToastAuto("请先选择班级", "",);
+    }
+    else if (this.data.grade !== '' && this.data.academy !== '' && this.data.Class !== '') {
+      this.setData({
+        showDia: true,
+        showxq: true,
+        Chargedetail: false,
+      })
+    }
+
   },
 
   /**
@@ -339,12 +377,14 @@ Page({
    * 如果没有数据时，则弹出弹窗
    */
   noInfo() {
-    if (wx.getStorageSync('widget-allSchedule').classSchedule.week.length == 0) {
-      this.setData({
-        classTitle: '',
-        dialogTip: true,
-      })
-    }
+    setTimeout(() => {
+      if (wx.getStorageSync('widget-allSchedule').classSchedule.week.length == 0) {
+        this.setData({
+          classTitle: '',
+          dialogTip: true,
+        })
+      }
+    }, 1500);
   },
   /**
    * 选择年级
@@ -366,7 +406,6 @@ Page({
       Class: Class,
       semesters: semesters,
       gradeId: e.detail.value,
-      grade: this.data.gradeArray[e.detail.value]
     })
   },
   /**
@@ -378,24 +417,20 @@ Page({
      */
     var Class = this.data.Class;
     var semesters = this.data.semesters;
+    var ClassArray = this.data.ClassArray;
     if (this.data.academy !== this.data.academyArray[e.detail.value]) {
       Class = '';
       semesters = '';
+      ClassArray = [];
     }
-    var that = this;
     if (this.data.grade !== '') {
       this.setData({
         Class: Class,
         semesters: semesters,
         academyId: e.detail.value,
-        academy: that.data.academyArray[e.detail.value],
+        ClassArray: ClassArray,
       })
-      this.selectComponent("#toast_2").showToastAuto("班级查询中", "lodding", 2);
     }
-    else {
-      that.selectComponent("#toast_2").showToastAuto("请先选择年级", "");
-    };
-    this.getbindInfo();
   },
   /**
    * 选择班级
@@ -405,24 +440,20 @@ Page({
      * 如果二次填入的东西与之前的不同，则清除下面的数据
      */
     var semesters = this.data.semesters;
-    if (this.data.Class !== this.data.ClassArray[e.detail.value]) {
-      semesters = '';
-    }
     var semesterArray = this.data.semesterArray as any;
     var that = this;
     var Class = this.data.Class;
     var ClassId = this.data.ClassId;
+    /**
+     * 从默认传过来时候，没有value
+     */
+    if (this.data.Class !== this.data.ClassArray[e.detail.value]) {
+      semesters = '';
+    }
     if (this.data.grade !== '' && this.data.academy !== '') {
       var that = this;
       ClassId = e.detail.value;
       Class = that.data.ClassArray[e.detail.value];
-    }
-    else {
-      if (this.data.grade == '') {
-        that.selectComponent("#toast_2").showToastAuto("请先选择年级", "",);
-      }
-      if (this.data.grade !== '' && this.data.academy == '')
-        that.selectComponent("#toast_2").showToastAuto("请先选择学院", "",);
     }
     /**
      * 进行本科，专升本，专科的判断
@@ -433,16 +464,14 @@ Page({
         break;
       }
       else if (Class[i] == '专') {
-        semesterArray = ['大一上', '大一下', '大二下', '大二下', '大三上', '大三下'];
+        semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下'];
         break;
       }
       else {
-        semesterArray = ['大一上', '大一下', '大二下', '大二下', '大三上', '大三下', '大四上', '大四下']
+        semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下']
       }
     }
     this.setData({
-      classTitle: Class,
-      Class: Class,
       ClassId: ClassId,
       semesterArray: semesterArray,
       semesters: semesters,
@@ -452,66 +481,12 @@ Page({
    * 选择学期
    */
   bindSemester(e: any) {
-    var that = this;
     var semesterId = 0 as any;
-    var semesters = '' as any;
     if (this.data.grade !== '' && this.data.academy !== '' && this.data.Class !== '') {
-      var that = this;
-      var semesterId = e.detail.value;
-      var semesters = that.data.semesterArray[e.detail.value] as unknown as any;
+      semesterId = e.detail.value;
     }
-    else {
-      if (this.data.grade == '') {
-        that.selectComponent("#toast_2").showToastAuto("请先选择年级", "",);
-      }
-      if (this.data.grade !== '' && this.data.academy == '')
-        that.selectComponent("#toast_2").showToastAuto("请先选择学院", "",);
-      if (this.data.grade !== '' && this.data.academy !== '' && this.data.Class == '') {
-        that.selectComponent("#toast_2").showToastAuto("请先选择班级", "",);
-      }
-    }
-    /**
-    * 获取当前年
-    */
-    var timestamp = Date.parse(new Date() as unknown as string);
-    var date = new Date(timestamp);
-    let num = date.getFullYear() as unknown as string;
-    let start;//开始上课的时间
-    let schoolTerm = 0;//学期
-    let place;//校区
-    let times = {};//校区的上课时间
-    if (semesters == '大一下' || semesters == '大二下' || semesters == '大三下' || semesters == '大四下') {
-      schoolTerm = schoolTerm + 12;
-      start = num + '/2/19';
-    };
-    if (semesters == '大一上' || semesters == '大二上' || semesters == '大三上' || semesters == '大四上') {
-      schoolTerm = schoolTerm + 3;
-      start = num + '/8/28';
-    };
-    if (semesters.slice(1, 2) == "一") {
-      place = '嘉鱼';
-      times = this.data.timeJia;
-    };
-    if (semesters.slice(1, 2) == "二") {
-      place = '武昌';
-      times = this.data.timeWu;
-    };
-    if (semesters.slice(1, 2) == "三") {
-      place = '武昌';
-      times = this.data.timeWu;
-    };
-    if (semesters.slice(1, 2) == "四") {
-      place = '武昌';
-      times = this.data.timeWu;
-    };
     this.setData({
-      semesters: semesters,
       semesterId: semesterId,
-      Semesterswitchingdetail: false,
-      schoolPlace: place,
-      time: times,
-      I: schoolTerm,
-      startDate: start
     });
   },
   /**
@@ -520,7 +495,7 @@ Page({
   changeInfo() {
     var gradeArray = this.data.gradeArray as any;
     var Y = this.data.Y as any;
-    gradeArray = ['', Y - 5, Y - 4, Y - 3, Y - 2, Y - 1, Y, Y + 1, Y + 2, Y + 3, Y + 4, Y + 5];
+    gradeArray = [Y - 5, Y - 4, Y - 3, Y - 2, Y - 1, Y, Y + 1, Y + 2, Y + 3, Y + 4, Y + 5];
     var academyArray = this.data.academyArray as any;
     academyArray = [
       '信息科学与工程学院',
@@ -549,8 +524,8 @@ Page({
         classTitle: wx.getStorageSync('widget-allSchedule').all[index].Class,
       })
       this.selectComponent("#toast_1").showToastAuto("查询中", "lodding");
+      this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
     }
-    this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
   },
   /**
    * 点击‘选择课表’弹出选择弹窗
@@ -592,7 +567,7 @@ Page({
     /**
      * 是否存在查询记录缓存
      */
-    if (wx.getStorageSync('widget-allSchedule').all.length > 0) {
+    if (wx.getStorageSync('widget-allSchedule').all.length !== 0) {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
     } else if (Class && semesters && academy && grade) {
       var all = ['', '', ''] as any;
@@ -612,11 +587,11 @@ Page({
         /**
          * 个数少，简单去重
          */
-        for(var a =0;a<3;a++){
-          if(all[a].Class == allSchedul.Class){
+        for (var a = 0; a < 3; a++) {
+          if (all[a].Class == allSchedul.Class) {
+            break;
+          }
           break;
-        }
-        break;
         }
         /**
          * 当第一次输入信息的时候，长度为三，因为最长也只能为3个
@@ -657,43 +632,174 @@ Page({
       wx.setStorageSync('widget-allSchedule', myarr)
       Chargedetail = false;
       all = all;
-      this.selectComponent("#toast_1").showToastAuto("查询中", "lodding", 3);
+
     }
     else {
       this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
     }
     this.setData({
-      classTitle: Class?Class:all[0].Class,
+      classTitle: Class ? Class : all[0].Class,
+      gradeTitle: '',
+      semesterTitle: '',
+      academyTitle: '',
+      classTitle_2: '',
       Chargedetail: Chargedetail,
       all: all,
     })
   },
   /**
-   * 单独弹窗的绑定
+   * 年级的picker弹窗的确认
    */
-  bind() {
-    var shownj = false;
-    var showbj = false;
-    var showxq = false;
-    var showxy = false;
-    var Chargedetail = true;
+  bind_grade() {
+    var grade = this.data.gradeArray[this.data.gradeId];
+    var gradeTitle = grade;
+    /**
+     * 重新选择时，清空下面选项行内容的显示
+     */
+    var academyTitle = this.data.academyTitle;
+    var classTitle_2 = this.data.classTitle_2;
+    var semesterTitle = this.data.semesterTitle;
+    if (this.data.grade !== this.data.gradeArray[this.data.gradeId]) {
+      academyTitle = '';
+      classTitle_2 = '';
+      semesterTitle = '';
+    }
+    /**
+    * 当点击确认时，跳出来所显示的内容
+    */
+    var gradeTitle = grade;
+    this.setData({
+      academyTitle: academyTitle,
+      classTitle_2: classTitle_2,
+      semesterTitle: semesterTitle,
+      grade: grade,
+      gradeId: 0,//点击确定后，重置当前项
+      showDia: false,
+      shownj: false,
+      Chargedetail: true,
+      gradeTitle: gradeTitle,
+    })
+  },
+  /**
+   * 学院的picker弹窗的确认
+   */
+  bind_academy() {
+    var academy = this.data.academyArray[this.data.academyId];
+    /**
+     * 重新选择时，清空下面选项行内容的显示
+     */
+    var classTitle_2 = this.data.classTitle_2;
+    var semesterTitle = this.data.semesterTitle;
+    if (this.data.academy !== this.data.academyArray[this.data.academyId]) {
+      classTitle_2 = '';
+      semesterTitle = '';
+    }
+    /**
+   * 当点击确认时，跳出来所显示的内容
+   */
+    var academyTitle = academy;
+    this.setData({
+      classTitle_2: classTitle_2,
+      semesterTitle: semesterTitle,
+      academyId: 0,//点击确定后，重置当前项
+      showDia: false,
+      showxy: false,
+      Chargedetail: true,
+      academy: academy,
+      academyTitle: academyTitle,
+    });
+    this.getbindInfo();
+  },
+  /**
+   * 班级的picker弹窗的确认
+   */
+  bind_class() {
+    var Class = this.data.ClassArray[this.data.ClassId];
+    var semesterArray = this.data.semesterArray as any;
+    /**
+  * 重新选择时，清空下面选项行内容的显示
+  */
+    var semesterTitle = this.data.semesterTitle;
+    if (this.data.Class !== this.data.ClassArray[this.data.ClassId]) {
+      semesterTitle = '';
+    }
+    /**
+   * 进行本科，专升本，专科的判断
+   */
+    if (Class[0] == 'z' && Class[1] == 's' && Class[2] == 'b') {
+      semesterArray = ['大三上', '大三下', '大四上', '大四下'];
+    }
+    else if (Class[0] == '专') {
+      semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下'];
+    }
+    else {
+      semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下']
+    }
+    var classTitle_2 = Class;
+    this.setData({
+      semesterTitle: semesterTitle,
+      ClassId: 0,//点击确定后，重置当前项
+      showDia: false,
+      showbj: false,
+      semesterArray: semesterArray,
+      Class: Class,
+      classTitle_2: classTitle_2,
+      Chargedetail: true,
+    });
+  },
+  /**
+   * 学期的picker弹窗的确认
+   */
+  bind_semester() {
+    var semesters = this.data.semesterArray[this.data.semesterId] as any;
+    var semesterTitle = semesters;
+    /**
+    * 获取当前年
+    */
+    var timestamp = Date.parse(new Date() as unknown as string);
+    var date = new Date(timestamp);
+    let num = date.getFullYear() as unknown as string;
+    let start;//开始上课的时间
+    let schoolTerm = 0;//学期
+    let place;//校区
+    let times = {};//校区的上课时间
+    if (semesters == '大一下' || semesters == '大二下' || semesters == '大三下' || semesters == '大四下') {
+      schoolTerm = schoolTerm + 12;
+      start = num + '/2/19';
+    };
+    if (semesters == '大一上' || semesters == '大二上' || semesters == '大三上' || semesters == '大四上') {
+      schoolTerm = schoolTerm + 3;
+      start = num + '/8/28';
+    };
+    if (semesters.slice(1, 2) == "一") {
+      place = '嘉鱼';
+      times = this.data.timeJia;
+    };
+    if (semesters.slice(1, 2) == "二") {
+      place = '武昌';
+      times = this.data.timeWu;
+    };
+    if (semesters.slice(1, 2) == "三") {
+      place = '武昌';
+      times = this.data.timeWu;
+    };
+    if (semesters.slice(1, 2) == "四") {
+      place = '武昌';
+      times = this.data.timeWu;
+    };
     /**
      * 当点击确认时，跳出来所显示的内容
      */
-    var gradeTitle = this.data.grade;
-    var semesterTitle = this.data.semesters;
-    var academyTitle = this.data.academy;
-    var classTitle_2 = this.data.Class;
     this.setData({
-      gradeTitle: gradeTitle,
+      semesters: semesters,
+      start: start,
+      times: times,
+      place: place,
+      semesterId: 0,//点击确定后，重置当前项
+      showDia: false,
       semesterTitle: semesterTitle,
-      academyTitle: academyTitle,
-      classTitle_2: classTitle_2,
-      Chargedetail: Chargedetail,
-      shownj: shownj,
-      showbj: showbj,
-      showxq: showxq,
-      showxy: showxy,
+      showxq: false,
+      Chargedetail: true,
     })
   },
   /**
@@ -735,17 +841,29 @@ Page({
   onShareAppMessage() {
 
   },
+  /**
+   * 课程详情点击蒙版关闭
+   */
+  closeDetails_class() {
+    this.setData({
+      ifshow: false,
+    })
+  },
   /* 
-  *关闭弹窗
+  *关闭选择学期学年学院班级弹窗
   */
   closeDetails() {
     this.setData({
-      ifshow: false,
+      gradeId: 0,//点击确定后，重置当前项
+      academyId: 0,//点击确定后，重置当前项
+      ClassId: 0,//点击确定后，重置当前项
+      semesterId: 0,//点击确定后，重置当前项
+      showDia: false,
       shownj: false,
       showbj: false,
       showxq: false,
       showxy: false,
-      Chargedetail: true
+      Chargedetail: true,
     });
   },
   /* 
@@ -778,9 +896,6 @@ Page({
     var value = wx.getStorageSync('widget-allSchedule').classSchedule;
     if (value) {
       var nowWeekData: { day: string; item: never[] }[] = [];
-      if (that.data.showAll) {
-        nowWeekData = that.getNowWeekData(value, that.data.nowWeek);
-      }
       that.setData({
         classSchedule: value,
         nowWeekData: nowWeekData
@@ -1152,7 +1267,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync('widget-allSchedule').all.length > 0) {
+    if (wx.getStorageSync('widget-allSchedule').all[0].classSchedule.week.length > 0) {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
       var allOne = all[0].Class;
     }

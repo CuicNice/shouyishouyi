@@ -19,14 +19,16 @@ page {
   mix-blend-mode: normal;
   opacity: 0.5;
 }
-.vector{
+
+.vector {
   padding-right: 110rpx;
   margin-left: 34rpx;
   margin-top: 125rpx;
   width: 18rpx;
   height: 34rpx;
 }
-.vector image{
+
+.vector image {
   transform: rotate(-180deg);
   width: 18rpx;
   height: 34rpx;
@@ -2536,27 +2538,29 @@ page {
   order: 0;
   flex-grow: 0;
 }
-.dialogBox{
+
+.dialogBox {
   z-index: 1000;
   position: absolute;
 }
-.all{
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 8rpx 6rpx;
-background: #EAEAEC;
-border-radius: 6rpx;
-flex: none;
-order: 0;
-flex-grow: 0;
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 400;
-font-size: 28rpx;
-line-height: 40rpx;
-letter-spacing: 2rpx;
-color: #7F7F8F;
+
+.all {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8rpx 6rpx;
+  background: #EAEAEC;
+  border-radius: 6rpx;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  letter-spacing: 2rpx;
+  color: #7F7F8F;
 }
 
 .cogs {
@@ -2639,19 +2643,16 @@ color: #7F7F8F;
   flex-wrap: nowrap;
   position: absolute;
 }
-.textpicker{
+
+.textpicker {
   text-align: right;
   width: 600rpx;
   padding-left: 10rpx;
 }
+
 .iconpicker {
   width: 44rpx;
   height: 44rpx;
-
-}
-
-.picker {
-  margin-right: 32.5rpx;
 }
 
 .iconpicker image {
@@ -2734,21 +2735,28 @@ color: #7F7F8F;
   line-height: 44rpx;
   letter-spacing: -0.4352rpx;
 }
-.active{
+
+.pi {
+  color: red;
+}
+
+.avtive {
   color: rgba(0, 0, 0, 0.9);
-  line-height: 100rpx; 
+  line-height: 100rpx;
   text-align: center;
+  height: 112rpx;
 }
-.noactive{
-  color:rgba(0, 0, 0, 0.3);
-  line-height: 100rpx; 
-  text-align: center;
+
+.noactive {
+  color: rgba(0, 0, 0, 0.3);
 }
-.picker_box{
-gap: 46rpx;
-width: 640rpx;
+
+.picker_box {
+  gap: 46rpx;
+  width: 640rpx;
 }
-.dialog_2box{
+
+.dialog_2box {
   position: absolute;
   z-index: 1000;
 }
