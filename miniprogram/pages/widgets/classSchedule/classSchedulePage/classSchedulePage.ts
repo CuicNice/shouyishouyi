@@ -147,25 +147,29 @@ Page({
   /* 
   *重新刷新功能
   */
-  refresh() {
-    var value = wx.getStorageSync('widget-classSchedule');
-    delete value.classSchedule
-    wx.setStorageSync("widget-classSchedule", value);
-    this.setData({ weekSchedule: true, nowWeek: 1 });
-    try {
-      this.initPageData();
-      setTimeout(() => {
-        let nowWeekData = this.getNowWeekData(this.data.classSchedule, 1);
-        this.setData({ nowWeekData: nowWeekData });
-        let myarr = wx.getStorageSync('widget-classSchedule');
-        delete myarr.classSchedule;
-        wx.setStorageSync('widget-classSchedule', myarr);
-      }, 4000);
-    }
-    catch (error) {
-      this.setData({ dialogTip: true });
-    };
-  },
+ refresh() {
+  var day=this.nowWeek()
+  var time = new Date().toLocaleDateString();
+  this.reGetDay(time,day);
+  var value = wx.getStorageSync('widget-classSchedule');
+  delete value.classSchedule
+  wx.setStorageSync("widget-classSchedule", value);
+  this.setData({ weekSchedule: true, nowWeek: day });
+  try {
+    this.initClassData();
+    setTimeout(() => {
+      let nowWeekData = this.getNowWeekData(this.data.classSchedule, day);
+      this.setData({ nowWeekData: nowWeekData });
+      let myarr = wx.getStorageSync('widget-classSchedule');
+      delete myarr.classSchedule;
+      wx.setStorageSync('widget-classSchedule', myarr);
+    }, 4000);
+  }
+  catch (error) {
+    this.setData({ dialogTip: true });
+  };
+},
+
 
   /**
    * 通过网络请求获得课表，并且缓存进本地
@@ -286,25 +290,25 @@ Page({
   /* 
   *刷新本周的日期
   */
-  reGetDay(time: string | number | Date) {
-    let index = this.data.nowWeek
-    let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
-    let nowDate = new Date(time); //获取指定日期当周的一周日期
-    let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - this.data.nowWeek) * 7);
-    this.getWeekTime(date);
-    let value = 0 as unknown as number
-    let weeknum = 0 as unknown as number
-    for (let i = 0; i < 7; i++) {
-      if (this.data.weekTime[i] == this.data.nowDate) {
-        value = value + i
-      }
+ reGetDay(time: string | number | Date,noWeek: number) {
+  let index = this.data.nowWeek
+  let nowWeekData = this.getNowWeekData(this.data.classSchedule, index);
+  let nowDate = new Date(time); //获取指定日期当周的一周日期
+  let date = new Date(nowDate.getTime() + 24 * 60 * 60 * 1000 * (index - this.data.nowWeek) * 7);
+  this.getWeekTime(date);
+  let value = 0 as unknown as number
+  let weeknum = 0 as unknown as number
+  for (let i = 0; i < 7; i++) {
+    if (this.data.weekTime[i] == this.data.nowDate) {
+      value = value + i
     }
-    weeknum = weeknum + (this.data.nowWeek - 1) * 7 + value
-    this.setData({
-      nowWeekData: nowWeekData,
-      currentTab: weeknum
-    })
-  },
+  }
+  weeknum = weeknum + (noWeek - 1) * 7 + value
+  this.setData({
+    nowWeekData: nowWeekData,
+    currentTab: weeknum
+  })
+},
 
   /* 
   *关闭弹窗
@@ -691,6 +695,19 @@ Page({
     return allTimes;
   },
 
+/**
+   * 获取当前周数
+   */
+  nowWeek(){
+    //获取当前周数的预处理定义变量进行储存数据
+    var time = new Date().toLocaleDateString();
+    var start_date = new Date(this.data.startDate.replace(/-/g, "/"));
+    var end_date = new Date(time.replace(/-/g, "/"));
+    var days = end_date.getTime() - start_date.getTime();
+    var day = (days / (1000 * 60 * 60 * 24)) as unknown as number;
+    return parseInt((day / 7 + 1) as unknown as string)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -791,13 +808,13 @@ Page({
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
     if (wx.getStorageSync('widget-classSchedule').classSchedule) {
-      this.reGetDay(time)
+      this.reGetDay(time,this.data.nowWeek)
       this.getDayTime();//获取每天的课程信息
       utils.mySetStorage('widget-classSchedule','dailySchedule',this.data.classInfo)
       utils.mySetStorage('widget-classSchedule','time',this.data.time)
     } else {
       setTimeout(() => {
-        this.reGetDay(time)
+        this.reGetDay(time,this.data.nowWeek)
         this.getDayTime();//获取每天的课程信息
         utils.mySetStorage('widget-classSchedule','dailySchedule',this.data.classInfo)
         utils.mySetStorage('widget-classSchedule','time',this.data.time)
