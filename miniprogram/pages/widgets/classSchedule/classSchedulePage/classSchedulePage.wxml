@@ -213,7 +213,7 @@
         </block>
       </view>
       <!-- 其他课程 -->
-      <view class="WHQplus">
+      <view class="{{picture==''?'WHQplus':'WHQplusWhite'}}">
         <view class="WHQplusLeft">
           <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
         </view>
