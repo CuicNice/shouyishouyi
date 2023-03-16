@@ -573,7 +573,7 @@ Page({
         for (var iitem = 0; iitem < week[iweek].data[idata].item.length; iitem++) {
           var item = week[iweek].data[idata].item[iitem];
           if ((cls.num[0] == item.num[0] || cls.num[cls.num.length - 1] == item.num[item.num.length - 1]) &&
-            (cls.day == item.day) && (list.findIndex((v) => { return v.name == item.name }) == -1)
+            (cls.day == item.day) && (list.findIndex((v) => { return v.id == item.id }) == -1)
           ) {
             list.push(item);
           };

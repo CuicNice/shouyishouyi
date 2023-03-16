@@ -1430,6 +1430,7 @@ page {
   background: #FFFFFF;
   box-shadow: 0rpx 4rpx 16rpx rgba(32, 195, 140, 0.2);
   border-radius: 10rpx;
+  margin-left: 20rpx;
 }
 
 .select_oneweek {
