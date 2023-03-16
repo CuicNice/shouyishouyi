@@ -3,6 +3,7 @@
     "pages/myWidgets/myWidgets/myWidgets",
     "pages/myWidgets/settingWidgets/settingWidgets",
     "pages/index/index",
+    "pages/news/newsList/list",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/electricCharge/electricPage/electricPage",
     "pages/widgets/electricCharge/electricComponent/electricComponent",

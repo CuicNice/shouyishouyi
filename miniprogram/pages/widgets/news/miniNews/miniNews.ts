@@ -54,5 +54,14 @@ Component({
     //在这里添加所要监听的事件，事件名为eventListener（这个是页面A要监听的事件），参数是num
     this.triggerEvent('eventListener', {tapbarCtrl: this.data.tapbarCtrl})
   },
+  // 跳转
+  gotoNews(){
+    var that =this
+    console.log("天竺啊");
+    
+      wx.navigateTo({
+        url:"/pages/news/newsList/list"
+      })
+  }
   }
 })

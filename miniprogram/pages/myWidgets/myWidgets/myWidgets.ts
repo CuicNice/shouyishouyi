@@ -324,7 +324,6 @@ Page({
     // 获取内网新闻
     let innerPageParams = that.data.innerPageParams
     let { data: innerRes } = await getInnerNewsListitem(innerPageParams) as unknown as IResult<any>;
-    console.log("innerRes", innerRes);
     if (innerRes != null) {
       wx.hideLoading();
       let widgetMiniNewsList = innerRes.list;
@@ -332,7 +331,6 @@ Page({
         widgetMiniNewsList: widgetMiniNewsList, //当天的
       })
     }
-    console.log("widgetMiniNewsList", that.data.widgetMiniNewsList)
   },
   /**
    * 获取顶部的状态栏的信息
@@ -411,7 +409,6 @@ Page({
     let { data: outRes } = await getOutNewsListitem(outPageParams) as unknown as IResult<any>;
     if (outRes.pageSize != 0) {
       var widgetMiniNewsList = outRes.list;
-      console.log("listmm", widgetMiniNewsList)
     } else {
       wx.showToast({
         title: '刷新失败',
@@ -445,28 +442,22 @@ Page({
      */
     var that = this
     var data = that.data.moveRemindBoxData;
-    console.log("e.touches[0]", e.touches[0]);
     var clientY = e.touches[0].clientY;
     //初识状态
     if (data.remindState === 0) {
       //remindBox弹出状态
       if (clientY <= data.remindTouchCheckY && clientY > 20) {
-        console.log("remindBox弹出状态1");
-
         data.check = true;
         data.remindState = 1;
         data.remindFirstTouchY = clientY;
       }
     } else if (data.remindState === 3) {
-      console.log("remindBox弹出状态2");
-
       if (clientY >= data.remindMaxMoveY) {
         data.check = true;
         data.remindState = 2;
         data.remindFirstTouchY = clientY;
       }
     } else {
-      console.log("不知道是什么状态", data.remindState);
     }
   },
   /**
@@ -622,13 +613,12 @@ Page({
     try {
       myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
     } catch {
-      console.log("本地无数据")
     }
     myWidgetTabListTemp=that.deleteBelowSplitWidget(myWidgetTabListTemp)//数据存到data中
     that.setData({
       myWidgetTabListTemp: myWidgetTabListTemp
     })
-    console.log("本地的列表",myWidgetTabListTemp,that.data.myWidgetTabListTemp);    
+
     that.initNewsInfo()//初始化新闻
     that.initPageData();//初始化成绩
     that.getScoreTime();//初始化成绩
@@ -653,7 +643,9 @@ Page({
         splitTag = i
       }
     }
-    tempWigetList.splice(splitTag)
+    if(tempWigetList.length!=0&&tempWigetList){
+      tempWigetList.splice(splitTag)
+    }
     return tempWigetList
   },
   /**
@@ -667,7 +659,6 @@ Page({
     try {
       myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
     } catch {
-      console.log("本地无数据")
     }
     that.setData({
       myWidgetTabListTemp: that.deleteBelowSplitWidget(myWidgetTabListTemp)//数据存到data中

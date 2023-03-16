@@ -18,7 +18,7 @@ Page({
     // 滑动检测
     pageScrollState: 1,
     //屏幕高度问题
-    remindHeight: 48,
+    remindHeight: 56,
     remindOpacity: 1,
     windowHeight: 0,
     screenHeight: 0,
@@ -282,14 +282,13 @@ Page({
    * 初始化排序
    */
   initSortData(tabList: AnyArray) {
-    console.log("执行02", tabList);
     var height = 0;
     var ls = [];
     for (var i = 0; i < tabList.length; i++) {
       var obj = tabList[i];
       obj.y = height; //当前元素的高度
       ls.push(obj); //增加一个对象
-      height = height + obj.componentHeight + 20; //计算下一个滑动区块高度
+      height = height + obj.componentHeight + 17; //计算下一个滑动区块高度
     }
     this.setData({
       tabList: ls,
@@ -348,7 +347,6 @@ Page({
       }); //将页面滚动到目标位置，支持选择器和滚动距离两种方式定位
     } else if (clientY - this.data.windowHeight * 0.2 <= 0) {
       // 上滑接近屏幕顶部
-      // console.log("up",clientY + (clientY - this.data.windowHeight*0.2)*20)
       wx.pageScrollTo({
         scrollTop: this.data.scrollTop - (this.data.windowHeight * 0.1),
         duration: 100
@@ -398,7 +396,6 @@ Page({
   },
   onLongPress(e: any) {
     var that = this
-    console.log(e)
     var moveId = e.currentTarget.dataset.moveid; //获取长按对象的ID
     that.setData({
       enable: true, //允许按压
@@ -436,29 +433,20 @@ Page({
     var that = this
     var tabList = that.data.tabList
     try {
-      console.log("加载中");
       var myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
       var indexTabListTemp = wx.getStorageSync('indexTabList')
-      console.log("存在tabList&&tabList.length!=0", myWidgetTabListTemp, myWidgetTabListTemp.length != 0);
       if (that.data.isChooseIndexSeetingWidget) {
         if (indexTabListTemp && indexTabListTemp.length != 0) {
           // Do something with return value
           tabList = indexTabListTemp
-          console.log("首页页面", tabList);
         } else {
           tabList = that.data.indexTabListTemp
-          console.log("首页页面空", tabList);
         }
       } else {
-        console.log("小组件页面");
-        console.log("pppp", myWidgetTabListTemp);
         if (myWidgetTabListTemp && myWidgetTabListTemp.length != 0) {
           // Do something with return value
-          console.log("组件页面", myWidgetTabListTemp);
           tabList = myWidgetTabListTemp
         } else {
-          console.log("组件页面存储为空");
-          console.log("that.data.myWidgetTabListTemp", that.data.myWidgetTabListTemp);
           tabList = that.data.myWidgetTabListTemp
         }
       }
@@ -467,7 +455,6 @@ Page({
       that.selectComponent("#toast").showToastAuto("页面加载失败", "error", 1);
       // Do something when catch error
     }
-    console.log("当前的tablist", tabList)
     that.setData({
       tabList: tabList
     })
@@ -484,7 +471,5 @@ Page({
     that.setData({
       screenHeight: screenHeight
     })
-    console.log("screenHeight", this.data.screenHeight)
-
   },
 })

@@ -17,7 +17,7 @@
       </view>
     </view>
     <!-- 右边的返回键 -->
-    <view class="topReturnBox">
+    <view class="topReturnBox" bindtap="gotoNews">
       <image style="width: 20px;height: 20px;" src="../../../../static/svg/news/miniNews_return.svg" mode="" />
     </view>
   </view>
