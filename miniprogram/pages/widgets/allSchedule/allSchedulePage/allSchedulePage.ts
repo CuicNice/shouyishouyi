@@ -63,7 +63,6 @@ Page({
     dark: true,
     buliding: 'zhonglou',
     semester: '大一上',
-    showAll: true,
     nowDate: '',
     ifshow: false,
     schoolPlace: "武昌",
@@ -246,9 +245,6 @@ Page({
         all_keshes: res.all_keshes
       };
       var nowWeekData: { day: string; item: never[] }[] = [] as any
-      if (this.data.showAll) {
-        nowWeekData = this.getNowWeekData(classSchedule, this.data.nowWeek);
-      }
       this.setData({
         classSchedule: classSchedule,
         nowWeekData: nowWeekData,
@@ -307,9 +303,7 @@ Page({
    */
   shownj() {
     this.setData({
-      showDia: true,//包含picker弹窗的小组件，控制其是否显示
       shownj: true,
-      Chargedetail: false,
     })
   },
   /**
@@ -321,10 +315,8 @@ Page({
     }
     else {
       this.setData({
-        showDia: true,
         showxy: true,
-        Chargedetail: false,
-      })
+     })
     }
   },
   /**
@@ -339,9 +331,7 @@ Page({
     }
     else if (this.data.grade !== '' && this.data.academy !== '') {
       this.setData({
-        showDia: true,
         showbj: true,
-        Chargedetail: false,
       })
     }
   },
@@ -359,9 +349,7 @@ Page({
     }
     else if (this.data.grade !== '' && this.data.academy !== '' && this.data.Class !== '') {
       this.setData({
-        showDia: true,
         showxq: true,
-        Chargedetail: false,
       })
     }
 
@@ -436,45 +424,9 @@ Page({
    * 选择班级
    */
   bindClass(e: any) {
-    /**
-     * 如果二次填入的东西与之前的不同，则清除下面的数据
-     */
-    var semesters = this.data.semesters;
-    var semesterArray = this.data.semesterArray as any;
-    var that = this;
-    var Class = this.data.Class;
-    var ClassId = this.data.ClassId;
-    /**
-     * 从默认传过来时候，没有value
-     */
-    if (this.data.Class !== this.data.ClassArray[e.detail.value]) {
-      semesters = '';
-    }
-    if (this.data.grade !== '' && this.data.academy !== '') {
-      var that = this;
-      ClassId = e.detail.value;
-      Class = that.data.ClassArray[e.detail.value];
-    }
-    /**
-     * 进行本科，专升本，专科的判断
-     */
-    for (var i = 0; i < Class.length; i++) {
-      if (Class[i] == 'z' && Class[i + 1] == 's' && Class[i + 2] == 'b') {
-        semesterArray = ['大三上', '大三下', '大四上', '大四下'];
-        break;
-      }
-      else if (Class[i] == '专') {
-        semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下'];
-        break;
-      }
-      else {
-        semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下']
-      }
-    }
+    var ClassId = e.detail.value;
     this.setData({
       ClassId: ClassId,
-      semesterArray: semesterArray,
-      semesters: semesters,
     })
   },
   /**
@@ -547,7 +499,7 @@ Page({
      * 如果用户选择完了，但是点取消
      */
     this.setData({
-      classTitle: wx.getStorageSync('widget-allSchedule').classSchedule.week == undefined ? '' : wx.getStorageSync('widget-allSchedule').all[0].Class,
+      classTitle: wx.getStorageSync('widget-allSchedule').classSchedule.week.length == 0 ? '' : wx.getStorageSync('widget-allSchedule').all[0].Class,
       Chargedetail: false,
       Class: '',
       academy: '',
@@ -591,7 +543,6 @@ Page({
           if (all[a].Class == allSchedul.Class) {
             break;
           }
-          break;
         }
         /**
          * 当第一次输入信息的时候，长度为三，因为最长也只能为3个
@@ -629,10 +580,9 @@ Page({
       this.getbindSchdul();
       var myarr = wx.getStorageSync('widget-allSchedule');
       myarr.all = all;
-      wx.setStorageSync('widget-allSchedule', myarr)
+      wx.setStorageSync('widget-allSchedule', myarr);
       Chargedetail = false;
       all = all;
-
     }
     else {
       this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
@@ -714,34 +664,39 @@ Page({
    * 班级的picker弹窗的确认
    */
   bind_class() {
-    var Class = this.data.ClassArray[this.data.ClassId];
+    var Class = this.data.ClassArray[this.data.ClassId] as any;
     var semesterArray = this.data.semesterArray as any;
     /**
-  * 重新选择时，清空下面选项行内容的显示
-  */
+     * 重新选择时，清空下面选项行内容的显示
+     */
     var semesterTitle = this.data.semesterTitle;
     if (this.data.Class !== this.data.ClassArray[this.data.ClassId]) {
       semesterTitle = '';
     }
     /**
-   * 进行本科，专升本，专科的判断
-   */
-    if (Class[0] == 'z' && Class[1] == 's' && Class[2] == 'b') {
-      semesterArray = ['大三上', '大三下', '大四上', '大四下'];
-    }
-    else if (Class[0] == '专') {
-      semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下'];
-    }
-    else {
-      semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下']
+     * 进行本科，专升本，专科的判断
+     */
+    for (var i = 0; i < Class.length; i++) {
+      if (Class[i] == 'z' && Class[i + 1] == 's' && Class[i + 2] == 'b') {
+        semesterArray = ['大三上', '大三下', '大四上', '大四下'];
+        break;
+      }
+      else if (Class[i] == '专') {
+        semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下'];
+        break;
+      }
+      else{
+        semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下'];
+        continue;
+      }
     }
     var classTitle_2 = Class;
     this.setData({
+      semesterArray: semesterArray,
       semesterTitle: semesterTitle,
       ClassId: 0,//点击确定后，重置当前项
       showDia: false,
       showbj: false,
-      semesterArray: semesterArray,
       Class: Class,
       classTitle_2: classTitle_2,
       Chargedetail: true,
@@ -800,7 +755,7 @@ Page({
       semesterTitle: semesterTitle,
       showxq: false,
       Chargedetail: true,
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -1161,7 +1116,7 @@ Page({
   onLoad: function () {
     if (!wx.getStorageSync('widget-allSchedule')) {
       //给用户添加缓存
-      let value = { classSchedule: '', ifshowAllclass: true, place: '', all: [] };
+      let value = { classSchedule: '', place: '', all: [] };
       wx.setStorageSync('widget-allSchedule', value);
     }
     //获取当前年月

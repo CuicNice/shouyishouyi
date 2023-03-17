@@ -2,8 +2,6 @@
 <view class="bg">
   <image class="background-box" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
 </view>
-<!-- 顶部状态栏div -->
-<view class="status_bar" style='background-color: {{bgc}};'></view>
 <!-- 导航栏 -->
 <view class="navigationBar" style="background-color: {{bgc}};">
   <view class="vector" bindtap="getBack">
@@ -17,8 +15,7 @@
     </view>
   </view>
 </view>
-
-<view class="select_box" wx:if="{{weekSchedule}}" style="background-color: {{bgc}};">
+<view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">
   <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
     <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
       <view class="select_one" wx:if="{{nowWeek == index+1}}">
@@ -36,21 +33,12 @@
   </scroll-view>
 </view>
 <view class="container" style="background-color: {{bgc}};" wx:if="{{weekSchedule}}">
-  <view class="classXuLine1"></view>
-  <view class="classXuLine2"></view>
-  <view class="classXuLine3"></view>
-  <view class="classXuLine4"></view>
-  <view class="classXuLine5"></view>
-  <view class="classXuLine6"></view>
-  <view class="classXuLine7"></view>
-  <view class="classXuLine8"></view>
-  <view class="classXuLine9"></view>
   <view class="top">
-    <view class="smallBox">
+    <view class="{{picture==''?'smallBox':'smallBoxWhite'}}">
       <text class="smallBoxtxt">{{schoolPlace}}校区</text>
     </view>
-    <!-- 周和日期-->
-    <view class="weekbigBox">
+    <!-- 周和日期--><!-- {{picture==''?'smallBox':'smallBoxWhite'}} -->
+    <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}">
       <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周日</view>
@@ -138,22 +126,23 @@
     </view>
   </view>
   <view class="WHQscroll" wx:if="{{weekSchedule}}">
-    <scroll-view class="classScroll" scroll-y="true" lower-threshold='10' upper-threshold='10'>
+    <scroll-view class="classScroll" scroll-y="true">
       <view style="width:100%;display:flex;">
-        <view class="leftBox">
+        <view class="{{picture==''?'leftBox':'leftBoxWhite'}}">
           <view class="timeTable" wx:for="{{time}}" wx:key="index">
             <view class="{{bgc==''?'number':'numberWhite'}}">{{index+1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time2}}</view>
+            <view style="{{(index+1)%4==0?'border-bottom: 2rpx solid #20C38C;width:100%;transform: translateY(6rpx)':''}}"></view>
+            <view style="{{(index+1)==(index+1)?'border-bottom:2rpx dashed #eaeaec;width:1300rpx;z-index=-10;transform: translateX(690rpx)':''}}"></view>
           </view>
-          <view class="timeTableLine"></view>
         </view>
         <!--课表-->
         <block wx:for="{{weekTime}}" wx:key="index">
           <!-- 本周 -->
           <view wx:if="{{dark}}">
-            <view class="table-day" wx:if="{{showAll}}">
-              <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
+            <view class="table-day" >
+              <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*120}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
                 <view class="flex-item-single" style="background: {{table.colorDark}};height: {{115*table.num.length-6}}rpx;color: #F5F5F5;">
                   <view class="smalltext">{{table.name}}</view>
                   <view class="smalltextad">{{table.local}}</view>
@@ -164,7 +153,7 @@
         </block>
       </view>
       <!-- 其他课程 -->
-      <view class="WHQplus">
+      <view class="{{picture==''?'WHQplus':'WHQplusWhite'}}">
         <view class="WHQplusLeft">
           <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
         </view>
@@ -186,7 +175,7 @@
         <view class="course">
           <view class="courseName">{{item.name}}</view>
           <view class="courseifBox">
-            <view class="courseif" wx:if="{{item.zindex==3}}" style="color: white;">本周</view>
+            <view class="courseif"  style="color: white;">本周</view>
           </view>
         </view>
         <view class="courseOther">
@@ -203,7 +192,7 @@
           <view class="courseplace">
             <image class="courseplaceImage" src="../../../../static/svg/jieshu.svg" />
             <view class="cuorseGuding">节数:</view>
-            <view class="cuorseXuigai">{{item.day}} | {{item.old_num}}</view>
+            <view class="cuorseXuigai">{{item.day}} | 第{{item.old_num}}</view>
           </view>
           <view class="courseplace">
             <image class="courseplaceImage" src="../../../../static/svg/zhuoci.svg" />
@@ -219,7 +208,8 @@
 <!-- 选择学期学年部分 -->
 <dialogTitle class="dialogBox" type="half-screen" showDialog="{{Chargedetail}}">
   <toast_2 id="toast_2"></toast_2>
-  <view class="chooseBox">
+  <view wx:if="{{!(shownj||showbj||showxy||showxq)}}">
+  <view class="chooseBox" >
     <view class="chooseTop">
       <!-- 齿轮svg' -->
       <view class="cogs">
@@ -271,13 +261,13 @@
         </view>
       </view>
     </view>
+  </view>
     <!-- 底部的缓存部分 -->
     <view class="chooseBottom" wx:if="{{all.length > 0}}">
       <view wx:if="{{all[index]}}" wx:for="{{all}}" wx:key="index" class="all" bindtap="getCache" wx:for-index="index" data-index="{{index}}">{{item.Class}}</view>
     </view>
-  </view>
-  <!-- 取消确定按钮 -->
-  <view class="button">
+  <!-- 总的取消确定按钮 -->
+  <view class="button" >
     <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBind">
       <text>取消</text>
     </button>
@@ -285,10 +275,9 @@
       <text>确定</text>
     </button>
   </view>
-</dialogTitle>
+  </view>
 <!-- 单独的年级选择器 -->
-<dialogTitle_1 class="dialog_2box" showDialog="{{showDia}}" type="half-screen">
-  <view class="picker_box" wx:if="{{shownj}}">
+<view class="picker_box" wx:if="{{shownj}}">
     <view class="picker_title_box">
       <text class="picker_title">请选择年级</text>
     </view>
@@ -373,10 +362,11 @@
       </button>
     </view>
   </view>
-</dialogTitle_1>
 <!-- 课表查询失败弹窗 -->
 <dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>
+  </dialogTitle>
 </dialogTitle>
+
