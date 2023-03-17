@@ -12,8 +12,9 @@ Component({
    */
   data: {
     dailySchedule:[],
+    nowDayData:'',
     time:[],
-    dayTime: [] as any,
+    ifClass:true
   },
   pageLifetimes: {
     show: function() {
@@ -25,18 +26,25 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    godailySchedule: function () { //进入日课表页面
-    },
     // 获取缓存
   getdailySchedule(){
       var that = this;
+      var ifClass=true
       var dailySchedule = wx.getStorageSync('widget-classSchedule').dailySchedule;
       var time=wx.getStorageSync('widget-classSchedule').time;
+      var nowDayData=wx.getStorageSync('widget-classSchedule').nowDayData;
+      if(dailySchedule.length==0){
+        ifClass=false
+      }
         that.setData({
           dailySchedule: dailySchedule,
-          time:time 
+          time:time,
+          nowDayData:nowDayData,
+          nowtime:(new Date().toTimeString().substring(0, 8)).slice(0, 5),
+          dark:wx.getStorageSync('widget-classSchedule').dark,
+          ifClass:ifClass
         });
-        console.log(dailySchedule);
   },
+
 }
 })
