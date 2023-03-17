@@ -581,7 +581,6 @@ Page({
         };
       };
     };
-    console.log(list)
     //将重复的课程周次合并
     let num = this.objHeavy(list)
       if (num.length != list.length) {
