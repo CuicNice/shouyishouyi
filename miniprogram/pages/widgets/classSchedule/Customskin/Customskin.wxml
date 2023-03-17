@@ -26,7 +26,7 @@
       </view>
       <view class="colorselBox">
         <view class="checkBox">
-          <image bindtap="background3"></image>
+          <image bindtap="background3"src="../../../../static/svg/zidingyi.svg"></image>
           <!-- src="../../../../static/svg/zidingyi.svg" -->
         </view>
         <view class="skin-choice-title1">自定义</view>
