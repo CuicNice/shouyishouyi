@@ -581,10 +581,11 @@ Page({
         };
       };
     };
+    console.log(list)
     //将重复的课程周次合并
     let num = this.objHeavy(list)
       if (num.length != list.length) {
-        if(num[0].old_day_num.indexOf(",")<0){
+        if(num[0].old_day_num.indexOf("和")<0){
         for (let i = 0; i < num.length; i++) {
           var arr = {} as any
           for (let j = 0; j < list.length; j++) {
@@ -593,7 +594,7 @@ Page({
                 arr = list[j]
               } else {
                 arr.day_num=arr.day_num.concat(list[j].day_num)
-                arr.old_day_num=arr.old_day_num+","+(list[j].old_day_num)
+                arr.old_day_num=arr.old_day_num+"和"+(list[j].old_day_num)
               }
             }
           }
