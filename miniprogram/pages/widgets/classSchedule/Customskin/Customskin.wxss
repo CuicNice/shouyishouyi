@@ -112,8 +112,8 @@
 }
 
 .checkBox {
-  width: 160rpx;
-  height: 160rpx;
+  width: 170rpx;
+  height: 170rpx;
   margin-top: -10rpx;
 }
 
