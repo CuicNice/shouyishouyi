@@ -21,7 +21,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showDia: false,
     xnm: 0,//学年
     xqm: 0,//学期
     njdm_id: '',//年级
@@ -516,40 +515,41 @@ Page({
     var Class = this.data.Class;
     var academy = this.data.academy;
     var semesters = this.data.semesters;
+    var classSchedule = this.data.classSchedule;
     /**
      * 是否存在查询记录缓存
      */
     if (wx.getStorageSync('widget-allSchedule').all.length !== 0) {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
     } else if (Class && semesters && academy && grade) {
-      var all = ['', '', ''] as any;
+      var all = [] as any;
     }
     if (Class && semesters && academy && grade) {
-      /**
+   /**
     * 存入请求课表需要的数据 账号；密码；学年；学期；学院id；班级id；
     */
       var allSchedul = {
-        classSchedule: wx.getStorageSync('widget-allSchedule').classSchedule,
+        classSchedule: classSchedule,
         Class: this.data.Class
       }
       /**
        * 由于最多三个，简单去重，和替换
        */
-      for (var i = 0; i < 3; i++) {
+     first: for (var i = 0; i < 3; i++) {
         /**
          * 个数少，简单去重
          */
-        for (var a = 0; a < 3; a++) {
+       two: for (var a = 0; a < 3; a++) {
           if (all[a].Class == allSchedul.Class) {
-            break;
+            break first;
           }
-        }
+        };
         /**
          * 当第一次输入信息的时候，长度为三，因为最长也只能为3个
          */
         if (all.length == 0) {
           all[0] = allSchedul
-          break;
+          break first;
         }
         /**
          * 如果输入的数据相同，则不二次存储
@@ -557,13 +557,13 @@ Page({
         if (all.length == 1) {
           all[1] = all[0];
           all[0] = allSchedul;
-          break;
+          break first;
         }
         if (all.length == 2) {
           all[2] = all[1];
           all[1] = all[0];
           all[0] = allSchedul;
-          break;
+          break first;
         }
         /**
          * 满了之后再次输入，将依次替换
@@ -573,7 +573,7 @@ Page({
           all[1] = all[0];
           if (Class !== all[i].Class && i !== 0) {
             all[0] = allSchedul;
-            break;
+            break first;
           }
         }
       }
@@ -624,7 +624,6 @@ Page({
       semesterTitle: semesterTitle,
       grade: grade,
       gradeId: 0,//点击确定后，重置当前项
-      showDia: false,
       shownj: false,
       Chargedetail: true,
       gradeTitle: gradeTitle,
@@ -652,7 +651,6 @@ Page({
       classTitle_2: classTitle_2,
       semesterTitle: semesterTitle,
       academyId: 0,//点击确定后，重置当前项
-      showDia: false,
       showxy: false,
       Chargedetail: true,
       academy: academy,
@@ -695,7 +693,6 @@ Page({
       semesterArray: semesterArray,
       semesterTitle: semesterTitle,
       ClassId: 0,//点击确定后，重置当前项
-      showDia: false,
       showbj: false,
       Class: Class,
       classTitle_2: classTitle_2,
@@ -751,7 +748,6 @@ Page({
       times: times,
       place: place,
       semesterId: 0,//点击确定后，重置当前项
-      showDia: false,
       semesterTitle: semesterTitle,
       showxq: false,
       Chargedetail: true,
@@ -813,7 +809,6 @@ Page({
       academyId: 0,//点击确定后，重置当前项
       ClassId: 0,//点击确定后，重置当前项
       semesterId: 0,//点击确定后，重置当前项
-      showDia: false,
       shownj: false,
       showbj: false,
       showxq: false,

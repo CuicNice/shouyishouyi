@@ -208,8 +208,7 @@
 <!-- 选择学期学年部分 -->
 <dialogTitle class="dialogBox" type="half-screen" showDialog="{{Chargedetail}}">
   <toast_2 id="toast_2"></toast_2>
-  <view wx:if="{{!(shownj||showbj||showxy||showxq)}}">
-  <view class="chooseBox" >
+  <view class="chooseBox"  wx:if="{{!(shownj||showbj||showxy||showxq)}}">
     <view class="chooseTop">
       <!-- 齿轮svg' -->
       <view class="cogs">
@@ -261,20 +260,19 @@
         </view>
       </view>
     </view>
-  </view>
     <!-- 底部的缓存部分 -->
-    <view class="chooseBottom" wx:if="{{all.length > 0}}">
+    <view class="chooseBottom" wx:if="{{all.length > 0&&!(shownj||showbj||showxy||showxq)}}">
       <view wx:if="{{all[index]}}" wx:for="{{all}}" wx:key="index" class="all" bindtap="getCache" wx:for-index="index" data-index="{{index}}">{{item.Class}}</view>
     </view>
+    </view>
   <!-- 总的取消确定按钮 -->
-  <view class="button" >
+  <view class="button" wx:if="{{!(shownj||showbj||showxy||showxq)}}" >
     <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBind">
       <text>取消</text>
     </button>
     <button type="primary" class="primary" bindtap="bind_all">
       <text>确定</text>
     </button>
-  </view>
   </view>
 <!-- 单独的年级选择器 -->
 <view class="picker_box" wx:if="{{shownj}}">
