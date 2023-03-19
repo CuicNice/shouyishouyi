@@ -99,6 +99,9 @@ Page({
    utils.mySetStorage('widget-classSchedule','place',place)
   },
 
+  /**
+   * 个性设置成功的显示提示
+   */
   personalitySet(){
     this.selectComponent("#toast").showToastAuto("设置成功", "success");
   },
