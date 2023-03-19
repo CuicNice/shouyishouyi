@@ -99,6 +99,10 @@ Page({
    utils.mySetStorage('widget-classSchedule','place',place)
   },
 
+  personalitySet(){
+    this.selectComponent("#toast").showToastAuto("设置成功", "success");
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

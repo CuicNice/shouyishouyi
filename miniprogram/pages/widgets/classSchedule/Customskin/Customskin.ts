@@ -196,7 +196,14 @@ Page({
     if (this.data.picture == "" && this.data.bellTower == false && this.data.administrativeBuilding == false && this.data.library == false) {
       utils.mySetStorage('widget-classSchedule','buliding',"zhonglou")
     };
-    wx.navigateBack();
+    var pages = getCurrentPages();
+    var beforePage = pages[pages.length - 2]
+    wx.navigateBack({
+      delta: 1,
+      success: function () {
+        beforePage.personalitySet();
+      }
+    })    
   },
 
   /**
