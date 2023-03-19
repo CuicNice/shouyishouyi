@@ -37,7 +37,8 @@
     <view class="{{picture==''?'smallBox':'smallBoxWhite'}}">
       <text class="smallBoxtxt">{{schoolPlace}}校区</text>
     </view>
-    <!-- 周和日期--><!-- {{picture==''?'smallBox':'smallBoxWhite'}} -->
+    <!-- 周和日期-->
+    <!-- {{picture==''?'smallBox':'smallBoxWhite'}} -->
     <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}">
       <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
         <view class="week">
@@ -141,7 +142,7 @@
         <block wx:for="{{weekTime}}" wx:key="index">
           <!-- 本周 -->
           <view wx:if="{{dark}}">
-            <view class="table-day" >
+            <view class="table-day">
               <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*120}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
                 <view class="flex-item-single" style="background: {{table.colorDark}};height: {{115*table.num.length-6}}rpx;color: #F5F5F5;">
                   <view class="smalltext">{{table.name}}</view>
@@ -175,7 +176,7 @@
         <view class="course">
           <view class="courseName">{{item.name}}</view>
           <view class="courseifBox">
-            <view class="courseif"  style="color: white;">本周</view>
+            <view class="courseif" style="color: white;">本周</view>
           </view>
         </view>
         <view class="courseOther">
@@ -208,7 +209,7 @@
 <!-- 选择学期学年部分 -->
 <dialogTitle class="dialogBox" type="half-screen" showDialog="{{Chargedetail}}">
   <toast_2 id="toast_2"></toast_2>
-  <view class="chooseBox"  wx:if="{{!(shownj||showbj||showxy||showxq)}}">
+  <view class="chooseBox" wx:if="{{!(shownj||showbj||showxy||showxq)}}">
     <view class="chooseTop">
       <!-- 齿轮svg' -->
       <view class="cogs">
@@ -264,9 +265,9 @@
     <view class="chooseBottom" wx:if="{{all.length > 0&&!(shownj||showbj||showxy||showxq)}}">
       <view wx:if="{{all[index]}}" wx:for="{{all}}" wx:key="index" class="all" bindtap="getCache" wx:for-index="index" data-index="{{index}}">{{item.Class}}</view>
     </view>
-    </view>
+  </view>
   <!-- 总的取消确定按钮 -->
-  <view class="button" wx:if="{{!(shownj||showbj||showxy||showxq)}}" >
+  <view class="button" wx:if="{{!(shownj||showbj||showxy||showxq)}}">
     <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBind">
       <text>取消</text>
     </button>
@@ -274,13 +275,13 @@
       <text>确定</text>
     </button>
   </view>
-<!-- 单独的年级选择器 -->
-<view class="picker_box" wx:if="{{shownj}}">
+  <!-- 单独的年级选择器 -->
+  <view class="picker_box" wx:if="{{shownj}}">
     <view class="picker_title_box">
       <text class="picker_title">请选择年级</text>
     </view>
     <view class="section">
-      <picker-view immediate-change="true" indicator-style="height: 112rpx;" style="line-height: 100rpx;text-align: center;width: 100%; height: 336rpx;" mask-style="display:none" value="{{gradeId}}" bindchange="bindGrade">
+      <picker-view indicator-style="height: 112rpx;" value="{{gradeId}}" style="line-height: 36px;width: 100%; height: 336rpx;" mask-style="opacity: 0;z-index: 0" bindchange="bindGrade" indicator-style="color: black;">
         <picker-view-column>
           <view class="{{item == gradeArray[gradeId]?'active':'noactive'}}" wx:for="{{gradeArray}}" wx:key="index">{{item}}</view>
         </picker-view-column>
@@ -301,7 +302,7 @@
       <text class="picker_title">请选择学院</text>
     </view>
     <view class="section">
-      <picker-view immediate-change="true" indicator-style="height: 112rpx;" style="line-height: 100rpx;text-align: center;width: 100%; height: 336rpx;" mask-style="display:none" value="{{academyId}}" bindchange="bindAcademy">
+      <picker-view indicator-style="height: 112rpx;" style="width: 100%; height: 336rpx;line-height:  36px" mask-style="opacity: 0;z-index: 0" value="{{academyId}}" bindchange="bindAcademy">
         <picker-view-column>
           <view class="{{item==academyArray[academyId]?'active':'noactive'}}" wx:for="{{academyArray}}" wx:key="index">{{item}}</view>
         </picker-view-column>
@@ -323,7 +324,7 @@
       <text class="picker_title">请选择专业班级</text>
     </view>
     <view class="section">
-      <picker-view immediate-change="true" indicator-style="height: 112rpx;" style="line-height: 100rpx;text-align: center;width: 100%; height: 336rpx;" mask-style="display:none" value="{{ClassId}}" bindchange="bindClass">
+      <picker-view indicator-style="height: 112rpx;" style="width: 100%; height: 336rpx;line-height:  36px" mask-style="opacity: 0;z-index: 0" value="{{ClassId}}" bindchange="bindClass">
         <picker-view-column>
           <view class="{{item==ClassArray[ClassId]?'active':'noactive'}}" wx:for="{{ClassArray}}" wx:key="index">{{item}}</view>
         </picker-view-column>
@@ -345,7 +346,7 @@
       <text class="picker_title">请选择学期</text>
     </view>
     <view class="section">
-      <picker-view immediate-change="true" indicator-style="height: 112rpx;" style="line-height: 100rpx;text-align: center;width: 100%; height: 336rpx;" mask-style="display:none" value="{{semesterId}}" bindchange="bindSemester">
+      <picker-view indicator-style="height: 112rpx;" style="width: 100%; height: 336rpx;line-height:  36px;" mask-style="opacity: 0;z-index: 0" value="{{semesterId}}" bindchange="bindSemester">
         <picker-view-column>
           <view class="{{item==semesterArray[semesterId]?'active':'noactive'}}" wx:for="{{semesterArray}}" wx:key="index">{{item}}</view>
         </picker-view-column>
@@ -360,11 +361,10 @@
       </button>
     </view>
   </view>
-<!-- 课表查询失败弹窗 -->
-<dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
-  <view style="display: flex;">
-    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
-  </view>
+  <!-- 课表查询失败弹窗 -->
+  <dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
+    <view style="display: flex;">
+      <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
+    </view>
   </dialogTitle>
 </dialogTitle>
-

@@ -231,7 +231,7 @@ Page({
             var itemIndex = week[dayIndex].data.findIndex(function (v) {
               return v.day == all_tables[i].day;
             })
-            if (itemIndex == -1) console.log(all_tables[i].day)
+            if (itemIndex == -1)
             week[dayIndex].data[itemIndex].item.push((all_tables[i]) as unknown as never);
           }
         }
@@ -288,7 +288,6 @@ Page({
   async getAllClasses(from: AllScheduleItem) {
     const { data: info } = await getAllClasses(from) as unknown as IResult<any>;
     var ClassArray = this.data.ClassArray as unknown as any;
-    console.log(info);
     for (var i = 0; i < info.length; i++) {
       ClassArray[i] = info[i].bj;
     }
@@ -364,14 +363,12 @@ Page({
    * 如果没有数据时，则弹出弹窗
    */
   noInfo() {
-    setTimeout(() => {
       if (wx.getStorageSync('widget-allSchedule').classSchedule.week.length == 0) {
         this.setData({
           classTitle: '',
           dialogTip: true,
         })
       }
-    }, 1500);
   },
   /**
    * 选择年级
@@ -510,7 +507,6 @@ Page({
    * 点击确认,并存入缓存
    */
   bind_all() {
-    var Chargedetail = this.data.Chargedetail;
     var grade = this.data.grade;
     var Class = this.data.Class;
     var academy = this.data.academy;
@@ -539,7 +535,7 @@ Page({
         /**
          * 个数少，简单去重
          */
-       two: for (var a = 0; a < 3; a++) {
+        for (var a = 0; a < 3; a++) {
           if (all[a].Class == allSchedul.Class) {
             break first;
           }
@@ -581,19 +577,18 @@ Page({
       var myarr = wx.getStorageSync('widget-allSchedule');
       myarr.all = all;
       wx.setStorageSync('widget-allSchedule', myarr);
-      Chargedetail = false;
       all = all;
     }
     else {
       this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
     }
     this.setData({
+      Chargedetail:(Class && semesters && academy && grade)?false:true,
       classTitle: Class ? Class : all[0].Class,
       gradeTitle: '',
       semesterTitle: '',
       academyTitle: '',
       classTitle_2: '',
-      Chargedetail: Chargedetail,
       all: all,
     })
   },
