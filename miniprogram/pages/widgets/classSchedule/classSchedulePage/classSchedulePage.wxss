@@ -2069,7 +2069,7 @@ page {
   top: 8rpx;
   overflow: hidden;
   z-index: -1;
-  transform: scale(1.1);
+  transform: scale(1);
 } 
 
 .nodailyScheduleIndex {

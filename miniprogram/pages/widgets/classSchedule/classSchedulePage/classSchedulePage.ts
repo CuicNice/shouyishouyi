@@ -7,7 +7,6 @@ export interface ClassScheduleItem {
 }
 var utils = require('../../../../utils/addCache');
 Page({
-
   /**
    * 页面的初始数据
    */
