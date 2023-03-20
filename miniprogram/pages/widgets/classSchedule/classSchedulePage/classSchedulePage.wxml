@@ -386,7 +386,7 @@
       <view class="title">请选择学期</view>
     </view>
     <view class="semesterpicker">
-      <picker-view indicator-style="height: 56px; text-align: center;"  style="width: 120%; height: 270rpx;text-align:center; line-height: 100rpx;margin-top: 40rpx;background:transparent;" bindchange="SchoolTermChange" value="{{selectedIdx}}"> 
+      <picker-view indicator-style="height: 56px; text-align: center;" mask-style="opacity:0.9;" style="width: 120%; height: 270rpx;text-align:center; line-height: 100rpx;margin-top: 40rpx;" bindchange="SchoolTermChange" value="{{selectedIdx}}"> 
         <!--Columns-->
         <picker-view-column>
           <view wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
