@@ -1044,7 +1044,14 @@ margin-top: -18rpx;
   width: 640rpx;
   height: 336rpx;
 }
-
+.active{
+  color:red;
+  text-align: center;
+}
+.noactive{
+  text-align: center;
+  color: rgba(0,0,0,0.3);
+}
 .button {
   display: flex;
   justify-content: space-between;
