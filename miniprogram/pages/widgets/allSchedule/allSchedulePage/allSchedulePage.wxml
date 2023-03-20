@@ -8,9 +8,9 @@
     <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
   </view>
   <!-- 课表选择 -->
-  <view class="TitleLeft" bindtap="getClassDule">
+  <view class="TitleLeft">
     <view class="WeekOption">
-      <view class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{classTitle?classTitle:"选择课表"}}</view>
+      <view bindtap="getClassDule" class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{classTitle?classTitle:"选择课表"}}</view>
       <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}"></view>
     </view>
   </view>
@@ -243,10 +243,11 @@
       </view>
     </block>
   </scroll-view>
+  
 </view>
 <toast_1 id="toast_1"></toast_1>
 <!-- 选择学期学年部分 -->
-<dialogTitle class="dialogBox" type="half-screen" showDialog="{{Chargedetail}}">
+<dialogTitle_1 class="dialogBox" type="half-screen" showDialog="{{Chargedetail}}">
   <toast_2 id="toast_2"></toast_2>
   <view class="chooseBox" wx:if="{{!(shownj||showbj||showxy||showxq)}}">
     <view class="chooseTop">
@@ -400,8 +401,7 @@
       </button>
     </view>
   </view>
-
-</dialogTitle>
+</dialogTitle_1>
   <!-- 课表查询失败弹窗 -->
  <dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
     <view style="display: flex;">

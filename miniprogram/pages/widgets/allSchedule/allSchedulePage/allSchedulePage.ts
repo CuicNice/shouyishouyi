@@ -443,7 +443,7 @@ Page({
   changeInfo() {
     var gradeArray = this.data.gradeArray as any;
     var Y = this.data.Y as any;
-    gradeArray = [Y - 5, Y - 4, Y - 3, Y - 2, Y - 1, Y, Y + 1, Y + 2, Y + 3, Y + 4, Y + 5];
+    gradeArray = [Y - 5, Y - 4, Y - 3, Y - 2, Y - 1, Y,];
     var academyArray = this.data.academyArray as any;
     academyArray = [
       '信息科学与工程学院',
@@ -479,13 +479,21 @@ Page({
    * 点击‘选择课表’弹出选择弹窗
    */
   getClassDule() {
-    this.setData({
+    /**
+     * 如果用户未登录
+     */
+    if(wx.getStorageSync('login')){
+       this.setData({
       Chargedetail: true,
       Class: '',
       academy: '',
       semesters: '',
       grade: '',
     })
+    }else{
+      this.selectComponent("#toast_1").showToastAuto("用户未登录", "error");
+    }
+   
   },
   /**
    * 取消绑定
@@ -516,6 +524,7 @@ Page({
     var  semesterTitle=Class;
     var  academyTitle= academy;
     var  classTitle_2=semesters;
+    var Chargedetail = this.data.Chargedetail;
     /**
      * 是否存在查询记录缓存
      */
@@ -525,6 +534,7 @@ Page({
       var all = [] as any;
     }
     if (Class && semesters && academy && grade) {
+      Chargedetail=false;
       /**
        * 存入请求课表需要的数据 账号；密码；学年；学期；学院id；班级id；
        */
@@ -571,10 +581,8 @@ Page({
         if (all.length >= 3) {
           all[2] = all[1];
           all[1] = all[0];
-          if (Class !== all[i].Class && i !== 0) {
-            all[0] = allSchedul;
+          all[0] = allSchedul;
             break first;
-          }
         }
       }
       this.getbindSchdul();
@@ -588,10 +596,11 @@ Page({
       classTitle_2='';
     }
     else {
+      Chargedetail = true;
       this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
     }
     this.setData({
-      Chargedetail:(grade&&academy&&Class&&semesters)?false:true,
+      Chargedetail:Chargedetail,
       classTitle: Class ? Class : all[0].Class,
       gradeTitle: gradeTitle,
       semesterTitle: semesterTitle,
@@ -1220,7 +1229,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync('widget-allSchedule').all[0].classSchedule.week.length > 0) {
+    if (wx.getStorageSync('widget-allSchedule').all[0].length > 0) {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
       var allOne = all[0].Class;
     }
