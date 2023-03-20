@@ -27,7 +27,7 @@ Component({
    {
          "pagePath": "/pages/test1/test",
          "text": "首页",
-         "iconPath": "/static/svg/tapBar/nanaHome_grey.png",
+         "iconPath": "/static/svg/tapBar/nananHome_grey.svg",
          "tapStyle":"width: 130rpx;height: 160rpx;display: flex;flex-direction: column;justify-content: center;align-items: center;    padding: 0px;gap: 5px;isolation: isolate; ",
          "selectedIconPath": "/static/svg/tapBar/nananHome_green.svg"
      },
@@ -51,7 +51,6 @@ Component({
       const {jumppath,index} = e.currentTarget.dataset;
       // 跳转是失败
       // 注意 switchTab 只能跳转到带有 tab 的页面，不能跳转到不带 tab 的页面
-      console.log("juanana",jumppath,index);
       var that = this;
       wx.switchTab({
         url: jumppath

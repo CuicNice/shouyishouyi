@@ -9,7 +9,7 @@ Page({
   },
   //tabar设置初始值
   show() {
-    if (typeof this.getTabBar === 'function' &&
+    if (typeof this.getTabBar == 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 2

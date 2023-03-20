@@ -29,21 +29,15 @@
     "list": [
       {
         "pagePath": "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
-        "text": "课程表",
-        "iconPath": "/static/svg/tapBar/courseTable_grey.png",
-        "selectedIconPath": "/static/svg/tapBar/courseTable_blue.png"
+        "text": "课程表"
       },
       {
         "pagePath": "pages/test1/test",
-        "text": "首页",
-        "iconPath": "./static/svg/tapBar/nanaHome_grey.png",
-        "selectedIconPath": "./static/svg/tapBar/nananHome_green.png"
+        "text": "首页"
       },
       {
         "pagePath": "pages/widgets/widgetsPages/widgetsPages",
-        "text": "组件",
-        "iconPath": "./static/svg/tapBar/wedgetsBox_grey.png",
-        "selectedIconPath": "./static/svg/tapBar/wedgetsBox_yellow.png"
+        "text": "组件"
       }
     ]
   },
