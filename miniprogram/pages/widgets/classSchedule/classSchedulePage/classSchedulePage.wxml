@@ -146,7 +146,7 @@
             <view class="{{bgc==''?'number':'numberWhite'}}">{{index+1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time2}}</view>
-            <view style="{{(index+1)%4==0?'border-bottom: 2rpx solid #20C38C;width:100%;transform: translateY(6rpx)':''}}"></view>
+            <view style="{{(index+1)%4==0?'border-bottom: 2rpx solid #20C38C;width:100%;transform: translateY(4rpx)':''}}"></view>
             <view wx:if="{{bgc==''}}" style="{{(index+1)==(index+1)?'border-bottom:2rpx dashed rgba(41, 41, 69, 0.1);width:1300rpx;z-index=-10;transform: translateX(690rpx)':''}}"></view>
             <view wx:if="{{!bgc==''}}" style="{{(index+1)==(index+1)?'border-bottom:2rpx dashed #565656;width:1300rpx;z-index=-10;transform: translateX(690rpx)':''}}"></view>
           </view>

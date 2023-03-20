@@ -230,7 +230,7 @@ margin-top: -18rpx;
 .top {
   display: flex;
   justify-content: start;
-  height: 82rpx;
+  /* height: 82rpx; */
   margin-top: 4rpx;
 }
 
@@ -282,7 +282,7 @@ margin-top: -18rpx;
   height: 82rpx;
   border-bottom: 2rpx solid #EAEAEC;
   margin-top: 12rpx;
-  z-index: 9;
+  z-index: 10;
 }
 
 .weekbigBoxWhite{
@@ -322,6 +322,8 @@ margin-top: -18rpx;
   flex: 1;
   overflow: hidden;
   height: 100%;
+  /* transform: translateY(-12rpx); */
+  /* margin-top: -10rpx; */
 }
 
 .WHQplus {
@@ -378,7 +380,7 @@ margin-top: -18rpx;
 }
 
 .leftBox {
-  margin-top: 16rpx;
+  /* margin-top: 16rpx; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -387,7 +389,7 @@ margin-top: -18rpx;
   width: 78rpx;
 }
 .leftBoxWhite{
-  margin-top: 14rpx;
+  /* margin-top: 14rpx; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1216,7 +1218,7 @@ margin-top: -18rpx;
   height: 1380rpx;
   width: 88rpx;
   margin-right: 10rpx;
-  margin-top: 19rpx;
+  margin-top: 8rpx;
 }
 
 .table-num {
