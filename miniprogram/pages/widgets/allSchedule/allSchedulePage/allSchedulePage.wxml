@@ -361,10 +361,10 @@
       </button>
     </view>
   </view>
+</dialogTitle>
   <!-- 课表查询失败弹窗 -->
-  <dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
+ <dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
     <view style="display: flex;">
       <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
     </view>
   </dialogTitle>
-</dialogTitle>
