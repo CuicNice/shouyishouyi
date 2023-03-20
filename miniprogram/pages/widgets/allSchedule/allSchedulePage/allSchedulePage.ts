@@ -231,7 +231,7 @@ Page({
             var itemIndex = week[dayIndex].data.findIndex(function (v) {
               return v.day == all_tables[i].day;
             })
-            if (itemIndex == -1)
+            if (itemIndex == -1) console.log(all_tables[i].day)
             week[dayIndex].data[itemIndex].item.push((all_tables[i]) as unknown as never);
           }
         }
@@ -314,7 +314,7 @@ Page({
     else {
       this.setData({
         showxy: true,
-     })
+      })
     }
   },
   /**
@@ -363,12 +363,12 @@ Page({
    * 如果没有数据时，则弹出弹窗
    */
   noInfo() {
-      if (wx.getStorageSync('widget-allSchedule').classSchedule.week.length == 0) {
-        this.setData({
-          classTitle: '',
-          dialogTip: true,
-        })
-      }
+    if (wx.getStorageSync('widget-allSchedule').classSchedule.week.length == 0) {
+      this.setData({
+        classTitle: '',
+        dialogTip: true,
+      })
+    }
   },
   /**
    * 选择年级
@@ -512,6 +512,10 @@ Page({
     var academy = this.data.academy;
     var semesters = this.data.semesters;
     var classSchedule = this.data.classSchedule;
+    var  gradeTitle= grade;
+    var  semesterTitle=Class;
+    var  academyTitle= academy;
+    var  classTitle_2=semesters;
     /**
      * 是否存在查询记录缓存
      */
@@ -521,9 +525,9 @@ Page({
       var all = [] as any;
     }
     if (Class && semesters && academy && grade) {
-   /**
-    * 存入请求课表需要的数据 账号；密码；学年；学期；学院id；班级id；
-    */
+      /**
+       * 存入请求课表需要的数据 账号；密码；学年；学期；学院id；班级id；
+       */
       var allSchedul = {
         classSchedule: classSchedule,
         Class: this.data.Class
@@ -531,7 +535,7 @@ Page({
       /**
        * 由于最多三个，简单去重，和替换
        */
-     first: for (var i = 0; i < 3; i++) {
+      first: for (var i = 0; i < 3; i++) {
         /**
          * 个数少，简单去重
          */
@@ -578,17 +582,21 @@ Page({
       myarr.all = all;
       wx.setStorageSync('widget-allSchedule', myarr);
       all = all;
+      gradeTitle= '';
+      semesterTitle='';
+      academyTitle= '';
+      classTitle_2='';
     }
     else {
       this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
     }
     this.setData({
-      Chargedetail:(Class && semesters && academy && grade)?false:true,
+      Chargedetail:(grade&&academy&&Class&&semesters)?false:true,
       classTitle: Class ? Class : all[0].Class,
-      gradeTitle: '',
-      semesterTitle: '',
-      academyTitle: '',
-      classTitle_2: '',
+      gradeTitle: gradeTitle,
+      semesterTitle: semesterTitle,
+      academyTitle: academyTitle,
+      classTitle_2: classTitle_2,
       all: all,
     })
   },
@@ -678,7 +686,7 @@ Page({
         semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下'];
         break;
       }
-      else{
+      else {
         semesterArray = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下'];
         continue;
       }
