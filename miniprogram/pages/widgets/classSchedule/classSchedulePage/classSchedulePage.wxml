@@ -389,7 +389,7 @@
       <picker-view indicator-style="height: 56px; text-align: center;" mask-style="opacity:0;z-index:0;" style="width: 120%; height: 270rpx;text-align:center; line-height: 100rpx;margin-top: 40rpx;" bindchange="SchoolTermChange" value="{{selectedIdx}}"> 
         <!--Columns-->
         <picker-view-column>
-          <view class="{{index===selectedIdx?'active':'noactive'}}" wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
+          <view class="{{suorec==semesterList[index]?'active':'noactive'}}" wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
         </picker-view-column>
       </picker-view>
     </view>
@@ -441,10 +441,9 @@
     </block>
   </scroll-view>
 </view>
-
 <toast id="toast"></toast>
-<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
-  <view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
+<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/shoyiStanding.svg">
+  <view class="dialogText">暂无您的该学年课表，新学期课表出来后，南南会第一时间通知你的噢~</view>
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>

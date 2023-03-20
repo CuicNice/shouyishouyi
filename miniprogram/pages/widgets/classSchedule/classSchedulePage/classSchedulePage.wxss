@@ -1045,7 +1045,7 @@ margin-top: -18rpx;
   height: 336rpx;
 }
 .active{
-  color:red;
+  color:black;
   text-align: center;
 }
 .noactive{

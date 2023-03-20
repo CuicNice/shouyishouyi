@@ -28,7 +28,7 @@ Page({
     ifshow: false,
     schoolPlace: "武昌",
     startDate: "2023/2/19",
-    suorec: '',
+    suorec: '大一上学期',
     colorcardLight: ['#A9E6FF', '#FFDDDC', '#F5DFFA', '#D4EFFF', '#F9EABA', '#FFD698', '#F0FFC4', '#FEFCC9', '#DFFFD4', '#FFD8D2', '#FFFFF0', '#CCFFED', '#BFC1FF', '#FFC8E6', '#E9EDF1', '#EFDCC9'],
     colorcardDark: ['#6290E9', '#B791DC', '#ABA6E9', '#E39ACA', '#F091A2', '#FF9470', '#FDB165', '#F3D257', '#5DD39E', '#B2DB7C', '#68D8D6', '#A9B7BD', '#59ADDF', '#7895BC', '#75AEAE', '#EFDCC9'],
     colorcardZi: ['#4794B6', '#D67979', '#BF74CE', '#559AC2', '#BD9825', '#B97B1E', '#689658', '#9C982F', '#60A049', '#C76D5F', '#8585A5', '#5EAA91', '#6568C9', '#C8619A', '#8585B1', '#B8906F'],
@@ -161,7 +161,6 @@ Page({
     delete value.classSchedule
     wx.setStorageSync("widget-classSchedule", value);
     this.setData({ weekSchedule: true, nowWeek: day });
-    try {
       this.initClassData();
       setTimeout(() => {
         let nowWeekData = this.getNowWeekData(this.data.classSchedule, day);
@@ -170,10 +169,6 @@ Page({
         delete myarr.classSchedule;
         wx.setStorageSync('widget-classSchedule', myarr);
       }, 4000);
-    }
-    catch (error) {
-      this.setData({ dialogTip: true });
-    };
   },
 
 
@@ -184,13 +179,25 @@ Page({
    */
   async getTableDataFromApi(year: number, num: number) {
     var that = this;
+    var text=0;//判断是否请求成功
     let vaule = {
       "zh": wx.getStorageSync('zh'),
       "mm": wx.getStorageSync('mm'),
       "year": year,
       "num": num
     };
+    setTimeout(() => {
+      if(text==0){
+        this.selectComponent("#toast").showToastAuto("刷新失败", "error");
+        this.setData({
+          dialogTip:true
+        })
+      }
+    }, 8*1000);
     const { data: res } = await getClassSchedule(vaule) as unknown as IResult<any>;
+    if(res.all_tables.length!=0||this.data.beginSemester.slice(0,2)=="大四"){
+    text=text+1;//网络请求成功
+    }//判断是否有数据
     if (res) {
       var all_tables = res.all_tables;
       var arr = this.objHeavy(all_tables);//筛选有多少门课程
