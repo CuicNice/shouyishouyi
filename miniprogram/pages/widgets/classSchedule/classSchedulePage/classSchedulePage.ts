@@ -587,16 +587,18 @@ Page({
         if(num[0].old_day_num.indexOf("和")<0){
         for (let i = 0; i < num.length; i++) {
           var arr = {} as any
+          var mynum=0
           for (let j = 0; j < list.length; j++) {
             if (num[i].name == list[j].name) {
               if (arr.day_num == undefined) {
                 arr = list[j]
-              } else {
+              } else if(arr.local==list[j].local){
                 arr.day_num=arr.day_num.concat(list[j].day_num)
                 arr.old_day_num=arr.old_day_num+"和"+(list[j].old_day_num)
-              }
+              }else{mynum=mynum+1; break;}
             }
           }
+          if(mynum==1){break;}
           num[i]=arr
         } 
       }

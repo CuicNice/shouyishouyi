@@ -100,6 +100,13 @@ Page({
   },
 
   /**
+   * 个性设置成功的显示提示
+   */
+  personalitySet(){
+    this.selectComponent("#toast").showToastAuto("设置成功", "success");
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
