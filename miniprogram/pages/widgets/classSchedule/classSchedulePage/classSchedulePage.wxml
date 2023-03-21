@@ -235,10 +235,12 @@
   <!-- 深色系版的日课表 -->
   <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{dark}}">
     <view class="dailyScheduleIndexList">
-      <view class="dailyScheduleTime">
+      <view  class="dailyScheduleTimeBox">
+        <view class="dailyScheduleTime">
         <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[0]-1].time1}}</view>
         <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}"></view>
         <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
+      </view>
       </view>
       <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]].time2?false:true}}">
         <view class="dailySchedule">
@@ -252,9 +254,11 @@
             <view class="dailyScheduleAd">{{item.local}}</view>
           </view>
         </view>
-        <view class="dailyScheduleKc">
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
           <view class="whichKc">第{{item.old_num}}</view>
           <view class="whichTc">{{item.teacher}}</view>
+        </view>
         </view>
         <view class="dailyScheduleBd">
           <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
@@ -279,9 +283,11 @@
             <view class="dailyScheduleAdWhite">{{item.local}}</view>
           </view>
         </view>
-        <view class="dailyScheduleKc">
-          <view class="whichKcWhite">第{{item.old_num}}</view>
-          <view class="whichTcWhite">{{item.teacher}}</view>
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
+            <view class="whichKcWhite">第{{item.old_num}}</view>
+            <view class="whichTcWhite">{{item.teacher}}</view>
+          </view>
         </view>
         <view class="dailyScheduleBd">
           <image class="noacademicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
@@ -299,10 +305,12 @@
   <!-- 浅色系版的日课表 -->
   <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{!dark}}">
     <view class="dailyScheduleIndexList">
-      <view class="dailyScheduleTime">
+      <view class="dailyScheduleTimeBox">
+        <view class="dailyScheduleTime">
         <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[0]-1].time1}}</view>
         <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}"></view>
         <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}"style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
       </view>
       <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]].time2?false:true}}">
         <view class="dailySchedule">
@@ -316,9 +324,11 @@
             <view class="dailyScheduleAd">{{item.local}}</view>
           </view>
         </view>
-        <view class="dailyScheduleKc">
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
           <view class="whichKc">第{{item.old_num}}</view>
           <view class="whichTc">{{item.teacher}}</view>
+          </view>
         </view>
         <view class="dailyScheduleBd">
           <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
@@ -343,9 +353,11 @@
             <view class="dailyScheduleAdWhite" style="color: {{item.colorzi}};">{{item.local}}</view>
           </view>
         </view>
-        <view class="dailyScheduleKc">
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
           <view class="whichKcWhite" style="color: {{item.colorzi}};">第{{item.old_num}}</view>
           <view class="whichTcWhite" style="color: {{item.colorzi}};">{{item.teacher}}</view>
+          </view>
         </view>
         <view class="dailyScheduleBd">
           <image class="nocollegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
