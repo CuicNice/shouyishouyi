@@ -1,13 +1,14 @@
 import { Result } from "../common/Result";
 import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
+import Utils from '../utils/util';
 import { AllScheduleItem } from '../pages/widgets/allSchedule/allSchedulePage/allSchedulePage';
-
 const request = HttpUtils.getInstance();
+const baseUrl = Utils.getBaseUrl();
 const apiList = {
   // post /front/blog/page（前台接口需要登录）
-  getAllClasses: 'https://syj.kkya.xyz/shouyijia/api/v2/user/getClassList',
-  getAllSchedule: 'https://syj.kkya.xyz/shouyijia/api/v2/user/getAllTable',
+  getAllClasses: baseUrl + '/api/v1/craw/user/classList',
+  getAllSchedule: baseUrl + '/api/v1/craw/user/allTable',
 }
 
 // 获取班级

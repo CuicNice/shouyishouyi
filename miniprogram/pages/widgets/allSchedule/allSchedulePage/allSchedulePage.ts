@@ -64,6 +64,7 @@ Page({
     semester: '大一上',
     nowDate: '',
     ifshow: false,
+    showAll:false,
     schoolPlace: "武昌",
     startDate: "2023/2/19",
     suorec: '',
@@ -140,7 +141,7 @@ Page({
     var bindSchdul = {
       zh: wx.getStorageSync('login').zh,
       mm: wx.getStorageSync('login').mm,
-      xnm: String(xnm),
+      xnm: String(xnm-1),
       xqm: String(xqm) == '1' ? '3' : '12',
       njdm_id: String(grade),
       jg_id: String(jg_id),
@@ -288,13 +289,18 @@ Page({
   async getAllClasses(from: AllScheduleItem) {
     const { data: info } = await getAllClasses(from) as unknown as IResult<any>;
     var ClassArray = this.data.ClassArray as unknown as any;
-    for (var i = 0; i < info.length; i++) {
+    if(info){
+      for (var i = 0; i < info.length; i++) {
       ClassArray[i] = info[i].bj;
+    }
+    }else{
+      ClassArray = ['暂无信息']
+      this.selectComponent("#toast_2").showToastAuto("网络错误", "error");
     }
     this.setData({
       ClassArray: ClassArray,
       allClass: info,
-    });
+    }); 
   },
   /**
    * 点击进入年级弹窗
@@ -503,7 +509,7 @@ Page({
      * 如果用户选择完了，但是点取消
      */
     this.setData({
-      classTitle: wx.getStorageSync('widget-allSchedule').classSchedule.week.length == 0 ? '' : wx.getStorageSync('widget-allSchedule').all[0].Class,
+      classTitle: wx.getStorageSync('widget-allSchedule').classSchedule.length == 0 ? '' : wx.getStorageSync('widget-allSchedule').all[0].Class,
       Chargedetail: false,
       Class: '',
       academy: '',
@@ -530,8 +536,8 @@ Page({
      */
     if (wx.getStorageSync('widget-allSchedule').all.length !== 0) {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
-    } else if (Class && semesters && academy && grade) {
-      var all = [] as any;
+    } else if (Class && semesters && academy && grade&&wx.getStorageSync('widget-allSchedule').all.length == 0) {
+      var all = ['','',''] as any;
     }
     if (Class && semesters && academy && grade) {
       Chargedetail=false;
@@ -1229,7 +1235,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync('widget-allSchedule').all[0].length > 0) {
+    if (wx.getStorageSync('widget-allSchedule').all.length > 0) {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
       var allOne = all[0].Class;
     }
