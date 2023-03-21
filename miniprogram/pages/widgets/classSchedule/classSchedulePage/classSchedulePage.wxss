@@ -1881,6 +1881,7 @@ justify-content: space-around;
   display: flex;
   flex-direction: row;
   border: 2rpx solid rgba(216, 216, 216, 0.3);
+  background-color: #F9F9F9;
 }
 
 .dailySchedule {
