@@ -106,31 +106,22 @@ page {
   align-items: center;
   padding: 20rpx 28rpx;
   gap: 20rpx;
-
   width: 214rpx;
   height: 84rpx;
-
   background-color: #FFFFFF;
-  /* #20C38C */
   border: 1px solid #20C38C;
   border-radius: 70rpx;
-
-  /* #20C38C */
   color: #20C38C;
 }
 
 .button .primary {
-  /* Auto layout */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 20rpx 28rpx;
   gap: 20rpx;
-
   width: 214rpx;
   height: 84rpx;
-
-  /* #20C38C */
   background: #20C38C;
   border-radius: 70rpx;
 }
@@ -233,7 +224,6 @@ page {
 .top {
   display: flex;
   justify-content: start;
-  /* height: 82rpx; */
   margin-top: 4rpx;
 }
 
@@ -328,8 +318,6 @@ page {
   flex: 1;
   overflow: hidden;
   height: 100%;
-  /* transform: translateY(-12rpx); */
-  /* margin-top: -10rpx; */
 }
 
 .WHQplus {
@@ -713,7 +701,7 @@ page {
 .eighteenTeach {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iNjciIHZpZXdCb3g9IjAgMCA5NiA2NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1LjY3ODkgMjIuMjUyOEwxNS4zNzk2IDIyLjE0NzRWMjEuNTQ2N0wzOC45NTI0IDI3LjgzNDdWMzAuNzQ4M0wxNy42MjExIDI3LjczOTNMMTYuNDYyMiAyMy4wNDQzTDE1LjY3ODkgMjIuODMzNFYyMi4yNTI4WiIgZmlsbD0iI0YxRjFGMSIvPgo8cGF0aCBkPSJNMzguOTUyMyAzMS4xODI3VjMyLjY0MjdIOS40NDYwNkw5LjA1NDEyIDMyLjAwODdIOS4wNTcyNUw4LjQ0NDkzIDMxLjAyMzNMNi42MzExMSAyOC4xMDE1TDYuMDc0NTEgMjcuOTU5TDYuMDg3MDMgMjcuNDZMNS43NDc2OCAyNy4zNjU4VjI2Ljc0ODhMMTcuNzc2MyAyOC4zNzAxTDE3Ljc3MjYgMjguMzU0NEwzOC45NTIzIDMxLjE4MjdaIiBmaWxsPSIjRjFGMUYxIi8+CjxwYXRoIGQ9Ik0zOC45NTE3IDMzLjE2NTVWNTIuNzQxM0gzMy40NTMzVjU3LjU1MDVIMzYuMDg3M1Y2Ni40Nzc5SDMuMjA1MDhWMzMuMTY1NUgzOC45NTE3WiIgZmlsbD0iI0YxRjFGMSIvPgo8cGF0aCBkPSJNODUuMDA4MyAyMi4yNTI4TDg1LjMwNzYgMjIuMTQ3NFYyMS41NDY3TDYxLjczNDkgMjcuODM0N1YzMC43NDgzTDgzLjA2NjEgMjcuNzM5M0w4NC4yMjUgMjMuMDQ0M0w4NS4wMDgzIDIyLjgzMzRWMjIuMjUyOFoiIGZpbGw9IiNGMUYxRjEiLz4KPHBhdGggZD0iTTYxLjczNDkgMzEuMTgyN1YzMi42NDI3SDkxLjI0MTFMOTEuNjMzMSAzMi4wMDg3SDkxLjYyOTlMOTIuMjQyMyAzMS4wMjMzTDk0LjA1NjcgMjguMTAxNUw5NC42MTI3IDI3Ljk1OUw5NC42MDAyIDI3LjQ2TDk0LjkzOTUgMjcuMzY1OFYyNi43NDg4TDgyLjkxMDkgMjguMzcwMUw4Mi45MTQ2IDI4LjM1NDRMNjEuNzM0OSAzMS4xODI3WiIgZmlsbD0iI0YxRjFGMSIvPgo8cGF0aCBkPSJNOTcuNDgyMSAzMy4xNjU1VjY2LjQ3NzlINjQuMzU1N1Y1Ny41NTA1SDY3LjExODdWNTIuNzQxM0g2MS43MzQ5VjMzLjE2NTVIOTcuNDgyMVoiIGZpbGw9IiNGMUYxRjEiLz4KPHBhdGggZD0iTTYxLjU5MjggMjIuNjE5NFYyNC42NjEySDYxLjAzNjJMNjEuMDM5MyA1Mi43MkgzOS42NDhMMzkuNjUxMSAyNC42NjEySDM5LjA5NDVWMjIuNjE5NEg2MS41OTI4WiIgZmlsbD0iI0YxRjFGMSIvPgo8cGF0aCBkPSJNNjYuNjQ3MiA1My4yMTMzVjU3LjA3NzlINjMuNzk5MVY2Ni4zNzQzSDYwLjUwMDhWNTcuMDc3OUgzOS44OTk2VjY2LjM3NDNIMzYuNjAxM1Y1Ny4wNzc5SDMzLjkyNDdWNTMuMjEzM0g2Ni42NDcyWiIgZmlsbD0iI0YxRjFGMSIvPgo8L3N2Zz4K");
   width: 100%;
-  height: 100%;
+  height: 102rpx;
   background-repeat: no-repeat;
 }
 
@@ -1214,7 +1202,6 @@ page {
   height: 100%;
 }
 
-
 .Box {
   display: flex;
   flex-direction: column;
@@ -1706,7 +1693,6 @@ page {
   margin-top: 12rpx;
   margin-left: 16rpx;
   margin-right: 16rpx;
-  /** 水平居中 **/
 }
 
 .line {
@@ -1781,7 +1767,6 @@ page {
   height: 28rpx;
   left: 0rpx;
   top: 0rpx;
-  /* #C6C6C6 */
   background: rgba(198, 198, 198, 0.6);
   border-radius: 10rpx 10rpx 0rpx 0rpx;
   width: 90rpx;
@@ -1798,7 +1783,6 @@ page {
   position: absolute;
   top: 0;
   border-radius: 5px 5px 0px 0px;
-  /* identical to box height */
   text-align: center;
   color: #FFFFFF;
   background: rgba(198, 198, 198, 0.6);
@@ -1837,7 +1821,7 @@ page {
   margin-left: 16rpx;
   margin-right: 16rpx;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .dailyScheduleTimeBox {
@@ -1849,7 +1833,6 @@ page {
   width: 58rpx;
 }
 
-
 .dailyScheduleTime {
   width: 58rpx;
   height: 104rpx;
@@ -1858,11 +1841,10 @@ page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .dailyScheduleTime1 {
-  /* width: 58rpx; */
   height: 40rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -1929,7 +1911,6 @@ page {
   line-height: 44rpx;
   overflow: hidden;
   color: #292945;
-  /* background-color: green; */
 }
 
 .dailyScheduleClassWhite {
@@ -1975,7 +1956,6 @@ page {
   font-weight: 400;
   font-size: 24rpx;
   line-height: 34rpx;
-  /* identical to box height */
   color: rgba(41, 41, 69, 0.6);
 }
 
@@ -2003,10 +1983,8 @@ page {
   font-weight: 400;
   font-size: 24rpx;
   line-height: 24rpx;
-  /* identical to box height */
   text-align: right;
   color: #292945;
-  /* background-color: darkcyan; */
 }
 
 .whichKcWhite {
@@ -2016,7 +1994,6 @@ page {
   font-weight: 400;
   font-size: 24rpx;
   line-height: 24rpx;
-  /* identical to box height */
   text-align: right;
   color: #FFFFFF;
 }
@@ -2029,11 +2006,9 @@ page {
   font-weight: 400;
   font-size: 24rpx;
   line-height: 34rpx;
-  /* identical to box height */
   text-align: right;
   margin-top: 18rpx;
   color: #292945;
-  /* background-color: darkred; */
 }
 
 .whichTcWhite {
@@ -2043,7 +2018,6 @@ page {
   font-weight: 400;
   font-size: 24rpx;
   line-height: 34rpx;
-  /* identical to box height */
   text-align: right;
   color: #FFFFFF;
   margin-top: 18rpx;
@@ -2051,12 +2025,9 @@ page {
 
 .dailyScheduleBd {
   width: 184rpx;
-  height: 102rpx;
   position: absolute;
   right: 0rpx;
   z-index: 0;
-  top: 121rpx;
-  overflow: hidden;
 }
 
 .nodailyScheduleIndex {
