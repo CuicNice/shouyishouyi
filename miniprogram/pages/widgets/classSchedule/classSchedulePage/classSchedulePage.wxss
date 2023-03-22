@@ -317,23 +317,24 @@ page {
 .WHQplus {
   width: 100%;
   display: flex;
+  /* height: 116rpx; */
   position: absolute;
 }
 
 .WHQplusWhite {
   /* margin-top: -6rpx; */
   width: 100%;
-  height: 116rpx;
+  /* height: 116rpx; */
   display: flex;
   background: rgba(255, 255, 255, 0.8);
 }
 
 .WHQplusLeft {
   height: 100%;
-  width: 78rpx;
+  width: 10%;
   display: flex;
   flex-direction: column;
-  padding-left: 20rpx;
+  padding-left: 9rpx;
   padding-top: 24rpx;
 }
 
@@ -350,7 +351,7 @@ page {
 }
 
 .otherCoursesWhite {
-  margin-left: 20rpx;
+  /* margin-left: 20rpx; */
   width: 48rpx;
   height: 68rpx;
   font-family: 'PingFang SC';
@@ -427,7 +428,7 @@ page {
   text-align: center;
   color: #FFFFFF;
   opacity: 0.6;
-  margin-top: 4rpx;
+  /* margin-top: 4rpx; */
 }
 
 .numberWhite {
@@ -440,7 +441,7 @@ page {
   line-height: 44rpx;
   text-align: center;
   color: #FFFFFF;
-  margin-top: 12rpx;
+  /* margin-top: 12rpx; */
   margin-left: 16rpx;
   margin-right: 16rpx;
 }
@@ -456,7 +457,7 @@ page {
 .otherclass {
   padding-left: 8rpx;
   padding-top: 12rpx;
-  width: 684rpx;
+  width: 90%;
   position: relative;
 }
 
@@ -1669,7 +1670,7 @@ page {
   text-align: center;
   color: #292945;
   opacity: 0.6;
-  margin-top: 4rpx;
+  /* margin-top: 4rpx; */
   margin-left: 10rpx;
   margin-right: 10rpx;
 }
@@ -1684,7 +1685,7 @@ page {
   line-height: 44rpx;
   text-align: center;
   color: #292945;
-  margin-top: 12rpx;
+  /* margin-top: 12rpx; */
   margin-left: 16rpx;
   margin-right: 16rpx;
 }
