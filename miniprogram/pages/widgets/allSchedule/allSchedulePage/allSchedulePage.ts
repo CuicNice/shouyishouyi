@@ -104,37 +104,46 @@ Page({
      */
     var grade = this.data.grade as any;
     var semesters = this.data.semesters;
+    var times = this.data.timeJia;
     var xnm = 0 as any;
     var xqm = 0;
     if (semesters == '大一上') {
+      times = this.data.timeJia;
       xnm = grade;
       xqm = 1;
     }
     if (semesters == '大一下') {
+      times = this.data.timeJia;
       xnm = grade - 0 + 1;
       xqm = 2;
     }
     if (semesters == '大二上') {
+      times = this.data.timeWu;
       xnm = grade - 0 + 2;
       xqm = 1;
     }
     if (semesters == '大二下') {
+      times = this.data.timeWu;
       xnm = grade - 0 + 2;
       xqm = 2;
     }
     if (semesters == '大三上') {
+      times = this.data.timeWu;
       xnm = grade - 0 + 3;
       xqm = 1;
     }
     if (semesters == '大三下') {
+      times = this.data.timeWu;
       xnm = grade - 0 + 3;
       xqm = 2;
     }
     if (semesters == '大四上') {
+      times = this.data.timeWu;
       xnm = grade - 0 + 4;
       xqm = 1;
     }
     if (semesters == '大四下') {
+      times = this.data.timeWu;
       xnm = grade - 0 + 4;
       xqm = 2;
     }
@@ -149,6 +158,7 @@ Page({
     } as AllScheduleItem
     this.getAllSchedule(bindSchdul);
     this.setData({
+      times:times,
       xnm: xnm,
       xqm: xqm,
       njdm_id: grade,
@@ -1127,6 +1137,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    var bind={
+      'zh':'20222108012',
+      'mm':'Luosukai1',
+    }
+    wx.setStorageSync('login',bind)
     if (!wx.getStorageSync('widget-allSchedule')) {
       //给用户添加缓存
       let value = { classSchedule: '', place: '', all: [] };
