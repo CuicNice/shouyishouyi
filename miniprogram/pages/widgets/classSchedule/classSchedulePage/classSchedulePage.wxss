@@ -2374,6 +2374,8 @@ page {
 .classScroll {
   height: 1250rpx;
   /*如果要依真机测试为主，则需要改成1200rpx*/
+  display: flex;
+  flex-direction: column;
 }
 
 .mask {
