@@ -276,7 +276,7 @@
           <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
           <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
-          <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
+          <image class="ground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
         </view>
       </view>
       <view class="dailyScheduleBox" wx:else style="background-color: {{item.colorDark}};">
@@ -305,7 +305,7 @@
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
           <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
-          <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
+          <image class="ground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
         </view>
       </view>
     </view>
@@ -350,7 +350,7 @@
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
           <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
-          <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
+          <image class="ground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
         </view>
       </view>
     </view>
@@ -398,7 +398,7 @@
           <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
           <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
-          <image class="ground" wx:if="{{item.alonePlace == '田径'}}"></image>
+          <image class="ground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
         </view>
       </view>
       <view class="dailyScheduleBox" wx:else style="background-color: {{item.colorlight}};">
@@ -427,7 +427,7 @@
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
           <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="noeighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
-          <image class="noground" wx:if="{{item.alonePlace == '田径'}}"></image>
+          <image class="noground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
         </view>
       </view>
     </view>
@@ -472,7 +472,7 @@
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
           <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
           <image class="noeighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
-          <image class="noground" wx:if="{{item.alonePlace == '田径'}}"></image>
+          <image class="noground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
         </view>
       </view>
     </view>
