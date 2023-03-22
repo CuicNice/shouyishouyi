@@ -228,9 +228,8 @@
       </view>
     </block>
   </scroll-view>
-  
 </view>
-<toast_1 id="toast_1"></toast_1>
+ <toast_1 id="toast_1"></toast_1>
 <!-- 选择学期学年部分 -->
 <dialogTitle_1 class="dialogBox" type="half-screen" showDialog="{{Chargedetail}}">
   <toast_2 id="toast_2"></toast_2>

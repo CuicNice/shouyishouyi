@@ -104,53 +104,62 @@ Page({
      */
     var grade = this.data.grade as any;
     var semesters = this.data.semesters;
-    var times = this.data.timeJia;
+    var time = this.data.timeJia;
+    var schoolPlace = this.data.schoolPlace;
     var xnm = 0 as any;
     var xqm = 0;
     if (semesters == '大一上') {
-      times = this.data.timeJia;
+      schoolPlace = '嘉鱼';
+      time = this.data.timeJia;
       xnm = grade;
       xqm = 1;
     }
     if (semesters == '大一下') {
-      times = this.data.timeJia;
+      schoolPlace = '嘉鱼';
+      time = this.data.timeJia;
       xnm = grade - 0 + 1;
       xqm = 2;
     }
     if (semesters == '大二上') {
-      times = this.data.timeWu;
+      schoolPlace = '武汉';
+      time = this.data.timeWu;
       xnm = grade - 0 + 2;
       xqm = 1;
     }
     if (semesters == '大二下') {
-      times = this.data.timeWu;
+      schoolPlace = '武汉';
+      time= this.data.timeWu;
       xnm = grade - 0 + 2;
       xqm = 2;
     }
     if (semesters == '大三上') {
-      times = this.data.timeWu;
+      schoolPlace = '武汉';
+      time = this.data.timeWu;
       xnm = grade - 0 + 3;
       xqm = 1;
     }
     if (semesters == '大三下') {
-      times = this.data.timeWu;
+      schoolPlace = '武汉';
+      time = this.data.timeWu;
       xnm = grade - 0 + 3;
       xqm = 2;
     }
     if (semesters == '大四上') {
-      times = this.data.timeWu;
+      schoolPlace = '武汉';
+      time = this.data.timeWu;
       xnm = grade - 0 + 4;
       xqm = 1;
     }
     if (semesters == '大四下') {
-      times = this.data.timeWu;
+      schoolPlace = '武汉';
+      time = this.data.timeWu;
       xnm = grade - 0 + 4;
       xqm = 2;
     }
     var bindSchdul = {
       zh: wx.getStorageSync('login').zh,
       mm: wx.getStorageSync('login').mm,
-      xnm: String(xnm-1),
+      xnm: String(xnm),
       xqm: String(xqm) == '1' ? '3' : '12',
       njdm_id: String(grade),
       jg_id: String(jg_id),
@@ -158,7 +167,8 @@ Page({
     } as AllScheduleItem
     this.getAllSchedule(bindSchdul);
     this.setData({
-      times:times,
+      schoolPlace:schoolPlace,
+      time:time,
       xnm: xnm,
       xqm: xqm,
       njdm_id: grade,
@@ -264,6 +274,8 @@ Page({
        */
       var myArr = wx.getStorageSync('widget-allSchedule'); //myArr一个过渡变量
       myArr.classSchedule = classSchedule;
+      myArr.time = this.data.time;
+      myArr.place = this.data.schoolPlace;
       wx.setStorageSync('widget-allSchedule', myArr)
       this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
     }
@@ -1144,7 +1156,7 @@ Page({
     wx.setStorageSync('login',bind)
     if (!wx.getStorageSync('widget-allSchedule')) {
       //给用户添加缓存
-      let value = { classSchedule: '', place: '', all: [] };
+      let value = { classSchedule: '', place: '', all: [],time:[] };
       wx.setStorageSync('widget-allSchedule', value);
     }
     //获取当前年月
@@ -1169,8 +1181,9 @@ Page({
     var year = 0;//储存年份的变量
     var start;//开始上课的时间
     var schoolTime;//学期名
-    var times = {};//校区的上课时间
-    var place;//校区
+    var times = wx.getStorageSync('widget-allSchedule').time.length==0?this.data.timeJia:wx.getStorageSync('widget-allSchedule').time;//校区的上课时间
+    var place =wx.getStorageSync('widget-allSchedule').place.length==0?this.data.schoolPlace:wx.getStorageSync('widget-allSchedule').place;//校区
+    
     if (8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) {
       year = year + parseInt(this.data.Y) + 1;
       schoolTerm = 3;
@@ -1188,50 +1201,35 @@ Page({
       if ((this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
         start = this.data.Y + "/8/28";
         schoolTime = '大四上';
-        times = this.data.timeWu;
-        place = "武昌";
       };
       if (this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
         start = this.data.Y + "/2/19";
         schoolTime = '大四下';
-        times = this.data.timeWu;
-        place = "武昌";
       };
       if ((this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
         start = this.data.Y + "/8/28";
         schoolTime = '大三上';
-        times = this.data.timeWu;
-        place = "武昌";
       };
       if (this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
         start = this.data.Y + "/2/19";
         schoolTime = '大三下';
-        times = this.data.timeWu;
-        place = "武昌";
       };
       if ((this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
         start = this.data.Y + "/8/28";
         schoolTime = '大二上';
-        times = this.data.timeWu;
-        place = "武昌";
       };
       if (this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
         start = this.data.Y + "/2/19";
         schoolTime = '大二下';
-        times = this.data.timeWu;
-        place = "武昌";
       };
       if ((this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
         start = this.data.Y + "/8/28";
         schoolTime = '大一上';
-        times = this.data.timeJia;
-        place = "嘉鱼";
       };
       if (this.data.Y as unknown as number - wx.getStorageSync('login').zh.slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
         start = this.data.Y + "/2/19";
         schoolTime = '大一下';
-        times = this.data.timeJia;
-        place = "嘉鱼";
+
       };
       this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semesters: schoolTime, schoolPlace: place, time: times, startDate: start });
     } catch { };
