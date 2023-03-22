@@ -218,13 +218,13 @@ page {
 
 
 .container {
-  margin-top: -18rpx;
+  /* margin-top: -18rpx; */
 }
 
 .top {
   display: flex;
   justify-content: start;
-  margin-top: 4rpx;
+  /* margin-top: 4rpx; */
 }
 
 .smallBox {
@@ -251,7 +251,7 @@ page {
   height: 70rpx;
   background: rgba(248, 248, 248, 0.9);
   z-index: 1;
-  margin-top: 14rpx;
+  /* margin-top: 14rpx; */
 }
 
 .smallBoxtxt {
@@ -290,7 +290,7 @@ page {
   border-bottom: 2rpx solid #EAEAEC;
   z-index: 9;
   background: rgba(255, 255, 255, 0.9);
-  margin-top: 13.5rpx;
+  /* margin-top: 13.5rpx; */
 }
 
 .weekBox {
