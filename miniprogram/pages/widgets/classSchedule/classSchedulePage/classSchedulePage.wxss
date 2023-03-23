@@ -230,7 +230,7 @@ page {
   gap: 20rpx;
   width: 66rpx;
   height: 68rpx;
-  /* background: #F8F8F8; */
+  background: #F8F8F8;
   z-index: 1;
   margin-top: 13rpx;
   /* background-color: darkturquoise; */
