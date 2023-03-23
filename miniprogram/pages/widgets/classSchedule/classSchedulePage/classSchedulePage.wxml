@@ -210,7 +210,7 @@
         <view class="WHQplusLeft">
           <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
         </view>
-        <view class="otherclass">
+        <view class="{{bgc==''?'otherclass':'otherclassWhite'}}">
           <view class="kesehbox" wx:for="{{classSchedule.all_keshes}}" wx:key="index">
             <image class="kesheIcon"></image>
             <view class="{{bgc==''?'keshe':'kesheWhite'}}">{{item.data}}</view>
@@ -304,8 +304,8 @@
           <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
           <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
           <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
-          <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
-          <image class="ground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
+          <image class="noeighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
+          <image class="noground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
         </view>
       </view>
     </view>
