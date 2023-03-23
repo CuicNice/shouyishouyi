@@ -222,6 +222,7 @@
 </view>
 <!-- 日课表主页 -->
 <scroll-view scroll-y class="scroll" wx:if="{{!weekSchedule}}" style='background-color: {{bgc}};'>
+<view class="maskingOut" wx:if="{{!picture==''}}"></view>
   <view class="dailyScheduleNavigation">
     <swiper current="{{currentTab}}" bindchange="handleSwiperChange" class="swiper_container">
       <swiper-item class="dailyNavigationtext" wx:for="{{allTimes}}" wx:key='index'>
@@ -479,7 +480,7 @@
   </view>
 </scroll-view>
 <!-- 日课表的其他课程 -->
-<view class="WHQplus" style="{{dayTime[currentTab-num].dateString.length==0||dayTime[currentTab-num].dateString.length==null?'top:270rpx':'bottom: 0;'}}" wx:if="{{!weekSchedule}}">
+<view class="WHQplus" style="{{dayTime[currentTab-num].dateString.length==0||dayTime[currentTab-num].dateString.length==null?'top:270rpx':'bottom: 0;'}}{{picture==''?'':'background: rgba(255, 255, 255, 0.8);'}}" wx:if="{{!weekSchedule}}">
   <view class="WHQplusLeft">
     <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
   </view>
