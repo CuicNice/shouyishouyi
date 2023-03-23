@@ -248,7 +248,7 @@
       <view class="gradeBox" bindtap="shownj">
         <view class="laber">
           <text class="laberLeft">年级：</text>
-          <text class="laberRight">{{gradeTitle?grade:"请选择年级"}}</text>
+          <text class="laberRight">{{gradeTitle&&grade?grade:"请选择年级"}}</text>
         </view>
         <view class="iconpicker">
           <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
@@ -258,7 +258,7 @@
       <view class="gradeBox" bindtap="showxy">
         <view class="laber">
           <text class="laberLeft">学院：</text>
-          <text class="laberRight">{{academyTitle?academy:"请选择学院"}}</text>
+          <text class="laberRight">{{academyTitle&&academy?academy:"请选择学院"}}</text>
         </view>
         <view class="iconpicker">
           <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
@@ -268,7 +268,7 @@
       <view class="gradeBox" bindtap="showbj">
         <view class="laber">
           <text class="laberLeft">班级：</text>
-          <text class="laberRight">{{classTitle_2?Class:"请选择专业班级"}}</text>
+          <text class="laberRight">{{classTitle_2&&Class?Class:"请选择专业班级"}}</text>
         </view>
         <view class="iconpicker">
           <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
@@ -278,7 +278,7 @@
       <view class="gradeBox" bindtap="showxq">
         <view class="laber">
           <text class="laberLeft">学期：</text>
-          <text class="laberRight">{{semesterTitle?semesters:"请选择学期 "}}</text>
+          <text class="laberRight">{{semesterTitle&&semesters?semesters:"请选择学期 "}}</text>
         </view>
         <view class="iconpicker">
           <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
@@ -387,8 +387,8 @@
   </view>
 </dialogTitle_1>
   <!-- 课表查询失败弹窗 -->
- <dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
+ <dialogTitle_2 class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
     <view style="display: flex;">
       <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
     </view>
-  </dialogTitle>
+ </dialogTitle_2>

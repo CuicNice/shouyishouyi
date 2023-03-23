@@ -87,7 +87,7 @@ Page({
    * 绑定数据，获取全校课表
    */
   async getbindSchdul() {
-    this.selectComponent("#toast_1").showToastAuto("查询中", "lodding", 3.5);
+    this.selectComponent("#toast_1").showToastAuto("查询中", "lodding");
     var allClass = this.data.allClass as any;
     var Class = this.data.Class;
     /**
@@ -179,7 +179,7 @@ Page({
   async getAllSchedule(from: AllScheduleItem) {
     const { data: res } = await getAllSchedule(from) as unknown as IResult<any>;
     this.selectComponent("#toast_1").showToastAuto("课表查询中", "lodding");
-    if (res) {
+    if (res.all_keshes.length!==0||res.all_tables.length!==0) {
       var all_tables = res.all_tables;
       var arr = this.objHeavy(all_tables);//筛选有多少门课程
       var myarr = this.randArr(arr); //把存放课程的数组打乱
@@ -634,7 +634,6 @@ Page({
       classTitle_2 = '';
     }
     else {
-      Chargedetail = true;
       this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
     }
     this.setData({
@@ -894,7 +893,7 @@ Page({
   getTableDataFromLocal() {
     var that = this;
     var value = wx.getStorageSync('widget-allSchedule').classSchedule;
-    if (value) {
+    if (value.week.length !==0) {
       var nowWeekData: { day: string; item: never[] }[] = [];
       that.setData({
         classSchedule: value,
@@ -1258,7 +1257,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync('widget-allSchedule').all.length > 0) {
+    if (wx.getStorageSync('widget-allSchedule').all[0].classSchedule.week.length > 0) {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
       var allOne = all[0].Class;
     }
