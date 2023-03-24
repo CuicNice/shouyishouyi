@@ -17,6 +17,7 @@ Page({
     weekNum: 19,
     nowWeek: 1,
     beginSemester: '',
+    toView: '',
     nowtime: "",
     dialogTip: false,
     dark: true,
@@ -47,6 +48,12 @@ Page({
     allTimes: [] as any,
     classInfo: [] as any
   },
+  // scroll: function (e:any) {
+  //   console.log(e)
+  //   this.setData({
+  //     toView: 'item' + nowWeek,
+  //   })
+  // },
 
   /* 
   *取消学期绑定

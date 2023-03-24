@@ -29,8 +29,8 @@
   </view>
 </view>
 <view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">
-  <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
-    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
+  <scroll-view scroll-x="true" scroll-into-view="{{toView}}" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
+    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum" >
       <view class="select_one" wx:if="{{nowWeek == index+1}}">
         <ul>
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
