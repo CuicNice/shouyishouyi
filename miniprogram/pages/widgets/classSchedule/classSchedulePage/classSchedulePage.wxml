@@ -484,7 +484,7 @@
   <view class="WHQplusLeft">
     <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
   </view>
-  <view class="otherclass">
+  <view class="{{picture==''?'otherclass':'otherclassWhite'}}">
     <view class="kesehbox" wx:for="{{classSchedule.all_keshes}}" wx:key="index">
       <image class="kesheIcon"></image>
       <view class="{{bgc==''?'keshe':'kesheWhite'}}">{{item.data}}</view>

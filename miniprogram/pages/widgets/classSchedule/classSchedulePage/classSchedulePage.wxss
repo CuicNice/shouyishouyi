@@ -136,6 +136,7 @@ page {
 }
 
 .navigationBar {
+  height: 12%;
   width: 100%;
   display: flex;
   margin-right: 302rpx;
@@ -185,7 +186,7 @@ page {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 14rpx 24rpx 12rpx;
+  padding: 14rpx 18rpx 14rpx;
   gap: 24rpx;
   height: 80rpx;
 }
@@ -201,20 +202,7 @@ page {
   background: rgba(255, 255, 255, 0.9);
 }
 
-.select_which {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 6rpx 16rpx;
-  gap: 20rpx;
-  width: 94rpx;
-  height: 54rpx;
-  background: #FFFFFF;
-  box-shadow: 0rpx 0rpx 16rpx rgba(32, 195, 140, 0.13);
-  border-radius: 10rpx;
-  text-align: center;
-}
+
 .top {
   display: flex;
   justify-content: start;
@@ -326,7 +314,7 @@ page {
   width: 100%;
   display: flex;
   position: absolute;
-  background: rgba(255, 255, 255, 0.8);
+  /* background: rgba(255, 255, 255, 0.8); */
 }
 
 .WHQplusLeft {
@@ -357,6 +345,7 @@ page {
   line-height: 34rpx;
   text-align: center;
   color: #292945;
+  margin-left: 9rpx;
 }
 
 .otherCoursesWhite {
@@ -471,6 +460,7 @@ page {
   /* padding-top: 12rpx; */
   width: 90%;
   position: relative;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .otherclassWhite {
@@ -1330,7 +1320,8 @@ page {
   width: 48rpx;
   height: 48rpx;
   margin-left: 18rpx;
-  transform: translate(0rpx, 130rpx);
+  transform: translate(0rpx, 125rpx);
+  /* background-color: aquamarine; */
 }
 
 .NewIconLeft {
@@ -1351,7 +1342,8 @@ page {
   width: 44rpx;
   height: 44rpx;
   margin-left: 26rpx;
-  transform: translate(0rpx, 130rpx);
+  transform: translate(0rpx, 125rpx);
+  /* background-color: cyan; */
 }
 
 .switchIcon {
@@ -1362,9 +1354,9 @@ page {
 .flushIconBox {
   width: 44rpx;
   height: 44rpx;
-  transform: translate(0rpx, 130rpx);
+  transform: translate(0rpx, 125rpx);
   margin-left: 28rpx;
-
+ /* background-color: darkolivegreen; */
 }
 
 .flushIcon {
@@ -1383,16 +1375,19 @@ page {
 }
 
 .TitleLeft {
-  margin-top: 50rpx;
+  /* margin-top: 50rpx; */
   height: 142rpx;
   width: 200rpx;
-  transform: translate(80rpx, 15rpx);
+  transform: translate(80rpx, 80rpx);
+  /* background-color: indianred; */
 }
 
 .WeekOption {
   display: flex;
   justify-content: center;
-  padding-top: 20rpx;
+  align-items: center;
+  /* padding-top: 20rpx; */
+  /* background-color: hotpink; */
 }
 
 .text-WeekOption {
@@ -1411,7 +1406,7 @@ page {
 
 .icon-WeekOption {
   margin-left: 6rpx;
-  margin-top: 40rpx;
+  /* margin-top: 40rpx; */
   width: 44rpx;
   height: 44rpx;
   background-size: cover;
