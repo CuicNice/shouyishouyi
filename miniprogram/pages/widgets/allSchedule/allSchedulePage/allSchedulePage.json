@@ -3,7 +3,6 @@
   "usingComponents": {
     "dialogTitle":"/components/fmin-dialog/fmin-dialog",
     "dialogTitle_1":"/components/fmin-dialog/fmin-dialog",
-    "dialogTitle_2":"/components/fmin-dialog/fmin-dialog",
     "toast_1": "/components/fmin-toast/fmin-toast",
     "toast_2":"/components/fmin-toast/fmin-toast",
     "toast_3":"/components/fmin-toast/fmin-toast"

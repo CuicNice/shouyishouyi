@@ -87,7 +87,7 @@ Page({
    * 绑定数据，获取全校课表
    */
   async getbindSchdul() {
-    this.selectComponent("#toast_1").showToastAuto("查询中", "lodding");
+    this.selectComponent("#toast_1").showToastAuto("课表刷新中", "lodding");
     var allClass = this.data.allClass as any;
     var Class = this.data.Class;
     /**
@@ -178,7 +178,6 @@ Page({
   },
   async getAllSchedule(from: AllScheduleItem) {
     const { data: res } = await getAllSchedule(from) as unknown as IResult<any>;
-    this.selectComponent("#toast_1").showToastAuto("课表查询中", "lodding");
     if (res.all_keshes.length!==0||res.all_tables.length!==0) {
       var all_tables = res.all_tables;
       var arr = this.objHeavy(all_tables);//筛选有多少门课程
@@ -279,15 +278,15 @@ Page({
       myArr.time = this.data.time;
       myArr.place = this.data.schoolPlace;
       wx.setStorageSync('widget-allSchedule', myArr)
-      this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
+      this.selectComponent("#toast_1").showToastAuto("课表查询成功", "success");
     }
-    /**
-     * 延迟判断，避免请求缓慢导致出现问题
-     */
-    setTimeout(() => {
-      this.noInfo();//判断是否能请求到课表,代替了上面if的else
-    }, 500);
-
+    else{
+      this.setData({
+        classTitle: '',
+        dialogTip: true,
+      })
+    }
+      // this.noInfo();//判断是否能请求到课表,代替了上面if的else
   },
   /**
    * 绑定账号，密码，学院id，年级，对其全部班级进行查询
@@ -399,7 +398,7 @@ Page({
    * 如果没有数据时，则弹出弹窗
    */
   noInfo() {
-    if (wx.getStorageSync('widget-allSchedule').classSchedule.week.length == 0) {
+    if (wx.getStorageSync('widget-allSchedule').all[0].classSchedule.week.length == 0) {
       this.setData({
         classTitle: '',
         dialogTip: true,
@@ -508,7 +507,7 @@ Page({
         Chargedetail: false,
         classTitle: wx.getStorageSync('widget-allSchedule').all[index].Class,
       })
-      this.selectComponent("#toast_1").showToastAuto("查询中", "lodding");
+      this.selectComponent("#toast_1").showToastAuto("课表刷新中", "lodding");
       this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
     }
   },

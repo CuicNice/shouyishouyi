@@ -194,7 +194,7 @@
 </view>
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails_class">
-  <scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
+  <scroll-view wx:if="{{ifshow}}" class="classScroll1">
     <block class="block" wx:for="{{detailClass}}" wx:key="index">
       <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
         <view class="course">
@@ -387,8 +387,8 @@
   </view>
 </dialogTitle_1>
   <!-- 课表查询失败弹窗 -->
- <dialogTitle_2 class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
+ <dialogTitle class="dialogTitleClass" title="课表查询失败" stitle="暂无该班级的此学年课表" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/allSchedul/SYzhuzi.svg">
     <view style="display: flex;">
       <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
     </view>
- </dialogTitle_2>
+ </dialogTitle>
