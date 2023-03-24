@@ -48,12 +48,6 @@ Page({
     allTimes: [] as any,
     classInfo: [] as any
   },
-  // scroll: function (e:any) {
-  //   console.log(e)
-  //   this.setData({
-  //     toView: 'item' + nowWeek,
-  //   })
-  // },
 
   /* 
   *取消学期绑定
@@ -162,11 +156,15 @@ Page({
       day = this.nowWeek()
       time = new Date().toLocaleDateString();
     }
+    var toView//对滑轮中被选中的周数进行显示
+    if(day>3){
+      toView="item" + (day-3);
+    }else{toView='item0';}
     this.reGetDay(time, day);
     var value = wx.getStorageSync('widget-classSchedule');
     delete value.classSchedule
     wx.setStorageSync("widget-classSchedule", value);
-    this.setData({ weekSchedule: true, nowWeek: day });
+    this.setData({ weekSchedule: true, nowWeek: day ,toView:toView});
       this.initClassData();
       setTimeout(() => {
         let nowWeekData = this.getNowWeekData(this.data.classSchedule, day);
@@ -670,6 +668,7 @@ Page({
    * @param {被选择周次，从0开始}
    */
   selectWeek(e: { currentTarget: { dataset: { index: number } } }) {
+    console.log(e)
     var that = this;
     var index = e.currentTarget.dataset.index + 1;
     var nowWeekData = that.getNowWeekData(this.data.classSchedule, index);
@@ -869,7 +868,11 @@ Page({
         times = this.data.timeJia;
         place = "嘉鱼";
       };
-      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime });
+      var toView//对滑轮中被选中的周数进行显示
+      if(parseInt((day / 7 + 1) as unknown as string)>3){
+        toView="item" + (parseInt((day / 7 + 1) as unknown as string)-3);
+      }else{toView='item0';}
+      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime, toView:toView});
     } catch { };
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
