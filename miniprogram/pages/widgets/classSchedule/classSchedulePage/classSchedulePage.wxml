@@ -496,7 +496,7 @@
   </view>
 </view>
 <!-- 学期选择弹窗 -->
-<dialogTitle type="half-screen" showDialog="{{Semesterswitchingdetail}}">
+<dialogTitle type="half-screen" style="position: absolute;z-index: 10000;" showDialog="{{Semesterswitchingdetail}}">
   <view class="half-screen-top-box">
     <view class="dialog-iconbox">
       <image class="dialog-icon"></image>
