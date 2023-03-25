@@ -610,15 +610,19 @@ Page({
     })
     //组件序列
     var myWidgetTabListTemp = that.data.myWidgetTabListTemp
+    console.log("myWidgetTabListTemp11ww",myWidgetTabListTemp);
     try {
-      myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
+      let localTemp = wx.getStorageSync('myWidgetTabList')
+      if(localTemp!=undefined&&localTemp.length!=0){    
+        myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
+      }
     } catch {
-    }
+      
+    }  
     myWidgetTabListTemp=that.deleteBelowSplitWidget(myWidgetTabListTemp)//数据存到data中
     that.setData({
       myWidgetTabListTemp: myWidgetTabListTemp
     })
-
     that.initNewsInfo()//初始化新闻
     that.initPageData();//初始化成绩
     that.getScoreTime();//初始化成绩
@@ -634,16 +638,15 @@ Page({
    * 删除spplitLline后面的数据
    */
   deleteBelowSplitWidget(listTemp:AnyArray) {
-    var that = this
-    var tempWigetList = listTemp
-    var myWidgetTabListTemp = [] as AnyArray
-    var splitTag = 0
+    var tempWigetList = listTemp;
+    var splitTag = -1;
     for (var i = 0; i < tempWigetList.length; i++) {
       if (tempWigetList[i].name == "splitLine") {
-        splitTag = i
+        splitTag = i;
+        break;
       }
     }
-    if(tempWigetList.length!=0&&tempWigetList){
+    if(tempWigetList.length!=0&&tempWigetList&&splitTag!=-1){
       tempWigetList.splice(splitTag)
     }
     return tempWigetList
@@ -657,7 +660,10 @@ Page({
     that.getTarHeighgt();//获取顶部的状态栏信息
     var myWidgetTabListTemp = that.data.myWidgetTabListTemp
     try {
-      myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
+      let localTemp = wx.getStorageSync('myWidgetTabList')
+      if(localTemp!=undefined&&localTemp.length!=0){      
+        myWidgetTabListTemp = wx.getStorageSync('myWidgetTabList')
+      }
     } catch {
     }
     that.setData({
