@@ -21,6 +21,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    schoolTime:'',//点击学期选项时的默认变量
     xnm: 0,//学年
     xqm: 0,//学期
     njdm_id: '',//年级
@@ -121,37 +122,37 @@ Page({
       xqm = 2;
     }
     if (semesters == '大二上') {
-      schoolPlace = '武汉';
+      schoolPlace = '武昌';
       time = this.data.timeWu;
       xnm = grade - 0 + 1;
       xqm = 1;
     }
     if (semesters == '大二下') {
-      schoolPlace = '武汉';
+      schoolPlace = '武昌';
       time = this.data.timeWu;
       xnm = grade - 0 + 1;
       xqm = 2;
     }
     if (semesters == '大三上') {
-      schoolPlace = '武汉';
+      schoolPlace = '武昌';
       time = this.data.timeWu;
       xnm = grade - 0 + 2;
       xqm = 1;
     }
     if (semesters == '大三下') {
-      schoolPlace = '武汉';
+      schoolPlace = '武昌';
       time = this.data.timeWu;
       xnm = grade - 0 + 2;
       xqm = 2;
     }
     if (semesters == '大四上') {
-      schoolPlace = '武汉';
+      schoolPlace = '武昌';
       time = this.data.timeWu;
       xnm = grade - 0 + 3;
       xqm = 1;
     }
     if (semesters == '大四下') {
-      schoolPlace = '武汉';
+      schoolPlace = '武昌';
       time = this.data.timeWu;
       xnm = grade - 0 + 3;
       xqm = 2;
@@ -178,7 +179,7 @@ Page({
   },
   async getAllSchedule(from: AllScheduleItem) {
     const { data: res } = await getAllSchedule(from) as unknown as IResult<any>;
-    if (res.all_keshes.length!==0||res.all_tables.length!==0) {
+    if (res.all_keshes.length !== 0 || res.all_tables.length !== 0) {
       var all_tables = res.all_tables;
       var arr = this.objHeavy(all_tables);//筛选有多少门课程
       var myarr = this.randArr(arr); //把存放课程的数组打乱
@@ -280,13 +281,13 @@ Page({
       wx.setStorageSync('widget-allSchedule', myArr)
       this.selectComponent("#toast_1").showToastAuto("课表查询成功", "success");
     }
-    else{
+    else {
       this.setData({
         classTitle: '',
         dialogTip: true,
       })
     }
-      // this.noInfo();//判断是否能请求到课表,代替了上面if的else
+    // this.noInfo();//判断是否能请求到课表,代替了上面if的else
   },
   /**
    * 绑定账号，密码，学院id，年级，对其全部班级进行查询
@@ -324,7 +325,7 @@ Page({
       }
     } else {
       ClassArray = ['暂无信息']
-      this.selectComponent("#toast_2").showToastAuto("网络错误", "error");
+      this.selectComponent("#toast_3").showToastAuto("网络错误", "error");
     }
     this.setData({
       ClassArray: ClassArray,
@@ -502,12 +503,11 @@ Page({
     console.log(index)
     if (this.getTableDataFromLocal()) {
       this.setData({
+        Chargedetail: false,
         classSchedule: wx.getStorageSync('widget-allSchedule').all[index].classSchedule,
         allOne: wx.getStorageSync('widget-allSchedule').all[index],
-        Chargedetail: false,
         classTitle: wx.getStorageSync('widget-allSchedule').all[index].Class,
       })
-      this.selectComponent("#toast_1").showToastAuto("课表刷新中", "lodding");
       this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
     }
   },
@@ -560,6 +560,7 @@ Page({
     var academyTitle = academy;
     var classTitle_2 = semesters;
     var Chargedetail = this.data.Chargedetail;
+
     /**
      * 是否存在查询记录缓存
      */
@@ -573,55 +574,55 @@ Page({
       /**
        * 存入请求课表需要的数据 账号；密码；学年；学期；学院id；班级id；
        */
-        var allSchedul = {
-          classSchedule: this.data.classSchedule,
-          Class: this.data.Class
+      var allSchedul = {
+        classSchedule: this.data.classSchedule,
+        Class: this.data.Class
+      }
+      /**
+       * 由于最多三个，简单去重，和替换
+       */
+      first: for (var i = 0; i < 3; i++) {
+        /**
+         * 个数少，简单去重
+         */
+        for (var a = 0; a < 3; a++) {
+          if (all[a].Class == allSchedul.Class) {
+            break first;
+          }
+        };
+        /**
+         * 当第一次输入信息的时候，长度为三，因为最长也只能为3个
+         */
+        if (all.length == 0) {
+          all[0] = allSchedul
+          break first;
         }
         /**
-         * 由于最多三个，简单去重，和替换
+         * 如果输入的数据相同，则不二次存储
          */
-        first: for (var i = 0; i < 3; i++) {
-          /**
-           * 个数少，简单去重
-           */
-          for (var a = 0; a < 3; a++) {
-            if (all[a].Class == allSchedul.Class) {
-              break first;
-            }
-          };
-          /**
-           * 当第一次输入信息的时候，长度为三，因为最长也只能为3个
-           */
-          if (all.length == 0) {
-            all[0] = allSchedul
-            break first;
-          }
-          /**
-           * 如果输入的数据相同，则不二次存储
-           */
-          if (all.length == 1) {
-            all[1] = all[0];
-            all[0] = allSchedul;
-            break first;
-          }
-          if (all.length == 2) {
-            all[2] = all[1];
-            all[1] = all[0];
-            all[0] = allSchedul;
-            break first;
-          }
-          /**
-           * 满了之后再次输入，将依次替换
-           */
-          if (all.length >= 3) {
-            console.log(all[2].Class,all[1].Class,all[0].Class)
-            all[2] = all[1];
-            all[1] = all[0];
-            all[0] = allSchedul;
-            console.log(all[2].Class,all[1].Class,all[0].Class)
-            break first;
-          }
+        if (all.length == 1) {
+          all[1] = all[0];
+          all[0] = allSchedul;
+          break first;
         }
+        if (all.length == 2) {
+          all[2] = all[1];
+          all[1] = all[0];
+          all[0] = allSchedul;
+          break first;
+        }
+        /**
+         * 满了之后再次输入，将依次替换
+         */
+        if (all.length >= 3) {
+          console.log(all[2].Class, all[1].Class, all[0].Class)
+          all[2] = all[1];
+          all[1] = all[0];
+          all[0] = allSchedul;
+          console.log(all[2].Class, all[1].Class, all[0].Class)
+          break first;
+        }
+      }
       this.getbindSchdul();
       var myarr = wx.getStorageSync('widget-allSchedule');
       myarr.all = all;
@@ -649,7 +650,7 @@ Page({
    * 年级的picker弹窗的确认
    */
   bind_grade() {
-    var grade = this.data.gradeArray[this.data.gradeId];
+    var grade = this.data.gradeArray[this.data.gradeId] as unknown as number;
     var gradeTitle = grade;
     /**
      * 重新选择时，清空下面选项行内容的显示
@@ -663,18 +664,50 @@ Page({
       semesterTitle = '';
     }
     /**
+     * 进行当前学期的判断
+     */
+    var schoolTime;//学期名
+    console.log(this.data.Y as unknown as number - grade)
+    try {
+      if ((this.data.Y as unknown as number - grade == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - grade == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
+        schoolTime = '大四上';
+      };
+      if (this.data.Y as unknown as number - grade == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
+        schoolTime = '大四下';
+      };
+      if ((this.data.Y as unknown as number - grade == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - grade == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
+        schoolTime = '大三上';
+      };
+      if (this.data.Y as unknown as number - grade == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
+        schoolTime = '大三下';
+      };
+      if ((this.data.Y as unknown as number - grade == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - grade == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
+        schoolTime = '大二上';
+      };
+      if (this.data.Y as unknown as number - grade == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
+        schoolTime = '大二下';
+      };
+      if ((this.data.Y as unknown as number - grade == 0 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - grade == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
+        schoolTime = '大一上';
+      };
+      if (this.data.Y as unknown as number - grade == 0 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
+        schoolTime = '大一下';
+      };
+    } catch { };
+    /**
     * 当点击确认时，跳出来所显示的内容
     */
     var gradeTitle = grade;
     this.setData({
+      schoolTime: schoolTime,
       academyTitle: academyTitle,
       classTitle_2: classTitle_2,
       semesterTitle: semesterTitle,
-      grade: grade,
+      grade: String(grade),
       gradeId: 0,//点击确定后，重置当前项
       shownj: false,
       Chargedetail: true,
-      gradeTitle: gradeTitle,
+      gradeTitle: String(gradeTitle),
     })
   },
   /**
@@ -705,6 +738,7 @@ Page({
       academyTitle: academyTitle,
     });
     this.getbindInfo();
+    this.selectComponent("#toast_3").showToastAuto("班级刷新中", "lodding",);
   },
   /**
    * 班级的picker弹窗的确认
@@ -736,8 +770,17 @@ Page({
         continue;
       }
     }
+    /**
+     * 默认学期判断
+     */
+    for(var a=0;a<semesterArray.length;a++){
+      if(this.data.schoolTime == semesterArray[a] ){
+        break;
+      }
+    }
     var classTitle_2 = Class;
     this.setData({
+      semesterId:a,
       semesterArray: semesterArray,
       semesterTitle: semesterTitle,
       ClassId: 0,//点击确定后，重置当前项
@@ -751,6 +794,7 @@ Page({
    * 学期的picker弹窗的确认
    */
   bind_semester() {
+    console.log(this.data.semesterId)
     var semesters = this.data.semesterArray[this.data.semesterId] as any;
     var semesterTitle = semesters;
     /**
@@ -882,6 +926,7 @@ Page({
   */
   closeDialogTip() {
     this.setData({
+      classSchedule: '',
       dialogTip: false
     });
   },
@@ -892,7 +937,7 @@ Page({
   getTableDataFromLocal() {
     var that = this;
     var value = wx.getStorageSync('widget-allSchedule').classSchedule;
-    if (value.week.length !==0) {
+    if (value.week.length !== 0) {
       var nowWeekData: { day: string; item: never[] }[] = [];
       that.setData({
         classSchedule: value,

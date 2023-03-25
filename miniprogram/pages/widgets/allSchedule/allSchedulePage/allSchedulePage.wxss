@@ -111,7 +111,7 @@ page {
   width: 500rpx;
   margin-left: 60rpx;
   margin-right: 60rpx;
-  margin-bottom: 62rpx;
+  margin-bottom: 627rpx;
 }
 
 .button .cancel {
@@ -2654,6 +2654,10 @@ justify-content: space-around;
 }
 
 .dialog_2box {
+  position: absolute;
+  z-index: 1000;
+}
+.toast_3{
   position: absolute;
   z-index: 1000;
 }
