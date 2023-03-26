@@ -456,19 +456,16 @@ page {
 .otherclass {
   height: 100%;
   padding-left: 8rpx;
-  /* padding-top: 12rpx; */
   width: 91%;
   position: relative;
-  background: rgba(255, 255, 255, 0.8);
 }
 
 .otherclassWhite {
   height: 100%;
   padding-left: 8rpx;
-  /* padding-top: 12rpx; */
   width: 90%;
   position: relative;
-  /* background: rgba(255, 255, 255, 0.8); */
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .kesehbox {
