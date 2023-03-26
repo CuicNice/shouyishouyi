@@ -1,5 +1,3 @@
-/* pages/widgets/electricCharge/electricPage/electricPage.wxss */
-/* pages/Widgets/electricCharge/electricCharge.wxss */
 .bg {
   /* Entering for the first time */
   position: absolute;

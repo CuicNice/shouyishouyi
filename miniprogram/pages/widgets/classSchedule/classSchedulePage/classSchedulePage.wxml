@@ -31,15 +31,17 @@
 <view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">
   <scroll-view scroll-x="true" scroll-into-view="{{toView}}" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
     <view wx:for="{{weekNum}}" wx:key="index" class="weekNum" >
-      <view class="select_one" wx:if="{{nowWeek == index+1}}" id="item{{index}}">
+      <view class="select_one" wx:if="{{nowWeek == index+1}}" id="item{{index}}" style="{{beginWeek!=index+1?'':'width: 213rpx;'}}">
         <ul>
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
-          <view class="select_oneweek">第{{index+1}}周</view>
+          <view class="select_oneweek" wx:if="{{beginWeek!=index+1}}">第{{index+1}}周</view>
+          <view class="select_oneweek" wx:else>第{{index+1}}周(本周)</view>
         </ul>
       </view>
-      <view class="select_which" wx:else bindtap="selectWeek" data-index='{{index}}'  id="item{{index}}">
+      <view class="select_which" wx:else bindtap="selectWeek" data-index='{{index}}'  id="item{{index}}" style="{{beginWeek==index+1?'width: 150rpx;':''}}">
         <ul>
-          <view class="noselect_oneweek">第{{index+1}}周</view>
+          <view class="noselect_oneweek" wx:if="{{beginWeek!=index+1}}">第{{index+1}}周</view>
+          <view class="noselect_oneweek" wx:else>第{{index+1}}周(本周)</view>
         </ul>
       </view>
     </view>

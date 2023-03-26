@@ -16,6 +16,7 @@ Page({
     weekSchedule: true,
     weekNum: 19,
     nowWeek: 1,
+    againWeek:0,
     beginSemester: '',
     toView: '',
     nowtime: "",
@@ -89,11 +90,12 @@ Page({
     let schoolTerm = 0;//学期
     let place;//校区
     let times = {};//校区的上课时间
-    if (this.data.suorec == '大一下学期' || this.data.suorec == '大二下学期' || this.data.suorec == '大三下学期' || this.data.suorec == '大四下学期') {
+    let beginWeek=-1//判断是否要本周和非本周的显示
+    if (this.data.suorec.slice(0,5) == '大一下学期' || this.data.suorec.slice(0,5) == '大二下学期' || this.data.suorec.slice(0,5) == '大三下学期' || this.data.suorec.slice(0,5) == '大四下学期') {
       schoolTerm = schoolTerm + 12;
       start = num + '/2/19';
     };
-    if (this.data.suorec == '大一上学期' || this.data.suorec == '大二上学期' || this.data.suorec == '大三上学期' || this.data.suorec == '大四上学期') {
+    if (this.data.suorec.slice(0,5) == '大一上学期' || this.data.suorec.slice(0,5) == '大二上学期' || this.data.suorec.slice(0,5) == '大三上学期' || this.data.suorec.slice(0,5) == '大四上学期') {
       schoolTerm = schoolTerm + 3;
       start = num as unknown as number - 1 + '/8/28';
     };
@@ -117,6 +119,9 @@ Page({
       place = '武昌';
       times = this.data.timeWu;
     };
+    if(this.data.suorec.slice(0, 3)==this.data.beginSemester){
+      beginWeek=this.data.againWeek;
+    }
     this.setData({
       semester: this.data.suorec.slice(0, 3),
       Semesterswitchingdetail: false,
@@ -125,7 +130,8 @@ Page({
       time: times,
       I: schoolTerm,
       startDate: start,
-      dayTime: []
+      dayTime: [],
+      beginWeek:beginWeek
     });
     let myarr = wx.getStorageSync('widget-classSchedule');
     delete myarr.classSchedule
@@ -872,7 +878,12 @@ Page({
       if(parseInt((day / 7 + 1) as unknown as string)>3){
         toView="item" + (parseInt((day / 7 + 1) as unknown as string)-3);
       }else{toView='item0';}
-      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime, toView:toView});
+      for(let i=0;i<8;i++){//给本学年加上后缀名
+        if(schoolTime==this.data.semesterList[i].slice(0,3)){
+          this.data.semesterList[i]=this.data.semesterList[i]+"(本学年)";
+        }
+      }
+      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime, toView:toView,semesterList:this.data.semesterList,beginWeek:parseInt((day / 7 + 1) as unknown as string),againWeek:parseInt((day / 7 + 1) as unknown as string)});
     } catch { };
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
