@@ -813,16 +813,3 @@
   height: 217.10rpx;
   overflow: hidden;
 }
-.chart2{
-  /* height: 400rpx; */
-}
-.chart3{
-  /* height: 200rpx; */
-}
-/* .lightningLogo{
-  width: 128rpx;
-  height: 179.44rpx;
-  position: absolute;
-  top: 2420rpx;
-  left: 355rpx;
-} */
