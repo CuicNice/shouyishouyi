@@ -47,7 +47,7 @@ class HttpUtils {
         url: url,
         method: method,
         data: data,
-        timeout: 200000,
+        timeout: 20*1000,
         dataType: "json",
         header: {
           "Content-Type": comtentType,
