@@ -309,13 +309,6 @@ page {
   position: absolute;
 }
 
-.WHQplusWhite {
-  width: 100%;
-  display: flex;
-  position: absolute;
-  /* background: rgba(255, 255, 255, 0.8); */
-}
-
 .WHQplusLeft {
   height: 100%;
   width: 10%;
@@ -336,7 +329,6 @@ page {
 
 .otherCourses {
   width: 48rpx;
-  /* height: 68rpx; */
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
@@ -348,7 +340,6 @@ page {
 }
 
 .otherCoursesWhite {
-  /* margin-left: 20rpx; */
   width: 48rpx;
   height: 68rpx;
   font-family: 'PingFang SC';
@@ -465,7 +456,6 @@ page {
   padding-left: 8rpx;
   width: 90%;
   position: relative;
-  background: rgba(255, 255, 255, 0.8);
 }
 
 .kesehbox {
@@ -2386,7 +2376,7 @@ page {
 
 .classScroll {
   height: 1250rpx;
-  /*如果要依真机测试为主，则需要改成1200rpx*/
+  /*如果要依真机测试为主，则需要改成1250rpx*/
   display: flex;
   flex-direction: column;
 }
