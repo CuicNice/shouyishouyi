@@ -21,7 +21,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    schoolTime:'',//点击学期选项时的默认变量
+    isShowToast:true,//控制查询的弹窗能够在跳出暂无课表的时候隐藏
+    schoolTime: '',//点击学期选项时的默认变量
     xnm: 0,//学年
     xqm: 0,//学期
     njdm_id: '',//年级
@@ -38,7 +39,7 @@ Page({
     showbj: false,
     showxq: false,
     //年级的数组
-    gradeId: 0,
+    gradeId: [5],
     gradeArray: [],
     grade: '',
     //学院的数组
@@ -51,8 +52,8 @@ Page({
     ClassId: 0,
     //学期的数组
     semesters: '',
+    semesterId: [0],
     semesterArray: [],
-    semesterId: 0,
     Chargedetail: false,
     all: [],//存入的选择过的班级专业的缓存,
     allOne: '',//存入的单个缓存的数据
@@ -88,7 +89,7 @@ Page({
    * 绑定数据，获取全校课表
    */
   async getbindSchdul() {
-    this.selectComponent("#toast_1").showToastAuto("课表刷新中", "lodding");
+    this.selectComponent("#toast_1").showToastAuto("查询中", "lodding",'3');
     var allClass = this.data.allClass as any;
     var Class = this.data.Class;
     /**
@@ -275,11 +276,10 @@ Page({
        */
       var myArr = wx.getStorageSync('widget-allSchedule'); //myArr一个过渡变量
       myArr.classSchedule = classSchedule;
-      myArr.all[0].classSchedule = classSchedule;
       myArr.time = this.data.time;
       myArr.place = this.data.schoolPlace;
       wx.setStorageSync('widget-allSchedule', myArr)
-      this.selectComponent("#toast_1").showToastAuto("课表查询成功", "success");
+      this.selectComponent("#toast_1").showToastAuto("查询成功", "success",'1');
     }
     else {
       this.setData({
@@ -396,17 +396,6 @@ Page({
     wx.navigateBack();
   },
   /**
-   * 如果没有数据时，则弹出弹窗
-   */
-  noInfo() {
-    if (wx.getStorageSync('widget-allSchedule').all[0].classSchedule.week.length == 0) {
-      this.setData({
-        classTitle: '',
-        dialogTip: true,
-      })
-    }
-  },
-  /**
    * 选择年级
    */
   bindGrade(e: any) {
@@ -465,7 +454,7 @@ Page({
    * 选择学期
    */
   bindSemester(e: any) {
-    var semesterId = 0 as any;
+    var semesterId = [0] as any;
     if (this.data.grade !== '' && this.data.academy !== '' && this.data.Class !== '') {
       semesterId = e.detail.value;
     }
@@ -499,16 +488,19 @@ Page({
    * 点击底部的缓存的专业班级，查询课表
    */
   getCache(e: any) {
+    var cache = wx.getStorageSync('widget-allSchedule').all //提取缓存信息
     var index = e.currentTarget.dataset.index;
-    console.log(index)
     if (this.getTableDataFromLocal()) {
       this.setData({
-        Chargedetail: false,
-        classSchedule: wx.getStorageSync('widget-allSchedule').all[index].classSchedule,
-        allOne: wx.getStorageSync('widget-allSchedule').all[index],
-        classTitle: wx.getStorageSync('widget-allSchedule').all[index].Class,
+        semesterArray: cache[index].semesterArray,
+        allClass: cache[index].allClass,
+        grade: cache[index].grade,
+        gradeTitle: cache[index].grade,
+        academy: cache[index].academy,
+        academyTitle: cache[index].academy,
+        Class: cache[index].Class,
+        classTitle_2: cache[index].Class,
       })
-      this.selectComponent("#toast_1").showToastAuto("查询成功", "success");
     }
   },
   /**
@@ -520,6 +512,7 @@ Page({
      */
     if (wx.getStorageSync('login')) {
       this.setData({
+        isShowToast:true,
         Chargedetail: true,
         Class: '',
         academy: '',
@@ -572,11 +565,14 @@ Page({
     if (Class && semesters && academy && grade) {
       Chargedetail = false;
       /**
-       * 存入请求课表需要的数据 账号；密码；学年；学期；学院id；班级id；
+       * 存入请求课表需要的数据 学年；学院；班级；
        */
       var allSchedul = {
-        classSchedule: this.data.classSchedule,
-        Class: this.data.Class
+        semesterArray:this.data.semesterArray,//学期的数组
+        allClass: this.data.allClass,//全部班级的数组
+        grade: grade,
+        academy: academy,
+        Class: Class
       }
       /**
        * 由于最多三个，简单去重，和替换
@@ -650,7 +646,7 @@ Page({
    * 年级的picker弹窗的确认
    */
   bind_grade() {
-    var grade = this.data.gradeArray[this.data.gradeId] as unknown as number;
+    var grade = this.data.gradeArray[this.data.gradeId as any] as unknown as number;
     var gradeTitle = grade;
     /**
      * 重新选择时，清空下面选项行内容的显示
@@ -658,7 +654,7 @@ Page({
     var academyTitle = this.data.academyTitle;
     var classTitle_2 = this.data.classTitle_2;
     var semesterTitle = this.data.semesterTitle;
-    if (this.data.grade !== this.data.gradeArray[this.data.gradeId]) {
+    if (this.data.grade !== this.data.gradeArray[this.data.gradeId as any]) {
       academyTitle = '';
       classTitle_2 = '';
       semesterTitle = '';
@@ -667,8 +663,9 @@ Page({
      * 进行当前学期的判断
      */
     var schoolTime;//学期名
-    console.log(this.data.Y as unknown as number - grade)
-    try {
+    /**
+     * 当所选年级已经不是在校生的时候
+     */
       if ((this.data.Y as unknown as number - grade == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - grade == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
         schoolTime = '大四上';
       };
@@ -693,7 +690,9 @@ Page({
       if (this.data.Y as unknown as number - grade == 0 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
         schoolTime = '大一下';
       };
-    } catch { };
+      if(this.data.Y as unknown as number - grade > 3){
+        schoolTime='大一上';
+      };
     /**
     * 当点击确认时，跳出来所显示的内容
     */
@@ -704,7 +703,7 @@ Page({
       classTitle_2: classTitle_2,
       semesterTitle: semesterTitle,
       grade: String(grade),
-      gradeId: 0,//点击确定后，重置当前项
+      gradeId: [0],//点击确定后，重置当前项
       shownj: false,
       Chargedetail: true,
       gradeTitle: String(gradeTitle),
@@ -738,7 +737,7 @@ Page({
       academyTitle: academyTitle,
     });
     this.getbindInfo();
-    this.selectComponent("#toast_3").showToastAuto("班级刷新中", "lodding",);
+    this.selectComponent("#toast_3").showToastAuto("查询中", "lodding",'3');
   },
   /**
    * 班级的picker弹窗的确认
@@ -773,14 +772,14 @@ Page({
     /**
      * 默认学期判断
      */
-    for(var a=0;a<semesterArray.length;a++){
-      if(this.data.schoolTime == semesterArray[a] ){
+    for (var a = 0 ; a < semesterArray.length; a++) {
+      if (this.data.schoolTime == semesterArray[a]) {
         break;
       }
     }
     var classTitle_2 = Class;
     this.setData({
-      semesterId:a,
+      semesterId:[a] as any,
       semesterArray: semesterArray,
       semesterTitle: semesterTitle,
       ClassId: 0,//点击确定后，重置当前项
@@ -793,9 +792,8 @@ Page({
   /**
    * 学期的picker弹窗的确认
    */
-  bind_semester() {
-    console.log(this.data.semesterId)
-    var semesters = this.data.semesterArray[this.data.semesterId] as any;
+  bind_semester() { 
+    var semesters = this.data.semesterArray[this.data.semesterId as unknown as number] as any;
     var semesterTitle = semesters;
     /**
     * 获取当前年
@@ -839,7 +837,6 @@ Page({
       start: start,
       times: times,
       place: place,
-      semesterId: 0,//点击确定后，重置当前项
       semesterTitle: semesterTitle,
       showxq: false,
       Chargedetail: true,
@@ -897,10 +894,10 @@ Page({
   */
   closeDetails() {
     this.setData({
-      gradeId: 0,//点击确定后，重置当前项
+      gradeId: [0],//点击确定后，重置当前项
       academyId: 0,//点击确定后，重置当前项
       ClassId: 0,//点击确定后，重置当前项
-      semesterId: 0,//点击确定后，重置当前项
+      semesterId: [0] as any,//点击确定后，重置当前项
       shownj: false,
       showbj: false,
       showxq: false,
@@ -926,6 +923,7 @@ Page({
   */
   closeDialogTip() {
     this.setData({
+      isShowToast:false,
       classSchedule: '',
       dialogTip: false
     });
@@ -1023,8 +1021,8 @@ Page({
   async initClassData() {
     var that = this;
     if (this.getTableDataFromLocal()) {
-      that.selectComponent("#toast_1").showToastAuto("课表刷新中", "lodding");
-      that.selectComponent("#toast_1").showToastAuto("刷新成功", "success");
+      that.selectComponent("#toast_1").showToastAuto("课表刷新中", "lodding",'3');
+      that.selectComponent("#toast_1").showToastAuto("刷新成功", "success",'1');
     }
 
   },
@@ -1301,7 +1299,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync('widget-allSchedule').all[0].classSchedule.week.length > 0) {
+
+    if (wx.getStorageSync('widget-allSchedule').all[0]!=='') {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
       var allOne = all[0].Class;
     }
