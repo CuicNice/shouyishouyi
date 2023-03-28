@@ -359,7 +359,6 @@ page {
 }
 
 .leftBox {
-  /* margin-top: 16rpx; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
