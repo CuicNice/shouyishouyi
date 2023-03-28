@@ -1926,8 +1926,8 @@ page {
 .dailyScheduleAdIcon {
   width: 18rpx;
   height: 18rpx;
-  margin-top: -10rpx;
-  margin-right: 6rpx;
+  margin-top: -14rpx;
+  margin-right: 9rpx;
 }
 
 .dailyScheduleAdIcon image {
