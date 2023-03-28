@@ -286,6 +286,7 @@ Page({
       week.sort(function (a, b) {
         return parseInt(a.name) - parseInt(b.name);
       });
+      week=this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加 
       var classSchedule = {
         week: week,
         all_keshes: res.all_keshes
@@ -305,6 +306,57 @@ Page({
     }
   },
 
+   /** 
+   * 查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加 
+   */ 
+  check(week: any) { 
+    var num = -1 
+    for (var i = week[0].name; i <= week.length; i++) { 
+      if (week[i - week[0].name].name != i) { 
+        num = num + 1 
+        week.push({ 
+          name: i, 
+          data: [{ 
+            day: "星期日", 
+            item: [] 
+          }, { 
+            day: "星期一", 
+            item: [] 
+          }, { 
+            day: "星期二", 
+            item: [] 
+          }, 
+          { 
+            day: "星期三", 
+            item: [] 
+          }, { 
+            day: "星期四", 
+            item: [] 
+          }, { 
+            day: "星期五", 
+            item: [] 
+          }, 
+          { 
+            day: "星期六", 
+            item: [] 
+          } 
+          ] 
+        }) 
+        break; 
+      } 
+    } 
+    if (num != -1) { 
+      let arr: any[] = [] 
+      for (let k = week[0].name; k < i; k++) 
+        arr.push(week[k - week[0].name]) 
+      arr.push(week[week.length - 1]) 
+      for (let k = i; k < week[week.length - 2].name; k++) 
+        arr.push(week[k - week[0].name]) 
+      week = this.check(arr) 
+    } 
+    return week 
+  }, 
+ 
   /* 
   *刷新本周的日期
   */
