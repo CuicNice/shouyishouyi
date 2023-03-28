@@ -135,7 +135,7 @@ page {
 }
 
 .navigationBar {
-  height: 12%;
+  height: 11.5%;
   width: 100%;
   display: flex;
   margin-right: 302rpx;
@@ -1926,8 +1926,8 @@ page {
 .dailyScheduleAdIcon {
   width: 18rpx;
   height: 18rpx;
-  margin-top: -17rpx;
-  margin-right: 4rpx;
+  margin-top: -10rpx;
+  margin-right: 6rpx;
 }
 
 .dailyScheduleAdIcon image {
