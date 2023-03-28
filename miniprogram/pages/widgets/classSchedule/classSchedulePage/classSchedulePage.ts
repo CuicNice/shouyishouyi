@@ -14,6 +14,7 @@ Page({
     dayTime: [] as any,
     currentTab: 0,  // 当前Tab位置
     weekSchedule: true,
+    beginWeek:0,
     weekNum: 19,//最大的周数
     nowWeek: 1,
     againWeek: 0,//对当前周进行第二次拷贝
@@ -133,16 +134,7 @@ Page({
       dayTime: [],
       beginWeek: beginWeek
     });
-    let myarr = wx.getStorageSync('widget-classSchedule');
-    delete myarr.classSchedule
-    wx.setStorageSync("widget-classSchedule", myarr);
-    this.initClassData();
-    setTimeout(() => {
-      this.getDayTime();//获取每天的课程信息
-      var value = wx.getStorageSync('widget-classSchedule');
-      delete value.classSchedule
-      wx.setStorageSync("widget-classSchedule", value);
-    }, 4000);
+    this.refresh()
   },
 
   /* 
@@ -172,13 +164,6 @@ Page({
     wx.setStorageSync("widget-classSchedule", value);
     this.setData({ weekSchedule: true, nowWeek: day, toView: toView });
     this.initClassData();
-    setTimeout(() => {
-      let nowWeekData = this.getNowWeekData(this.data.classSchedule, day);
-      this.setData({ nowWeekData: nowWeekData });
-      let myarr = wx.getStorageSync('widget-classSchedule');
-      delete myarr.classSchedule;
-      wx.setStorageSync('widget-classSchedule', myarr);
-    }, 4000);
   },
 
   /**
@@ -286,7 +271,7 @@ Page({
       week.sort(function (a, b) {
         return parseInt(a.name) - parseInt(b.name);
       });
-      week=this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加 
+      week = this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加 
       var classSchedule = {
         week: week,
         all_keshes: res.all_keshes
@@ -299,64 +284,70 @@ Page({
       that.setData({
         classSchedule: classSchedule,
         nowWeekData: nowWeekData
-      }, function () {
-        utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
       })
+      this.getDayTime();//获取每天的课程信息
+      if(this.data.beginWeek>0){//保证缓存的是正确的值
+      utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
+      utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
+      utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
+      //获取日课表的日期信息并存进缓存
+      let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
+      utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)}
       that.selectComponent("#toast").showToastAuto("刷新成功", "success");
     }
   },
 
-   /** 
-   * 查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加 
-   */ 
-  check(week: any) { 
-    var num = -1 
-    for (var i = week[0].name; i <= week.length; i++) { 
-      if (week[i - week[0].name].name != i) { 
-        num = num + 1 
-        week.push({ 
-          name: i, 
-          data: [{ 
-            day: "星期日", 
-            item: [] 
-          }, { 
-            day: "星期一", 
-            item: [] 
-          }, { 
-            day: "星期二", 
-            item: [] 
-          }, 
-          { 
-            day: "星期三", 
-            item: [] 
-          }, { 
-            day: "星期四", 
-            item: [] 
-          }, { 
-            day: "星期五", 
-            item: [] 
-          }, 
-          { 
-            day: "星期六", 
-            item: [] 
-          } 
-          ] 
-        }) 
-        break; 
-      } 
-    } 
-    if (num != -1) { 
-      let arr: any[] = [] 
-      for (let k = week[0].name; k < i; k++) 
-        arr.push(week[k - week[0].name]) 
-      arr.push(week[week.length - 1]) 
-      for (let k = i; k < week[week.length - 2].name; k++) 
-        arr.push(week[k - week[0].name]) 
-      week = this.check(arr) 
-    } 
-    return week 
-  }, 
- 
+  /** 
+  * 查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加 
+  */
+  check(week: any) {
+    var num = -1
+    for (var i = week[0].name; i <= week.length; i++) {
+      if (week[i - week[0].name].name != i) {
+        num = num + 1
+        week.push({
+          name: i,
+          data: [{
+            day: "星期日",
+            item: []
+          }, {
+            day: "星期一",
+            item: []
+          }, {
+            day: "星期二",
+            item: []
+          },
+          {
+            day: "星期三",
+            item: []
+          }, {
+            day: "星期四",
+            item: []
+          }, {
+            day: "星期五",
+            item: []
+          },
+          {
+            day: "星期六",
+            item: []
+          }
+          ]
+        })
+        break;
+      }
+    }
+    if (num != -1) {
+      let arr: any[] = []
+      for (let k = week[0].name; k < i; k++)
+        arr.push(week[k - week[0].name])
+      arr.push(week[week.length - 1])
+      for (let k = i; k < week[week.length - 2].name; k++)
+        arr.push(week[k - week[0].name])
+      week = this.check(arr)
+    }
+    return week
+  },
+
   /* 
   *刷新本周的日期
   */
@@ -484,9 +475,8 @@ Page({
    * 初始化课表数据
    */
   async initClassData() {
-    var that = this;
     if (!this.getTableDataFromLocal()) {
-      that.selectComponent("#toast").showToast("课表刷新中", "lodding");
+      this.selectComponent("#toast").showToast("课表刷新中", "lodding");
       await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I) as any;
     }
     var num = 0;
@@ -932,26 +922,15 @@ Page({
     } catch { };
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
-    console.log(wx.getStorageSync('widget-classSchedule').classSchedule)
     if (wx.getStorageSync('widget-classSchedule').classSchedule) {
-      this.reGetDay(time, this.data.nowWeek)
       this.getDayTime();//获取每天的课程信息
       utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
       utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
       //获取日课表的日期信息并存进缓存
       let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
       utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
-    } else {
-      setTimeout(() => {
-        this.reGetDay(time, this.data.nowWeek)
-        this.getDayTime();//获取每天的课程信息
-        utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
-        utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
-        //获取日课表的日期信息并存进缓存
-        let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
-        utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
-      }, 4000);
-    };//倒计时避免没有课表缓存造成当周课表无法显示
+    }
+    this.reGetDay(time, this.data.nowWeek)
   },
 
   /**
