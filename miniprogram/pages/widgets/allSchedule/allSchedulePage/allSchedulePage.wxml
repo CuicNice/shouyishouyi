@@ -16,17 +16,19 @@
   </view>
 </view>
 <view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">
-  <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
-    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
-      <view class="select_one" wx:if="{{nowWeek == index+1}}">
+  <scroll-view scroll-x="true" scroll-into-view="{{toView}}" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
+    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum" >
+      <view class="select_one" wx:if="{{nowWeek == index+1}}" id="item{{index}}" style="{{beginWeek!=index+1?'':'width: 213rpx;'}}">
         <ul>
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
-          <view class="select_oneweek">第{{index+1}}周</view>
+          <view class="select_oneweek" wx:if="{{beginWeek!=index+1}}">第{{index+1}}周</view>
+          <view class="select_oneweek" wx:else>第{{index+1}}周(本周)</view>
         </ul>
       </view>
-      <view class="select_which" wx:else bindtap="selectWeek" data-index='{{index}}'>
+      <view class="select_which" wx:else bindtap="selectWeek" data-index='{{index}}'  id="item{{index}}" style="{{beginWeek==index+1?'width: 150rpx;':''}}">
         <ul>
-          <view class="noselect_oneweek">第{{index+1}}周</view>
+          <view class="noselect_oneweek" wx:if="{{beginWeek!=index+1}}">第{{index+1}}周</view>
+          <view class="noselect_oneweek" wx:else>第{{index+1}}周(本周)</view>
         </ul>
       </view>
     </view>
@@ -38,8 +40,7 @@
       <text class="smallBoxtxt">{{schoolPlace}}校区</text>
     </view>
     <!-- 周和日期-->
-    <!-- {{picture==''?'smallBox':'smallBoxWhite'}} -->
-    <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}">
+    <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}" style="{{bgc==''?'':'border-bottom: 2rpx solid rgba(86, 86, 86, 0.6);'}}">
       <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周日</view>
@@ -128,36 +129,37 @@
   </view>
   <view class="WHQscroll" wx:if="{{weekSchedule}}">
     <scroll-view class="classScroll" scroll-y="true">
-      <view style="width:100%;display:flex;">
-        <view class="{{picture==''?'leftBox':'leftBoxWhite'}}">
+      <view style="width:100%;display:flex;height: 111%;">
+        <view class="{{picture==''?'leftBox':'leftBoxWhite'}}" style="{{bgc==''?'':'border-right: 2rpx solid rgba(86, 86, 86, 0.6);'}}">
           <view class="timeTable" wx:for="{{time}}" wx:key="index">
             <view class="{{bgc==''?'number':'numberWhite'}}">{{index+1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time1}}</view>
             <view class="{{bgc==''?'time':'timeWhite'}}">{{item.time2}}</view>
-            <view style="{{(index+1)%4==0?'border-bottom: 2rpx solid #20C38C;width:100%;transform: translateY(6rpx)':''}}"></view>
-            <view style="{{(index+1)==(index+1)?'border-bottom:2rpx dashed #eaeaec;width:1300rpx;z-index=-10;transform: translateX(690rpx)':''}}"></view>
+            <view style="{{(index+1)%4==0?'border-bottom: 2rpx solid #20C38C;width:100%;transform: translateY(5rpx)':''}}"></view>
+            <view wx:if="{{bgc==''}}" style="{{(index+1)==(index+1)?'border-bottom:2rpx dashed rgba(41, 41, 69, 0.1);width:1300rpx;z-index=-10;transform: translateX(690rpx)':''}}"></view>
+            <view wx:if="{{!bgc==''}}" style="{{(index+1)==(index+1)?'border-bottom:2rpx dashed #565656;width:1300rpx;z-index=-10;transform: translateX(690rpx)':''}}"></view>
           </view>
         </view>
         <!--课表-->
         <block wx:for="{{weekTime}}" wx:key="index">
-           <!-- 本周 -->
-           <view wx:if="{{dark}}">
+          <!-- 本周 -->
+          <view wx:if="{{dark}}">
             <view class="table-day" wx:if="{{!showAll}}">
-              <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*115.4}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
-                <view class="flex-item-single" style="background: {{table.colorDark}};height: {{115*table.num.length-6}}rpx;color: #F5F5F5;">
+              <view style="height: {{103*table.num.length+13*(table.num.length-1)}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
+                <view class="flex-item-single" style="background: {{table.colorDark}};height: {{103*table.num.length-6+13*(table.num.length-1)}}rpx;color: #F5F5F5;">
                   <view class="smalltext">{{table.name}}</view>
                   <view class="smalltextad">{{table.local}}</view>
                 </view>
               </view>
             </view>
             <view class="table-day" wx:if="{{showAll}}">
-              <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" bindtap="showClassDetail" data-cls="{{table}}" wx:for="{{nowWeekData[index].item}}" wx:for-item="table" wx:key="index">
-                <view class="flex-item-double" wx:if="{{table.double==true}}" style="background:{{table.zindex == 3?table.colorDark:'rgba(198, 198, 198, 0.6)'}} ;height: {{115*table.num.length-11}}rpx;z-index: {{table.zindex}};;color: #F5F5F5;">
+              <view style="height: {{103*table.num.length+13*(table.num.length-1)}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" bindtap="showClassDetail" data-cls="{{table}}" wx:for="{{nowWeekData[index].item}}" wx:for-item="table" wx:key="index">
+                <view class="flex-item-double" wx:if="{{table.double==true}}" style="background:{{table.zindex == 3?table.colorDark:'rgba(198, 198, 198, 0.6)'}} ;height: {{103*table.num.length-11+13*(table.num.length-1)}}rpx;z-index: {{table.zindex}};color: #F5F5F5;">
                   <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view>
                   <view class="smalltext">{{table.name}}</view>
                   <view class="smalltextad">{{table.local}}</view>
                 </view>
-                <view class="flex-item-single" wx:else style="background:{{table.zindex == 3?table.colorDark:'rgba(198, 198, 198, 0.6)'}} ;height: {{115*table.num.length-6}}rpx;z-index: {{table.zindex}};;color: #F5F5F5;">
+                <view class="flex-item-single" wx:else style="background:{{table.zindex == 3?table.colorDark:'rgba(198, 198, 198, 0.6)'}} ;height: {{103*table.num.length-6+13*(table.num.length-1)}}rpx;z-index: {{table.zindex}};color: #F5F5F5;">
                   <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view>
                   <view class="smalltext">{{table.name}}</view>
                   <view class="smalltextad">{{table.local}}</view>
@@ -167,10 +169,24 @@
           </view>
           <view wx:if="{{!dark}}">
             <view class="table-day" wx:if="{{!showAll}}">
-              <view style="height: {{115*table.num.length}}rpx;margin-top:{{(table.num[0]-1)*120}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
-                <view class="flex-item-single" style="background: {{table.colorlight}};height: {{115*table.num.length-6}}rpx;color: {{table.colorzi}};">
+              <view style="height: {{103*table.num.length+13*(table.num.length-1)}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
+                <view class="flex-item-single" style="background: {{table.colorlight}};height: {{103*table.num.length-6+13*(table.num.length-1)}}rpx;color: {{table.colorzi}};">
                   <view class="smalltext">{{table.name}}</view>
                   <view class="smalltextad">{{table.local}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="table-day" wx:if="{{showAll}}">
+              <view style="height: {{103*table.num.length+13*(table.num.length-1)}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" bindtap="showClassDetail" data-cls="{{table}}" wx:for="{{nowWeekData[index].item}}" wx:for-item="table" wx:key="index">
+                <view class="flex-item-double" wx:if="{{table.double==true}}" style="background:{{table.zindex == 3?table.colorlight:'rgba(198, 198, 198, 0.6)'}} ;height: {{103*table.num.length-11+13*(table.num.length-1)}}rpx;z-index: {{table.zindex}};">
+                  <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view>
+                  <view class="smalltext" style="color: {{table.zindex == 3?table.colorzi:'#F5F5F5'}};">{{table.name}}</view>
+                  <view class="smalltextad" style="color: {{table.zindex == 3?table.colorzi:'#F5F5F5'}};">{{table.local}}</view>
+                </view>
+                <view class="flex-item-single" wx:else style="background:{{table.zindex == 3?table.colorlight:'rgba(198, 198, 198, 0.6)'}} ;height: {{103*table.num.length-6+13*(table.num.length-1)}}rpx;z-index: {{table.zindex}};">
+                  <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view>
+                  <view class="smalltext" style="color: {{table.zindex == 3?table.colorzi:'#F5F5F5'}};">{{table.name}}</view>
+                  <view class="smalltextad" style="color: {{table.zindex == 3?table.colorzi:'#F5F5F5'}};">{{table.local}}</view>
                 </view>
               </view>
             </view>
@@ -178,11 +194,11 @@
         </block>
       </view>
       <!-- 其他课程 -->
-      <view class="{{picture==''?'WHQplus':'WHQplusWhite'}}">
+      <view class="WHQplus">
         <view class="WHQplusLeft">
           <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
         </view>
-        <view class="otherclass">
+        <view class="{{bgc==''?'otherclass':'otherclassWhite'}}" style="{{picture==''?'':'background-color:rgba(255, 255, 255, 0.8);'}}">
           <view class="kesehbox" wx:for="{{classSchedule.all_keshes}}" wx:key="index">
             <image class="kesheIcon"></image>
             <view class="{{bgc==''?'keshe':'kesheWhite'}}">{{item.data}}</view>
@@ -192,35 +208,336 @@
     </scroll-view>
   </view>
 </view>
+<!-- 日课表主页 -->
+<scroll-view scroll-y class="scroll" wx:if="{{!weekSchedule}}" style='background-color: {{bgc}};'>
+  <view class="maskingOut" wx:if="{{!picture==''}}"></view>
+  <view class="dailyScheduleNavigation">
+    <swiper current="{{currentTab}}" bindchange="handleSwiperChange" class="swiper_container">
+      <swiper-item class="dailyNavigationtext" wx:for="{{allTimes}}" wx:key='index'>
+        <scroll-view scroll-y>
+          <block>
+            <view class="{{bgc==''?'dailyNavigationtext':'dailyNavigationtextWhite'}}">第{{filters.toFix(index/7+1)}}周 {{item.month}}月{{item.data}}日 {{item.week}}（日程表）</view>
+          </block>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 深色系版的日课表 -->
+  <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{dark}}">
+    <view class="dailyScheduleIndexList" wx:if="{{nowDate==allTimes[currentTab-num].month+'/'+allTimes[currentTab-num].data}}">
+      <view class="dailyScheduleTimeBox" wx:if="{{bgc==''}}">
+        <view class="dailyScheduleTime">
+          <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[0]-1].time1}}</view>
+          <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}"></view>
+          <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
+      </view>
+      <view class="dailyScheduleTimeBox" wx:if="{{!bgc==''}}">
+        <view class="dailyScheduleTime">
+          <view class="{{bgc==''?'dailyScheduleTime1White':'dailyScheduleTime1'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: white;':''}}">{{time[item.num[0]-1].time1}}</view>
+          <view class="{{bgc==''?'dailyScheduleTimeLineWhite':'dailyScheduleTimeLine'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'border: 2rpx solid white':''}}"></view>
+          <view class="{{bgc==''?'dailyScheduleTime1White':'dailyScheduleTime1'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: white;':''}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
+      </view>
+      <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]].time2?false:true}}">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClass">{{item.name}}</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="dailyScheduleAdIcon">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAd">{{item.local}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
+            <view class="whichKc">第{{item.old_num}}</view>
+            <view class="whichTc">{{item.teacher}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleBd">
+          <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
+          <image class="academicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
+          <image class="computerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
+          <image class="electromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
+          <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
+          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
+          <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
+          <image class="ground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
+        </view>
+      </view>
+      <view class="dailyScheduleBox" wx:else style="background-color: {{item.colorDark}};">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClassWhite">{{item.name}}</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="dailyScheduleAdIconWhite">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAdWhite">{{item.local}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
+            <view class="whichKcWhite">第{{item.old_num}}</view>
+            <view class="whichTcWhite">{{item.teacher}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleBd">
+          <image class="noacademicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
+          <image class="nocollegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
+          <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
+          <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
+          <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
+          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
+          <image class="noeighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
+          <image class="noground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
+        </view>
+      </view>
+    </view>
+    <view class="dailyScheduleIndexList" wx:else>
+      <view class="dailyScheduleTimeBox" wx:if="{{bgc==''}}">
+        <view class="dailyScheduleTime">
+          <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}" >{{time[item.num[0]-1].time1}}</view>
+          <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"></view>
+          <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}" >{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
+      </view>
+      <view class="dailyScheduleTimeBox" wx:if="{{!bgc==''}}">
+        <view class="dailyScheduleTime">
+          <view class="{{bgc==''?'dailyScheduleTime1White':'dailyScheduleTime1'}}" >{{time[item.num[0]-1].time1}}</view>
+          <view class="{{bgc==''?'dailyScheduleTimeLineWhite':'dailyScheduleTimeLine'}}"></view>
+          <view class="{{bgc==''?'dailyScheduleTime1White':'dailyScheduleTime1'}}" >{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
+      </view>
+      <view class="dailyScheduleBox" style="background-color: {{item.colorDark}};">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClassWhite">{{item.name}}</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="dailyScheduleAdIconWhite">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAdWhite">{{item.local}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
+            <view class="whichKcWhite">第{{item.old_num}}</view>
+            <view class="whichTcWhite">{{item.teacher}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleBd">
+          <image class="noacademicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
+          <image class="nocollegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
+          <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
+          <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
+          <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
+          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
+          <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
+          <image class="ground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 浅色系版的日课表 -->
+  <view class="dailyScheduleIndex" wx:for="{{dayTime[currentTab-num].dateString}}" wx:key="index" wx:if="{{!dark}}">
+    <view class="dailyScheduleIndexList"  wx:if="{{nowDate==allTimes[currentTab-num].month+'/'+allTimes[currentTab-num].data}}">
+      <view class="dailyScheduleTimeBox" wx:if="{{bgc==''}}">
+        <view class="dailyScheduleTime">
+          <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[0]-1].time1}}</view>
+          <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}"></view>
+          <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: black;':''}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
+      </view>
+      <view class="dailyScheduleTimeBox" wx:if="{{!bgc==''}}">
+        <view class="dailyScheduleTime">
+          <view class="{{bgc==''?'dailyScheduleTime1White':'dailyScheduleTime1'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: white;':''}}">{{time[item.num[0]-1].time1}}</view>
+          <view class="{{bgc==''?'dailyScheduleTimeLineWhite':'dailyScheduleTimeLine'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'border: 2rpx solid white':''}}"></view>
+          <view class="{{bgc==''?'dailyScheduleTime1White':'dailyScheduleTime1'}}" style="{{nowtime>time[item.num[0]-1].time1&&nowtime<time[item.num[item.num.length-1]-1].time2?'color: white;':''}}">{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
+      </view>
+      <view class="dailyScheduleBox" wx:if="{{nowtime<time[item.num[0]].time2?false:true}}">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClass">{{item.name}}</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="dailyScheduleAdIcon">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAd">{{item.local}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
+            <view class="whichKc">第{{item.old_num}}</view>
+            <view class="whichTc">{{item.teacher}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleBd">
+          <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
+          <image class="academicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
+          <image class="computerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
+          <image class="electromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
+          <image class="chengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
+          <image class="informationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
+          <image class="eighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
+          <image class="ground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
+        </view>
+      </view>
+      <view class="dailyScheduleBox" wx:else style="background-color: {{item.colorlight}};">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClassWhite" style="color: {{item.colorzi}};">{{item.name}}</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="dailyScheduleAdIconWhite">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAdWhite" style="color: {{item.colorzi}};">{{item.local}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
+            <view class="whichKcWhite" style="color: {{item.colorzi}};">第{{item.old_num}}</view>
+            <view class="whichTcWhite" style="color: {{item.colorzi}};">{{item.teacher}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleBd">
+          <image class="nocollegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
+          <image class="noacademicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
+          <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
+          <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
+          <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
+          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
+          <image class="noeighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
+          <image class="noground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
+        </view>
+      </view>
+    </view>
+    <view class="dailyScheduleIndexList"  wx:else>
+      <view class="dailyScheduleTimeBox" wx:if="{{bgc==''}}">
+        <view class="dailyScheduleTime">
+          <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}" >{{time[item.num[0]-1].time1}}</view>
+          <view class="{{bgc==''?'dailyScheduleTimeLine':'dailyScheduleTimeLineWhite'}}"></view>
+          <view class="{{bgc==''?'dailyScheduleTime1':'dailyScheduleTime1White'}}" >{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
+      </view>
+      <view class="dailyScheduleTimeBox" wx:if="{{!bgc==''}}">
+        <view class="dailyScheduleTime">
+          <view class="{{bgc==''?'dailyScheduleTime1White':'dailyScheduleTime1'}}" >{{time[item.num[0]-1].time1}}</view>
+          <view class="{{bgc==''?'dailyScheduleTimeLineWhite':'dailyScheduleTimeLine'}}"></view>
+          <view class="{{bgc==''?'dailyScheduleTime1White':'dailyScheduleTime1'}}" >{{time[item.num[item.num.length-1]-1].time2}}</view>
+        </view>
+      </view>
+      <view class="dailyScheduleBox" style="background-color: {{item.colorlight}};">
+        <view class="dailySchedule">
+          <view class="dailyScheduleClassBox">
+            <view class="dailyScheduleClassWhite" style="color: {{item.colorzi}};">{{item.name}}</view>
+          </view>
+          <view class="dailyScheduleAdBox">
+            <view class="dailyScheduleAdIconWhite">
+              <image></image>
+            </view>
+            <view class="dailyScheduleAdWhite" style="color: {{item.colorzi}};">{{item.local}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
+            <view class="whichKcWhite" style="color: {{item.colorzi}};">第{{item.old_num}}</view>
+            <view class="whichTcWhite" style="color: {{item.colorzi}};">{{item.teacher}}</view>
+          </view>
+        </view>
+        <view class="dailyScheduleBd">
+          <image class="nocollegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
+          <image class="noacademicBuilding" wx:if="{{item.alonePlace == '教学'}}"></image>
+          <image class="nocomputerBuilding" wx:if="{{item.alonePlace == '计-'}}"></image>
+          <image class="noelectromechanicalBuilding" wx:if="{{item.alonePlace == '机电'}}"></image>
+          <image class="nochengxueBuilding" wx:if="{{item.alonePlace == '11'}}"></image>
+          <image class="noinformationExperimentBuilding" wx:if="{{item.alonePlace == '信-'}}"></image>
+          <image class="noeighteenTeach" wx:if="{{item.alonePlace == '18'}}"></image>
+          <image class="noground" wx:if="{{item.alonePlace == '田径'||item.alonePlace == '体育'}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<!-- 日课表的其他课程 -->
+<view class="WHQplus" style="{{dayTime[currentTab-num].dateString.length==0||dayTime[currentTab-num].dateString.length==null?'top:270rpx':'bottom: 0;'}}" wx:if="{{!weekSchedule}}">
+  <view class="WHQplusLeft">
+    <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
+  </view>
+  <view class="{{picture==''?'otherclass':'otherclassWhite'}}">
+    <view class="kesehbox" wx:for="{{classSchedule.all_keshes}}" wx:key="index">
+      <image class="kesheIcon"></image>
+      <view class="{{bgc==''?'keshe':'kesheWhite'}}">{{item.data}}</view>
+    </view>
+  </view>
+  <!-- 日课表没有课的状态 -->
+  <view class="nodailyScheduleIndex">
+    <image class="nodailyScheduleIndexImg"></image>
+  </view>
+</view>
+<!-- 学期选择弹窗 -->
+<dialogTitle type="half-screen" style="position: absolute;z-index: 10000;" showDialog="{{Semesterswitchingdetail}}">
+  <view class="half-screen-top-box">
+    <view class="dialog-iconbox">
+      <image class="dialog-icon"></image>
+      <view class="title">请选择学期</view>
+    </view>
+    <view class="semesterpicker">
+      <picker-view indicator-style="height: 56px; text-align: center;" mask-style="opacity:0;z-index:0;" style="width: 120%; height: 270rpx;text-align:center; line-height: 100rpx;margin-top: 40rpx;" bindchange="SchoolTermChange" value="{{selectedIdx}}">
+        <!--Columns-->
+        <picker-view-column>
+          <view class="{{suorec==semesterList[index]?'active':'noactive'}}" wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+  <view class="button">
+    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancelBindSchoolTermCharge">
+      <text>取消</text>
+    </button>
+    <button type="primary" class="primary" data-index="{{item}}" id="{{item}}" bindtap="bindSchoolTermCharge">
+      <text>完成</text>
+    </button>
+  </view>
+</dialogTitle>
 <!--课程的具体详情-->
-<view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails_class">
-  <scroll-view wx:if="{{ifshow}}" class="classScroll1">
+<view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails">
+  <scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
     <block class="block" wx:for="{{detailClass}}" wx:key="index">
       <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
         <view class="course">
           <view class="courseName">{{item.name}}</view>
           <view class="courseifBox">
-            <view class="courseif" style="color: white;">本周</view>
+            <view class="courseif" wx:if="{{item.zindex==3}}" style="color: white;">本周</view>
+            <view class="courseif1" wx:else style="color:#757575;">非本周</view>
           </view>
         </view>
         <view class="courseOther">
           <view class="courseplace">
-            <image class="courseplaceImage" src="../../../../static/svg/didian.svg" />
+            <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/didian.svg':'../../../../static/svg/gareyplace.svg'}}" />
             <view class="cuorseGuding">地点:</view>
             <view class="cuorseXuigai">{{item.local}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="../../../../static/svg/teacher.svg" />
+            <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/teacher.svg':'../../../../static/svg/gareyteacher.svg'}}" />
             <view class="cuorseGuding">老师:</view>
             <view class="cuorseXuigai">{{item.teacher}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="../../../../static/svg/jieshu.svg" />
+            <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/jieshu.svg':'../../../../static/svg/gareytime.svg'}}" />
             <view class="cuorseGuding">节数:</view>
             <view class="cuorseXuigai">{{item.day}} | 第{{item.old_num}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="../../../../static/svg/zhuoci.svg" />
+            <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/zhuoci.svg':'../../../../static/svg/gareyzho.svg'}}" />
             <view class="cuorseGuding">周次:</view>
             <view class="cuorseXuigai">{{item.old_day_num}}</view>
           </view>
@@ -231,7 +548,7 @@
 </view>
  <toast_1 id="toast_1" wx:if="{{isShowToast}}"></toast_1>
 <!-- 选择学期学年部分 -->
-<dialogTitle_1 class="dialogBox" type="half-screen" wx:if="{{Chargedetail}}" showDialog="true" catchtouchmove="true">
+<dialogTitle_1 class="dialogBox" type="half-screen" wx:if="{{Chargedetail}}" showDialog="true" >
   <toast_2 id="toast_2"></toast_2>
   <view class="chooseBox" wx:if="{{!(shownj||showbj||showxy||showxq)}}">
     <view class="chooseTop">
