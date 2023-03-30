@@ -53,7 +53,6 @@
       <text class="smallBoxtxt">{{schoolPlace}}校区</text>
     </view>
     <!-- 周和日期-->
-    <!-- {{picture==''?'smallBox':'smallBoxWhite'}} -->
     <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}" style="{{bgc==''?'':'border-bottom: 2rpx solid rgba(86, 86, 86, 0.6);'}}">
       <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
         <view class="week">
