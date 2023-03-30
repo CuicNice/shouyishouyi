@@ -89,7 +89,7 @@ Page({
    * 绑定数据，获取全校课表
    */
   async getbindSchdul() {
-    this.selectComponent("#toast_1").showToastAuto("查询中", "lodding",'3');
+    this.selectComponent("#toast_1").showToastAuto("查询中", "lodding",'5');
     var allClass = this.data.allClass as any;
     var Class = this.data.Class;
     /**
@@ -773,7 +773,6 @@ Page({
     /**
      * 默认学期判断
      */
-    console.log(this.data.schoolTime.slice(0,2) )
     for (var a = 0 ; a < semesterArray.length; a++) {
       //专科
       if(semesterArray.length == 6){
