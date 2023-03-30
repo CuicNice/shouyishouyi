@@ -417,7 +417,7 @@ Page({
       gradeId: e.detail.value,
     })
   },
-  /**
+   /**
     * 选择学院
     */
   bindAcademy(e: any) {
@@ -662,10 +662,8 @@ Page({
     /**
      * 进行当前学期的判断
      */
-    var schoolTime;//学期名
-    /**
-     * 当所选年级已经不是在校生的时候
-     */
+      var schoolTime;//学期名
+      
       if ((this.data.Y as unknown as number - grade == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - grade == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
         schoolTime = '大四上';
       };
@@ -690,6 +688,9 @@ Page({
       if (this.data.Y as unknown as number - grade == 0 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
         schoolTime = '大一下';
       };
+    /**
+     * 当所选年级已经不是在校生的时候
+     */
       if(this.data.Y as unknown as number - grade > 3){
         schoolTime='大一上';
       };
@@ -772,9 +773,33 @@ Page({
     /**
      * 默认学期判断
      */
+    console.log(this.data.schoolTime.slice(0,2) )
     for (var a = 0 ; a < semesterArray.length; a++) {
-      if (this.data.schoolTime == semesterArray[a]) {
-        break;
+      //专科
+      if(semesterArray.length == 6){
+        if(this.data.schoolTime.slice(0,2) !== '大四'){
+          if (this.data.schoolTime == semesterArray[a]) {
+          break;
+      }
+        }else{
+          break;
+        }
+      }
+      //专升本
+      if(semesterArray.length == 4){
+        if(this.data.schoolTime.slice(0,2) !== '大一'||this.data.schoolTime.slice(0,2) !== '大二'){
+          if (this.data.schoolTime == semesterArray[a]) {
+          break;
+      }
+        }else{
+          break;
+        }
+      }
+      //本
+      if(semesterArray.length == 8){
+          if (this.data.schoolTime == semesterArray[a]) {
+          break;
+      }
       }
     }
     var classTitle_2 = Class;
@@ -935,7 +960,7 @@ Page({
   getTableDataFromLocal() {
     var that = this;
     var value = wx.getStorageSync('widget-allSchedule').classSchedule;
-    if (value.week.length !== 0) {
+    if (value.week !== []) {
       var nowWeekData: { day: string; item: never[] }[] = [];
       that.setData({
         classSchedule: value,
@@ -1300,7 +1325,7 @@ Page({
    */
   onShow: function () {
 
-    if (wx.getStorageSync('widget-allSchedule').all[0]!=='') {
+    if (wx.getStorageSync('widget-allSchedule').classSchedule!==0) {
       var all = wx.getStorageSync('widget-allSchedule').all as any;
       var allOne = all[0].Class;
     }
