@@ -662,7 +662,7 @@ Page({
     var gradeTitle = grade;
     var semesterTitle = Class;
     var academyTitle = academy;
-    var classTitle_2 = semesters;
+    var classTitle_2 = Class;
     var Chargedetail = this.data.Chargedetail;
 
     /**
@@ -751,7 +751,7 @@ Page({
       gradeTitle: gradeTitle,
       semesterTitle: semesterTitle,
       academyTitle: academyTitle,
-      classTitle_2:this.data.classTitle_2,
+      classTitle_2:classTitle_2,
       all: all,
     })
   },
@@ -913,7 +913,6 @@ Page({
    var arr = ['大一上学期', '大一下学期', '大二上学期', '大二下学期',];
           if (this.data.schoolTime == arr[a].slice(0, 3)) {
           break;
-
         }
       }
       //本
@@ -1432,7 +1431,6 @@ Page({
     var schoolTerm;//储存学期的变量
     var year = 0;//储存年份的变量
     var start;//开始上课的时间
-    var schoolTime;//学期名
     var times = wx.getStorageSync('widget-allSchedule').time.length == 0 ? this.data.timeJia : wx.getStorageSync('widget-allSchedule').time;//校区的上课时间
     var place = wx.getStorageSync('widget-allSchedule').place.length == 0 ? this.data.schoolPlace : wx.getStorageSync('widget-allSchedule').place;//校区
 

@@ -172,7 +172,7 @@
 </view>
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails_class">
-  <scroll-view wx:if="{{ifshow}}" class="classScroll1" >
+  <scroll-view scroll-x="true" wx:if="{{ifshow}}" class="classScroll1" >
     <block class="block" wx:for="{{detailClass}}" wx:key="index">
       <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
         <view class="course">
