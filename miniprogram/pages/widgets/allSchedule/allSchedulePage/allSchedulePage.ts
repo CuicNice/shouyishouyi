@@ -885,7 +885,7 @@ Page({
       }
     }
     if(this.data.Y as unknown as number-Number(this.data.grade)<=4){
-        for (let i = 0; i < 8; i++) {//给本学年加上后缀名
+        for (let i = 0; i <semesterArray.length ; i++) {//给本学年加上后缀名
       if (this.data.schoolTime == semesterArray[i].slice(0, 3)) {
           semesterArray[i] = semesterArray[i] + "(本学年)";
           break;
@@ -903,17 +903,17 @@ Page({
           break;
       }
         }else{
+          a = 0;
           break;
         }
       }
       //专升本
       if(semesterArray.length == 4){
-        if(this.data.schoolTime.slice(0,2) !== '大一'||this.data.schoolTime.slice(0,2) !== '大二'){
-          if (this.data.schoolTime == semesterArray[a].slice(0, 3)) {
+   //假设专升本是大一大二
+   var arr = ['大一上学期', '大一下学期', '大二上学期', '大二下学期',];
+          if (this.data.schoolTime == arr[a].slice(0, 3)) {
           break;
-      }
-        }else{
-          break;
+
         }
       }
       //本
