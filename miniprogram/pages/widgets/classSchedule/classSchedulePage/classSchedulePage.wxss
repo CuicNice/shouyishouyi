@@ -280,7 +280,9 @@ page {
   width: 88rpx;
   display: flex;
   flex-direction: column;
-  margin-left: 4rpx;
+  margin-left: 10rpx;
+  text-align: center;
+  align-items: center;
   margin-top: 10rpx;
 }
 
@@ -1454,10 +1456,13 @@ page {
 }
 
 .week {
-  margin-left: 35rpx;
+  margin-left: 26rpx;
   height: 34rpx;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  text-align: center;
+ 
 }
 
 .day {
@@ -1468,13 +1473,6 @@ page {
   justify-content: center;
 }
 
-.dateBox {
-  width: 97rpx;
-  height: 28rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
 .Box {
   margin-top: 10rpx;
@@ -1489,7 +1487,7 @@ page {
 }
 
 .weekBoxSelect {
-  margin-left: 4rpx;
+  margin-left: 8rpx;
   width: 62rpx;
   height: 70rpx;
   display: flex;
@@ -1507,6 +1505,13 @@ page {
   font-weight: bold;
   display: flex;
   flex-direction: row;
+}
+.weekBoxSelect .day {
+  height: 28rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 2rpx;
 }
 
 .weekBoxSelect .dateBox {
