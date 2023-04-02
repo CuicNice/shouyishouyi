@@ -1454,14 +1454,14 @@ page {
 }
 
 .week {
-  margin-left: 24rpx;
+  margin-left: 35rpx;
   height: 34rpx;
   display: flex;
   flex-direction: row;
 }
 
 .day {
-  margin-left: 3rpx;
+  margin-left: 22rpx;
   height: 28rpx;
   display: flex;
   flex-direction: row;
@@ -1489,6 +1489,7 @@ page {
 }
 
 .weekBoxSelect {
+  margin-left: 4rpx;
   width: 62rpx;
   height: 70rpx;
   display: flex;
