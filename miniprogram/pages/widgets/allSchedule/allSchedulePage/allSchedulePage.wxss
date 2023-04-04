@@ -1362,11 +1362,12 @@ page {
   /* margin-top: 50rpx; */
   height: 142rpx;
   width: 100%;
-  transform: translate(10rpx, 80rpx);
+  transform: translate(80rpx, 80rpx);
   /* background-color: indianred; */
 }
 
 .WeekOption {
+  width: 600rpx;
   display: flex;
   justify-content: center;
   align-items: center;

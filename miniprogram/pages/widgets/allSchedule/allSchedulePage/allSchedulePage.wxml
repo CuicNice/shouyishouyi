@@ -9,8 +9,8 @@
   </view>
   <!-- 课表选择 -->
   <view class="TitleLeft">
-    <view class="WeekOption">
-      <view bindtap="getClassDule" class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{classTitle?classTitle:"选择课表"}}</view>
+    <view class="WeekOption" bindtap="getClassDule">
+      <view  class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{classTitle?classTitle:"选择课表"}}</view>
       <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}"></view>
     </view>
   </view>
