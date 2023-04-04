@@ -20,6 +20,7 @@ Page({
     againWeek: 0,//对当前周进行第二次拷贝
     beginSemester: '',//对当前学期进行拷贝
     toView: '',//周的自动锁定
+    selectedIdx:[0],//学期选择的默认是第几个
     nowtime: "",
     dialogTip: false,
     dark: true,
@@ -913,12 +914,13 @@ Page({
       if (parseInt((day / 7 + 1) as unknown as string) > 3) {
         toView = "item" + (parseInt((day / 7 + 1) as unknown as string) - 3);
       } else { toView = 'item0'; }
-      for (let i = 0; i < 8; i++) {//给本学年加上后缀名
+      for (var i = 0; i < 8; i++) {//给本学年加上后缀名
         if (schoolTime == this.data.semesterList[i].slice(0, 3)) {
           this.data.semesterList[i] = this.data.semesterList[i] + "(本学年)";
+          break;
         }
       }
-      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime, toView: toView, semesterList: this.data.semesterList, beginWeek: parseInt((day / 7 + 1) as unknown as string), againWeek: parseInt((day / 7 + 1) as unknown as string) });
+      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime, suorec: schoolTime+'学期(本学年)',toView: toView, selectedIdx:[i], semesterList: this.data.semesterList, beginWeek: parseInt((day / 7 + 1) as unknown as string), againWeek: parseInt((day / 7 + 1) as unknown as string) });
     } catch { };
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
