@@ -14,13 +14,13 @@ Page({
     dayTime: [] as any,
     currentTab: 0,  // 当前Tab位置
     weekSchedule: true,
-    beginWeek:0,
+    beginWeek: 0,
     weekNum: 19,//最大的周数
     nowWeek: 1,
     againWeek: 0,//对当前周进行第二次拷贝
     beginSemester: '',//对当前学期进行拷贝
     toView: '',//周的自动锁定
-    selectedIdx:[0],//学期选择的默认是第几个
+    selectedIdx: [0],//学期选择的默认是第几个
     nowtime: "",
     dialogTip: false,
     dark: true,
@@ -287,13 +287,14 @@ Page({
         nowWeekData: nowWeekData
       })
       this.getDayTime();//获取每天的课程信息
-      if(this.data.beginWeek>0){//保证缓存的是正确的值
-      utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
-      utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
-      utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
-      //获取日课表的日期信息并存进缓存
-      let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
-      utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)}
+      if (this.data.beginWeek > 0) {//保证缓存的是正确的值
+        utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
+        utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
+        utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
+        //获取日课表的日期信息并存进缓存
+        let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
+        utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
+      }
       that.selectComponent("#toast").showToastAuto("刷新成功", "success");
     }
   },
@@ -920,17 +921,19 @@ Page({
           break;
         }
       }
-      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime, suorec: schoolTime+'学期(本学年)',toView: toView, selectedIdx:[i], semesterList: this.data.semesterList, beginWeek: parseInt((day / 7 + 1) as unknown as string), againWeek: parseInt((day / 7 + 1) as unknown as string) });
+      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime, suorec: schoolTime + '学期(本学年)', toView: toView, selectedIdx: [i], semesterList: this.data.semesterList, beginWeek: parseInt((day / 7 + 1) as unknown as string), againWeek: parseInt((day / 7 + 1) as unknown as string) });
     } catch { };
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
     if (wx.getStorageSync('widget-classSchedule').classSchedule) {
-      this.getDayTime();//获取每天的课程信息
-      utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
-      utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
-      //获取日课表的日期信息并存进缓存
-      let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
-      utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
+      setTimeout(() => {//避免代码运行到此处setData异步还没执行完
+        this.getDayTime();//获取每天的课程信息
+        utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
+        utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
+        //获取日课表的日期信息并存进缓存
+        let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
+        utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
+      }, 300)
     }
     this.reGetDay(time, this.data.nowWeek)
   },
