@@ -280,10 +280,10 @@ page {
   width: 88rpx;
   display: flex;
   flex-direction: column;
-  /* margin-left: 10rpx; */
+  height: 82rpx;
   text-align: center;
   align-items: center;
-  margin-top: 10rpx;
+ 
 }
 
 
@@ -1456,17 +1456,16 @@ page {
 }
 
 .week {
-  margin-left: 14rpx;
   height: 34rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
   text-align: center;
- 
+ margin-top: 10rpx;
 }
 
 .day {
-  margin-left: 12rpx;
+  /* margin-left: 12rpx; */
   height: 28rpx;
   display: flex;
   flex-direction: row;
@@ -1487,7 +1486,7 @@ page {
 }
 
 .weekBoxSelect {
-  margin-left: 8rpx;
+  /* margin-left: 8rpx; */
   width: 62rpx;
   height: 70rpx;
   display: flex;
@@ -1495,13 +1494,14 @@ page {
   background: #4BDCAB;
   color: #FFFFFF;
   border-radius: 10rpx;
-  margin-top: 8rpx;
+  margin-top: 6rpx;
+  margin-bottom: 6rpx;
   text-align: center;
 }
 
 .weekBoxSelect .week {
   margin-left: 8rpx;
-  height: 34rpx;
+  margin-top: 4rpx;
   font-weight: bold;
   display: flex;
   flex-direction: row;
