@@ -75,24 +75,24 @@
     <view class="scoresearchPage">
       <!-- 中间浮动的学期 -->
       <view class="semesters">
-        <view class="firstSemester-box" style="border-color: {{fs}}" bindtap="choose" data-academic_year="{{1}}" data-term="{{term}}">
+        <view class="firstSemester-box" style="border-color: {{fs}};background-color:{{fs == '#20C38C' ?'rgba(114, 211, 178, 0.02)':'#FFFFFF'}};" bindtap="choose" data-academic_year="{{1}}" data-term="{{term}}">
           <view class="firstSemester">大一</view>
         </view>
-        <view class="secondSemesterbox" style="border-color: {{sh}}" bindtap="choose" data-academic_year="{{2}}" data-term="{{term}}">
+        <view class="secondSemesterbox" style="border-color: {{sh}};;background-color:{{sh == '#20C38C' ?'rgba(114, 211, 178, 0.02)':'#FFFFFF'}};" bindtap="choose" data-academic_year="{{2}}" data-term="{{term}}">
           <view class="secondSemester">大二</view>
         </view>
-        <view class="thirdSemesterbox" style="border-color: {{jn}}" bindtap="choose" data-academic_year="{{3}}" data-term="{{term}}">
+        <view class="thirdSemesterbox" style="border-color: {{jn}};;background-color:{{jn == '#20C38C' ?'rgba(114, 211, 178, 0.02)':'#FFFFFF'}};" bindtap="choose" data-academic_year="{{3}}" data-term="{{term}}">
           <view class="thirdSemester">大三</view>
         </view>
-        <view class="fourthSemesterbox" style="border-color: {{sn}}" bindtap="choose" data-academic_year="{{4}}" data-term="{{term}}">
+        <view class="fourthSemesterbox" style="border-color: {{sn}};;background-color:{{sn == '#20C38C' ?'rgba(114, 211, 178, 0.02)':'#FFFFFF'}};" bindtap="choose" data-academic_year="{{4}}" data-term="{{term}}">
           <view class="fourthSemester">大四</view>
         </view>
       </view>
       <view class="semesterYear">
-        <view class="lastSemester-box" style="border-color: {{last}}" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{1}}">
+        <view class="lastSemester-box" style="border-color: {{last}};;background-color:{{last == '#20C38C' ?'rgba(114, 211, 178, 0.02)':'#FFFFFF'}};" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{1}}">
           <view class="lastSemester">上学期</view>
         </view>
-        <view class="nextSemester-box" style="border-color: {{next}}" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{2}}">
+        <view class="nextSemester-box" style="border-color: {{next}};;background-color:{{next == '#20C38C' ?'rgba(114, 211, 178, 0.02)':'#FFFFFF'}};" bindtap="choose" data-academic_year="{{academic_year}}" data-term="{{2}}">
           <view class="nextSemester">下学期</view>
         </view>
       </view>
@@ -216,7 +216,11 @@
   <view class="scoreCountdetail">
     <view class="scoreCountrules">分数算法</view>
     <view class="scoreCountrules-inter">
-      以下算法中，均只统计“正常考试”和非“公共选修”的课程的成绩。比如“必修”和“专业选修”的成绩均会被带入计算公式中。但“补考”的成绩是不会被带入当前学期计算公式中的。
+      <text>以下算法中，均只统计</text>
+      <text style="font-weight: 600;">“正常考试”</text>
+      <text>和</text>
+      <text style="font-weight: 600;">非“公共选修”</text>
+      <text>的课程的成绩。比如“必修”和“专业选修”的成绩均会被带入计算公式中。但“补考”的成绩是不会被带入当前学期计算公式中的。 </text>
       <text class="scoreCountrules-inters">n：参与统计的课程总数</text>
     </view>
     <view class="scoreCountBox1">
