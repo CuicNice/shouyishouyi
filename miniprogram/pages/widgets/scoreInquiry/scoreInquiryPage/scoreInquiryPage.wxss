@@ -588,7 +588,6 @@ margin-top: 2rpx;
   width: 146rpx;
   height: 60rpx;
   /* #72D3B2 */
-  background: rgba(114, 211, 178, 0.02);
   /* 主题色 */
  border: 2rpx solid #20C38C;
  border-radius: 10rpx;
@@ -619,7 +618,6 @@ color: #292945;
   width: 146rpx;
   height: 60rpx;
   /* #72D3B2 */
-  background: rgba(114, 211, 178, 0.02);
   /* 主题色 */
   border: 1px solid rgba(41, 41, 69, 0.2);
  border-radius: 10rpx;
@@ -648,7 +646,7 @@ color: #292945;
   width: 146rpx;
   height: 60rpx;
   /* #72D3B2 */
-  background: rgba(114, 211, 178, 0.02);
+
   /* 主题色 */
   border: 1px solid rgba(41, 41, 69, 0.2);
  border-radius: 10rpx;
@@ -677,13 +675,14 @@ color: #292945;
   width: 146rpx;
   height: 60rpx;
   /* #72D3B2 */
-  background: rgba(114, 211, 178, 0.02);
   /* 主题色 */
   border: 1px solid rgba(41, 41, 69, 0.2);
  border-radius: 10rpx;
 }
 .fourthSemester{
-  width: 56rpx;
+  justify-content: center;
+  align-items: center;
+width: 56rpx;
 height: 40rpx;
 font-family: 'PingFang SC';
 font-style: normal;
@@ -722,7 +721,6 @@ padding: 10rpx 42rpx;
 gap: 20rpx;
 width: 304rpx;
 height: 60rpx;
-background: #FFFFFF;
 /* #292945 */
 border: 2rpx solid rgba(41, 41, 69, 0.2);
 border-radius: 10rpx;
@@ -751,7 +749,6 @@ border-radius: 10rpx;
   gap: 20rpx;
   width: 304rpx;
   height: 60rpx;
-  background: #FFFFFF;
   /* #292945 */
   border: 2rpx solid #20C38C;
   border-radius: 10rpx;
@@ -1382,7 +1379,7 @@ margin-top: 27rpx;
   /* text */
   color: #292945;
   margin-top: 26rpx;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.3px;
   }
   .scoreCountrules-inters{
    display:block;

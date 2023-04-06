@@ -147,7 +147,7 @@ Page({
       height = '700';
     }
     else if (Detail.Details.length == 3) {
-      height = '640';
+      height = '660';
     } else if (Detail.Details.length == 2) {
       height = '594';
     } else if (Detail.Details.length == 1) {
