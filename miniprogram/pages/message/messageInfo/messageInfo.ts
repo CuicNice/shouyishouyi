@@ -152,13 +152,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
+    var popupAppear = this.data.popupAppear as any;
     if (this.data.popupAppear) {
       var isUnread = wx.getStorageSync('unread');
-      if(this.data.popupAppear.popupIsSave == true){
-        this.data.popupAppear.isShow = true //插入是否已读
+      if(popupAppear.popupIsSave == true){
+         popupAppear.isShow = true //插入是否已读
       }
         for(var a=0;a<isUnread.length;a++){
-          if(this.data.popupAppear.popupId == isUnread[a].popupId){
+          if(popupAppear.popupId == isUnread[a].popupId){
             isUnread[a] == this.data.popupAppear
           }
         }
