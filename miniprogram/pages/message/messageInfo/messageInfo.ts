@@ -34,7 +34,7 @@ Page({
   */
   async getPopupData(from: infoItem) {
     const { data: Info } = await getInfo(from) as unknown as IResult<any>;
-    console.log(info)},
+    console.log(Info)},
       
       //     this.data.popupAppear.show = "green";
       //     this.data.popupAppear.popupPublishTime =  this.data.popupAppear.popupPublishTime.slice(0,10)
@@ -57,11 +57,11 @@ Page({
       //     }
       //   })
       // })
-
-  // },
   //点赞的函数
   getLike(){
-    if(this.data.popupAppear!==null?this.data.popupAppear.show == 'green':this.data.Info[this.data.row].show == 'green'){
+    var popupAppear = this.data.popupAppear as any;
+    var info = this.data.Info as any;
+    if(popupAppear!==null?popupAppear.show  == 'green':info[this.data.row as unknown as number].show == 'green' ){
       console.log(1)
   //给接口这个的Id，来获取点赞量。很简单我就用request了
     wx.request({
@@ -71,34 +71,37 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' //约定的数据格式
       },
       data:{
-        popupId:this.data.popupAppear!==null?this.data.popupAppear.popupId:this.data.Info[this.data.row].popupId
+        popupId:popupAppear!==null?popupAppear.popupId:info[this.data.row].popupId
       },
     })
     if (this.data.row=='0'?true:this.data.row) {
     //点赞
-    this.data.Info[this.data.row].show = 'active'; 
-    this.data.Info[this.data.row].popupFabulous = this.data.Info[this.data.row].popupFabulous+1
+     info[this.data.row as unknown as number].show = 'active'; 
+     info[this.data.row as unknown as number].popupFabulous =info[this.data.row as unknown as number].popupFabulous+1
     this.setData({
       Info:this.data.Info,
     }) 
     wx.setStorageSync('unread',this.data.Info); 
   }if(this.data.popupId){
-    this.data.popupAppear.show ='active';
-    this.data.popupAppear.popupFabulous = this.data.popupAppear.popupFabulous+1
+    popupAppear.show ='active';
+    popupAppear.popupFabulous = popupAppear.popupFabulous+1
     this.setData({
       popupAppear:this.data.popupAppear,
     }) 
-    var isUnread = wx.getStorageSync('unread');
+    var bindCache= wx.getStorageSync('bindCache');
+    var isUnread = bindCache.unread;
     if(isUnread){
        for(var a=0;a<isUnread.length;a++){
-        if(this.data.popupAppear.popupId == isUnread[a].popupId){
+        if(popupAppear.popupId == isUnread[a].popupId){
           isUnread[a] = this.data.popupAppear
         }
       }
-      wx.setStorageSync('unread',isUnread)
+      bindCache.unread = isUnread;
+      wx.setStorageSync('bindCache',bindCache);
     }else{
       isUnread = this.data.popupAppear;
-      wx.setStorageSync('unreadOne',isUnread);
+      bindCache.unreadOne = isUnread;
+      wx.setStorageSync('bindCache',bindCache);
     }
   }
 } 
@@ -127,7 +130,7 @@ Page({
         var popupAppear=wx.getStorageSync('unreadOne') //单独存个，方便存入大数组里
         this.setData({popupAppear:popupAppear})
       }
-      this.getInfo()
+      this.initPageData()
     }
   },
 
@@ -135,14 +138,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.getInfo()
+    this.initPageData()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getInfo()
+    this.initPageData()
   },
 
   /**
