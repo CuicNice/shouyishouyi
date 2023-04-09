@@ -14,6 +14,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/widgets/classSchedule/classScheduleComponent/classScheduleComponent",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/widgets/classSchedule/Customskin/Customskin",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

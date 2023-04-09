@@ -820,6 +820,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    wx.setStorageSync('zh', "20201101116");
+    wx.setStorageSync('mm', '77889900Czx.');
     if (!wx.getStorageSync('widget-classSchedule')) {
       //给用户添加缓存
       let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };

@@ -32,6 +32,16 @@
   border-bottom: 2rpx solid #EAEAEC;
 }
 
+.CustomskinBoxnoline{
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28rpx 0rpx;
+  gap: 40rpx;
+  width: 640rpx;
+}
 
 .skin-box-top {
   display: flex;

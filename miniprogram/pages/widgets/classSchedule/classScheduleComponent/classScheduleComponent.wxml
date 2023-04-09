@@ -131,9 +131,11 @@
         </view>
       </view>
     </view>
-  </view></view>
+  </view>
+  </view>
 <!-- 日课表没有课的状态 -->
 <view class="nodailyScheduleIndex" wx:if="{{!ifClass}}">
+ <image class="nodailyScheduleIndexImgBg" src="../../../../static/svg/classScheduleCompent.svg"></image>
   <image class="nodailyScheduleIndexImg"></image>
  </view> 
 </view>

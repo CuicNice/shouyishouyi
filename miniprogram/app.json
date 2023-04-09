@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/widgets/classSchedule/classScheduleComponent/classScheduleComponent",
     "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
     "pages/widgets/electricCharge/electricPage/electricPage",
     "pages/login/login",
@@ -10,7 +9,8 @@
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
     "pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting",
-    "pages/widgets/classSchedule/Customskin/Customskin"
+    "pages/widgets/classSchedule/Customskin/Customskin",
+    "pages/widgets/classSchedule/classScheduleComponent/classScheduleComponent"
   ],
   "window": {
     "backgroundTextStyle": "light",

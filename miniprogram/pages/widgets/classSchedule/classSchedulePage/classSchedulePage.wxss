@@ -135,7 +135,7 @@ page {
 }
 
 .navigationBar {
-  height: 11.5%;
+  height: 12%;
   width: 100%;
   display: flex;
   margin-right: 302rpx;
@@ -200,7 +200,6 @@ page {
   height: 80rpx;
   background: rgba(255, 255, 255, 0.9);
 }
-
 
 .top {
   display: flex;
@@ -283,7 +282,7 @@ page {
   height: 82rpx;
   text-align: center;
   align-items: center;
- 
+ /* background-color: darkorchid; */
 }
 
 
@@ -1457,11 +1456,11 @@ page {
 
 .week {
   height: 34rpx;
+  margin-left: 8rpx;
+  margin-top: 4rpx;
+  font-weight: bold;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  text-align: center;
- margin-top: 10rpx;
 }
 
 .day {
@@ -1484,7 +1483,16 @@ page {
   letter-spacing: 4rpx;
   text-align: right;
 }
-
+.weekBoxnoSelect{
+  width: 62rpx;
+  height: 70rpx;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6rpx;
+  margin-bottom: 6rpx;
+  text-align: center;
+  /* background-color: deepskyblue; */
+}
 .weekBoxSelect {
   /* margin-left: 8rpx; */
   width: 62rpx;

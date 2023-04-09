@@ -63,7 +63,7 @@
       </view>
     </view>
   </view>
-  <view class="CustomskinBox">
+  <view class="CustomskinBoxnoline">
     <view class="skin-box-top">
       <view class="skin-icon3"></view>
       <view class="skin-top-text">课程卡片风格</view>

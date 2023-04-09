@@ -54,7 +54,8 @@
     </view>
     <!-- 周和日期-->
     <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}" style="{{bgc==''?'':'border-bottom: 2rpx solid rgba(86, 86, 86, 0.6);'}}">
-      <view class="weekBox{{weekTime[0] == nowDate ? 'Select':''}}">
+      <view class="weekBox">
+        <view class="weekBox{{weekTime[0] == nowDate ? 'Select':'noSelect'}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周日</view>
         </view>
@@ -65,8 +66,10 @@
             </view>
           </block>
         </view>
+        </view>
       </view>
-      <view class="weekBox{{weekTime[1] == nowDate ? 'Select':''}}">
+      <view class="weekBox">  
+        <view class="weekBox{{weekTime[1] == nowDate ? 'Select':'noSelect'}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周一</view>
         </view>
@@ -77,8 +80,10 @@
             </view>
           </block>
         </view>
+        </view>
       </view>
-      <view class="weekBox{{weekTime[2] == nowDate ? 'Select':''}}">
+      <view class="weekBox">
+        <view class="weekBox{{weekTime[2] == nowDate ? 'Select':'noSelect'}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周二</view>
         </view>
@@ -89,8 +94,10 @@
             </view>
           </block>
         </view>
+        </view>
       </view>
-      <view class="weekBox{{weekTime[3] == nowDate ? 'Select':''}}">
+      <view class="weekBox">
+         <view class="weekBox{{weekTime[3] == nowDate ? 'Select':'noSelect'}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周三</view>
         </view>
@@ -101,8 +108,10 @@
             </view>
           </block>
         </view>
-      </view>
-      <view class="weekBox{{weekTime[4] == nowDate ? 'Select':''}}">
+         </view>
+      </view> 
+      <view class="weekBox"> 
+        <view class="weekBox{{weekTime[4] == nowDate ? 'Select':'noSelect'}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周四</view>
         </view>
@@ -113,8 +122,10 @@
             </view>
           </block>
         </view>
-      </view>
-      <view class="weekBox{{weekTime[5] == nowDate ? 'Select':''}}">
+        </view>
+      </view> 
+      <view class="weekBox">
+        <view class="weekBox{{weekTime[5] == nowDate ? 'Select':'noSelect'}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周五</view>
         </view>
@@ -125,8 +136,10 @@
             </view>
           </block>
         </view>
+        </view>
       </view>
-      <view class="weekBox{{weekTime[6] == nowDate ? 'Select':''}}">
+      <view class="weekBox">  
+        <view class="weekBox{{weekTime[6] == nowDate ? 'Select':'noSelect'}}">
         <view class="week">
           <view class="{{bgc==''?'top-text':'top-textWhite'}}">周六</view>
         </view>
@@ -137,7 +150,8 @@
             </view>
           </block>
         </view>
-      </view>
+        </view>
+      </view>  
     </view>
   </view>
   <view class="WHQscroll" wx:if="{{weekSchedule}}">
@@ -167,7 +181,7 @@
             </view>
             <view class="table-day" wx:if="{{showAll}}">
               <view style="height: {{103*table.num.length+13*(table.num.length-1)}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" bindtap="showClassDetail" data-cls="{{table}}" wx:for="{{nowWeekData[index].item}}" wx:for-item="table" wx:key="index">
-                <view class="flex-item-double" wx:if="{{table.double==true}}" style="background:{{table.zindex == 3?table.colorDark:'rgba(198, 198, 198, 0.6)'}} ;height: {{103*table.num.length-11+13*(table.num.length-1)}}rpx;z-index: {{table.zindex}};color: #F5F5F5;">
+                <view class="flex-item-double" wx:if="{{table.double==true}}" style="background:{{table.zindex == 3?table.colorDark:'rgba(198, 198, 198,0.6)'}} ;height: {{103*table.num.length-11+13*(table.num.length-1)}}rpx;z-index: {{table.zindex}};color: #F5F5F5;">
                   <view class="noweek" wx:if="{{table.zindex == 2}}">非本周</view>
                   <view class="smalltext">{{table.name}}</view>
                   <view class="smalltextad">{{table.local}}</view>
