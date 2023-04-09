@@ -683,6 +683,11 @@ Page({
         break;
       }
     }
+    if(this.data.nowWeek!=this.data.beginWeek){
+      for(let i=0;i<list.length;i++){
+        list[i].zindex = 2
+      }
+    }
     this.setData({
       ifshow: true,
       detailClass: list
