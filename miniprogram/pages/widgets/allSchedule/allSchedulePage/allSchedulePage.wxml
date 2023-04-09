@@ -2,6 +2,7 @@
 <view class="bg">
   <image class="background-box" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
 </view>
+
 <!-- 导航栏 -->
 <view class="navigationBar" style="background-color: {{bgc}};">
   <view class="vector" bindtap="getBack">

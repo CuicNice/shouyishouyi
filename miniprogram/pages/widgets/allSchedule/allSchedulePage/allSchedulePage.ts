@@ -613,6 +613,13 @@ Page({
         classTitle_2: cache[index].Class,
       })
     }
+   var myarr =  wx.getStorageSync('widget-allSchedule');
+   var t;
+   t = myarr.all[0];
+   myarr.all[0]=myarr.all[index];
+   myarr.all[index] =t;
+   wx.setStorageSync('widget-allSchedule',myarr);
+
   },
   /**
    * 点击‘选择课表’弹出选择弹窗
