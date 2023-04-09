@@ -295,8 +295,10 @@ page {
   width: 88rpx;
   display: flex;
   flex-direction: column;
-  margin-left: 4rpx;
-  margin-top: 10rpx;
+  height: 82rpx;
+  text-align: center;
+  align-items: center;
+ 
 }
 
 
@@ -392,7 +394,7 @@ page {
   background: rgba(255, 255, 255, 0.8);
 }
 
-/* ä¿®æ”¹å·¦è¾¹åº•éƒ¨ä¸¤ä¸ªç›’å­ */
+/* 淇敼宸﹁竟搴曢儴涓や釜鐩掑瓙 */
 .practicalCourses {
   margin-top: 7rpx;
   text-align: center;
@@ -1360,14 +1362,13 @@ page {
 
 .TitleLeft {
   /* margin-top: 50rpx; */
-  height: 142rpx;
   width: 100%;
-  transform: translate(80rpx, 80rpx);
+  height: 142rpx;
+  transform: translate(10rpx, 80rpx);
   /* background-color: indianred; */
 }
 
 .WeekOption {
-  width: 600rpx;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1386,15 +1387,7 @@ page {
   color: #333333;
   margin-top: 40rpx;
 }
-.picker_title{
-font-family: 'PingFang SC';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 22px;
-text-transform: capitalize;
-color: #000000;
-}
+
 
 .icon-WeekOption {
   margin-left: 6rpx;
@@ -1477,27 +1470,22 @@ color: #000000;
 }
 
 .week {
-  margin-left: 24rpx;
   height: 34rpx;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  text-align: center;
+ margin-top: 10rpx;
 }
 
 .day {
-  margin-left: 3rpx;
+  /* margin-left: 12rpx; */
   height: 28rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.dateBox {
-  width: 97rpx;
-  height: 28rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
 .Box {
   margin-top: 10rpx;
@@ -1512,6 +1500,7 @@ color: #000000;
 }
 
 .weekBoxSelect {
+  /* margin-left: 8rpx; */
   width: 62rpx;
   height: 70rpx;
   display: flex;
@@ -1519,16 +1508,24 @@ color: #000000;
   background: #4BDCAB;
   color: #FFFFFF;
   border-radius: 10rpx;
-  margin-top: 8rpx;
+  margin-top: 6rpx;
+  margin-bottom: 6rpx;
   text-align: center;
 }
 
 .weekBoxSelect .week {
   margin-left: 8rpx;
-  height: 34rpx;
+  margin-top: 4rpx;
   font-weight: bold;
   display: flex;
   flex-direction: row;
+}
+.weekBoxSelect .day {
+  height: 28rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 2rpx;
 }
 
 .weekBoxSelect .dateBox {
@@ -1557,7 +1554,7 @@ color: #000000;
   color: white;
 }
 
-/* ä¿®æ”¹å·¦è¾¹åº•éƒ¨ä¸¤ä¸ªç›’å­ */
+/* 淇敼宸﹁竟搴曢儴涓や釜鐩掑瓙 */
 .practicalCourses {
   margin-top: 7rpx;
   text-align: center;
@@ -2386,7 +2383,7 @@ color: #000000;
 
 .classScroll {
   height: 1250rpx;
-  /*å¦‚æžœè¦ä¾çœŸæœºæµ‹è¯•ä¸ºä¸»ï¼Œåˆ™éœ€è¦æ”¹æˆ1250rpx*/
+  /*濡傛灉瑕佷緷鐪熸満娴嬭瘯涓轰富锛屽垯闇€瑕佹敼鎴�1250rpx*/
   display: flex;
   flex-direction: column;
 }
