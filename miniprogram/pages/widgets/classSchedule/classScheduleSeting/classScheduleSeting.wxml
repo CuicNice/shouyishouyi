@@ -6,7 +6,8 @@
   <view class="Option-box">
     <view class="Option-one">
       <view class="choice-text">刷新课表</view>
-      <view class="Update-icon" bindtap="refresh"></view>
+      <view bindtap="refresh" class="click-box"></view>
+      <view class="Update-icon"></view>
     </view>
     <view class="Option-one">
       <view class="switch-text">仅显示本周要上的课程</view>
@@ -16,7 +17,8 @@
     </view>
     <view class="Option-two">
       <view class="choice-text">个性换肤</view>
-      <view class="choice-icon" bindtap="customskin"></view>
+      <view bindtap="customskin" class="click-box"></view>
+      <view class="choice-icon"></view>
     </view>
     <view class="Option-two">
       <view class="switch-text">选择武汉/嘉鱼校区时间</view>

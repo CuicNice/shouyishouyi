@@ -10,9 +10,9 @@
     <image class="{{bgc ==''? 'NewIconLeft' : 'NewIconLeftWhite'}}"></image>
   </view>
   <!-- 切换周、日的icon -->
-  <view class="switchIconBox">
-    <image class="switchIcon" wx:if="{{bgc==''}}" bindtap="changeicon" src="../../../../static/svg/{{weekSchedule}}icon.svg"></image>
-    <image class="switchIcon" wx:else bindtap="changeicon" src="../../../../static/svg/dark{{weekSchedule}}icon.svg"></image>
+  <view class="switchIconBox" bindtap="changeicon" >
+    <image class="switchIcon" wx:if="{{bgc==''}}" src="../../../../static/svg/{{weekSchedule}}icon.svg"></image>
+    <image class="switchIcon" wx:else src="../../../../static/svg/dark{{weekSchedule}}icon.svg"></image>
   </view>
   <!-- 刷新的icon -->
   <view class="flushIconBox" bindtap="refresh">
@@ -22,9 +22,9 @@
   <image class="ima" src="{{picture}}" mode="aspectFill"></image>
   <!-- 学期选择 -->
   <view class="TitleLeft">
-    <view class="WeekOption">
+    <view class="WeekOption" bindtap="selectSchoolTime">
       <view class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{semester}}</view>
-      <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}" bindtap="selectSchoolTime"></view>
+      <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}" ></view>
     </view>
   </view>
 </view>

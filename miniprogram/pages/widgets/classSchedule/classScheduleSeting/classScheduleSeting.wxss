@@ -81,6 +81,13 @@ border-bottom: 2rpx solid #EAEAEC;
 margin-top: 20rpx;
 }
 
+.click-box{
+  width: 70rpx;
+  height: 70rpx;
+  position: relative;
+  left: 240rpx;
+}
+
 .Update-icon{
   width: 44rpx;
   height: 44rpx;
