@@ -7,10 +7,17 @@ var filters = {
   },
   toFix: function (value) {
     return parseInt(value)//此处取整数
+  },
+  substring: function (val, start, end) {
+    if (val == undefined) {
+      return;
   }
+  return val.substring(start, end);
+}
 }
 module.exports = {
   toFix2: filters.toFix2,
   toFix1: filters.toFix1,
-  toFix: filters.toFix
+  toFix: filters.toFix,
+  substring: filters.substring
 }
