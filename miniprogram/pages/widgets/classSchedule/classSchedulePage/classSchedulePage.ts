@@ -275,7 +275,7 @@ Page({
       try {
         week = this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加
       } catch {
-        this.selectComponent("#toast").showToastAuto("刷新失败", "error");
+        this.selectComponent("#toast").showToastAuto("刷新失败", "error","0");
         this.setData({
           dialogTip: true
         })
