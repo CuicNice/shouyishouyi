@@ -272,7 +272,14 @@ Page({
       week.sort(function (a, b) {
         return parseInt(a.name) - parseInt(b.name);
       });
-      week = this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加 
+      try {
+        week = this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加
+      } catch {
+        this.selectComponent("#toast").showToastAuto("刷新失败", "error");
+        this.setData({
+          dialogTip: true
+        })
+      }
       var classSchedule = {
         week: week,
         all_keshes: res.all_keshes
@@ -683,8 +690,8 @@ Page({
         break;
       }
     }
-    if(this.data.nowWeek!=this.data.beginWeek){
-      for(let i=0;i<list.length;i++){
+    if (this.data.nowWeek != this.data.beginWeek) {
+      for (let i = 0; i < list.length; i++) {
         list[i].zindex = 2
       }
     }
@@ -825,8 +832,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    wx.setStorageSync('zh', "20201101116");
-    wx.setStorageSync('mm', '77889900Czx.');
     if (!wx.getStorageSync('widget-classSchedule')) {
       //给用户添加缓存
       let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };

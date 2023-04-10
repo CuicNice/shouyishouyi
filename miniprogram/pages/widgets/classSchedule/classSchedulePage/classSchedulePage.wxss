@@ -1081,6 +1081,12 @@ page {
   white-space: nowrap;
   z-index: 11;
 }
+.classScroll2 {
+  height: 500rpx;
+  width: 100%;
+  white-space: nowrap;
+  z-index: 11;
+}
 
 .block {
   z-index: 1000;
@@ -1414,6 +1420,11 @@ page {
   flex-direction: row;
   justify-content: center;
   margin-left: 2rpx;
+}
+
+.dateBox{
+  display: flex;
+  flex-direction: row;
 }
 
 .weekBoxSelect .dateBox {

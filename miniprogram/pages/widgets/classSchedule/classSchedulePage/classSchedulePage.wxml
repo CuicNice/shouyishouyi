@@ -62,7 +62,8 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[0]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[0],0,2)}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[0],2,4)}}</view>
             </view>
           </block>
         </view>
@@ -76,7 +77,8 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[1]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[1],0,2)}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[1],2,4)}}</view>
             </view>
           </block>
         </view>
@@ -90,7 +92,8 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[2]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[2],0,2)}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[2],2,4)}}</view>
             </view>
           </block>
         </view>
@@ -104,7 +107,8 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[3]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[3],0,2)}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[3],2,4)}}</view>
             </view>
           </block>
         </view>
@@ -118,7 +122,8 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[4]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[4],0,2)}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[4],2,4)}}</view>
             </view>
           </block>
         </view>
@@ -132,7 +137,8 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[5]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[5],0,2)}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[5],2,4)}}</view>
             </view>
           </block>
         </view>
@@ -146,7 +152,8 @@
         <view class="day">
           <block>
             <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{weekTime[6]}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[6],0,2)}}</view>
+              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[6],2,4)}}</view>
             </view>
           </block>
         </view>
@@ -537,7 +544,7 @@
 </dialogTitle>
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails">
-  <scroll-view wx:if="{{ifshow}}" class="classScroll1" scroll-x="true">
+  <scroll-view wx:if="{{ifshow}}" class="{{detailClass.length>1?'classScroll2':'classScroll1'}}" scroll-x="true">
     <block class="block" wx:for="{{detailClass}}" wx:key="index">
       <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
         <view class="course">
