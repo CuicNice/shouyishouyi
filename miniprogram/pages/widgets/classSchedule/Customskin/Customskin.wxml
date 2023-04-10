@@ -1,6 +1,6 @@
 <!--pages/widgets/classSchedule/Customskin/Customskin.wxml-->
 <view class="bg"></view>
-<tb title="{{CustomskinTitle}}"></tb>
+<topbar title="{{CustomskinTitle}}" immersion = "{{true}}" >
 <view class="CustomskinContainer">
   <view class="CustomskinBox">
     <view class="skin-box-top">
@@ -94,3 +94,4 @@
     </button>
   </view>
 </view>
+</topbar>

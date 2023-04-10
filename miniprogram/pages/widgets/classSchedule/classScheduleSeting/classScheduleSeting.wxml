@@ -1,7 +1,6 @@
 <!--pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting.wxml-->
 <view class="bg"></view>
-<tb title="{{classScheduleSetTitle}}"></tb>
-
+<topbar title="{{classScheduleSetTitle}}" immersion = "{{true}}" >
 <view class="setContainer">
   <view class="Option-box">
     <view class="Option-one">
@@ -68,4 +67,4 @@
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>
 </dialogTitle>
-<toast id="toast"></toast>
+<toast id="toast"></toast></topbar>
