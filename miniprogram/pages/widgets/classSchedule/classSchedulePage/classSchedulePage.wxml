@@ -518,7 +518,7 @@
       <view class="title">请选择学期</view>
     </view>
     <view class="semesterpicker">
-      <picker-view indicator-style="height: 56px; text-align: center;" mask-style="opacity:0;z-index:0;" style="width: 120%; height: 270rpx;text-align:center; line-height: 100rpx;margin-top: 40rpx;" bindchange="SchoolTermChange" value="{{selectedIdx}}">
+      <picker-view indicator-style="height: 56px; text-align: center;" mask-style="opacity:0;z-index:0;" style="width: 120%; height: 270rpx;text-align:center; line-height: 112rpx;margin-top: 40rpx;" bindchange="SchoolTermChange" value="{{selectedIdx}}">
         <!--Columns-->
         <picker-view-column>
           <view class="{{suorec==semesterList[index]?'active':'noactive'}}" wx:for="{{semesterList}}" wx:key="index" wx:for-index="index">{{item}}</view>
@@ -531,7 +531,7 @@
       <text>取消</text>
     </button>
     <button type="primary" class="primary" data-index="{{item}}" id="{{item}}" bindtap="bindSchoolTermCharge">
-      <text>完成</text>
+      <text>确定</text>
     </button>
   </view>
 </dialogTitle>
@@ -565,8 +565,8 @@
           </view>
           <view class="courseplace">
             <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/zhuoci.svg':'../../../../static/svg/gareyzho.svg'}}" />
-            <view class="cuorseGuding">周次:</view>
-            <view class="cuorseXuigai">{{item.old_day_num}}</view>
+            <view class="cuorseGuding">周次：</view>
+            <view class="cuorseXuigai">第{{item.old_day_num}}</view>
           </view>
         </view>
       </view>

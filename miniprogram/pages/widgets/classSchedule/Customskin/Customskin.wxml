@@ -37,7 +37,7 @@
   <view class="CustomskinBox">
     <view class="skin-box-top">
       <view class="skin-icon2"></view>
-      <view class="skin-top-text">首义建筑限定皮肤（自定义背景不可用）</view>
+      <view class="skin-top-text">首义建筑限定皮肤 <view  class="skin-top-text2">（自定义背景不可用）</view></view>
     </view>
     <view class="skin-box-choice">
       <view class="colorselBox" bindtap="bellTower">

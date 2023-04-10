@@ -87,44 +87,6 @@ page {
   height: 100%;
 }
 
-
-.button {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 102rpx;
-  width: 500rpx;
-  margin-left: 60rpx;
-  margin-right: 60rpx;
-  margin-bottom: 62rpx;
-}
-
-.button .cancel {
-  box-sizing: border-box;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background-color: #FFFFFF;
-  border: 1px solid #20C38C;
-  border-radius: 70rpx;
-  color: #20C38C;
-}
-
-.button .primary {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background: #20C38C;
-  border-radius: 70rpx;
-}
-
 .button .text {
   font-family: 'PingFang SC';
   font-style: normal;
@@ -184,8 +146,8 @@ page {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 14rpx 18rpx 14rpx;
-  gap: 24rpx;
+  /* padding: 14rpx 18rpx 14rpx; */
+  padding-bottom: 10rpx;
   height: 80rpx;
 }
 
@@ -998,42 +960,8 @@ page {
   color: rgba(0, 0, 0, 0.3);
 }
 
-.button {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 90rpx;
-  width: 500rpx;
-  margin-left: 60rpx;
-  margin-right: 60rpx;
-  margin-bottom: 62rpx;
-}
 
-.button .cancel {
-  box-sizing: border-box;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background-color: #FFFFFF;
-  border: 1px solid #20C38C;
-  border-radius: 70rpx;
-  color: #20C38C;
-}
 
-.button .primary {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background: #20C38C;
-  border-radius: 70rpx;
-}
 
 .button .text {
   font-family: 'PingFang SC';
@@ -1125,7 +1053,7 @@ page {
 }
 
 .courseplaceImage {
-  height: 32rpx;
+  height: 40rpx;
   width: 40rpx;
   text-align: center;
 }
@@ -1239,42 +1167,9 @@ page {
   color: #000000;
 }
 
-.button {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 102rpx;
-  width: 500rpx;
-  margin-left: 60rpx;
-  margin-right: 60rpx;
-  margin-bottom: 62rpx;
-}
 
-.button .cancel {
-  box-sizing: border-box;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background-color: #FFFFFF;
-  border: 1px solid #20C38C;
-  border-radius: 70rpx;
-  color: #20C38C;
-}
 
-.button .primary {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background: #20C38C;
-  border-radius: 70rpx;
-}
+
 
 .button .text {
   font-family: 'PingFang SC';
@@ -1963,7 +1858,7 @@ page {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding-top: 28rpx;
+  padding-top: 30rpx;
   padding-bottom: 20rpx;
   padding-right: 20rpx;
 }

@@ -65,9 +65,22 @@
   font-weight: 500;
   font-size: 28rpx;
   line-height: 40rpx;
+  display: flex;
   /* identical to box height */
   text-align: center;
   color: #292945;
+}
+
+.skin-top-text2 {
+  height: 40rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /* identical to box height */
+  text-align: center;
+  color:rgb(41,41,69,0.6);
 }
 
 .skin-box-choice {
@@ -248,7 +261,7 @@
 
 .icon1{
   position: relative;
-  top: -78rpx;
+  top: -76rpx;
   left: 118rpx;
   width: 40rpx;
   height: 40rpx;
@@ -266,7 +279,7 @@
 .icon3{
   position: absolute;
   top: 1115rpx;
-  margin-left: 250rpx;
+  margin-left: 258rpx;
   width: 40rpx;
   height: 40rpx;
   margin-top: 88rpx;
