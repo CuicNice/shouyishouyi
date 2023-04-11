@@ -8,7 +8,6 @@ page {
 }
 
 .dialogText {
-  width: 398rpx;
   height: 142rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -148,6 +147,7 @@ page {
   align-items: center;
   /* padding: 14rpx 18rpx 14rpx; */
   padding-bottom: 10rpx;
+  padding-top:14rpx;
   height: 80rpx;
 }
 
