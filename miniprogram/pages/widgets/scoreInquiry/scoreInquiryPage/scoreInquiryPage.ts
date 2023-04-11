@@ -27,7 +27,6 @@ Page({
     xqxfscores: '',//本学期加权平均分
     scoreDetail: '',//成绩详情
     color: '',//专修必修选修的颜色
-    height: '' //弹窗的长度
   },
   /**
    * 变化等级称号
@@ -142,19 +141,8 @@ Page({
   /**
    * 渲染
    */
-    var height = this.data.height;
-    if (Detail.Details.length >= 4) {
-      height = '700';
-    }
-    else if (Detail.Details.length == 3) {
-      height = '660';
-    } else if (Detail.Details.length == 2) {
-      height = '594';
-    } else if (Detail.Details.length == 1) {
-      height = '488';
-    }
+
     this.setData({
-      height: height,
       Detail: Detail,
       Details: Detail.Details,
       bj: Detail.allDetails.bj,
