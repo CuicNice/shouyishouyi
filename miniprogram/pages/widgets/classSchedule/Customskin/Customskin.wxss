@@ -257,20 +257,21 @@
   align-items: center;
   width: 298rpx;
   height: 134rpx;
+  position: relative;
 }
 
 .icon1{
   position: relative;
-  top: -76rpx;
-  left: 118rpx;
+  bottom: 80rpx;
+  left: 120rpx;
   width: 40rpx;
   height: 40rpx;
 }
 
 .icon2{
   position: absolute;
-  top: 365rpx;
-  margin-left: 114rpx;
+  top: 384rpx;
+  margin-left: 120rpx;
   width: 40rpx;
   height: 40rpx;
   margin-top: 95rpx;
@@ -278,8 +279,8 @@
 
 .icon3{
   position: absolute;
-  top: 1115rpx;
-  margin-left: 258rpx;
+  bottom:50rpx;
+  margin-left: 260rpx;
   width: 40rpx;
   height: 40rpx;
   margin-top: 88rpx;
@@ -325,38 +326,28 @@ border-radius: 10px;
 .button .cancel {
   /* Component 3 */
   box-sizing: border-box;
-
-  /* Auto layout */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-
+  padding: 18rpx 28rpx;
   width: 214rpx;
   height: 84rpx;
-
   background-color: #FFFFFF;
-  /* #20C38C */
   border: 1px solid #20C38C;
   border-radius: 70rpx;
-
-  /* #20C38C */
   color: #20C38C;
+ 
 }
 
 .button .primary {
-  /* Auto layout */
+  box-sizing: border-box;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
   margin-left: 54rpx;
+  padding: 18rpx 28rpx;
   width: 214rpx;
   height: 84rpx;
-
-  /* #20C38C */
   background: #20C38C;
   border-radius: 70rpx;
 }
@@ -366,6 +357,5 @@ border-radius: 10px;
   font-style: normal;
   font-weight: 500;
   font-size: 32rpx;
-  line-height: 44rpx;
   letter-spacing: -0.4352rpx;
 }
