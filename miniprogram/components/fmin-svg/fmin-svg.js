@@ -35,12 +35,10 @@ Component({
     methods: {
         changeIcon(name, color) {
             let svgBase64 = SvgManager[name]; // 从svg管理器中取出对应svg
-            console.log(svgBase64)
             svgBase64 = getColorSVG(svgBase64, color); // 替换它的颜色
             this.setData({
                 svgData: svgBase64 // 渲染
             });
-            console.log(this.data.svgData)
         }
     }
 })

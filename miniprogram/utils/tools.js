@@ -4,7 +4,6 @@ export const getColorSVG = (svgBase64, color) => {
     try {
         svgBase64 = svgBase64.substring(svgBase64.indexOf(',') + 1, svgBase64.length);
         const svg = Base64.decode(svgBase64);
-        console.log(svg)
         if (/<svg /.test(svg)) {
             let newSvg;
             if (/fill=".*?"/.test(svg)) {
@@ -12,8 +11,7 @@ export const getColorSVG = (svgBase64, color) => {
             } else {
                 newSvg = svg.replace(/<svg /, `<svg fill="${color}" `); // 无默认色，注意结尾跟一个空格
             }
-            console.log(newSvg)
-            console.log('data:image/svg+xml;base64,' + Base64.encode(newSvg))
+
             return 'data:image/svg+xml;base64,' + Base64.encode(newSvg); // 替换完之后再组合回去
         }
     } catch { }
