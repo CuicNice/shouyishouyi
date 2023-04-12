@@ -386,6 +386,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    var bind ={
+      zh:'20222108012',
+      mm:'Luosukai1'
+    }
+    wx.setStorageSync('login',bind)
   },
 
   /**
