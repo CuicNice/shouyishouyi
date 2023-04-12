@@ -2,11 +2,11 @@
   "navigationStyle": "custom",
   "component": true,
     "usingComponents": {
-      "f-dialog":"/components/fmin-dialog/fmin-dialog",
-      "itemview":"/pages/widgets/news/newsListComponent/newsListComponent",
-       "searchbar":"/pages/widgets/news/searchbar/searchbar",
-    "topBar":"/components/fmin-topbar/fmin-topbar",
-    "toast":"/components/fmin-toast/fmin-toast"
+      "itemview":"../../../pages/widgets/news/newsListComponent/newsListComponent",
+       "searchbar":"../../../pages/widgets/news/searchbar/searchbar",
+    "topBar":"../../../components/fmin-topbar/fmin-topbar",
+    "toast":"../../../components/fmin-toast/fmin-toast",
+    "searchBar":"../../../components/fmin-topbar/fmin-topbar"
   },
   "navigationStyle": "custom",
   "onReachBottomDistance":300,

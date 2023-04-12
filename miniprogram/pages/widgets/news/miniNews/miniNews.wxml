@@ -1,0 +1,66 @@
+<!--pages/widgets/news/miniNews/miniNews.wxml-->
+<!-- 引入字符串切割 -->
+<wxs src='../../../../wxs/utils.wxs' module='tools' /> 
+<!-- 新闻小组件  点击跳转Detail页面-->
+<view class="miniNewsPageBox">
+<view class="miniNewsBox">
+  <!-- 顶部的返回与icon -->
+  <!-- 左右布局 -->
+  <view class="miniNewsTop">
+    <view class="miniNewsTopLeftBox">
+      <view class="miniNewsTxt">
+        快询闻</view>
+      <!-- 图标 -->
+        <image class="miniNewsIconSvg" src="../../../../static/svg/news/miniNews_Book.svg" mode="" />
+    </view>
+    <!-- 右边的返回键 -->
+    <view class="topReturnBox" bindtap="gotoNewsDetail">
+      <image style="width: 20px;height: 20px;" src="../../../../static/svg/news/miniNews_return.svg" mode="" />
+    </view>
+  </view>
+  <!-- 新闻选择 -->
+  <view class="NewsChoose">
+    <view class="InsideSchoolNews" bindtap="ChooseShcoolNews">
+      <view class="NewstitleGrey" wx:if="{{tapbarCtrl}}"><text class="greenText">校园快讯
+        </text></view>
+      <view class="Newstitle" wx:if="{{!tapbarCtrl}}"><text class="whiteText">校园快讯
+        </text></view>
+    </view>
+    <view class="OutOFSchoolNews" bindtap="ChooseInNews">
+      <view class="NewstitleGrey" wx:if="{{!tapbarCtrl}}"><text class="greenText">首义快讯
+        </text></view>
+      <view class="Newstitle" wx:if="{{tapbarCtrl}}"><text class="whiteText">首义快讯
+        </text></view>
+    </view>
+  </view>
+  <!-- 新闻list部分 -->
+  <!-- 范围限定 -->
+  <view class="list-group">
+    <!-- listItem list项部分 -->
+    <navigator class="newsItemBox" wx:for="{{list}}" wx:key="index" url="/pages/news/newsDetail/inDetail?newsID={{item.newsId}}">
+      <!-- 左边内容 -->
+      <view class="newsleftBox">
+        <!-- 文字部分 -->
+        <view class="newsItemContent">{{item.newsTitle}}
+        </view>
+        <!-- 学校要闻标签 -->
+        <view class="schoolTypeIndex">{{item.newsType}}
+        </view>
+      </view>
+      <!-- 右边的日期 -->
+      <view class="rightNewsDate">
+        <!-- 天数 需要有颜色切换判断 -->
+        <view class="item.newsTime=='new'?greenTime_day':'greyTime_day'">
+          {{tools.substring(item.newsDate,8,10)}}
+        </view>
+        <!-- 年月份 -->
+        <view class="newsYearAndMonth">
+          {{tools.substring(item.newsDate,0,4)}}.{{tools.substring(item.newsDate,5,7)}}
+       </view>
+      </view>
+    </navigator>
+    <!-- 跳转结束 -->
+  </view>
+</view>
+</view>
+
