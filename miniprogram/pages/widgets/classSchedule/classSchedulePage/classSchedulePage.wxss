@@ -1950,7 +1950,7 @@ page {
   position: absolute;
   right: 0rpx;
   z-index: 0;
-  bottom: -3rpx;
+  bottom: 0rpx;
   overflow: hidden;
 }
 
