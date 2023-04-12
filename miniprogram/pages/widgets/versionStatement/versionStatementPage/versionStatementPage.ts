@@ -4,21 +4,18 @@
 import{getDevDesItem,getPublicDesItem,getVersionDesItem}from "../../../../api/versionStarementApi";
 // 构造参数
 // 声明接口定义
-
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     rectangleIcon:"/static/svg/Rectangle.svg",
-
   },
   // 小程序版本详情
     /**
    * 发送请求，渲染数据
    * @param from 楼栋数据
    */
-
   async initVersionStatement(){
   let that= this;
   //设置标题
@@ -50,7 +47,6 @@ Page({
     // 声明详情
     async initDeclareStatement(){
   let that= this;
-
   // 请求渲染数据部分
    // 分页请求查询
   // 请求渲染数据部分
@@ -109,12 +105,8 @@ async initDevStatement(){
       devClassList,
       devList
     })
-    
-
-    
   }
   },
-
   /**
    * 生命周期函数--监听页面加载
    */

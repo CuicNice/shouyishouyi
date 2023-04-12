@@ -1,6 +1,4 @@
-// pages/widgets/classSchedule/classSchedulePage/classSchedulePage.ts
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -14,6 +12,15 @@ Page({
   onLoad() {
 
   },
+  //tabar设置初始值
+  show() {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -26,7 +33,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    let that =this
+    that.show()
   },
 
   /**

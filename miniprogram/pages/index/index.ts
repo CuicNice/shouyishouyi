@@ -1,86 +1,105 @@
-import { getBanner } from '../../api/bannerApi';
-export interface BannerItem {
-  "currentPage": number,
-  "pageSize": number
+// index.ts
+// 获取应用实例
+import {getElectric} from '../../api/test';
+
+export interface ElectriceItem {
+  build: string,
+  room: string
 }
+
 Page({
-  /**
-   * 数据声明
-   */
   data: {
+    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    homePics: [] as any,
-    data: ''
+    // index: 0,
+    homePics:[],
+    iftaiozhuan:false,
+    shuju:''
   },
-
-  /**
-   * 网络请求
-   */
-  async request() {
-    let value = { "currentPage": 1, "pageSize": 5 };
-    var ifGo;
-    const { data: res } = await getBanner(value) as unknown as IResult<any>;
-    if (res) {
-      var add = res.list;
-      for (var i = 0; i < add.length; i++) {
-        if (add[i].bannerType == 'image') {
-          ifGo = false;
-        };
-        if (add[i].bannerType != 'image') {
-          ifGo = true;
-        };
-        var src = 'http://' + add[i].bannerImage;
-        add[i].src = src;
-        add[i].ifGo = ifGo;
-      };
-      this.setData({
-        homePics: add
-      });
-    };
-  },
-
-  /**
-   * 点击图片跳转
-   */
+  // 事件处理函数
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs',
-    });
+    })
   },
 
-  /**
-   * 点击事件
-   */
-  tap(e: any) {
-    this.setData({
-      data: e.detail.bannerContent,
-    });
-    try {
-      wx.setStorageSync('widget-banner', this.data.data);
-    } catch (e) {
-    };
-    var arr = wx.getStorageSync('widget-banner');
-    if (this.data.data != null && arr.charAt(0) != "/") {
-      wx.navigateTo({
-        url: '../indexText/indexText',
-      });
-    } else {
-      var place = wx.getStorageSync('widget-banner');
-      wx.navigateTo({
-        url: place,
-      });
-    };
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onReady() {
-    this.request();
+    wx.request({
+      url: 'http://www.fmin-courses.com:9527/api/v1/ad/ad/banner/appletBannerList',
+      method:'POST',
+      data: {
+        "currentPage": "1",
+        "pageSize": "5"
+      },
+      success:(res)=> {
+        console.log(res.data)
+        // this.setData({
+        //   homePics:res.data.data.list
+        // })
+        for(var i=0;i<this.data.homePics.length;i++){
+          // if(this.data.homePics[i].bannerType == 'image'){
+          //   this.setData({
+          //     iftaiozhuan:false
+          //   })
+          // }
+          // if(this.data.homePics[i].bannerType != 'image'){
+          //   this.setData({
+          //     iftaiozhuan:true
+          //   })
+          // }
+          // var src='http://' + this.data.homePics[i].bannerImage
+          // var iftiaozhuan=this.data.iftaiozhuan
+          // this.data.homePics[i].src=src
+          // this.data.homePics[i].iftiaozhuan=iftiaozhuan
+        }
+        this.setData({
+          homePics:this.data.homePics
+        })
+      }
+    })
+  },
+    //tabar设置初始值
+    show() {
+      if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 1
+        })
+      }
+    },
+
+  tap(e:any){
+    console.log(e.detail)
+      this.setData({
+      shuju:e.detail.bannerContent,
+      iftaiozhuan: true
+    })
+    console.log(this.data.shuju)
+    try{
+      wx.setStorageSync('key', this.data.shuju)
+      console.log('写入value成功')
+    }catch (e) {
+      console.log('写入value发生错误')
+    }
+    if(this.data.shuju != null){
+    wx.navigateTo({
+      url: '../indexText/indexText',
+    })
+  }
   },
 
   onLoad() {
-
+    // this.initPageData();
+    let that =this
+    that.show()
   },
+  async initPageData(){
+    var from = {
+      build:"西区2栋",
+      room:"507"
+    }as ElectriceItem;
+    const { data } = await getElectric(from) as unknown as IResult<ElectriceItem>;
+    console.log(data);
+  }
 })

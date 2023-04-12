@@ -82,6 +82,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log('oooooooooooo')
     this.getList();
     //判断是否打开过popup
     this.setData({
