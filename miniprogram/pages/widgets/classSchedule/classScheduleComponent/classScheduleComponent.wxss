@@ -4,15 +4,15 @@
   /* Auto layout */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   background: #FFFFFF;
-  /* padding: 12rpx 0rpx 20rpx; */
   padding-top:12rpx;
   width: 718rpx;
   /* 边框 */
   border: 2rpx solid #E3E3E6;
-  border-radius:13rpx;
+  border-radius:20rpx;
   margin-left:20rpx;
+  /* background-color: fuchsia; */
 }
 .dailySchedulecontainer{
     display: flex;
@@ -23,18 +23,9 @@
     margin-right:34rpx;
 }
 .dailyScheduleNavigation {
-  box-sizing: border-box;
-  /* Auto layout */
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 16rpx;
-  padding-top: 16rpx;
-  padding-bottom: 18rpx;
-  width: 100%;
-  height: 74rpx;
-  /* #EAEAEC */
-  /* border-bottom: 1px solid #EAEAEC; */
+  margin-left: 19rpx;
+  margin-right: 19rpx;
 }
 
 .dailyScheduleNavigationBox{
@@ -44,33 +35,24 @@ flex-direction: row;
 justify-content: space-between;
 align-items: flex-start;
 padding: 16rpx;
-
-width: 640rpx;
+width: 100%;
 height: 74rpx;
-
-/* #EAEAEC */
-
 border-bottom: 1px solid #EAEAEC;
+/* background-color: darkorchid; */
 }
 
 .dailyNavigationtext {
-  /* width: 195px; */
   height: 40rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 500;
   font-size: 28rpx;
   line-height: 40rpx;
-  /* identical to box height */
-  /* text */
   color: #292945;
 }
 .dailyScheduleNavigationIcon{
 width: 42rpx;
 height: 42rpx;
-/* position: absolute;
-left:674rpx;
-top:28rpx; */
 }
 
 .dailyScheduleNavigationIcon image{
