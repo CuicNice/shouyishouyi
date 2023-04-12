@@ -572,7 +572,7 @@
     <block class="block" wx:for="{{detailClass}}" wx:key="index">
       <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
         <view class="course">
-          <view class="courseName">{{item.name}}</view>
+          <view class="{{item.name.length>10?'courseName1':'courseName'}}">{{item.name}}</view>
           <view class="courseifBox">
             <view class="courseif" wx:if="{{item.zindex==3}}" style="color: white;">本周</view>
             <view class="courseif1" wx:else style="color:#757575;">非本周</view>
