@@ -14,16 +14,16 @@
           </view>
         </view>
         <view class="skin-choice-title">简约白</view>
-        <image wx:if="{{white}}" class="icon2" src="../../../../static/svg/tubiao.svg"></image>
       </view>
+      <image wx:if="{{white}}" class="icon2" src="../../../../static/svg/tubiao.svg"></image>
       <view class="colorselBox">
         <view class="colorBox1" bindtap="background2">
           <view class="skin-choice-night">
           </view>
         </view>
         <view class="skin-choice-title">暗夜黑</view>
-        <image wx:if="{{black}}" class="icon2" src="../../../../static/svg/tubiao.svg"></image>
       </view>
+      <image wx:if="{{black}}" class="icon2" src="../../../../static/svg/tubiao.svg"></image>
       <view class="colorselBox">
         <view class="checkBox">
           <image bindtap="background3"src="../../../../static/svg/zidingyi.svg"></image>
