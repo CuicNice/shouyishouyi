@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/widgets/classSchedule/classScheduleComponent/classScheduleComponent",
     "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
+    "pages/widgets/classSchedule/classScheduleComponent/classScheduleComponent",
     "pages/widgets/electricCharge/electricPage/electricPage",
     "pages/login/login",
     "pages/index/index",
