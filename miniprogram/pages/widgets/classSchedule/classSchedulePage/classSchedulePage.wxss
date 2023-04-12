@@ -2271,17 +2271,10 @@ page {
   font-family: PingFang SC;
   font-size: 32rpx;
   font-weight: bold;
-  line-height: 88rpx;
-}
-
-.courseName1{
-  width: 338rpx;
-  height: 88rpx;
-  display: block;
-  white-space: pre-line;
-  font-family: PingFang SC;
-  font-size: 32rpx;
-  font-weight: bold;
+  line-height: 44rpx;
+  text-align: left;
+  float: left;
+  
 }
 
 .courseixBoc {
