@@ -149,6 +149,7 @@ page {
   padding-bottom: 10rpx;
   padding-top: 14rpx;
   height: 80rpx;
+  padding-left: 14rpx;
 }
 
 .select_boxWhite {
@@ -538,15 +539,7 @@ page {
   background: rgba(198, 198, 198, 0.6);
 }
 
-.dailyNavigationtext {
-  height: 40rpx;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28rpx;
-  line-height: 40rpx;
-  color: #292945;
-}
+
 
 .dailyNavigationtextWhite {
   height: 40rpx;
@@ -971,7 +964,7 @@ page {
 
 .courseDetails {
   width: 540rpx;
-  height: 476rpx;
+  /* height: 476rpx; */
   position: relative;
   border-radius: 20rpx;
   background: white;
@@ -979,36 +972,13 @@ page {
   z-index: 1000;
   margin-left: 30rpx;
   display: inline-block;
+  /* background-color: darkmagenta; */
+  padding-top: 40rpx;
+  padding-right:50rpx;
+  padding-left:50rpx;
+  padding-bottom: 40rpx;
 }
 
-.course {
-  margin-top: 40rpx;
-  margin-left: 50rpx;
-  width: 440rpx;
-  height: 88rpx;
-}
-
-.courseOther {
-  margin-top: 4rpx;
-  margin-left: 50rpx;
-  width: 440rpx;
-  height: 268rpx;
-  display: inline-block;
-}
-
-.courseName {
-  width: 338rpx;
-  height: 100%;
-  font-family: PingFang SC;
-  font-size: 32rpx;
-  font-weight: bold;
-  line-height: 44rpx;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  float: left;
-}
 
 .courseixBoc {
   width: 95rpx;
@@ -1018,7 +988,7 @@ page {
 
 .courseplace {
   height: 40rpx;
-  margin-top: 36rpx;
+  /* margin-top: 36rpx; */
   margin-left: 5rpx;
   display: flex;
   flex-direction: row;
@@ -1031,7 +1001,6 @@ page {
   background-color: #4BDCAB;
   line-height: 44rpx;
   font-size: 24rpx;
-  margin-left: 370rpx;
   text-align: center;
 }
 
@@ -1045,7 +1014,7 @@ page {
   font-size: 24rpx;
   background-color: #E6E6E6;
   line-height: 44rpx;
-  margin-left: 370rpx;
+  /* margin-left: 370rpx; */
   text-align: center;
 }
 
@@ -2219,22 +2188,26 @@ page {
 }
 
 .course {
-  margin-top: 40rpx;
-  margin-left: 50rpx;
-  width: 440rpx;
+  padding-left: 10rpx;
   height: 88rpx;
+  /* background-color: coral; */
+  display: flex;
+  justify-content: space-between;
 }
 
 .courseOther {
-  margin-top: 4rpx;
-  margin-left: 50rpx;
-  width: 440rpx;
-  height: 268rpx;
+
+  margin-top: 40rpx;
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 36rpx;
+height: 268rpx;
 }
 
 .courseName {
   width: 338rpx;
-  height: 100%;
+  /* height: 100%; */
   font-family: PingFang SC;
   font-size: 32rpx;
   font-weight: bold;
@@ -2249,10 +2222,10 @@ page {
   float: left;
 }
 
-.courseplace {
+/* .courseplace {
   height: 40rpx;
   margin-top: 36rpx;
-}
+} */
 
 .cuorseGuding {
   color: #292945;
@@ -2260,7 +2233,7 @@ page {
   width: 80rpx;
   font-weight: bold;
   font-size: 28rpx;
-  margin-left: 30rpx;
+  margin-left: 20rpx;
   float: left;
 }
 
