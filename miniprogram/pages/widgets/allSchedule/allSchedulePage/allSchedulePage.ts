@@ -571,7 +571,7 @@ Page({
       //专科
       if (semesterArray.length == 6) {
         if (schoolTime.slice(0, 2) !== '大四') {
-          if (schoolTime == semesterArray[a].slice(0, 3)) {
+          if (schoolTime == semesterArray[a].slice(14, 17)) {
             break;
           }
         } else {
@@ -581,7 +581,7 @@ Page({
       //专升本
       if (semesterArray.length == 4) {
         if (schoolTime.slice(0, 2) !== '大一' || schoolTime.slice(0, 2) !== '大二') {
-          if (schoolTime == semesterArray[a].slice(0, 3)) {
+          if (schoolTime == semesterArray[a].slice(14, 17)) {
             break;
           }
         } else {
@@ -590,7 +590,7 @@ Page({
       }
       //本
       if (semesterArray.length == 8) {
-        if (schoolTime == semesterArray[a].slice(0, 3)) {
+        if (schoolTime == semesterArray[a].slice(14, 17)) {
           break;
         }
       }
@@ -750,7 +750,7 @@ Page({
       classTitle_2 = '';
     }
     else {
-      this.selectComponent("#toast_2").showToastAuto("请完善绑定条件", "",);
+      this.selectComponent("#toast_2").showToastAuto("请完善查询条件", "",);
     }
     this.setData({
       Chargedetail: Chargedetail,
@@ -803,7 +803,6 @@ Page({
     if (this.data.Y as unknown as number - grade > 3) {
       schoolTime = '大一上';
     };
-    console.log(schoolTime)
     /**
      * 重新选择时，清空下面选项行内容的显示
      */
@@ -877,26 +876,19 @@ Page({
     /**
      * 进行本科，专升本，专科的判断
      */
+    var grade =this.data.grade as any;
     for (var i = 0; i < Class.length; i++) {
       if (Class[i] == 'z' && Class[i + 1] == 's' && Class[i + 2] == 'b') {
-        semesterArray = ['大三上学期', '大三下学期', '大四上学期', '大四下学期'];
+        semesterArray = [grade+'-'+(grade-0+1)+'第1学期（大三上)', grade+'-'+(grade-0+1)+'第2学期(大三下)',(grade-0+1)+'-'+(grade-0+2)+'第1学期(大四上)', (grade-0+1)+'-'+(grade-0+2)+'第2学期(大四下)'];
         break;
       }
       else if (Class[i] == '专') {
-        semesterArray = ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期'];
+        semesterArray = [grade+'-'+(grade-0+1)+'第1学期(大一上)', grade+'-'+(grade-0+1)+'第2学期(大一下)', (grade-0+1)+'-'+(grade-0+2)+'第1学期(大二上)',(grade-0+2)+'-'+(grade-0+2)+'第2学期(大二下)', (grade-0+2)+'-'+(grade-0+3)+'第1学期(大三上)', (grade-0+2)+'-'+(grade-0+3)+'第2学期(大三下)'];
         break;
       }
       else {
-        semesterArray = ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'];
+        semesterArray = [grade+'-'+(grade-0+1)+'第1学期(大一上)', grade+'-'+(grade-0+1)+'第2学期(大一下)', (grade-0+1)+'-'+(grade-0+2)+'第1学期(大二上)',(grade-0+1)+'-'+(grade-0+2)+'第2学期(大二下)',(grade-0+2)+'-'+(grade-0+3)+'第1学期(大三上)', (grade-0+2)+'-'+(grade-0+3)+'第2学期(大三下)',(grade-0+3)+'-'+(grade-0+4)+'第1学期(大四上)', (grade-0+3)+'-'+(grade-0+4)+'第2学期(大四下)'];
         continue;
-      }
-    }
-    if (this.data.Y as unknown as number - Number(this.data.grade) <= 4) {
-      for (let i = 0; i < semesterArray.length; i++) {//给本学年加上后缀名
-        if (this.data.schoolTime == semesterArray[i].slice(0, 3)) {
-          semesterArray[i] = semesterArray[i] + "(本学年)";
-          break;
-        }
       }
     }
     /**
@@ -906,7 +898,7 @@ Page({
       //专科
       if (semesterArray.length == 6) {
         if (this.data.schoolTime.slice(0, 2) !== '大四') {
-          if (this.data.schoolTime == semesterArray[a].slice(0, 3)) {
+          if (this.data.schoolTime == semesterArray[a].slice(14, 17)) {
             break;
           }
         } else {
@@ -924,7 +916,7 @@ Page({
       }
       //本
       if (semesterArray.length == 8) {
-        if (this.data.schoolTime == semesterArray[a].slice(0, 3)) {
+        if (this.data.schoolTime == semesterArray[a].slice(14, 17)) {
           break;
         }
       }
@@ -945,10 +937,8 @@ Page({
    * 学期的picker弹窗的确认
    */
   bind_semester() {
-    console.log(this.data.schoolTime)
-    var semesters = this.data.semesterArray[this.data.semesterId as unknown as number] as any;
-    semesters = semesters.slice(0, 3);
-    var semesterTitle = semesters;
+    var semesters = this.data.semesterArray[this.data.semesterId as unknown as number].slice(14,17) as any;
+    var semesterTitle =  this.data.semesterArray[this.data.semesterId as unknown as number] as any;
     /**
      * 获取当前年
      */

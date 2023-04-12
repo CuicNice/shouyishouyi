@@ -17,8 +17,8 @@
   </view>
 </view>
 <view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">
-  <scroll-view scroll-x="true" scroll-into-view="{{toView}}"  show-scrollbar="false" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
-    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum" >
+  <scroll-view scroll-x="true" scroll-into-view="{{toView}}" show-scrollbar="false" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
+    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
       <view class="select_one" wx:if="{{nowWeek == index+1}}" id="item{{index}}" style="{{beginWeek!=index+1?'':'width: 213rpx;'}}">
         <ul>
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
@@ -26,7 +26,7 @@
           <view class="select_oneweek" wx:else>第{{index+1}}周(本周)</view>
         </ul>
       </view>
-      <view class="select_which" wx:else bindtap="selectWeek" data-index='{{index}}'  id="item{{index}}" style="{{beginWeek==index+1?'width: 150rpx;':''}}">
+      <view class="select_which" wx:else bindtap="selectWeek" data-index='{{index}}' id="item{{index}}" style="{{beginWeek==index+1?'width: 150rpx;':''}}">
         <ul>
           <view class="noselect_oneweek" wx:if="{{beginWeek!=index+1}}">第{{index+1}}周</view>
           <view class="noselect_oneweek" wx:else>第{{index+1}}周(本周)</view>
@@ -44,109 +44,109 @@
     <view class="{{picture==''?'weekbigBox':'weekbigBoxWhite'}}" style="{{bgc==''?'':'border-bottom: 2rpx solid rgba(86, 86, 86, 0.6);'}}">
       <view class="weekBox">
         <view class="weekBox{{weekTime[0] == nowDate ? 'Select':'noSelect'}}">
-        <view class="week">
-          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周日</view>
-        </view>
-        <view class="day">
-          <block>
-            <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[0],0,2)}}</view>
-              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[0],2,4)}}</view>
-            </view>
-          </block>
-        </view>
+          <view class="week">
+            <view class="{{bgc==''?'top-text':'top-textWhite'}}">周日</view>
+          </view>
+          <view class="day">
+            <block>
+              <view class="dateBox">
+                <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[0],0,2)}}</view>
+                <view class="{{bgc==''?'box':'boxWhite'}}" style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[0],2,4)}}</view>
+              </view>
+            </block>
+          </view>
         </view>
       </view>
-      <view class="weekBox">  
+      <view class="weekBox">
         <view class="weekBox{{weekTime[1] == nowDate ? 'Select':'noSelect'}}">
-        <view class="week">
-          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周一</view>
-        </view>
-        <view class="day">
-          <block>
-            <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[1],0,2)}}</view>
-              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[1],2,4)}}</view>
-            </view>
-          </block>
-        </view>
+          <view class="week">
+            <view class="{{bgc==''?'top-text':'top-textWhite'}}">周一</view>
+          </view>
+          <view class="day">
+            <block>
+              <view class="dateBox">
+                <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[1],0,2)}}</view>
+                <view class="{{bgc==''?'box':'boxWhite'}}" style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[1],2,4)}}</view>
+              </view>
+            </block>
+          </view>
         </view>
       </view>
       <view class="weekBox">
         <view class="weekBox{{weekTime[2] == nowDate ? 'Select':'noSelect'}}">
-        <view class="week">
-          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周二</view>
-        </view>
-        <view class="day">
-          <block>
-            <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[2],0,2)}}</view>
-              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[2],2,4)}}</view>
-            </view>
-          </block>
-        </view>
+          <view class="week">
+            <view class="{{bgc==''?'top-text':'top-textWhite'}}">周二</view>
+          </view>
+          <view class="day">
+            <block>
+              <view class="dateBox">
+                <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[2],0,2)}}</view>
+                <view class="{{bgc==''?'box':'boxWhite'}}" style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[2],2,4)}}</view>
+              </view>
+            </block>
+          </view>
         </view>
       </view>
       <view class="weekBox">
-         <view class="weekBox{{weekTime[3] == nowDate ? 'Select':'noSelect'}}">
-        <view class="week">
-          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周三</view>
+        <view class="weekBox{{weekTime[3] == nowDate ? 'Select':'noSelect'}}">
+          <view class="week">
+            <view class="{{bgc==''?'top-text':'top-textWhite'}}">周三</view>
+          </view>
+          <view class="day">
+            <block>
+              <view class="dateBox">
+                <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[3],0,2)}}</view>
+                <view class="{{bgc==''?'box':'boxWhite'}}" style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[3],2,4)}}</view>
+              </view>
+            </block>
+          </view>
         </view>
-        <view class="day">
-          <block>
-            <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[3],0,2)}}</view>
-              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[3],2,4)}}</view>
-            </view>
-          </block>
-        </view>
-         </view>
-      </view> 
-      <view class="weekBox"> 
+      </view>
+      <view class="weekBox">
         <view class="weekBox{{weekTime[4] == nowDate ? 'Select':'noSelect'}}">
-        <view class="week">
-          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周四</view>
+          <view class="week">
+            <view class="{{bgc==''?'top-text':'top-textWhite'}}">周四</view>
+          </view>
+          <view class="day">
+            <block>
+              <view class="dateBox">
+                <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[4],0,2)}}</view>
+                <view class="{{bgc==''?'box':'boxWhite'}}" style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[4],2,4)}}</view>
+              </view>
+            </block>
+          </view>
         </view>
-        <view class="day">
-          <block>
-            <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[4],0,2)}}</view>
-              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[4],2,4)}}</view>
-            </view>
-          </block>
-        </view>
-        </view>
-      </view> 
+      </view>
       <view class="weekBox">
         <view class="weekBox{{weekTime[5] == nowDate ? 'Select':'noSelect'}}">
-        <view class="week">
-          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周五</view>
-        </view>
-        <view class="day">
-          <block>
-            <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[5],0,2)}}</view>
-              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[5],2,4)}}</view>
-            </view>
-          </block>
-        </view>
+          <view class="week">
+            <view class="{{bgc==''?'top-text':'top-textWhite'}}">周五</view>
+          </view>
+          <view class="day">
+            <block>
+              <view class="dateBox">
+                <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[5],0,2)}}</view>
+                <view class="{{bgc==''?'box':'boxWhite'}}" style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[5],2,4)}}</view>
+              </view>
+            </block>
+          </view>
         </view>
       </view>
-      <view class="weekBox">  
+      <view class="weekBox">
         <view class="weekBox{{weekTime[6] == nowDate ? 'Select':'noSelect'}}">
-        <view class="week">
-          <view class="{{bgc==''?'top-text':'top-textWhite'}}">周六</view>
+          <view class="week">
+            <view class="{{bgc==''?'top-text':'top-textWhite'}}">周六</view>
+          </view>
+          <view class="day">
+            <block>
+              <view class="dateBox">
+                <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[6],0,2)}}</view>
+                <view class="{{bgc==''?'box':'boxWhite'}}" style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[6],2,4)}}</view>
+              </view>
+            </block>
+          </view>
         </view>
-        <view class="day">
-          <block>
-            <view class="dateBox">
-              <view class="{{bgc==''?'box':'boxWhite'}}">{{filters.substring(weekTime[6],0,2)}}</view>
-              <view class="{{bgc==''?'box':'boxWhite'}}"style="font-weight: 600;width:22rpx">{{filters.substring(weekTime[6],2,4)}}</view>
-            </view>
-          </block>
-        </view>
-        </view>
-      </view>  
+      </view>
     </view>
   </view>
   <view class="WHQscroll" wx:if="{{weekSchedule}}">
@@ -166,7 +166,7 @@
         <block wx:for="{{weekTime}}" wx:key="index">
           <!-- 本周 -->
           <view wx:if="{{dark}}">
-            <view class="table-day" >
+            <view class="table-day">
               <view style="height: {{103*table.num.length+13*(table.num.length-1)}}rpx;margin-top:{{(table.num[0]-1)*115}}rpx;" class="table-num" wx:for="{{classSchedule.week[nowWeek-classSchedule.week[0].name].data[index].item}}" wx:for-item="table" wx:key="index" bindtap="showClassDetail" data-cls="{{table}}">
                 <view class="flex-item-single" style="background: {{table.colorDark}};height: {{103*table.num.length-6+13*(table.num.length-1)}}rpx;color: #F5F5F5;">
                   <view class="smalltext">{{table.name}}</view>
@@ -195,36 +195,36 @@
 
 <!--课程的具体详情-->
 <view class="mask" wx:if="{{ifshow}}" bindtap="closeDetails_class">
-  <scroll-view wx:if="{{ifshow}}" class="classScroll1" >
-    <block class="block" wx:for="{{detailClass}}" wx:key="index">
-      <view class="courseDetails" style="border-color: {{item.zindex==3?'#4BDCAB':'#E3E3E5'}};">
+  <scroll-view wx:if="{{ifshow}}" class="classScroll1">
+    <block class="block">
+      <view class="courseDetails" style="border-color: {{detailClass[0].zindex==3?'#4BDCAB':'#E3E3E5'}};">
         <view class="course">
-          <view class="courseName">{{item.name}}</view>
+          <view class="courseName">{{detailClass[0].name}}</view>
           <view class="courseifBox">
-            <view class="courseif" wx:if="{{item.zindex==3}}" style="color: white;">本周</view>
+            <view class="courseif" wx:if="{{detailClass[0].zindex==3}}" style="color: white;">本周</view>
             <view class="courseif1" wx:else style="color:#757575;">非本周</view>
           </view>
         </view>
         <view class="courseOther">
           <view class="courseplace">
-            <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/didian.svg':'../../../../static/svg/gareyplace.svg'}}" />
+            <image class="courseplaceImage" src="{{detailClass[0].zindex==3?'../../../../static/svg/didian.svg':'../../../../static/svg/gareyplace.svg'}}" />
             <view class="cuorseGuding">地点:</view>
-            <view class="cuorseXuigai">{{item.local}}</view>
+            <view class="cuorseXuigai">{{detailClass[0].local}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/teacher.svg':'../../../../static/svg/gareyteacher.svg'}}" />
+            <image class="courseplaceImage" src="{{detailClass[0].zindex==3?'../../../../static/svg/teacher.svg':'../../../../static/svg/gareyteacher.svg'}}" />
             <view class="cuorseGuding">老师:</view>
-            <view class="cuorseXuigai">{{item.teacher}}</view>
+            <view class="cuorseXuigai">{{detailClass[0].teacher}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/jieshu.svg':'../../../../static/svg/gareytime.svg'}}" />
+            <image class="courseplaceImage" src="{{detailClass[0].zindex==3?'../../../../static/svg/jieshu.svg':'../../../../static/svg/gareytime.svg'}}" />
             <view class="cuorseGuding">节数:</view>
-            <view class="cuorseXuigai">{{item.day}} | 第{{item.old_num}}</view>
+            <view class="cuorseXuigai">{{detailClass[0].day}} | 第{{detailClass[0].old_num}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="{{item.zindex==3?'../../../../static/svg/zhuoci.svg':'../../../../static/svg/gareyzho.svg'}}" />
+            <image class="courseplaceImage" src="{{detailClass[0].zindex==3?'../../../../static/svg/zhuoci.svg':'../../../../static/svg/gareyzho.svg'}}" />
             <view class="cuorseGuding">周次：</view>
-            <view class="cuorseXuigai">第{{item.old_day_num}}</view>
+            <view class="cuorseXuigai">第{{detailClass[0].old_day_num}}</view>
           </view>
         </view>
       </view>
@@ -278,9 +278,9 @@
       </view>
       <!-- 学期 -->
       <view class="gradeBox" bindtap="showxq">
-        <view class="laber">
+        <view class="laber" style="width:100%">
           <text class="laberLeft">学期：</text>
-          <text class="laberRight">{{semesterTitle&&semesters?semesters:"请选择学期 "}}</text>
+          <text class="laberRight">{{semesterTitle&&semesters?semesterTitle:"请选择学期 "}}</text>
         </view>
         <view class="iconpicker">
           <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
@@ -304,12 +304,12 @@
   <!-- 单独的年级选择器 -->
   <view class="picker_box" wx:if="{{shownj}}">
     <view class="picker_title_box">
-      <text class="picker_title">请选择年级</text>
+      <text class="picker_title" style="font-family: 'PingFang SC';font-style: normal;font-weight: 600;font-size: 16px;line-height: 22px;text-transform: capitalize;color: #000000;">请选择年级</text>
     </view>
     <view class="section">
-      <picker-view indicator-style="height: 112rpx;" value="{{gradeId}}" style="line-height: 36px;width: 100%; height: 336rpx;" mask-style="opacity: 0;z-index: 0" bindchange="bindGrade" indicator-style="color: black;">
+      <picker-view indicator-style="height: 56px;opacity: 0;" value="{{gradeId}}" style="line-height: 56px;width: 100%; height: 336rpx;" mask-style="opacity: 0;z-index: 0" bindchange="bindGrade">
         <picker-view-column>
-          <view class="{{item == gradeArray[gradeId]?'active':'noactive'}}" wx:for="{{gradeArray}}" wx:key="index">{{item}}</view>
+          <view style="border-bottom: 2rpx solid #EAEAEC;" class="{{item == gradeArray[gradeId]?'active':'noactive'}}" wx:for="{{gradeArray}}" wx:key="index">{{item}}</view>
         </picker-view-column>
       </picker-view>
     </view>
@@ -325,12 +325,12 @@
   <!-- 单独的学院选择器 -->
   <view class="picker_box" wx:if="{{showxy}}">
     <view class="picker_title_box">
-      <text class="picker_title">请选择学院</text>
+      <text class="picker_title"  style="font-family: 'PingFang SC';font-style: normal;font-weight: 600;font-size: 16px;line-height: 22px;text-transform: capitalize;color: #000000;">请选择学院</text>
     </view>
     <view class="section">
-      <picker-view indicator-style="height: 112rpx;" style="width: 100%; height: 336rpx;line-height:  36px" mask-style="opacity: 0;z-index: 0" value="{{academyId}}" bindchange="bindAcademy">
+      <picker-view indicator-style="height: 56px;opacity: 0;" style="width: 100%; height: 336rpx;line-height:  56px" mask-style="opacity: 0;z-index: 0" value="{{academyId}}" bindchange="bindAcademy">
         <picker-view-column>
-          <view class="{{item==academyArray[academyId]?'active':'noactive'}}" wx:for="{{academyArray}}" wx:key="index">{{item}}</view>
+          <view style="border-bottom: 2rpx solid #EAEAEC;" class="{{item==academyArray[academyId]?'active':'noactive'}}" wx:for="{{academyArray}}" wx:key="index">{{item}}</view>
         </picker-view-column>
       </picker-view>
     </view>
@@ -346,12 +346,12 @@
   <!-- 单独的班级选择器 -->
   <view class="picker_box" wx:if="{{showbj}}">
     <view class="picker_title_box">
-      <text class="picker_title">请选择专业班级</text>
+      <text class="picker_title"  style="font-family: 'PingFang SC';font-style: normal;font-weight: 600;font-size: 16px;line-height: 22px;text-transform: capitalize;color: #000000;">请选择专业班级</text>
     </view>
     <view class="section">
-      <picker-view indicator-style="height: 112rpx;" style="width: 100%; height: 336rpx;line-height:  36px" mask-style="opacity: 0;z-index: 0" value="{{ClassId}}" bindchange="bindClass">
+      <picker-view indicator-style="height: 56px;opacity: 0;" style="width: 100%; height: 336rpx;line-height:  56px" mask-style="opacity: 0;z-index: 0" value="{{ClassId}}" bindchange="bindClass">
         <picker-view-column>
-          <view class="{{item==ClassArray[ClassId]?'active':'noactive'}}" wx:for="{{ClassArray}}" wx:key="index">{{item}}</view>
+          <view style="border-bottom: 2rpx solid #EAEAEC;" class="{{item==ClassArray[ClassId]?'active':'noactive'}}" wx:for="{{ClassArray}}" wx:key="index">{{item}}</view>
         </picker-view-column>
       </picker-view>
     </view>
@@ -368,12 +368,12 @@
   <!-- 单独的学期选择器 -->
   <view class="picker_box" wx:if="{{showxq}}">
     <view class="picker_title_box">
-      <text class="picker_title">请选择学期</text>
+      <text class="picker_title"  style="font-family: 'PingFang SC';font-style: normal;font-weight: 600;font-size: 16px;line-height: 22px;text-transform: capitalize;color: #000000;">请选择学期</text>
     </view>
     <view class="section">
-      <picker-view indicator-style="height: 112rpx;" style="width: 100%; height: 336rpx;line-height:  36px;" mask-style="opacity: 0;z-index: 0" value="{{semesterId}}" bindchange="bindSemester">
+      <picker-view indicator-style="height: 56px;opacity: 0;" style="width: 100%; height: 336rpx;line-height:  56px;" mask-style="opacity: 0;z-index: 0" value="{{semesterId}}" bindchange="bindSemester">
         <picker-view-column>
-          <view class="{{item==semesterArray[semesterId]?'active':'noactive'}}" wx:for="{{semesterArray}}" wx:key="index">{{item}}</view>
+          <view style="border-bottom: 2rpx solid #EAEAEC;" class="{{item==semesterArray[semesterId]?'active':'noactive'}}" wx:for="{{semesterArray}}" wx:key="index">{{item}}</view>
         </picker-view-column>
       </picker-view>
     </view>
