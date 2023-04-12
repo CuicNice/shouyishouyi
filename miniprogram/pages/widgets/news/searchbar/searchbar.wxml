@@ -1,13 +1,6 @@
 <view class="search-group">
-<<<<<<< HEAD
-  <input class="searchInput" type="text" placeholder="搜索你想要的首义快讯" bindinput='onInputEvent'></input>
-  <view class="searchIconBox">
-    <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
-  </view>
-=======
   <input class="search-input" type="text" placeholder="搜索你想要的首义快讯" placeholder-class="searchHolder" bindinput='onInputEvent'></input>
   <view class="searchIconBox">
       <image class="searchIcon" src="/static/svg/search.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
     </view>
->>>>>>> 8029209029ee13ff407153878b1d4569e1d3b99c
 </view>

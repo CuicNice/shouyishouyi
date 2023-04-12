@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/widgets/news/testMiniNewsComponent/testMiniNewsComponent",
     "pages/news/newsList/list",
     "pages/news/newsSearch/search",
     "pages/news/newsDetail/inDetail",
