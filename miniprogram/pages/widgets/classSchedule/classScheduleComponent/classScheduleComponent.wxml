@@ -26,10 +26,12 @@
             <view class="dailyScheduleAd">{{item.local}}</view>
           </view>
         </view>
-        <view class="dailyScheduleKc">
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
           <view class="whichKc">第{{item.old_num}}</view>
           <view class="whichTc">{{item.teacher}}</view>
-        </view>
+          </view>
+        </view>  
         <view class="dailyScheduleBd">
           <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
           <image class="academicBuilding"wx:if="{{item.alonePlace == '教学'}}"></image>
@@ -87,15 +89,17 @@
           </view>
           <view class="dailyScheduleAdBox">
             <view class="dailyScheduleAdIcon">
-              <image></image>
+            <image></image>
             </view>
             <view class="dailyScheduleAd">{{item.local}}</view>
           </view>
         </view>
-        <view class="dailyScheduleKc">
+        <view class="dailyScheduleKcBox">
+          <view class="dailyScheduleKc">
           <view class="whichKc">第{{item.old_num}}</view>
           <view class="whichTc">{{item.teacher}}</view>
-        </view>
+          </view>
+        </view>  
         <view class="dailyScheduleBd">
           <image class="collegeOfForeignLanguages" wx:if="{{item.alonePlace == '外国'}}"></image>
           <image class="academicBuilding"wx:if="{{item.alonePlace == '教学'}}"></image>

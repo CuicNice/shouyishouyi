@@ -34,8 +34,13 @@
   </view>
 </view>
 <view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">
+<<<<<<< HEAD
   <scroll-view scroll-x="true" scroll-into-view="{{toView}}" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
     <view wx:for="{{weekNum}}" wx:key="index" class="weekNum">
+=======
+  <scroll-view scroll-x="true" scroll-into-view="{{toView}}"  show-scrollbar="false" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
+    <view wx:for="{{weekNum}}" wx:key="index" class="weekNum" >
+>>>>>>> xiaowang_classSchedule(2)_230307
       <view class="select_one" wx:if="{{nowWeek == index+1}}" id="item{{index}}" style="{{beginWeek!=index+1?'':'width: 213rpx;'}}">
         <ul>
           <image class="image" src="/static/svg/classScheduleNannan.svg"></image>
