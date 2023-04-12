@@ -1,7 +1,9 @@
 <view class="dailyScheduleContainer">
   <view class="dailyScheduleNavigation">
+  <view class="dailyScheduleNavigationBox">
     <view class="dailyNavigationtext">{{nowDayData}}</view>
     <view class="dailyScheduleNavigationIcon" bindtap="godailySchedule"><image></image></view>
+  </view>
   </view>
   <view  class="dailySchedulecontainer" wx:if="{{ifClass}}">
   <!-- 深色系版的日课表 -->
@@ -144,6 +146,5 @@
 <!-- 日课表没有课的状态 -->
 <view class="nodailyScheduleIndex" wx:if="{{!ifClass}}">
  <image class="nodailyScheduleIndexImgBg" src="../../../../static/svg/classScheduleCompent.svg"></image>
-  <image class="nodailyScheduleIndexImg"></image>
  </view> 
 </view>
