@@ -1016,7 +1016,8 @@ page {
 }
 
 .courseDetails {
-  width: 450rpx;
+  /* width: 450rpx; */
+  margin-top: 60rpx;
   position: relative;
   border-radius: 20rpx;
   background: white;
@@ -1104,6 +1105,7 @@ page {
   width: 100%;
   white-space: nowrap;
   z-index: 11;
+  /* background-color: crimson; */
 }
 
 .block {
@@ -2240,7 +2242,7 @@ page {
 
 .course {
   padding-left: 10rpx;
-  height: 88rpx;
+  /* height: 88rpx; */
   /* background-color: coral; */
   display: flex;
   justify-content: space-between;
