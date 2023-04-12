@@ -3,7 +3,6 @@ import {
 } from "./util";
 
 class Http {
-
   /**
    * 
    * 封装的get请求 

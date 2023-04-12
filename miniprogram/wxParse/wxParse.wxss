@@ -11,6 +11,7 @@
  */
 
 .wxParse{
+  
     margin: 0 5px;
     font-family: Helvetica,sans-serif;
     font-size: 23rpx;
@@ -111,11 +112,9 @@
 }
 
 .wxParse-img{
-    /*background-color: #efefef;*/
-    /* overflow: hidden; */
-     /* display: flex;          图片间隙有无 */
-  margin-top:-5rpx; /*解决图片空白间隙*/
   width: 100% !important;
+  /* 图片圆角 */
+  border-radius: 10rpx;
 }
 
 .wxParse-blockquote {

@@ -1,9 +1,15 @@
 // app.ts
+const {
+  myStorage
+} = require("./utils/newStorage.js")
+
 App<IAppOption>({
   globalData: {
-    baseUrl: "http://www.fmin-courses.com:9527"
+    baseUrl: "https://www.fmin-courses.com"
   },
   onLaunch() {
+    // 虎哥
+     // 检查小程序更新
    
   },
 })

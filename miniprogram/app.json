@@ -1,44 +1,26 @@
 {
   "pages": [
-    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
-    "pages/widgets/widgetsPages/widgetsPages",
-    "pages/widgets/testTapBar/testTapBar",
-    "pages/news/list/list",
-    "pages/news/search/search",
+    "pages/news/newsList/list",
+    "pages/news/newsSearch/search",
+    "pages/news/newsDetail/inDetail",
     "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
+    "pages/login/login",
     "pages/index/index",
     "pages/indexText/indexText",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
+    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",
     "pages/popup/popupPage/popupPage",
-    "pages/message/web-view/webView",
-    "pages/test1/test"
+    "pages/message/web-view/webView"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "custom": true,
-    "list": [
-      {
-        "pagePath": "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
-        "text": "课程表"
-      },
-      {
-        "pagePath": "pages/test1/test",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/widgets/widgetsPages/widgetsPages",
-        "text": "组件"
-      }
-    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

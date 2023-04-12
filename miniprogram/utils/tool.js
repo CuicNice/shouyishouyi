@@ -11,8 +11,6 @@ function throttle(fn, interval) {
     }
   };
 }
-
-
 /*函数防抖*/
 function debounce(fn, interval) {
   var timer;

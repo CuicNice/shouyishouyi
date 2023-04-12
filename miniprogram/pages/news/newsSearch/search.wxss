@@ -1,0 +1,586 @@
+/* pages/search/search.wxss */
+
+
+/* 背景颜色 */
+
+.bg {
+  /* Entering for the first time */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* 背景 */
+  background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
+  z-index: -999;
+}
+
+
+/* 背景的物体 */
+
+.bgThingsBox {
+  position: fixed;
+  left: 254.66rpx;
+  top: 532rpx;
+  opacity: 0.2;
+}
+
+.bgThings {
+  width: 178.74 !important;
+  height: 881.48rpx !important;
+}
+
+
+/* 组件部分 */
+
+.infor-box {
+  width: 699rpx;
+  height: 126rpx;
+  position: relative;
+  /* border: 2rpx solid #A3A3A3; */
+  /* border-radius: 16rpx; */
+  margin-left: 32rpx;
+  /* margin-right: 31rpx; */
+  margin-top: -4rpx;
+  display: flex;
+  /* justify-content: flex-start; */
+  margin-bottom: 20rpx;
+  border-bottom: 1rpx solid rgba(147, 149, 151, 0.3);
+  padding-bottom: 23rpx;
+  /* background-color: #ca9c9c; */
+}
+
+.time-box {
+  display: block;
+  /* justify-items: end; */
+  /* display: flex; */
+  justify-content: center;
+  /* 设置弹性盒子元素在主轴的对齐方式，这里direction是column只设置垂直居中 */
+  align-items: center;
+  /* 子元素水平居中显示 */
+  flex-direction: column;
+  /* 垂直还是水平排列 */
+  overflow: cover;
+  /* background-color: #000000; */
+  position: relative;
+  /* width: 126rpx; */
+  margin-left: 60rpx;
+  right: 0rpx;
+  text-align: center;
+  overflow: hidden;
+  transform: translate(0rpx, 17rpx);
+}
+
+
+/* 未查询到 */
+
+.unfind {
+  /* Frame 297 */
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0rpx;
+  gap: 20rpx;
+  position: absolute;
+  width: 280rpx;
+  height: 356rpx;
+  left: 234rpx;
+  top: 642rpx;
+}
+
+.unfindTxt {
+  width: 240rpx;
+  height: 56rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  /* identical to box height */
+  text-align: center;
+  /* text */
+  color: #292945;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.unfindIconBox {
+  width: 280rpx;
+  height: 280rpx;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.unfindSvg {
+  width: 280rpx;
+  height: 280rpx;
+}
+
+.unfindText {
+  /* 暂无成绩信息 */
+  width: 240rpx;
+  height: 56rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  /* identical to box height */
+  text-align: center;
+  /* text */
+  color: #292945;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.year-box {
+  display: flex;
+  justify-content: center;
+  /* 设置弹性盒子元素在主轴的对齐方式，这里direction是column只设置垂直居中 */
+  align-items: center;
+  /* 子元素水平居中显示 */
+  flex-direction: column;
+  /* 垂直还是水平排列 */
+  overflow: cover;
+  text-align: center;
+}
+
+.greenTime_day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  overflow: cover;
+  text-align: center;
+  font-size: 74rpx;
+  font-family: PingFangSC-Light, PingFang SC;
+  font-weight: 300;
+  color: var(--themeColor);
+  line-height: 103rpx;
+  text-align: center;
+  /* margin-left: 20rpx; */
+  margin-top: -14rpx;
+}
+
+.greyTime_day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  overflow: cover;
+  text-align: center;
+  font-size: 74rpx;
+  font-family: PingFangSC-Light, PingFang SC;
+  font-weight: 300;
+  color: #7F7F8F;
+  line-height: 103rpx;
+  text-align: center;
+  /* margin-left: 20rpx; */
+  margin-top: -14rpx;
+}
+
+.time-year {
+  text-align: center;
+  font-size: 24rpx;
+  font-family: PingFangSC-Light, PingFang SC;
+  font-weight: 300;
+  color: #939597;
+  line-height: 33rpx;
+  margin-bottom: 1rpx;
+  transform: translate(0rpx, -1rpx);
+}
+
+
+/* list列表项 */
+
+.list-group {
+  /*装新闻项 */
+  padding: 25px 0px;
+}
+
+.title-box {
+  width: 545rpx;
+  height: 145rpx;
+  margin-top: 8rpx;
+  padding-bottom: 14rpx;
+}
+
+.item-title {
+  width: 515rpx;
+  height: 67rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  line-height: 35rpx;
+  letter-spacing: 1rpx;
+  /* 文本内容显示限制 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.type {
+  display: flex;
+  flex-direction: flex-start;
+  float: left;
+  flex-wrap: nowrap;
+  /* margin-bottom: 0rpx; */
+  word-wrap: none;
+  margin-top: 18rpx;
+}
+
+.typebox {
+  display: flex;
+  flex-direction: flex-start;
+  padding-top: 15rpx;
+}
+
+.type-today {
+  display: flex;
+  margin-bottom: 6rpx;
+  word-wrap: none;
+}
+
+.type-new {
+  display: flex;
+  margin-right: 19rpx;
+  margin-bottom: 6rpx;
+  word-wrap: none;
+}
+
+.item-type {
+  width: 95rpx;
+  height: 30rpx;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #939597;
+  line-height: 30rpx;
+  letter-spacing: 1rpx;
+  margin-right: 41rpx;
+  word-wrap: none;
+  margin-bottom: 14rpx;
+}
+
+@keyframes newflash {
+  0% {
+    transform-origin: left bottom;
+    transform: rotateZ(0deg);
+  }
+
+  5% {
+    transform-origin: left bottom;
+    transform: rotateZ(-2deg);
+  }
+
+  15% {
+    transform-origin: left bottom;
+    transform: rotateZ(-8deg);
+  }
+
+  50% {
+    transform-origin: left bottom;
+    transform: rotateZ(-10deg);
+  }
+
+  60% {
+    transform-origin: left bottom;
+    transform: rotateZ(-8deg);
+  }
+
+  65% {
+    transform-origin: left bottom;
+    transform: rotateZ(-5deg);
+  }
+
+  70% {
+    transform-origin: left bottom;
+    transform: rotateZ(-3deg);
+  }
+
+  80% {
+    transform-origin: left bottom;
+    transform: rotateZ(-1.5deg);
+  }
+
+  100% {
+    transform-origin: left bottom;
+    transform: rotateZ(0deg);
+  }
+}
+
+.today-icon {
+  width: 74rpx;
+  height: 25rpx;
+  background: #FFFFFF;
+  animation: newflash 2s infinite ease;
+  /* margin-left: 30rpx; */
+  /* 通过new的右边距来确定 */
+}
+
+.new-icon {
+  width: 49rpx;
+  height: 25rpx;
+  background: #FFFFFF;
+  animation: newflash 2s infinite ease;
+}
+
+
+/* 搜索列表 */
+
+.search-list {
+  margin-left: 38rpx;
+  margin-top: 42rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* 左边样式 */
+
+.search-left {
+  width: 101rpx;
+  height: 100rpx;
+  border-radius: 11rpx;
+  border: 1rpx solid #000000;
+}
+
+.search-left-top {
+  width: 101rpx;
+  height: 30rpx;
+  padding-bottom: 12rpx;
+  background: #454545;
+  border-radius: 11rpx;
+  border: 1rpx solid #000000;
+  margin-left: -1rpx;
+  margin-top: -1rpx;
+}
+
+.searchtextbox {
+  width: 65rpx;
+  height: 38rpx;
+  margin-left: 22rpx;
+  display: flex;
+  align-items: center;
+}
+
+.search-left-top-text {
+  font-size: 27rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 38rpx;
+}
+
+.search-left-bottom {
+  margin-left: 11rpx;
+  width: 76rpx;
+  height: 46rpx;
+  font-size: 33rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 900;
+  color: #000000;
+  line-height: 46rpx;
+}
+
+
+/* 右边样式 */
+
+.search-right {
+  margin-left: 17rpx;
+}
+
+.search-right-top {
+  width: 574rpx;
+  height: 38rpx;
+  font-size: 27rpx;
+  margin-right: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 900;
+  color: #000000;
+  line-height: 38rpx;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-right-bottom {
+  margin-top: 4rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-right-bottom-text {
+  width: 445rpx;
+  height: 52rpx;
+  font-size: 19rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #736E6E;
+  line-height: 26rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-right-bottom-type {
+  margin-top: 29rpx;
+  margin-right: 20rpx;
+  width: 114rpx;
+  height: 26rpx;
+  font-size: 19rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  line-height: 26rpx;
+}
+
+.high {
+  color: #f00;
+}
+
+/* 搜索部分 */
+/* 搜索栏 */
+.search-group {
+  /* searchbar */
+  margin-top: 20px;
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+  margin-left: 32px;
+  margin-right: 32px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #20C38C;
+  border-radius: 82px;
+}
+
+.searchInput {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /* identical to box height */
+  text-transform: lowercase;
+}
+
+.searchInput::placeholder {
+  /* 解决IOS样式Plcaeholder的样式不改变的问题 */
+  opacity: 0.6;
+}
+
+/* 输入框默认样式 */
+.searchHolder {
+  /* 输入你要搜索的图书 */
+  height: 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+/* 搜索图标样式 */
+/* icon图标样式 */
+.searchContent {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+
+
+}
+
+.textInfo {}
+
+.searchIconBox {
+  /* icon/search */
+
+  width: 20px;
+  height: 20px;
+
+}
+
+.searchIcon {
+  /* Inside auto layout */
+  width: 20px !important;
+  height: 20px !important;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.searchHolder {
+  width: 140px;
+  height: 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* 格式化文档 */
+::-webkit-input-placeholder {
+  width: 140px;
+  height: 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6 !important;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

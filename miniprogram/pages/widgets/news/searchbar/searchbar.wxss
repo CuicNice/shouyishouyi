@@ -1,0 +1,134 @@
+/* 搜索栏 */
+.search-group {
+  /* searchbar */
+  margin-top: 20px;
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+  margin-left: 32px;
+  margin-right: 32px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #20C38C;
+  border-radius: 82px;
+}
+.searchInput {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /* identical to box height */
+  text-transform: lowercase;
+  opacity: 0.6;
+  /* text */
+
+}
+
+.searchInput:focus {
+  opacity: 1;
+}
+
+/* 输入框默认样式 */
+.searchHolder {
+  /* 输入你要搜索的图书 */
+  height: 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* 搜索图标样式 */
+/* icon图标样式 */
+
+.searchContent {
+
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+
+
+}
+
+.textInfo {}
+
+.searchIconBox {
+  /* icon/search */
+
+  width: 20px;
+  height: 20px;
+
+}
+
+.searchIcon {
+  /* Inside auto layout */
+  width: 20px !important;
+  height: 20px !important;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.searchHolder {
+  width: 140px;
+  height: 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* 格式化文档 */
+::-webkit-input-placeholder {
+  width: 140px;
+  height: 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #000000;
+  opacity: 0.6 !important;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

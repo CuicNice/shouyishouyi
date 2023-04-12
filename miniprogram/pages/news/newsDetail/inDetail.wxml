@@ -1,0 +1,62 @@
+<!--pages/inDetail/inDetail.wxml-->
+<!-- <navbar navbar-data='{{nvabarData}}'></navbar> -->
+<import src="../../../wxParse/wxParse" />
+<view class="bg">
+  <!-- 背景柱子 -->
+  <view class="bgThingsBox">
+    <image class="bgThings" src="{{builtList[builtListNum]}}" mode="" />
+  </view>
+</view>
+<!-- topbar -->
+<topBar title="{{newsDetailTitle}}" immersion="{{true}}" Threshold="0.1">
+  <view class="cont">
+    <!-- 顶部的图像 -->
+    <view class="top">
+      <image class="topSvg" style="width: 330px;height: 59.38px;" src="{{topTitleSvgUrl}}" mode="" />
+    </view>
+    <!-- 新闻内容框子 -->
+    <view class="border" style="background:{{t_bg}}">
+      <view class="title" style="filter:{{light}}">{{item.title}}</view>
+      <!-- 南李路22号标题头 -->
+      <view class="contenTitle">
+        <image class="contentTitle" style="width: 622rpx;height: 28rpx;" src="{{contentTitle}}" mode="" />
+      </view>
+      <view class="letter">
+        <view class="text">
+          <view class="{{light=='brightness(10);'? 'NewwxParse' : 'wxParse'}}">
+            <!-- 数据引入 -->
+            <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+          </view>
+        </view>
+        <!-- 新闻内容底部 -->
+        <view class="boderLine"></view>
+        <view class="ad" style="filter:{{light}}">更多讯息请微信关注：南李路二十二号</view>
+      </view>
+    </view>
+    <!-- 底部的背景 -->
+    <view class="bottom">
+      <view class="bottom_left" bindtap="swipTheme">
+        <!-- 南南的微信二维码 -->
+        <image class="erweima" src="{{nannanCode}}"></image>
+      </view>
+      <view class="bottom_right">
+        <view class="bottom_text" style="filter:{{light}}">扫码快速关注微信公众号</view>
+        <!-- 三个符号 -->
+        <view class="bottom_text" style="filter:{{light}}"><text decode="true">&lt;&lt;&lt;</text></view>
+        <view class="bottom_text" style="filter:{{light}}">首义学习资料，首义一手讯</view>
+        <view class="bottom_text" style="filter:{{light}}">息首义学分获取......</view>
+      </view>
+    </view>
+  </view>
+</topBar>
+<!-- 需要添加id才能被selectComponnet选中 -->
+<toast id="toast"></toast>
+<!-- 南南问题单 -->
+<f-dialog showDialog="{{isShowDialog}}" title="{{dialogTitle}}" stitle="{{dialogContent}}" schoolBuiltSrc="{{schoolBuiltSrc}}">
+  <view class="btn-box school-btn">
+    <button class="btn" type="primary" class="dialogCertainButon" bindtap="dialogCertain">
+      <view>确定</view>
+    </button>
+  </view>
+</f-dialog>
+<!-- 学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~ -->
