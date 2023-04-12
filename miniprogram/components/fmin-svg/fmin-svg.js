@@ -1,4 +1,3 @@
-import classSvg from "../../pages/widgets/classSchedule/classScheduleComponent/classSvg";
 import SvgManager from "../../pages/widgets/classSchedule/classSchedulePage/classSvg"
 import { getColorSVG } from "../../utils/tools"
  
@@ -40,7 +39,6 @@ Component({
             this.setData({
                 svgData: svgBase64 // 渲染
             });
-            console.log(this.data.svgData);
         }
     }
 })
