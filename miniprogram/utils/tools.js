@@ -8,7 +8,7 @@ export const getColorSVG = (svgBase64, color) => {
         if (/<svg /.test(svg)) {
             let newSvg;
             if (/fill=".*?"/.test(svg)) {
-                newSvg = svg.replace(/fill=".*"/, `fill="${color}" `);  // SVG有默认色，注意结尾跟一个空格
+                newSvg = svg.replace(/fill=".*?"/g, `fill="${color}" `);  // SVG有默认色，注意结尾跟一个空格
             } else {
                 newSvg = svg.replace(/<svg /, `<svg fill="${color}" `); // 无默认色，注意结尾跟一个空格
             }

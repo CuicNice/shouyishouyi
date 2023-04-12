@@ -275,7 +275,7 @@ Page({
       try {
         week = this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加
       } catch {
-        this.selectComponent("#toast").showToastAuto("刷新失败", "error","0");
+        this.selectComponent("#toast").showToastAuto("刷新失败", "error", "0");
         this.setData({
           dialogTip: true
         })
@@ -762,10 +762,15 @@ Page({
     return dateArry;
   },
 
-  handleSwiperChange(e: any) {
-    this.setData({
-      currentTab: e.detail.current,
-    });
+  handleSwiperChange(e: { detail: { current: any; source: any; }; }) {
+    let current = e.detail.current
+    let source = e.detail.source
+    if (source == 'autoplay' || source == 'touch') {
+      //根据官方 source 来进行判断swiper的change事件是通过什么来触发的，autoplay是自动轮播。touch是用户手动滑动。其他的就是未知问题。抖动问题主要由于未知问题引起的，所以做了限制，只有在自动轮播和用户主动触发才去改变current值，达到规避了抖动bug
+      this.setData({
+        currentTab: current,
+      });
+    }
   },
 
   /**
