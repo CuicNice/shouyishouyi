@@ -299,7 +299,7 @@ Page({
         utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
         utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
         //获取日课表的日期信息并存进缓存
-        let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
+        let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + " (日程表)"
         utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
       }
       that.selectComponent("#toast").showToastAuto("刷新成功", "success");
@@ -943,7 +943,7 @@ Page({
         utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
         utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
         //获取日课表的日期信息并存进缓存
-        let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + "(日程表)"
+        let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + " (日程表)"
         utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
       }, 300)
     }

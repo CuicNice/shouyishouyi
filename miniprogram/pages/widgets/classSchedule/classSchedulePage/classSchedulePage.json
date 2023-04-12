@@ -2,7 +2,8 @@
   "disableScroll":true,
   "usingComponents": {
     "toast": "/components/fmin-toast/fmin-toast",
-    "dialogTitle":"/components/fmin-dialog/fmin-dialog"
+    "dialogTitle":"/components/fmin-dialog/fmin-dialog",
+    "m-icon":"/components/fmin-svg/fmin-svg"
   },
   "navigationStyle": "custom"
 }
