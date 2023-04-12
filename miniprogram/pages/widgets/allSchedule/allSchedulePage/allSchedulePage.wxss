@@ -2,11 +2,11 @@
 .vector{
   position: absolute;
   padding-right: 110rpx;
-  margin-top: 124rpx;
-  margin-left: 34rpx;
+  padding-top: 120rpx;
+  padding-left: 34rpx;
   width: 18rpx;
   height: 34rpx;
-  z-index: 1000;
+  z-index: 10000;
 }
 .vector image{
   transform: rotate(-180deg);
@@ -23,7 +23,6 @@ page {
 }
 
 .dialogText {
-  width: 398rpx;
   height: 142rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -102,44 +101,6 @@ page {
   height: 100%;
 }
 
-
-.button {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 102rpx;
-  width: 500rpx;
-  margin-left: 60rpx;
-  margin-right: 60rpx;
-  margin-bottom: 62rpx;
-}
-
-.button .cancel {
-  box-sizing: border-box;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background-color: #FFFFFF;
-  border: 1px solid #20C38C;
-  border-radius: 70rpx;
-  color: #20C38C;
-}
-
-.button .primary {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background: #20C38C;
-  border-radius: 70rpx;
-}
-
 .button .text {
   font-family: 'PingFang SC';
   font-style: normal;
@@ -150,7 +111,7 @@ page {
 }
 
 .navigationBar {
-  height: 11.5%;
+  height: 11%;
   width: 100%;
   display: flex;
   margin-right: 302rpx;
@@ -172,12 +133,12 @@ page {
   line-height: 44rpx;
   text-align: center;
   color: #FFFFFF;
-  margin-top: 40rpx;
+  /* margin-top: 40rpx; */
 }
 
 .icon-WeekOption {
   margin-left: 6rpx;
-  margin-top: 40rpx;
+  /* margin-top: 40rpx; */
   width: 44rpx;
   height: 44rpx;
   background-size: cover;
@@ -186,7 +147,6 @@ page {
 
 .icon-WeekOptionWhite {
   margin-left: 6rpx;
-  margin-top: 40rpx;
   width: 44rpx;
   height: 44rpx;
   background-size: cover;
@@ -200,8 +160,9 @@ page {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 14rpx 18rpx 14rpx;
-  gap: 24rpx;
+  /* padding: 14rpx 18rpx 14rpx; */
+  padding-bottom: 10rpx;
+  padding-top:14rpx;
   height: 80rpx;
 }
 
@@ -215,7 +176,6 @@ page {
   height: 80rpx;
   background: rgba(255, 255, 255, 0.9);
 }
-
 
 .top {
   display: flex;
@@ -234,7 +194,7 @@ page {
   height: 68rpx;
   background: #F8F8F8;
   z-index: 1;
-  margin-top: 13rpx;
+  /* margin-top: 13rpx; */
   /* background-color: darkturquoise; */
 }
 
@@ -273,7 +233,7 @@ page {
   align-items: flex-start;
   height: 82rpx;
   border-bottom: 2rpx solid #EAEAEC;
-  margin-top: 12rpx;
+  /* margin-top: 12rpx; */
   z-index: 10;
 }
 
@@ -298,7 +258,7 @@ page {
   height: 82rpx;
   text-align: center;
   align-items: center;
- 
+ /* background-color: darkorchid; */
 }
 
 
@@ -394,7 +354,7 @@ page {
   background: rgba(255, 255, 255, 0.8);
 }
 
-/* 淇敼宸﹁竟搴曢儴涓や釜鐩掑瓙 */
+/* ä¿®æ”¹å·¦è¾¹åº•éƒ¨ä¸¤ä¸ªç›’å­ */
 .practicalCourses {
   margin-top: 7rpx;
   text-align: center;
@@ -1015,42 +975,8 @@ page {
   color: rgba(0, 0, 0, 0.3);
 }
 
-.button {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 90rpx;
-  width: 500rpx;
-  margin-left: 60rpx;
-  margin-right: 60rpx;
-  margin-bottom: 62rpx;
-}
 
-.button .cancel {
-  box-sizing: border-box;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background-color: #FFFFFF;
-  border: 1px solid #20C38C;
-  border-radius: 70rpx;
-  color: #20C38C;
-}
 
-.button .primary {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background: #20C38C;
-  border-radius: 70rpx;
-}
 
 .button .text {
   font-family: 'PingFang SC';
@@ -1119,7 +1045,7 @@ page {
 .courseif {
   width: 96rpx;
   height: 44rpx;
-  border-radius: 20rpx;
+  border-radius: 10rpx;
   background-color: #4BDCAB;
   line-height: 44rpx;
   font-size: 24rpx;
@@ -1130,7 +1056,7 @@ page {
 .courseif1 {
   width: 96rpx;
   height: 44rpx;
-  border-radius: 20rpx;
+  border-radius: 10rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
@@ -1142,7 +1068,7 @@ page {
 }
 
 .courseplaceImage {
-  height: 32rpx;
+  height: 40rpx;
   width: 40rpx;
   text-align: center;
 }
@@ -1167,6 +1093,12 @@ page {
 .classScroll1 {
   height: 500rpx;
   width: 600rpx;
+  white-space: nowrap;
+  z-index: 11;
+}
+.classScroll2 {
+  height: 500rpx;
+  width: 100%;
   white-space: nowrap;
   z-index: 11;
 }
@@ -1256,42 +1188,9 @@ page {
   color: #000000;
 }
 
-.button {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 102rpx;
-  width: 500rpx;
-  margin-left: 60rpx;
-  margin-right: 60rpx;
-  margin-bottom: 62rpx;
-}
 
-.button .cancel {
-  box-sizing: border-box;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background-color: #FFFFFF;
-  border: 1px solid #20C38C;
-  border-radius: 70rpx;
-  color: #20C38C;
-}
 
-.button .primary {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 28rpx;
-  gap: 20rpx;
-  width: 214rpx;
-  height: 84rpx;
-  background: #20C38C;
-  border-radius: 70rpx;
-}
+
 
 .button .text {
   font-family: 'PingFang SC';
@@ -1306,7 +1205,7 @@ page {
   width: 48rpx;
   height: 48rpx;
   margin-left: 18rpx;
-  transform: translate(0rpx, 125rpx);
+  transform: translate(0rpx, 114rpx);
   /* background-color: aquamarine; */
 }
 
@@ -1328,7 +1227,7 @@ page {
   width: 44rpx;
   height: 44rpx;
   margin-left: 26rpx;
-  transform: translate(0rpx, 125rpx);
+  transform: translate(0rpx, 114rpx);
   /* background-color: cyan; */
 }
 
@@ -1340,7 +1239,7 @@ page {
 .flushIconBox {
   width: 44rpx;
   height: 44rpx;
-  transform: translate(0rpx, 125rpx);
+  transform: translate(0rpx, 114rpx);
   margin-left: 28rpx;
  /* background-color: darkolivegreen; */
 }
@@ -1362,9 +1261,9 @@ page {
 
 .TitleLeft {
   /* margin-top: 50rpx; */
+  height: 44rpx;
   width: 100%;
-  height: 142rpx;
-  transform: translate(10rpx, 80rpx);
+  transform: translate(0rpx, 114rpx);
   /* background-color: indianred; */
 }
 
@@ -1377,6 +1276,7 @@ page {
 }
 
 .text-WeekOption {
+
   height: 44rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -1385,7 +1285,7 @@ page {
   line-height: 44rpx;
   text-align: center;
   color: #333333;
-  margin-top: 40rpx;
+  /* margin-top: 40rpx; */
 }
 
 
@@ -1471,11 +1371,11 @@ page {
 
 .week {
   height: 34rpx;
+  margin-left: 8rpx;
+  margin-top: 4rpx;
+  font-weight: bold;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  text-align: center;
- margin-top: 10rpx;
 }
 
 .day {
@@ -1498,7 +1398,16 @@ page {
   letter-spacing: 4rpx;
   text-align: right;
 }
-
+.weekBoxnoSelect{
+  width: 62rpx;
+  height: 70rpx;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6rpx;
+  margin-bottom: 6rpx;
+  text-align: center;
+  /* background-color: deepskyblue; */
+}
 .weekBoxSelect {
   /* margin-left: 8rpx; */
   width: 62rpx;
@@ -1528,6 +1437,11 @@ page {
   margin-left: 2rpx;
 }
 
+.dateBox{
+  display: flex;
+  flex-direction: row;
+}
+
 .weekBoxSelect .dateBox {
   width: 97rpx;
   height: 28rpx;
@@ -1554,7 +1468,7 @@ page {
   color: white;
 }
 
-/* 淇敼宸﹁竟搴曢儴涓や釜鐩掑瓙 */
+/* ä¿®æ”¹å·¦è¾¹åº•éƒ¨ä¸¤ä¸ªç›’å­ */
 .practicalCourses {
   margin-top: 7rpx;
   text-align: center;
@@ -1870,7 +1784,7 @@ page {
   width: 22rpx;
   height: 0rpx;
   background: gray;
-  border: 2rpx solid gray;
+  border: 1rpx solid gray;
   transform: rotate(90deg);
 }
 
@@ -1970,7 +1884,7 @@ page {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding-top: 28rpx;
+  padding-top: 30rpx;
   padding-bottom: 20rpx;
   padding-right: 20rpx;
 }
@@ -2316,6 +2230,7 @@ page {
   height: 84rpx;
   background: #20C38C;
   border-radius: 70rpx;
+  /* line-height: 84rpx; */
 }
 
 .button .text {
@@ -2383,7 +2298,7 @@ page {
 
 .classScroll {
   height: 1250rpx;
-  /*濡傛灉瑕佷緷鐪熸満娴嬭瘯涓轰富锛屽垯闇€瑕佹敼鎴�1250rpx*/
+  /*å¦‚æžœè¦ä¾çœŸæœºæµ‹è¯•ä¸ºä¸»ï¼Œåˆ™éœ€è¦æ”¹æˆ1250rpx*/
   display: flex;
   flex-direction: column;
 }
@@ -2405,7 +2320,6 @@ page {
   z-index: 1000;
   position: relative;
 }
-
 .chooseBox {
   display: flex;
   flex-direction: column;
