@@ -23,19 +23,36 @@
 </dialogTitle>
 
 <!-- 绑定账号半屏弹窗 -->
-<dialogTitle title="请登录你的教务系统账号"  type="half-screen" showDialog="{{showLoginDialog}}">
+<dialogTitle title="请登录你的教务系统账号" type="half-screen" showDialog="{{showLoginDialog}}">
   <view class="input">
     <text class="label">学号</text>
-    <input bindinput="getXh" type="number" placeholder="eg:20191110040" placeholder-class="placeholder"/>
+    <input bindinput="getXh" type="number" placeholder="eg:20191110040" placeholder-class="placeholder" />
   </view>
   <view class="tips">如果是初始的教务系统密码为身份证后八位，如果不能登录请确保此账号密码能在学校的教务系统上成功登录！</view>
   <view class="input" style="margin-top: 68rpx;">
     <text class="label">密码</text>
-    <input bindinput="getMm" type="text" placeholder="密码为教务系统登录密码" password="true" placeholder-style="width: 300rpx;height: 40rpx;text-align: right;font-family: 'PingFang SC';font-style: normal;font-weight: 400;font-size: 28rpx;line-height: 40rpx;"/>
+    <input bindinput="getMm" type="text" placeholder="密码为教务系统登录密码" password="true" placeholder-style="width: 300rpx;height: 40rpx;text-align: right;font-family: 'PingFang SC';font-style: normal;font-weight: 400;font-size: 28rpx;line-height: 40rpx;" />
   </view>
   <view class="tips">如果是初始的教务系统密码为身份证后八位</view>
   <view class="loginDialogBoxBtn">
-      <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeLoginDialog">取消</button>
-      <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="login">登录</button>
-    </view>
+    <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeLoginDialog">取消</button>
+    <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="login">登录</button>
+  </view>
 </dialogTitle>
+
+<!-- popup弹窗页面 -->
+<view class="popGrey" bindtap="closePhoto" wx:if="{{termTitleTapdetail}}" catchtouchmove="ture"></view>
+<view class="setup" wx:if='{{tc_custom}}'>
+  <view class="photoShow" bindtap="loginInfo">
+    <image src="{{ima}}" mode='aspectFit'></image>
+  </view>
+  <image class="dispel2" src="/static/svg/message/dispel2.svg" bindtap="closePhoto"></image>
+</view>
+
+<view class="dialogShow" bindtap="closePhoto" wx:if="{{tc_system}}">
+  <dialogTitle title="{{popupAppear.popupSystemHeadline}}" stitle="{{popupAppear.popupSystemSubtitle}}" schoolBuiltSrc="/static/svg/schoolBuilt/zhonglou.svg" showDialog="{{showDialog}}">
+    <view style="display: flex;">
+      <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="loginInfo">{{popupAppear.popupJumpType !== 'noJump'?'前往查看详情':'确定'}}</button>
+    </view>
+  </dialogTitle>
+</view>

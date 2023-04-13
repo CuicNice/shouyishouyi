@@ -1,13 +1,9 @@
-<<<<<<<< HEAD:miniprogram/pages/widgets/electricCharge/testElectricComponent/testElectricComponent.ts
 // pages/widgets/electricCharge/testElectricComponent/testElectricComponent.ts
 import { getElectric } from '../../../../api/electricChargeApi';
 export interface ElectriceItem {
   build: string,
   room: string
 }
-========
-// pages/indexText/indexText.js
->>>>>>>> 494cb37889219171c3144f9e3df0d14c28ee599c:miniprogram/pages/indexText/indexText.js
 Page({
 
   /**

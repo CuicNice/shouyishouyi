@@ -23,15 +23,15 @@
   .firstMessage{
   margin-top: 32rpx;
   width: 660rpx;
-  height: 292rpx;
+  height: 100%;
   background: #FFFFFF;
   border: 4rpx solid #4BDCAB;
   border-radius: 20rpx;
   }
   .title{
-    margin: 16rpx 0rpx 10rpx 32rpx;
-    width: 544rpx;
-    height: 96rpx;
+    margin: 20rpx 0rpx 10rpx 32rpx;
+    width: 100%;
+    height: 100%;
   }
   .titleText{
   font-family: 'PingFang SC';
@@ -41,19 +41,27 @@
   line-height: 48rpx;
   text-transform: capitalize;
   color: #292945;
+
   }
   .stitle{
-  width: 554rpx;
-  height: 96rpx;
-  margin: 26rpx 32rpx 10rpx 32rpx;
+  white-space:normal !important;
+  width: 596rpx;
+  height: 100%;
+  padding: 0rpx 32rpx 0rpx 32rpx;
   }
   .stitleText{
+    display: -webkit-box;  /*设置为弹性盒子*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp: 2;  /*最多显示2行*/
+    width: 596rpx;
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
     font-size: 24rpx;
-    line-height: 48rpx;
-    text-align: justify;
+    line-height: 30rpx;
     color: #000000;
     mix-blend-mode: normal;
     opacity: 0.5;
@@ -65,7 +73,7 @@
   align-items: center;
   width: 596rpx;
   height: 48rpx;
-  margin: 0rpx 32rpx 16rpx 32rpx ;
+  margin: 10rpx 0rpx 16rpx 32rpx ;
   }
   .timeShow{
   display: flex;
@@ -96,15 +104,13 @@
   align-items: center;
   padding: 0rpx;
   gap: 12rpx;
-  width: 156rpx;
   height: 48rpx;
   }
   .likeBox image{
-    width: 28rpx;
-    height: 28rpx;
+    width: 30rpx;
+    height: 34rpx;
   }
   .likeBox text{
-  width: 140rpx;
   height: 48rpx;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -114,102 +120,10 @@
   text-transform: capitalize;
   color: rgba(41, 41, 69, 0.6);
   }
-  .messageDetail{
-  display: flex;
-  flex-direction: column;
-  gap: 36rpx;
-  position: absolute;
-  width: 640rpx;
-  height: 1748rpx;
-  margin-top: 46rpx;
-  margin-left: 56rpx;
-  margin-right: 54rpx;
-  }
-  .detailTitle{
-  width: 640rpx;
-  height: 96rpx;
-  margin: 0rpx;
   
-  }
-  .detailTitle text{
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 40rpx;
-  line-height: 48rpx;
-  text-transform: capitalize;
-  color: #292945;
-  }
-  .messageText{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /* padding: 0px; */
-  gap: 28rpx;
-  width: 640rpx;
-  height: 100%;
-  }
-  .text{
-  width: 640r0px;
-  
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28rpx;
-  line-height: 48rpx;
-  text-transform: capitalize;
-  color: #292945;
-  }
-  .text text{
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28rpx;
-  line-height: 48rpx;
-  text-transform: capitalize;
-  color: #292945;
-  }
-  .photo{
-  width: 640rpx;
-  border-radius: 20rpx;
-  margin-top: 28rpx;
-  margin-bottom: 36rpx;
-  }
-
-  .textLike{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* padding: 0px; */
-  gap: 4rpx;
-  width: 640rpx;
-  }
-  .likeImage{
-  display: flex;
-  width: 120rpx;
-  height: 120rpx;
-  align-items: center;
-  justify-content: center;
-  }
-  .likeImage image{
-  width: 64rpx;
-  height: 80rpx;
-  }
-  .likeBottom{
-  width: 640rpx;
-  height: 40rpx;
-  text-align: center;
-  }
-  .likeBottom text{
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28rpx;
-  line-height: 40rpx;
-  }
   .show{
 display: block;
-margin-top: 26rpx;
+margin-top: 30rpx;
 margin-right: 20rpx;
 flex-direction: column;
 align-items: flex-start;
@@ -238,7 +152,7 @@ color: #FFFFFF;
   border-radius: 55.2273px;
   }
 .text-box{
-  height: 96rpx;
+  height: 100%;
   display: flex;
 }
   

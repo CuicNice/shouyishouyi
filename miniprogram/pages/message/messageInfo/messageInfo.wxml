@@ -1,0 +1,57 @@
+<!-- 点进后的信息详情弹窗 与上面不同-->
+<view class="background"></view>
+<topbar immersion="{{true}}" Threshold="1">
+  <!-- 直接点击弹窗进入 -->
+  <view wx:if="{{Form}}">
+    <view class="messageDetail" wx:if="{{popupAppear.popupJumpType =='link'?!isHidden:isHidden}}">
+      <view class="detailTitle">
+        <text>{{popupAppear.popupJumpTextTitle}}</text>
+      </view>
+      <view class="timeShow">
+        <image src="/static/svg/message/clock.svg" class="clock"></image>
+        <text>{{popupAppear.popupPublishTime}}</text>
+      </view>
+      <view class="messageText">
+        <view class="text">
+          <text style="width: 640rpx;">{{popupAppear.popupJumpTextContent!==null?popupAppear.popupJumpTextContent:''}}</text>
+        </view>
+        <image class="photo" wx:if="{{popupAppear.popupJumpTextImage !== null}}" src="http://{{popupAppear.popupJumpTextImage}}" style="width: 640rpx; border-radius: 20rpx;margin-top: 10rpx;margin-bottom: 36rpx;height: 100%;" mode='widthFix'></image>
+        <view class="textLike">
+          <view class="likeImage" bindtap="getLike">
+            <image src="/static/svg/message/{{popupAppear.show}}Like.svg"></image>
+          </view>
+          <view class="likeBottom">
+            <text>{{popupAppear.show !== 'green'?popupAppear.popupFabulous+'人赞过':'喜欢就点个赞吧~'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 点击信息中心进入 -->
+  <view wx:if="{{!Form}}">
+    <view class="messageDetail" wx:if="{{Info[row].popupJumpType == 'link'?!isHidden:isHidden}}">
+      <view class="detailTitle">
+        <text>{{Info[row].popupJumpTextTitle}}</text>
+      </view>
+      <view class="timeShow">
+        <image src="/static/svg/message/clock.svg" class="clock"></image>
+        <text>{{Info[row].popupPublishTime}}</text>
+      </view>
+      <view class="messageText">
+        <view class="text">
+          <text>{{Info[row].popupJumpTextContent!==null?Info[row].popupJumpTextContent:''}}</text>
+        </view>
+        <image class="photo" wx:if="{{Info[row].popupJumpTextImage !== null}}" src="http://{{Info[row].popupJumpTextImage}}" style="width: 640rpx; border-radius: 20rpx;margin-top: 10rpx;margin-bottom: 36rpx;height: 100%;" mode='widthFix'></image>
+        <view class="textLike">
+          <view class="likeImage" bindtap="getLike">
+            <image src="/static/svg/message/{{Info[row].show}}Like.svg"></image>
+          </view>
+          <view class="likeBottom">
+            <text>{{Info[row].show !== 'green'?Info[row].popupFabulous+'人赞过':'喜欢就点个赞吧~'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</topbar>
