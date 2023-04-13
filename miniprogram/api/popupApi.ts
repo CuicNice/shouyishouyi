@@ -5,6 +5,7 @@ import Utils from '../utils/util';
 import { popupeItem } from '../pages/login/login';
 import {messageItem} from '../pages/message/messagePage/messagePage';
 import{infoItem} from '../pages/message/messageInfo/messageInfo';
+import{Fabulous}from'../pages/message/messageInfo/messageInfo';
 
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
@@ -15,7 +16,6 @@ const apiList = {
   listPopup: baseUrl + '/api/v1/ad/mini/popup/listMiniPopups',
   listMessage :baseUrl + '/api/v1/ad/mini/popup/listMiniPopups',
   getInfo:baseUrl +'/api/v1/ad/mini/popup/getPopupById',
-
 }
 
 // 获取是否出现弹窗
@@ -50,5 +50,13 @@ export const getInfo= async (popupeForm: infoItem) => {
     return Result.mockSuccess("<h1> 你好 世界 </h1>");
   } else {
     return await request.post(apiList.getInfo, popupeForm);
+  }
+}
+//传递给后端的点赞接口
+export const getFabulous= async (popupeForm: Fabulous) => {
+  if (Consts.DEBUG) {
+    return Result.mockSuccess("<h1> 你好 世界 </h1>");
+  } else {
+    return await request.post(apiList.getFabulous, popupeForm);
   }
 }
