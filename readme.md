@@ -43,14 +43,12 @@ typings
 3、测试页面：testCountDownComponentPage供大家做引入参考
 4、备注，自己写的topBar可以单独拿出来封装，目前测试兼容性还可以，在countDownPage页面。
 
-<<<<<<< HEAD
 ### 2023/3/2 score inquiry
  1.修改了代码规范。
 
 ### 2023/3/7（xiaowang）electric charge inquiry component
 1.完成小组件功能。
 2.修改代码规范。
-=======
 
 
 图书馆的规范修改完成和合并了复制功能
@@ -62,4 +60,5 @@ typings
  2.引入textCompont，用来测试
  2.修改规范
 
->>>>>>> b3a6e43f3d5d13b5ddc019fa299dfe4cd4f31672
+## 2023/4/13 (xiaokai) allSchedule
+1.写完了全校课表，并通过了uat
