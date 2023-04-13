@@ -1,0 +1,42 @@
+<!--pages/myWidgets/myWidgets/myWidgets.wxml-->
+<!-- 我的组件页面 -->
+<!-- 顶部的自定义导航栏 -->
+<!-- 背景 -->
+<view class="bg"></view>
+<!--胶囊区域 -->
+<view class="top-bar">
+  <!-- 信号区 -->
+  <view style="height:{{statusBarHeight}}px;">
+  </view>
+  <!-- 胶囊区 -->
+  <!-- 获取胶囊的高度来设置胶囊所在行的高度 -->
+  <view class="capsule-box" style="height:{{capsuleBoxHeight}}px;">
+
+    <view class="barLineItem">
+      <view class="barText">你好呀~棍棍
+      </view>
+      <!--头像后面的三个点 -->
+      <view class="barTextDot">
+        <image class="barTextDotSvg" src="/static/svg/myWidget/myWidget_dot.svg" mode="" />
+      </view>
+    </view>
+    <view class="barLineItem"></view>
+  </view>
+</view>
+<!-- 静态组件区域-->
+<view class="container">
+  <!-- 组件展示 -->
+  <block style="display: flex;" wx:for="{{myWidgetTabListTemp}}" wx:for-item="item" wx:key="{{index}}" >
+  <miniScore wx:if="{{item.name=='成绩单'}}" alljdxfs="{{alljdxfs}}" allxfscores="{{allxfscores}}" semester="{{semester}}" scoreLevel="{{scoreLevel}}" style="order:{{item.index}}"></miniScore>
+  <!-- 组件 -->
+  <!-- 组件 -->
+  <miniNews  wx:if="{{item.name=='快讯闻'}}" bindeventListener="handleEventListener" list="{{widgetMiniNewsList}}" style="order:{{item.index}}"></miniNews>
+  <!-- 组件 -->
+  <countDown wx:if="{{item.name=='首义+倒计时'}}" style="order:{{item.index}}"></countDown>
+  <miniElectric  wx:if="{{item.name=='寝室电费'}}" arr="{{data}}" style="order:{{item.index}}"></miniElectric>
+</block>
+</view>
+<!-- 设置按钮 -->
+<view class="myWidgetSettingCircle" bindtap="toSettingPage">
+  <view class="myWidgetSettingCircleText">设置</view>
+</view>

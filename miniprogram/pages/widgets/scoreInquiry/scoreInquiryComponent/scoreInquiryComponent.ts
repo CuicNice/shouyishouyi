@@ -36,7 +36,7 @@ Component({
      */
     loginScore() {
       wx.navigateTo({
-        url: '../scoreInquiryPage/scoreInquiryPage'
+        url: '/pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage'
       });
     }
   }

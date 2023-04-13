@@ -3,18 +3,21 @@
 <wxs src='../../../../wxs/utils.wxs' module='tools' /> 
 <!-- 新闻小组件  点击跳转Detail页面-->
 <view class="miniNewsPageBox">
+
 <view class="miniNewsBox">
   <!-- 顶部的返回与icon -->
   <!-- 左右布局 -->
   <view class="miniNewsTop">
     <view class="miniNewsTopLeftBox">
       <view class="miniNewsTxt">
-        快询闻</view>
+        快讯闻</view>
       <!-- 图标 -->
+      <view class="miniNewsIconBox">
         <image class="miniNewsIconSvg" src="../../../../static/svg/news/miniNews_Book.svg" mode="" />
+      </view>
     </view>
     <!-- 右边的返回键 -->
-    <view class="topReturnBox" bindtap="gotoNewsDetail">
+    <view class="topReturnBox" bindtap="gotoNews">
       <image style="width: 20px;height: 20px;" src="../../../../static/svg/news/miniNews_return.svg" mode="" />
     </view>
   </view>
@@ -63,4 +66,3 @@
   </view>
 </view>
 </view>
-

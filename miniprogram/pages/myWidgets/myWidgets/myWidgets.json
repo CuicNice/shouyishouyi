@@ -1,0 +1,11 @@
+{
+  "navigationStyle": "custom",
+  "component": true,
+  "usingComponents": {
+    "topBar":"/components/fmin-topbar/fmin-topbar",
+    "miniElectric":"/pages/widgets/electricCharge/electricComponent/electricComponent",
+    "miniScore":"/pages/widgets/scoreInquiry/scoreInquiryComponent/scoreInquiryComponent",
+    "miniNews":"/pages/widgets/news/miniNews/miniNews",
+    "countDown":"/pages/widgets/countDown/countDownComponent/countDownComponent"
+  }
+}

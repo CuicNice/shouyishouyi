@@ -1,5 +1,5 @@
 <!--components/topbar/topbar.wxml-->
-<view class="top-bar" style=" background:rgba(255,255,255,{{immersion?rgba:'1'}});">
+<view class="top-bar" style=" background:rgba({{bgColor}},{{immersion?rgba:'1'}});">
   <!-- 信号区 -->
   <view style="height:{{statusBarHeight}}px;">
   </view>

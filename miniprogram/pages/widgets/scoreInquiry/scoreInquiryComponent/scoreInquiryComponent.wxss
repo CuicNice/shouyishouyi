@@ -7,7 +7,7 @@
   padding: 20rpx 28rpx 28rpx;
   gap: 32rpx;
   position: relative;
-  width: 718rpx;
+  margin: 0 16rpx;
   height: 248rpx;
   background: #FFFFFF;
   border: 2rpx solid #E3E3E6;
