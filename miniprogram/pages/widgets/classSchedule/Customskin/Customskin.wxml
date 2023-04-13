@@ -1,0 +1,96 @@
+<!--pages/widgets/classSchedule/Customskin/Customskin.wxml-->
+<view class="bg"></view>
+<topbar title="{{CustomskinTitle}}" immersion = "{{true}}" >
+<view class="CustomskinContainer">
+  <view class="CustomskinBox">
+    <view class="skin-box-top">
+      <view class="skin-icon1"></view>
+      <view class="skin-top-text">课表背景</view>
+    </view>
+    <view class="skin-box-choice">
+      <view class="colorselBox">
+        <view class="colorBox1" bindtap="background1">
+          <image wx:if="{{white}}" class="icon2" src="../../../../static/svg/tubiao.svg"></image>
+          <view class="skin-choice-day">
+          </view>
+        </view>
+        <view class="skin-choice-title">简约白</view>
+      </view>
+      <view class="colorselBox">
+        <view class="colorBox1" bindtap="background2">
+          <image wx:if="{{black}}" class="icon2" src="../../../../static/svg/tubiao.svg"></image>
+          <view class="skin-choice-night">
+          </view>
+        </view>
+        <view class="skin-choice-title">暗夜黑</view>
+      </view>
+      <view class="colorselBox">
+        <view class="checkBox">
+          <image bindtap="background3"src="../../../../static/svg/zidingyi.svg"></image>
+        </view>
+        <view class="skin-choice-title1">自定义</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="CustomskinBox">
+    <view class="skin-box-top">
+      <view class="skin-icon2"></view>
+      <view class="skin-top-text">首义建筑限定皮肤 <view  class="skin-top-text2">（自定义背景不可用）</view></view>
+    </view>
+    <view class="skin-box-choice">
+      <view class="colorselBox" bindtap="bellTower">
+        <view class="colorBox1">
+          <image class="zhonglou" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
+          <image wx:if="{{bellTower}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
+        </view>
+        <view class="skin-choice-title">首义钟楼</view>
+      </view>
+      <view class="colorselBox" bindtap="administrativeBuilding">
+        <view class="colorBox2">
+          <image class="jiayuxingzhenluo" src="../../../../static/svg/schoolBuilt/jiayuxingzhenluo.svg"></image>
+          <image wx:if="{{administrativeBuilding}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
+        </view>
+        <view class="skin-choice-title">嘉鱼行政楼</view>
+      </view>
+      <view class="colorselBox" bindtap="library">
+        <view class="colorBox3">
+          <image class="zhongqutushuguan" src="../../../../static/svg/schoolBuilt/zhongqutushuguan.svg"></image>
+          <image wx:if="{{library}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
+        </view>
+        <view class="skin-choice-title">图书馆总馆</view>
+      </view>
+    </view>
+  </view>
+  <view class="CustomskinBoxnoline">
+    <view class="skin-box-top">
+      <view class="skin-icon3"></view>
+      <view class="skin-top-text">课程卡片风格</view>
+    </view>
+    <view class="skin-box-choice">
+      <view class="colorStyleBox">
+        <view class="colorStyle" bindtap="darking">
+          <image src="../../../../static/svg/shensecard.svg"></image>
+        </view>
+        <view class="colorStyle-title">深色</view>
+        <image wx:if="{{darking}}" class="icon3" src="../../../../static/svg/tubiao.svg"></image>
+      </view>
+      <view class="colorStyleBox">
+        <view class="colorStyle" bindtap="lighting">
+          <image src="../../../../static/svg/qiansecard.svg"></image>
+        </view>
+        <view class="colorStyle-title">浅色</view>
+        <image wx:if="{{lighting}}" class="icon3" src="../../../../static/svg/tubiao.svg"></image>
+      </view>
+    </view>
+  </view>
+  <view class="button">
+    <button type="default" class="cancel" hover-class="hover-cancel" bindtap="cancel">
+      <text>取消</text>
+    </button>
+    <button type="primary" class="primary" bindtap="login">
+      <text>确定</text>
+    </button>
+  </view>
+</view>
+</topbar>

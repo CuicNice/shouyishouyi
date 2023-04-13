@@ -2320,6 +2320,7 @@ backgroundAudioManager.src = 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb
         position?: number
     }
     interface Err {
+        data: any
         /** 错误信息 */
         errMsg: string
         /** 需要基础库： `2.24.0`

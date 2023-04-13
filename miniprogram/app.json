@@ -1,21 +1,17 @@
 {
   "pages": [
-    "pages/widgets/news/testMiniNewsComponent/testMiniNewsComponent",
-    "pages/news/newsList/list",
-    "pages/news/newsSearch/search",
-    "pages/news/newsDetail/inDetail",
-    "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
+    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
+    "pages/widgets/classSchedule/classScheduleComponent/classScheduleComponent",
+    "pages/widgets/electricCharge/electricPage/electricPage",
     "pages/login/login",
     "pages/index/index",
-    "pages/indexText/indexText",
+    "pages/widgets/countDown/countDownPage/countDownPage",
+    "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
-    "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
-    "pages/widgets/library/libraryPage/libraryPage",
-    "pages/widgets/library/librarytext/librarytext",
-    "pages/message/messagePage/messagePage",
-    "pages/popup/popupPage/popupPage",
-    "pages/message/web-view/webView"
+    "pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting",
+    "pages/widgets/classSchedule/Customskin/Customskin"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
