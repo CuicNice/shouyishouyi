@@ -1,0 +1,65 @@
+<!--pages/widgets/versionStatement/versionStatementPage/versionStatementPage.wxml-->
+<!-- 版本声明页面 -->
+<!-- 背景 -->
+<view class="bg">
+<image src="/static/svg/version/bg.svg" style="height: 100%;width: 100%;" mode="widthFix"></image>
+</view>
+<!-- tobar -->
+<topbar title="{{title}}" style="height: 100%;">
+<view class="cotain">
+  <view class="boardFramework">
+    <!-- 版本详情 -->
+    <statementBoard boardTitle="{{versionBoardTitle}}">
+      <!-- 插槽部分任意发挥 -->
+      <scroll-view class="containerScroll" scroll-y="true">
+        <view class="contentText" class="demo-scroll-block">
+        <!-- 列表 -->
+        <view class="versionItem" wx:for="{{versionList}}" wx:for-index="idx" wx:for-item="versionItem"  wx:key="versionItem">
+          <view class="versionTitle">
+            <view class="verionTitleCircle">
+              <image src="{{rectangleIcon}}" style="width: 10px;height: 10px;"></image>
+            </view>
+
+            <view class="versionTitleText">
+            {{versionItem['versionTitle']}} ({{versionItem['versionPublishTime']}})
+            </view>
+          </view>
+          <!--版本详情 -->
+          <view class="versionDescriptBox">
+            <view class="versionItemDescript">
+            {{versionItem['versionContent']}}
+            </view>
+          </view>
+        </view>
+      </view>
+      </scroll-view>
+
+    </statementBoard>
+    <!-- 小程序声明 -->
+    <statementBoard boardTitle="{{declareBoardTitle}}">
+      <!-- 小程序声明slot -->
+      <view class="declareContent">
+      <text style="line-height: 17px;" decode="{{true}}" space="{{true}}">{{versionPublishContent}}
+      </text>
+        
+      </view>
+    </statementBoard>
+    <!-- 开发贡献 -->
+    <statementBoard boardTitle="{{devBoardTitle}}">
+      <view class="devDescript">
+      <view class="devDescriptItem" wx:for="{{devClassList}}" wx:key="item">
+        <view class="teamTypeBox">
+          <view class="typeText">{{devList[item].developerType}}</view>
+        </view>
+        <view class="teamMenbersBox">
+          <view class="teamMenber" wx:for="{{devList[item].developerDTOList}}" wx:for-index="idx" wx:for-item="dever"  wx:key="dever">
+          {{dever.developerMemberName}} </view>
+        </view>
+      </view>
+      </view>
+    </statementBoard>
+
+  </view>
+
+</view>
+</topbar>

@@ -1,0 +1,350 @@
+/* pages/widgets/versionStatement/versionStatementPage/versionStatementPage.wxss */
+
+page {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* 背景 */
+
+.bg {
+    /* Entering for the first time */
+    /* position: absolute;
+    width: 100%;
+    height: 100%; */
+    /* 背景 */
+    /* z-index: -999; */
+    width : 100%;
+    height : 100%;  
+    position: fixed;  
+    z-index: -1;  
+}
+
+
+/* 背景元素 */
+
+.circle {
+    /* Ellipse 9 */
+    position: absolute;
+    left: 18rpx;
+    top: 894rpx;
+    /* #20C38C */
+}
+
+
+/* 元素位置 */
+
+.circleSvg {
+    width: 286rpx !important;
+    height: 286rpx !important;
+}
+
+.moon {
+    /* Ellipse 7 */
+    position: absolute;
+    width: 196.1rpx;
+    height: 193.92rpx;
+    left: -46rpx;
+    top: 290rpx;
+    /* #20C38C */
+}
+
+.moonSvg {
+    width: 170rpx !important;
+    height: 105.86rpx !important;
+}
+
+.box {
+    position: absolute;
+    left: 464rpx;
+    top: 320rpx;
+    /* border-radius: 68rpx; */
+    transform: rotate(-38.38deg);
+}
+
+.boxSvg {
+    width: 370rpx !important;
+    height: 370rpx !important;
+}
+
+.pool {
+    /* Rectangle 50 */
+    box-sizing: border-box;
+    position: absolute;
+    left: 614rpx;
+    top: 1004rpx;
+    /* #20C38C */
+    /* border: 18rpx solid #20C38C; */
+}
+
+.poolSvg {
+    width: 146.86rpx !important;
+    height: 177.56rpx !important;
+}
+
+
+/* 内容 */
+
+.cotain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    padding-top: 2px;
+    /* padding: 7.8%; */
+}
+
+
+/* 滚动 */
+
+
+/* .demo-scroll-block{
+  height:5px;
+} */
+
+.containerScroll {
+    /* 给scroll-view固定高度 */
+    height: 406rpx;
+    /* width: 376rpx; */
+}
+
+.boardFramework {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0rpx;
+    gap: 40rpx;
+    margin-top: 44rpx;
+    /* height: 1610rpx; */
+    margin-left: 24rpx;
+    margin-right: 26rpx;
+}
+
+
+/* 版本声明 */
+
+
+/* 版本类容 */
+
+.contentText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    /* padding: 7.8%; */
+    box-sizing: border-box;
+}
+
+.versionItem {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0rpx;
+    margin-bottom: 28rpx;
+    gap: 14rpx;
+    /* margin: 14rpx; */
+    width: 100%;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    z-index: 1;
+}
+
+.versionTitle {
+    /* Frame 40 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0rpx;
+    gap: 24rpx;
+    width: 100%;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.versionTitleText {
+    /* 标题版本 */
+    width: 100%;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    line-height: 42rpx;
+    /* identical to box height */
+    letter-spacing: 1px;
+    color: #000000;
+}
+
+.versionTitleCircle {
+    box-sizing: border-box;
+    width: 20rpx;
+    height: 20rpx;
+    /* #20C38C */
+    border: 4rpx solid #20C38C;
+    border-radius: 46rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+/* 外层的盒子 */
+
+.versionDescriptBox {
+    /* Frame 42 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0rpx 0rpx 0rpx 46rpx;
+    gap: 20rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.versionItemDescript {
+    /* 本次更新社团信息功能、四六级成绩查询、考试成绩详情查询等！ */
+    width: 100%;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22rpx;
+    line-height: 30rpx;
+    letter-spacing: 1px;
+    color: #000000;
+    opacity: 0.6;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+/* 声明 */
+
+.declareContent {
+    display: flex;
+    justify-content: start;
+    width: 600rpx;
+    /* height: 238rpx; */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24rpx;
+    text-align: justify;
+    letter-spacing: 1px;
+    /* text-indent: 40rpx; */
+    color: #000000;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+/* 贡献者声明 */
+
+.devDescript {
+    /* Auto layout */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    padding: 0rpx;
+    gap: 70rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.devDescriptItem {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0rpx;
+    gap: 28rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.teamTypeBox {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4rpx 16rpx;
+    gap: 20rpx;
+    height: 42rpx;
+    background: #20C38C;
+    border-radius: 20rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.typeText {
+    /* 产品&UI&UX */
+    /* width: 188rpx; */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    /* line-height: 42rpx; */
+    /* identical to box height */
+    text-align: center;
+    line-height: 21px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.teamMenbersBox {
+    /* Frame 30 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 0rpx;
+    gap: 32rpx;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.teamMenber {
+    /* 多多多多 */
+    height: 42rpx;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    line-height: 42rpx;
+    /* identical to box height */
+    letter-spacing: 1px;
+    color: #000000;
+}

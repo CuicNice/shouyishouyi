@@ -179,16 +179,6 @@ Component({
         delta: 1
       })
 
-    },
-    // 设置点击事件函数
-    // setTime1: function () { //设置倒计时
-    //   setTimeout(() => {
-    //     wx.redirectTo({
-    //       url: '/pages/widgets/countDown/countDownPage/countDownPage',
-    //     })
-    //   }, 500)
-
-    // }
-
+    }
   }
 })

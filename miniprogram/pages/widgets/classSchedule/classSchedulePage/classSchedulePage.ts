@@ -39,7 +39,6 @@ Page({
     Y: '',
     D: '',
     I: 3,
-    bgc: '',
     time: [] as any,
     timeWu: [{ time1: '08:30', time2: '09:15' }, { time1: '09:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '14:00', time2: '14:45' }, { time1: '14:50', time2: '15:35' }, { time1: '15:50', time2: '16:35' }, { time1: '16:40', time2: '17:25' }, { time1: '18:30', time2: '19:15' }, { time1: '19:20', time2: '20:05' }, { time1: '20:15', time2: '21:00' }, { time1: '21:05', time2: '21:50' }],/* 武昌校区时间 */
     timeJia: [{ time1: '08:30', time2: '09:15' }, { time1: '09:20', time2: '10:05' }, { time1: '10:25', time2: '11:10' }, { time1: '11:15', time2: '12:00' }, { time1: '13:30', time2: '14:15' }, { time1: '14:20', time2: '15:05' }, { time1: '15:10', time2: '15:55' }, { time1: '16:00', time2: '16:45' }, { time1: '18:00', time2: '18:45' }, { time1: '18:45', time2: '19:30' }, { time1: '19:30', time2: '20:15' }, { time1: '20:15', time2: '21:00' }],/* 嘉鱼校区时间 */
@@ -49,9 +48,45 @@ Page({
     classSchedule: { all_keshes: [], week: [] } as any,
     nowWeekData: [] as any,
     allTimes: [] as any,
-    classInfo: [] as any
+    classInfo: [] as any,
+    dialogNoLoginTip: false,
+    login: false
   },
 
+  /**
+ * 自动获得当前手机信息(高度等)
+ */
+  getTarHeighgt() {
+    // 获取胶囊的信息
+    const menuButton = wx.getMenuButtonBoundingClientRect()
+    const menuButtonHeight = menuButton.height;
+    const menuButtonTop = menuButton.top;
+    // 获取设备的信息  
+    let systemInfo = wx.getSystemInfoSync()
+    // 获取信号区高度
+    let statusBarHeight = systemInfo['statusBarHeight']
+    // 设置胶囊行的高度
+    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
+    /* 
+    根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
+    开发工具 = 获取的高度
+    安卓真机 = 获取的高度 + 1
+    苹果真机 = 获取的高度 - 1
+    我本人这里也只测试了iPhonex 华为和小米手机，
+    如果有出入根据实际情况进行调整就行了
+    */
+    if (systemInfo.model === 'andorid') {
+      statusBarHeight = statusBarHeight + 1
+    } else if (systemInfo.platform === 'ios') {
+      statusBarHeight = statusBarHeight - 2
+    } else {
+      statusBarHeight = statusBarHeight
+    }
+    this.setData({
+      capsuleBoxHeight,
+      statusBarHeight
+    })
+  },
   /* 
   *取消学期绑定
   */
@@ -142,29 +177,37 @@ Page({
   *跳转到课表设置界面
   */
   showSetting() {
-    wx.navigateTo({ url: '/pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting' });
+    if (this.data.login) {
+      wx.navigateTo({ url: '/pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting' });
+    } else {
+      this.selectComponent("#toast").showToastAuto("未绑定账号", "error", "2");
+    }
   },
 
   /* 
   *重新刷新功能
   */
   refresh() {
-    var day = 1
-    var time = this.data.startDate
-    if (this.data.semester == this.data.beginSemester) {
-      day = this.nowWeek()
-      time = new Date().toLocaleDateString();
+    if (this.data.login) {
+      var day = 1
+      var time = this.data.startDate
+      if (this.data.semester == this.data.beginSemester) {
+        day = this.nowWeek()
+        time = new Date().toLocaleDateString();
+      }
+      var toView//对滑轮中被选中的周数进行显示
+      if (day > 3) {
+        toView = "item" + (day - 3);
+      } else { toView = 'item0'; }
+      this.reGetDay(time, day);
+      var value = wx.getStorageSync('widget-classSchedule');
+      delete value.classSchedule
+      wx.setStorageSync("widget-classSchedule", value);
+      this.setData({ weekSchedule: true, nowWeek: day, toView: toView });
+      this.initClassData();
+    } else {
+      this.selectComponent("#toast").showToastAuto("未绑定账号", "error", "2");
     }
-    var toView//对滑轮中被选中的周数进行显示
-    if (day > 3) {
-      toView = "item" + (day - 3);
-    } else { toView = 'item0'; }
-    this.reGetDay(time, day);
-    var value = wx.getStorageSync('widget-classSchedule');
-    delete value.classSchedule
-    wx.setStorageSync("widget-classSchedule", value);
-    this.setData({ weekSchedule: true, nowWeek: day, toView: toView });
-    this.initClassData();
   },
 
   /**
@@ -174,135 +217,149 @@ Page({
    */
   async getTableDataFromApi(year: number, num: number) {
     var that = this;
-    let vaule = {
-      "zh": wx.getStorageSync('zh'),
-      "mm": wx.getStorageSync('mm'),
-      "year": year,
-      "num": num
-    };
-    try {
-      var { data: res } = await getClassSchedule(vaule) as unknown as IResult<any>;
-    } catch (err) {
-      this.selectComponent("#toast").showToastAuto("刷新失败", "error");
-      this.setData({
-        dialogTip: true
-      })
-    }
-    if (res) {
-      var all_tables = res.all_tables;
-      var arr = this.objHeavy(all_tables);//筛选有多少门课程
-      var myarr = this.randArr(arr); //把存放课程的数组打乱
-      var leng = myarr.length;
-      for (var i = 0; i < all_tables.length; i++) {
-        for (var j = 0; j < leng; j++) {
-          if (all_tables[i].name == myarr[j].name) {
-            var colorDark = this.data.colorcardDark[j];
-            var colorlight = this.data.colorcardLight[j];
-            var colorzi = this.data.colorcardZi[j];
-            all_tables[i].colorDark = colorDark;
-            all_tables[i].colorlight = colorlight;
-            all_tables[i].colorzi = colorzi;
-          }
-        }
-      }
-      var maxWeeks = 0;
-      var week = [];
-      // 切割每个tables的day_num
-      for (var i = 0; i < all_tables.length; i++) {
-        all_tables[i].old_day_num = all_tables[i].day_num;
-        // 切割周数
-        all_tables[i].day_num = that.getDayNum(all_tables[i]);
-        // 切割节数
-        all_tables[i].old_num = all_tables[i].num;
-        all_tables[i].num = that.getNum(all_tables[i]);
-        //切割地点的第一个字
-        all_tables[i].alonePlace = all_tables[i].local.slice(0, 2)
-        // 记录下最大的周数
-        if (all_tables[i].day_num[all_tables[i].day_num.length - 1] > maxWeeks) {
-          maxWeeks = all_tables[i].day_num[all_tables[i].day_num.length - 1];
-        }
-        for (var j = 0; j < all_tables[i].day_num.length; j++) {
-          // 匹配周数
-          var dayIndex = week.findIndex(function (v) {
-            return v.name == all_tables[i].day_num[j];
-          });
-          if (dayIndex == -1) { //没有就新增
-            week.push({
-              name: all_tables[i].day_num[j],
-              data: [{
-                day: "星期日",
-                item: []
-              }, {
-                day: "星期一",
-                item: []
-              }, {
-                day: "星期二",
-                item: []
-              },
-              {
-                day: "星期三",
-                item: []
-              }, {
-                day: "星期四",
-                item: []
-              }, {
-                day: "星期五",
-                item: []
-              },
-              {
-                day: "星期六",
-                item: []
-              }
-              ]
-            })
-            var itemIndex = week[week.length - 1].data.findIndex(function (v) {
-              return v.day == all_tables[i].day;
-            })
-            week[week.length - 1].data[itemIndex].item.push((all_tables[i]) as unknown as never);
-          } else { // 有就push周
-            // 查找星期
-            var itemIndex = week[dayIndex].data.findIndex(function (v) {
-              return v.day == all_tables[i].day;
-            })
-            if (itemIndex == -1) console.log(all_tables[i].day)
-            week[dayIndex].data[itemIndex].item.push((all_tables[i]) as unknown as never);
-          }
-        }
-      }
-      week.sort(function (a, b) {
-        return parseInt(a.name) - parseInt(b.name);
-      });
+    var login = wx.getStorageSync('login');
+    if (login) {
+      let vaule = {
+        "zh": login.zh,
+        "mm": login.mm,
+        "year": year,
+        "num": num
+      };
       try {
-        week = this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加
-      } catch {
-        this.selectComponent("#toast").showToastAuto("刷新失败", "error", "0");
+        var result = await getClassSchedule(vaule) as unknown as IResult<any>;
+        var res = result.data;
+        if (result.code == 20000) {
+          var all_tables = res.all_tables;
+          var arr = this.objHeavy(all_tables);//筛选有多少门课程
+          var myarr = this.randArr(arr); //把存放课程的数组打乱
+          var leng = myarr.length;
+          for (var i = 0; i < all_tables.length; i++) {
+            for (var j = 0; j < leng; j++) {
+              if (all_tables[i].name == myarr[j].name) {
+                var colorDark = this.data.colorcardDark[j];
+                var colorlight = this.data.colorcardLight[j];
+                var colorzi = this.data.colorcardZi[j];
+                all_tables[i].colorDark = colorDark;
+                all_tables[i].colorlight = colorlight;
+                all_tables[i].colorzi = colorzi;
+              }
+            }
+          }
+          var maxWeeks = 0;
+          var week = [];
+          // 切割每个tables的day_num
+          for (var i = 0; i < all_tables.length; i++) {
+            all_tables[i].old_day_num = all_tables[i].day_num;
+            // 切割周数
+            all_tables[i].day_num = that.getDayNum(all_tables[i]);
+            // 切割节数
+            all_tables[i].old_num = all_tables[i].num;
+            all_tables[i].num = that.getNum(all_tables[i]);
+            //切割地点的第一个字
+            all_tables[i].alonePlace = all_tables[i].local.slice(0, 2)
+            // 记录下最大的周数
+            if (all_tables[i].day_num[all_tables[i].day_num.length - 1] > maxWeeks) {
+              maxWeeks = all_tables[i].day_num[all_tables[i].day_num.length - 1];
+            }
+            for (var j = 0; j < all_tables[i].day_num.length; j++) {
+              // 匹配周数
+              var dayIndex = week.findIndex(function (v) {
+                return v.name == all_tables[i].day_num[j];
+              });
+              if (dayIndex == -1) { //没有就新增
+                week.push({
+                  name: all_tables[i].day_num[j],
+                  data: [{
+                    day: "星期日",
+                    item: []
+                  }, {
+                    day: "星期一",
+                    item: []
+                  }, {
+                    day: "星期二",
+                    item: []
+                  },
+                  {
+                    day: "星期三",
+                    item: []
+                  }, {
+                    day: "星期四",
+                    item: []
+                  }, {
+                    day: "星期五",
+                    item: []
+                  },
+                  {
+                    day: "星期六",
+                    item: []
+                  }
+                  ]
+                })
+                var itemIndex = week[week.length - 1].data.findIndex(function (v) {
+                  return v.day == all_tables[i].day;
+                })
+                week[week.length - 1].data[itemIndex].item.push((all_tables[i]) as unknown as never);
+              } else { // 有就push周
+                // 查找星期
+                var itemIndex = week[dayIndex].data.findIndex(function (v) {
+                  return v.day == all_tables[i].day;
+                })
+                if (itemIndex == -1) console.log(all_tables[i].day)
+                week[dayIndex].data[itemIndex].item.push((all_tables[i]) as unknown as never);
+              }
+            }
+          }
+          week.sort(function (a, b) {
+            return parseInt(a.name) - parseInt(b.name);
+          });
+          try {
+            week = this.check(week)//查看有课的周之间是否存在没课的周而且此周还没返回数据，需要自己加
+          } catch {
+            this.selectComponent("#toast").showToastAuto("刷新失败", "error", "0");
+            this.setData({
+              dialogTip: true
+            })
+          }
+          var classSchedule = {
+            week: week,
+            all_keshes: res.all_keshes
+          };
+          var nowWeekData: { day: string; item: never[] }[] = [] as any
+          if (that.data.showAll) {
+            nowWeekData = that.getNowWeekData(classSchedule, that.data.nowWeek);
+          }
+          wx.hideLoading();
+          that.setData({
+            classSchedule: classSchedule,
+            nowWeekData: nowWeekData,
+            login: true
+          })
+          this.getDayTime();//获取每天的课程信息
+          if (this.data.beginWeek > 0) {//保证缓存的是正确的值
+            utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
+            utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
+            utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
+            //获取日课表的日期信息并存进缓存
+            let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + " (日程表)"
+            utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
+          }
+          that.selectComponent("#toast").showToastAuto("刷新成功", "success");
+        } else {
+          this.selectComponent("#toast").showToastAuto(result.msg, "error");
+        }
+      } catch (err) {
+        this.selectComponent("#toast").showToastAuto("刷新失败", "error");
         this.setData({
-          dialogTip: true
+          dialogTip: true,
+          login: true
         })
       }
-      var classSchedule = {
-        week: week,
-        all_keshes: res.all_keshes
-      };
-      var nowWeekData: { day: string; item: never[] }[] = [] as any
-      if (that.data.showAll) {
-        nowWeekData = that.getNowWeekData(classSchedule, that.data.nowWeek);
-      }
-      wx.hideLoading();
-      that.setData({
-        classSchedule: classSchedule,
-        nowWeekData: nowWeekData
+    } else {
+      this.selectComponent("#toast").hiddenToast();
+      this.setData({
+        dialogNoLoginTip: true,
+        login: false
       })
-      this.getDayTime();//获取每天的课程信息
-      if (this.data.beginWeek > 0) {//保证缓存的是正确的值
-        utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
-        utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
-        utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
-        //获取日课表的日期信息并存进缓存
-        let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + " (日程表)"
-        utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
-      }
-      that.selectComponent("#toast").showToastAuto("刷新成功", "success");
     }
   },
 
@@ -385,7 +442,8 @@ Page({
   */
   closeDialogTip() {
     this.setData({
-      dialogTip: false
+      dialogTip: false,
+      dialogNoLoginTip: false
     });
   },
 
@@ -489,7 +547,7 @@ Page({
       await this.getTableDataFromApi(parseInt(this.data.Y), this.data.I) as any;
     }
     var num = 0;
-    if (this.data.classSchedule.week[0].name != 1) {
+    if (this.data.classSchedule.week[0] && this.data.classSchedule.week[0].name != 1) {
       num = num + (this.data.classSchedule.week[0].name - 1) * 7;
     }
     this.setData({
@@ -705,9 +763,13 @@ Page({
   *切换周与日课表
   */
   changeicon() {
-    this.setData({
-      weekSchedule: !this.data.weekSchedule
-    });
+    if (this.data.login) {
+      this.setData({
+        weekSchedule: !this.data.weekSchedule
+      });
+    } else {
+      this.selectComponent("#toast").showToastAuto("未绑定账号", "error", "2");
+    }
   },
 
   /* 
@@ -837,6 +899,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    this.getTarHeighgt();
     if (!wx.getStorageSync('widget-classSchedule')) {
       //给用户添加缓存
       let value = { classSchedule: '', ifshowAllclass: true, background: '', buliding: 'zhonglou', dark: true, picture: '', place: '' };

@@ -5,7 +5,10 @@
     "topBar":"/components/fmin-topbar/fmin-topbar",
     "miniElectric":"/pages/widgets/electricCharge/electricComponent/electricComponent",
     "miniScore":"/pages/widgets/scoreInquiry/scoreInquiryComponent/scoreInquiryComponent",
-    "miniNews":"/pages/widgets/news/miniNews/miniNews",
-    "countDown":"/pages/widgets/countDown/countDownComponent/countDownComponent"
+    "miniNews":"/pages/widgets/news/newComponent/miniNews/miniNews",
+    "countDown":"/pages/widgets/countDown/countDownComponent/countDownComponent",
+    "classTable":"/pages/widgets/classSchedule/classScheduleComponent/classScheduleComponent",
+    "toast": "/components/fmin-toast/fmin-toast",
+    "dialogTitle":"/components/fmin-dialog/fmin-dialog"
   }
 }

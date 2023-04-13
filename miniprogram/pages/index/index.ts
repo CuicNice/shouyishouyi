@@ -1,105 +1,73 @@
-// index.ts
-// 获取应用实例
-import {getElectric} from '../../api/test';
-
-export interface ElectriceItem {
-  build: string,
-  room: string
-}
-
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    // index: 0,
-    homePics:[],
-    iftaiozhuan:false,
-    shuju:''
-  },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs',
-    })
-  },
 
-  onReady() {
-    wx.request({
-      url: 'http://www.fmin-courses.com:9527/api/v1/ad/ad/banner/appletBannerList',
-      method:'POST',
-      data: {
-        "currentPage": "1",
-        "pageSize": "5"
-      },
-      success:(res)=> {
-        console.log(res.data)
-        // this.setData({
-        //   homePics:res.data.data.list
-        // })
-        for(var i=0;i<this.data.homePics.length;i++){
-          // if(this.data.homePics[i].bannerType == 'image'){
-          //   this.setData({
-          //     iftaiozhuan:false
-          //   })
-          // }
-          // if(this.data.homePics[i].bannerType != 'image'){
-          //   this.setData({
-          //     iftaiozhuan:true
-          //   })
-          // }
-          // var src='http://' + this.data.homePics[i].bannerImage
-          // var iftiaozhuan=this.data.iftaiozhuan
-          // this.data.homePics[i].src=src
-          // this.data.homePics[i].iftiaozhuan=iftiaozhuan
-        }
-        this.setData({
-          homePics:this.data.homePics
-        })
-      }
-    })
   },
-    //tabar设置初始值
-    show() {
-      if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 1
-        })
-      }
-    },
-
-  tap(e:any){
-    console.log(e.detail)
-      this.setData({
-      shuju:e.detail.bannerContent,
-      iftaiozhuan: true
-    })
-    console.log(this.data.shuju)
-    try{
-      wx.setStorageSync('key', this.data.shuju)
-      console.log('写入value成功')
-    }catch (e) {
-      console.log('写入value发生错误')
+  show() {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
+      })
     }
-    if(this.data.shuju != null){
-    wx.navigateTo({
-      url: '../indexText/indexText',
-    })
-  }
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad() {
+
   },
 
-  onLoad() {
-    // this.initPageData();
-    let that =this
-    that.show()
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
   },
-  async initPageData(){
-    var from = {
-      build:"西区2栋",
-      room:"507"
-    }as ElectriceItem;
-    const { data } = await getElectric(from) as unknown as IResult<ElectriceItem>;
-    console.log(data);
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+    this.show();
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage(opts): WechatMiniprogram.Page.ICustomShareContent {
+    console.log(opts.target)
+    return {}
   }
 })

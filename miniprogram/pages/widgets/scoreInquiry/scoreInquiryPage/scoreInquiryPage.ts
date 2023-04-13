@@ -54,11 +54,7 @@ Page({
    * 显示查询中或请求成功的小弹窗
    */
   showToast(showToast: boolean, toastIcon: string, toastTitle: string) {
-    this.setData({
-      showToast: showToast,
-      toastIcon: toastIcon,
-      toastTitle: toastTitle
-    })
+    this.selectComponent('#toast').showToastAuto(toastTitle, toastIcon, 2);
   },
   /**
     * 点击成绩卡片

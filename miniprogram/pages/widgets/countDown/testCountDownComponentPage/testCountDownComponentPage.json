@@ -1,9 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "component": true,
-  "usingComponents": {
-    "countDownWedget":"/pages/widgets/countDown/countDownComponent/countDownComponent",
-    "f-dialog":"/components/fmin-dialog/fmin-dialog"
-
-  }
-}

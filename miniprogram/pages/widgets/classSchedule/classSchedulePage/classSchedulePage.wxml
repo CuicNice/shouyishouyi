@@ -3,9 +3,11 @@
 <view class="bg">
   <image class="background-box" src="../../../../static/svg/schoolBuilt/{{buliding}}.svg"></image>
 </view>
+<view style="height:{{capsuleBoxHeight}}rpx;"></view>
 <!-- 导航栏 -->
-<view class="navigationBar" style="background-color: {{bgc}};">
-  <!--更多选择的icon  -->
+<view class="navigationBar">
+  <view class="NavigateLeftBox">
+    <!--更多选择的icon  -->
   <view class="NewIconBoxLeft" bindtap="showSetting">
     <image class="{{bgc ==''? 'NewIconLeft' : 'NewIconLeftWhite'}}"></image>
   </view>
@@ -18,8 +20,7 @@
   <view class="flushIconBox" bindtap="refresh">
     <image class="{{bgc == ''? 'flushIcon' : 'flushIconWhite'}}"></image>
   </view>
-  <!-- 自定义图片 -->
-  <image class="ima" src="{{picture}}" mode="aspectFill"></image>
+  </view>
   <!-- 学期选择 -->
   <view class="TitleLeft">
     <view class="WeekOption" bindtap="selectSchoolTime">
@@ -27,6 +28,9 @@
       <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}"></view>
     </view>
   </view>
+  <view class="NavigateRightBox"></view>
+  <!-- 自定义图片 -->
+  <image class="ima" src="{{picture}}" mode="aspectFill"></image>
 </view>
 <view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">
   <scroll-view scroll-x="true" scroll-into-view="{{toView}}" show-scrollbar="false" scroll-with-animation="true" style="white-space: nowrap; overflow: scroll;height:80rpx;background-color:{{bgc=='#333333'?'#333333':rgba(255, 255, 255, 0.8)}};">
@@ -604,9 +608,16 @@
     </block>
   </scroll-view>
 </view>
+
 <toast id="toast"></toast>
 <dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/shoyiStanding.svg">
   <view class="dialogText">暂无您的该学年课表，新学期课表出来后，南南会第一时间通知你的噢~</view>
+  <view style="display: flex;">
+    <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
+  </view>
+</dialogTitle>
+<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogNoLoginTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/jiayu_administorBuilding.svg">
+  <view class="dialogText">你暂未绑定账号,请绑定账号后再次尝试噢~</view>
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>

@@ -1,0 +1,14 @@
+{
+  "navigationStyle": "custom",
+  "component": true,
+    "usingComponents": {
+      "itemview":"/pages/widgets/news/newComponent/newsListComponent/newsListComponent",
+       "searchbar":"/pages/widgets/news/newComponent/searchbar/searchbar",
+    "topBar":"/components/fmin-topbar/fmin-topbar",
+    "toast":"/components/fmin-toast/fmin-toast",
+    "searchBar":"/components/fmin-topbar/fmin-topbar"
+  },
+  "onReachBottomDistance":300,
+  "disableScroll": true,
+  "enablePullDownRefresh": false
+}

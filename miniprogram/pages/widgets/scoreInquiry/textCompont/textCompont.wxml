@@ -1,3 +1,0 @@
-<view class="widgets-scoreBox">
-  <widgets-score alljdxfs="{{alljdxfs}}" allxfscores="{{allxfscores}}" semester="{{semester}}" scoreLevel="{{scoreLevel}}"></widgets-score>
-</view>

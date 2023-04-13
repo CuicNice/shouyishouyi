@@ -146,7 +146,6 @@
   align-items: center;
   padding: 0rpx;
   gap: 10rpx;
-  width: 200rpx;
   height: 120rpx;
   flex: none;
   order: 0;

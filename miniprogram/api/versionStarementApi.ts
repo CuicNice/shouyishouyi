@@ -4,20 +4,20 @@ import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
 // 分页的请求参数
-import {} from "../pages/widgets/versionStatement/versionStatementPage/versionStatementPage";
+import {} from "../pages/versionStatement/versionStatementPage/versionStatementPage";
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
 const apiList = {
   // 版本
   // http://www.fmin-courses.com:9527/api/v1/sy/mini/version/getAllVersions
-  getVersionDesItemUrl: baseUrl + '/api/v1/sy/mini/version/getAllVersions',
+  getVersionDesItemUrl: baseUrl + '/api/v1/sy/mini/version/listMiniVersions',
   // 小程序声明
   // http://www.fmin-courses.com:9527/api/v1/sy/mini/miniStatement/appletMiniStatementByTime
 
-  getPublicDesItemUrl: baseUrl + '/api/v1/sy/mini/miniStatement/appletMiniStatementByTime',
+  getPublicDesItemUrl: baseUrl + '/api/v1/sy/mini/miniStatement/listMiniMiniStatementByTime',
   // 开发者
   // http://www.fmin-courses.com:9527/api/v1/sy/mini/development/appletDeveloperList
-  getDevDesItemUrl: 'http://www.fmin-courses.com:9527/api/v1/sy/mini/development/appletDeveloperList',
+  getDevDesItemUrl: baseUrl + '/api/v1/sy/mini/developer/listMiniDevelopers',
 }
 // http://www.fmin-courses.com:9527
 // 版本

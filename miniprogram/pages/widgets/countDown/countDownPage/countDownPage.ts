@@ -70,9 +70,7 @@ Page({
   // 跳转
   gotoBd() {
     setTimeout(() => {
-      wx.navigateTo({
-        url: '/pages/widgets/countDown/testCountDownComponentPage/testCountDownComponentPage',
-      })
+      wx.navigateBack();
     }, 500)
   },
   // 跳转

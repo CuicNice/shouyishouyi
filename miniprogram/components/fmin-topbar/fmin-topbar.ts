@@ -121,7 +121,7 @@ Component({
         screenHeight,
         menuButtonWidth
       })
-  
+
     },
   },
   pageLifetimes: {

@@ -245,4 +245,4 @@
     </view>
   </view>
 </view>
-<toast title="{{toastTitle}}" image="{{toastIcon}}" showToast="{{showToast}}"></toast>
+<toast id="toast"></toast>

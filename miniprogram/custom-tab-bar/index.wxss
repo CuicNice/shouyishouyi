@@ -2,7 +2,7 @@
 /* 最外层的Box */
 .tabBarBox {
     position: fixed;
-    z-index: 9999;
+    z-index: 99;
     overflow: visible;
     display: grid;
     width: 100%;

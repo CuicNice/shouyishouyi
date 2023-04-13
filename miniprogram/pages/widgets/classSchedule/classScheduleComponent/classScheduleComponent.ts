@@ -11,13 +11,13 @@ Component({
    * 组件的初始数据
    */
   data: {
-    dailySchedule:[],
-    nowDayData:'',
-    time:[],
-    ifClass:true
+    dailySchedule: [],
+    nowDayData: '',
+    time: [],
+    ifClass: true
   },
   pageLifetimes: {
-    show: function() {
+    show: function () {
       // 页面被展示
       this.getdailySchedule();
     },
@@ -27,24 +27,32 @@ Component({
    */
   methods: {
     // 获取缓存
-  getdailySchedule(){
+    getdailySchedule() {
       var that = this;
-      var ifClass=true
-      var dailySchedule = wx.getStorageSync('widget-classSchedule').dailySchedule;
-      var time=wx.getStorageSync('widget-classSchedule').time;
-      var nowDayData=wx.getStorageSync('widget-classSchedule').nowDayData;
-      if(dailySchedule.length==0){
-        ifClass=false
-      }
+      var ifClass = true;
+      var classSchedule = wx.getStorageSync('widget-classSchedule');
+      var cls = classSchedule.classSchedule;
+      if(cls){
+        var dailySchedule = classSchedule.dailySchedule;
+        var time = classSchedule.time;
+        var nowDayData = classSchedule.nowDayData;
+        if (dailySchedule.length == 0) {
+          ifClass = false
+        }
         that.setData({
           dailySchedule: dailySchedule,
-          time:time,
-          nowDayData:nowDayData,
-          nowtime:(new Date().toTimeString().substring(0, 8)).slice(0, 5),
-          dark:wx.getStorageSync('widget-classSchedule').dark,
-          ifClass:ifClass
+          time: time,
+          nowDayData: nowDayData,
+          nowtime: (new Date().toTimeString().substring(0, 8)).slice(0, 5),
+          dark: classSchedule.dark,
+          ifClass: ifClass
         });
-  },
+      }else{
+        this.setData({
+          nowDayData:"用户未绑定,无法显示课表"
+        })
+      }
+    },
 
-}
+  }
 })

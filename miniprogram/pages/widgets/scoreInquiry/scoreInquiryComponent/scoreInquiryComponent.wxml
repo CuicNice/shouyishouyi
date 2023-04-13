@@ -3,23 +3,23 @@
   <view class="leftBox">
     <!-- 称号部分 -->
     <view class="scoreLevel">
-      <image class="level" src="../../../../static/svg/scoreCompont/scoreLevel-{{scoreLevel}}.svg"></image>
+      <image class="level" src="/static/svg/scoreCompont/scoreLevel-{{scoreLevel}}.svg"></image>
     </view>
     <!-- 学期学年部分 -->
     <view class="levelText">{{semester}}称号</view>
   </view>
   <view class="boatBox">
-    <image class="boat" src="../../../../static/svg/scoreCompont/boat.svg"></image>
+    <image class="boat" src="/static/svg/scoreCompont/boat.svg"></image>
   </view>
   <!-- 右边的盒子 -->
   <view class="rightBox">
     <!-- 上方成绩单部分 -->
     <view class="transcripts">
-      <image class="trophy" src="../../../../static/svg/scoreCompont/trophy.svg"></image>
+      <image class="trophy" src="/static/svg/scoreCompont/trophy.svg"></image>
       <view class="textBox">
         <text class="scoreList">成绩单</text>
       </view>
-      <image class="vector" bindtap="loginScore" src="../../../../static/svg/scoreCompont/vector-1.svg"></image>
+      <image class="vector" bindtap="loginScore" src="/static/svg/scoreCompont/vector-1.svg"></image>
     </view>
     <!-- 下方的平均分和绩点 -->
     <view class="scoreInfo">

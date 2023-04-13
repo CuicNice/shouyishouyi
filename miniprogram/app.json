@@ -1,18 +1,27 @@
 {
   "pages": [
-    "pages/widgets/versionStatement/versionStatementPage/versionStatementPage",
-    "pages/login/login",
     "pages/index/index",
+    "pages/versionStatement/versionStatementPage/versionStatementPage",
+    "pages/login/login",
     "pages/indexText/indexText",
     "pages/widgets/libraryCollection/libraryCollectionPage/libraryCollectionPage",
     "pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
     "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
-    "pages/widgets/library/librarycom/librarycom",
     "pages/widgets/library/libraryPage/libraryPage",
     "pages/widgets/library/librarytext/librarytext",
     "pages/message/messagePage/messagePage",
     "pages/message/web-view/webView",
-    "pages/message/messageInfo/messageInfo"
+    "pages/message/messageInfo/messageInfo",
+    "pages/widgets/widgetsPages/widgetsPages",
+    "pages/myWidgets/myWidgets/myWidgets",
+    "pages/myWidgets/settingWidgets/settingWidgets",
+    "pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting",
+    "pages/widgets/classSchedule/Customskin/Customskin",
+    "pages/widgets/news/newPage/newsList/list",
+    "pages/widgets/news/newPage/newsDetail/inDetail",
+    "pages/widgets/news/newPage/newsSearch/search",
+    "pages/widgets/countDown/countDownPage/countDownPage",
+    "pages/widgets/electricCharge/electricPage/electricPage"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,5 +30,22 @@
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": true,
+    "list":  [
+      {
+        "pagePath": "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
+        "text": "课程表"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/myWidgets/myWidgets/myWidgets",
+        "text": "组件"
+      }
+    ]
+  }
 }

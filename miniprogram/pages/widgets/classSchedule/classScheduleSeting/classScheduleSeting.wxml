@@ -14,9 +14,9 @@
         <switch type="switch" class="wx-switch-input" checked="{{checked}}" bindchange="switchChange"></switch>
       </view>
     </view>
-    <view class="Option-two">
+    <view class="Option-two" bindtap="customskin" >
       <view class="choice-text">个性换肤</view>
-      <view bindtap="customskin" class="click-box"></view>
+      <view class="click-box"></view>
       <view class="choice-icon"></view>
     </view>
     <view class="Option-two">

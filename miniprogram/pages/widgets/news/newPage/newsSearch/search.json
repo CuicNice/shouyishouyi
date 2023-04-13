@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "component": true,
+  "usingComponents": {
+    "topBar":"/components/fmin-topbar/fmin-topbar",
+    "toast":"/components/fmin-toast/fmin-toast",
+    "newsListItem":"/pages/widgets/news/newComponent/newsListComponent/newsListComponent"
+  },
+    "navigationBarTitleText": "搜索"
+}
