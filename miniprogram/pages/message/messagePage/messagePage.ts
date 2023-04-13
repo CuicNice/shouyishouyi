@@ -53,7 +53,7 @@ Page({
       var number = i;
       var color = this.data.colors[j];
       /**
-       * 当
+       * 当二次进入时
        */
       if (isUnread.length > 0) {
         for (var a = 0; a < messageList.length; a++) {
@@ -82,25 +82,10 @@ Page({
           //有时候减一个又增一个，长度不变，需要更进一步判断
           if (isUnread[i].popupId !== messageList[i].popupId) {
             isUnread[i] = messageList[i]; continue;
-          }
-          //   //下面是判断标题内容是否发生更改
-          //  if(isUnread[i].popupJumpTextContent !==messageList[i].popupJumpTextContent){
-          //   isUnread[i]=messageList[i]; continue;
-          //  }
-          //    if(isUnread[i].popupJumpTextImage !== messageList[i].popupJumpTextImage){
-          //      isUnread[i]=messageList[i]; continue;
-          //    }
-          //      if(isUnread[i].popupJumpTextTitle !== messageList[i].popupJumpTextTitle){
-          //       isUnread[i]=messageList[i]; continue;
-          //      }
-          //        if(isUnread[i].popupSystemHeadline !== messageList[i].popupSystemHeadline){
-          //          isUnread[i]=messageList[i]; continue;
-          //       }
-          //        if(isUnread[i].popupSystemSubtitle !== messageList[i].popupSystemSubtitle){
-          //          isUnread[i]=messageList[i];
-          //          }        
+          }      
+          messageList = isUnread;
         }
-      } else if (isUnread.length <= messageList.length) {
+      } else if (isUnread.length < messageList.length) {
         for (var i = 0; i < messageList.length; i++) {
           for (var a = 0; a < messageList.length; a++) {
             if (isUnread[i].popupId !== messageList[a].popupId) {
@@ -109,22 +94,21 @@ Page({
             }
           }
         }
-      } else if (isUnread.length >= messageList.length) {
+      } else if (isUnread.length > messageList.length) {
         var k = messageList;
         for (var i = 0; i < messageList.length; i++) {
           for (var a = 0; a < messageList.length; a++) {
             if (isUnread[a].popupId == k[i].popupId) {
-              k[i] = isUnread[a]
-              continue;
+              k[i] = isUnread[a];
             }
           }
         }
         messageList=k;
       }
-    } else { messageList=messageList };
+    } else { messageList=messageList 
+    };
     this.setData({messageList:messageList})
     bindCache.isUnread = messageList;
-    console.log(messageList)
     wx.setStorageSync('bindCache', bindCache)
   },
   //打乱颜色
