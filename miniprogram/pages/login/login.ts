@@ -384,7 +384,9 @@ Page({
     var tc_custom = this.data.tc_custom;
     var tc_system = this.data.tc_system;
     this.initPageData();
-    this.getcache();
+    if(!wx.getStorageSync('bindCache')){
+          this.getcache();
+    }
     /**
      * 当用户点击蒙版不看弹窗的时候，存入的缓存ID存在时
      */
