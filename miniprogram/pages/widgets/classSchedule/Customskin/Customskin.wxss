@@ -263,9 +263,9 @@
 }
 
 .icon2{
-  position: relative;
-  top: 110rpx;
-  right: 90rpx;
+  margin-top: 110rpx;
+  position: absolute;
+  margin-left: 110rpx;
   width: 40rpx;
   height: 40rpx;
 }
