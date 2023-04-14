@@ -49,8 +49,7 @@ Page({
     nowWeekData: [] as any,
     allTimes: [] as any,
     classInfo: [] as any,
-    dialogNoLoginTip: false,
-    login: false
+    dialogNoLoginTip: false
   },
 
   /**
@@ -128,6 +127,8 @@ Page({
     let place;//校区
     let times = {};//校区的上课时间
     let beginWeek = -1//判断是否要本周和非本周的显示
+    let login = wx.getStorageSync('login')
+    let zh = login.zh;
     if (this.data.suorec.slice(0, 5) == '大一下学期' || this.data.suorec.slice(0, 5) == '大二下学期' || this.data.suorec.slice(0, 5) == '大三下学期' || this.data.suorec.slice(0, 5) == '大四下学期') {
       schoolTerm = schoolTerm + 12;
       start = num + '/2/19';
@@ -137,22 +138,22 @@ Page({
       start = num as unknown as number - 1 + '/8/28';
     };
     if (this.data.suorec.slice(1, 2) == "一") {
-      year = year + parseInt(wx.getStorageSync('zh').slice(0, 4));
+      year = year + parseInt(zh.slice(0, 4));
       place = '嘉鱼';
       times = this.data.timeJia;
     };
     if (this.data.suorec.slice(1, 2) == "二") {
-      year = year + parseInt(wx.getStorageSync('zh').slice(0, 4)) + 1;
+      year = year + parseInt(zh.slice(0, 4)) + 1;
       place = '武昌';
       times = this.data.timeWu;
     };
     if (this.data.suorec.slice(1, 2) == "三") {
-      year = year + parseInt(wx.getStorageSync('zh').slice(0, 4)) + 2;
+      year = year + parseInt(zh.slice(0, 4)) + 2;
       place = '武昌';
       times = this.data.timeWu;
     };
     if (this.data.suorec.slice(1, 2) == "四") {
-      year = year + parseInt(wx.getStorageSync('zh').slice(0, 4)) + 3;
+      year = year + parseInt(zh.slice(0, 4)) + 3;
       place = '武昌';
       times = this.data.timeWu;
     };
@@ -177,7 +178,8 @@ Page({
   *跳转到课表设置界面
   */
   showSetting() {
-    if (this.data.login) {
+    let login = wx.getStorageSync('login')
+    if (login) {
       wx.navigateTo({ url: '/pages/widgets/classSchedule/classScheduleSeting/classScheduleSeting' });
     } else {
       this.selectComponent("#toast").showToastAuto("未绑定账号", "error", "2");
@@ -188,9 +190,10 @@ Page({
   *重新刷新功能
   */
   refresh() {
-    if (this.data.login) {
-      var day = 1
-      var time = this.data.startDate
+    var login = wx.getStorageSync('login');
+    if (login) {
+      var day = 1;
+      var time = this.data.startDate;
       if (this.data.semester == this.data.beginSemester) {
         day = this.nowWeek()
         time = new Date().toLocaleDateString();
@@ -357,8 +360,7 @@ Page({
     } else {
       this.selectComponent("#toast").hiddenToast();
       this.setData({
-        dialogNoLoginTip: true,
-        login: false
+        dialogNoLoginTip: true
       })
     }
   },
@@ -763,7 +765,8 @@ Page({
   *切换周与日课表
   */
   changeicon() {
-    if (this.data.login) {
+    let login= wx.getStorageSync('login');
+    if (login) {
       this.setData({
         weekSchedule: !this.data.weekSchedule
       });
@@ -888,6 +891,8 @@ Page({
   nowWeek() {
     //获取当前周数的预处理定义变量进行储存数据
     var time = new Date().toLocaleDateString();
+    var startDate = this.data;
+    console.log(startDate)
     var start_date = new Date(this.data.startDate.replace(/-/g, "/"));
     var end_date = new Date(time.replace(/-/g, "/"));
     var days = end_date.getTime() - start_date.getTime();
@@ -942,67 +947,83 @@ Page({
       schoolTerm = 12;
     };
     this.setData({ I: schoolTerm, Y: year as unknown as string })
-    try {
-      if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
-        start = this.data.Y + "/8/28";
-        schoolTime = '大四上';
-        times = this.data.timeWu;
-        place = "武昌";
-      };
-      if (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-        start = this.data.Y + "/2/19";
-        schoolTime = '大四下';
-        times = this.data.timeWu;
-        place = "武昌";
-      };
-      if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
-        start = this.data.Y + "/8/28";
-        schoolTime = '大三上';
-        times = this.data.timeWu;
-        place = "武昌";
-      };
-      if (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-        start = this.data.Y + "/2/19";
-        schoolTime = '大三下';
-        times = this.data.timeWu;
-        place = "武昌";
-      };
-      if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
-        start = this.data.Y + "/8/28";
-        schoolTime = '大二上';
-        times = this.data.timeWu;
-        place = "武昌";
-      };
-      if (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-        start = this.data.Y + "/2/19";
-        schoolTime = '大二下';
-        times = this.data.timeWu;
-        place = "武昌";
-      };
-      if ((this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
-        start = this.data.Y + "/8/28";
-        schoolTime = '大一上';
-        times = this.data.timeJia;
-        place = "嘉鱼";
-      };
-      if (this.data.Y as unknown as number - wx.getStorageSync('zh').slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
-        start = this.data.Y + "/2/19";
-        schoolTime = '大一下';
-        times = this.data.timeJia;
-        place = "嘉鱼";
-      };
-      var toView//对滑轮中被选中的周数进行显示
-      if (parseInt((day / 7 + 1) as unknown as string) > 3) {
-        toView = "item" + (parseInt((day / 7 + 1) as unknown as string) - 3);
-      } else { toView = 'item0'; }
-      for (var i = 0; i < 8; i++) {//给本学年加上后缀名
-        if (schoolTime == this.data.semesterList[i].slice(0, 3)) {
-          this.data.semesterList[i] = this.data.semesterList[i] + "(本学年)";
-          break;
-        }
+    // TODO 修改zh为login
+    let login = wx.getStorageSync('login')
+    let zh = login.zh;
+    if ((this.data.Y as unknown as number - zh.slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - zh.slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
+      start = this.data.Y + "/8/28";
+      schoolTime = '大四上';
+      times = this.data.timeWu;
+      place = "武昌";
+    };
+    if (this.data.Y as unknown as number - zh.slice(0, 4) == 4 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
+      start = this.data.Y + "/2/19";
+      schoolTime = '大四下';
+      times = this.data.timeWu;
+      place = "武昌";
+    };
+    if ((this.data.Y as unknown as number - zh.slice(0, 4) == 3 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - zh.slice(0, 4) == 3 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
+      start = this.data.Y + "/8/28";
+      schoolTime = '大三上';
+      times = this.data.timeWu;
+      place = "武昌";
+    };
+    if (this.data.Y as unknown as number - zh.slice(0, 4) == 3 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
+      start = this.data.Y + "/2/19";
+      schoolTime = '大三下';
+      times = this.data.timeWu;
+      place = "武昌";
+    };
+    if ((this.data.Y as unknown as number - zh.slice(0, 4) == 2 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - zh.slice(0, 4) == 2 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
+      start = this.data.Y + "/8/28";
+      schoolTime = '大二上';
+      times = this.data.timeWu;
+      place = "武昌";
+    };
+    if (this.data.Y as unknown as number - zh.slice(0, 4) == 2 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
+      start = this.data.Y + "/2/19";
+      schoolTime = '大二下';
+      times = this.data.timeWu;
+      place = "武昌";
+    };
+    if ((this.data.Y as unknown as number - zh.slice(0, 4) == 1 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - zh.slice(0, 4) == 1 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
+      start = this.data.Y + "/8/28";
+      schoolTime = '大一上';
+      times = this.data.timeJia;
+      place = "嘉鱼";
+    };
+    if (this.data.Y as unknown as number - zh.slice(0, 4) == 1 && 2 <= parseInt(this.data.M) && parseInt(this.data.M) < 8) {
+      start = this.data.Y + "/2/19";
+      schoolTime = '大一下';
+      times = this.data.timeJia;
+      place = "嘉鱼";
+    };
+    var toView//对滑轮中被选中的周数进行显示
+    if (parseInt((day / 7 + 1) as unknown as string) > 3) {
+      toView = "item" + (parseInt((day / 7 + 1) as unknown as string) - 3);
+    } else { toView = 'item0'; }
+    for (var i = 0; i < 8; i++) {//给本学年加上后缀名
+      if (schoolTime == this.data.semesterList[i].slice(0, 3)) {
+        this.data.semesterList[i] = this.data.semesterList[i] + "(本学年)";
+        break;
       }
-      this.setData({ Y: (parseInt(this.data.Y) - 1) as unknown as string, nowWeek: parseInt((day / 7 + 1) as unknown as string), semester: schoolTime, schoolPlace: place, time: times, startDate: start, beginSemester: schoolTime, suorec: schoolTime + '学期(本学年)', toView: toView, selectedIdx: [i], semesterList: this.data.semesterList, beginWeek: parseInt((day / 7 + 1) as unknown as string), againWeek: parseInt((day / 7 + 1) as unknown as string) });
-    } catch { };
+    }
+    console.log(start);
+    this.setData({  
+      Y: (parseInt(this.data.Y) - 1) as unknown as string,
+      nowWeek: parseInt((day / 7 + 1) as unknown as string),
+      semester: schoolTime, 
+      schoolPlace: place, 
+      time: times,
+      startDate: start, 
+      beginSemester: schoolTime,
+      suorec: schoolTime + '学期(本学年)',
+      toView: toView, 
+      selectedIdx: [i],
+      semesterList: this.data.semesterList,
+      beginWeek: parseInt((day / 7 + 1) as unknown as string),
+      againWeek: parseInt((day / 7 + 1) as unknown as string)
+    });
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
     if (wx.getStorageSync('widget-classSchedule').classSchedule) {
