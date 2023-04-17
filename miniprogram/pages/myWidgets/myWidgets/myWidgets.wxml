@@ -72,6 +72,5 @@
     <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeLoginDialog">取消</button>
     <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="login">登录</button>
   </view>
-  <view style="height: 160rpx;"></view>
 </dialogTitle>
 

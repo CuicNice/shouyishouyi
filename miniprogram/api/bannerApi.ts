@@ -12,7 +12,7 @@ const apiList = {
 }
 
 // 获取广告
-export const getBanner = async (bannerForm: BannerItem) => {
+export const getBanner = async (bannerForm: any) => {
   if (Consts.DEBUG) {
     return Result.mockSuccess("<h1> 你好 世界 </h1>");
   } else {

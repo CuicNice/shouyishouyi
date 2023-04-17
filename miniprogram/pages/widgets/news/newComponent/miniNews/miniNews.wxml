@@ -53,7 +53,7 @@
       <!-- 右边的日期 -->
       <view class="rightNewsDate">
         <!-- 天数 需要有颜色切换判断 -->
-        <view class="{{item.newsTime=='new'?'greenTime_day':'greyTime_day'}}">
+        <view class="{{item.newsTime=='today'?'greenTime_day':'greyTime_day'}}">
           {{tools.substring(item.newsDate,8,10)}}
         </view>
         <!-- 年月份 -->
