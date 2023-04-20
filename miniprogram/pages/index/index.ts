@@ -12,49 +12,54 @@ Page({
     // 功能列表
     functionList:[
       {
+        name:"全校课表",
+        pageRouth:"/pages/allScedule/allScedule",
+        icon:"/static/svg/schoolBuilt/zhonglou.svg"
+      },
+      {
+        name:"共同课表",
+        pageRouth:"",
+        icon:"/static/svg/schoolBuilt/shoyiStanding.svg"
+      },
+      {
+        name:"电费查询",
+        pageRouth:"/pages/widgets/electricCharge/electricPage/electricPage",
+        icon:"/static/svg/schoolBuilt/zhongqutushuguan.svg"
+      },
+      {
+        name:"图书查询",
+        pageRouth:"/pages/widgets/library/libraryPage/libraryPage",
+        icon:"/static/svg/schoolBuilt/genlibrary.svg"
+      },
+      {
+        name:"个性组件",
+        pageRouth:"/pages/myWidgets/settingWidgets/settingWidgets",
+        icon:"/static/svg/schoolBuilt/jiayulibrary.svg"
+      },
+      {
+        name:"成绩查询",
+        pageRouth:"/pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
+        icon:"/static/svg/schoolBuilt/setSail.svg"
+      },
+      {
+        name:"首义通知",
+        pageRouth:"/pages/widgets/news/newPage/newsList/list",
+        icon:"/static/svg/schoolBuilt/nanlibrary.svg"
+      },
+      {
+        name:"倒计时",
+        pageRouth:"/pages/widgets/countDown/countDownPage/countDownPage",
+        icon:"/static/svg/schoolBuilt/genlibrary.svg"
+      },
+      {
         name:"版本声明",
         pageRouth:"/pages/versionStatement/versionStatementPage/versionStatementPage",
         icon:"/static/svg/schoolBuilt/jiayu_administorBuilding.svg"
       },
       {
-        name:"四六级",
+        name:"联系我们",
         pageRouth:"",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
-      },
-      {
-        name:"四六级",
-        pageRouth:"",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
-      },
-      {
-        name:"四六级",
-        pageRouth:"",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
-      },
-      {
-        name:"四六级",
-        pageRouth:"",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
-      },
-      {
-        name:"四六级",
-        pageRouth:"",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
-      },
-      {
-        name:"四六级",
-        pageRouth:"",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
-      },
-      {
-        name:"四六级",
-        pageRouth:"",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
-      },
-      {
-        name:"四六级",
-        pageRouth:"",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
+        icon:"/static/svg/schoolBuilt/tiyuguan.svg"
       }
     ],
     // 小组件页面

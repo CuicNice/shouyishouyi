@@ -22,7 +22,12 @@ Component({
   pageLifetimes: {
     show() {
       this.initPageData();//初始化成绩
-    }
+    },
+  },
+  lifetimes:{
+    ready(){
+      this.initPageData();//初始化成绩
+    },
   },
   /**
    * 组件的方法列表
@@ -141,7 +146,12 @@ Component({
     * @param from 成绩
     */
     async getUserInfoData(from: ScoreCompontItem) {
-      const { data: widget_score } = await widgetScore(from) as unknown as IResult<any>;
+      var widget_score = wx.getStorageSync('widget-scoreInquiry');
+      if(!widget_score){
+        const { data:res  } = await widgetScore(from) as unknown as IResult<any>;
+        wx.setStorageSync("widget-scoreInquiry", res);
+        widget_score = res;
+      }
       var semester = this.data.semester;
       var score = '' as unknown as number;//本学期成绩
       /**

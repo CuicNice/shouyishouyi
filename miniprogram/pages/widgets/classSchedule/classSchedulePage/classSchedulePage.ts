@@ -66,6 +66,8 @@ Page({
     let statusBarHeight = systemInfo['statusBarHeight']
     // 设置胶囊行的高度
     const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
+    // 获得屏幕高度
+    let screenHeight = systemInfo['screenHeight'];
     /* 
     根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
     开发工具 = 获取的高度
@@ -81,9 +83,13 @@ Page({
     } else {
       statusBarHeight = statusBarHeight
     }
+    var rate = systemInfo['windowWidth']/750;
+    var scrollHeight = screenHeight - statusBarHeight -capsuleBoxHeight - 
+    (114)*rate - (76)*rate - (160)*rate;
     this.setData({
       capsuleBoxHeight,
-      statusBarHeight
+      statusBarHeight,
+      scrollHeight
     })
   },
   /* 

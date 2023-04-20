@@ -30,10 +30,8 @@ Component({
     // zhan
     // test
     show: function () {
-
       // 页面被展示
       let that = this;
-
       //  初始化页面
       that.initPageData()
       let today = new Date();
@@ -49,7 +47,19 @@ Component({
       // 页面尺寸变化
     }
   },
-
+  lifetimes:{
+    ready(){
+      // 页面被展示
+      let that = this;
+      //  初始化页面
+      that.initPageData()
+      let today = new Date();
+      let countDownNowDate = dateFormater("YYY/MM/dd", today);
+      that.setData({
+        countDownNowDate,
+      })
+    },
+  },
   /**
    * 组件的方法列表
    */

@@ -22,6 +22,12 @@ Component({
       this.getdailySchedule();
     },
   },
+  lifetimes:{
+    ready(){
+      // 页面被展示
+      this.getdailySchedule();
+    },
+  },
   /**
    * 组件的方法列表
    */

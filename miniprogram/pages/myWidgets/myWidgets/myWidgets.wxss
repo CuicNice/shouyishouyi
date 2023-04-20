@@ -152,6 +152,7 @@
   justify-content: center;
   box-shadow: 0rpx 2rpx 40rpx -12rpx #4BDCAB;
   border-radius: 132rpx;
+  z-index: 2;
 }
 
 .myWidgetSettingCircleText {

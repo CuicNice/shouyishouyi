@@ -1,5 +1,5 @@
 
-import { getAllClasses, getAllSchedule } from '../../../../api/allSchedule';
+import { getAllClasses, getAllSchedule } from '../../api/allSchedule';
 export interface AllScheduleItem {
   zh: string,
   mm: string,
@@ -308,6 +308,46 @@ Page({
     }
     wx.setStorageSync('widget-allSchedule', myArr);
     // this.noInfo();//判断是否能请求到课表,代替了上面if的else
+  },
+  /**
+   * 获取顶部的状态栏的信息
+   */
+  getTarHeighgt() {
+    // 获取胶囊的信息
+    const menuButton = wx.getMenuButtonBoundingClientRect()
+    const menuButtonHeight = menuButton.height;
+    const menuButtonTop = menuButton.top;
+    // 获取设备的信息  
+    let systemInfo = wx.getSystemInfoSync()
+    // 获得屏幕高度
+    let screenHeight = systemInfo['screenHeight'];
+    // 获取信号区高度
+    let statusBarHeight = systemInfo['statusBarHeight']
+    // 设置胶囊行的高度
+    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
+    /* 
+    根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
+    开发工具 = 获取的高度
+    安卓真机 = 获取的高度 + 1
+    苹果真机 = 获取的高度 - 1
+    我本人这里也只测试了iPhonex 华为和小米手机，
+    如果有出入根据实际情况进行调整就行了
+    */
+    if (systemInfo.model === 'andorid') {
+      statusBarHeight = statusBarHeight + 1
+    } else if (systemInfo.platform === 'ios') {
+      statusBarHeight = statusBarHeight - 2
+    } else {
+      statusBarHeight = statusBarHeight
+    }
+    var topBarBottom = statusBarHeight + capsuleBoxHeight
+    this.setData({
+      capsuleBoxHeight,
+      statusBarHeight,
+      screenHeight,
+      topBarBottom,
+    })
+
   },
   /**
    * 绑定账号，密码，学院id，年级，对其全部班级进行查询
@@ -1400,6 +1440,7 @@ Page({
       'zh': '20222108012',
       'mm': 'Luosukai1',
     }
+    this.getTarHeighgt();
     wx.setStorageSync('login', bind)
     if (!wx.getStorageSync('widget-allSchedule')) {
       //给用户添加缓存

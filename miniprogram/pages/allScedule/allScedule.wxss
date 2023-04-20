@@ -1,7 +1,6 @@
 .vector {
   position: absolute;
   padding-right: 110rpx;
-  padding-top: 120rpx;
   padding-left: 34rpx;
   width: 18rpx;
   height: 34rpx;
@@ -115,6 +114,7 @@ page {
   width: 100%;
   display: flex;
   margin-right: 302rpx;
+  align-items: center;
 }
 
 .flushIcon {
@@ -1287,11 +1287,8 @@ page {
 }
 
 .TitleLeft {
-  /* margin-top: 50rpx; */
   height: 44rpx;
   width: 100%;
-  transform: translate(10rpx, 114rpx);
-  /* background-color: indianred; */
 }
 
 .WeekOption {

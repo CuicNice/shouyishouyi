@@ -21,7 +21,8 @@
     "pages/widgets/news/newPage/newsDetail/inDetail",
     "pages/widgets/news/newPage/newsSearch/search",
     "pages/widgets/countDown/countDownPage/countDownPage",
-    "pages/widgets/electricCharge/electricPage/electricPage"
+    "pages/widgets/electricCharge/electricPage/electricPage",
+    "pages/allScedule/allScedule"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -33,7 +34,7 @@
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "custom": true,
-    "list":  [
+    "list": [
       {
         "pagePath": "pages/widgets/classSchedule/classSchedulePage/classSchedulePage",
         "text": "课程表"

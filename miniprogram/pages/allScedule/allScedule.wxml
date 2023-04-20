@@ -1,12 +1,15 @@
 <!-- 背景的学校建筑 -->
-<wxs module="filters" src="../../../../utils/addmul.wxs"></wxs>
+<wxs module="filters" src="../../utils/addmul.wxs"></wxs>
 <view class="bg">
-  <image class="background-box" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
+  <image class="background-box" src="../../static/svg/schoolBuilt/zhonglou.svg"></image>
 </view>
 <!-- 导航栏 -->
-<view class="navigationBar" style="background-color: {{bgc}};">
+<!-- 信号区 -->
+<view style="height:{{statusBarHeight}}px;">
+  </view>
+<view class="navigationBar" style="background-color: {{bgc}};height:{{capsuleBoxHeight}}px;">
   <view class="vector" bindtap="getBack">
-    <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
+    <image src="../../static/svg/allSchedul/vector-3.svg"></image>
   </view>
   <!-- 课表选择 -->
   <view class="TitleLeft">

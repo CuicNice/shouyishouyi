@@ -182,6 +182,7 @@
   width: 658rpx;
   background: #FFFFFF;
   border-radius: 16rpx;
+  justify-content: space-between;
 }
 
 .areaItem {

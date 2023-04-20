@@ -21,7 +21,7 @@
   </view>
   <view class="time-box">
     <!-- 当日的日期需要变绿 -->
-    <view class="{{item.newsTime=='new'?'greenTime_day':'greyTime_day'}}">{{tools.substring(item.newsDate,8,10)}}</view>
+    <view class="{{item.newsTime=='today'?'greenTime_day':'greyTime_day'}}">{{tools.substring(item.newsDate,8,10)}}</view>
     <view class="time-year">{{tools.substring(item.newsDate,0,4)}}.{{tools.substring(item.newsDate,5,7)}}</view>
   </view>
 </navigator>

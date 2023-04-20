@@ -97,7 +97,7 @@ page {
 
 .navigationBar {
   height: 64rpx;
-  width: 100%;
+  width: 718rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -276,13 +276,11 @@ page {
 .WHQscroll {
   flex: 1;
   overflow: hidden;
-  height: 100%;
 }
 
 .WHQplus {
   width: 100%;
   display: flex;
-  position: absolute;
 }
 
 .WHQplusLeft {
@@ -2263,6 +2261,15 @@ page {
   display: flex;
   justify-content: space-between;
 }
+.courseName1{
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-line;
+  font-weight: bold;
+}
 
 .courseOther {
   margin-top: 40rpx;
@@ -2309,7 +2316,7 @@ page {
 }
 
 .classScroll {
-  height: 1250rpx;
+  /* height: 1250rpx; */
   /*如果要依真机测试为主，则需要改成1250rpx*/
   display: flex;
   flex-direction: column;
