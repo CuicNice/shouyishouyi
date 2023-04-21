@@ -59,6 +59,12 @@ Component({
         })
       }
     },
-
+    // 跳转课表tabbar
+    godailySchedule(){
+      console.log("goto TabBar!")
+      wx.switchTab({
+        url: '/pages/widgets/classSchedule/classSchedulePage/classSchedulePage'
+        })
+    }
   }
 })

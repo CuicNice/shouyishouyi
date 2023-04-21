@@ -3,7 +3,9 @@
   <view class="dailyScheduleNavigation">
   <view class="dailyScheduleNavigationBox">
     <view class="dailyNavigationtext">{{nowDayData}}</view>
-    <view class="dailyScheduleNavigationIcon" bindtap="godailySchedule"><image></image></view>
+    <view class="dailyScheduleNavigationIcon" bindtap="godailySchedule">
+    <image style="width: 20px;height: 20px;" src="/static/svg/news/miniNews_return.svg" mode="" />
+    </view>
   </view>
   </view>
   <view  class="dailySchedulecontainer" wx:if="{{ifClass}}">
