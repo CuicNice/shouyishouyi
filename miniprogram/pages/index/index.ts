@@ -14,52 +14,52 @@ Page({
       {
         name:"全校课表",
         pageRouth:"/pages/allScedule/allScedule",
-        icon:"/static/svg/schoolBuilt/zhonglou.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/zhonglou.svg"
       },
       {
         name:"共同课表",
         pageRouth:"",
-        icon:"/static/svg/schoolBuilt/shoyiStanding.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/shoyiStanding.svg"
       },
       {
         name:"电费查询",
         pageRouth:"/pages/widgets/electricCharge/electricPage/electricPage",
-        icon:"/static/svg/schoolBuilt/zhongqutushuguan.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/zhongqutushuguan.svg"
       },
       {
         name:"图书查询",
         pageRouth:"/pages/widgets/library/libraryPage/libraryPage",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/genlibrary.svg"
       },
       {
         name:"个性组件",
         pageRouth:"/pages/myWidgets/settingWidgets/settingWidgets",
-        icon:"/static/svg/schoolBuilt/jiayulibrary.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/jiayulibrary.svg"
       },
       {
         name:"成绩查询",
         pageRouth:"/pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
-        icon:"/static/svg/schoolBuilt/setSail.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/setSail.svg"
       },
       {
         name:"首义通知",
         pageRouth:"/pages/widgets/news/newPage/newsList/list",
-        icon:"/static/svg/schoolBuilt/nanlibrary.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/nanlibrary.svg"
       },
       {
         name:"倒计时",
         pageRouth:"/pages/widgets/countDown/countDownPage/countDownPage",
-        icon:"/static/svg/schoolBuilt/genlibrary.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/genlibrary.svg"
       },
       {
         name:"版本声明",
         pageRouth:"/pages/versionStatement/versionStatementPage/versionStatementPage",
-        icon:"/static/svg/schoolBuilt/jiayu_administorBuilding.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/jiayu_administorBuilding.svg"
       },
       {
         name:"联系我们",
         pageRouth:"",
-        icon:"/static/svg/schoolBuilt/tiyuguan.svg"
+        icon:"https://introduce.mcdd.top/schoolBuilt/tiyuguan.svg"
       }
     ],
     // 小组件页面
@@ -157,7 +157,7 @@ Page({
   // 页面跳转
   goToPage(e:any){
     var path = e.currentTarget.dataset.path;
-    console.log(path);
+    console.log(e);
     wx.navigateTo({
       url:path
     })

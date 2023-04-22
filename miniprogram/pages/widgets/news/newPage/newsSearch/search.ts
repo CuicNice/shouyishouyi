@@ -20,7 +20,7 @@ Page({
     list: [] as any,
     // 新闻是不是当天
     isToday: false as Boolean,
-    bgSvgUrl: "/static/svg/pillar.svg",
+    bgSvgUrl: "https://introduce.mcdd.top/schoolBuilt/pillar.svg",
     // 最新（3天）
     isNew: false as Boolean,
     newsSearchTitle: "搜索",

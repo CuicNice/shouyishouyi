@@ -61,7 +61,7 @@
   </view>
 </view>
 <!-- 提示弹窗 -->
-<dialogTitle title="校区时间自动识别规则" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/setSail.svg">
+<dialogTitle title="校区时间自动识别规则" showDialog="{{dialogTip}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/setSail.svg">
   <view class="dialogText">根据您的学号判断年级，大一为嘉鱼校区，大二及以上为武昌校区，若不准确可手动调整</view>
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>

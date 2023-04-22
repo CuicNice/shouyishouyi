@@ -124,7 +124,7 @@ Page({
                 jianum = jianum + 1;
                 var showjia = true;
                 var place = "嘉鱼";
-                var image = "../../../../static/svg/schoolBuilt/jiayulibrary.svg";
+                var image = "https://introduce.mcdd.top/schoolBuilt/jiayulibrary.svg";
                 var hao = arr[j].books[i].callno;
                 arr[j].showjia = showjia;
                 arr[j].num.jiaArr.num = jianum;
@@ -143,7 +143,7 @@ Page({
                 zongnum = zongnum + 1;
                 var showzong = true;
                 var place = "总馆";
-                var image = "../../../../static/svg/schoolBuilt/genlibrary.svg";
+                var image = "https://introduce.mcdd.top/schoolBuilt/genlibrary.svg";
                 var hao = arr[j].books[i].callno;
                 arr[j].showzong = showzong;
                 arr[j].num.zongArr.num = zongnum;
@@ -162,7 +162,7 @@ Page({
                 nannum = nannum + 1;
                 var shownan = true;
                 var place = "南区";
-                var image = "../../../../static/svg/schoolBuilt/nanlibrary.svg";
+                var image = "https://introduce.mcdd.top/schoolBuilt/nanlibrary.svg";
                 var hao = arr[j].books[i].callno;
                 arr[j].shownan = shownan;
                 arr[j].num.nanArr.num = nannum;
@@ -181,7 +181,7 @@ Page({
                 zhongnum = zhongnum + 1;
                 var showzhong = true;
                 var place = "中区";
-                var image = "../../../../static/svg/schoolBuilt/zhongqutushuguan.svg";
+                var image = "https://introduce.mcdd.top/schoolBuilt/zhongqutushuguan.svg";
                 var hao = arr[j].books[i].callno;
                 arr[j].showzhong = showzhong;
                 arr[j].num.zhongArr.num = zhongnum;

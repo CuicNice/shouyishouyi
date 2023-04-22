@@ -9,7 +9,7 @@
       (注：此页面小组件数据为参考样式，非真实数据)</view>
   </view>
   <view class="remindIconBox">
-    <image src="/static/svg/schoolBuilt/pillar.svg" class="remindIconSvg" mode="" />
+    <image src="https://introduce.mcdd.top/schoolBuilt/pillar.svg" class="remindIconSvg" mode="" />
   </view>
 </view>
 <!-- 固定的部分:需要减去12作为保护值防止漏缝隙 -->

@@ -28,16 +28,16 @@
       </view>
       <swiper class="librarySwiper" swiperCurrent="swiper" current="{{swiper}}">
         <swiper-item>
-          <image class="libraryIcon1" src="/static/svg/schoolBuilt/nanlibrary.svg"></image>
+          <image class="libraryIcon1" src="https://introduce.mcdd.top/schoolBuilt/nanlibrary.svg"></image>
         </swiper-item>
         <swiper-item>
-          <image class="libraryIcon2" src="/static/svg/schoolBuilt/genlibrary.svg"></image>
+          <image class="libraryIcon2" src="https://introduce.mcdd.top/schoolBuilt/genlibrary.svg"></image>
         </swiper-item>
         <swiper-item>
-          <image class="libraryIcon3" src="/static/svg/schoolBuilt/zhongqutushuguan.svg"></image>
+          <image class="libraryIcon3" src="https://introduce.mcdd.top/schoolBuilt/zhongqutushuguan.svg"></image>
         </swiper-item>
         <swiper-item>
-          <image class="libraryIcon4" src="/static/svg/schoolBuilt/jiayulibrary.svg"></image>
+          <image class="libraryIcon4" src="https://introduce.mcdd.top/schoolBuilt/jiayulibrary.svg"></image>
         </swiper-item>
       </swiper>
       <view class="righticon" bindtap="swiperChangeho">

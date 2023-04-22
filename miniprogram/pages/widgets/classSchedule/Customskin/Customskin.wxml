@@ -41,21 +41,21 @@
     <view class="skin-box-choice">
       <view class="colorselBox" bindtap="bellTower">
         <view class="colorBox1">
-          <image class="zhonglou" src="../../../../static/svg/schoolBuilt/zhonglou.svg"></image>
+          <image class="zhonglou" src="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg"></image>
           <image wx:if="{{bellTower}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
         </view>
         <view class="skin-choice-title">首义钟楼</view>
       </view>
       <view class="colorselBox" bindtap="administrativeBuilding">
         <view class="colorBox2">
-          <image class="jiayuxingzhenluo" src="../../../../static/svg/schoolBuilt/jiayuxingzhenluo.svg"></image>
+          <image class="jiayuxingzhenluo" src="https://introduce.mcdd.top/schoolBuilt/jiayuxingzhenluo.svg"></image>
           <image wx:if="{{administrativeBuilding}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
         </view>
         <view class="skin-choice-title">嘉鱼行政楼</view>
       </view>
       <view class="colorselBox" bindtap="library">
         <view class="colorBox3">
-          <image class="zhongqutushuguan" src="../../../../static/svg/schoolBuilt/zhongqutushuguan.svg"></image>
+          <image class="zhongqutushuguan" src="https://introduce.mcdd.top/schoolBuilt/zhongqutushuguan.svg"></image>
           <image wx:if="{{library}}" class="icon1" src="../../../../static/svg/tubiao.svg"></image>
         </view>
         <view class="skin-choice-title">图书馆总馆</view>

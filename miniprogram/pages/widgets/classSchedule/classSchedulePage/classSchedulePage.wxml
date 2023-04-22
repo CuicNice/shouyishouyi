@@ -1,7 +1,7 @@
 <wxs module="filters" src="../../../../utils/addmul.wxs"></wxs>
 <!-- 背景的学校建筑 -->
 <view class="bg">
-  <image class="background-box" src="../../../../static/svg/schoolBuilt/{{buliding}}.svg"></image>
+  <image class="background-box" src="https://introduce.mcdd.top/schoolBuilt/{{buliding}}.svg"></image>
 </view>
 <view style="height:{{statusBarHeight}}px;background-color: {{bgc}};"></view>
 <!-- 导航栏 -->
@@ -614,13 +614,13 @@
 </view>
 
 <toast id="toast"></toast>
-<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/shoyiStanding.svg">
+<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogTip}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/shoyiStanding.svg">
   <view class="dialogText">暂无您的该学年课表，新学期课表出来后，南南会第一时间通知你的噢~</view>
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>
 </dialogTitle>
-<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogNoLoginTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/jiayu_administorBuilding.svg">
+<dialogTitle class="dialogTitleClass" title="课表刷新失败" showDialog="{{dialogNoLoginTip}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/jiayu_administorBuilding.svg">
   <view class="dialogText">你暂未绑定账号,请绑定账号后再次尝试噢~</view>
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>

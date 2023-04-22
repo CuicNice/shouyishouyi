@@ -15,7 +15,7 @@
 <!-- 弹窗组件 -->
 <toast id="toast"></toast>
 <!-- 绑定账号半屏弹窗 -->
-<dialogTitle title="是否绑定校园账号?" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
+<dialogTitle title="是否绑定校园账号?" showDialog="{{showBindDialog}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg">
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
     <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="showLoginDialog">确定</button>
@@ -50,7 +50,7 @@
 </view>
 
 <view class="dialogShow" bindtap="closePhoto" wx:if="{{tc_system}}">
-  <dialogTitle title="{{popupAppear.popupSystemHeadline}}" stitle="{{popupAppear.popupSystemSubtitle}}" schoolBuiltSrc="/static/svg/schoolBuilt/zhonglou.svg" showDialog="{{showDialog}}">
+  <dialogTitle title="{{popupAppear.popupSystemHeadline}}" stitle="{{popupAppear.popupSystemSubtitle}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg" showDialog="{{showDialog}}">
     <view style="display: flex;">
       <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="loginInfo">{{popupAppear.popupJumpType !== 'noJump'?'前往查看详情':'确定'}}</button>
     </view>

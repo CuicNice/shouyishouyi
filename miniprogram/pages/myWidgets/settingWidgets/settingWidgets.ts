@@ -6,7 +6,7 @@ Page({
   data: {
     topBarBottom: 80,//topBar顶部的高度
     settingIndexWIidgetTitle: "设置小组件",
-    schoolBuiltSrc: '/static/svg/schoolBuilt/jiayu_administorBuilding.svg',
+    schoolBuiltSrc: 'https://introduce.mcdd.top/schoolBuilt/jiayu_administorBuilding.svg',
     isChooseIndexSeetingWidget: true,
     cancelSettingName: "取消",
     certainSettingName: "保存",

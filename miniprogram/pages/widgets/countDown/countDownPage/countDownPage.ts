@@ -11,8 +11,8 @@ Page({
     countDownTitle: "首义＋倒计时",
     // dialog
     dialogtitle: "设置失败，请重新设置",
-    schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
-    sportBuild: "/static/svg/schoolBuilt/tiyuguan.svg",
+    schoolBuiltSrc: "https://introduce.mcdd.top/schoolBuilt/zhonglou.svg",
+    sportBuild: "https://introduce.mcdd.top/schoolBuilt/tiyuguan.svg",
     BackIcon: "/static/svg/back.svg",
     date: undefined,
     bname: '联系南南',

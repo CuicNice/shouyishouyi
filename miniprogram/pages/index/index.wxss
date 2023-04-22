@@ -55,7 +55,6 @@
   margin-top: 40rpx;
 }
 
-.mCancel {}
 
 .btn {
   border-radius: 75rpx;

@@ -21,7 +21,7 @@
       </view>
     </view>
     <view class="electricCharge-img">
-      <image src="/static/svg/schoolBuilt/zhonglou.svg"></image>
+      <image src="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg"></image>
     </view>
     <view class="electricuserInfo-box">
       <view class="electricPlacebox">
@@ -155,21 +155,21 @@
 <!-- 提示组件 -->
 <toast id="toast"></toast>
 <!-- 提示弹窗 -->
-<dialogTitle title="绑定失败，请重新绑定" showDialog="{{dialogTip}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhongqutushuguan.svg">
+<dialogTitle title="绑定失败，请重新绑定" showDialog="{{dialogTip}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhongqutushuguan.svg">
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="closeDialogTip">确定</button>
   </view>
 </dialogTitle>
 
 <!-- 绑定弹窗 -->
-<dialogTitle title="未绑定寝室?" stitle="是否立即绑定寝室？" wx:if="{{!haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
+<dialogTitle title="未绑定寝室?" stitle="是否立即绑定寝室？" wx:if="{{!haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg">
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 224rpx;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
     <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="showBindItem">绑定</button>
   </view>
 </dialogTitle>
 <!-- 重新绑定弹窗 -->
-<dialogTitle title="确认取消绑定？" stitle="取消绑定后需重新绑定寝室进行查询" wx:if="{{haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="../../static/svg/schoolBuilt/zhonglou.svg">
+<dialogTitle title="确认取消绑定？" stitle="取消绑定后需重新绑定寝室进行查询" wx:if="{{haveBind}}" showDialog="{{showBindDialog}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg">
   <view style="display: flex;">
     <button class="btn" type="primary" style="width: 224rpx;border-color: #20C38C;color: #20C38C;" plain="{{true}}" bindtap="closeBindDialog">取消</button>
     <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="cleanBind">确定</button>

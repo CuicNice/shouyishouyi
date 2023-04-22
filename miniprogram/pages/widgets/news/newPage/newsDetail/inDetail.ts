@@ -20,7 +20,7 @@ Page({
     dialogContent: "学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~",
     isShowDialog: false,//组件弹窗(问题单)
     newsID: '',
-    builtList: ["/static/svg/news/zhonglou.svg", "/static/svg/news/redBuilt.svg", "/static/svg/pillar.svg"],
+    builtList: ["https://introduce.mcdd.top/schoolBuilt/zhonglouBig.svg", "https://introduce.mcdd.top/schoolBuilt/redBuilt.svg", "https://introduce.mcdd.top/schoolBuilt/pillar.svg"],
     builtListNum: 2,
 
     type: 0,
@@ -29,14 +29,14 @@ Page({
     t_bg: "",
     isRedBgBuilt: false,//默认背景图片显示蓝色的图书馆
     newsDetailTitle: "快讯闻",
-    schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
+    schoolBuiltSrc: "https://introduce.mcdd.top/schoolBuilt/zhonglouBig.svg",
     // 南南的微信二维码
     nannanCode: "/static/svg/news/nanan_weixinCode.png",
     // 南南题目头
     contentTitle: "/static/svg/news/contentTitle.svg",
     topTitleSvgUrl: "/static/svg/news/topTitle.svg",
-    redBgSvgUrl: "/static/svg/news/redBuilt.svg",
-    bgSvgUrl: "/static/svg/pillar.svg",
+    redBgSvgUrl: "https://introduce.mcdd.top/schoolBuilt/redBuilt.svg",
+    bgSvgUrl: "https://introduce.mcdd.top/schoolBuilt/pillar.svg",
     bg_url: " url(http://tiku.mcdd.top/image/bg.png);",
     bg_size: "background-size: 418rpx 1052rpx;",
     // 新闻ID

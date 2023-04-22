@@ -1,7 +1,7 @@
 <!-- 背景的学校建筑 -->
 <wxs module="filters" src="../../utils/addmul.wxs"></wxs>
 <view class="bg">
-  <image class="background-box" src="../../static/svg/schoolBuilt/zhonglou.svg"></image>
+  <image class="background-box" src="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg"></image>
 </view>
 <!-- 导航栏 -->
 <!-- 信号区 -->
@@ -17,6 +17,8 @@
       <view class="{{bgc == ''?'text-WeekOption':'text-WeekOptionWhite'}}">{{classTitle?classTitle:"选择课表"}}</view>
       <view class="{{bgc == ''?'icon-WeekOption' : 'icon-WeekOptionWhite'}}"></view>
     </view>
+  </view>
+  <view class="vector">
   </view>
 </view>
 <view class="select_box" wx:if="{{weekSchedule}}" style="background: {{bgc==''?'rgba(255, 255, 255, 0.9)':'#333333'}};">

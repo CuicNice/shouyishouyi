@@ -37,8 +37,8 @@ Page({
     duration: 1200,
     isChecked: true, //头像彩蛋
     tapbarCtrl: false,//点击哪一个tab栏
-    schoolBuiltSrc: "/static/svg/schoolBuilt/zhonglou.svg",
-    bgSvgUrl: "/static/svg/pillar.svg",
+    schoolBuiltSrc: "https://introduce.mcdd.top/schoolBuilt/zhonglou.svg",
+    bgSvgUrl: "https://introduce.mcdd.top/schoolBuilt/pillar.svg",
     type: 0,
     pages: 0,
     mypages: 0,

@@ -213,7 +213,7 @@ Page({
       delete value.classSchedule
       wx.setStorageSync("widget-classSchedule", value);
       this.setData({ weekSchedule: true, nowWeek: day, toView: toView });
-      this.initClassData();
+      this.onLoad();
     } else {
       this.selectComponent("#toast").showToastAuto("未绑定账号", "error", "2");
     }
@@ -343,7 +343,8 @@ Page({
             nowWeekData: nowWeekData,
             login: true
           })
-          this.getDayTime();//获取每天的课程信息
+          console.log(classSchedule)
+          this.getDayTime(classSchedule);//获取每天的课程信息
           if (this.data.beginWeek > 0) {//保证缓存的是正确的值
             utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
             utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
@@ -357,6 +358,7 @@ Page({
           this.selectComponent("#toast").showToastAuto(result.msg, "error");
         }
       } catch (err) {
+        console.log(err)
         this.selectComponent("#toast").showToastAuto("刷新失败", "error");
         this.setData({
           dialogTip: true,
@@ -785,9 +787,14 @@ Page({
   *展开学期选择弹窗
   */
   selectSchoolTime() {
-    this.setData({
-      Semesterswitchingdetail: true
-    });
+    let login = wx.getStorageSync('login')
+    if (login) {
+      this.setData({
+        Semesterswitchingdetail: true
+      });
+    } else {
+      this.selectComponent("#toast").showToastAuto("未绑定账号", "error", "2");
+    }
   },
 
   /**
@@ -847,18 +854,18 @@ Page({
   /**
    * 获取每天的课程信息
    */
-  getDayTime() {
+  getDayTime(classScheduleIn:any) {
     if (this.data.dayTime.length == 0) {
       var time = (new Date().toTimeString().substring(0, 8)).slice(0, 5);
       var dayTime = this.data.dayTime;
       var date = new Date(Date.parse(new Date() as unknown as string));
       var nowDate = this.getDates(1, date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate())[0].time;
       var classInfo = [];
-      let classScheduleWeekLength = (this.data.classSchedule.week.length != 0) ? this.data.classSchedule.week.length : 19;
+      let classScheduleWeekLength = (classScheduleIn.week.length != 0) ? classScheduleIn.week.length : 19;
       var allTimes = this.getNewWeekTime();
       var num = 0;
       for (var i = 0; i < classScheduleWeekLength; i++) {
-        var classSchedule = this.data.classSchedule.week[i];
+        var classSchedule = classScheduleIn.week[i];
         for (var j = 0; j < 7; j++) {
           var obj = {
             dateString: classSchedule.data[j].item
@@ -897,7 +904,7 @@ Page({
   nowWeek() {
     //获取当前周数的预处理定义变量进行储存数据
     var time = new Date().toLocaleDateString();
-    var startDate = this.data;
+    var startDate = this.data.startDate;
     console.log(startDate)
     var start_date = new Date(this.data.startDate.replace(/-/g, "/"));
     var end_date = new Date(time.replace(/-/g, "/"));
@@ -953,9 +960,10 @@ Page({
       schoolTerm = 12;
     };
     this.setData({ I: schoolTerm, Y: year as unknown as string })
-    // TODO 修改zh为login
+ 
     let login = wx.getStorageSync('login')
     let zh = login.zh;
+
     if ((this.data.Y as unknown as number - zh.slice(0, 4) == 4 && 8 <= parseInt(this.data.M) && parseInt(this.data.M) <= 12) || (this.data.Y as unknown as number - zh.slice(0, 4) == 4 && 1 <= parseInt(this.data.M) && parseInt(this.data.M) < 2)) {
       start = this.data.Y + "/8/28";
       schoolTime = '大四上';
@@ -1032,15 +1040,16 @@ Page({
     });
     this.initPageData();//初始化页面数据
     //通过定义的变量进行周的自动判断
-    if (wx.getStorageSync('widget-classSchedule').classSchedule) {
-      setTimeout(() => {//避免代码运行到此处setData异步还没执行完
-        this.getDayTime();//获取每天的课程信息
+    var classSchedule = wx.getStorageSync('widget-classSchedule').classSchedule;
+    if (classSchedule) {
+      // setTimeout(() => {//避免代码运行到此处setData异步还没执行完
+        this.getDayTime(classSchedule);//获取每天的课程信息
         utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
         utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
         //获取日课表的日期信息并存进缓存
         let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + " (日程表)"
         utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
-      }, 300)
+      // }, 300)
     }
     this.reGetDay(time, this.data.nowWeek)
   },
