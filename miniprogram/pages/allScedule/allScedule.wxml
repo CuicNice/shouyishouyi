@@ -211,22 +211,22 @@
         </view>
         <view class="courseOther">
           <view class="courseplace">
-            <image class="courseplaceImage" src="../../../../static/svg/didian.svg" />
+            <image class="courseplaceImage" src="../../static/svg/didian.svg" />
             <view class="cuorseGuding">地点:</view>
             <view class="cuorseXuigai">{{detailClass[0].local}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="../../../../static/svg/teacher.svg" />
+            <image class="courseplaceImage" src="../../static/svg/teacher.svg" />
             <view class="cuorseGuding">老师:</view>
             <view class="cuorseXuigai">{{detailClass[0].teacher}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="../../../../static/svg/jieshu.svg" />
+            <image class="courseplaceImage" src="../../static/svg/jieshu.svg" />
             <view class="cuorseGuding">节数:</view>
             <view class="cuorseXuigai">{{detailClass[0].day}} | 第{{detailClass[0].old_num}}</view>
           </view>
           <view class="courseplace">
-            <image class="courseplaceImage" src="../../../../static/svg/zhuoci.svg" />
+            <image class="courseplaceImage" src="../../static/svg/zhuoci.svg" />
             <view class="cuorseGuding">周次：</view>
             <view class="cuorseXuigai">第{{detailClass[0].old_day_num}}</view>
           </view>
@@ -243,7 +243,7 @@
     <view class="chooseTop">
       <!-- 齿轮svg' -->
       <view class="cogs">
-        <image src="../../../../static/svg/allSchedul/cogs.svg"></image>
+        <image src="../../static/svg/allSchedul/cogs.svg"></image>
       </view>
       <!-- 请选择你要查询的课表 -->
       <view class="cogsText">请选择你要查询的课表</view>
@@ -257,7 +257,7 @@
           <text class="laberRight">{{gradeTitle&&grade?grade:"请选择年级"}}</text>
         </view>
         <view class="iconpicker">
-          <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
+          <image src="../../static/svg/allSchedul/vector-3.svg"></image>
         </view>
       </view>
       <!-- 学院 -->
@@ -267,7 +267,7 @@
           <text class="laberRight">{{academyTitle&&academy?academy:"请选择学院"}}</text>
         </view>
         <view class="iconpicker">
-          <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
+          <image src="../../static/svg/allSchedul/vector-3.svg"></image>
         </view>
       </view>
       <!-- 班级 -->
@@ -277,7 +277,7 @@
           <text class="laberRight">{{classTitle_2&&Class?Class:"请选择专业班级"}}</text>
         </view>
         <view class="iconpicker">
-          <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
+          <image src="../../static/svg/allSchedul/vector-3.svg"></image>
         </view>
       </view>
       <!-- 学期 -->
@@ -287,7 +287,7 @@
           <text class="laberRight">{{semesterTitle&&semesters?semesterTitle:"请选择学期 "}}</text>
         </view>
         <view class="iconpicker">
-          <image src="../../../../static/svg/allSchedul/vector-3.svg"></image>
+          <image src="../../static/svg/allSchedul/vector-3.svg"></image>
         </view>
       </view>
     </view>

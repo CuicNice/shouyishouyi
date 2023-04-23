@@ -2,7 +2,6 @@ import { Result } from "../common/Result";
 import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
-import { AllScheduleItem } from '../pages/widgets/allSchedule/allSchedulePage/allSchedulePage';
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
 const apiList = {
@@ -12,7 +11,7 @@ const apiList = {
 }
 
 // 获取班级
-export const getAllClasses = async (AllScheduleForm: AllScheduleItem) => {
+export const getAllClasses = async (AllScheduleForm: any) => {
   if (Consts.DEBUG) {
     return Result.mockSuccess("<h1> 你好 世界 </h1>");
   } else {
@@ -20,7 +19,7 @@ export const getAllClasses = async (AllScheduleForm: AllScheduleItem) => {
   }
 }
 // 获取课程
-export const getAllSchedule = async (AllScheduleForm: AllScheduleItem) => {
+export const getAllSchedule = async (AllScheduleForm: any) => {
   if (Consts.DEBUG) {
     return Result.mockSuccess("<h1> 你好 世界 </h1>");
   } else {

@@ -564,8 +564,11 @@ page {
 }
 
 .swiper_container {
-  height: 50rpx;
-  width: 90%;
+  /* height: 50rpx; */
+  position:absolute;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
 }
 
 .dailyScheduleAdBox {
@@ -1971,7 +1974,6 @@ page {
   position: absolute;
   top: 300rpx;
   left: 214rpx;
-  z-index: 1000;
 }
 
 .nodailyScheduleIndexImg {
@@ -2266,13 +2268,13 @@ page {
 }
 
 .courseName1 {
-  display: flex;
-  width: 80%;
-  flex-direction: column;
-  word-wrap: break-word;
-  word-break: break-all;
+  width: 338rpx;
+  font-family: PingFang SC;
+  font-size: 32rpx;
   white-space: pre-line;
   font-weight: bold;
+  line-height: 44rpx;
+
 }
 
 .courseOther {
@@ -2286,13 +2288,10 @@ page {
 
 .courseName {
   width: 338rpx;
-  font-family: PingFang SC;
+  font-family: PingFang sc;
   font-size: 32rpx;
   font-weight: bold;
-  line-height: 44rpx;
-  text-align: left;
-  float: left;
-
+  line-height: 88rpx;  
 }
 
 .courseixBoc {

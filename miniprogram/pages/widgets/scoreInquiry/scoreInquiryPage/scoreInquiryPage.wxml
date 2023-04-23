@@ -1,5 +1,5 @@
 <view class="bg"></view>
-<tb title="{{scoreTitle}}" immersion="{{true}}" Threshold="0.2">
+<tb title="{{scoreTitle}}" immersion="{{true}}" Threshold="0.1" speed="2">
   <wxs module="filters" src="../../scoreInquiry/scoreInquiryPage/scoreparseInt.wxs"></wxs>
   <image class="scorewords" src="/static/svg/scorewords.svg"></image>
   <view class="scoreTop" > 

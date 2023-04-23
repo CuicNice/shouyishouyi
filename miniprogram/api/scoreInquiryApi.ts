@@ -3,7 +3,6 @@ import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
 import {ScoreInquiryeItem} from '../pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage';
-import {ScoreCompontItem} from '../pages/widgets/scoreInquiry/textScoreComponet/textCompont';
 
 const request = HttpUtils.getInstance();
 const baseUrl = Utils.getBaseUrl();
@@ -24,7 +23,7 @@ export const getUserInfo = async (ScoreInquiryeForm: ScoreInquiryeItem) => {
   }
 }
 //获取成绩列表
-export const widgetScore = async (ScoreInquiryeForm: ScoreCompontItem) => {
+export const widgetScore = async (ScoreInquiryeForm: any) => {
   if (Consts.DEBUG) {
     return Result.mockSuccess("<h1> 你好 世界 </h1>");
   } else {

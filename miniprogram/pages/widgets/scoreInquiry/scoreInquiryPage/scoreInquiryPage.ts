@@ -319,7 +319,7 @@ Page({
       mm: wx.getStorageSync('login').mm,
     } as ScoreInquiryeItem;
     if(wx.getStorageSync('login').zh&& wx.getStorageSync('login').mm){
-      this.showToast(true, 'lodding', "查询中......");
+      this.selectComponent('#toast').showToast("查询中......", 'lodding');
       this.getUserInfoData(bindData);
     }
     else if(!(wx.getStorageSync('login').zh&& wx.getStorageSync('login').mm)){
@@ -370,6 +370,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    this.initPageData();
   },
 
   /**
@@ -382,7 +383,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.initPageData();
   },
 
   /**

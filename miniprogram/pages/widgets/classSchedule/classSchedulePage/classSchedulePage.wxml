@@ -254,11 +254,11 @@
   <view class="dailyScheduleNavigation">
     <swiper current="{{currentTab}}" bindchange="handleSwiperChange" class="swiper_container">
       <swiper-item class="dailyNavigationtext" wx:for="{{allTimes}}" wx:key='index'>
-        <scroll-view scroll-y>
+        <!-- <scroll-view scroll-y> -->
           <block>
             <view class="{{bgc==''?'dailyNavigationtext':'dailyNavigationtextWhite'}}">第{{filters.toFix(index/7+1)}}周 {{item.month}}月{{item.data}}日 {{item.week}}（日程表）</view>
           </block>
-        </scroll-view>
+        <!-- </scroll-view> -->
       </swiper-item>
     </swiper>
   </view>
@@ -529,9 +529,9 @@
         </view>
       </view>
     </view>
-  </view>{{datTime[currentTab-num].dateString.length}}
+  </view>
+  <!-- 日课表没有课的状态 -->
   <view wx:if="{{dayTime[currentTab-num].dateString.length==0||dayTime[currentTab-num].dateString.length==null}}">
-    <!-- 日课表没有课的状态 -->
     <view class="nodailyScheduleIndex">
       <image class="nodailyScheduleIndexImg"></image>
     </view>
