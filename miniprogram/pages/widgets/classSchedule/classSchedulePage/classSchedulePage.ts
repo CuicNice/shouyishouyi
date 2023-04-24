@@ -731,7 +731,6 @@ Page({
     //将重复的课程周次合并
     let num = this.objHeavy(list);
     list = num;
-    console.log(list)
     //给本周的赋值高的zindex
     for (let i = 0; i < list.length; i++) {
       var key = 0

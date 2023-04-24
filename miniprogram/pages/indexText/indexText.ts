@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shuju:'http://baidu.com'
+    shuju:{}
   },
 
   /**
@@ -15,7 +15,8 @@ Page({
     wx.getStorage({
       key: 'widget-banner',
       success:(res)=> {
-        this.setData({shuju:res as unknown as string});
+        console.log(res.data)
+        this.setData({shuju:res.data });
       }
     });
     },

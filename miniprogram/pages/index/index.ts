@@ -163,6 +163,25 @@ Page({
     })
   },
   /**
+   * banner点击事件
+   */
+  bannerTap(e:any){
+    let tapThins = e.detail;
+    if(tapThins.bannerType == "miniLink"){
+      wx.navigateTo({
+        url:tapThins.bannerContent
+      })
+    }else if(tapThins.bannerType == "article"){
+      wx.setStorage({
+        key:"widget-banner",
+        data:tapThins,
+        success(){
+          wx.navigateTo({url:"/pages/indexText/indexText"})
+        }
+      })
+    }
+  },
+  /**
    * 获取顶部的状态栏的信息
    */
   getTarHeighgt() {

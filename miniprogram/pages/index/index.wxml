@@ -26,19 +26,19 @@
 <!-- function area -->
 <view class="areaBox">
   <view class="functionArea">
-    <view class="areaItem" wx:for="{{functionList}}" bindtap="goToPage" data-path="{{item.pageRouth}}">
+    <view class="areaItem" wx:for="{{functionList}}" bindtap="goToPage" wx:key="index" data-path="{{item.pageRouth}}">
       <image class="areaItemImage" src="{{item.icon}}"></image>
       <view class="areaItemName">{{item.name}}</view>
     </view>
   </view>
 </view>
 <view class="pageBanner">
-  <banner imageList="{{bannerList}}"></banner>
+  <banner imageList="{{bannerList}}" bind:imageTapEvent="bannerTap"></banner>
 </view>
 <!-- 静态组件区域-->
 <view class="container">
   <!-- 组件展示 -->
-  <block style="display: flex;" wx:for="{{indexTabListTemp}}" wx:for-item="item" wx:key="{{index}}">
+  <block style="display: flex;" wx:for="{{indexTabListTemp}}" wx:for-item="item" wx:key="index">
     <miniScore wx:if="{{item.name=='成绩单'}}" style="order:{{item.index}}"></miniScore>
     <!-- 组件 -->
     <!-- 组件 -->
