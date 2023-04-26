@@ -1138,20 +1138,25 @@ Page({
     }
   },
 
-  /**
+    /**
    * 切割出周数  2-4周(双),5-8周 -> [ 2 4 5 6 7 8 ]
+   *            2-4周(单),5-8周 -> [ 3 5 6 7 8 ]
    */
   getDayNum(all_table: { day_num: string }) {
     var day_num = all_table.day_num.split(",");
     var list = [];
     for (var j = 0; j < day_num.length; j++) {
       var double_index = day_num[j].search('双');
+      var one_index = day_num[j].search('单');
       var day_num_item = day_num[j].match(/\d+(\.\d+)?/g)!;
       if (day_num_item.length == 2) {
         for (var k = parseInt(day_num_item[0]); k <= parseInt(day_num_item[1]); k++) {
           if (double_index != -1) {
             if (k % 2 == 0) list.push(k);
-          } else list.push(k);
+          } else if (one_index != -1) {
+            if (k % 2 == 1) list.push(k);
+          }
+          else list.push(k);
         }
       } else {
         list.push(parseInt(day_num_item[0]));
