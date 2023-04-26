@@ -361,9 +361,9 @@ Page({
             utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
             //获取日课表的日期信息并存进缓存
             let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " +
-             this.data.allTimes[this.data.currentTab].month + "月" + 
-             this.data.allTimes[this.data.currentTab].data + "日 " + 
-             this.data.allTimes[this.data.currentTab].week + " (日程表)"
+              this.data.allTimes[this.data.currentTab].month + "月" +
+              this.data.allTimes[this.data.currentTab].data + "日 " +
+              this.data.allTimes[this.data.currentTab].week + " (日程表)"
             utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
           }
           that.selectComponent("#toast").showToastAuto("刷新成功", "success");
@@ -495,18 +495,23 @@ Page({
 
   /**
    * 切割出周数  2-4周(双),5-8周 -> [ 2 4 5 6 7 8 ]
+   *            2-4周(单),5-8周 -> [ 3 5 6 7 8 ]
    */
   getDayNum(all_table: { day_num: string }) {
     var day_num = all_table.day_num.split(",");
     var list = [];
     for (var j = 0; j < day_num.length; j++) {
       var double_index = day_num[j].search('双');
+      var one_index = day_num[j].search('单');
       var day_num_item = day_num[j].match(/\d+(\.\d+)?/g)!;
       if (day_num_item.length == 2) {
         for (var k = parseInt(day_num_item[0]); k <= parseInt(day_num_item[1]); k++) {
           if (double_index != -1) {
             if (k % 2 == 0) list.push(k);
-          } else list.push(k);
+          } else if (one_index != -1) {
+            if (k % 2 == 1) list.push(k);
+          }
+          else list.push(k);
         }
       } else {
         list.push(parseInt(day_num_item[0]));
@@ -526,8 +531,8 @@ Page({
       if (index == -1) {
         arr1.push(arr[i].name);
         newArr.push(JSON.parse(JSON.stringify(arr[i])));
-      }else{
-        if(newArr[index].old_day_num && newArr[index].day_num){
+      } else {
+        if (newArr[index].old_day_num && newArr[index].day_num) {
           newArr[index].old_day_num += "," + arr[i].old_day_num;
           newArr[index].day_num = newArr[index].day_num.concat(arr[i].day_num);
         }
