@@ -1049,7 +1049,8 @@ Page({
     let currentTab = this.data.currentTab;
     this.getTarHeighgt();
     this.initLocalStorage();
-    this.initPageData(time);
+    if(!this.data.beginSemester){
+    this.initPageData(time);}
     this.initScheduleData();//初始化页面数据
     //通过定义的变量进行周的自动判断
     var classSchedule = wx.getStorageSync('widget-classSchedule').classSchedule;
