@@ -60,3 +60,13 @@
   </view>
 </f-dialog>
 <!-- 学校官网服务器于半夜1:30后关闭，现无法下载，请白天再试试噢~ -->
+
+<!-- 南南问题单 -->
+<f-dialog showDialog="{{isShowClipboarDialog}}" title="{{dialogClipboarTitle}}" stitle="{{dialogClipboarContent}}" schoolBuiltSrc="{{schoolBuiltSrc}}">
+  <view class="btn-box school-btn">
+    <button class="btn" type="primary" class="dialogCertainButon" bindtap="dialogCertain">
+      <view>确定</view>
+    </button>
+  </view>
+</f-dialog>
+<!-- 该文件为压缩包格式，南南打不开嘞，已经给你复制到剪切板啦，请自行去浏览器粘贴下载把~ -->

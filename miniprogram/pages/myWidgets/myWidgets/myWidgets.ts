@@ -1,5 +1,4 @@
 // pages/myWidgets/myWidgets/myWidgets.ts
-import { loginApi } from '../../../api/userAPI';
 Page({
 
   /**
@@ -80,17 +79,7 @@ Page({
       remindMoveY: 0,   // 滑动操作纵向的移动距离
       remindMaxMoveY: (200 - 60), //抽屉remindBox最大移动距离
       remindLastTranlateY: 0  //上次动画效果的平移距离，用于校准top值
-    } as any,
-    // 列表数据
-    widgetMiniNewsList: [] as any,
-    //电费查讯
-    widgetsElectricChargeData: [] as any,
-    showBindDialog: false, // 显示绑定弹窗
-    showLoginDialog: false,// 显示登录弹窗
-    termTitleTapdetail: false,//弹窗蒙版显示
-    tc_system: false,//系统默认弹窗
-    zh:'',
-    mm:''
+    } as any
   },
   show() {
     if (typeof this.getTabBar === 'function' &&
@@ -184,81 +173,6 @@ Page({
     this.setData({
       topBarRgb:'255,255,255,'+op
     })
-  },
-  /**
-   * 显示是否绑定页面
-   */
-  showBindDialog() {
-    if(wx.getStorageSync('login').zh !== undefined){
-       wx.navigateTo({
-      url: '../message/messagePage/messagePage'
-    }) 
-    }
-    this.setData({
-      showBindDialog: true
-    })
-  },
-  /**
-   * 关闭是否绑定页面
-   */
-  closeBindDialog() {
-    this.setData({
-      showBindDialog: false
-    })
-  },
-  /**
-   * 开启登录弹窗
-   */
-  showLoginDialog() {
-    this.closeBindDialog();
-    this.setData({
-      showLoginDialog: true
-    })
-  },
-  /**
-   * 关闭登录弹窗
-   */
-  closeLoginDialog() {
-    this.setData({
-      showLoginDialog: false,
-      zz:'',
-      mm:''
-    })
-  },
-  /**
-   * 获取学号和密码
-   */
-  getXh(e: any) { this.setData({ zh: e.detail.value }) },
-  getMm(e: any) { this.setData({ mm: e.detail.value }) },
-  /**
-   * 点击完成按钮
-   */
-  async login() { //模仿写出存入缓存
-    var zh = this.data.zh;
-    var mm = this.data.mm;
-    if(zh!='' && mm != ''){
-      let login = {
-        zh:zh,
-        mm:mm
-      } as any
-      this.selectComponent('#toast').showToast("登陆中", "lodding");
-      const res = await loginApi(login) as unknown as IResult<any>;
-      this.selectComponent('#toast').hiddenToast();
-
-      if(res.code != 20000){
-        this.selectComponent('#toast').showToastAuto(res.msg, "error", 2);
-      }else{
-        wx.setStorageSync('login', login);
-        wx.setStorageSync('userInfo', res.data);
-        this.closeLoginDialog();
-        this.onLoad();
-        this.setData({
-          userName:res.data.name
-        })
-      }
-    }else{
-      this.selectComponent('#toast').showToastAuto('请输入完整', "error", 2);
-    }
   },
   /**
    * 生命周期函数--监听页面加载

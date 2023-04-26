@@ -92,7 +92,7 @@ Page({
     })
   },
   /* 
-  *取消学期绑定
+  *取消学期绑定弹窗
   */
   cancelBindSchoolTermCharge() {
     this.setData({
@@ -111,6 +111,7 @@ Page({
   *学期的选择滑动
   */
   SchoolTermChange(e: any) {
+    console.log(this.data.semesterList[e.detail.value[0]])
     this.setData({
       suorec: this.data.semesterList[e.detail.value[0]]
     });
@@ -174,9 +175,10 @@ Page({
       I: schoolTerm,
       startDate: start,
       dayTime: [],
-      beginWeek: beginWeek
+      beginWeek: beginWeek,
     });
-    this.refresh()
+    console.log(this.data.currentTab)
+    this.refresh();
   },
 
   /* 
@@ -354,14 +356,16 @@ Page({
             login: true,
             weekNum: classSchedule.week.length + 2
           })
-          console.log(classSchedule)
           this.getDayTime(classSchedule);//获取每天的课程信息
           if (this.data.beginWeek > 0) {//保证缓存的是正确的值
             utils.mySetStorage('widget-classSchedule', 'classSchedule', classSchedule)
             utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo)
             utils.mySetStorage('widget-classSchedule', 'time', this.data.time)
             //获取日课表的日期信息并存进缓存
-            let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " + this.data.allTimes[this.data.currentTab].month + "月" + this.data.allTimes[this.data.currentTab].data + "日 " + this.data.allTimes[this.data.currentTab].week + " (日程表)"
+            let nowDayDate = "第" + parseInt((this.data.currentTab / 7 + 1) as unknown as string) + "周 " +
+             this.data.allTimes[this.data.currentTab].month + "月" + 
+             this.data.allTimes[this.data.currentTab].data + "日 " + 
+             this.data.allTimes[this.data.currentTab].week + " (日程表)"
             utils.mySetStorage('widget-classSchedule', 'nowDayData', nowDayDate)
           }
           that.selectComponent("#toast").showToastAuto("刷新成功", "success");

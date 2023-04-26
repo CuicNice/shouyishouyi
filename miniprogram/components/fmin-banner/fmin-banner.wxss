@@ -10,6 +10,7 @@
 .banner image{
   width: 718rpx;
   height: 174rpx;
+  border-radius: 8rpx;
 }
 .dots{
   display: flex;

@@ -63,9 +63,9 @@ Component({
       }
     },
     /**
-     * 打开弹窗（自动关闭，第三个参数为自动关闭的时间，单位为s）
+     * 打开弹窗（自动关闭，第三个参数为自动关闭的时间，单位为s,最后一个为回调函数）
      */
-    showToastAuto: function (title:string, image:string, duration:number) {
+    showToastAuto: function (title:string, image:string, duration:number, seccess:Function) {
       if (title) {
         var that = this;
         if (!duration) {
@@ -79,6 +79,9 @@ Component({
         }, function () {
           setTimeout(() => {
             that.hiddenToast();
+            if(seccess != undefined && seccess != null){
+              seccess();
+            }
           }, duration * 1000)
         })
       } else {

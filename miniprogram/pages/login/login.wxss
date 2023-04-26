@@ -1,17 +1,8 @@
-/* pages/login/login.wxss */
-/* pages/my-page/my-page.wxss */
 page {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden; 
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  padding: 14.7% 5.6%;
-  box-sizing: border-box;
+  overflow: hidden;
 }
 
+/* 背景颜色 */
 .bg {
   /* Entering for the first time */
   position: absolute;
@@ -22,77 +13,56 @@ page {
   z-index: -999;
 }
 
-.title {
-  width: 384rpx;
-  height: 44rpx;
-
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 32rpx;
-  line-height: 44rpx;
-
-  /* text */
-  color: #292945;
-}
-
-.paw {
-  width: 18rpx;
-  height: 18rpx;
-  position: relative;
-  bottom: 20rpx;
-  right: 20rpx;
-}
-
-.nicknameInput {
+/* 背景的物体 */
+.bgThingsBox {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 2000;
-  /* Half-screen Dialog */
+  left: 254.66rpx;
+  top: 532rpx;
+  opacity: 0.2;
+}
+
+.bgThings {
+  width: 178.74 !important;
+  height: 881.48rpx !important;
+}
+
+/* 图片logo */
+.topTittle {
   width: 100%;
-  height: 710rpx;
-   /* 背景 */
-  background: linear-gradient(180.04deg, #B9EFE1 0.04%, #FCFCFC 30%);
-  border-radius: 40rpx 40rpx 0rpx 0rpx;
 }
 
-
-.btn {
-  border-radius: 75rpx;
-  height: 84rpx;
-  /* font-size: 14px; */
-  font-weight: 500;
-  font-size: 32rpx;
-  padding: 0;
-  line-height: 84rpx;
+.topTittleImage {
+  width: 376rpx;
+  height: 162rpx;
+  padding: 94rpx 310rpx 94rpx 64rpx;
 }
 
-.btn .button:not([size=mini]) {
-  width: 214rpx;
-  height: 84rpx;
+/* 登录框 */
+.loginRegion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.input {
-  /* input */
-  margin: 0 auto;
+.inputRegion {
+  display: flex;
+  flex-direction: column;
+  gap: 34rpx;
+}
+
+.numberInput {
   /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 12px 18px;
-  gap: 10px;
+  padding: 24rpx 36rpx;
   width: 558rpx;
   height: 44rpx;
-
-  background: #EEF4F2;
+  background: rgba(255, 255, 255, 0.5);
+  /* #20C38C */
+  border: 1px solid #20C38C;
   border-radius: 4px;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
 .label {
@@ -103,77 +73,26 @@ page {
   opacity: 0.6;
 }
 
-.placeholder {
-  float: right;
+.inputBox {
+  text-align: right;
 }
 
-.tips {
-  align-items: center;
-  margin: 20rpx auto;
-
-  height: 14px;
-
+/* 提示小字 */
+.inputTip {
+  height: 34rpx;
+  width: 620rpx;
   font-family: 'PingFang SC';
   font-style: normal;
   font-weight: 400;
-  font-size: 10px;
-  line-height: 14px;
-  /* identical to box height */
-  text-transform: capitalize;
-
+  font-size: 12px;
+  line-height: 17px;
   color: #000000;
-
   opacity: 0.6;
+  padding: 20rpx;
 }
-
-.loginDialogBoxBtn{
-  display: flex;
-  flex-direction: row;
-  margin-top: 102rpx;
+/* 按钮样式，部分样式写在了wxml种，这是微信的bug */
+.btn {
+  padding: 20rpx 28rpx;
+  gap: 20rpx;
+  border-radius: 70rpx;
 }
-
-/* 下面是popup的样式 */
-.popGrey {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background:  #E6E6E6;
-  opacity: 0.6;
-  overflow: hidden;
-}
-.dialogShow{
-  width: 100%;
-  height: 100%;
-}
-.setup{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 450rpx;
-  height: 518rpx;
-  position: absolute;
-  left: 150rpx;
-  top: 490rpx;
-  }
-  .photoShow{
-  width: 450rpx;
-  height: 450rpx;
-  border-radius: 20rpx;
-  }
-  .photoShow image{
-    border-radius: 20rpx;
-    width: 450rpx;
-    height: 450rpx;
-  }
-  .dispel2{
-    margin-top: 14rpx;
-    width: 54rpx;
-    height: 54rpx;
-  }
-  /* popup样式结束 */
-
-
-
-

@@ -8,8 +8,6 @@
     "miniNews":"/pages/widgets/news/newComponent/miniNews/miniNews",
     "countDown":"/pages/widgets/countDown/countDownComponent/countDownComponent",
     "classTable":"/pages/widgets/classSchedule/classScheduleComponent/classScheduleComponent",
-    "toast": "/components/fmin-toast/fmin-toast",
-    "dialogTitle":"/components/fmin-dialog/fmin-dialog",
     "banner":"/components/fmin-banner/fmin-banner"
   }
 }

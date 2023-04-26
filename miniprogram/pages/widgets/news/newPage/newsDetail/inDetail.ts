@@ -22,7 +22,9 @@ Page({
     newsID: '',
     builtList: ["https://introduce.mcdd.top/schoolBuilt/zhonglouBig.svg", "https://introduce.mcdd.top/schoolBuilt/redBuilt.svg", "https://introduce.mcdd.top/schoolBuilt/pillar.svg"],
     builtListNum: 2,
-
+    isShowClipboarDialog:false, // 用户复制文件下载连接
+    dialogClipboarTitle:'已复制进剪切板',
+    dialogClipboarContent:'该文件为压缩包格式，南南打不开嘞，已经给你复制到剪切板啦，请自行去浏览器粘贴下载把~',
     type: 0,
     bgc: "#FFF",
     light: "",
@@ -155,18 +157,21 @@ Page({
   dialogCertain() {
     var that = this
     that.setData({
-      isShowDialog: false//关闭弹窗
+      isShowDialog: false, //关闭弹窗
+      isShowClipboarDialog:false
     })
   },
-  wxParseTagDown: function (e: any) {
-    var that = this
+  /**
+   * 下载并且打开文件
+   */
+  downloadAndShowFile(src:string){
+    var that = this;
     that.selectComponent("#toast").showToastAuto("正在打开文件", "lodding", 1);
-    var src = e.currentTarget.dataset.src;
-    src = src.replace('http://e.wsyu.edu.cn/wcm.files/', 'https://ambition.mcdd.top/wcm.files/')
     wx.downloadFile({
       url: src,
       success(res) {
         const filePath = res.tempFilePath;
+        console.log(filePath)
         wx.hideLoading();
         if (res.statusCode == 200) {
           wx.openDocument({
@@ -181,8 +186,42 @@ Page({
             isShowDialog: true
           })
         }
-      },
+      }
     })
+  },
+  /**
+   * 复制src到剪切板，提示用户自己在浏览器下载
+   */
+  tipUserDownSelf(src:string){
+    var that = this;
+    wx.setClipboardData({
+      data: src,
+      success(){
+        that.setData({
+          isShowClipboarDialog:true
+        })
+      }
+    });
+  },
+  /**
+   * 用于匹配文件格式
+   */
+  isTypeFile(filename:string,type:string) {
+    var lastFourChars = filename.substr(filename.length - 4);
+    return lastFourChars == "." + type;
+  },
+  /**
+   * 用户点击附件
+   */
+  wxParseTagDown: function (e: any) {
+    var that = this
+    var src = e.currentTarget.dataset.src;
+    src = src.replace('http://e.wsyu.edu.cn/wcm.files/', 'https://ambition.mcdd.top/wcm.files/')
+    if(this.isTypeFile(src, "rar") || this.isTypeFile(src, "zip")|| this.isTypeFile(src, "7z")){
+      this.tipUserDownSelf(src)
+    }else{
+      this.downloadAndShowFile(src);
+    }
   },
   switchColoe: function (res: any) {
     var that = this

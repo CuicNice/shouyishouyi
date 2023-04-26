@@ -32,8 +32,10 @@
 }
 
 .mininput {
-  font-weight: 500;
-  font-size: 26rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
 }
 
 .inputBox {
@@ -171,7 +173,7 @@
 
 .righticon2 {
   position: relative;
-  top: 345rpx;
+  top: 340rpx;
   left: 590rpx;
   width: 40rpx;
   height: 40rpx;
