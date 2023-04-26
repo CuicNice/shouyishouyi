@@ -220,12 +220,10 @@ Page({
         time = new Date().toLocaleDateString();
       }
       this.autoMoveSwiper(day);
+      utils.mySetStorage('widget-classSchedule', 'classSchedule', '');
+      this.initScheduleData();//更新页面数据
       this.reGetDay(time, day);
-      var value = wx.getStorageSync('widget-classSchedule');
-      delete value.classSchedule
-      wx.setStorageSync("widget-classSchedule", value);
       this.setData({ weekSchedule: true, nowWeek: day });
-      this.onLoad();
     } else {
       this.selectComponent("#toast").showToastAuto("未绑定账号", "error", "2");
     }
@@ -1049,8 +1047,7 @@ Page({
     let currentTab = this.data.currentTab;
     this.getTarHeighgt();
     this.initLocalStorage();
-    if(!this.data.beginSemester){
-    this.initPageData(time);}
+    this.initPageData(time);
     this.initScheduleData();//初始化页面数据
     //通过定义的变量进行周的自动判断
     var classSchedule = wx.getStorageSync('widget-classSchedule').classSchedule;
