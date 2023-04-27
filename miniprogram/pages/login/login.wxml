@@ -34,3 +34,11 @@
 
 <!-- 弹窗组件 -->
 <toast id="toast"></toast>
+<dialog title="你的账号密码有误"  showDialog="{{copyUrlDialog}}"
+stitle="请重新输入或前往教务系统尝试登录该账号密码，确保能登录！" 
+schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg">
+<view class="toastBtnBox">
+  <button class="btn" type="primary" style="  width: 500rpx; height: 84rpx; background: #20C38C;"  bindtap="copyUrl">点击复制教务系统网址</button>
+  <button class="btn" type="default" style="  width: 500rpx; height: 84rpx; "  bindtap="ok">确认</button>
+</view>
+</dialog>

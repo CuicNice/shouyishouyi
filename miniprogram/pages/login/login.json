@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "toast": "/components/fmin-toast/fmin-toast",
-    "topBar":"/components/fmin-topbar/fmin-topbar"
+    "topBar":"/components/fmin-topbar/fmin-topbar",
+    "dialog":"/components/fmin-dialog/fmin-dialog"
   }
 }

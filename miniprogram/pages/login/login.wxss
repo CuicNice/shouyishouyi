@@ -96,3 +96,11 @@ page {
   gap: 20rpx;
   border-radius: 70rpx;
 }
+/* 弹窗的按钮框 */
+.toastBtnBox{
+  padding-top: 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}

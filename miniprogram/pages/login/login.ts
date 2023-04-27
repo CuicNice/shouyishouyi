@@ -11,6 +11,8 @@ Page({
     showPwd:false,
     zh: '',
     mm: '',
+    errorTimes:0, //记录用户错误次数，每3次弹窗一次
+    copyUrlDialog:false // 复制教务系统网址的弹窗
   },
   /**
    * 点击小眼睛，展示或关闭密码回显
@@ -39,6 +41,7 @@ Page({
   async login() { //模仿写出存入缓存
     var zh = this.data.zh;
     var mm = this.data.mm;
+    let that = this;
     let toast = this.selectComponent('#toast');
     if(zh!='' && mm != ''){
       let login = {
@@ -48,7 +51,20 @@ Page({
       toast.showToast("登陆中", "lodding");
       const res = await loginApi(login) as unknown as IResult<any>;
       if(res.code != 20000){
-        toast.showToastAuto(res.msg, "error", 2);
+        var errorTimes = that.data.errorTimes + 1;
+        if (errorTimes >= 3){
+          errorTimes = 0;
+          toast.hiddenToast();
+          that.setData({
+            errorTimes:errorTimes,
+            copyUrlDialog:true
+          })
+        }else{
+          toast.showToastAuto(res.msg, "error", 1);
+          that.setData({
+            errorTimes:errorTimes
+          })
+        }
       }else{
         wx.setStorageSync('login', login);
         wx.setStorageSync('userInfo', res.data);
@@ -57,6 +73,22 @@ Page({
     }else{
       toast.showToastAuto('请输入完整', "error", 2);
     }
+  },
+  /**
+   * 复制教务系统网址
+   */
+  copyUrl(){
+    wx.setClipboardData({
+      data: "http://syjw.wsyu.edu.cn/xtgl/login_slogin.html"
+    });
+  },
+  /**
+   * 复制教务系统网址点击确定
+   */
+  ok(){
+    this.setData({
+      copyUrlDialog:false
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
