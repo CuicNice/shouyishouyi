@@ -233,7 +233,7 @@
       </view>
       <!-- 其他课程 -->
       <view class="WHQplus">
-        <view class="WHQplusLeft">
+        <view class="WHQplusLeft" style="{{picture==''?'':'background-color:rgba(255, 255, 255, 0.8);'}}">
           <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
         </view>
         <view class="{{bgc==''?'otherclass':'otherclassWhite'}}" style="{{picture==''?'':'background-color:rgba(255, 255, 255, 0.8);'}}">
@@ -537,8 +537,8 @@
     </view>
   </view>
 </scroll-view>
-<!-- 日课表的其他课程 -->
-<view class="WHQplus" style="{{dayTime[currentTab-num].dateString.length==0||dayTime[currentTab-num].dateString.length==null?'top:270rpx':'bottom: 0;'}}" wx:if="{{!weekSchedule}}">
+  <!-- 日课表的其他课程 -->
+  <view class="WHQplus" style="{{dayTime[currentTab-num].dateString.length==0||dayTime[currentTab-num].dateString.length==null?'top:270rpx':'bottom: 0;'}}" wx:if="{{!weekSchedule}}">
   <view class="WHQplusLeft">
     <view class="{{bgc==''?'otherCourses':'otherCoursesWhite'}}">其他课程</view>
   </view>

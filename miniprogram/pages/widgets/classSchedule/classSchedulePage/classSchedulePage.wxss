@@ -287,8 +287,6 @@ page {
   flex-direction: column;
   padding-left: 0.9%;
   background-color: transparent;
-  /* padding-top: 24rpx; */
-  /* background-color: mediumseagreen; */
 }
 
 .maskingOut {
@@ -415,14 +413,12 @@ page {
 }
 
 .otherclass {
-  height: 100%;
   padding-left: 8rpx;
   width: 91%;
   position: relative;
 }
 
 .otherclassWhite {
-  height: 100%;
   padding-left: 8rpx;
   width: 90%;
   position: relative;

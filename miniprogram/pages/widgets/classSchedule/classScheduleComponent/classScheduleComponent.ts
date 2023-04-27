@@ -37,7 +37,7 @@ Component({
       var that = this;
       var ifClass = true;
       var classSchedule = wx.getStorageSync('widget-classSchedule');
-      var cls = classSchedule.classSchedule;
+      var cls = wx.getStorageSync('login');
       if(cls){
         var dailySchedule = classSchedule.dailySchedule;
         var time = classSchedule.time;
