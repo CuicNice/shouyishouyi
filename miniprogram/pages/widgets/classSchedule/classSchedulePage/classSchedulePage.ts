@@ -1049,7 +1049,6 @@ Page({
     let D = date.getDate() < 10 ? (date.getDate()) : date.getDate() as unknown as string;
     //获取当前周数的预处理定义变量进行储存数据
     let time = Y + '/' + M + '/' + D;
-    let currentTab = this.data.currentTab;
     this.getTarHeighgt();
     this.initLocalStorage();
     this.initPageData(time);
@@ -1058,6 +1057,7 @@ Page({
     var classSchedule = wx.getStorageSync('widget-classSchedule').classSchedule;
     // 刷新本周的日期
     this.reGetDay(time, this.data.nowWeek);
+    let currentTab = this.data.currentTab;
     if (classSchedule) {
       this.getDayTime(classSchedule);//获取每天的课程信息
       utils.mySetStorage('widget-classSchedule', 'dailySchedule', this.data.classInfo);

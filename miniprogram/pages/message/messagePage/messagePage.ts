@@ -38,12 +38,12 @@ Page({
   async getPopupData(from: messageItem) {
     const { data: list } = await listMessage(from) as unknown as IResult<any>;
     var messageList = list.list;
-    var bindCache = wx.getStorageSync('bindCache');
-    var isUnread = bindCache.isUnread;
-    var unreadOne = bindCache.unreadOne;
+    var pop = wx.getStorageSync('popup');
+    var isUnread = pop.popupList;
+    var unreadOne = pop.unreadOne;
     this.putColors();
     //渲染颜色 
-    for (var i = 0, j = 0; i < messageList.length; i++, j++) {
+    for (var i = 0, j = 0; i < isUnread.length; i++, j++) {
       if (j >= 3) { j = 0; this.putColors(); }
       if (i >= 3 && i % 3 == 0 && messageList[i - 1].color == this.data.colors[0]) {
         this.putColors();
@@ -86,7 +86,7 @@ Page({
           messageList = isUnread;
         }
       } else if (isUnread.length < messageList.length) {
-        for (var i = 0; i < messageList.length; i++) {
+        for (var i = 0; i < isUnread.length; i++) {
           for (var a = 0; a < messageList.length; a++) {
             if (isUnread[i].popupId !== messageList[a].popupId) {
               isUnread[i] = messageList[a];
@@ -96,7 +96,7 @@ Page({
         }
       } else if (isUnread.length > messageList.length) {
         var k = messageList;
-        for (var i = 0; i < messageList.length; i++) {
+        for (var i = 0; i < isUnread.length; i++) {
           for (var a = 0; a < messageList.length; a++) {
             if (isUnread[a].popupId == k[i].popupId) {
               k[i] = isUnread[a];
@@ -108,8 +108,8 @@ Page({
     } else { messageList=messageList 
     };
     this.setData({messageList:messageList})
-    bindCache.isUnread = messageList;
-    wx.setStorageSync('bindCache', bindCache)
+    pop.popupList = messageList;
+    wx.setStorageSync('popup', pop)
   },
   //打乱颜色
   putColors() {
@@ -123,17 +123,16 @@ Page({
   },
   //点击进入信息详情
   getMessage(e: any) {
-    var bindCache = wx.getStorageSync('bindCache');
-    bindCache.isNoread = '';
+    var pop = wx.getStorageSync('popup');
     var list = this.data.messageList as any;
     if (list[e.currentTarget.dataset.row].popupJumpType == 'link') {
-      bindCache.Url = list[e.currentTarget.dataset.row].url;
+      pop.Url = list[e.currentTarget.dataset.row].url;
       wx.navigateTo({
         url: '../web-view/webView'
       })
     } else if (list[e.currentTarget.dataset.row].popupJumpType == 'article') {
       wx.navigateTo({
-        url: '../messageInfo/messageInfo?row=' + e.currentTarget.dataset.row
+        url: '../messageInfo/messageInfo?popupId=' + list[e.currentTarget.dataset.row].popupId
       })
     }
     //已读和未读的处理
@@ -151,8 +150,8 @@ Page({
       messageList:Array,
       row: e.currentTarget.dataset.row,
     })
-    bindCache.isUnread = this.data.messageList
-    wx.setStorageSync('bindCache', bindCache);
+    pop.popupList = this.data.messageList
+    wx.setStorageSync('popup', pop);
   },
   /**
    * 生命周期函数--监听页面加载

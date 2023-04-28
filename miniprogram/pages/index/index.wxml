@@ -7,14 +7,15 @@
   <!-- 胶囊区 -->
   <!-- 获取胶囊的高度来设置胶囊所在行的高度 -->
   <view class="capsule-box" style="height:{{capsuleBoxHeight}}px;">
-    <view class="barLineItem">
+    <view class="barLineItem" bindtap="loginMessage">
       <view class="barText" wx:if="{{isLogin}}">你好呀~{{userName}}
       </view>
       <view class="barText"  bindtap="gotoLogin" wx:else>首义的朋友请点击登录哇！
       </view>
       <!--头像后面的三个点 -->
       <view class="barTextDot">
-        <image class="barTextDotSvg" src="/static/svg/myWidget/myWidget_dot.svg" mode="" />
+        <image wx:if="{{x==0}}" class="barTextDotSvg" src="/static/svg/myWidget/myWidget_dot.svg" mode="" />
+        <image wx:if="{{x==1}}" class="barTextDotSvg" src="/static/svg/message/zhuazi.svg" mode="" />
       </view>
     </view>
     <view class="barLineItem"></view>
@@ -58,8 +59,8 @@
   <image class="dispel2" src="/static/svg/message/dispel2.svg" bindtap="closePhoto"></image>
 </view>
 
-<view class="dialogShow" bindtap="closePhoto" wx:if="{{tc_system}}">
-  <dialogTitle title="{{popupAppear.popupSystemHeadline}}" stitle="{{popupAppear.popupSystemSubtitle}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg" showDialog="{{showDialog}}">
+<view class="dialogShow"  bindtap="closePhoto" wx:if="{{tc_system}}">
+  <dialogTitle title="{{popupAppear.popupSystemHeadline}}" stitle="{{popupAppear.popupSystemSubtitle}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg" showDialog="true">
     <view style="display: flex;">
       <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="loginInfo">{{popupAppear.popupJumpType !== 'noJump'?'前往查看详情':'确定'}}</button>
     </view>

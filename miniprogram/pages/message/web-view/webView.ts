@@ -13,10 +13,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    var bindCache = wx.getStorageSync('bindCache');
-    bindCache.unreadOne.isShow = true;
-    this.setData({webUrl:bindCache.Url});
-    wx.setStorageSync('bindCache',bindCache);
+    var pop = wx.getStorageSync('popup');
+    pop.popupAppear.isShow = true;
+    this.setData({webUrl:pop.Url});
+    wx.setStorageSync('popup',pop);
   },
 
   /**

@@ -2,7 +2,7 @@ import { Result } from "../common/Result";
 import { Consts } from "../Consts";
 import HttpUtils from "../utils/request";
 import Utils from '../utils/util';
-import { popupeItem } from '../pages/login/login';
+import { popupeItem } from '../pages/index/index';
 import {messageItem} from '../pages/message/messagePage/messagePage';
 import{infoItem} from '../pages/message/messageInfo/messageInfo';
 import{Fabulous}from'../pages/message/messageInfo/messageInfo';
@@ -17,7 +17,6 @@ const apiList = {
   listMessage :baseUrl + '/api/v1/ad/mini/popup/listMiniPopups',
   getInfo:baseUrl +'/api/v1/ad/mini/popup/getPopupById',
 }
-
 // 获取是否出现弹窗
 export const getPopup = async (popupeForm: popupeItem) => {
   if (Consts.DEBUG) {
@@ -44,7 +43,7 @@ export const listMessage= async (popupeForm: messageItem) => {
     return await request.post(apiList.listMessage, popupeForm);
   }
 }
-// 获取弹窗列表 message页面的，必须有，需要上拉更新
+// 根据popupID获取相应数据
 export const getInfo= async (popupeForm: infoItem) => {
   if (Consts.DEBUG) {
     return Result.mockSuccess("<h1> 你好 世界 </h1>");
