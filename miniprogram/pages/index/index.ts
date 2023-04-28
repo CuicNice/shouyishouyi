@@ -2,6 +2,7 @@
 import { getBanner } from '../../api/bannerApi';
 import { getPopup } from '../../api/popupApi';
 import { listPopup } from '../../api/popupApi'
+import { Consts } from '../../Consts';
 export interface popupeItem {
   currentPage: String,
   pageSize: String,
@@ -203,14 +204,14 @@ Page({
     var termTitleTapdetail = false;//蒙版的显示
     var tc_custom = false;//自定义图片是否显示
     var tc_system = false;//系统默认弹窗是否显示
-    var popupType = popupAppear.popupType; //popupType 弹窗类型（自定义图片、系统默认弹窗）
     var x = 0;//右上角爪子的颜色
     var ima = ''//自定义图片
+    var popup = wx.getStorageSync('popup');
     /**
      * popupAppear弹窗逻辑部分
      */
     if (popupAppear) {
-      var popup = wx.getStorageSync('popup');
+      var popupType = popupAppear.popupType; //popupType 弹窗类型（自定义图片、系统默认弹窗）
       //拿出缓存里的popup判断是否显示过
       if (popup.popupAppear == {} || popup.popupAppear.popupId !== popupAppear.popupId) {//利用||的阻塞性
         //自定义图片弹窗显示（system）
@@ -236,24 +237,24 @@ Page({
     /**
      * popupList信息列表逻辑部分
      */
-    if (popupList.list.length > 0) {
+    if (popupList&&popupList.length > 0) {
       /**
        * 拿出缓存部分判断是否有未读消息
        */
-      if (popup.popupList.length !== 0) {
+      if (popup.popupList){
         //遍历数据，对比是否一样
         first: for (var a = 0; a < popup.popupList.length; a++) {
           for (var b = 0; b < popup.popupList.length; b++) {
-            if (popupList.list[a].popupId == popup.popupList[b].popupId) {
+            if (popupList[a].popupId == popup.popupList[b].popupId) {
               if (popup.popupList[b].isShow !== true) {
                 x = 1; break first;
               }
-            } if (popupList.list[a].popupId !== popup.popupList[b].popupId) {
+            } if (popupList[a].popupId !== popup.popupList[b].popupId) {
               x = 0; continue;
             }
           }
         }
-      } else {
+      }else {
         x = 1;
       }
     }
@@ -262,7 +263,7 @@ Page({
       tc_system: tc_system,
       termTitleTapdetail: termTitleTapdetail,
       ima: ima,
-      popupId: popupAppear.popupId,
+      popupId: popupAppear?popupAppear.popupId:'',
       popupAppear: popupAppear,
       x: x,
     })
@@ -358,7 +359,7 @@ Page({
     */
   getcache() {
     var popup = {
-      'popupList': [],
+      'popupList': '',
       'popupAppear': '',
       'Time': '',
       'Url': '',

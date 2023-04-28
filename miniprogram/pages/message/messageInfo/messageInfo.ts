@@ -21,10 +21,10 @@ Page({
     /**
      * 获取本地缓存，判断是否绑定数据
      */
-    console.log(this.data.popupId)
-    var popupId=this.data.popupId;
+
+    var popupId = this.data.popupId;
     var bindData = {
-      popupId:popupId
+      popupId: popupId
     } as infoItem;
     this.getPopupData(bindData);
   },
@@ -34,8 +34,17 @@ Page({
   */
   async getPopupData(from: infoItem) {
     const { data: popupAppear } = await getInfo(from) as unknown as IResult<any>;
-    console.log(popupAppear)
-    popupAppear.show = "green";
+    var pop = wx.getStorageSync('popup');
+    for (var a = 0; a < pop.popupList.length; a++) {
+      if (pop.popupList[a].popupId == popupAppear.popupId) {
+        break;
+      }
+    }
+    if (pop.popupList[a].show == 'active') {
+      popupAppear.show = pop.popupList[a].show;
+    } else {
+      popupAppear.show = "green";
+    }
     popupAppear.popupPublishTime = popupAppear.popupPublishTime.slice(0, 10);
     popupAppear.isShow = true; //插入是否已读
     this.setData({ popupAppear: popupAppear })//插入show后再又给值
@@ -48,8 +57,9 @@ Page({
     /**
      * 获取本地缓存，判断是否绑定数据
      */
+    var popupId = this.data.popupId;
     var bindData = {
-      popupId:this.data.popupId
+      popupId: popupId
     } as Fabulous;
     this.getFabulous(bindData);
   },
@@ -59,23 +69,29 @@ Page({
   */
   async getFabulous(from: Fabulous) {
     const { } = await getFabulous(from) as unknown as IResult<any>;
-    
     var popupAppear = this.data.popupAppear as any;
     var pop = wx.getStorageSync('popup');
-    if (popupAppear.show == 'green') {
-        //点赞
-        popupAppear.show = 'active';
-        popupAppear.popupFabulous = popupAppear.popupFabulous + 1
+    for (var a = 0; a < pop.popupList.length; a++) {
+      if (pop.popupList[a].popupId == popupAppear.popupId) {
+        break;
       }
-        if (pop.popupList.length>0) {
-          for (var a = 0; a < pop.popupList.length; a++) {
-            if (popupAppear.popupId == pop.popupList[a].popupId) {
-              pop.popupList[a] = popupAppear
-            }
-          }
-          pop.popupList= pop.popupList;
-          wx.setStorageSync('popup', pop);
-        }
+    }
+    if (popupAppear.show == 'green') {
+      //点赞
+      popupAppear.show = 'active';
+      popupAppear.popupFabulous = popupAppear.popupFabulous + 1;
+    }
+    if (pop.popupList.length > 0) {
+      if (popupAppear.popupId == pop.popupList[a].popupId) {
+        popupAppear.color = pop.popupList[a].color;
+        pop.popupList[a] = popupAppear;
+      }
+      pop.popupList = pop.popupList;
+      wx.setStorageSync('popup', pop);
+    }
+    this.setData({
+      popupAppear: popupAppear,
+    })
   },
 
 
@@ -83,10 +99,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-      this.setData({
-        popupId: options.popupId,
-      });
-      this.initPageData();
+    this.setData({
+      popupId: options.popupId,
+    });
+    this.initPageData();
   },
 
   /**
@@ -100,17 +116,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    var pop = wx.getStorageSync('popup');
-    var popupAppear = pop.unreadOne as any;
-    if (this.data.popupAppear) {
-        popupAppear.isShow = true //插入是否已读
-      for (var a = 0; a < pop.popupList.length; a++) {
-        if (popupAppear.popupId ==  pop.popupList[a].popupId) {
-          pop.popupList[a] == this.data.popupAppear;
-        }
-      }
-    }
-    wx.setStorageSync('popup',pop)
   },
 
   /**

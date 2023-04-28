@@ -1,7 +1,5 @@
 import { listMessage } from '../../../api/popupApi'
 export interface messageItem {
-  currentPage: number,
-  pageSize: number,
 }
 Page({
   /**
@@ -15,6 +13,7 @@ Page({
     pageSize: 5,
     currentPage: 1,
     messageList: [],
+    newMessage: [],//用来拼接数组的新数组
   },
   /**
    * 初始化页面渲染函数
@@ -23,11 +22,7 @@ Page({
     /**
      * 获取本地缓存，判断是否绑定数据
      */
-    var currentPage = this.data.currentPage;
-    var pageSize = this.data.pageSize;
     var bindData = {
-      currentPage: currentPage,
-      pageSize: pageSize,
     } as messageItem;
     this.getPopupData(bindData);
   },
@@ -37,80 +32,85 @@ Page({
   */
   async getPopupData(from: messageItem) {
     const { data: list } = await listMessage(from) as unknown as IResult<any>;
-    var messageList = list.list;
+    console.log(list)
+    var messageList = list;
     var pop = wx.getStorageSync('popup');
     var isUnread = pop.popupList;
     var unreadOne = pop.unreadOne;
     this.putColors();
-    //渲染颜色 
-    for (var i = 0, j = 0; i < isUnread.length; i++, j++) {
-      if (j >= 3) { j = 0; this.putColors(); }
-      if (i >= 3 && i % 3 == 0 && messageList[i - 1].color == this.data.colors[0]) {
-        this.putColors();
-        i = i - 1;
-        continue;
-      }//防止连续两个颜色一样
-      var number = i;
-      var color = this.data.colors[j];
-      /**
-       * 当二次进入时
-       */
+      //渲染颜色 
+      for (var i = 0, j = 0; i < messageList.length; i++, j++) {
+        if (j >= 3) { j = 0; this.putColors(); }
+        if (i >= 3 && i % 3 == 0 && messageList[i - 1].color == this.data.colors[0]) {
+          this.putColors();
+          i = i - 1;
+          continue;
+        }//防止连续两个颜色一样
+        var number = i;
+        var color = this.data.colors[j];
+        /**
+         * 当二次进入时
+         */
+        if (isUnread.length > 0) {
+          for (var a = 0; a < messageList.length; a++) {
+            if (isUnread[i].popupId == messageList[a].popupId) {
+              if (isUnread[i].show == 'active') {
+                messageList[i].show = isUnread[i].show;
+              }
+            }
+          }
+        } else if (isUnread.length == 0) {
+          messageList[i].show = 'green';
+        }
+        if (messageList[i].popupId == unreadOne.popupId) {
+          messageList[i] = unreadOne;
+        }
+        if (messageList[i].color == undefined) {
+          messageList[i].color = color;
+        }
+        messageList[i].number = number;
+        messageList[i].popupPublishTime = messageList[i].popupPublishTime.slice(0, 11)
+      }
+      //判断数据是否已读;
       if (isUnread.length > 0) {
-        for (var a = 0; a < messageList.length; a++) {
-          if (isUnread[i].popupId == messageList[a].popupId) {
-            if (isUnread[i].show == 'active') {
-              messageList[i].show = isUnread[i].show;
+        if (isUnread.length == messageList.length) {
+          for (var i = 0; i < messageList.length; i++) {
+            //有时候减一个又增一个，长度不变，需要更进一步判断
+            if (isUnread[i].popupId !== messageList[i].popupId) {
+              isUnread[i] = messageList[i]; continue;
+            }
+            messageList = isUnread;
+          }
+        } else if (isUnread.length < messageList.length) {
+          for (var i = 0; i < isUnread.length; i++) {
+            for (var a = 0; a < messageList.length; a++) {
+              if (isUnread[i].popupId !== messageList[a].popupId) {
+                isUnread[i] = messageList[a];
+                break;
+              }
             }
           }
-        }
-      } else if (isUnread.length == 0) {
-        messageList[i].show = 'green';
-      }
-      if (messageList[i].popupId == unreadOne.popupId) {
-        messageList[i] = unreadOne;
-      }
-      if (messageList[i].color == undefined) {
-        messageList[i].color = color;
-      }
-      messageList[i].number = number;
-      messageList[i].popupPublishTime = messageList[i].popupPublishTime.slice(0, 11)
-    }
-    //判断数据是否已读;
-    if (isUnread.length > 0) {
-      if (isUnread.length == messageList.length) {
-        for (var i = 0; i < messageList.length; i++) {
-          //有时候减一个又增一个，长度不变，需要更进一步判断
-          if (isUnread[i].popupId !== messageList[i].popupId) {
-            isUnread[i] = messageList[i]; continue;
-          }      
-          messageList = isUnread;
-        }
-      } else if (isUnread.length < messageList.length) {
-        for (var i = 0; i < isUnread.length; i++) {
-          for (var a = 0; a < messageList.length; a++) {
-            if (isUnread[i].popupId !== messageList[a].popupId) {
-              isUnread[i] = messageList[a];
-              break;
+        } else if (isUnread.length > messageList.length) {
+          var k = messageList;
+          for (var i = 0; i < isUnread.length; i++) {
+            for (var a = 0; a < messageList.length; a++) {
+              if (isUnread[a].popupId == k[i].popupId) {
+                k[i] = isUnread[a];
+              }
             }
           }
+          messageList = k;
         }
-      } else if (isUnread.length > messageList.length) {
-        var k = messageList;
-        for (var i = 0; i < isUnread.length; i++) {
-          for (var a = 0; a < messageList.length; a++) {
-            if (isUnread[a].popupId == k[i].popupId) {
-              k[i] = isUnread[a];
-            }
-          }
-        }
-        messageList=k;
-      }
-    } else { messageList=messageList 
-    };
-    this.setData({messageList:messageList})
-    pop.popupList = messageList;
-    wx.setStorageSync('popup', pop)
+      } else  { messageList = messageList };
+      this.setData({
+        messageList: messageList,
+      })
+      pop.popupList = messageList;
+      wx.setStorageSync('popup', pop)
+    
   },
+  
+
   //打乱颜色
   putColors() {
     //打乱颜色数组
@@ -141,13 +141,13 @@ Page({
     for (let item of Array) {
       if (item.number == e.currentTarget.dataset.row) {
         if (Array[index].isShow == '' || Array[index].isShow == undefined) {
-          Array[index].isShow = true,
-            console.log(Array[index])
+          Array[index].isShow = true
+          
         }
       } index++
     }
     this.setData({
-      messageList:Array,
+      messageList: Array,
       row: e.currentTarget.dataset.row,
     })
     pop.popupList = this.data.messageList
@@ -191,18 +191,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    var pageSize = this.data.pageSize + 5;
-    this.setData({
-      pageSize: pageSize
-    })
-    this.initPageData();
+
   },
 
   /**

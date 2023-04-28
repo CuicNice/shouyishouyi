@@ -14,7 +14,11 @@ Page({
    */
   onLoad() {
     var pop = wx.getStorageSync('popup');
-    pop.popupAppear.isShow = true;
+    for(var a=0;a<pop.popupList;a++){
+      if(pop.popupList[a].popupJumpUrl==this.data.webUrl){
+        pop.popupList[a].isShow = true;
+      }
+    }
     this.setData({webUrl:pop.Url});
     wx.setStorageSync('popup',pop);
   },
