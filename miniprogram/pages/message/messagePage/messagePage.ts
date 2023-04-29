@@ -106,8 +106,12 @@ Page({
         messageList: messageList,
       })
       pop.popupList = messageList;
+      for(var a=0;a<pop.popupList;a++){
+        if(pop.popupId==pop.popupList[a].popupId){
+          pop.popupList[a].isShow = true;
+        }
+      }
       wx.setStorageSync('popup', pop)
-    
   },
   
 
@@ -126,7 +130,7 @@ Page({
     var pop = wx.getStorageSync('popup');
     var list = this.data.messageList as any;
     if (list[e.currentTarget.dataset.row].popupJumpType == 'link') {
-      pop.Url = list[e.currentTarget.dataset.row].url;
+      pop.Url = list[e.currentTarget.dataset.row].popupJumpUrl;
       wx.navigateTo({
         url: '../web-view/webView'
       })
@@ -142,7 +146,6 @@ Page({
       if (item.number == e.currentTarget.dataset.row) {
         if (Array[index].isShow == '' || Array[index].isShow == undefined) {
           Array[index].isShow = true
-          
         }
       } index++
     }

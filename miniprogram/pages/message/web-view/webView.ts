@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    webUrl:'https://mp.weixin.qq.com/s/X4o8i1PyTnjLc7Fyp1m_Gw'
+    webUrl:''
   },
 
 
@@ -15,9 +15,12 @@ Page({
   onLoad() {
     var pop = wx.getStorageSync('popup');
     for(var a=0;a<pop.popupList;a++){
-      if(pop.popupList[a].popupJumpUrl==this.data.webUrl){
+      if(pop.popupList[a].popupJumpUrl==pop.Url){
         pop.popupList[a].isShow = true;
       }
+    }
+    if(pop.popupAppear){
+      pop.popupId = pop.popupAppear.popupId
     }
     this.setData({webUrl:pop.Url});
     wx.setStorageSync('popup',pop);

@@ -267,6 +267,7 @@ Page({
       popupAppear: popupAppear,
       x: x,
     })
+
   },
   /**
  * 显示是否绑定页面
@@ -353,6 +354,7 @@ Page({
       tc_custom: tc_custom,
       tc_system: tc_system,
     });
+    wx.setStorageSync('popup',pop)
   },
   /** 
     * 存入空数组，以存入其他缓存
@@ -364,6 +366,7 @@ Page({
       'Time': '',
       'Url': '',
       'unreadOne': '',
+      'popupId':'',
     }
     wx.setStorageSync('popup', popup);
   },
