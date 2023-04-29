@@ -32,7 +32,6 @@ Page({
   */
   async getPopupData(from: messageItem) {
     const { data: list } = await listMessage(from) as unknown as IResult<any>;
-    console.log(list)
     var messageList = list;
     var pop = wx.getStorageSync('popup');
     var isUnread = pop.popupList;
