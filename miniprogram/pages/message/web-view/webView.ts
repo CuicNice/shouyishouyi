@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    webUrl:'https://mp.weixin.qq.com/s/X4o8i1PyTnjLc7Fyp1m_Gw'
+    webUrl:''
   },
 
 
@@ -13,10 +13,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    var bindCache = wx.getStorageSync('bindCache');
-    bindCache.unreadOne.isShow = true;
-    this.setData({webUrl:bindCache.Url});
-    wx.setStorageSync('bindCache',bindCache);
+    var pop = wx.getStorageSync('popup');
+    for(var a=0;a<pop.popupList;a++){
+      if(pop.popupList[a].popupJumpUrl==pop.Url){
+        pop.popupList[a].isShow = true;
+      }
+    }
+    if(pop.popupAppear){
+      pop.popupId = pop.popupAppear.popupId
+    }
+    this.setData({webUrl:pop.Url});
+    wx.setStorageSync('popup',pop);
   },
 
   /**

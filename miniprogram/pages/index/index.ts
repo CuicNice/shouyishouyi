@@ -2,6 +2,7 @@
 import { getBanner } from '../../api/bannerApi';
 import { getPopup } from '../../api/popupApi';
 import { listPopup } from '../../api/popupApi'
+import { Consts } from '../../Consts';
 export interface popupeItem {
   currentPage: String,
   pageSize: String,
@@ -164,25 +165,20 @@ Page({
       })
     }
   },
-  //关闭popup弹窗
+  /**
+   * 关闭popup弹窗
+   */
   closePhoto() {
     this.setData({
       termTitleTapdetail: false,
       tc_custom: false,
       tc_system: false,
     })
-    var bindCache = wx.getStorageSync('bindCache');
-    var popupAppear = this.data.popupAppear as any;
-    /**
-     *  当用户不想点击弹窗看，而且不想去看信息时,存入缓存，方便限制弹一次
-     */
-    bindCache.isNoread = popupAppear.popupId;
-    wx.setStorageSync('bindCache', bindCache);
     this.initPageData();
   },
   /**
-* 初始化页面渲染函数
-*/
+  * 初始化页面渲染函数
+  */
   async initPageData() {
     /**
      * 获取本地缓存，判断是否绑定数据
@@ -205,141 +201,73 @@ Page({
     /**
      *数据处理
      */
-    var bindCache = wx.getStorageSync('bindCache');
-    var termTitleTapdetail = this.data.termTitleTapdetail;//蒙版的显示
-    var tc_custom = this.data.tc_custom;//自定义图片是否显示
-    var tc_system = this.data.tc_system;//系统默认弹窗是否显示
-    var x = this.data.x;//右上角爪子的颜色
-    if (popupAppear !== null) {
+    var termTitleTapdetail = false;//蒙版的显示
+    var tc_custom = false;//自定义图片是否显示
+    var tc_system = false;//系统默认弹窗是否显示
+    var x = 0;//右上角爪子的颜色
+    var ima = ''//自定义图片
+    var popup = wx.getStorageSync('popup');
+    /**
+     * popupAppear弹窗逻辑部分
+     */
+    if (popupAppear) {
       var popupType = popupAppear.popupType; //popupType 弹窗类型（自定义图片、系统默认弹窗）
-      var popupImage = popupAppear.popupImage;
-      /** 
-          * 当弹窗类型为自定义图片（custom）时
-          */
-      if (popupType == 'custom') {
-        termTitleTapdetail = true;
-        tc_custom = true;
-        tc_system = false;
-      }
-      /** 
-       * 当弹窗类型为系统默认弹窗（system）时
-       */
-      else if (popupType == 'system') {
-        termTitleTapdetail = true;
-        tc_custom = false;
-        tc_system = true;
-      }
-      if (bindCache.unreadOne !== '') {
-        /** 
-         * 检测今日出现的弹窗的ID是否出现过，并保存在缓存里
-         */
-        if (popupAppear.popupId == wx.getStorageSync('bindCache').unreadOne.popupId) {
-          termTitleTapdetail = false;
-          tc_custom = false;
-          tc_system = false;
+      //拿出缓存里的popup判断是否显示过
+      if (popup.popupAppear == {} || popup.popupAppear.popupId !== popupAppear.popupId) {//利用||的阻塞性
+        //自定义图片弹窗显示（system）
+        if (popupType == 'system') {
+          tc_system = true;
+          termTitleTapdetail = true;
+          ima = 'http://' + popupAppear.popupImage;
         }
-        if (popupAppear.popupId == wx.getStorageSync('bindCache').noJump.popupId) {
-          termTitleTapdetail = false;
-          tc_custom = false;
-          tc_system = false;
+        //系统弹窗显示（custom）
+        if (popupType == 'custom') {
+          tc_custom = true;
+          termTitleTapdetail = true;
         }
-        if (popupAppear.popupId == wx.getStorageSync('bindCache').isNoread) {
-          termTitleTapdetail = false;
-          tc_custom = false;
-          tc_system = false;
-        }
+        //存缓存
+        popup.Time = this.data.s2
+        popup.Url = popupAppear.popupJumpUrl;
+        popup.unreadOne = popupAppear;//这个变量是不动的，方便查看后合并到list里
+        popup.popupAppear = popupAppear;
+        wx.setStorageSync('popup', popup);
       }
-    }
-    /**
-     * 如果不是连续两天的，则清除存入缓存的time
-     */
-    if (popupAppear == null) {
-      bindCache.Time = '';
-    }
-    /** 
-     * 避免两个同样ID的弹窗连续两天弹出。
-     */
-    var unreadOne = popupAppear as any;
-    if (unreadOne) {
-      var arr = [unreadOne.popupFirstTime, unreadOne.popupSecondTime, unreadOne.popupSecondTime]
-      for (var i = 0; i < 3; i++) {
-        if (arr[i].slice(8, 10) == this.data.s1.slice(7, 10)) {
-          if (this.data.s2.slice(7, 10) == arr[i + 1].slice(8, 10)) {
-            if (wx.getStorageSync('bindCache').Time !== this.data.s2 || wx.getStorageSync('bindCache').Time == '') {
-              bindCache.Time = this.data.s1;
-              bindCache.unreadOne = '';
-              bindCache.isUnread = '';
-            }
-            break;
-          }
-        }
-      }
-    }
 
+    }
     /**
-     * 判断是否有未读消息，从而判断右上角爪子是否为红色
+     * popupList信息列表逻辑部分
      */
-    if (popupList.list !== []) {
-      bindCache.unread = popupList.list;
+    if (popupList&&popupList.length > 0) {
       /**
-       * 用户没点击过弹窗，也没点击过空白处
+       * 拿出缓存部分判断是否有未读消息
        */
-      if (!(bindCache.unread.length > 0 && bindCache.unreadOne.length > 0)) {
-        for (var k = 0; k < popupList.list.length; k++) {
-          if (bindCache.isNoread == popupList.list[k].popupId) {//未点击过其他信息，或者未点击过弹窗
-            console.log(1)
-            x = 1; break;
-          } if (bindCache.isNoread == bindCache.unreadOne.popupId) {
-            x = 0
-          }
-        }
-      }
-      if (bindCache.unread !== '') {//点击过其他信息
-        if (bindCache.unread.length <= popupList.list.length) {
-          for (var a = 0; a < popupList.list.length; a++) {
-            for (var i = 0; i < bindCache.unread.length; i++)
-              if (bindCache.unread[i].popupId == popupList.list[a].popupId) {
-                if (bindCache.unread[i].isShow == true) {
-                  x = 0
-                } else if (bindCache.unread[i].isShow !== true) {
-                  x = 1;
-                  break;
-                }
+      if (popup.popupList){
+        //遍历数据，对比是否一样
+        first: for (var a = 0; a < popup.popupList.length; a++) {
+          for (var b = 0; b < popup.popupList.length; b++) {
+            if (popupList[a].popupId == popup.popupList[b].popupId) {
+              if (popup.popupList[b].isShow !== true) {
+                x = 1; break first;
               }
-          }
-        } else if (bindCache.unread.length > popupList.list.length) {
-          hdd: for (var a = 0; a < popupList.list.length; a++) {
-            for (var i = 0; i < bindCache.unread.length; i++)
-              if (bindCache.unread[i].popupId == popupList.list[a].popupId) {
-                if (bindCache.unread[i].isShow == true) {
-                  x = 0
-                } else if (bindCache.unread[i].isShow !== true) {
-                  x = 1; break hdd; //hdd第一个循环的名字，直接跳出第一个循环，当有一个未读时  
-                }
-              } break;
+            } if (popupList[a].popupId !== popup.popupList[b].popupId) {
+              x = 0; continue;
+            }
           }
         }
-      } if (bindCache.unreadOne.length > 0) {//点击过弹窗
-        for (var c = 0; c < popupList.list.length; c++) {
-          if (bindCache.unreadOne.popupId == popupList.list[c].popupId) {
-            if (bindCache.unreadOne.isShow == true) {
-              x = 0
-            } else if (bindCache.unreadOne.isShow !== true) { x = 1; break; }
-          }
-        }
+      }else {
+        x = 1;
       }
     }
-
     this.setData({
       tc_custom: tc_custom,
       tc_system: tc_system,
       termTitleTapdetail: termTitleTapdetail,
+      ima: ima,
+      popupId: popupAppear?popupAppear.popupId:'',
       popupAppear: popupAppear,
-      listPopup: popupList,
-      ima: 'http://' + popupImage,
       x: x,
     })
-    wx.setStorageSync('bindCache', bindCache)
+
   },
   /**
  * 显示是否绑定页面
@@ -366,7 +294,6 @@ Page({
      * 计算昨天，今天，明天的时间，解决连续两天弹窗问题
      */
   getCurrentTime() {
-
     //昨天的时间
     var day1 = new Date();
     day1.setTime(day1.getTime() - 24 * 60 * 60 * 1000);
@@ -386,12 +313,11 @@ Page({
     })
   },
   /**
-* 点击popup弹窗的图片或点击查看详情，进入具体的信息页面
-*/
+   * 点击popup弹窗的图片或点击查看详情，进入具体的信息页面
+   */
   loginInfo() {
-    var bindCache = wx.getStorageSync('bindCache');
-    bindCache.isNoread = '';
-    var popupAppear = this.data.popupAppear as any;
+    var pop = wx.getStorageSync('popup');
+    var popupAppear = pop.popupAppear as any;
     var termTitleTapdetail = false;
     var tc_custom = false;
     var tc_system = false;
@@ -399,7 +325,6 @@ Page({
      * 当此弹窗为不跳转的弹窗时
      */
     if (popupAppear.popupJumpType == 'noJump') {
-      bindCache.noJump = popupAppear.popupId;
       termTitleTapdetail = false;
       tc_custom = false;
       tc_system = false;
@@ -412,8 +337,7 @@ Page({
        * 当弹窗时微信推文时
        */
       if (popupAppear.popupJumpType == 'link') {
-        bindCache.unreadOne = popupAppear;
-        bindCache.Url = popupAppear.popupJumpUrl;
+        pop.Url = popupAppear.popupJumpUrl;
         wx.navigateTo({ url: '../message/web-view/webView' });
       }
       /**
@@ -425,44 +349,37 @@ Page({
         })
       }
     }
-
-    if (popupAppear.popupId == bindCache.unreadOne.popupId) {
-      termTitleTapdetail = false;
-      tc_custom = false;
-      tc_system = false;
-    }
-    if (popupAppear.popupId == bindCache.noJump.popupId) {
-      termTitleTapdetail = false;
-      tc_custom = false;
-      tc_system = false;
-    }
-    if (popupAppear.popupId == bindCache.isNoread) {
-      termTitleTapdetail = false;
-      tc_custom = false;
-      tc_system = false;
-    }
     this.setData({
       termTitleTapdetail: termTitleTapdetail,
       tc_custom: tc_custom,
       tc_system: tc_system,
     });
-    wx.setStorageSync('bindCache', bindCache);
-
+    wx.setStorageSync('popup',pop)
   },
   /** 
     * 存入空数组，以存入其他缓存
     */
   getcache() {
-    var bindCache = {
-      'unreadOne': {},
-      'unread': [],
-      'isUnread': [],
-      'isNoread': '',
+    var popup = {
+      'popupList': '',
+      'popupAppear': '',
       'Time': '',
-      'noJump': '',
       'Url': '',
+      'unreadOne': '',
+      'popupId':'',
     }
-    wx.setStorageSync('bindCache', bindCache);
+    wx.setStorageSync('popup', popup);
+  },
+  /**
+   * 点击左上角进入消息中心
+   */
+  loginMessage() {
+    //登陆后才能进入信息中心
+    if (wx.getStorageSync('login')) {
+      wx.navigateTo({
+        url: '../message/messagePage/messagePage'
+      })
+    }
   },
   // 页面跳转
   goToPage(e: any) {
@@ -604,6 +521,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    //获取时间
+    this.getCurrentTime();
     var that = this;
     // 获取屏幕高度
     var windowHeight = wx.getSystemInfoSync().windowHeight;
@@ -652,100 +571,31 @@ Page({
     }
     var indexTabListTemp = that.data.indexTabListTemp
     let localTemp = wx.getStorageSync('indexTabList')
-      if (localTemp != undefined && localTemp.length != 0) {
-        indexTabListTemp = wx.getStorageSync('indexTabList')
-      }
+    if (localTemp != undefined && localTemp.length != 0) {
+      indexTabListTemp = wx.getStorageSync('indexTabList')
+    }
     that.setData({
       isLogin: isLogin,
       userName: userName,
       indexTabListTemp: that.deleteBelowSplitWidget(indexTabListTemp)//数据存到data中
     })
   },
-    /**
+  /**
    * popup的一些onshow处理逻辑
    */
-  popupOnShow(){
-    var bindCache = wx.getStorageSync('bindCache');
-    var popupAppear = this.data.popupAppear as any;
-    var termTitleTapdetail = this.data.termTitleTapdetail;
-    var tc_custom = this.data.tc_custom;
-    var tc_system = this.data.tc_system;
+  popupOnShow() {
+    var termTitleTapdetail = false;
+    var tc_custom = false;
+    var tc_system = false;
     this.initPageData();
-    if(!wx.getStorageSync('bindCache')){
-          this.getcache();
+    if (!wx.getStorageSync('popup')) {
+      this.getcache();
     }
-    /**
-     * 当用户点击蒙版不看弹窗的时候，存入的缓存ID存在时
-     */
-    if (bindCache.isNoread !== '') {
-      /**
-       * 判断弹窗的Id是否与缓存中的Id相同
-       */
-      if (popupAppear.popupId == bindCache.unreadOne.popupId) {
-        /**
-         * 判断缓存中的unreadOne，是否已读
-         */
-        if (bindCache.unreadOne.isShow !== true) {
-          this.initPageData();
-        }
-      }
-      /**
-       * 判断缓存的Id是否等于弹窗的Id时
-       */
-      if (popupAppear.popupId !== bindCache.unreadOne.popupId) {
-        this.initPageData();
-      }
-      if (popupAppear.popupId == bindCache.unreadOne.popupId) {
-        termTitleTapdetail = false;
-        tc_custom = false;
-        tc_system = false;
-      }
-    } else {
-      this.initPageData();
-    }
-    /**
-     * 判断是否有点击弹窗存入的缓存
-     */
-    if (bindCache.unreadOne !== '') {
-      /**
-       * 判断弹窗是否与点击弹窗后存入的缓存unreadOne的ID是否相同
-       */
-      if (popupAppear.popupId == bindCache.unreadOne.popupId) {
-        /**
-         * 判断是否点击过弹窗
-         */
-        if (bindCache.unreadOne.isShow !== true) {
-          this.initPageData();
-        }
-        if (bindCache.unreadOne.isShow == true) {
-          this.setData({
-            termTitleTapdetail: false,
-            tc_custom: false,
-            tc_system: false,
-          })
-        }
-      }
-      else if (popupAppear.popupId !== bindCache.unreadOne.popupId) {
-        this.initPageData();
-      }
-    }
-    if (bindCache.noJump !== '') {
-      /**
-       * 判断是否与'不跳转'存入的缓存相同
-       */
-      if (popupAppear.popupId == bindCache.noJump.popupId) {
-        termTitleTapdetail = false;
-        tc_custom = false;
-        tc_system = false;
-      }
-      /**
-       * 判断是否与’不点击‘存入的缓存相同
-       */
-      if (popupAppear.popupId == bindCache.isNoread) {
-        termTitleTapdetail = false;
-        tc_custom = false;
-        tc_system = false;
-      }
+    //解决连续两天弹窗的问题
+    var pop = wx.getStorageSync('popup');
+    if (this.data.s2 !== pop.Time) {
+      pop.popupAppear = '';
+      wx.setStorageSync('popup', pop);
     }
     this.setData({
       termTitleTapdetail: termTitleTapdetail,
