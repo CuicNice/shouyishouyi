@@ -39,7 +39,7 @@
 <!-- 静态组件区域-->
 <view class="container">
   <!-- 组件展示 -->
-  <block style="display: flex;" wx:for="{{indexTabListTemp}}" wx:for-item="item" wx:key="index">
+  <block style="display: flex;" wx:if="{{isLogin}}" wx:for="{{indexTabListTemp}}" wx:for-item="item" wx:key="index">
     <miniScore wx:if="{{item.name=='成绩单'}}" style="order:{{item.index}}"></miniScore>
     <!-- 组件 -->
     <!-- 组件 -->
@@ -49,6 +49,7 @@
     <miniElectric wx:if="{{item.name=='寝室电费'}}" style="order:{{item.index}}"></miniElectric>
     <classTable wx:if="{{item.name=='每日课表'}}" style="order:{{item.index}}"></classTable>
   </block>
+  <image class="noLoginLogo" wx:if="{{!isLogin}}" src="https://introduce.mcdd.top/svg/noLogin.svg"></image>
 </view>
 <!-- popup弹窗页面 -->
 <view class="popGrey" bindtap="closePhoto" wx:if="{{termTitleTapdetail}}" catchtouchmove="ture"></view>
@@ -63,6 +64,15 @@
   <dialogTitle title="{{popupAppear.popupSystemHeadline}}" stitle="{{popupAppear.popupSystemSubtitle}}" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg" showDialog="true">
     <view style="display: flex;">
       <button class="btn" type="primary" style="width: 500rpx;background: #20C38C;" bindtap="loginInfo">{{popupAppear.popupJumpType !== 'noJump'?'前往查看详情':'确定'}}</button>
+    </view>
+  </dialogTitle>
+</view>
+
+<view class="dialogShow"  bindtap="closePhoto" wx:if="{{logoutDialog}}">
+  <dialogTitle title="请问你确定要退出登录吗？" schoolBuiltSrc="https://introduce.mcdd.top/schoolBuilt/zhonglou.svg" showDialog="true">
+    <view style="display: flex;width: 100%;justify-content: space-between;">
+      <button class="btn" style="width: 224rpx;border: 1px solid #20C38C;" bindtap="closeLogoutDialog">取消</button>
+      <button class="btn" type="primary" style="width: 224rpx;background: #20C38C;" bindtap="logout">退出登录</button>
     </view>
   </dialogTitle>
 </view>

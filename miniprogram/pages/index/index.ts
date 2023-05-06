@@ -76,8 +76,8 @@ Page({
         icon: "https://introduce.mcdd.top/schoolBuilt/jiayu_administorBuilding.svg"
       },
       {
-        name: "联系我们",
-        pageRouth: "",
+        name: "退出登录",
+        pageRouth: "logout",
         icon: "https://introduce.mcdd.top/schoolBuilt/tiyuguan.svg"
       }
     ],
@@ -153,6 +153,24 @@ Page({
       remindMaxMoveY: (200 - 60), //抽屉remindBox最大移动距离
       remindLastTranlateY: 0  //上次动画效果的平移距离，用于校准top值
     } as any,
+    logoutDialog:false // 退出登录的弹窗
+  },
+  /**
+   * 取消退出登录弹窗
+   */
+  closeLogoutDialog(){
+    this.setData({
+      logoutDialog:false
+    })
+  },
+  /**
+   * 退出登录
+   */
+  logout(){
+    wx.clearStorage()
+    wx.reLaunch({
+      url:"/pages/index/index"
+    })
   },
   /**
    * 这是tapbar的消抖函数，必须得有的
@@ -384,9 +402,15 @@ Page({
   // 页面跳转
   goToPage(e: any) {
     var path = e.currentTarget.dataset.path;
-    wx.navigateTo({
-      url: path
-    })
+    if(path == 'logout'){
+      this.setData({
+        logoutDialog:true
+      })
+    }else{
+      wx.navigateTo({
+        url: path
+      })
+    }
   },
   /**
    * banner点击事件
