@@ -55,7 +55,7 @@ Component({
         });
       }else{
         this.setData({
-          nowDayData:"用户未绑定,无法显示课表"
+          nowDayData:"未缓存课表，请先去课程表页面刷新课表"
         })
       }
     },

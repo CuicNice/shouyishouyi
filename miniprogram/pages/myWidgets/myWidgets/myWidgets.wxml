@@ -43,7 +43,7 @@
   <image class="noLoginLogo" wx:if="{{!isLogin}}" src="https://introduce.mcdd.top/svg/noLogin.svg"></image>
 </view>
 <!-- 设置按钮 -->
-<view class="myWidgetSettingCircle" bindtap="toSettingPage">
+<view class="myWidgetSettingCircle" bindtap="toSettingPage" wx:if="{{isLogin}}">
   <view class="myWidgetSettingCircleText">设置</view>
 </view>
 

@@ -1446,7 +1446,7 @@ Page({
       'mm': 'Luosukai1',
     }
     this.getTarHeighgt();
-    wx.setStorageSync('login', bind)
+    wx.setStorageSync('login', bind);
     if (!wx.getStorageSync('widget-allSchedule')) {
       //给用户添加缓存
       let value = { classSchedule: '', place: '', all: [], time: [] };

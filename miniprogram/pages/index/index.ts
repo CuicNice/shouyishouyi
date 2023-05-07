@@ -2,7 +2,6 @@
 import { getBanner } from '../../api/bannerApi';
 import { getPopup } from '../../api/popupApi';
 import { listPopup } from '../../api/popupApi'
-import { Consts } from '../../Consts';
 export interface popupeItem {
   currentPage: String,
   pageSize: String,
