@@ -45,6 +45,11 @@ Page({
           i = i - 1;
           continue;
         }//防止连续两个颜色一样
+        if (i >= 3 && i % 3 == 0 && pop.popupList[i - 1].color == this.data.colors[0]) {
+          this.putColors();
+          i = i - 1;
+          continue;
+        }//防止连续两个颜色一样
         var number = i;
         var color = this.data.colors[j];
         /**
@@ -67,7 +72,12 @@ Page({
         if (messageList[i].color == undefined) {
           messageList[i].color = color;
         }
+        if(pop.popupList[i].color == undefined){
+          pop.popupList[i].color = color;
+        }
         messageList[i].number = number;
+        pop.popupList[i].number = number;
+        pop.popupList[i].popupPublishTime = pop.popupList[i].popupPublishTime.slice(0, 11)
         messageList[i].popupPublishTime = messageList[i].popupPublishTime.slice(0, 11)
       }
       //判断数据是否已读;

@@ -152,23 +152,23 @@ Page({
       remindMaxMoveY: (200 - 60), //抽屉remindBox最大移动距离
       remindLastTranlateY: 0  //上次动画效果的平移距离，用于校准top值
     } as any,
-    logoutDialog:false // 退出登录的弹窗
+    logoutDialog: false // 退出登录的弹窗
   },
   /**
    * 取消退出登录弹窗
    */
-  closeLogoutDialog(){
+  closeLogoutDialog() {
     this.setData({
-      logoutDialog:false
+      logoutDialog: false
     })
   },
   /**
    * 退出登录
    */
-  logout(){
+  logout() {
     wx.clearStorage()
     wx.reLaunch({
-      url:"/pages/index/index"
+      url: "/pages/index/index"
     })
   },
   /**
@@ -247,19 +247,17 @@ Page({
         popup.Url = popupAppear.popupJumpUrl;
         popup.unreadOne = popupAppear;//这个变量是不动的，方便查看后合并到list里
         popup.popupAppear = popupAppear;
-        wx.setStorageSync('popup', popup);
       }
-
     }
     /**
      * popupList信息列表逻辑部分
      */
-    if (popupList&&popupList.length > 0) {
+    if (popupList && popupList.length > 0) {
       /**
        * 拿出缓存部分判断是否有未读消息
        */
-      if (popup.popupList){
-        //遍历数据，对比是否一样
+      if (popup.popupList) {
+        //遍历数据，对比是否已读
         first: for (var a = 0; a < popup.popupList.length; a++) {
           for (var b = 0; b < popup.popupList.length; b++) {
             if (popupList[a].popupId == popup.popupList[b].popupId) {
@@ -271,7 +269,21 @@ Page({
             }
           }
         }
-      }else {
+        //对已有list进行合并
+        for (var b = 0; b < popupList.length; b++) {
+          for (var k = 0; k < popup.popupList.length; k++) {
+            if (popupList[b].popupId == popup.popupList[k]) {
+              popupList[b] = popup.popupList[k];
+              break;
+            }else if(k==popup.popupList.length-1){
+              if (popupList[b].popupId !== popup.popupList[k]) {
+                popupList.unshift(popupList[b]);
+              }
+            }
+          }
+        }
+      } else {
+        popup.popupList = popupList;
         x = 1;
       }
     }
@@ -280,11 +292,11 @@ Page({
       tc_system: tc_system,
       termTitleTapdetail: termTitleTapdetail,
       ima: ima,
-      popupId: popupAppear?popupAppear.popupId:'',
+      popupId: popupAppear ? popupAppear.popupId : '',
       popupAppear: popupAppear,
       x: x,
     })
-
+    wx.setStorageSync('popup', popup);
   },
   /**
  * 显示是否绑定页面
@@ -371,7 +383,7 @@ Page({
       tc_custom: tc_custom,
       tc_system: tc_system,
     });
-    wx.setStorageSync('popup',pop)
+    wx.setStorageSync('popup', pop)
   },
   /** 
     * 存入空数组，以存入其他缓存
@@ -383,7 +395,7 @@ Page({
       'Time': '',
       'Url': '',
       'unreadOne': '',
-      'popupId':'',
+      'popupId': '',
     }
     wx.setStorageSync('popup', popup);
   },
@@ -401,11 +413,11 @@ Page({
   // 页面跳转
   goToPage(e: any) {
     var path = e.currentTarget.dataset.path;
-    if(path == 'logout'){
+    if (path == 'logout') {
       this.setData({
-        logoutDialog:true
+        logoutDialog: true
       })
-    }else{
+    } else {
       wx.navigateTo({
         url: path
       })
@@ -607,10 +619,10 @@ Page({
    * popup的一些onshow处理逻辑
    */
   popupOnShow() {
+    this.initPageData();
     var termTitleTapdetail = false;
     var tc_custom = false;
     var tc_system = false;
-    this.initPageData();
     if (!wx.getStorageSync('popup')) {
       this.getcache();
     }
@@ -630,7 +642,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    this.initPageData();
   },
 
   /**
