@@ -258,7 +258,7 @@ Page({
        */
       if (popup.popupList) {
         //遍历数据，对比是否已读
-        first: for (var a = 0; a < popup.popupList.length; a++) {
+        first: for (var a = 0; a < popupList.length; a++) {
           for (var b = 0; b < popup.popupList.length; b++) {
             if (popupList[a].popupId == popup.popupList[b].popupId) {
               if (popup.popupList[b].isShow !== true) {
@@ -272,20 +272,20 @@ Page({
         //对已有list进行合并
         for (var b = 0; b < popupList.length; b++) {
           for (var k = 0; k < popup.popupList.length; k++) {
-            if (popupList[b].popupId == popup.popupList[k]) {
+            if (popupList[b].popupId == popup.popupList[k].popupId) {
               popupList[b] = popup.popupList[k];
               break;
-            }else if(k==popup.popupList.length-1){
-              if (popupList[b].popupId !== popup.popupList[k]) {
-                popupList.unshift(popupList[b]);
-              }
             }
+
           }
         }
+        popup.popupList = popupList;
       } else {
         popup.popupList = popupList;
         x = 1;
       }
+    } if (popupList.length > popup.popupList.length) {
+      x = 1;
     }
     this.setData({
       tc_custom: tc_custom,
