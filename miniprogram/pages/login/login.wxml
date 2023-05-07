@@ -5,7 +5,7 @@
   </view>
 </view>
 <!-- topbar -->
-<topBar title=" " immersion="true">
+<topBar title=" "  immersion="{{true}}" Threshold="0.05" speed="3">
   <view class="topTittle">
     <image class="topTittleImage" src="/static/svg/logo/title.svg"></image>
   </view>
@@ -28,6 +28,30 @@
      <text> 初始的教务系统密码为身份证后六位</text>
     </view>
     <button class="btn" type="primary" style="  width: 620rpx; height: 84rpx; background: #20C38C;"  bindtap="login">立即登录</button>
+    <label class="checkbox">
+      <checkbox value="cb" bindtap="checkAgreement" checked="{{hasAgreement}}"/>我已阅读并同意用户协议和隐私政策
+    </label>
+  </view>
+
+  <!-- 问题框 -->
+  <view class="questionArea">
+    <view class="questionBox">
+      <!-- 问题框头 -->
+      <view class="questionBoxTittle">
+        <view class="questionBoxTittleLeft">
+          <image class="questionImg" src="/static/svg/question/question.svg" />或许你有以下登录问题
+        </view>
+        <view class="questionBoxTittleRight">
+          <image class="goToImg" src="/static/svg/back.svg"></image>
+        </view>
+      </view>
+      <!-- 问题框内容 -->
+      <view class="questionBoxList">
+        <view class="questionBoxItem" wx:for="{{questionList}}">
+          <image class="itemImg" src="{{item.icon}}" />{{item.name}}
+        </view>
+      </view>
+    </view>
   </view>
 
 </topBar>

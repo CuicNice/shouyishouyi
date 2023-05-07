@@ -90,17 +90,130 @@ page {
   opacity: 0.6;
   padding: 20rpx;
 }
+
 /* 按钮样式，部分样式写在了wxml种，这是微信的bug */
 .btn {
   padding: 20rpx 28rpx;
   gap: 20rpx;
   border-radius: 70rpx;
 }
+
 /* 弹窗的按钮框 */
-.toastBtnBox{
+.toastBtnBox {
   padding-top: 50rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16rpx;
+}
+
+/* 用户协议 */
+.checkbox {
+  padding: 34rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22rpx;
+  line-height: 30rpx;
+  color: #000000;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox .wx-checkbox-input {
+  background: #E9E9E9;
+  border-radius: 50%;
+  border: 0.8125px solid #292945;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  border: none;
+  background-color: #4BDCAB;
+  color: #FCFCFC;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+/* 问题区域 */
+.questionArea {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64rpx 0rpx 170rpx 0rpx;
+}
+
+.questionBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10rpx;
+  width: 620rpx;
+  background: rgba(255, 255, 255, 0.5);
+  /* 边框 */
+  border: 2rpx solid #E3E3E6;
+  border-radius: 20rpx;
+}
+
+.questionBoxTittle {
+  height: 40rpx;
+  width: 560rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 26rpx 30rpx 22rpx 30rpx;
+}
+
+.questionBoxTittleLeft {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #292945;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.goToImg {
+  width: 26rpx;
+  height: 26rpx;
+  transform: rotate(-180deg);
+}
+
+.questionImg {
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.questionBoxList {
+  display: flex;
+  flex-direction: column;
+}
+
+.questionBoxItem {
+  width: 552rpx;
+  padding: 8rpx 34rpx;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  letter-spacing: -0.2176px;
+  color: #000000;
+  opacity: 0.6;
+  display: flex;
+  flex-direction: row;
+  gap:14rpx;
+  align-items: center;
+}
+
+.itemImg {
+  height: 56rpx;
+  width: 32rpx;
 }

@@ -6,13 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bgSvgUrl: "https://introduce.mcdd.top/schoolBuilt/pillar.svg",
+    bgSvgUrl: "https://introduce.mcdd.top/schoolBuilt/pillar.svg", // 背景柱子
     showLoginDialog: false,// 显示登录弹窗
-    showPwd:false,
+    showPwd:false, // 显示密码
     zh: '',
     mm: '',
     errorTimes:0, //记录用户错误次数，每3次弹窗一次
-    copyUrlDialog:false // 复制教务系统网址的弹窗
+    copyUrlDialog:false, // 复制教务系统网址的弹窗
+    hasAgreement:false, // 用户是否同意隐私协议
+    questionList:[
+      {name:"这个账号密码是哪个平台的账号密码？",icon:"https://introduce.mcdd.top/questionItem/questionItem1.svg"},
+      {name:"我的账号密码输入一直错误",icon:"https://introduce.mcdd.top/questionItem/questionItem2.svg"},
+      {name:"我忘记密码了,怎么办？",icon:"https://introduce.mcdd.top/questionItem/questionItem3.svg"},
+      {name:"还有问题，联系南南！",icon:"https://introduce.mcdd.top/questionItem/questionItem4.svg"},
+    ]
   },
   /**
    * 点击小眼睛，展示或关闭密码回显
@@ -36,13 +43,27 @@ Page({
   getXh(e: any) { this.setData({ zh: e.detail.value }) },
   getMm(e: any) { this.setData({ mm: e.detail.value }) },
   /**
+   * 选中用户协议checkbox
+   */
+  checkAgreement(){
+    let hasAgreement = this.data.hasAgreement;
+    this.setData({
+      hasAgreement:!hasAgreement
+    })
+  },
+  /**
    * 点击完成按钮
    */
   async login() { //模仿写出存入缓存
     var zh = this.data.zh;
     var mm = this.data.mm;
+    var hasAgreement = this.data.hasAgreement;
     let that = this;
     let toast = this.selectComponent('#toast');
+    if(!hasAgreement){
+      toast.showToastAuto('请同意协议', "error", 1);
+      return;
+    }
     if(zh!='' && mm != ''){
       let login = {
         zh:zh,
@@ -71,7 +92,7 @@ Page({
         toast.showToastAuto("登录成功", "success", 2, wx.navigateBack);
       }
     }else{
-      toast.showToastAuto('请输入完整', "error", 2);
+      toast.showToastAuto('请输入完整', "error", 1);
     }
   },
   /**
