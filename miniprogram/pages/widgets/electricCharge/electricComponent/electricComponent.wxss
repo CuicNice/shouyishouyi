@@ -1,6 +1,7 @@
 /* pages/widgets/electric/electricComponment/electricComponent.wxss */
 .electricPageBox {
   margin: 0 16rpx;
+  width: 734rpx;
 }
 
 .electric {

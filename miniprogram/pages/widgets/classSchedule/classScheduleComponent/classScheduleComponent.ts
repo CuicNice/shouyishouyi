@@ -22,8 +22,8 @@ Component({
       this.getdailySchedule();
     },
   },
-  lifetimes:{
-    ready(){
+  lifetimes: {
+    ready() {
       // 页面被展示
       this.getdailySchedule();
     },
@@ -38,33 +38,40 @@ Component({
       var ifClass = true;
       var classSchedule = wx.getStorageSync('widget-classSchedule');
       var cls = wx.getStorageSync('login');
-      if(cls){
+      if (cls) {
         var dailySchedule = classSchedule.dailySchedule;
         var time = classSchedule.time;
         var nowDayData = classSchedule.nowDayData;
-        if (dailySchedule.length == 0) {
-          ifClass = false
+        try {
+          if (dailySchedule.length == 0) {
+            ifClass = false
+          }
+          that.setData({
+            dailySchedule: dailySchedule,
+            time: time,
+            nowDayData: nowDayData,
+            nowtime: (new Date().toTimeString().substring(0, 8)).slice(0, 5),
+            dark: classSchedule.dark,
+            ifClass: ifClass
+          });
+        } catch (e) {
+          this.setData({
+            nowDayData: "未缓存课表，请先去课程表页面刷新课表"
+          })
         }
-        that.setData({
-          dailySchedule: dailySchedule,
-          time: time,
-          nowDayData: nowDayData,
-          nowtime: (new Date().toTimeString().substring(0, 8)).slice(0, 5),
-          dark: classSchedule.dark,
-          ifClass: ifClass
-        });
-      }else{
+
+      } else {
         this.setData({
-          nowDayData:"未缓存课表，请先去课程表页面刷新课表"
+          nowDayData: "未缓存课表，请先去课程表页面刷新课表"
         })
       }
     },
     // 跳转课表tabbar
-    godailySchedule(){
+    godailySchedule() {
       console.log("goto TabBar!")
       wx.switchTab({
         url: '/pages/widgets/classSchedule/classSchedulePage/classSchedulePage'
-        })
+      })
     }
   }
 })
