@@ -27,7 +27,7 @@
 <!-- function area -->
 <view class="areaBox">
   <view class="functionArea">
-    <view class="areaItem" wx:for="{{functionList}}" bindtap="goToPage" wx:key="index" data-path="{{item.pageRouth}}">
+    <view class="areaItem" wx:for="{{functionList}}" bindtap="goToPage" wx:key="index" data-path="{{item.pageRouth}}" data-event="{{item.reportEvent}}">
       <image class="areaItemImage" src="{{item.icon}}"></image>
       <view class="areaItemName">{{item.name}}</view>
     </view>

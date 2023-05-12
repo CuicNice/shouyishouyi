@@ -32,52 +32,62 @@ Page({
       {
         name: "全校课表",
         pageRouth: "/pages/allScedule/allScedule",
-        icon: "https://introduce.mcdd.top/schoolBuilt/zhonglou.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/zhonglou.svg",
+        reportEvent: "sy_allschedule_click"
       },
       {
         name: "共同课表",
         pageRouth: "",
-        icon: "https://introduce.mcdd.top/schoolBuilt/shoyiStanding.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/shoyiStanding.svg",
+        reportEvent: ""
       },
       {
         name: "电费查询",
         pageRouth: "/pages/widgets/electricCharge/electricPage/electricPage",
-        icon: "https://introduce.mcdd.top/schoolBuilt/zhongqutushuguan.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/zhongqutushuguan.svg",
+        reportEvent: ""
       },
       {
         name: "图书查询",
         pageRouth: "/pages/widgets/library/libraryPage/libraryPage",
-        icon: "https://introduce.mcdd.top/schoolBuilt/genlibrary.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/genlibrary.svg",
+        reportEvent: ""
       },
       {
         name: "个性组件",
         pageRouth: "/pages/myWidgets/settingWidgets/settingWidgets",
-        icon: "https://introduce.mcdd.top/schoolBuilt/jiayulibrary.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/jiayulibrary.svg",
+        reportEvent: ""
       },
       {
         name: "成绩查询",
         pageRouth: "/pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
-        icon: "https://introduce.mcdd.top/schoolBuilt/setSail.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/setSail.svg",
+        reportEvent: ""
       },
       {
         name: "首义通知",
         pageRouth: "/pages/widgets/news/newPage/newsList/list",
-        icon: "https://introduce.mcdd.top/schoolBuilt/nanlibrary.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/nanlibrary.svg",
+        reportEvent: ""
       },
       {
         name: "倒计时",
         pageRouth: "/pages/widgets/countDown/countDownPage/countDownPage",
-        icon: "https://introduce.mcdd.top/schoolBuilt/genlibrary.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/genlibrary.svg",
+        reportEvent: "sy_countdown_click"
       },
       {
         name: "版本声明",
         pageRouth: "/pages/versionStatement/versionStatementPage/versionStatementPage",
-        icon: "https://introduce.mcdd.top/schoolBuilt/jiayu_administorBuilding.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/jiayu_administorBuilding.svg",
+        reportEvent: ""
       },
       {
         name: "退出登录",
         pageRouth: "logout",
-        icon: "https://introduce.mcdd.top/schoolBuilt/tiyuguan.svg"
+        icon: "https://introduce.mcdd.top/schoolBuilt/tiyuguan.svg",
+        reportEvent: ""
       }
     ],
     // 小组件页面
@@ -412,7 +422,13 @@ Page({
   },
   // 页面跳转
   goToPage(e: any) {
-    var path = e.currentTarget.dataset.path;
+    let event = e.currentTarget.dataset.event;
+    let path = e.currentTarget.dataset.path;
+    if (event != "") {
+      // 埋点上报
+      wx.reportEvent(event, {});
+    }
+
     if (path == 'logout') {
       this.setData({
         logoutDialog: true
