@@ -305,6 +305,7 @@ Page({
       myArr.classSchedule = '';
       this.setData({
         classTitle: '',
+        isShowToast:false,
         dialogTip: true,
       })
     }
@@ -736,7 +737,6 @@ Page({
         Class: Class,
         schoolTime: this.data.schoolTime,
       }
-      console.log(this.data.schoolTime)
       /**
        * 由于最多三个，简单去重，和替换
        */
@@ -961,7 +961,7 @@ Page({
       }
       //本
       if (semesterArray.length == 8) {
-        if (changeSchol== changeSa) {
+        if (this.data.schoolTime== changeSa) {
           break;
         }
       }
@@ -1451,101 +1451,101 @@ Page({
     if(login){
      var zh = login.zh;
      var mm = login.mm;
+     this.getTarHeighgt();
+     if (!wx.getStorageSync('widget-allSchedule')) {
+       //给用户添加缓存
+       let value = { classSchedule: '', place: '', all: [], time: [] };
+       wx.setStorageSync('widget-allSchedule', value);
+     }
+     //获取当前年月
+     var timestamp = Date.parse(new Date() as unknown as string);
+     var date = new Date(timestamp);
+     //获取年份
+     var Y = date.getFullYear() as any;
+     //获取月份
+     var M = (date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string;
+     //获取当日日期
+     var D = date.getDate() < 10 ? (date.getDate()) as unknown as string : date.getDate() as unknown as string;
+     this.setData({
+       zh:zh,
+       mm:mm,
+       Y:Y-1 as any,
+       M:M,
+       D:D
+     })
+     //获取当前周数的预处理定义变量进行储存数据
+     var time = Y + '/' + M + '/' + D;
+     var start_date = new Date(this.data.startDate.replace(/-/g, "/"));
+     var end_date = new Date(time.replace(/-/g, "/"));
+     var days = end_date.getTime() - start_date.getTime();
+     var day = (days / (1000 * 60 * 60 * 24)) as unknown as number;
+     //进行当前学期的判断
+     var schoolTerm;//储存学期的变量
+     var year = 0;//储存年份的变量
+     var start;//开始上课的时间
+     var allInfo = wx.getStorageSync('widget-allSchedule')//获取缓存信息
+     var times = allInfo.time.length == 0 ? this.data.timeJia : allInfo.time;//校区的上课时间
+     var place = allInfo.place.length == 0 ? this.data.schoolPlace : allInfo.place;//校区
+     var changeM =  parseInt(M);//改变后的月份
+     if (8 <= changeM && changeM <= 12) {
+       year = year + parseInt(Y) + 1;
+       schoolTerm = 3;
+     };
+     if (1 <= changeM && changeM < 2) {
+       year = year + parseInt(Y);
+       schoolTerm = 3;
+     };
+     if (2 <= changeM && changeM < 8) {
+       year = year + parseInt(Y);
+       schoolTerm = 12;
+     };
+     try {
+       var change = Y as unknown as number - allInfo.all[0].grade //年份和缓存年级的差值
+       if ((change== 4 && 8 <= changeM && changeM <= 12) || (change== 4 && 1 <= changeM && changeM < 2)) {
+         start = Y + "/8/28";
+ 
+       };
+       if (change== 4 && 2 <= changeM && changeM < 8) {
+         start = Y + "/2/19";
+ 
+       };
+       if ((change== 3 && 8 <= changeM && changeM <= 12) || (change== 3 && 1 <= changeM && changeM < 2)) {
+         start = Y + "/8/28";
+       };
+       if (change== 3 && 2 <= changeM && changeM < 8) {
+         start = Y + "/2/19";
+       };
+       if ((change== 2 && 8 <= changeM && changeM <= 12) || (change== 2 && 1 <= changeM && changeM < 2)) {
+         start = Y + "/8/28";
+       };
+       if (change== 2 && 2 <= changeM && changeM < 8) {
+         start = Y + "/2/19";
+       };
+       if ((change== 1 && 8 <= changeM && changeM <= 12) || (change== 1 && 1 <= changeM && changeM < 2)) {
+         start = Y + "/8/28";
+ 
+       };
+       if (change== 1 && 2 <= changeM && changeM < 8) {
+         start = Y + "/2/19";
+       };
+       var toView//对滑轮中被选中的周数进行显示
+       var changeD = parseInt((day / 7 + 1) as unknown as string);//计算后的日
+       if (changeD > 3) {
+         toView = "item" + (changeD - 3);
+       } else { toView = 'item0'; }
+       this.setData({I: schoolTerm , nowWeek: changeD, schoolPlace: place, time: times, startDate: start, toView: toView, beginWeek: changeD, againWeek:changeD });
+     } catch { };
+     this.initPageData();//初始化页面数据
+     //通过定义的变量进行周的自动判断
+     if (allInfo.classSchedule) {
+       this.reGetDay(time)
+     } else {
+         this.reGetDay(time)
+     };
+     this.initPageData();
     }else{
       this.selectComponent("#toast_1").showToastAuto("用户请登录", "error", '1');
     }
-    this.getTarHeighgt();
-    if (!wx.getStorageSync('widget-allSchedule')) {
-      //给用户添加缓存
-      let value = { classSchedule: '', place: '', all: [], time: [] };
-      wx.setStorageSync('widget-allSchedule', value);
-    }
-    //获取当前年月
-    var timestamp = Date.parse(new Date() as unknown as string);
-    var date = new Date(timestamp);
-    //获取年份
-    var Y = date.getFullYear() as any;
-    //获取月份
-    var M = (date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string;
-    //获取当日日期
-    var D = date.getDate() < 10 ? (date.getDate()) as unknown as string : date.getDate() as unknown as string;
-    this.setData({
-      zh:zh,
-      mm:mm,
-      Y:Y-1 as any,
-      M:M,
-      D:D
-    })
-    //获取当前周数的预处理定义变量进行储存数据
-    var time = Y + '/' + M + '/' + D;
-    var start_date = new Date(this.data.startDate.replace(/-/g, "/"));
-    var end_date = new Date(time.replace(/-/g, "/"));
-    var days = end_date.getTime() - start_date.getTime();
-    var day = (days / (1000 * 60 * 60 * 24)) as unknown as number;
-    //进行当前学期的判断
-    var schoolTerm;//储存学期的变量
-    var year = 0;//储存年份的变量
-    var start;//开始上课的时间
-    var allInfo = wx.getStorageSync('widget-allSchedule')//获取缓存信息
-    var times = allInfo.time.length == 0 ? this.data.timeJia : allInfo.time;//校区的上课时间
-    var place = allInfo.place.length == 0 ? this.data.schoolPlace : allInfo.place;//校区
-    var changeM =  parseInt(M);//改变后的月份
-    if (8 <= changeM && changeM <= 12) {
-      year = year + parseInt(Y) + 1;
-      schoolTerm = 3;
-    };
-    if (1 <= changeM && changeM < 2) {
-      year = year + parseInt(Y);
-      schoolTerm = 3;
-    };
-    if (2 <= changeM && changeM < 8) {
-      year = year + parseInt(Y);
-      schoolTerm = 12;
-    };
-    var change = Y as unknown as number - allInfo.all[0].grade //年份和缓存年级的差值
-    try {
-      if ((change== 4 && 8 <= changeM && changeM <= 12) || (change== 4 && 1 <= changeM && changeM < 2)) {
-        start = Y + "/8/28";
-
-      };
-      if (change== 4 && 2 <= changeM && changeM < 8) {
-        start = Y + "/2/19";
-
-      };
-      if ((change== 3 && 8 <= changeM && changeM <= 12) || (change== 3 && 1 <= changeM && changeM < 2)) {
-        start = Y + "/8/28";
-      };
-      if (change== 3 && 2 <= changeM && changeM < 8) {
-        start = Y + "/2/19";
-      };
-      if ((change== 2 && 8 <= changeM && changeM <= 12) || (change== 2 && 1 <= changeM && changeM < 2)) {
-        start = Y + "/8/28";
-      };
-      if (change== 2 && 2 <= changeM && changeM < 8) {
-        start = Y + "/2/19";
-      };
-      if ((change== 1 && 8 <= changeM && changeM <= 12) || (change== 1 && 1 <= changeM && changeM < 2)) {
-        start = Y + "/8/28";
-
-      };
-      if (change== 1 && 2 <= changeM && changeM < 8) {
-        start = Y + "/2/19";
-      };
-      var toView//对滑轮中被选中的周数进行显示
-      var changeD = parseInt((day / 7 + 1) as unknown as string);//计算后的日
-      if (changeD > 3) {
-        toView = "item" + (changeD - 3);
-      } else { toView = 'item0'; }
-      this.setData({I: schoolTerm , nowWeek: changeD, schoolPlace: place, time: times, startDate: start, toView: toView, beginWeek: changeD, againWeek:changeD });
-    } catch { };
-    this.initPageData();//初始化页面数据
-    //通过定义的变量进行周的自动判断
-    if (allInfo.classSchedule) {
-      this.reGetDay(time)
-    } else {
-        this.reGetDay(time)
-    };
-    this.initPageData();
   },
   /**
    * 生命周期函数--监听页面显示
