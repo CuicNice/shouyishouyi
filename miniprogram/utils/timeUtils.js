@@ -27,8 +27,7 @@ function myformatNumber(n) {
 function str_substr(str) {
 var arr = str.split("-");
   return arr;
-  }
-  
+} 
   
  
 module.exports = {

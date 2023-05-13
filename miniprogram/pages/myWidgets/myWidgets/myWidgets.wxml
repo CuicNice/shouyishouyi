@@ -30,7 +30,7 @@
 <!-- 静态组件区域-->
 <view class="container">
   <!-- 组件展示 -->
-  <block style="display: flex;"  wx:if="{{isLogin}}"  wx:for="{{myWidgetTabListTemp}}" wx:for-item="item" wx:key="{{index}}">
+  <block style="display: flex;"  wx:if="{{isLogin}}"  wx:for="{{myWidgetTabListTemp}}" wx:for-item="item" wx:key="index">
     <miniScore wx:if="{{item.name=='成绩单'}}" style="order:{{item.index}}"></miniScore>
     <!-- 组件 -->
     <!-- 组件 -->

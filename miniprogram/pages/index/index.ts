@@ -45,25 +45,25 @@ Page({
         name: "电费查询",
         pageRouth: "/pages/widgets/electricCharge/electricPage/electricPage",
         icon: "https://introduce.mcdd.top/schoolBuilt/zhongqutushuguan.svg",
-        reportEvent: ""
+        reportEvent: "sy_electriccharge_click"
       },
       {
         name: "图书查询",
         pageRouth: "/pages/widgets/library/libraryPage/libraryPage",
         icon: "https://introduce.mcdd.top/schoolBuilt/genlibrary.svg",
-        reportEvent: ""
+        reportEvent: "sy_libinquiry_click"
       },
       {
         name: "个性组件",
         pageRouth: "/pages/myWidgets/settingWidgets/settingWidgets",
         icon: "https://introduce.mcdd.top/schoolBuilt/jiayulibrary.svg",
-        reportEvent: ""
+        reportEvent: "sy_widgets_click"
       },
       {
         name: "成绩查询",
         pageRouth: "/pages/widgets/scoreInquiry/scoreInquiryPage/scoreInquiryPage",
         icon: "https://introduce.mcdd.top/schoolBuilt/setSail.svg",
-        reportEvent: ""
+        reportEvent: "sy_scoreinquiry_click"
       },
       {
         name: "首义通知",

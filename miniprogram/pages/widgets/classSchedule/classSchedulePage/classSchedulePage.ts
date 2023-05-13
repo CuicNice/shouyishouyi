@@ -6,6 +6,7 @@ export interface ClassScheduleItem {
   "num": number
 }
 var utils = require('../../../../utils/addCache');
+var classScheduleUtils = require('../../../../utils/classScheduleUtils');
 Page({
   /**
    * 页面的初始数据
@@ -51,38 +52,21 @@ Page({
   },
 
   /**
- * 自动获得当前手机信息(高度等)
- */
-  getTarHeighgt() {
-    // 获取胶囊的信息
-    const menuButton = wx.getMenuButtonBoundingClientRect()
-    const menuButtonHeight = menuButton.height;
-    const menuButtonTop = menuButton.top;
-    // 获取设备的信息  
-    let systemInfo = wx.getSystemInfoSync()
-    // 获取信号区高度
-    let statusBarHeight = systemInfo['statusBarHeight']
-    // 设置胶囊行的高度
-    const capsuleBoxHeight = menuButtonHeight + (menuButtonTop - statusBarHeight) * 2;
-    // 获得屏幕高度
-    let screenHeight = systemInfo['screenHeight'];
-    /* 
-    根据我的测验，实际的信号区高度在真机上表现与于实际的不服，所以我们这里还需要根据不同的设备进行调整
-    开发工具 = 获取的高度
-    安卓真机 = 获取的高度 + 1
-    苹果真机 = 获取的高度 - 1
-    我本人这里也只测试了iPhonex 华为和小米手机，
-    如果有出入根据实际情况进行调整就行了
+   * 获得当前页面元素的一些高度参数
+   */
+  getSomeHeightInfo() {
+    /**
+    * capsuleBoxHeight：胶囊行的高度 
+    * statusBarHeight：状态栏高度
+    * screenHeight：屏幕高度
+    * rate：比率（rpx*rate=实际px）
     */
-    if (systemInfo.model === 'andorid') {
-      statusBarHeight = statusBarHeight + 1
-    } else if (systemInfo.platform === 'ios') {
-      statusBarHeight = statusBarHeight - 2
-    } else {
-      statusBarHeight = statusBarHeight
-    }
-    var rate = systemInfo['windowWidth'] / 750;
-    // 获得当前课表滑动窗口的高度（屏幕高度-状态栏-navigateBar-周次滑动-日期显示栏-tapbar）
+    let heightInfo = classScheduleUtils.getTarHeighgt();
+    let screenHeight = heightInfo.screenHeight;
+    let statusBarHeight = heightInfo.statusBarHeight;
+    let capsuleBoxHeight = heightInfo.capsuleBoxHeight;
+    let rate = heightInfo.rate;
+    // 滑动窗口高度 = 屏幕高度-状态栏-navigateBar-周次滑动-日期显示栏-tapbar
     var scrollHeight = screenHeight - statusBarHeight - capsuleBoxHeight -
       (114) * rate - (76) * rate - (160) * rate;
     this.setData({
@@ -91,6 +75,7 @@ Page({
       scrollHeight
     })
   },
+
   /* 
   *取消学期绑定弹窗
   */
@@ -883,7 +868,6 @@ Page({
       })
     }
   },
-
   /**
    * 获取当前学期的所有日期
    */
@@ -925,16 +909,16 @@ Page({
   /**
    * 初始化本地页面的一些信息
    * 计算出当前的年月日信息和一些Page初始化需要用到的信息
+   * @param startDate：学期的开始日期 
+   * @param nowDate：当前日期
    */
-  initPageData(time: string) {
-    //获取当前年月
-    let timeSplit = time.split("/");
+  initPageData(startDate:string, nowDate: string) {
+    // 获取当前年月
+    let timeSplit = nowDate.split("/");
     let Y = timeSplit[0] as unknown as string;
     let M = parseInt(timeSplit[1]) as unknown as number;
-    let start_date = new Date(this.data.startDate.replace(/-/g, "/"));
-    let end_date = new Date(time.replace(/-/g, "/"));
-    let days = end_date.getTime() - start_date.getTime();
-    let day = (days / (1000 * 60 * 60 * 24)) as unknown as number;
+    // 计算两个时间之间的天数
+    let day = classScheduleUtils.getCalculateTheNumberOfDays(startDate, nowDate);
     //进行当前学期的判断
     let schoolTerm;//储存学期的变量
     let year = 0;//储存年份的变量
@@ -1041,17 +1025,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    //获取当前年月
-    let timestamp = Date.parse(new Date() as unknown as string);
-    let date = new Date(timestamp);
-    let Y = date.getFullYear() as unknown as string;
-    let M = (date.getMonth() + 1 < 10 ? (date.getMonth() + 1) : date.getMonth() + 1) as unknown as string;
-    let D = date.getDate() < 10 ? (date.getDate()) : date.getDate() as unknown as string;
-    //获取当前周数的预处理定义变量进行储存数据
-    let time = Y + '/' + M + '/' + D;
-    this.getTarHeighgt();
+    // 获得当前时间
+    let time = classScheduleUtils.getScheduleNowDate('time');
+    console.log(classScheduleUtils.getScheduleParamsByDate(2023, 11, "20221117029"))
+    let startDate = this.data.startDate;
+    // 计算出课表滑动栏的高度
+    this.getSomeHeightInfo();
+    // 初始化缓存
     this.initLocalStorage();
-    this.initPageData(time);
+    // 初始化页面数据
+    this.initPageData(startDate, time);
     this.initScheduleData();//初始化页面数据
     //通过定义的变量进行周的自动判断
     var classSchedule = wx.getStorageSync('widget-classSchedule').classSchedule;
