@@ -39,7 +39,7 @@ Page({
         name: "共同课表",
         pageRouth: "",
         icon: "https://introduce.mcdd.top/schoolBuilt/shoyiStanding.svg",
-        reportEvent: ""
+        reportEvent: "sy_multipersonschedule_click"
       },
       {
         name: "电费查询",
@@ -444,6 +444,9 @@ Page({
    */
   bannerTap(e: any) {
     let tapThins = e.detail;
+    wx.reportEvent("sy_banner_click", {
+      "sy_banner_click_bannername": tapThins.bannerTitle
+    })
     if (tapThins.bannerType == "miniLink") {
       wx.navigateTo({
         url: tapThins.bannerContent
