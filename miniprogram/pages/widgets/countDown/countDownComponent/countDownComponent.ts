@@ -133,6 +133,10 @@ Component({
       // 获取当前ID
       // id存起来
       let dateItemId = e.currentTarget.dataset.id;
+      console.log(dateItemId)
+      wx.reportEvent("sy_countdown_widgets_click", {
+        "sy_countdown_widgets_click_countdownnum": "第" + dateItemId + "个"
+      })
       // 判断这个值本地有没有
       let tapCountDownDataItem = that.data.cdlist3[dateItemId]
       let tapCountDownName = tapCountDownDataItem["countDownName"]

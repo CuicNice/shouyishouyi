@@ -128,7 +128,9 @@ Page({
   },
   // 获取表单信息
   formSubmit(e: any) {
-    let that = this
+    let that = this;
+    let event = e.detail.value;
+    let success = false;
     try {
       // 存储数据
       let goalName = e.detail.value.thingsInputTxt
@@ -167,7 +169,8 @@ Page({
         )
         try {
           that.selectComponent("#toast").showToastAuto("设置成功", "success", 1);
-          that.gotoBd()
+          that.gotoBd();
+          success = true;
         } catch (error) {
           that.submitError(error.errMsg)
           that.setData({
@@ -185,8 +188,12 @@ Page({
         showDialog: true
       })
     }
-    // 判断name和time是不是都存在
-    // 缓存处理
+    // 埋点
+    wx.reportEvent("sy_countdown_savebutton_click", {
+      "sy_countdown_savebutton_click_eventsetup": event.thingsInputTxt,
+      "sy_countdown_savebutton_click_timesetup": event.timeInputTxt,
+      "sy_countdown_savebutton_click_issuccess": success == true?"是":"否"
+    })
   },
   // chun
   formReset() {
@@ -201,8 +208,8 @@ Page({
     this.initDate()
     // 解决数据重复的问题
   },
-  setSomeDate(dayNumber:number) {
-      // 设置当前距离今天时间XXX天后的时间格式为yy-mmm-xx
+  setSomeDate(dayNumber: number) {
+    // 设置当前距离今天时间XXX天后的时间格式为yy-mmm-xx
     let nowDateObj = new Date();
     let nowTimeStem = nowDateObj.getTime();
     let endTimeStem = nowTimeStem + 24 * 60 * 60 * 1000 * dayNumber;
@@ -259,12 +266,12 @@ Page({
   initDate() {
     let startDate = this.getNowFormatDate();
     // 设置结束时间
-    let endDate= this.setSomeDate(999)
+    let endDate = this.setSomeDate(999)
 
     let goalTimePre = this.getNowFormatDate()
     this.setData({
       startDate: startDate,
-      endDate:endDate,
+      endDate: endDate,
       goalTimePre: goalTimePre,
       title: "倒计时"
     })
